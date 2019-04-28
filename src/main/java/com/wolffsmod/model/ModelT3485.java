@@ -1,11 +1,11 @@
 //This File was created with the Minecraft-SMP Modelling Toolbox 2.3.0.0
-// Copyright (C) 2018 Minecraft-SMP.de
+// Copyright (C) 2019 Minecraft-SMP.de
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model: T3485
 // Model Creator: 
-// Created on: 23.08.2018 - 01:20:42
-// Last changed on: 23.08.2018 - 01:20:42
+// Created on: 18.02.2019 - 23:21:56
+// Last changed on: 18.02.2019 - 23:21:56
 
 package com.wolffsmod.model; //Path where the model is located
 
@@ -3447,7 +3447,7 @@ public class ModelT3485 extends ModelVehicle //Same as Filename
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 583; i++)
+		for(int i = 0; i < 740; i++)
 		{
 			bodyModel[i].render(f5);
 		}

@@ -8,6 +8,6 @@ public class EntitySherman extends EntityCreature {
 	public EntitySherman(World par1World) {
 		super(par1World);
 		// TODO Auto-generated constructor stub
-		this.setSize(3.0F, 3.5F);
+		this.setSize(3.5F, 3.0F);
 	}
 }

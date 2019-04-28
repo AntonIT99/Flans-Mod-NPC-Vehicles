@@ -2741,7 +2741,7 @@ public class Model105leFH18B2 extends ModelVehicle //Same as Filename
 		bodyModel[533].setRotationPoint(20F, 0.800000000000001F, 18F);
 
 		bodyModel[534].addShape3D(6F, -6F, -2.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 0, 3, 0), new Coord2D(9, 0, 9, 0), new Coord2D(12, 3, 12, 3), new Coord2D(12, 9, 12, 9), new Coord2D(9, 12, 9, 12), new Coord2D(3, 12, 3, 12), new Coord2D(0, 9, 0, 9), new Coord2D(0, 3, 0, 3) }), 7, 12, 12, 44, 7, ModelRendererTurbo.MR_FRONT, new float[] {5 ,6 ,5 ,6 ,5 ,6 ,5 ,6}); // Import Shape32
-		bodyModel[534].setRotationPoint(27F, -5.7F, -18F);
+		bodyModel[534].setRotationPoint(39F, -6F, -20F);
 
 		bodyModel[535].addShape3D(5F, -3F, -4.5F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(6, 0, 6, 0), new Coord2D(8, 2, 8, 2), new Coord2D(8, 4, 8, 4), new Coord2D(6, 6, 6, 6), new Coord2D(4, 6, 4, 6), new Coord2D(2, 4, 2, 4), new Coord2D(2, 2, 2, 2) }), 7, 8, 6, 20, 7, ModelRendererTurbo.MR_FRONT, new float[] {3 ,2 ,3 ,2 ,3 ,2 ,3 ,2}); // Import Shape33
 		bodyModel[535].setRotationPoint(8F, 3.3F, -20F);

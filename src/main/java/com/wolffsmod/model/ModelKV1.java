@@ -1,5 +1,5 @@
 //This File was created with the Minecraft-SMP Modelling Toolbox 2.3.0.0
-// Copyright (C) 2018 Minecraft-SMP.de
+// Copyright (C) 2019 Minecraft-SMP.de
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model: KV1
@@ -14,6 +14,8 @@ import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.flansmod.client.tmt.Coord2D;
 import com.flansmod.client.tmt.Shape2D;
 
+import net.minecraft.entity.Entity;
+
 public class ModelKV1 extends ModelVehicle //Same as Filename
 {
 	int textureX = 1024;
@@ -22,17 +24,6 @@ public class ModelKV1 extends ModelVehicle //Same as Filename
 	public ModelKV1() //Same as Filename
 	{
 		bodyModel = new ModelRendererTurbo[58];
-
-		initbodyModel_1();
-
-		translateAll(0F, 0F, 0F);
-
-
-		flipAll();
-	}
-
-	private void initbodyModel_1()
-	{
 		bodyModel[0] = new ModelRendererTurbo(this, 0, 0, textureX, textureY); // Import ImportCR,MainBody
 		bodyModel[1] = new ModelRendererTurbo(this, 0, 100, textureX, textureY); // Import ImportCR,TopBeak
 		bodyModel[2] = new ModelRendererTurbo(this, 0, 150, textureX, textureY); // Import ImportCR,BottomBeak
@@ -101,19 +92,19 @@ public class ModelKV1 extends ModelVehicle //Same as Filename
 
 		bodyModel[2].addBox(0F, 0F, 0F, 14, 6, 32, 0F); // Import ImportCR,BottomBeak
 		bodyModel[2].setRotationPoint(24F, -4F, -16F);
-		bodyModel[2].rotateAngleZ = -0.13962634F;
+		bodyModel[2].rotateAngleZ = - 0.13962634F;
 
 		bodyModel[3].addBox(0F, 0F, 0F, 2, 6, 32, 0F); // Import ImportCR,FrontSlope
 		bodyModel[3].setRotationPoint(23.2F, -15F, -16F);
-		bodyModel[3].rotateAngleZ = -0.43633231F;
+		bodyModel[3].rotateAngleZ = - 0.43633231F;
 
 		bodyModel[4].addBox(0F, 0F, 0F, 6, 6, 31, 0F); // Import ImportCR,Backthingy
 		bodyModel[4].setRotationPoint(-59.8F, -14.8F, -15.5F);
-		bodyModel[4].rotateAngleZ = -0.20943951F;
+		bodyModel[4].rotateAngleZ = - 0.20943951F;
 
 		bodyModel[5].addBox(0F, 0F, 0F, 10, 12, 32, 0F); // Import ImportCR,Backslope
 		bodyModel[5].setRotationPoint(-57F, -10F, -16F);
-		bodyModel[5].rotateAngleZ = -0.2443461F;
+		bodyModel[5].rotateAngleZ = - 0.2443461F;
 
 		bodyModel[6].addBox(0F, 0F, 0F, 100, 2, 12, 0F); // Import ImportCR,LeftTrackCover
 		bodyModel[6].setRotationPoint(-59F, -11.5F, -28F);
@@ -174,7 +165,7 @@ public class ModelKV1 extends ModelVehicle //Same as Filename
 
 		bodyModel[25].addBox(0F, 0F, 0F, 15, 1, 12, 0F); // Import ImportRT,FrontCornerThread
 		bodyModel[25].setRotationPoint(27.5F, 7F, 16F);
-		bodyModel[25].rotateAngleZ = -0.52359878F;
+		bodyModel[25].rotateAngleZ = - 0.52359878F;
 
 		bodyModel[26].addBox(0F, 0F, 0F, 1, 8, 12, 0F); // Import ImportRT,FrontThread
 		bodyModel[26].setRotationPoint(40F, -8F, 16F);
@@ -187,7 +178,7 @@ public class ModelKV1 extends ModelVehicle //Same as Filename
 
 		bodyModel[29].addBox(0F, 0F, 0F, 1, 16, 12, 0F); // Import ImportRT,BackCornerThread
 		bodyModel[29].setRotationPoint(-57F, 1F, 16F);
-		bodyModel[29].rotateAngleZ = -1.11701072F;
+		bodyModel[29].rotateAngleZ = - 1.11701072F;
 
 		bodyModel[30].addBox(0F, 0F, 0F, 7, 7, 10, 0F); // Import ImportLT,Wheel1
 		bodyModel[30].setRotationPoint(20F, 0F, -26F);
@@ -212,7 +203,7 @@ public class ModelKV1 extends ModelVehicle //Same as Filename
 
 		bodyModel[37].addBox(0F, 0F, 0F, 15, 1, 12, 0F); // Import ImportLT,FrontCornerThread
 		bodyModel[37].setRotationPoint(27.5F, 7F, -28F);
-		bodyModel[37].rotateAngleZ = -0.52359878F;
+		bodyModel[37].rotateAngleZ = - 0.52359878F;
 
 		bodyModel[38].addBox(0F, 0F, 0F, 1, 8, 12, 0F); // Import ImportLT,FrontThread
 		bodyModel[38].setRotationPoint(40F, -8F, -28F);
@@ -225,7 +216,7 @@ public class ModelKV1 extends ModelVehicle //Same as Filename
 
 		bodyModel[41].addBox(0F, 0F, 0F, 1, 16, 12, 0F); // Import ImportLT,BackCornerThread
 		bodyModel[41].setRotationPoint(-57F, 1F, -28F);
-		bodyModel[41].rotateAngleZ = -1.11701072F;
+		bodyModel[41].rotateAngleZ = - 1.11701072F;
 
 		bodyModel[42].addBox(0F, 0F, 0F, 0, 4, 12, 0F); // Import ImportCR,RightTrackDetail1
 		bodyModel[42].setRotationPoint(22F, -15F, 16F);
@@ -275,15 +266,37 @@ public class ModelKV1 extends ModelVehicle //Same as Filename
 
 		bodyModel[54].addBox(2F, 0F, -10F, 8, 13, 20, 0F); // Import ImportTR,FrontAngle
 		bodyModel[54].setRotationPoint(0F, -26.5F, 0F);
-		bodyModel[54].rotateAngleZ = -0.45378561F;
+		bodyModel[54].rotateAngleZ = - 0.45378561F;
 
 		bodyModel[55].addBox(7F, -3F, -8F, 9, 7, 16, 0F); // Import ImportBL,GunBase
 		bodyModel[55].setRotationPoint(0F, -26F, 0F);
 
-		bodyModel[56].addShapeBox(1F, -2F, -2F, 12, 5, 4, 0F,3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F, 3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F); // Import ImportBL,Gunthingy
+		bodyModel[56].addShapeBox(1F, -2F, -2F, 12, 5, 4, 0F, 3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F, 3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F); // Import ImportBL,Gunthingy
 		bodyModel[56].setRotationPoint(15F, -26F, 0F);
 
 		bodyModel[57].addBox(5F, -1.5F, -1F, 32, 2, 2, 0F); // Import ImportBL,75MM
 		bodyModel[57].setRotationPoint(15F, -26F, 0F);
+
+
+
+		translateAll(0F, 0F, 0F);
+
+
+		flipAll();
 	}
+	
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		for(int i = 0; i < 58; i++)
+		{
+			bodyModel[i].render(f5);
+		}
+	}
+
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
+	{
+	}
+
+	public ModelRendererTurbo bodyModel[];
 }

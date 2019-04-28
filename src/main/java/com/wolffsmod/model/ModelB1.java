@@ -1,5 +1,5 @@
 //This File was created with the Minecraft-SMP Modelling Toolbox 2.3.0.0
-// Copyright (C) 2018 Minecraft-SMP.de
+// Copyright (C) 2019 Minecraft-SMP.de
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model: B1
@@ -2848,7 +2848,7 @@ public class ModelB1 extends ModelVehicle //Same as Filename
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 583; i++)
+		for(int i = 0; i < 566; i++)
 		{
 			bodyModel[i].render(f5);
 		}

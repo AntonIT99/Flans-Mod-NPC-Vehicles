@@ -20,7 +20,7 @@ import net.minecraft.util.MathHelper;
 public class ModelSdKfz251D extends ModelVehicle //Same as Filename
 {
 	int textureX = 4096;
-	int textureY = 2048;
+	int textureY = 3072;
 
 	public ModelSdKfz251D() //Same as Filename
 	{
