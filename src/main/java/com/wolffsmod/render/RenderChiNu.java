@@ -26,8 +26,10 @@ public class RenderChiNu extends RenderLiving
     }
     
     protected void preRenderCallback(EntityLivingBase entity, float f){
-    	GL11.glTranslatef(0F, 0.9F, 0F);
-    	GL11.glRotatef(90, 0, 1, 0);
+    	GL11.glTranslatef(0F, -2.5F, 0F);
+    	GL11.glRotatef(180, 1, 0, 0);
+    	GL11.glRotatef(270, 0, 1, 0);
+    	GL11.glScalef(1.25F, 1.25F, 1.25F);
     }
 
     /**

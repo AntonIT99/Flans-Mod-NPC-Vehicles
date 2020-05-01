@@ -26,7 +26,7 @@ public class RenderK2 extends RenderLiving
     }
     
     protected void preRenderCallback(EntityLivingBase entity, float f){
-    	GL11.glTranslatef(0F, 0.9F, 0F);
+    	GL11.glTranslatef(0F, 0.8F, 0F);
     	GL11.glRotatef(90, 0, 1, 0);
     }
 

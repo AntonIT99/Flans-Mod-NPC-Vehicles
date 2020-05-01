@@ -8,6 +8,7 @@ import com.flansmod.common.driveables.EntityVehicle;
 import com.flansmod.common.driveables.EnumDriveablePart;
 import com.flansmod.common.driveables.VehicleType;
 import com.flansmod.common.vector.Vector3f;
+import com.wolffsmod.entity.EntityM1Abrams;
 
 //Extensible ModelVehicle class for rendering vehicle models
 public class ModelVehicle extends ModelDriveable

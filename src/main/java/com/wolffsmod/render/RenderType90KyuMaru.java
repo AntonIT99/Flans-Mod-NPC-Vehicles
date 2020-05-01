@@ -27,7 +27,7 @@ public class RenderType90KyuMaru extends RenderLiving
     }
     
     protected void preRenderCallback(EntityLivingBase entity, float f){
-    	GL11.glTranslatef(0F, 0.8F, 0F);
+    	GL11.glTranslatef(0F, 0.7F, 0F);
     	GL11.glRotatef(90, 0, 1, 0);
     	GL11.glScalef(0.85f, 0.85f, 0.85f);
     }

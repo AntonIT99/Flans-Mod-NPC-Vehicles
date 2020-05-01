@@ -8,7 +8,7 @@ public class EntityChiNu extends EntityCreature {
 	public EntityChiNu(World p_i1602_1_) {
 		super(p_i1602_1_);
 		// TODO Auto-generated constructor stub
-		this.setSize(3.0F, 2.5F);
+		this.setSize(3.0F, 2.9F);
 	}
 
 }

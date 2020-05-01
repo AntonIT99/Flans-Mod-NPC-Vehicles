@@ -14,7 +14,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = Strings.MODID, name = Strings.name, version = Strings.version)
+@Mod(modid = Strings.MODID, name = Strings.name, version = Strings.version, dependencies="required-after:flansmod")
 
 public class Main {
 	

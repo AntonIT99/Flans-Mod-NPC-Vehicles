@@ -1521,7 +1521,7 @@ public class ModelM60A1 extends ModelVehicle //Same as Filename
 		bodyModel[240].setRotationPoint(-53F, 3F, 31.5F-7F);
 
 		bodyModel[241].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(0, 4, 0, 4), new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8) }), 14, 12, 12, 40, 14, ModelRendererTurbo.MR_FRONT, new float[] {4 ,6 ,4 ,6 ,4 ,6 ,4 ,6}); // Import ImportImportShape324
-		bodyModel[241].setRotationPoint(-67F, -8F, 33F-7F);
+		bodyModel[241].setRotationPoint(-67F, -8F, 33F-13F);
 
 		bodyModel[242].addShapeBox(-2.5F, -1.5F, 0F, 5, 3, 5, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import ImportImportBox335
 		bodyModel[242].setRotationPoint(-7F, -10.75F, 24.5F);
@@ -1572,7 +1572,7 @@ public class ModelM60A1 extends ModelVehicle //Same as Filename
 		bodyModel[257].setRotationPoint(-53F, 3F, -24.5F-7F);
 
 		bodyModel[258].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(0, 4, 0, 4), new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8) }), 14, 12, 12, 40, 14, ModelRendererTurbo.MR_FRONT, new float[] {4 ,6 ,4 ,6 ,4 ,6 ,4 ,6}); // Import ImportImportShape332
-		bodyModel[258].setRotationPoint(-67F, -8F, -20F-7F);
+		bodyModel[258].setRotationPoint(-67F, -8F, -20F-13F);
 
 		bodyModel[259].addShapeBox(-2.5F, -1.5F, 0F, 5, 3, 5, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import ImportImportBox286
 		bodyModel[259].setRotationPoint(-7F, -10.75F, -29.5F);

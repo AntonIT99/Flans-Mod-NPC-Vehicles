@@ -1,11 +1,11 @@
 //This File was created with the Minecraft-SMP Modelling Toolbox 2.3.0.0
-// Copyright (C) 2019 Minecraft-SMP.de
+// Copyright (C) 2020 Minecraft-SMP.de
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model: ArmataMBT
 // Model Creator: 
-// Created on: 18.02.2019 - 01:33:03
-// Last changed on: 18.02.2019 - 01:33:03
+// Created on: -
+// Last changed on: -
 
 package com.wolffsmod.model; //Path where the model is located
 
@@ -23,7 +23,7 @@ public class ModelT14Armata extends ModelVehicle //Same as Filename
 
 	public ModelT14Armata() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[291];
+		bodyModel = new ModelRendererTurbo[153];
 		bodyModel[0] = new ModelRendererTurbo(this, 0, 207, textureX, textureY); // Import Box0
 		bodyModel[1] = new ModelRendererTurbo(this, 0, 162, textureX, textureY); // Import Box2
 		bodyModel[2] = new ModelRendererTurbo(this, 0, 115, textureX, textureY); // Import Box30
@@ -177,144 +177,6 @@ public class ModelT14Armata extends ModelVehicle //Same as Filename
 		bodyModel[150] = new ModelRendererTurbo(this, 180, 15, textureX, textureY); // Import Box3
 		bodyModel[151] = new ModelRendererTurbo(this, 242, 421, textureX, textureY); // Import Box0
 		bodyModel[152] = new ModelRendererTurbo(this, 242, 382, textureX, textureY); // Import Box1
-		bodyModel[153] = new ModelRendererTurbo(this, 0, 351, textureX, textureY); // Import Box5
-		bodyModel[154] = new ModelRendererTurbo(this, 0, 351, textureX, textureY); // Import Box5
-		bodyModel[155] = new ModelRendererTurbo(this, 0, 351, textureX, textureY); // Import Box7
-		bodyModel[156] = new ModelRendererTurbo(this, 0, 333, textureX, textureY); // Import Box8
-		bodyModel[157] = new ModelRendererTurbo(this, 66, 364, textureX, textureY); // Import Box10
-		bodyModel[158] = new ModelRendererTurbo(this, 0, 302, textureX, textureY); // Import Box11
-		bodyModel[159] = new ModelRendererTurbo(this, 67, 337, textureX, textureY); // Import Box12
-		bodyModel[160] = new ModelRendererTurbo(this, 55, 316, textureX, textureY); // Import Box13
-		bodyModel[161] = new ModelRendererTurbo(this, 112, 311, textureX, textureY); // Import Box14
-		bodyModel[162] = new ModelRendererTurbo(this, 0, 323, textureX, textureY); // Import Box15
-		bodyModel[163] = new ModelRendererTurbo(this, 0, 377, textureX, textureY); // Import Box19
-		bodyModel[164] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box20
-		bodyModel[165] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box21
-		bodyModel[166] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box22
-		bodyModel[167] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box23
-		bodyModel[168] = new ModelRendererTurbo(this, 0, 377, textureX, textureY); // Import Box24
-		bodyModel[169] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box25
-		bodyModel[170] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box26
-		bodyModel[171] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box27
-		bodyModel[172] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box28
-		bodyModel[173] = new ModelRendererTurbo(this, 0, 372, textureX, textureY); // Import Box30
-		bodyModel[174] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box31
-		bodyModel[175] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box32
-		bodyModel[176] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box33
-		bodyModel[177] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box34
-		bodyModel[178] = new ModelRendererTurbo(this, 0, 372, textureX, textureY); // Import Box35
-		bodyModel[179] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box36
-		bodyModel[180] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box37
-		bodyModel[181] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box38
-		bodyModel[182] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box39
-		bodyModel[183] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box50
-		bodyModel[184] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box51
-		bodyModel[185] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box52
-		bodyModel[186] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box53
-		bodyModel[187] = new ModelRendererTurbo(this, 0, 367, textureX, textureY); // Import Box54
-		bodyModel[188] = new ModelRendererTurbo(this, 0, 367, textureX, textureY); // Import Box55
-		bodyModel[189] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box56
-		bodyModel[190] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box57
-		bodyModel[191] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box58
-		bodyModel[192] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box59
-		bodyModel[193] = new ModelRendererTurbo(this, 54, 299, textureX, textureY); // Import Box60
-		bodyModel[194] = new ModelRendererTurbo(this, 54, 299, textureX, textureY); // Import Box61
-		bodyModel[195] = new ModelRendererTurbo(this, 0, 323, textureX, textureY); // Import Box62
-		bodyModel[196] = new ModelRendererTurbo(this, 120, 365, textureX, textureY); // Import Box63
-		bodyModel[197] = new ModelRendererTurbo(this, 134, 377, textureX, textureY); // Import Box64
-		bodyModel[198] = new ModelRendererTurbo(this, 183, 372, textureX, textureY); // Import Box65
-		bodyModel[199] = new ModelRendererTurbo(this, 0, 285, textureX, textureY); // Import Box66
-		bodyModel[200] = new ModelRendererTurbo(this, 32, 289, textureX, textureY); // Import Box67
-		bodyModel[201] = new ModelRendererTurbo(this, 32, 289, textureX, textureY); // Import Box68
-		bodyModel[202] = new ModelRendererTurbo(this, 17, 289, textureX, textureY); // Import Box70
-		bodyModel[203] = new ModelRendererTurbo(this, 17, 289, textureX, textureY); // Import Box71
-		bodyModel[204] = new ModelRendererTurbo(this, 171, 351, textureX, textureY); // Import Box72
-		bodyModel[205] = new ModelRendererTurbo(this, 171, 351, textureX, textureY); // Import Box73
-		bodyModel[206] = new ModelRendererTurbo(this, 213, 344, textureX, textureY); // Import Box74
-		bodyModel[207] = new ModelRendererTurbo(this, 138, 302, textureX, textureY); // Import Box75
-		bodyModel[208] = new ModelRendererTurbo(this, 138, 302, textureX, textureY); // Import Box76
-		bodyModel[209] = new ModelRendererTurbo(this, 213, 324, textureX, textureY); // Import Box77
-		bodyModel[210] = new ModelRendererTurbo(this, 171, 317, textureX, textureY); // Import Box78
-		bodyModel[211] = new ModelRendererTurbo(this, 175, 290, textureX, textureY); // Import Box79
-		bodyModel[212] = new ModelRendererTurbo(this, 175, 290, textureX, textureY); // Import Box81
-		bodyModel[213] = new ModelRendererTurbo(this, 171, 317, textureX, textureY); // Import Box82
-		bodyModel[214] = new ModelRendererTurbo(this, 175, 300, textureX, textureY); // Import Box83
-		bodyModel[215] = new ModelRendererTurbo(this, 175, 300, textureX, textureY); // Import Box84
-		bodyModel[216] = new ModelRendererTurbo(this, 107, 271, textureX, textureY); // Import Box85
-		bodyModel[217] = new ModelRendererTurbo(this, 66, 273, textureX, textureY); // Import Box1
-		bodyModel[218] = new ModelRendererTurbo(this, 66, 273, textureX, textureY); // Import Box2
-		bodyModel[219] = new ModelRendererTurbo(this, 73, 288, textureX, textureY); // Import Box11
-		bodyModel[220] = new ModelRendererTurbo(this, 73, 288, textureX, textureY); // Import Box12
-		bodyModel[221] = new ModelRendererTurbo(this, 125, 415, textureX, textureY); // Import Box13
-		bodyModel[222] = new ModelRendererTurbo(this, 125, 424, textureX, textureY); // Import Box14
-		bodyModel[223] = new ModelRendererTurbo(this, 138, 424, textureX, textureY); // Import Box15
-		bodyModel[224] = new ModelRendererTurbo(this, 190, 337, textureX, textureY); // Import Box17
-		bodyModel[225] = new ModelRendererTurbo(this, 190, 337, textureX, textureY); // Import Box18
-		bodyModel[226] = new ModelRendererTurbo(this, 163, 337, textureX, textureY); // Import Box19
-		bodyModel[227] = new ModelRendererTurbo(this, 163, 337, textureX, textureY); // Import Box20
-		bodyModel[228] = new ModelRendererTurbo(this, 11, 272, textureX, textureY); // Import Box2
-		bodyModel[229] = new ModelRendererTurbo(this, 11, 272, textureX, textureY); // Import Box3
-		bodyModel[230] = new ModelRendererTurbo(this, 11, 272, textureX, textureY); // Import Box4
-		bodyModel[231] = new ModelRendererTurbo(this, 71, 261, textureX, textureY); // Import Box5
-		bodyModel[232] = new ModelRendererTurbo(this, 32, 266, textureX, textureY); // Import Box6
-		bodyModel[233] = new ModelRendererTurbo(this, 32, 266, textureX, textureY); // Import Box8
-		bodyModel[234] = new ModelRendererTurbo(this, 0, 255, textureX, textureY); // Import Box9
-		bodyModel[235] = new ModelRendererTurbo(this, 0, 272, textureX, textureY); // Import Box10
-		bodyModel[236] = new ModelRendererTurbo(this, 18, 256, textureX, textureY); // Import Box11
-		bodyModel[237] = new ModelRendererTurbo(this, 125, 415, textureX, textureY); // Import Box16
-		bodyModel[238] = new ModelRendererTurbo(this, 125, 432, textureX, textureY); // Import Box17
-		bodyModel[239] = new ModelRendererTurbo(this, 138, 433, textureX, textureY); // Import Box18
-		bodyModel[240] = new ModelRendererTurbo(this, 71, 261, textureX, textureY); // Import Box19
-		bodyModel[241] = new ModelRendererTurbo(this, 48, 262, textureX, textureY); // Import Box20
-		bodyModel[242] = new ModelRendererTurbo(this, 0, 400, textureX, textureY); // Import Box4
-		bodyModel[243] = new ModelRendererTurbo(this, 0, 393, textureX, textureY); // Import Box5
-		bodyModel[244] = new ModelRendererTurbo(this, 0, 408, textureX, textureY); // Import Box6
-		bodyModel[245] = new ModelRendererTurbo(this, 26, 414, textureX, textureY); // Import Box7
-		bodyModel[246] = new ModelRendererTurbo(this, 57, 422, textureX, textureY); // Import Box8
-		bodyModel[247] = new ModelRendererTurbo(this, 66, 414, textureX, textureY); // Import Box9
-		bodyModel[248] = new ModelRendererTurbo(this, 0, 415, textureX, textureY); // Import Box10
-		bodyModel[249] = new ModelRendererTurbo(this, 98, 423, textureX, textureY); // Import Box12
-		bodyModel[250] = new ModelRendererTurbo(this, 98, 414, textureX, textureY); // Import Box13
-		bodyModel[251] = new ModelRendererTurbo(this, 98, 432, textureX, textureY); // Import Box14
-		bodyModel[252] = new ModelRendererTurbo(this, 98, 441, textureX, textureY); // Import Box15
-		bodyModel[253] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape13
-		bodyModel[254] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape14
-		bodyModel[255] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape15
-		bodyModel[256] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape16
-		bodyModel[257] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape17
-		bodyModel[258] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape18
-		bodyModel[259] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape19
-		bodyModel[260] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape6
-		bodyModel[261] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape7
-		bodyModel[262] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape8
-		bodyModel[263] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape9
-		bodyModel[264] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape10
-		bodyModel[265] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape11
-		bodyModel[266] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape12
-		bodyModel[267] = new ModelRendererTurbo(this, 0, 426, textureX, textureY); // Import Shape21
-		bodyModel[268] = new ModelRendererTurbo(this, 0, 426, textureX, textureY); // Import Shape23
-		bodyModel[269] = new ModelRendererTurbo(this, 4, 466, textureX, textureY); // Import Box28
-		bodyModel[270] = new ModelRendererTurbo(this, 74, 453, textureX, textureY); // Import Box3
-		bodyModel[271] = new ModelRendererTurbo(this, 47, 480, textureX, textureY); // Import Box4
-		bodyModel[272] = new ModelRendererTurbo(this, 36, 446, textureX, textureY); // Import Box5
-		bodyModel[273] = new ModelRendererTurbo(this, 0, 453, textureX, textureY); // Import Box10
-		bodyModel[274] = new ModelRendererTurbo(this, 22, 448, textureX, textureY); // Import Box11
-		bodyModel[275] = new ModelRendererTurbo(this, 0, 453, textureX, textureY); // Import Box12
-		bodyModel[276] = new ModelRendererTurbo(this, 74, 440, textureX, textureY); // Import Box13
-		bodyModel[277] = new ModelRendererTurbo(this, 35, 493, textureX, textureY); // Import Box14
-		bodyModel[278] = new ModelRendererTurbo(this, 0, 426, textureX, textureY); // Import Shape20
-		bodyModel[279] = new ModelRendererTurbo(this, 0, 426, textureX, textureY); // Import Shape22
-		bodyModel[280] = new ModelRendererTurbo(this, 4, 466, textureX, textureY); // Import Box26
-		bodyModel[281] = new ModelRendererTurbo(this, 47, 480, textureX, textureY); // Import Box1
-		bodyModel[282] = new ModelRendererTurbo(this, 74, 453, textureX, textureY); // Import Box2
-		bodyModel[283] = new ModelRendererTurbo(this, 36, 446, textureX, textureY); // Import Box6
-		bodyModel[284] = new ModelRendererTurbo(this, 0, 453, textureX, textureY); // Import Box7
-		bodyModel[285] = new ModelRendererTurbo(this, 0, 453, textureX, textureY); // Import Box8
-		bodyModel[286] = new ModelRendererTurbo(this, 22, 448, textureX, textureY); // Import Box9
-		bodyModel[287] = new ModelRendererTurbo(this, 74, 440, textureX, textureY); // Import Box15
-		bodyModel[288] = new ModelRendererTurbo(this, 74, 440, textureX, textureY); // Import Box16
-		bodyModel[289] = new ModelRendererTurbo(this, 35, 493, textureX, textureY); // Import Box17
-		bodyModel[290] = new ModelRendererTurbo(this, 74, 440, textureX, textureY); // Import Box18
 
 		bodyModel[0].addShapeBox(0F, 0F, 0F, 81, 12, 32, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box0
 		bodyModel[0].setRotationPoint(-34F, -10F, -16F);
@@ -531,11 +393,11 @@ public class ModelT14Armata extends ModelVehicle //Same as Filename
 
 		bodyModel[69].addBox(0F, 0F, 0F, 13, 1, 10, 0F); // Import Box52
 		bodyModel[69].setRotationPoint(36F, -20F, -27F);
-		bodyModel[69].rotateAngleZ = 0.08726646F;
+		bodyModel[69].rotateAngleZ = -0.08726646F;
 
 		bodyModel[70].addBox(0F, 0F, 0F, 13, 1, 10, 0F); // Import Box53
 		bodyModel[70].setRotationPoint(36F, -20F, 17F);
-		bodyModel[70].rotateAngleZ = 0.08726646F;
+		bodyModel[70].rotateAngleZ = -0.08726646F;
 
 		bodyModel[71].addShapeBox(1F, 2F, 0F, 33, 1, 1, 0F, 0F, -0.35F, -0.35F, 0F, -0.35F, -0.35F, 0F, -0.35F, -0.35F, 0F, -0.35F, -0.35F, 0F, -0.35F, -0.35F, 0F, -0.35F, -0.35F, 0F, -0.35F, -0.35F, 0F, -0.35F, -0.35F); // Import Box54
 		bodyModel[71].setRotationPoint(-59F, -18.5F, 30.5F);
@@ -709,7 +571,7 @@ public class ModelT14Armata extends ModelVehicle //Same as Filename
 		bodyModel[125].setRotationPoint(-59F, -20.25F, -9.5F);
 
 		bodyModel[126].addShape3D(6F, 0F, -1F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 1, 12, 12, 40, 1, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape110
-		bodyModel[126].setRotationPoint(25.75F, -20.5F, -15.5F-7F);
+		bodyModel[126].setRotationPoint(25.75F, -20.5F, -15.5F);
 		bodyModel[126].rotateAngleX = -1.57079633F;
 
 		bodyModel[127].addShapeBox(0F, 0F, 0F, 2, 2, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F, -3F, 0F, 0F); // Import Box111
@@ -719,39 +581,39 @@ public class ModelT14Armata extends ModelVehicle //Same as Filename
 		bodyModel[128].setRotationPoint(31F, -21.5F, -7F);
 
 		bodyModel[129].addShape3D(6F, -12F, -1F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(10, 2, 10, 2), new Coord2D(10, 9, 10, 9), new Coord2D(8, 11, 8, 11), new Coord2D(4, 11, 4, 11), new Coord2D(2, 9, 2, 9), new Coord2D(2, 2, 2, 2) }), 1, 10, 11, 34, 1, ModelRendererTurbo.MR_FRONT, new float[] {3 ,7 ,3 ,4 ,3 ,7 ,3 ,4}); // Import Shape113
-		bodyModel[129].setRotationPoint(35F, -20F, 16F-7F);
+		bodyModel[129].setRotationPoint(35F, -20F, 16F);
 		bodyModel[129].rotateAngleX = -1.57079633F;
-		bodyModel[129].rotateAngleZ = 0.12217305F;
+		bodyModel[129].rotateAngleZ = -0.12217305F;
 
 		bodyModel[130].addBox(0F, 0F, 0F, 1, 1, 4, 0F); // Import Box1
 		bodyModel[130].setRotationPoint(27.25F, -20.8F, -16F);
 		bodyModel[130].rotateAngleX = -0.06981317F;
-		bodyModel[130].rotateAngleY = - 0.19198622F;
+		bodyModel[130].rotateAngleY = 0.19198622F;
 
 		bodyModel[131].addBox(-3F, 0F, 0F, 1, 1, 4, 0F); // Import Box2
 		bodyModel[131].setRotationPoint(27.25F, -20.8F, -16F);
 		bodyModel[131].rotateAngleX = -0.06981317F;
-		bodyModel[131].rotateAngleY = - 0.19198622F;
+		bodyModel[131].rotateAngleY = 0.19198622F;
 
 		bodyModel[132].addBox(0F, 0F, 0F, 15, 1, 29, 0F); // Import Box21
 		bodyModel[132].setRotationPoint(40F, -19.25F, -14.5F);
-		bodyModel[132].rotateAngleZ = 0.12217305F;
+		bodyModel[132].rotateAngleZ = -0.12217305F;
 
 		bodyModel[133].addBox(0F, 0F, 0F, 11, 1, 6, 0F); // Import Box22
 		bodyModel[133].setRotationPoint(57F, -16.5F, -13.5F);
-		bodyModel[133].rotateAngleZ = 0.55850536F;
+		bodyModel[133].rotateAngleZ = -0.55850536F;
 
 		bodyModel[134].addBox(0F, 0F, -6F, 11, 1, 6, 0F); // Import Box23
 		bodyModel[134].setRotationPoint(57F, -16.5F, 13.5F);
-		bodyModel[134].rotateAngleZ = 0.55850536F;
+		bodyModel[134].rotateAngleZ = -0.55850536F;
 
 		bodyModel[135].addBox(0F, 0F, -6F, 11, 1, 6, 0F); // Import Box24
 		bodyModel[135].setRotationPoint(57F, -16.5F, 6.5F);
-		bodyModel[135].rotateAngleZ = 0.55850536F;
+		bodyModel[135].rotateAngleZ = -0.55850536F;
 
 		bodyModel[136].addBox(0F, 0F, 0F, 11, 1, 6, 0F); // Import Box25
 		bodyModel[136].setRotationPoint(57F, -16.5F, -6.5F);
-		bodyModel[136].rotateAngleZ = 0.55850536F;
+		bodyModel[136].rotateAngleZ = -0.55850536F;
 
 		bodyModel[137].addBox(0F, 0F, 0F, 27, 1, 8, 0F); // Import Box26
 		bodyModel[137].setRotationPoint(-38F, -20.25F, 19F);
@@ -767,498 +629,654 @@ public class ModelT14Armata extends ModelVehicle //Same as Filename
 
 		bodyModel[141].addShapeBox(-2F, 1F, 0F, 12, 1, 3, 0F, 0F, 0F, 0F, 3F, 0F, 0F, 3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box31
 		bodyModel[141].setRotationPoint(54F, -3.5F, -14.5F);
-		bodyModel[141].rotateAngleZ = - 0.54105207F;
+		bodyModel[141].rotateAngleZ = 0.54105207F;
 
 		bodyModel[142].addShapeBox(-2F, 1F, 0F, 12, 1, 3, 0F, 0F, 0F, 0F, 3F, 0F, 0F, 3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box32
 		bodyModel[142].setRotationPoint(54F, -3.5F, 11.5F);
-		bodyModel[142].rotateAngleZ = - 0.54105207F;
+		bodyModel[142].rotateAngleZ = 0.54105207F;
 
 		bodyModel[143].addShapeBox(-2F, 1F, -2.5F, 12, 1, 5, 0F, 0F, 0F, 0F, 3F, 0F, 0F, 3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box33
 		bodyModel[143].setRotationPoint(54F, -3.5F, 0F);
-		bodyModel[143].rotateAngleZ = - 0.54105207F;
+		bodyModel[143].rotateAngleZ = 0.54105207F;
 
 		bodyModel[144].addBox(-5F, 1F, -14.5F, 3, 1, 29, 0F); // Import Box34
 		bodyModel[144].setRotationPoint(54F, -3.5F, 0F);
-		bodyModel[144].rotateAngleZ = - 0.54105207F;
+		bodyModel[144].rotateAngleZ = 0.54105207F;
 
 		bodyModel[145].addBox(0F, 0F, 0F, 1, 11, 3, 0F); // Import Box38
 		bodyModel[145].setRotationPoint(-60F, -19F, -7F);
-		bodyModel[145].rotateAngleZ = - 0.2443461F;
+		bodyModel[145].rotateAngleZ = 0.2443461F;
 
 		bodyModel[146].addBox(0F, 0F, 0F, 1, 11, 3, 0F); // Import Box39
 		bodyModel[146].setRotationPoint(-60F, -19F, 4F);
-		bodyModel[146].rotateAngleZ = - 0.2443461F;
+		bodyModel[146].rotateAngleZ = 0.2443461F;
 
 		bodyModel[147].addBox(0F, 0F, 0F, 13, 1, 10, 0F); // Import Box0
 		bodyModel[147].setRotationPoint(21F, -20.5F, -27F);
-		bodyModel[147].rotateAngleZ = 0.03490659F;
+		bodyModel[147].rotateAngleZ = -0.03490659F;
 
 		bodyModel[148].addBox(0F, 0F, 0F, 13, 1, 10, 0F); // Import Box1
 		bodyModel[148].setRotationPoint(21F, -20.5F, 17F);
-		bodyModel[148].rotateAngleZ = 0.03490659F;
+		bodyModel[148].rotateAngleZ = -0.03490659F;
 
 		bodyModel[149].addBox(0F, 0F, 0F, 1, 11, 3, 0F); // Import Box2
 		bodyModel[149].setRotationPoint(-60F, -19F, 12F);
-		bodyModel[149].rotateAngleZ = - 0.2443461F;
+		bodyModel[149].rotateAngleZ = 0.2443461F;
 
 		bodyModel[150].addBox(0F, 0F, 0F, 1, 11, 3, 0F); // Import Box3
 		bodyModel[150].setRotationPoint(-60F, -19F, -15F);
-		bodyModel[150].rotateAngleZ = - 0.2443461F;
+		bodyModel[150].rotateAngleZ = 0.2443461F;
 
 		bodyModel[151].addShapeBox(0F, 0F, 0F, 100, 25, 1, 0F, 0F, -15F, 0F, -60F, -15F, 0F, -60F, -15F, 0F, 0F, -15F, 0F, 0F, 0F, 0F, -60F, 0F, 0F, -60F, 0F, 0F, 0F, 0F, 0F); // Import Box0
 		bodyModel[151].setRotationPoint(17F, -32F, 29.05F);
 
 		bodyModel[152].addShapeBox(-40F, 0F, 0F, 100, 25, 1, 0F, 0F, -15F, 0F, -60F, -15F, 0F, -60F, -15F, 0F, 0F, -15F, 0F, 0F, 0F, 0F, -60F, 0F, 0F, -60F, 0F, 0F, 0F, 0F, 0F); // Import Box1
 		bodyModel[152].setRotationPoint(17F, -32F, -29.05F);
-		bodyModel[152].rotateAngleY = - 3.14159265F;
+		bodyModel[152].rotateAngleY = 3.14159265F;
+
+
+		turretModel = new ModelRendererTurbo[89];
+		turretModel[0] = new ModelRendererTurbo(this, 0, 351, textureX, textureY); // Import Box5
+		turretModel[1] = new ModelRendererTurbo(this, 0, 351, textureX, textureY); // Import Box5
+		turretModel[2] = new ModelRendererTurbo(this, 0, 351, textureX, textureY); // Import Box7
+		turretModel[3] = new ModelRendererTurbo(this, 0, 333, textureX, textureY); // Import Box8
+		turretModel[4] = new ModelRendererTurbo(this, 66, 364, textureX, textureY); // Import Box10
+		turretModel[5] = new ModelRendererTurbo(this, 0, 302, textureX, textureY); // Import Box11
+		turretModel[6] = new ModelRendererTurbo(this, 67, 337, textureX, textureY); // Import Box12
+		turretModel[7] = new ModelRendererTurbo(this, 55, 316, textureX, textureY); // Import Box13
+		turretModel[8] = new ModelRendererTurbo(this, 112, 311, textureX, textureY); // Import Box14
+		turretModel[9] = new ModelRendererTurbo(this, 0, 323, textureX, textureY); // Import Box15
+		turretModel[10] = new ModelRendererTurbo(this, 0, 377, textureX, textureY); // Import Box19
+		turretModel[11] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box20
+		turretModel[12] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box21
+		turretModel[13] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box22
+		turretModel[14] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box23
+		turretModel[15] = new ModelRendererTurbo(this, 0, 377, textureX, textureY); // Import Box24
+		turretModel[16] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box25
+		turretModel[17] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box26
+		turretModel[18] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box27
+		turretModel[19] = new ModelRendererTurbo(this, 0, 362, textureX, textureY); // Import Box28
+		turretModel[20] = new ModelRendererTurbo(this, 0, 372, textureX, textureY); // Import Box30
+		turretModel[21] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box31
+		turretModel[22] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box32
+		turretModel[23] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box33
+		turretModel[24] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box34
+		turretModel[25] = new ModelRendererTurbo(this, 0, 372, textureX, textureY); // Import Box35
+		turretModel[26] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box36
+		turretModel[27] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box37
+		turretModel[28] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box38
+		turretModel[29] = new ModelRendererTurbo(this, 0, 357, textureX, textureY); // Import Box39
+		turretModel[30] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box50
+		turretModel[31] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box51
+		turretModel[32] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box52
+		turretModel[33] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box53
+		turretModel[34] = new ModelRendererTurbo(this, 0, 367, textureX, textureY); // Import Box54
+		turretModel[35] = new ModelRendererTurbo(this, 0, 367, textureX, textureY); // Import Box55
+		turretModel[36] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box56
+		turretModel[37] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box57
+		turretModel[38] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box58
+		turretModel[39] = new ModelRendererTurbo(this, 0, 352, textureX, textureY); // Import Box59
+		turretModel[40] = new ModelRendererTurbo(this, 54, 299, textureX, textureY); // Import Box60
+		turretModel[41] = new ModelRendererTurbo(this, 54, 299, textureX, textureY); // Import Box61
+		turretModel[42] = new ModelRendererTurbo(this, 0, 323, textureX, textureY); // Import Box62
+		turretModel[43] = new ModelRendererTurbo(this, 120, 365, textureX, textureY); // Import Box63
+		turretModel[44] = new ModelRendererTurbo(this, 134, 377, textureX, textureY); // Import Box64
+		turretModel[45] = new ModelRendererTurbo(this, 183, 372, textureX, textureY); // Import Box65
+		turretModel[46] = new ModelRendererTurbo(this, 0, 285, textureX, textureY); // Import Box66
+		turretModel[47] = new ModelRendererTurbo(this, 32, 289, textureX, textureY); // Import Box67
+		turretModel[48] = new ModelRendererTurbo(this, 32, 289, textureX, textureY); // Import Box68
+		turretModel[49] = new ModelRendererTurbo(this, 17, 289, textureX, textureY); // Import Box70
+		turretModel[50] = new ModelRendererTurbo(this, 17, 289, textureX, textureY); // Import Box71
+		turretModel[51] = new ModelRendererTurbo(this, 171, 351, textureX, textureY); // Import Box72
+		turretModel[52] = new ModelRendererTurbo(this, 171, 351, textureX, textureY); // Import Box73
+		turretModel[53] = new ModelRendererTurbo(this, 213, 344, textureX, textureY); // Import Box74
+		turretModel[54] = new ModelRendererTurbo(this, 138, 302, textureX, textureY); // Import Box75
+		turretModel[55] = new ModelRendererTurbo(this, 138, 302, textureX, textureY); // Import Box76
+		turretModel[56] = new ModelRendererTurbo(this, 213, 324, textureX, textureY); // Import Box77
+		turretModel[57] = new ModelRendererTurbo(this, 171, 317, textureX, textureY); // Import Box78
+		turretModel[58] = new ModelRendererTurbo(this, 175, 290, textureX, textureY); // Import Box79
+		turretModel[59] = new ModelRendererTurbo(this, 175, 290, textureX, textureY); // Import Box81
+		turretModel[60] = new ModelRendererTurbo(this, 171, 317, textureX, textureY); // Import Box82
+		turretModel[61] = new ModelRendererTurbo(this, 175, 300, textureX, textureY); // Import Box83
+		turretModel[62] = new ModelRendererTurbo(this, 175, 300, textureX, textureY); // Import Box84
+		turretModel[63] = new ModelRendererTurbo(this, 107, 271, textureX, textureY); // Import Box85
+		turretModel[64] = new ModelRendererTurbo(this, 66, 273, textureX, textureY); // Import Box1
+		turretModel[65] = new ModelRendererTurbo(this, 66, 273, textureX, textureY); // Import Box2
+		turretModel[66] = new ModelRendererTurbo(this, 73, 288, textureX, textureY); // Import Box11
+		turretModel[67] = new ModelRendererTurbo(this, 73, 288, textureX, textureY); // Import Box12
+		turretModel[68] = new ModelRendererTurbo(this, 125, 415, textureX, textureY); // Import Box13
+		turretModel[69] = new ModelRendererTurbo(this, 125, 424, textureX, textureY); // Import Box14
+		turretModel[70] = new ModelRendererTurbo(this, 138, 424, textureX, textureY); // Import Box15
+		turretModel[71] = new ModelRendererTurbo(this, 190, 337, textureX, textureY); // Import Box17
+		turretModel[72] = new ModelRendererTurbo(this, 190, 337, textureX, textureY); // Import Box18
+		turretModel[73] = new ModelRendererTurbo(this, 163, 337, textureX, textureY); // Import Box19
+		turretModel[74] = new ModelRendererTurbo(this, 163, 337, textureX, textureY); // Import Box20
+		turretModel[75] = new ModelRendererTurbo(this, 11, 272, textureX, textureY); // Import Box2
+		turretModel[76] = new ModelRendererTurbo(this, 11, 272, textureX, textureY); // Import Box3
+		turretModel[77] = new ModelRendererTurbo(this, 11, 272, textureX, textureY); // Import Box4
+		turretModel[78] = new ModelRendererTurbo(this, 71, 261, textureX, textureY); // Import Box5
+		turretModel[79] = new ModelRendererTurbo(this, 32, 266, textureX, textureY); // Import Box6
+		turretModel[80] = new ModelRendererTurbo(this, 32, 266, textureX, textureY); // Import Box8
+		turretModel[81] = new ModelRendererTurbo(this, 0, 255, textureX, textureY); // Import Box9
+		turretModel[82] = new ModelRendererTurbo(this, 0, 272, textureX, textureY); // Import Box10
+		turretModel[83] = new ModelRendererTurbo(this, 18, 256, textureX, textureY); // Import Box11
+		turretModel[84] = new ModelRendererTurbo(this, 125, 415, textureX, textureY); // Import Box16
+		turretModel[85] = new ModelRendererTurbo(this, 125, 432, textureX, textureY); // Import Box17
+		turretModel[86] = new ModelRendererTurbo(this, 138, 433, textureX, textureY); // Import Box18
+		turretModel[87] = new ModelRendererTurbo(this, 71, 261, textureX, textureY); // Import Box19
+		turretModel[88] = new ModelRendererTurbo(this, 48, 262, textureX, textureY); // Import Box20
+
+		turretModel[0].addBox(-6.5F, -1F, -19.5F, 13, 1, 39, 0F); // Import Box5
+		turretModel[0].setRotationPoint(0F, -19.5F, 0F);
+
+		turretModel[1].addShapeBox(6.5F, -1F, -19.5F, 13, 1, 39, 0F, 0F, 0F, 0F, 0F, 0F, -13F, 0F, 0F, -13F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -13F, 0F, 0F, -13F, 0F, 0F, 0F); // Import Box5
+		turretModel[1].setRotationPoint(0F, -19.5F, 0F);
+
+		turretModel[2].addShapeBox(-19.5F, -1F, -19.5F, 13, 1, 39, 0F, 0F, 0F, -13F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -13F, 0F, 0F, -13F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -13F); // Import Box7
+		turretModel[2].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[153].addBox(-6.5F, -1F, -19.5F, 13, 1, 39, 0F); // Import Box5
-		bodyModel[153].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[3].addShapeBox(0F, -4F, -6.5F, 20, 3, 13, 0F, 0F, 0F, 0F, 2.5F, 0F, 0F, 2.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Import Box8
+		turretModel[3].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[154].addShapeBox(6.5F, -1F, -19.5F, 13, 1, 39, 0F, 0F, 0F, 0F, 0F, 0F, -13F, 0F, 0F, -13F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -13F, 0F, 0F, -13F, 0F, 0F, 0F); // Import Box5
-		bodyModel[154].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[4].addShapeBox(0F, -15F, -6.5F, 20, 11, 13, 0F, 0F, 0F, 0F, -3.5F, -1F, 0F, -3.5F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 2.5F, 0F, 0F, 2.5F, 0F, 0F, 0F, 0F, 0F); // Import Box10
+		turretModel[4].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[155].addShapeBox(-19.5F, -1F, -19.5F, 13, 1, 39, 0F, 0F, 0F, -13F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -13F, 0F, 0F, -13F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -13F); // Import Box7
-		bodyModel[155].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[5].addShapeBox(-20F, -7F, -6.5F, 20, 6, 13, 0F, 2.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 2.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Import Box11
+		turretModel[5].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[156].addShapeBox(0F, -4F, -6.5F, 20, 3, 13, 0F, 0F, 0F, 0F, 2.5F, 0F, 0F, 2.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Import Box8
-		bodyModel[156].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[6].addShapeBox(-39F, -14F, -8.5F, 39, 8, 17, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Import Box12
+		turretModel[6].setRotationPoint(0F, -18.5F, 0F);
 
-		bodyModel[157].addShapeBox(0F, -15F, -6.5F, 20, 11, 13, 0F, 0F, 0F, 0F, -3.5F, -1F, 0F, -3.5F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 2.5F, 0F, 0F, 2.5F, 0F, 0F, 0F, 0F, 0F); // Import Box10
-		bodyModel[157].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[7].addShapeBox(-39F, -16F, -8.5F, 19, 2, 17, 0F, 0F, 0.25F, 0F, -0.25F, 0.25F, 0F, -0.25F, 0.25F, 0F, 0F, 0.25F, 0F, 0F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, 0F, 0F, 0F); // Import Box13
+		turretModel[7].setRotationPoint(0F, -18.5F, 0F);
 
-		bodyModel[158].addShapeBox(-20F, -7F, -6.5F, 20, 6, 13, 0F, 2.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 2.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Import Box11
-		bodyModel[158].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[8].addShapeBox(0F, -15F, -15.5F, 20, 11, 9, 0F, 0F, 0F, -2F, -12.5F, -1F, -2F, -3.5F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, 2.5F, 0F, 0F, 0F, 0F, 0F); // Import Box14
+		turretModel[8].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[159].addShapeBox(-39F, -14F, -8.5F, 39, 8, 17, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Import Box12
-		bodyModel[159].setRotationPoint(0F, -18.5F, 0F);
+		turretModel[9].addShapeBox(0F, -4F, -12.5F, 22, 3, 6, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, 0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -8.5F, 0F, 0F, -2.5F, 0F, 0F, 0F, 0F, 0F); // Import Box15
+		turretModel[9].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[160].addShapeBox(-39F, -16F, -8.5F, 19, 2, 17, 0F, 0F, 0.25F, 0F, -0.25F, 0.25F, 0F, -0.25F, 0.25F, 0F, 0F, 0.25F, 0F, 0F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, 0F, 0F, 0F); // Import Box13
-		bodyModel[160].setRotationPoint(0F, -18.5F, 0F);
+		turretModel[10].addBox(11.75F, -2.5F, 7F, 7, 1, 3, 0F); // Import Box19
+		turretModel[10].setRotationPoint(0F, -20F, 0F);
+		turretModel[10].rotateAngleY = 0.34906585F;
 
-		bodyModel[161].addShapeBox(0F, -15F, -15.5F, 20, 11, 9, 0F, 0F, 0F, -2F, -12.5F, -1F, -2F, -3.5F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, 2.5F, 0F, 0F, 0F, 0F, 0F); // Import Box14
-		bodyModel[161].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[11].addBox(14.5F, -2.5F, 7F, 5, 1, 3, 0F); // Import Box20
+		turretModel[11].setRotationPoint(0F, -20F, 0F);
+		turretModel[11].rotateAngleY = 0.61086524F;
 
-		bodyModel[162].addShapeBox(0F, -4F, -12.5F, 22, 3, 6, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, 0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -8.5F, 0F, 0F, -2.5F, 0F, 0F, 0F, 0F, 0F); // Import Box15
-		bodyModel[162].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[12].addBox(15.5F, -2.5F, 7F, 5, 1, 3, 0F); // Import Box21
+		turretModel[12].setRotationPoint(0F, -20F, 0F);
+		turretModel[12].rotateAngleY = 0.87266463F;
 
-		bodyModel[163].addBox(11.75F, -2.5F, 7F, 7, 1, 3, 0F); // Import Box19
-		bodyModel[163].setRotationPoint(0F, -20F, 0F);
-		bodyModel[163].rotateAngleY = - 0.34906585F;
+		turretModel[13].addBox(16.5F, -2.5F, 7F, 5, 1, 3, 0F); // Import Box22
+		turretModel[13].setRotationPoint(0F, -20F, 0F);
+		turretModel[13].rotateAngleY = 1.13446401F;
 
-		bodyModel[164].addBox(14.5F, -2.5F, 7F, 5, 1, 3, 0F); // Import Box20
-		bodyModel[164].setRotationPoint(0F, -20F, 0F);
-		bodyModel[164].rotateAngleY = - 0.61086524F;
+		turretModel[14].addBox(17.5F, -2.5F, 5F, 5, 1, 3, 0F); // Import Box23
+		turretModel[14].setRotationPoint(0F, -20F, 0F);
+		turretModel[14].rotateAngleY = 1.48352986F;
 
-		bodyModel[165].addBox(15.5F, -2.5F, 7F, 5, 1, 3, 0F); // Import Box21
-		bodyModel[165].setRotationPoint(0F, -20F, 0F);
-		bodyModel[165].rotateAngleY = - 0.87266463F;
+		turretModel[15].addBox(11.75F, -2.5F, -10F, 7, 1, 3, 0F); // Import Box24
+		turretModel[15].setRotationPoint(0F, -20F, 0F);
+		turretModel[15].rotateAngleY = -0.34906585F;
 
-		bodyModel[166].addBox(16.5F, -2.5F, 7F, 5, 1, 3, 0F); // Import Box22
-		bodyModel[166].setRotationPoint(0F, -20F, 0F);
-		bodyModel[166].rotateAngleY = - 1.13446401F;
+		turretModel[16].addBox(14.5F, -2.5F, -10F, 5, 1, 3, 0F); // Import Box25
+		turretModel[16].setRotationPoint(0F, -20F, 0F);
+		turretModel[16].rotateAngleY = -0.61086524F;
 
-		bodyModel[167].addBox(17.5F, -2.5F, 5F, 5, 1, 3, 0F); // Import Box23
-		bodyModel[167].setRotationPoint(0F, -20F, 0F);
-		bodyModel[167].rotateAngleY = - 1.48352986F;
+		turretModel[17].addBox(15.5F, -2.5F, -10F, 5, 1, 3, 0F); // Import Box26
+		turretModel[17].setRotationPoint(0F, -20F, 0F);
+		turretModel[17].rotateAngleY = -0.87266463F;
 
-		bodyModel[168].addBox(11.75F, -2.5F, -10F, 7, 1, 3, 0F); // Import Box24
-		bodyModel[168].setRotationPoint(0F, -20F, 0F);
-		bodyModel[168].rotateAngleY = 0.34906585F;
+		turretModel[18].addBox(16.5F, -2.5F, -10F, 5, 1, 3, 0F); // Import Box27
+		turretModel[18].setRotationPoint(0F, -20F, 0F);
+		turretModel[18].rotateAngleY = -1.13446401F;
 
-		bodyModel[169].addBox(14.5F, -2.5F, -10F, 5, 1, 3, 0F); // Import Box25
-		bodyModel[169].setRotationPoint(0F, -20F, 0F);
-		bodyModel[169].rotateAngleY = 0.61086524F;
+		turretModel[19].addBox(17.5F, -2.5F, -8F, 5, 1, 3, 0F); // Import Box28
+		turretModel[19].setRotationPoint(0F, -20F, 0F);
+		turretModel[19].rotateAngleY = -1.48352986F;
 
-		bodyModel[170].addBox(15.5F, -2.5F, -10F, 5, 1, 3, 0F); // Import Box26
-		bodyModel[170].setRotationPoint(0F, -20F, 0F);
-		bodyModel[170].rotateAngleY = 0.87266463F;
+		turretModel[20].addShapeBox(11.75F, -3.5F, 7F, 7, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box30
+		turretModel[20].setRotationPoint(0F, -20F, 0F);
+		turretModel[20].rotateAngleY = 0.34906585F;
 
-		bodyModel[171].addBox(16.5F, -2.5F, -10F, 5, 1, 3, 0F); // Import Box27
-		bodyModel[171].setRotationPoint(0F, -20F, 0F);
-		bodyModel[171].rotateAngleY = 1.13446401F;
+		turretModel[21].addShapeBox(14.5F, -3.5F, 7F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box31
+		turretModel[21].setRotationPoint(0F, -20F, 0F);
+		turretModel[21].rotateAngleY = 0.61086524F;
 
-		bodyModel[172].addBox(17.5F, -2.5F, -8F, 5, 1, 3, 0F); // Import Box28
-		bodyModel[172].setRotationPoint(0F, -20F, 0F);
-		bodyModel[172].rotateAngleY = 1.48352986F;
+		turretModel[22].addShapeBox(15.5F, -3.5F, 7F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box32
+		turretModel[22].setRotationPoint(0F, -20F, 0F);
+		turretModel[22].rotateAngleY = 0.87266463F;
 
-		bodyModel[173].addShapeBox(11.75F, -3.5F, 7F, 7, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box30
-		bodyModel[173].setRotationPoint(0F, -20F, 0F);
-		bodyModel[173].rotateAngleY = - 0.34906585F;
+		turretModel[23].addShapeBox(16.5F, -3.5F, 7F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box33
+		turretModel[23].setRotationPoint(0F, -20F, 0F);
+		turretModel[23].rotateAngleY = 1.13446401F;
 
-		bodyModel[174].addShapeBox(14.5F, -3.5F, 7F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box31
-		bodyModel[174].setRotationPoint(0F, -20F, 0F);
-		bodyModel[174].rotateAngleY = - 0.61086524F;
+		turretModel[24].addShapeBox(17.5F, -3.5F, 5F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box34
+		turretModel[24].setRotationPoint(0F, -20F, 0F);
+		turretModel[24].rotateAngleY = 1.48352986F;
 
-		bodyModel[175].addShapeBox(15.5F, -3.5F, 7F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box32
-		bodyModel[175].setRotationPoint(0F, -20F, 0F);
-		bodyModel[175].rotateAngleY = - 0.87266463F;
+		turretModel[25].addShapeBox(11.75F, -3.5F, -10F, 7, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box35
+		turretModel[25].setRotationPoint(0F, -20F, 0F);
+		turretModel[25].rotateAngleY = -0.34906585F;
 
-		bodyModel[176].addShapeBox(16.5F, -3.5F, 7F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box33
-		bodyModel[176].setRotationPoint(0F, -20F, 0F);
-		bodyModel[176].rotateAngleY = - 1.13446401F;
+		turretModel[26].addShapeBox(14.5F, -3.5F, -10F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box36
+		turretModel[26].setRotationPoint(0F, -20F, 0F);
+		turretModel[26].rotateAngleY = -0.61086524F;
 
-		bodyModel[177].addShapeBox(17.5F, -3.5F, 5F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box34
-		bodyModel[177].setRotationPoint(0F, -20F, 0F);
-		bodyModel[177].rotateAngleY = - 1.48352986F;
+		turretModel[27].addShapeBox(15.5F, -3.5F, -10F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box37
+		turretModel[27].setRotationPoint(0F, -20F, 0F);
+		turretModel[27].rotateAngleY = -0.87266463F;
 
-		bodyModel[178].addShapeBox(11.75F, -3.5F, -10F, 7, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box35
-		bodyModel[178].setRotationPoint(0F, -20F, 0F);
-		bodyModel[178].rotateAngleY = 0.34906585F;
+		turretModel[28].addShapeBox(16.5F, -3.5F, -10F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box38
+		turretModel[28].setRotationPoint(0F, -20F, 0F);
+		turretModel[28].rotateAngleY = -1.13446401F;
 
-		bodyModel[179].addShapeBox(14.5F, -3.5F, -10F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box36
-		bodyModel[179].setRotationPoint(0F, -20F, 0F);
-		bodyModel[179].rotateAngleY = 0.61086524F;
+		turretModel[29].addShapeBox(17.5F, -3.5F, -8F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box39
+		turretModel[29].setRotationPoint(0F, -20F, 0F);
+		turretModel[29].rotateAngleY = -1.48352986F;
 
-		bodyModel[180].addShapeBox(15.5F, -3.5F, -10F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box37
-		bodyModel[180].setRotationPoint(0F, -20F, 0F);
-		bodyModel[180].rotateAngleY = 0.87266463F;
+		turretModel[30].addShapeBox(17.5F, -1.5F, -8F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box50
+		turretModel[30].setRotationPoint(0F, -20F, 0F);
+		turretModel[30].rotateAngleY = -1.48352986F;
 
-		bodyModel[181].addShapeBox(16.5F, -3.5F, -10F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box38
-		bodyModel[181].setRotationPoint(0F, -20F, 0F);
-		bodyModel[181].rotateAngleY = 1.13446401F;
+		turretModel[31].addShapeBox(16.5F, -1.5F, -10F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box51
+		turretModel[31].setRotationPoint(0F, -20F, 0F);
+		turretModel[31].rotateAngleY = -1.13446401F;
 
-		bodyModel[182].addShapeBox(17.5F, -3.5F, -8F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box39
-		bodyModel[182].setRotationPoint(0F, -20F, 0F);
-		bodyModel[182].rotateAngleY = 1.48352986F;
+		turretModel[32].addShapeBox(15.5F, -1.5F, -10F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box52
+		turretModel[32].setRotationPoint(0F, -20F, 0F);
+		turretModel[32].rotateAngleY = -0.87266463F;
 
-		bodyModel[183].addShapeBox(17.5F, -1.5F, -8F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box50
-		bodyModel[183].setRotationPoint(0F, -20F, 0F);
-		bodyModel[183].rotateAngleY = 1.48352986F;
+		turretModel[33].addShapeBox(14.5F, -1.5F, -10F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box53
+		turretModel[33].setRotationPoint(0F, -20F, 0F);
+		turretModel[33].rotateAngleY = -0.61086524F;
 
-		bodyModel[184].addShapeBox(16.5F, -1.5F, -10F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box51
-		bodyModel[184].setRotationPoint(0F, -20F, 0F);
-		bodyModel[184].rotateAngleY = 1.13446401F;
+		turretModel[34].addShapeBox(11.75F, -1.5F, -10F, 7, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box54
+		turretModel[34].setRotationPoint(0F, -20F, 0F);
+		turretModel[34].rotateAngleY = -0.34906585F;
 
-		bodyModel[185].addShapeBox(15.5F, -1.5F, -10F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box52
-		bodyModel[185].setRotationPoint(0F, -20F, 0F);
-		bodyModel[185].rotateAngleY = 0.87266463F;
+		turretModel[35].addShapeBox(11.75F, -1.5F, 7F, 7, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box55
+		turretModel[35].setRotationPoint(0F, -20F, 0F);
+		turretModel[35].rotateAngleY = 0.34906585F;
 
-		bodyModel[186].addShapeBox(14.5F, -1.5F, -10F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box53
-		bodyModel[186].setRotationPoint(0F, -20F, 0F);
-		bodyModel[186].rotateAngleY = 0.61086524F;
+		turretModel[36].addShapeBox(14.5F, -1.5F, 7F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box56
+		turretModel[36].setRotationPoint(0F, -20F, 0F);
+		turretModel[36].rotateAngleY = 0.61086524F;
 
-		bodyModel[187].addShapeBox(11.75F, -1.5F, -10F, 7, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box54
-		bodyModel[187].setRotationPoint(0F, -20F, 0F);
-		bodyModel[187].rotateAngleY = 0.34906585F;
+		turretModel[37].addShapeBox(15.5F, -1.5F, 7F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box57
+		turretModel[37].setRotationPoint(0F, -20F, 0F);
+		turretModel[37].rotateAngleY = 0.87266463F;
 
-		bodyModel[188].addShapeBox(11.75F, -1.5F, 7F, 7, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box55
-		bodyModel[188].setRotationPoint(0F, -20F, 0F);
-		bodyModel[188].rotateAngleY = - 0.34906585F;
+		turretModel[38].addShapeBox(16.5F, -1.5F, 7F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box58
+		turretModel[38].setRotationPoint(0F, -20F, 0F);
+		turretModel[38].rotateAngleY = 1.13446401F;
 
-		bodyModel[189].addShapeBox(14.5F, -1.5F, 7F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box56
-		bodyModel[189].setRotationPoint(0F, -20F, 0F);
-		bodyModel[189].rotateAngleY = - 0.61086524F;
+		turretModel[39].addShapeBox(17.5F, -1.5F, 5F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box59
+		turretModel[39].setRotationPoint(0F, -20F, 0F);
+		turretModel[39].rotateAngleY = 1.48352986F;
 
-		bodyModel[190].addShapeBox(15.5F, -1.5F, 7F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box57
-		bodyModel[190].setRotationPoint(0F, -20F, 0F);
-		bodyModel[190].rotateAngleY = - 0.87266463F;
+		turretModel[40].addShapeBox(-6.5F, -4F, 6.5F, 21, 3, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -10F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, -10F, 0F, 0F, 0F, 0F, 1F); // Import Box60
+		turretModel[40].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[191].addShapeBox(16.5F, -1.5F, 7F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box58
-		bodyModel[191].setRotationPoint(0F, -20F, 0F);
-		bodyModel[191].rotateAngleY = - 1.13446401F;
+		turretModel[41].addShapeBox(-6.5F, -4F, -18.5F, 21, 3, 12, 0F, 0F, 0F, 1F, -10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, -10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box61
+		turretModel[41].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[192].addShapeBox(17.5F, -1.5F, 5F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box59
-		bodyModel[192].setRotationPoint(0F, -20F, 0F);
-		bodyModel[192].rotateAngleY = - 1.48352986F;
+		turretModel[42].addShapeBox(0F, -4F, 6.5F, 22, 3, 6, 0F, 0F, 0F, 0F, 0.5F, 0F, 0F, -5.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2.5F, 0F, 0F, -8.5F, 0F, 0F, 0F, 0F, 0F); // Import Box62
+		turretModel[42].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[193].addShapeBox(-6.5F, -4F, 6.5F, 21, 3, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -10F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, -10F, 0F, 0F, 0F, 0F, 1F); // Import Box60
-		bodyModel[193].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[43].addShapeBox(0F, -5F, 6.5F, 20, 1, 9, 0F, 0F, 0F, 0F, 2F, 0F, 0F, -6.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 2.5F, 0F, 0F, -6F, 0F, 0F, 0F, 0F, 0F); // Import Box63
+		turretModel[43].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[194].addShapeBox(-6.5F, -4F, -18.5F, 21, 3, 12, 0F, 0F, 0F, 1F, -10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, -10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box61
-		bodyModel[194].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[44].addShapeBox(0F, -4F, 6.5F, 20, 1, 7, 0F, 0F, 0F, 0F, -3.5F, -1F, 0F, -10.5F, -1F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, -3F, 1F, 0F, -10F, 1F, 0.25F, 0F, 1F, 0.25F); // Import Box64
+		turretModel[44].setRotationPoint(0F, -30.5F, 0F);
 
-		bodyModel[195].addShapeBox(0F, -4F, 6.5F, 22, 3, 6, 0F, 0F, 0F, 0F, 0.5F, 0F, 0F, -5.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2.5F, 0F, 0F, -8.5F, 0F, 0F, 0F, 0F, 0F); // Import Box62
-		bodyModel[195].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[45].addShapeBox(0F, -3F, 12.5F, 16, 9, 1, 0F, 0F, -1F, 0F, -4.75F, -1F, 0F, -6F, -1F, 0.25F, 0F, -1F, 0.25F, 0F, 0F, 0F, 0.35F, 0F, 0F, -2.5F, 0F, 2F, 0F, 0F, 2F); // Import Box65
+		turretModel[45].setRotationPoint(0F, -30.5F, 0F);
 
-		bodyModel[196].addShapeBox(0F, -5F, 6.5F, 20, 1, 9, 0F, 0F, 0F, 0F, 2F, 0F, 0F, -6.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 2.5F, 0F, 0F, -6F, 0F, 0F, 0F, 0F, 0F); // Import Box63
-		bodyModel[196].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[46].addShapeBox(7F, -3F, 6.5F, 2, 9, 6, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box66
+		turretModel[46].setRotationPoint(0F, -30.5F, 0F);
 
-		bodyModel[197].addShapeBox(0F, -4F, 6.5F, 20, 1, 7, 0F, 0F, 0F, 0F, -3.5F, -1F, 0F, -10.5F, -1F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, -3F, 1F, 0F, -10F, 1F, 0.25F, 0F, 1F, 0.25F); // Import Box64
-		bodyModel[197].setRotationPoint(0F, -30.5F, 0F);
+		turretModel[47].addShapeBox(9F, 3F, 6.5F, 6, 3, 6, 0F, 0F, 0F, -1F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box67
+		turretModel[47].setRotationPoint(0F, -30.5F, 0F);
 
-		bodyModel[198].addShapeBox(0F, -3F, 12.5F, 16, 9, 1, 0F, 0F, -1F, 0F, -4.75F, -1F, 0F, -6F, -1F, 0.25F, 0F, -1F, 0.25F, 0F, 0F, 0F, 0.35F, 0F, 0F, -2.5F, 0F, 2F, 0F, 0F, 2F); // Import Box65
-		bodyModel[198].setRotationPoint(0F, -30.5F, 0F);
+		turretModel[48].addShapeBox(9F, -3F, 6.5F, 6, 3, 6, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -3F, 0F, -5F, -3F, 0F, 0F, 0F, -1F); // Import Box68
+		turretModel[48].setRotationPoint(0F, -30.5F, 0F);
 
-		bodyModel[199].addShapeBox(7F, -3F, 6.5F, 2, 9, 6, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box66
-		bodyModel[199].setRotationPoint(0F, -30.5F, 0F);
+		turretModel[49].addShapeBox(9F, -3F, 6.5F, 6, 9, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -3F, 0F); // Import Box70
+		turretModel[49].setRotationPoint(0F, -30.5F, 0F);
 
-		bodyModel[200].addShapeBox(9F, 3F, 6.5F, 6, 3, 6, 0F, 0F, 0F, -1F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box67
-		bodyModel[200].setRotationPoint(0F, -30.5F, 0F);
+		turretModel[50].addShapeBox(9F, -3F, 11.5F, 6, 9, 1, 0F, 0F, -3F, 0F, -5F, 0F, -1F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box71
+		turretModel[50].setRotationPoint(0F, -30.5F, 0F);
 
-		bodyModel[201].addShapeBox(9F, -3F, 6.5F, 6, 3, 6, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -3F, 0F, -5F, -3F, 0F, 0F, 0F, -1F); // Import Box68
-		bodyModel[201].setRotationPoint(0F, -30.5F, 0F);
+		turretModel[51].addShapeBox(-20F, -7F, 6.5F, 14, 6, 13, 0F, 2.5F, 0F, 0F, -0.5F, -3F, 0F, -0.5F, -3F, 1F, -9.5F, -3F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -13.5F, 0F, 0F); // Import Box72
+		turretModel[51].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[202].addShapeBox(9F, -3F, 6.5F, 6, 9, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -3F, 0F); // Import Box70
-		bodyModel[202].setRotationPoint(0F, -30.5F, 0F);
+		turretModel[52].addShapeBox(-20F, -7F, -19.5F, 14, 6, 13, 0F, -9.5F, -3F, 0F, -0.5F, -3F, 1F, -0.5F, -3F, 0F, 2.5F, 0F, 0F, -13.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F); // Import Box73
+		turretModel[52].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[203].addShapeBox(9F, -3F, 11.5F, 6, 9, 1, 0F, 0F, -3F, 0F, -5F, 0F, -1F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box71
-		bodyModel[203].setRotationPoint(0F, -30.5F, 0F);
+		turretModel[53].addShapeBox(0F, -15F, 13.5F, 4, 10, 9, 0F, 0F, 0F, 0F, 2F, -0.64F, 0F, -4F, -2F, -1F, 0F, -2F, -1F, 0F, 0F, 0F, 5F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box74
+		turretModel[53].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[204].addShapeBox(-20F, -7F, 6.5F, 14, 6, 13, 0F, 2.5F, 0F, 0F, -0.5F, -3F, 0F, -0.5F, -3F, 1F, -9.5F, -3F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -13.5F, 0F, 0F); // Import Box72
-		bodyModel[204].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[54].addShapeBox(0F, -5F, 15.5F, 11, 1, 7, 0F, 0F, 0F, 0F, 2.5F, 0F, 0F, -7F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F, -6.63F, 0F, 0F, 0F, 0F, 0F); // Import Box75
+		turretModel[54].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[205].addShapeBox(-20F, -7F, -19.5F, 14, 6, 13, 0F, -9.5F, -3F, 0F, -0.5F, -3F, 1F, -0.5F, -3F, 0F, 2.5F, 0F, 0F, -13.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F); // Import Box73
-		bodyModel[205].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[55].addShapeBox(0F, -5F, -22.5F, 11, 1, 7, 0F, 0F, 0F, 0F, -7F, 0F, 0F, 1.95F, 0F, 0.18F, 0F, 0F, 0.18F, 0F, 0F, 0F, -6.63F, 0F, 0F, 2.5F, 0F, 0F, 0F, 0F, 0F); // Import Box76
+		turretModel[55].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[206].addShapeBox(0F, -15F, 13.5F, 4, 10, 9, 0F, 0F, 0F, 0F, 2F, -0.64F, 0F, -4F, -2F, -1F, 0F, -2F, -1F, 0F, 0F, 0F, 5F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box74
-		bodyModel[206].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[56].addShapeBox(0F, -15F, -22.5F, 4, 10, 9, 0F, 0F, -2F, -1F, -4F, -2F, -1F, 2F, -0.8F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 5F, 0F, -2F, 0F, 0F, 0F); // Import Box77
+		turretModel[56].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[207].addShapeBox(0F, -5F, 15.5F, 11, 1, 7, 0F, 0F, 0F, 0F, 2.5F, 0F, 0F, -7F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F, -6.63F, 0F, 0F, 0F, 0F, 0F); // Import Box75
-		bodyModel[207].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[57].addShapeBox(-11F, -15F, -21.5F, 11, 11, 8, 0F, 0F, -4F, -2F, 0F, -2F, 0F, 0F, 0F, 0F, 5.5F, -3F, 0F, -0.5F, 0F, -2F, 0F, -1F, 1F, 0F, -1F, 0F, 6F, -1F, 0F); // Import Box78
+		turretModel[57].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[208].addShapeBox(0F, -5F, -22.5F, 11, 1, 7, 0F, 0F, 0F, 0F, -7F, 0F, 0F, 1.95F, 0F, 0.18F, 0F, 0F, 0.18F, 0F, 0F, 0F, -6.63F, 0F, 0F, 2.5F, 0F, 0F, 0F, 0F, 0F); // Import Box76
-		bodyModel[208].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[58].addShapeBox(-11F, -5F, -22.5F, 11, 1, 8, 0F, -0.5F, -1F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -0.5F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box79
+		turretModel[58].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[209].addShapeBox(0F, -15F, -22.5F, 4, 10, 9, 0F, 0F, -2F, -1F, -4F, -2F, -1F, 2F, -0.8F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 5F, 0F, -2F, 0F, 0F, 0F); // Import Box77
-		bodyModel[209].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[59].addShapeBox(-11F, -5F, 14.5F, 11, 1, 8, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -1F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, -3F); // Import Box81
+		turretModel[59].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[210].addShapeBox(-11F, -15F, -21.5F, 11, 11, 8, 0F, 0F, -4F, -2F, 0F, -2F, 0F, 0F, 0F, 0F, 5.5F, -3F, 0F, -0.5F, 0F, -2F, 0F, -1F, 1F, 0F, -1F, 0F, 6F, -1F, 0F); // Import Box78
-		bodyModel[210].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[60].addShapeBox(-11F, -15F, 13.5F, 11, 11, 8, 0F, 5.5F, -3F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -4F, -2F, 6F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 1F, -0.5F, 0F, -2F); // Import Box82
+		turretModel[60].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[211].addShapeBox(-11F, -5F, -22.5F, 11, 1, 8, 0F, -0.5F, -1F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -0.5F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box79
-		bodyModel[211].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[61].addShapeBox(-17F, -15F, -13.5F, 17, 10, 5, 0F, -0.5F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 2F, 3.25F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 4.25F, -1.5F, 0F); // Import Box83
+		turretModel[61].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[212].addShapeBox(-11F, -5F, 14.5F, 11, 1, 8, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -1F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, -3F); // Import Box81
-		bodyModel[212].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[62].addShapeBox(-17F, -15F, 8.5F, 17, 10, 5, 0F, 3.25F, -2F, 0F, 0F, 0F, 2F, 0F, 0F, 0F, -0.5F, -3F, 0F, 4.25F, -1.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box84
+		turretModel[62].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[213].addShapeBox(-11F, -15F, 13.5F, 11, 11, 8, 0F, 5.5F, -3F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -4F, -2F, 6F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 1F, -0.5F, 0F, -2F); // Import Box82
-		bodyModel[213].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[63].addShapeBox(-20.25F, -15F, -8.5F, 20, 9, 17, 0F, 0F, 0.25F, 0F, 0.25F, 0F, -2F, 0.25F, 0F, -2F, 0F, 0.25F, 0F, 0F, -0.5F, 0F, 0.25F, 0F, -2F, 0.25F, 0F, -2F, 0F, -0.5F, 0F); // Import Box85
+		turretModel[63].setRotationPoint(0F, -19.5F, 0F);
 
-		bodyModel[214].addShapeBox(-17F, -15F, -13.5F, 17, 10, 5, 0F, -0.5F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 2F, 3.25F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 4.25F, -1.5F, 0F); // Import Box83
-		bodyModel[214].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[64].addShapeBox(-39F, -14F, -13.5F, 23, 8, 5, 0F, -1F, -1F, -2F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, -1F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Import Box1
+		turretModel[64].setRotationPoint(0F, -18.5F, 0F);
 
-		bodyModel[215].addShapeBox(-17F, -15F, 8.5F, 17, 10, 5, 0F, 3.25F, -2F, 0F, 0F, 0F, 2F, 0F, 0F, 0F, -0.5F, -3F, 0F, 4.25F, -1.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box84
-		bodyModel[215].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[65].addShapeBox(-39F, -14F, 8.5F, 23, 8, 5, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -1F, -1F, -2F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, -1F, -2F); // Import Box2
+		turretModel[65].setRotationPoint(0F, -18.5F, 0F);
 
-		bodyModel[216].addShapeBox(-20.25F, -15F, -8.5F, 20, 9, 17, 0F, 0F, 0.25F, 0F, 0.25F, 0F, -2F, 0.25F, 0F, -2F, 0F, 0.25F, 0F, 0F, -0.5F, 0F, 0.25F, 0F, -2F, 0.25F, 0F, -2F, 0F, -0.5F, 0F); // Import Box85
-		bodyModel[216].setRotationPoint(0F, -19.5F, 0F);
+		turretModel[66].addShapeBox(-39F, -16F, -11.5F, 13, 2, 3, 0F, -0.5F, -0.25F, -0.5F, -0.25F, -0.25F, -0.5F, -0.25F, 0.25F, 0F, 0F, 0.25F, 0F, -1F, 1F, 0F, -0.25F, 1F, 1F, -0.25F, 0F, 0F, 0F, 0F, 0F); // Import Box11
+		turretModel[66].setRotationPoint(0F, -18.5F, 0F);
 
-		bodyModel[217].addShapeBox(-39F, -14F, -13.5F, 23, 8, 5, 0F, -1F, -1F, -2F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, -1F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Import Box1
-		bodyModel[217].setRotationPoint(0F, -18.5F, 0F);
+		turretModel[67].addShapeBox(-39F, -16F, 8.5F, 13, 2, 3, 0F, 0F, 0.25F, 0F, -0.25F, 0.25F, 0F, -0.25F, -0.25F, -0.5F, -0.5F, -0.25F, -0.5F, 0F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 1F, 1F, -1F, 1F, 0F); // Import Box12
+		turretModel[67].setRotationPoint(0F, -18.5F, 0F);
 
-		bodyModel[218].addShapeBox(-39F, -14F, 8.5F, 23, 8, 5, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -1F, -1F, -2F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, -1F, -2F); // Import Box2
-		bodyModel[218].setRotationPoint(0F, -18.5F, 0F);
+		turretModel[68].addBox(-36F, -16F, -10F, 4, 4, 4, 0F); // Import Box13
+		turretModel[68].setRotationPoint(0F, -20F, 0F);
 
-		bodyModel[219].addShapeBox(-39F, -16F, -11.5F, 13, 2, 3, 0F, -0.5F, -0.25F, -0.5F, -0.25F, -0.25F, -0.5F, -0.25F, 0.25F, 0F, 0F, 0.25F, 0F, -1F, 1F, 0F, -0.25F, 1F, 1F, -0.25F, 0F, 0F, 0F, 0F, 0F); // Import Box11
-		bodyModel[219].setRotationPoint(0F, -18.5F, 0F);
+		turretModel[69].addBox(-35.5F, -19F, -9.5F, 3, 4, 3, 0F); // Import Box14
+		turretModel[69].setRotationPoint(0F, -20F, 0F);
 
-		bodyModel[220].addShapeBox(-39F, -16F, 8.5F, 13, 2, 3, 0F, 0F, 0.25F, 0F, -0.25F, 0.25F, 0F, -0.25F, -0.25F, -0.5F, -0.5F, -0.25F, -0.5F, 0F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 1F, 1F, -1F, 1F, 0F); // Import Box12
-		bodyModel[220].setRotationPoint(0F, -18.5F, 0F);
+		turretModel[70].addBox(-35F, -25F, -9F, 2, 6, 2, 0F); // Import Box15
+		turretModel[70].setRotationPoint(0F, -20F, 0F);
 
-		bodyModel[221].addBox(-36F, -16F, -10F, 4, 4, 4, 0F); // Import Box13
-		bodyModel[221].setRotationPoint(0F, -20F, 0F);
+		turretModel[71].addShapeBox(-7F, -18F, -18F, 5, 6, 6, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box17
+		turretModel[71].setRotationPoint(0F, -20F, 0F);
+		turretModel[71].rotateAngleY = -0.08726646F;
+		turretModel[71].rotateAngleZ = 0.08726646F;
 
-		bodyModel[222].addBox(-35.5F, -19F, -9.5F, 3, 4, 3, 0F); // Import Box14
-		bodyModel[222].setRotationPoint(0F, -20F, 0F);
+		turretModel[72].addShapeBox(-7F, -18F, 12F, 5, 6, 6, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box18
+		turretModel[72].setRotationPoint(0F, -20F, 0F);
+		turretModel[72].rotateAngleY = 0.08726646F;
+		turretModel[72].rotateAngleZ = 0.08726646F;
 
-		bodyModel[223].addBox(-35F, -25F, -9F, 2, 6, 2, 0F); // Import Box15
-		bodyModel[223].setRotationPoint(0F, -20F, 0F);
+		turretModel[73].addShapeBox(-18F, -10.5F, -19.5F, 7, 7, 6, 0F, -3F, -2F, -1.5F, 0F, 0F, 0F, -5.5F, 1F, 0F, -1.5F, 1F, 0F, -3F, -2.5F, -1.5F, 0.5F, 0F, 0F, -5.5F, -1.5F, 0F, -1F, -1.5F, 0.5F); // Import Box19
+		turretModel[73].setRotationPoint(0F, -20F, 0F);
 
-		bodyModel[224].addShapeBox(-7F, -18F, -18F, 5, 6, 6, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box17
-		bodyModel[224].setRotationPoint(0F, -20F, 0F);
-		bodyModel[224].rotateAngleY = 0.08726646F;
-		bodyModel[224].rotateAngleZ = - 0.08726646F;
+		turretModel[74].addShapeBox(-18F, -10.5F, 13.5F, 7, 7, 6, 0F, -1.5F, 1F, 0F, -5.5F, 1F, 0F, 0F, 0F, 0F, -3F, -2F, -1.5F, -1F, -1.5F, 0.5F, -5.5F, -1.5F, 0F, 0.5F, 0F, 0F, -3F, -2.5F, -1.5F); // Import Box20
+		turretModel[74].setRotationPoint(0F, -20F, 0F);
 
-		bodyModel[225].addShapeBox(-7F, -18F, 12F, 5, 6, 6, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box18
-		bodyModel[225].setRotationPoint(0F, -20F, 0F);
-		bodyModel[225].rotateAngleY = - 0.08726646F;
-		bodyModel[225].rotateAngleZ = - 0.08726646F;
+		turretModel[75].addBox(-20F, -55.25F, -13F, 4, 4, 12, 0F); // Import Box2
+		turretModel[75].setRotationPoint(0F, 20F, 0F);
 
-		bodyModel[226].addShapeBox(-18F, -10.5F, -19.5F, 7, 7, 6, 0F, -3F, -2F, -1.5F, 0F, 0F, 0F, -5.5F, 1F, 0F, -1.5F, 1F, 0F, -3F, -2.5F, -1.5F, 0.5F, 0F, 0F, -5.5F, -1.5F, 0F, -1F, -1.5F, 0.5F); // Import Box19
-		bodyModel[226].setRotationPoint(0F, -20F, 0F);
+		turretModel[76].addShapeBox(-16F, -55.25F, -13F, 4, 4, 12, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 0F); // Import Box3
+		turretModel[76].setRotationPoint(0F, 20F, 0F);
 
-		bodyModel[227].addShapeBox(-18F, -10.5F, 13.5F, 7, 7, 6, 0F, -1.5F, 1F, 0F, -5.5F, 1F, 0F, 0F, 0F, 0F, -3F, -2F, -1.5F, -1F, -1.5F, 0.5F, -5.5F, -1.5F, 0F, 0.5F, 0F, 0F, -3F, -2.5F, -1.5F); // Import Box20
-		bodyModel[227].setRotationPoint(0F, -20F, 0F);
+		turretModel[77].addShapeBox(-24F, -55.25F, -13F, 4, 4, 12, 0F, 0F, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -4F); // Import Box4
+		turretModel[77].setRotationPoint(0F, 20F, 0F);
 
-		bodyModel[228].addBox(-20F, -55.25F, -13F, 4, 4, 12, 0F); // Import Box2
-		bodyModel[228].setRotationPoint(0F, 20F, 0F);
+		turretModel[78].addShapeBox(-16.5F, -63.25F, -11.5F, 3, 2, 9, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F); // Import Box5
+		turretModel[78].setRotationPoint(0F, 20F, 0F);
 
-		bodyModel[229].addShapeBox(-16F, -55.25F, -13F, 4, 4, 12, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 0F); // Import Box3
-		bodyModel[229].setRotationPoint(0F, 20F, 0F);
+		turretModel[79].addBox(-19.5F, -63.25F, -11.5F, 3, 8, 9, 0F); // Import Box6
+		turretModel[79].setRotationPoint(0F, 20F, 0F);
 
-		bodyModel[230].addShapeBox(-24F, -55.25F, -13F, 4, 4, 12, 0F, 0F, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -4F); // Import Box4
-		bodyModel[230].setRotationPoint(0F, 20F, 0F);
+		turretModel[80].addShapeBox(-22.5F, -63.25F, -11.5F, 3, 8, 9, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F); // Import Box8
+		turretModel[80].setRotationPoint(0F, 20F, 0F);
 
-		bodyModel[231].addShapeBox(-16.5F, -63.25F, -11.5F, 3, 2, 9, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F); // Import Box5
-		bodyModel[231].setRotationPoint(0F, 20F, 0F);
+		turretModel[81].addBox(-25F, -22.5F, -11F, 4, 7, 9, 0F); // Import Box9
+		turretModel[81].setRotationPoint(0F, -20F, 0F);
 
-		bodyModel[232].addBox(-19.5F, -63.25F, -11.5F, 3, 8, 9, 0F); // Import Box6
-		bodyModel[232].setRotationPoint(0F, 20F, 0F);
+		turretModel[82].addShapeBox(-25F, -18.5F, -2F, 4, 3, 7, 0F, 0F, 0F, 0F, 3F, 0F, 0F, 3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box10
+		turretModel[82].setRotationPoint(0F, -20F, 0F);
 
-		bodyModel[233].addShapeBox(-22.5F, -63.25F, -11.5F, 3, 8, 9, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F); // Import Box8
-		bodyModel[233].setRotationPoint(0F, 20F, 0F);
+		turretModel[83].addShapeBox(-25F, -22.5F, 2F, 4, 4, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 3F, 0F, 0F, 3F, 0F, 0F, 0F, 0F, 0F); // Import Box11
+		turretModel[83].setRotationPoint(0F, -20F, 0F);
 
-		bodyModel[234].addBox(-25F, -22.5F, -11F, 4, 7, 9, 0F); // Import Box9
-		bodyModel[234].setRotationPoint(0F, -20F, 0F);
+		turretModel[84].addBox(1F, -16F, 6F, 4, 4, 4, 0F); // Import Box16
+		turretModel[84].setRotationPoint(0F, -20F, 0F);
 
-		bodyModel[235].addShapeBox(-25F, -18.5F, -2F, 4, 3, 7, 0F, 0F, 0F, 0F, 3F, 0F, 0F, 3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F); // Import Box10
-		bodyModel[235].setRotationPoint(0F, -20F, 0F);
+		turretModel[85].addBox(1.5F, -26F, 6.5F, 3, 10, 3, 0F); // Import Box17
+		turretModel[85].setRotationPoint(0F, -20F, 0F);
 
-		bodyModel[236].addShapeBox(-25F, -22.5F, 2F, 4, 4, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 3F, 0F, 0F, 3F, 0F, 0F, 0F, 0F, 0F); // Import Box11
-		bodyModel[236].setRotationPoint(0F, -20F, 0F);
+		turretModel[86].addBox(2F, -28F, 7F, 2, 2, 2, 0F); // Import Box18
+		turretModel[86].setRotationPoint(0F, -20F, 0F);
 
-		bodyModel[237].addBox(1F, -16F, 6F, 4, 4, 4, 0F); // Import Box16
-		bodyModel[237].setRotationPoint(0F, -20F, 0F);
+		turretModel[87].addShapeBox(-16.5F, -57.25F, -11.5F, 3, 2, 9, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F); // Import Box19
+		turretModel[87].setRotationPoint(0F, 20F, 0F);
 
-		bodyModel[238].addBox(1.5F, -26F, 6.5F, 3, 10, 3, 0F); // Import Box17
-		bodyModel[238].setRotationPoint(0F, -20F, 0F);
+		turretModel[88].addShapeBox(-16.5F, -61.25F, -11F, 2, 4, 8, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F); // Import Box20
+		turretModel[88].setRotationPoint(0F, 20F, 0F);
 
-		bodyModel[239].addBox(2F, -28F, 7F, 2, 2, 2, 0F); // Import Box18
-		bodyModel[239].setRotationPoint(0F, -20F, 0F);
 
-		bodyModel[240].addShapeBox(-16.5F, -57.25F, -11.5F, 3, 2, 9, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F); // Import Box19
-		bodyModel[240].setRotationPoint(0F, 20F, 0F);
+		barrelModel = new ModelRendererTurbo[11];
+		barrelModel[0] = new ModelRendererTurbo(this, 0, 400, textureX, textureY); // Import Box4
+		barrelModel[1] = new ModelRendererTurbo(this, 0, 393, textureX, textureY); // Import Box5
+		barrelModel[2] = new ModelRendererTurbo(this, 0, 408, textureX, textureY); // Import Box6
+		barrelModel[3] = new ModelRendererTurbo(this, 26, 414, textureX, textureY); // Import Box7
+		barrelModel[4] = new ModelRendererTurbo(this, 57, 422, textureX, textureY); // Import Box8
+		barrelModel[5] = new ModelRendererTurbo(this, 66, 414, textureX, textureY); // Import Box9
+		barrelModel[6] = new ModelRendererTurbo(this, 0, 415, textureX, textureY); // Import Box10
+		barrelModel[7] = new ModelRendererTurbo(this, 98, 423, textureX, textureY); // Import Box12
+		barrelModel[8] = new ModelRendererTurbo(this, 98, 414, textureX, textureY); // Import Box13
+		barrelModel[9] = new ModelRendererTurbo(this, 98, 432, textureX, textureY); // Import Box14
+		barrelModel[10] = new ModelRendererTurbo(this, 98, 441, textureX, textureY); // Import Box15
 
-		bodyModel[241].addShapeBox(-16.5F, -61.25F, -11F, 2, 4, 8, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F); // Import Box20
-		bodyModel[241].setRotationPoint(0F, 20F, 0F);
+		barrelModel[0].addShapeBox(0F, -1F, -2F, 90, 2, 4, 0F, 0F, 0F, 0F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, 0F, 0F); // Import Box4
+		barrelModel[0].setRotationPoint(15F, -26F, 0F);
 
-		bodyModel[242].addShapeBox(0F, -1F, -2F, 90, 2, 4, 0F, 0F, 0F, 0F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, 0F, 0F); // Import Box4
-		bodyModel[242].setRotationPoint(15F, -26F, 0F);
+		barrelModel[1].addShapeBox(0F, -2F, -2F, 90, 1, 4, 0F, 0F, 0F, -1F, 0F, -0.25F, -1F, 0F, -0.25F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0.25F, -0.25F, 0F, 0.25F, -0.25F, 0F, 0F, 0F); // Import Box5
+		barrelModel[1].setRotationPoint(15F, -26F, 0F);
 
-		bodyModel[243].addShapeBox(0F, -2F, -2F, 90, 1, 4, 0F, 0F, 0F, -1F, 0F, -0.25F, -1F, 0F, -0.25F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0.25F, -0.25F, 0F, 0.25F, -0.25F, 0F, 0F, 0F); // Import Box5
-		bodyModel[243].setRotationPoint(15F, -26F, 0F);
+		barrelModel[2].addShapeBox(0F, 1F, -2F, 90, 1, 4, 0F, 0F, 0F, 0F, 0F, 0.25F, -0.25F, 0F, 0.25F, -0.25F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -0.25F, -1F, 0F, -0.25F, -1F, 0F, 0F, -1F); // Import Box6
+		barrelModel[2].setRotationPoint(15F, -26F, 0F);
 
-		bodyModel[244].addShapeBox(0F, 1F, -2F, 90, 1, 4, 0F, 0F, 0F, 0F, 0F, 0.25F, -0.25F, 0F, 0.25F, -0.25F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -0.25F, -1F, 0F, -0.25F, -1F, 0F, 0F, -1F); // Import Box6
-		bodyModel[244].setRotationPoint(15F, -26F, 0F);
+		barrelModel[3].addShapeBox(3F, -5F, -4F, 10, 5, 8, 0F, 0F, 0F, 0F, 0F, -3F, -2F, 0F, -3F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F); // Import Box7
+		barrelModel[3].setRotationPoint(15F, -26F, 0F);
 
-		bodyModel[245].addShapeBox(3F, -5F, -4F, 10, 5, 8, 0F, 0F, 0F, 0F, 0F, -3F, -2F, 0F, -3F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F); // Import Box7
-		bodyModel[245].setRotationPoint(15F, -26F, 0F);
+		barrelModel[4].addShapeBox(3F, 0F, -4F, 10, 4, 8, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, -2F, 0F, -3F, -2F, 0F, 0F, 0F); // Import Box8
+		barrelModel[4].setRotationPoint(15F, -26F, 0F);
 
-		bodyModel[246].addShapeBox(3F, 0F, -4F, 10, 4, 8, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, -2F, 0F, -3F, -2F, 0F, 0F, 0F); // Import Box8
-		bodyModel[246].setRotationPoint(15F, -26F, 0F);
+		barrelModel[5].addShapeBox(3F, -5F, -2F, 10, 3, 4, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box9
+		barrelModel[5].setRotationPoint(15F, -26F, 0F);
 
-		bodyModel[247].addShapeBox(3F, -5F, -2F, 10, 3, 4, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box9
-		bodyModel[247].setRotationPoint(15F, -26F, 0F);
+		barrelModel[6].addBox(87.6F, -3F, -0.5F, 2, 2, 1, 0F); // Import Box10
+		barrelModel[6].setRotationPoint(15F, -26F, 0F);
 
-		bodyModel[248].addBox(87.6F, -3F, -0.5F, 2, 2, 1, 0F); // Import Box10
-		bodyModel[248].setRotationPoint(15F, -26F, 0F);
+		barrelModel[7].addBox(-2.75F, -2F, -2F, 8, 4, 4, 0F); // Import Box12
+		barrelModel[7].setRotationPoint(-23F, -41F, 0F);
 
-		bodyModel[249].addBox(-2.75F, -2F, -2F, 8, 4, 4, 0F); // Import Box12
-		bodyModel[249].setRotationPoint(-23F, -41F, 0F);
+		barrelModel[8].addShapeBox(-4.75F, -2F, -2F, 2, 4, 4, 0F, 0F, -1F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, -1F, 0F, -1F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, -1F); // Import Box13
+		barrelModel[8].setRotationPoint(-23F, -41F, 0F);
 
-		bodyModel[250].addShapeBox(-4.75F, -2F, -2F, 2, 4, 4, 0F, 0F, -1F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, -1F, 0F, -1F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, -1F); // Import Box13
-		bodyModel[250].setRotationPoint(-23F, -41F, 0F);
+		barrelModel[9].addShapeBox(5.25F, -2F, -2F, 4, 4, 4, 0F, 0F, 0F, 0F, 0F, -1F, -1F, 0F, -1F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, -1F, 0F, -1F, -1F, 0F, 0F, 0F); // Import Box14
+		barrelModel[9].setRotationPoint(-23F, -41F, 0F);
 
-		bodyModel[251].addShapeBox(5.25F, -2F, -2F, 4, 4, 4, 0F, 0F, 0F, 0F, 0F, -1F, -1F, 0F, -1F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, -1F, 0F, -1F, -1F, 0F, 0F, 0F); // Import Box14
-		bodyModel[251].setRotationPoint(-23F, -41F, 0F);
+		barrelModel[10].addShapeBox(9.25F, -1F, -1F, 7, 2, 2, 0F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F); // Import Box15
+		barrelModel[10].setRotationPoint(-23F, -41F, 0F);
 
-		bodyModel[252].addShapeBox(9.25F, -1F, -1F, 7, 2, 2, 0F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F); // Import Box15
-		bodyModel[252].setRotationPoint(-23F, -41F, 0F);
 
-		bodyModel[253].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape13
-		bodyModel[253].setRotationPoint(47F, 3.5F, 16.5F-7F);
+		leftTrackWheelModels = new ModelRendererTurbo[7];
+		leftTrackWheelModels[0] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape13
+		leftTrackWheelModels[1] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape14
+		leftTrackWheelModels[2] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape15
+		leftTrackWheelModels[3] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape16
+		leftTrackWheelModels[4] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape17
+		leftTrackWheelModels[5] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape18
+		leftTrackWheelModels[6] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape19
 
-		bodyModel[254].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape14
-		bodyModel[254].setRotationPoint(33F, 3.5F, 16.5F-7F);
+		leftTrackWheelModels[0].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape13
+		leftTrackWheelModels[0].setRotationPoint(47F, 3.5F, 16.5F);
 
-		bodyModel[255].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape15
-		bodyModel[255].setRotationPoint(19F, 3.5F, 16.5F-7F);
+		leftTrackWheelModels[1].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape14
+		leftTrackWheelModels[1].setRotationPoint(33F, 3.5F, 16.5F);
 
-		bodyModel[256].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape16
-		bodyModel[256].setRotationPoint(5F, 3.5F, 16.5F-7F);
+		leftTrackWheelModels[2].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape15
+		leftTrackWheelModels[2].setRotationPoint(19F, 3.5F, 16.5F);
 
-		bodyModel[257].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape17
-		bodyModel[257].setRotationPoint(-9F, 3.5F, 16.5F-7F);
+		leftTrackWheelModels[3].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape16
+		leftTrackWheelModels[3].setRotationPoint(5F, 3.5F, 16.5F);
 
-		bodyModel[258].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape18
-		bodyModel[258].setRotationPoint(-22F, 3.5F, 16.5F-7F);
+		leftTrackWheelModels[4].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape17
+		leftTrackWheelModels[4].setRotationPoint(-9F, 3.5F, 16.5F);
 
-		bodyModel[259].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape19
-		bodyModel[259].setRotationPoint(-35F, 3.5F, 16.5F-7F);
+		leftTrackWheelModels[5].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape18
+		leftTrackWheelModels[5].setRotationPoint(-22F, 3.5F, 16.5F);
 
-		bodyModel[260].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape6
-		bodyModel[260].setRotationPoint(47F, 3.5F, -16.5F-7F);
+		leftTrackWheelModels[6].addShape3D(6F, -6F, -10F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape19
+		leftTrackWheelModels[6].setRotationPoint(-35F, 3.5F, 16.5F);
 
-		bodyModel[261].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape7
-		bodyModel[261].setRotationPoint(-22F, 3.5F, -16.5F-7F);
 
-		bodyModel[262].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape8
-		bodyModel[262].setRotationPoint(-9F, 3.5F, -16.5F-7F);
+		rightTrackWheelModels = new ModelRendererTurbo[7];
+		rightTrackWheelModels[0] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape6
+		rightTrackWheelModels[1] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape7
+		rightTrackWheelModels[2] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape8
+		rightTrackWheelModels[3] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape9
+		rightTrackWheelModels[4] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape10
+		rightTrackWheelModels[5] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape11
+		rightTrackWheelModels[6] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Import Shape12
 
-		bodyModel[263].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape9
-		bodyModel[263].setRotationPoint(5F, 3.5F, -16.5F-7F);
+		rightTrackWheelModels[0].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape6
+		rightTrackWheelModels[0].setRotationPoint(47F, 3.5F, -16.5F);
 
-		bodyModel[264].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape10
-		bodyModel[264].setRotationPoint(19F, 3.5F, -16.5F-7F);
+		rightTrackWheelModels[1].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape7
+		rightTrackWheelModels[1].setRotationPoint(-22F, 3.5F, -16.5F);
 
-		bodyModel[265].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape11
-		bodyModel[265].setRotationPoint(33F, 3.5F, -16.5F-7F);
+		rightTrackWheelModels[2].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape8
+		rightTrackWheelModels[2].setRotationPoint(-9F, 3.5F, -16.5F);
 
-		bodyModel[266].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape12
-		bodyModel[266].setRotationPoint(-35F, 3.5F, -16.5F-7F);
+		rightTrackWheelModels[3].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape9
+		rightTrackWheelModels[3].setRotationPoint(5F, 3.5F, -16.5F);
 
-		bodyModel[267].addShape3D(6F, -6F, -9F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 9, 12, 12, 40, 9, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape21
-		bodyModel[267].setRotationPoint(60F, -6.5F, 16.5F-7F);
+		rightTrackWheelModels[4].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape10
+		rightTrackWheelModels[4].setRotationPoint(19F, 3.5F, -16.5F);
 
-		bodyModel[268].addShape3D(6F, -6F, -9F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 9, 12, 12, 40, 9, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape23
-		bodyModel[268].setRotationPoint(-49F, -6.5F, 16.5F-7F);
+		rightTrackWheelModels[5].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape11
+		rightTrackWheelModels[5].setRotationPoint(33F, 3.5F, -16.5F);
 
-		bodyModel[269].addBox(0F, 0F, -11F, 113, 1, 11, 0F); // Import Box28
-		bodyModel[269].setRotationPoint(-51F, -13F, 27F);
+		rightTrackWheelModels[6].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 10, 12, 12, 40, 10, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape12
+		rightTrackWheelModels[6].setRotationPoint(-35F, 3.5F, -16.5F);
 
-		bodyModel[270].addShapeBox(0F, 0F, -11F, 14, 1, 11, 0F, 0F, 0F, 0F, 0F, -10F, 0F, 0F, -10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 10F, 0F, 0F, 10F, 0F, 0F, 0F, 0F); // Import Box3
-		bodyModel[270].setRotationPoint(-51F, -1F, 27F);
 
-		bodyModel[271].addBox(0F, 0F, -11F, 86, 1, 11, 0F); // Import Box4
-		bodyModel[271].setRotationPoint(-37F, 9F, 27F);
+		leftTrackModel = new ModelRendererTurbo[11];
+		leftTrackModel[0] = new ModelRendererTurbo(this, 0, 426, textureX, textureY); // Import Shape21
+		leftTrackModel[1] = new ModelRendererTurbo(this, 0, 426, textureX, textureY); // Import Shape23
+		leftTrackModel[2] = new ModelRendererTurbo(this, 4, 466, textureX, textureY); // Import Box28
+		leftTrackModel[3] = new ModelRendererTurbo(this, 74, 453, textureX, textureY); // Import Box3
+		leftTrackModel[4] = new ModelRendererTurbo(this, 47, 480, textureX, textureY); // Import Box4
+		leftTrackModel[5] = new ModelRendererTurbo(this, 36, 446, textureX, textureY); // Import Box5
+		leftTrackModel[6] = new ModelRendererTurbo(this, 0, 453, textureX, textureY); // Import Box10
+		leftTrackModel[7] = new ModelRendererTurbo(this, 22, 448, textureX, textureY); // Import Box11
+		leftTrackModel[8] = new ModelRendererTurbo(this, 0, 453, textureX, textureY); // Import Box12
+		leftTrackModel[9] = new ModelRendererTurbo(this, 74, 440, textureX, textureY); // Import Box13
+		leftTrackModel[10] = new ModelRendererTurbo(this, 35, 493, textureX, textureY); // Import Box14
 
-		bodyModel[272].addShapeBox(0F, 0F, -11F, 13, 1, 11, 0F, 0F, -10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -10F, 0F, 0F, 10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 10F, 0F); // Import Box5
-		bodyModel[272].setRotationPoint(49F, -1F, 27F);
+		leftTrackModel[0].addShape3D(6F, -6F, -9F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 9, 12, 12, 40, 9, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape21
+		leftTrackModel[0].setRotationPoint(60F, -6.5F, 16.5F);
 
-		bodyModel[273].addShapeBox(0F, 0F, -11F, 5, 1, 11, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F); // Import Box10
-		bodyModel[273].setRotationPoint(62F, -1F, 27F);
+		leftTrackModel[1].addShape3D(6F, -6F, -9F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 9, 12, 12, 40, 9, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape23
+		leftTrackModel[1].setRotationPoint(-49F, -6.5F, 16.5F);
 
-		bodyModel[274].addShapeBox(0F, 0F, -11F, 1, 4, 11, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box11
-		bodyModel[274].setRotationPoint(65.5F, -8.5F, 27F);
+		leftTrackModel[2].addBox(0F, 0F, -11F, 113, 1, 11, 0F); // Import Box28
+		leftTrackModel[2].setRotationPoint(-51F, -13F, 27F);
 
-		bodyModel[275].addShapeBox(0F, 0F, -11F, 5, 1, 11, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F); // Import Box12
-		bodyModel[275].setRotationPoint(62F, -13F, 27F);
+		leftTrackModel[3].addShapeBox(0F, 0F, -11F, 14, 1, 11, 0F, 0F, 0F, 0F, 0F, -10F, 0F, 0F, -10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 10F, 0F, 0F, 10F, 0F, 0F, 0F, 0F); // Import Box3
+		leftTrackModel[3].setRotationPoint(-51F, -1F, 27F);
 
-		bodyModel[276].addShapeBox(0F, 0F, -11F, 5, 1, 11, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F); // Import Box13
-		bodyModel[276].setRotationPoint(-56F, -1F, 27F);
+		leftTrackModel[4].addBox(0F, 0F, -11F, 86, 1, 11, 0F); // Import Box4
+		leftTrackModel[4].setRotationPoint(-37F, 9F, 27F);
 
-		bodyModel[277].addShapeBox(0F, 0F, -11F, 1, 4, 11, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box14
-		bodyModel[277].setRotationPoint(-55.5F, -8.5F, 27F);
+		leftTrackModel[5].addShapeBox(0F, 0F, -11F, 13, 1, 11, 0F, 0F, -10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -10F, 0F, 0F, 10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 10F, 0F); // Import Box5
+		leftTrackModel[5].setRotationPoint(49F, -1F, 27F);
 
-		bodyModel[278].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 9, 12, 12, 40, 9, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape20
-		bodyModel[278].setRotationPoint(60F, -6.5F, -16.5F-7F);
+		leftTrackModel[6].addShapeBox(0F, 0F, -11F, 5, 1, 11, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F); // Import Box10
+		leftTrackModel[6].setRotationPoint(62F, -1F, 27F);
 
-		bodyModel[279].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 9, 12, 12, 40, 9, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape22
-		bodyModel[279].setRotationPoint(-49F, -6.5F, -16.5F-7F);
+		leftTrackModel[7].addShapeBox(0F, 0F, -11F, 1, 4, 11, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box11
+		leftTrackModel[7].setRotationPoint(65.5F, -8.5F, 27F);
 
-		bodyModel[280].addBox(0F, 0F, 0F, 113, 1, 11, 0F); // Import Box26
-		bodyModel[280].setRotationPoint(-51F, -13F, -27F);
+		leftTrackModel[8].addShapeBox(0F, 0F, -11F, 5, 1, 11, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F); // Import Box12
+		leftTrackModel[8].setRotationPoint(62F, -13F, 27F);
 
-		bodyModel[281].addBox(0F, 0F, 0F, 86, 1, 11, 0F); // Import Box1
-		bodyModel[281].setRotationPoint(-37F, 9F, -27F);
+		leftTrackModel[9].addShapeBox(0F, 0F, -11F, 5, 1, 11, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F); // Import Box13
+		leftTrackModel[9].setRotationPoint(-56F, -1F, 27F);
 
-		bodyModel[282].addShapeBox(0F, 0F, 0F, 14, 1, 11, 0F, 0F, 0F, 0F, 0F, -10F, 0F, 0F, -10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 10F, 0F, 0F, 10F, 0F, 0F, 0F, 0F); // Import Box2
-		bodyModel[282].setRotationPoint(-51F, -1F, -27F);
+		leftTrackModel[10].addShapeBox(0F, 0F, -11F, 1, 4, 11, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box14
+		leftTrackModel[10].setRotationPoint(-55.5F, -8.5F, 27F);
 
-		bodyModel[283].addShapeBox(0F, 0F, 0F, 13, 1, 11, 0F, 0F, -10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -10F, 0F, 0F, 10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 10F, 0F); // Import Box6
-		bodyModel[283].setRotationPoint(49F, -1F, -27F);
 
-		bodyModel[284].addShapeBox(0F, 0F, 0F, 5, 1, 11, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F); // Import Box7
-		bodyModel[284].setRotationPoint(62F, -13F, -27F);
+		rightTrackModel = new ModelRendererTurbo[13];
+		rightTrackModel[0] = new ModelRendererTurbo(this, 0, 426, textureX, textureY); // Import Shape20
+		rightTrackModel[1] = new ModelRendererTurbo(this, 0, 426, textureX, textureY); // Import Shape22
+		rightTrackModel[2] = new ModelRendererTurbo(this, 4, 466, textureX, textureY); // Import Box26
+		rightTrackModel[3] = new ModelRendererTurbo(this, 47, 480, textureX, textureY); // Import Box1
+		rightTrackModel[4] = new ModelRendererTurbo(this, 74, 453, textureX, textureY); // Import Box2
+		rightTrackModel[5] = new ModelRendererTurbo(this, 36, 446, textureX, textureY); // Import Box6
+		rightTrackModel[6] = new ModelRendererTurbo(this, 0, 453, textureX, textureY); // Import Box7
+		rightTrackModel[7] = new ModelRendererTurbo(this, 0, 453, textureX, textureY); // Import Box8
+		rightTrackModel[8] = new ModelRendererTurbo(this, 22, 448, textureX, textureY); // Import Box9
+		rightTrackModel[9] = new ModelRendererTurbo(this, 74, 440, textureX, textureY); // Import Box15
+		rightTrackModel[10] = new ModelRendererTurbo(this, 74, 440, textureX, textureY); // Import Box16
+		rightTrackModel[11] = new ModelRendererTurbo(this, 35, 493, textureX, textureY); // Import Box17
+		rightTrackModel[12] = new ModelRendererTurbo(this, 74, 440, textureX, textureY); // Import Box18
 
-		bodyModel[285].addShapeBox(0F, 0F, 0F, 5, 1, 11, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F); // Import Box8
-		bodyModel[285].setRotationPoint(62F, -1F, -27F);
+		rightTrackModel[0].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 9, 12, 12, 40, 9, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape20
+		rightTrackModel[0].setRotationPoint(60F, -6.5F, -16.5F);
 
-		bodyModel[286].addShapeBox(0F, 0F, 0F, 1, 4, 11, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box9
-		bodyModel[286].setRotationPoint(65.5F, -8.5F, -27F);
+		rightTrackModel[1].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(4, 0, 4, 0), new Coord2D(8, 0, 8, 0), new Coord2D(12, 4, 12, 4), new Coord2D(12, 8, 12, 8), new Coord2D(8, 12, 8, 12), new Coord2D(4, 12, 4, 12), new Coord2D(0, 8, 0, 8), new Coord2D(0, 4, 0, 4) }), 9, 12, 12, 40, 9, ModelRendererTurbo.MR_FRONT, new float[] {6 ,4 ,6 ,4 ,6 ,4 ,6 ,4}); // Import Shape22
+		rightTrackModel[1].setRotationPoint(-49F, -6.5F, -16.5F);
 
-		bodyModel[287].addShapeBox(0F, 0F, -11F, 5, 1, 11, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F); // Import Box15
-		bodyModel[287].setRotationPoint(-56F, -13F, 27F);
+		rightTrackModel[2].addBox(0F, 0F, 0F, 113, 1, 11, 0F); // Import Box26
+		rightTrackModel[2].setRotationPoint(-51F, -13F, -27F);
 
-		bodyModel[288].addShapeBox(0F, 0F, 0F, 5, 1, 11, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F); // Import Box16
-		bodyModel[288].setRotationPoint(-56F, -1F, -27F);
+		rightTrackModel[3].addBox(0F, 0F, 0F, 86, 1, 11, 0F); // Import Box1
+		rightTrackModel[3].setRotationPoint(-37F, 9F, -27F);
 
-		bodyModel[289].addShapeBox(0F, 0F, 0F, 1, 4, 11, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box17
-		bodyModel[289].setRotationPoint(-55.5F, -8.5F, -27F);
+		rightTrackModel[4].addShapeBox(0F, 0F, 0F, 14, 1, 11, 0F, 0F, 0F, 0F, 0F, -10F, 0F, 0F, -10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 10F, 0F, 0F, 10F, 0F, 0F, 0F, 0F); // Import Box2
+		rightTrackModel[4].setRotationPoint(-51F, -1F, -27F);
 
-		bodyModel[290].addShapeBox(0F, 0F, 0F, 5, 1, 11, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F); // Import Box18
-		bodyModel[290].setRotationPoint(-56F, -13F, -27F);
+		rightTrackModel[5].addShapeBox(0F, 0F, 0F, 13, 1, 11, 0F, 0F, -10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -10F, 0F, 0F, 10F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 10F, 0F); // Import Box6
+		rightTrackModel[5].setRotationPoint(49F, -1F, -27F);
+
+		rightTrackModel[6].addShapeBox(0F, 0F, 0F, 5, 1, 11, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F); // Import Box7
+		rightTrackModel[6].setRotationPoint(62F, -13F, -27F);
+
+		rightTrackModel[7].addShapeBox(0F, 0F, 0F, 5, 1, 11, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F); // Import Box8
+		rightTrackModel[7].setRotationPoint(62F, -1F, -27F);
+
+		rightTrackModel[8].addShapeBox(0F, 0F, 0F, 1, 4, 11, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box9
+		rightTrackModel[8].setRotationPoint(65.5F, -8.5F, -27F);
+
+		rightTrackModel[9].addShapeBox(0F, 0F, -11F, 5, 1, 11, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F); // Import Box15
+		rightTrackModel[9].setRotationPoint(-56F, -13F, 27F);
+
+		rightTrackModel[10].addShapeBox(0F, 0F, 0F, 5, 1, 11, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F); // Import Box16
+		rightTrackModel[10].setRotationPoint(-56F, -1F, -27F);
+
+		rightTrackModel[11].addShapeBox(0F, 0F, 0F, 1, 4, 11, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Import Box17
+		rightTrackModel[11].setRotationPoint(-55.5F, -8.5F, -27F);
+
+		rightTrackModel[12].addShapeBox(0F, 0F, 0F, 5, 1, 11, 0F, -0.5F, -4.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -4.5F, 0F, -1.5F, 3.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1.5F, 3.5F, 0F); // Import Box18
+		rightTrackModel[12].setRotationPoint(-56F, -13F, -27F);
 
 
 
@@ -1270,15 +1288,37 @@ public class ModelT14Armata extends ModelVehicle //Same as Filename
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 291; i++)
+		for(int i = 0; i < bodyModel.length; i++)
 		{
 			bodyModel[i].render(f5);
 		}
+		for(int i = 0; i < turretModel.length; i++)
+		{
+			turretModel[i].render(f5);
+		}
+		for(int i = 0; i < barrelModel.length; i++)
+		{
+			barrelModel[i].render(f5);
+		}
+		for(int i = 0; i < leftTrackModel.length; i++)
+		{
+			leftTrackModel[i].render(f5);
+		}
+		for(int i = 0; i < rightTrackModel.length; i++)
+		{
+			rightTrackModel[i].render(f5);
+		}
+		for(int i = 0; i < leftTrackWheelModels.length; i++)
+		{
+			leftTrackWheelModels[i].render(f5);
+		}
+		for(int i = 0; i < rightTrackWheelModels.length; i++)
+		{
+			rightTrackWheelModels[i].render(f5);
+		}
+		for(int i = 0; i < steeringWheelModel.length; i++)
+		{
+			steeringWheelModel[i].render(f5);
+		}
 	}
-
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
-	{
-	}
-
-	public ModelRendererTurbo bodyModel[];
 }

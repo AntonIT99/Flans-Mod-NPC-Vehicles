@@ -8,7 +8,6 @@ public class EntityT34 extends EntityCreature {
 	public EntityT34(World p_i1602_1_) {
 		super(p_i1602_1_);
 		// TODO Auto-generated constructor stub
-		this.setSize(3.5F, 3.0F);
+		this.setSize(3.0F, 2.5F);
 	}
-
 }

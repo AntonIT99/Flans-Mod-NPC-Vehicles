@@ -1,12 +1,5 @@
 package com.wolffsmod;
 
-import com.wolffsmod.entity.EntityPanzerIV;
-import com.wolffsmod.entity.EntityT3485;
-import com.wolffsmod.model.ModelPanzerIV;
-import com.wolffsmod.model.ModelT3485;
-import com.wolffsmod.render.RenderPanzerIV;
-import com.wolffsmod.render.RenderT3485;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.entity.Render;
@@ -18,7 +11,7 @@ public class CommandModelUpdate extends CommandBase {
 
 	@Override
 	public String getCommandName() {
-		return "npcloadm";
+		return "npcreloadmodels";
 	}
 	
 	@Override
@@ -29,8 +22,8 @@ public class CommandModelUpdate extends CommandBase {
 
 	@SideOnly(Side.CLIENT)
 	private void updateModels() {
-		/*RenderManager.instance.entityRenderMap.put(EntityT3485.class, new RenderT3485(new ModelT3485(), 0));
-		Render r = (Render) RenderManager.instance.entityRenderMap.get(EntityT3485.class);
+		/*RenderManager.instance.entityRenderMap.put(EntityT34.class, new RenderT34(new ModelT34(), 0));
+		Render r = (Render) RenderManager.instance.entityRenderMap.get(EntityT34.class);
 		r.setRenderManager(RenderManager.instance);*/
 		
 	}
@@ -43,7 +36,7 @@ public class CommandModelUpdate extends CommandBase {
 
 	@Override
 	public String getCommandUsage(ICommandSender p_71518_1_) {
-		return "npcloadm";
+		return "npcreloadmodels";
 	}
 
 }
