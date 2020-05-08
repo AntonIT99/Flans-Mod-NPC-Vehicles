@@ -61,6 +61,24 @@ import com.wolffsmod.entity.EntityTigerII;
 import com.wolffsmod.entity.EntityTigerIIB;
 import com.wolffsmod.entity.EntityType4HoRo;
 import com.wolffsmod.entity.EntityType90KyuMaru;
+import com.wolffsmod.entity.Entity38t;
+import com.wolffsmod.entity.EntityA39;
+import com.wolffsmod.entity.EntityHetzer;
+import com.wolffsmod.entity.EntityLVT2;
+import com.wolffsmod.entity.EntityLVTA1;
+import com.wolffsmod.entity.EntityMaus;
+import com.wolffsmod.entity.EntityML20;
+import com.wolffsmod.entity.EntityPzkpfw2;
+import com.wolffsmod.entity.EntityPzkpfw3;
+import com.wolffsmod.entity.EntityStug3;
+import com.wolffsmod.entity.EntitySturmtiger;
+import com.wolffsmod.entity.EntityT35;
+import com.wolffsmod.entity.EntityTiger1E;
+import com.wolffsmod.entity.EntityTKS;
+import com.wolffsmod.entity.EntityTKS20;
+import com.wolffsmod.entity.EntityType95;
+import com.wolffsmod.entity.EntityType97;
+import com.wolffsmod.entity.EntityZis3;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 
@@ -133,6 +151,25 @@ public class ModEntityRegistry {
 		createEntity(EntityT34_85.class, "[FlansMod] T-34/85 (Manus Pack)", 0x356633, 0x0A8000);
 		
 		createEntity(EntityStuG3G.class, "[FlansMod] StuG III Ausf. G (Warfare 44)", 0x356633, 0x0A8000);
+		
+		createEntity(Entity38t.class, "[FlansMod] Panzer 38(t) (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityA39.class, "[FlansMod] A39 Tortoise (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityHetzer.class, "[FlansMod] Jagdpanzer 38(t) Hetzer (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityLVT2.class, "[FlansMod] LVT-2 (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityLVTA1.class, "[FlansMod] LVT(A)-1 (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityMaus.class, "[FlansMod] Panzer VIII Maus (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityML20.class, "[FlansMod] 152mm ML-20 (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityPzkpfw2.class, "[FlansMod] Panzer II Ausf. F (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityPzkpfw3.class, "[FlansMod] Panzer III Ausf. N (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityStug3.class, "[FlansMod] StuG III Ausf. F (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntitySturmtiger.class, "[FlansMod] Sturmpanzer VI Sturmtiger (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityT35.class, "[FlansMod] T-35 (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityTiger1E.class, "[FlansMod] Panzer VII Tiger Ausf. E (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityTKS.class, "[FlansMod] TKS MG (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityTKS20.class, "[FlansMod] TKS 20mm (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityType95.class, "[FlansMod] Type 95 Ha-Go (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityType97.class, "[FlansMod] Type 97 Chi-Ha (Extra Zero 8)", 0x356633, 0x0A8000);
+		createEntity(EntityZis3.class, "[FlansMod] 76.2mm ZiS-3 (Extra Zero 8)", 0x356633, 0x0A8000);
 	}
 	public static void createEntity(Class entityClass, String entityName, int solidColour, int spotColour){
 		int randomId = EntityRegistry.findGlobalUniqueEntityId();

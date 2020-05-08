@@ -1554,15 +1554,76 @@ public class ModelStuGIV extends ModelVehicle //Same as Filename
 		bodyModel[344].rotateAngleZ = -1.72787596F;
 
 
-		turretModel = new ModelRendererTurbo[2];
-		turretModel[0] = new ModelRendererTurbo(this, 150, 448, textureX, textureY); // Box 17
-		turretModel[1] = new ModelRendererTurbo(this, 489, 73, textureX, textureY); // Box 19
+		turretModel = new ModelRendererTurbo[18];
+		turretModel[16] = new ModelRendererTurbo(this, 150, 448, textureX, textureY); // Box 17
+		turretModel[17] = new ModelRendererTurbo(this, 489, 73, textureX, textureY); // Box 19
 
-		turretModel[0].addBox(-11F, -11F, 13F, 1, 4, 1, 0F); // Box 17
-		turretModel[0].setRotationPoint(10F, -24.5F, -8F);
+		turretModel[16].addBox(-11F, -11F, 13F, 1, 4, 1, 0F); // Box 17
+		turretModel[16].setRotationPoint(10F, -24.5F, -8F);
 
-		turretModel[1].addShapeBox(-11F, -12F, 13F, 3, 1, 1, 0F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F); // Box 19
-		turretModel[1].setRotationPoint(10F, -24.5F, -8F);
+		turretModel[17].addShapeBox(-11F, -12F, 13F, 3, 1, 1, 0F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F, 0.2F); // Box 19
+		turretModel[17].setRotationPoint(10F, -24.5F, -8F);
+		
+		turretModel[0] = new ModelRendererTurbo(this, 421, 476, textureX, textureY); // Box 4
+		turretModel[1] = new ModelRendererTurbo(this, 453, 476, textureX, textureY); // Box 5
+		turretModel[2] = new ModelRendererTurbo(this, 469, 476, textureX, textureY); // Box 6
+		turretModel[3] = new ModelRendererTurbo(this, 421, 484, textureX, textureY); // Box 7
+		turretModel[4] = new ModelRendererTurbo(this, 429, 484, textureX, textureY); // Box 8
+		turretModel[5] = new ModelRendererTurbo(this, 437, 484, textureX, textureY); // Box 9
+		turretModel[6] = new ModelRendererTurbo(this, 445, 484, textureX, textureY); // Box 10
+		turretModel[7] = new ModelRendererTurbo(this, 453, 484, textureX, textureY); // Box 12
+		turretModel[8] = new ModelRendererTurbo(this, 461, 484, textureX, textureY); // Box 13
+		turretModel[9] = new ModelRendererTurbo(this, 477, 484, textureX, textureY); // Box 15
+		turretModel[10] = new ModelRendererTurbo(this, 421, 492, textureX, textureY); // Box 16
+		turretModel[11] = new ModelRendererTurbo(this, 429, 492, textureX, textureY); // Box 17
+		turretModel[12] = new ModelRendererTurbo(this, 453, 492, textureX, textureY); // Box 0
+
+		turretModel[0].addShapeBox(-2F, -1F, -0.5F, 12, 1, 1, 0F, 0F, 0.2F, 0.2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.2F, 0.2F, 0F, 0.2F, 0.2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.2F, 0.2F); // Box 4
+
+		turretModel[1].addShapeBox(-5F, -1F, -0.5F, 3, 1, 1, 0F, 0F, 0.5F, 0.5F, 0F, 0.5F, 0.5F, 0F, 0.5F, 0.5F, 0F, 0.5F, 0.5F, 0F, 0.5F, 0.5F, 0F, 0.5F, 0.5F, 0F, 0.5F, 0.5F, 0F, 0.5F, 0.5F); // Box 5
+
+		turretModel[2].addShapeBox(-10F, -1F, -0.5F, 5, 1, 1, 0F, 0F, 0.2F, -0.2F, 0F, 0.5F, 0.5F, 0F, 0.5F, 0.5F, 0F, 0.2F, -0.2F, 0F, 0.5F, -0.2F, 0F, 0.5F, 0.5F, 0F, 0.5F, 0.5F, 0F, 0.5F, -0.2F); // Box 6
+
+		turretModel[3].addShapeBox(11F, -1F, -0.5F, 1, 1, 1, 0F, 0F, 0F, 0F, 0F, 0.1F, 0.1F, 0F, 0.1F, 0.1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.1F, 0.1F, 0F, 0.1F, 0.1F, 0F, 0F, 0F); // Box 7
+
+		turretModel[4].addShapeBox(10F, -1F, -0.5F, 1, 1, 1, 0F, 0F, 0F, 0F, 0F, 0.1F, 0.1F, 0F, 0.1F, 0.1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.1F, 0.1F, 0F, 0.1F, 0.1F, 0F, 0F, 0F); // Box 8
+
+		turretModel[5].addShapeBox(-3F, -1.2F, -2F, 1, 2, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F); // Box 9
+
+		turretModel[6].addShapeBox(-3F, -1.2F, -1.5F, 1, 2, 1, 0F, -0.4F, -0.2F, 0F, -0.4F, -0.2F, 0F, -0.4F, -0.2F, 0F, -0.4F, -0.2F, 0F, -0.4F, -0.2F, 0F, -0.4F, -0.2F, 0F, -0.4F, -0.2F, 0F, -0.4F, -0.2F, 0F); // Box 10
+
+		turretModel[7].addShapeBox(9F, -2F, -0.5F, 1, 1, 1, 0F, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F); // Box 12
+
+		turretModel[8].addShapeBox(-1F, -1.7F, -1F, 2, 1, 2, 0F, 0F, 0F, -0.6F, 0F, 0F, -0.6F, 0F, 0F, -0.6F, 0F, 0F, -0.6F, 0F, 0F, -0.6F, 0F, 0F, -0.6F, 0F, 0F, -0.6F, 0F, 0F, -0.6F); // Box 13
+
+		turretModel[9].addShapeBox(-7.9F, -1.5F, -0.5F, 1, 1, 1, 0F, 0F, 0F, -0.1F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, 0F, -0.1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 15
+
+		turretModel[10].addShapeBox(-12F, -1F, -0.5F, 2, 1, 1, 0F, 0F, 0.5F, 0F, 0F, 0.2F, -0.2F, 0F, 0.2F, -0.2F, 0F, 0.5F, 0F, 0F, 1F, 0F, 0F, 0.5F, -0.2F, 0F, 0.5F, -0.2F, 0F, 1F, 0F); // Box 16
+
+		turretModel[11].addShapeBox(-9F, 0.5F, -0.5F, 1, 2, 1, 0F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 1F, 0F, -0.2F, -1F, 0F, -0.2F, -1F, 0F, -0.2F, 1F, 0F, -0.2F); // Box 17
+
+		turretModel[12].addShapeBox(-2F, -1F, -0.5F, 12, 1, 1, 0F, 0F, 0F, 0.4F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.4F, 0F, 0F, 0.4F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.4F); // Box 0
+
+		for(int i = 0; i<13; i++)
+		{
+			turretModel[i].setRotationPoint(-5F, -37F, -20F);
+		}
+
+
+		turretModel[13] = new ModelRendererTurbo(this, 437, 492, textureX, textureY); // Box 18
+		turretModel[14] = new ModelRendererTurbo(this, 445, 476, textureX, textureY); // Box 19
+		turretModel[15] = new ModelRendererTurbo(this, 421, 500, textureX, textureY); // Box 1
+
+		turretModel[13].addShapeBox(-4.5F, -1F, 1F, 2, 3, 4, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F); // Box 18
+
+		turretModel[14].addShapeBox(-4.5F, -1.5F, 1F, 2, 1, 3, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 19
+
+		turretModel[15].addShapeBox(-4.5F, -1.06F, 1F, 2, 3, 4, 0F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F); // Box 1
+
+		for(int i = 13; i<16; i++)
+		{
+			turretModel[i].setRotationPoint(-5F, -37F, -20F);
+		}
 
 
 		barrelModel = new ModelRendererTurbo[26];
@@ -1870,7 +1931,7 @@ public class ModelStuGIV extends ModelVehicle //Same as Filename
 
 
 		// Passenger 2
-		ModelRendererTurbo[][] gun_1_Model = new ModelRendererTurbo[3][];
+		/*ModelRendererTurbo[][] gun_1_Model = new ModelRendererTurbo[3][];
 
 		gun_1_Model[0] = new ModelRendererTurbo[0];
 
@@ -1940,7 +2001,7 @@ public class ModelStuGIV extends ModelVehicle //Same as Filename
 		}
 
 
-		registerGunModel("PassengerGun1", gun_1_Model);
+		registerGunModel("PassengerGun1", gun_1_Model);*/
 
 		translateAll(0F, 0F, 0F);
 

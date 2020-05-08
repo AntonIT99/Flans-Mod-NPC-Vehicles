@@ -14,8 +14,6 @@ public class ModelStuG3G extends ModelVehicle
   int textureX = 1024;
   int textureY = 1024;
   
-  ModelRendererTurbo[][] gun_1_Model;
-  
   private void initbodyModel_1() {
     bodyModel[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY);
     bodyModel[1] = new ModelRendererTurbo(this, 97, 1, textureX, textureY);
@@ -3102,270 +3100,264 @@ public class ModelStuG3G extends ModelVehicle
     initTrackModels_1();
     inittrailerModel_1();
 	    
-    gun_1_Model = new ModelRendererTurbo[3][];
-    
-    gun_1_Model[0] = new ModelRendererTurbo[0];
-    
-    gun_1_Model[1] = new ModelRendererTurbo[83];
-    gun_1_Model[1][0] = new ModelRendererTurbo(this, 392, 360, textureX, textureY);
-    gun_1_Model[1][1] = new ModelRendererTurbo(this, 416, 360, textureX, textureY);
-    gun_1_Model[1][2] = new ModelRendererTurbo(this, 440, 360, textureX, textureY);
-    gun_1_Model[1][3] = new ModelRendererTurbo(this, 464, 360, textureX, textureY);
-    gun_1_Model[1][4] = new ModelRendererTurbo(this, 472, 360, textureX, textureY);
-    gun_1_Model[1][5] = new ModelRendererTurbo(this, 480, 360, textureX, textureY);
-    gun_1_Model[1][6] = new ModelRendererTurbo(this, 488, 360, textureX, textureY);
-    gun_1_Model[1][7] = new ModelRendererTurbo(this, 496, 360, textureX, textureY);
-    gun_1_Model[1][8] = new ModelRendererTurbo(this, 504, 360, textureX, textureY);
-    gun_1_Model[1][9] = new ModelRendererTurbo(this, 512, 360, textureX, textureY);
-    gun_1_Model[1][10] = new ModelRendererTurbo(this, 392, 368, textureX, textureY);
-    gun_1_Model[1][11] = new ModelRendererTurbo(this, 400, 368, textureX, textureY);
-    gun_1_Model[1][12] = new ModelRendererTurbo(this, 408, 368, textureX, textureY);
-    gun_1_Model[1][13] = new ModelRendererTurbo(this, 416, 368, textureX, textureY);
-    gun_1_Model[1][14] = new ModelRendererTurbo(this, 424, 368, textureX, textureY);
-    gun_1_Model[1][15] = new ModelRendererTurbo(this, 432, 368, textureX, textureY);
-    gun_1_Model[1][16] = new ModelRendererTurbo(this, 440, 368, textureX, textureY);
-    gun_1_Model[1][17] = new ModelRendererTurbo(this, 448, 368, textureX, textureY);
-    gun_1_Model[1][18] = new ModelRendererTurbo(this, 456, 368, textureX, textureY);
-    gun_1_Model[1][19] = new ModelRendererTurbo(this, 464, 368, textureX, textureY);
-    gun_1_Model[1][20] = new ModelRendererTurbo(this, 472, 368, textureX, textureY);
-    gun_1_Model[1][21] = new ModelRendererTurbo(this, 480, 368, textureX, textureY);
-    gun_1_Model[1][22] = new ModelRendererTurbo(this, 496, 368, textureX, textureY);
-    gun_1_Model[1][23] = new ModelRendererTurbo(this, 512, 368, textureX, textureY);
-    gun_1_Model[1][24] = new ModelRendererTurbo(this, 392, 376, textureX, textureY);
-    gun_1_Model[1][25] = new ModelRendererTurbo(this, 400, 376, textureX, textureY);
-    gun_1_Model[1][26] = new ModelRendererTurbo(this, 408, 376, textureX, textureY);
-    gun_1_Model[1][27] = new ModelRendererTurbo(this, 416, 376, textureX, textureY);
-    gun_1_Model[1][28] = new ModelRendererTurbo(this, 456, 376, textureX, textureY);
-    gun_1_Model[1][29] = new ModelRendererTurbo(this, 464, 376, textureX, textureY);
-    gun_1_Model[1][30] = new ModelRendererTurbo(this, 472, 376, textureX, textureY);
-    gun_1_Model[1][31] = new ModelRendererTurbo(this, 480, 376, textureX, textureY);
-    gun_1_Model[1][32] = new ModelRendererTurbo(this, 488, 376, textureX, textureY);
-    gun_1_Model[1][33] = new ModelRendererTurbo(this, 496, 376, textureX, textureY);
-    gun_1_Model[1][34] = new ModelRendererTurbo(this, 392, 384, textureX, textureY);
-    gun_1_Model[1][35] = new ModelRendererTurbo(this, 512, 376, textureX, textureY);
-    gun_1_Model[1][36] = new ModelRendererTurbo(this, 416, 384, textureX, textureY);
-    gun_1_Model[1][37] = new ModelRendererTurbo(this, 424, 384, textureX, textureY);
-    gun_1_Model[1][38] = new ModelRendererTurbo(this, 432, 384, textureX, textureY);
-    gun_1_Model[1][39] = new ModelRendererTurbo(this, 440, 384, textureX, textureY);
-    gun_1_Model[1][40] = new ModelRendererTurbo(this, 448, 384, textureX, textureY);
-    gun_1_Model[1][41] = new ModelRendererTurbo(this, 480, 384, textureX, textureY);
-    gun_1_Model[1][42] = new ModelRendererTurbo(this, 488, 384, textureX, textureY);
-    gun_1_Model[1][43] = new ModelRendererTurbo(this, 496, 384, textureX, textureY);
-    gun_1_Model[1][44] = new ModelRendererTurbo(this, 504, 384, textureX, textureY);
-    gun_1_Model[1][45] = new ModelRendererTurbo(this, 512, 384, textureX, textureY);
-    gun_1_Model[1][46] = new ModelRendererTurbo(this, 392, 392, textureX, textureY);
-    gun_1_Model[1][47] = new ModelRendererTurbo(this, 400, 392, textureX, textureY);
-    gun_1_Model[1][48] = new ModelRendererTurbo(this, 408, 392, textureX, textureY);
-    gun_1_Model[1][49] = new ModelRendererTurbo(this, 416, 392, textureX, textureY);
-    gun_1_Model[1][50] = new ModelRendererTurbo(this, 424, 392, textureX, textureY);
-    gun_1_Model[1][51] = new ModelRendererTurbo(this, 432, 392, textureX, textureY);
-    gun_1_Model[1][52] = new ModelRendererTurbo(this, 440, 392, textureX, textureY);
-    gun_1_Model[1][53] = new ModelRendererTurbo(this, 448, 392, textureX, textureY);
-    gun_1_Model[1][54] = new ModelRendererTurbo(this, 456, 392, textureX, textureY);
-    gun_1_Model[1][55] = new ModelRendererTurbo(this, 464, 392, textureX, textureY);
-    gun_1_Model[1][56] = new ModelRendererTurbo(this, 472, 392, textureX, textureY);
-    gun_1_Model[1][57] = new ModelRendererTurbo(this, 480, 392, textureX, textureY);
-    gun_1_Model[1][58] = new ModelRendererTurbo(this, 488, 392, textureX, textureY);
-    gun_1_Model[1][59] = new ModelRendererTurbo(this, 496, 392, textureX, textureY);
-    gun_1_Model[1][60] = new ModelRendererTurbo(this, 504, 392, textureX, textureY);
-    gun_1_Model[1][61] = new ModelRendererTurbo(this, 512, 392, textureX, textureY);
-    gun_1_Model[1][62] = new ModelRendererTurbo(this, 392, 400, textureX, textureY);
-    gun_1_Model[1][63] = new ModelRendererTurbo(this, 400, 400, textureX, textureY);
-    gun_1_Model[1][64] = new ModelRendererTurbo(this, 408, 400, textureX, textureY);
-    gun_1_Model[1][65] = new ModelRendererTurbo(this, 416, 400, textureX, textureY);
-    gun_1_Model[1][66] = new ModelRendererTurbo(this, 424, 400, textureX, textureY);
-    gun_1_Model[1][67] = new ModelRendererTurbo(this, 432, 400, textureX, textureY);
-    gun_1_Model[1][68] = new ModelRendererTurbo(this, 440, 400, textureX, textureY);
-    gun_1_Model[1][69] = new ModelRendererTurbo(this, 448, 400, textureX, textureY);
-    gun_1_Model[1][70] = new ModelRendererTurbo(this, 456, 400, textureX, textureY);
-    gun_1_Model[1][71] = new ModelRendererTurbo(this, 464, 400, textureX, textureY);
-    gun_1_Model[1][72] = new ModelRendererTurbo(this, 472, 400, textureX, textureY);
-    gun_1_Model[1][73] = new ModelRendererTurbo(this, 480, 400, textureX, textureY);
-    gun_1_Model[1][74] = new ModelRendererTurbo(this, 504, 376, textureX, textureY);
-    gun_1_Model[1][75] = new ModelRendererTurbo(this, 456, 384, textureX, textureY);
-    gun_1_Model[1][76] = new ModelRendererTurbo(this, 464, 384, textureX, textureY);
-    gun_1_Model[1][77] = new ModelRendererTurbo(this, 472, 384, textureX, textureY);
-    gun_1_Model[1][78] = new ModelRendererTurbo(this, 504, 376, textureX, textureY);
-    gun_1_Model[1][79] = new ModelRendererTurbo(this, 504, 376, textureX, textureY);
-    gun_1_Model[1][80] = new ModelRendererTurbo(this, 456, 384, textureX, textureY);
-    gun_1_Model[1][81] = new ModelRendererTurbo(this, 456, 384, textureX, textureY);
-    gun_1_Model[1][82] = new ModelRendererTurbo(this, 472, 384, textureX, textureY);
     
-    gun_1_Model[1][0].addShapeBox(2.7F, -0.5F, -0.5F, 8, 1, 1, 0.0F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F);
+    turretModel = new ModelRendererTurbo[83];
+    turretModel[0] = new ModelRendererTurbo(this, 392, 360, textureX, textureY);
+    turretModel[1] = new ModelRendererTurbo(this, 416, 360, textureX, textureY);
+    turretModel[2] = new ModelRendererTurbo(this, 440, 360, textureX, textureY);
+    turretModel[3] = new ModelRendererTurbo(this, 464, 360, textureX, textureY);
+    turretModel[4] = new ModelRendererTurbo(this, 472, 360, textureX, textureY);
+    turretModel[5] = new ModelRendererTurbo(this, 480, 360, textureX, textureY);
+    turretModel[6] = new ModelRendererTurbo(this, 488, 360, textureX, textureY);
+    turretModel[7] = new ModelRendererTurbo(this, 496, 360, textureX, textureY);
+    turretModel[8] = new ModelRendererTurbo(this, 504, 360, textureX, textureY);
+    turretModel[9] = new ModelRendererTurbo(this, 512, 360, textureX, textureY);
+    turretModel[10] = new ModelRendererTurbo(this, 392, 368, textureX, textureY);
+    turretModel[11] = new ModelRendererTurbo(this, 400, 368, textureX, textureY);
+    turretModel[12] = new ModelRendererTurbo(this, 408, 368, textureX, textureY);
+    turretModel[13] = new ModelRendererTurbo(this, 416, 368, textureX, textureY);
+    turretModel[14] = new ModelRendererTurbo(this, 424, 368, textureX, textureY);
+    turretModel[15] = new ModelRendererTurbo(this, 432, 368, textureX, textureY);
+    turretModel[16] = new ModelRendererTurbo(this, 440, 368, textureX, textureY);
+    turretModel[17] = new ModelRendererTurbo(this, 448, 368, textureX, textureY);
+    turretModel[18] = new ModelRendererTurbo(this, 456, 368, textureX, textureY);
+    turretModel[19] = new ModelRendererTurbo(this, 464, 368, textureX, textureY);
+    turretModel[20] = new ModelRendererTurbo(this, 472, 368, textureX, textureY);
+    turretModel[21] = new ModelRendererTurbo(this, 480, 368, textureX, textureY);
+    turretModel[22] = new ModelRendererTurbo(this, 496, 368, textureX, textureY);
+    turretModel[23] = new ModelRendererTurbo(this, 512, 368, textureX, textureY);
+    turretModel[24] = new ModelRendererTurbo(this, 392, 376, textureX, textureY);
+    turretModel[25] = new ModelRendererTurbo(this, 400, 376, textureX, textureY);
+    turretModel[26] = new ModelRendererTurbo(this, 408, 376, textureX, textureY);
+    turretModel[27] = new ModelRendererTurbo(this, 416, 376, textureX, textureY);
+    turretModel[28] = new ModelRendererTurbo(this, 456, 376, textureX, textureY);
+    turretModel[29] = new ModelRendererTurbo(this, 464, 376, textureX, textureY);
+    turretModel[30] = new ModelRendererTurbo(this, 472, 376, textureX, textureY);
+    turretModel[31] = new ModelRendererTurbo(this, 480, 376, textureX, textureY);
+    turretModel[32] = new ModelRendererTurbo(this, 488, 376, textureX, textureY);
+    turretModel[33] = new ModelRendererTurbo(this, 496, 376, textureX, textureY);
+    turretModel[34] = new ModelRendererTurbo(this, 392, 384, textureX, textureY);
+    turretModel[35] = new ModelRendererTurbo(this, 512, 376, textureX, textureY);
+    turretModel[36] = new ModelRendererTurbo(this, 416, 384, textureX, textureY);
+    turretModel[37] = new ModelRendererTurbo(this, 424, 384, textureX, textureY);
+    turretModel[38] = new ModelRendererTurbo(this, 432, 384, textureX, textureY);
+    turretModel[39] = new ModelRendererTurbo(this, 440, 384, textureX, textureY);
+    turretModel[40] = new ModelRendererTurbo(this, 448, 384, textureX, textureY);
+    turretModel[41] = new ModelRendererTurbo(this, 480, 384, textureX, textureY);
+    turretModel[42] = new ModelRendererTurbo(this, 488, 384, textureX, textureY);
+    turretModel[43] = new ModelRendererTurbo(this, 496, 384, textureX, textureY);
+    turretModel[44] = new ModelRendererTurbo(this, 504, 384, textureX, textureY);
+    turretModel[45] = new ModelRendererTurbo(this, 512, 384, textureX, textureY);
+    turretModel[46] = new ModelRendererTurbo(this, 392, 392, textureX, textureY);
+    turretModel[47] = new ModelRendererTurbo(this, 400, 392, textureX, textureY);
+    turretModel[48] = new ModelRendererTurbo(this, 408, 392, textureX, textureY);
+    turretModel[49] = new ModelRendererTurbo(this, 416, 392, textureX, textureY);
+    turretModel[50] = new ModelRendererTurbo(this, 424, 392, textureX, textureY);
+    turretModel[51] = new ModelRendererTurbo(this, 432, 392, textureX, textureY);
+    turretModel[52] = new ModelRendererTurbo(this, 440, 392, textureX, textureY);
+    turretModel[53] = new ModelRendererTurbo(this, 448, 392, textureX, textureY);
+    turretModel[54] = new ModelRendererTurbo(this, 456, 392, textureX, textureY);
+    turretModel[55] = new ModelRendererTurbo(this, 464, 392, textureX, textureY);
+    turretModel[56] = new ModelRendererTurbo(this, 472, 392, textureX, textureY);
+    turretModel[57] = new ModelRendererTurbo(this, 480, 392, textureX, textureY);
+    turretModel[58] = new ModelRendererTurbo(this, 488, 392, textureX, textureY);
+    turretModel[59] = new ModelRendererTurbo(this, 496, 392, textureX, textureY);
+    turretModel[60] = new ModelRendererTurbo(this, 504, 392, textureX, textureY);
+    turretModel[61] = new ModelRendererTurbo(this, 512, 392, textureX, textureY);
+    turretModel[62] = new ModelRendererTurbo(this, 392, 400, textureX, textureY);
+    turretModel[63] = new ModelRendererTurbo(this, 400, 400, textureX, textureY);
+    turretModel[64] = new ModelRendererTurbo(this, 408, 400, textureX, textureY);
+    turretModel[65] = new ModelRendererTurbo(this, 416, 400, textureX, textureY);
+    turretModel[66] = new ModelRendererTurbo(this, 424, 400, textureX, textureY);
+    turretModel[67] = new ModelRendererTurbo(this, 432, 400, textureX, textureY);
+    turretModel[68] = new ModelRendererTurbo(this, 440, 400, textureX, textureY);
+    turretModel[69] = new ModelRendererTurbo(this, 448, 400, textureX, textureY);
+    turretModel[70] = new ModelRendererTurbo(this, 456, 400, textureX, textureY);
+    turretModel[71] = new ModelRendererTurbo(this, 464, 400, textureX, textureY);
+    turretModel[72] = new ModelRendererTurbo(this, 472, 400, textureX, textureY);
+    turretModel[73] = new ModelRendererTurbo(this, 480, 400, textureX, textureY);
+    turretModel[74] = new ModelRendererTurbo(this, 504, 376, textureX, textureY);
+    turretModel[75] = new ModelRendererTurbo(this, 456, 384, textureX, textureY);
+    turretModel[76] = new ModelRendererTurbo(this, 464, 384, textureX, textureY);
+    turretModel[77] = new ModelRendererTurbo(this, 472, 384, textureX, textureY);
+    turretModel[78] = new ModelRendererTurbo(this, 504, 376, textureX, textureY);
+    turretModel[79] = new ModelRendererTurbo(this, 504, 376, textureX, textureY);
+    turretModel[80] = new ModelRendererTurbo(this, 456, 384, textureX, textureY);
+    turretModel[81] = new ModelRendererTurbo(this, 456, 384, textureX, textureY);
+    turretModel[82] = new ModelRendererTurbo(this, 472, 384, textureX, textureY);
     
-    gun_1_Model[1][1].addShapeBox(2.7F, -0.3F, -0.5F, 8, 1, 1, 0.0F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F);
+    turretModel[0].addShapeBox(2.7F, -0.5F, -0.5F, 8, 1, 1, 0.0F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F);
     
-    gun_1_Model[1][2].addShapeBox(2.7F, -0.7F, -0.5F, 8, 1, 1, 0.0F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F);
+    turretModel[1].addShapeBox(2.7F, -0.3F, -0.5F, 8, 1, 1, 0.0F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F);
     
-    gun_1_Model[1][3].addShapeBox(5.8F, -0.5F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F);
+    turretModel[2].addShapeBox(2.7F, -0.7F, -0.5F, 8, 1, 1, 0.0F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F);
     
-    gun_1_Model[1][4].addShapeBox(5.8F, -0.25F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F);
+    turretModel[3].addShapeBox(5.8F, -0.5F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F);
     
-    gun_1_Model[1][5].addShapeBox(5.8F, -0.75F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F);
+    turretModel[4].addShapeBox(5.8F, -0.25F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F);
     
-    gun_1_Model[1][6].addShapeBox(0.7F, -0.75F, -0.5F, 2, 1, 1, 0.0F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F);
+    turretModel[5].addShapeBox(5.8F, -0.75F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F);
     
-    gun_1_Model[1][7].addShapeBox(0.7F, -0.5F, -0.5F, 2, 1, 1, 0.0F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F);
+    turretModel[6].addShapeBox(0.7F, -0.75F, -0.5F, 2, 1, 1, 0.0F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F);
     
-    gun_1_Model[1][8].addShapeBox(0.7F, -0.25F, -0.5F, 2, 1, 1, 0.0F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F);
+    turretModel[7].addShapeBox(0.7F, -0.5F, -0.5F, 2, 1, 1, 0.0F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F);
     
-    gun_1_Model[1][9].addShapeBox(8.8F, -0.75F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F);
+    turretModel[8].addShapeBox(0.7F, -0.25F, -0.5F, 2, 1, 1, 0.0F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F);
     
-    gun_1_Model[1][10].addShapeBox(8.8F, -0.5F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F);
+    turretModel[9].addShapeBox(8.8F, -0.75F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F);
     
-    gun_1_Model[1][11].addShapeBox(8.8F, -0.25F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F);
+    turretModel[10].addShapeBox(8.8F, -0.5F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F);
     
-    gun_1_Model[1][12].addShapeBox(10.4F, -0.75F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F);
+    turretModel[11].addShapeBox(8.8F, -0.25F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F, -0.3F, -0.4F, -0.35F);
     
-    gun_1_Model[1][13].addShapeBox(10.4F, -0.5F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F);
+    turretModel[12].addShapeBox(10.4F, -0.75F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F);
     
-    gun_1_Model[1][14].addShapeBox(10.4F, -0.25F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F);
+    turretModel[13].addShapeBox(10.4F, -0.5F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F, 0.0F, -0.35F, -0.15F);
     
-    gun_1_Model[1][15].addShapeBox(-1.05F, -0.6F, -0.5F, 2, 1, 1, 0.0F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F);
+    turretModel[14].addShapeBox(10.4F, -0.25F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F, 0.0F, -0.4F, -0.35F);
     
-    gun_1_Model[1][16].addShapeBox(-1.05F, -0.25F, -0.5F, 2, 1, 1, 0.0F, -0.25F, -0.4F, -0.15F, -0.25F, -0.4F, -0.15F, -0.25F, -0.4F, -0.15F, -0.25F, -0.4F, -0.15F, -0.25F, -0.4F, -0.35F, -0.25F, -0.4F, -0.35F, -0.25F, -0.4F, -0.35F, -0.25F, -0.4F, -0.35F);
+    turretModel[15].addShapeBox(-1.05F, -0.6F, -0.5F, 2, 1, 1, 0.0F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F, -0.25F, -0.25F, -0.15F);
     
-    gun_1_Model[1][17].addShapeBox(0.1F, -0.6F, -0.5F, 1, 1, 1, 0.0F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F);
+    turretModel[16].addShapeBox(-1.05F, -0.25F, -0.5F, 2, 1, 1, 0.0F, -0.25F, -0.4F, -0.15F, -0.25F, -0.4F, -0.15F, -0.25F, -0.4F, -0.15F, -0.25F, -0.4F, -0.15F, -0.25F, -0.4F, -0.35F, -0.25F, -0.4F, -0.35F, -0.25F, -0.4F, -0.35F, -0.25F, -0.4F, -0.35F);
     
-    gun_1_Model[1][18].addShapeBox(0.1F, -0.2F, -0.5F, 1, 1, 1, 0.0F, -0.45F, -0.4F, -0.1F, -0.45F, -0.4F, -0.1F, -0.45F, -0.4F, -0.1F, -0.45F, -0.4F, -0.1F, -0.45F, -0.4F, -0.3F, -0.45F, -0.4F, -0.3F, -0.45F, -0.4F, -0.3F, -0.45F, -0.4F, -0.3F);
+    turretModel[17].addShapeBox(0.1F, -0.6F, -0.5F, 1, 1, 1, 0.0F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F, -0.45F, -0.2F, -0.1F);
     
-    gun_1_Model[1][19].addShapeBox(-1.2F, -0.2F, -0.5F, 1, 1, 1, 0.0F, -0.4F, -0.4F, -0.1F, -0.4F, -0.4F, -0.1F, -0.4F, -0.4F, -0.1F, -0.4F, -0.4F, -0.1F, -0.4F, -0.4F, -0.3F, -0.4F, -0.4F, -0.3F, -0.4F, -0.4F, -0.3F, -0.4F, -0.4F, -0.3F);
+    turretModel[18].addShapeBox(0.1F, -0.2F, -0.5F, 1, 1, 1, 0.0F, -0.45F, -0.4F, -0.1F, -0.45F, -0.4F, -0.1F, -0.45F, -0.4F, -0.1F, -0.45F, -0.4F, -0.1F, -0.45F, -0.4F, -0.3F, -0.45F, -0.4F, -0.3F, -0.45F, -0.4F, -0.3F, -0.45F, -0.4F, -0.3F);
     
-    gun_1_Model[1][20].addShapeBox(-1.2F, -0.6F, -0.5F, 1, 1, 1, 0.0F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F);
+    turretModel[19].addShapeBox(-1.2F, -0.2F, -0.5F, 1, 1, 1, 0.0F, -0.4F, -0.4F, -0.1F, -0.4F, -0.4F, -0.1F, -0.4F, -0.4F, -0.1F, -0.4F, -0.4F, -0.1F, -0.4F, -0.4F, -0.3F, -0.4F, -0.4F, -0.3F, -0.4F, -0.4F, -0.3F, -0.4F, -0.4F, -0.3F);
     
-    gun_1_Model[1][21].addShapeBox(-5.8F, -0.25F, -0.5F, 5, 1, 1, 0.0F, 0.0F, -0.4F, -0.1F, 0.0F, -0.4F, -0.1F, 0.0F, -0.4F, -0.1F, 0.0F, -0.4F, -0.1F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F);
+    turretModel[20].addShapeBox(-1.2F, -0.6F, -0.5F, 1, 1, 1, 0.0F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F);
     
-    gun_1_Model[1][22].addShapeBox(-5.8F, -0.5F, -0.5F, 5, 1, 1, 0.0F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F);
+    turretModel[21].addShapeBox(-5.8F, -0.25F, -0.5F, 5, 1, 1, 0.0F, 0.0F, -0.4F, -0.1F, 0.0F, -0.4F, -0.1F, 0.0F, -0.4F, -0.1F, 0.0F, -0.4F, -0.1F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F);
     
-    gun_1_Model[1][23].addShapeBox(-1.4F, -0.95F, -0.5F, 1, 1, 1, 0.0F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F);
+    turretModel[22].addShapeBox(-5.8F, -0.5F, -0.5F, 5, 1, 1, 0.0F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F);
     
-    gun_1_Model[1][24].addShapeBox(-2.8F, -1.08F, -0.5F, 2, 1, 1, 0.0F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F);
+    turretModel[23].addShapeBox(-1.4F, -0.95F, -0.5F, 1, 1, 1, 0.0F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F, -0.4F, -0.2F, -0.1F);
     
-    gun_1_Model[1][25].addShapeBox(-5.8F, -0.8F, -0.5F, 2, 1, 1, 0.0F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F);
+    turretModel[24].addShapeBox(-2.8F, -1.08F, -0.5F, 2, 1, 1, 0.0F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F);
     
-    gun_1_Model[1][26].addShapeBox(-4.3F, -0.9F, -0.5F, 2, 1, 1, 0.0F, -0.3F, -0.45F, -0.08F, -0.3F, -0.2F, -0.08F, -0.3F, -0.2F, -0.08F, -0.3F, -0.45F, -0.08F, -0.3F, -0.25F, -0.08F, -0.3F, -0.25F, -0.08F, -0.3F, -0.25F, -0.08F, -0.3F, -0.25F, -0.08F);
+    turretModel[25].addShapeBox(-5.8F, -0.8F, -0.5F, 2, 1, 1, 0.0F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F, -0.2F, -0.35F, -0.08F);
     
-    gun_1_Model[1][27].addShapeBox(-7.5F, -0.5F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F);
+    turretModel[26].addShapeBox(-4.3F, -0.9F, -0.5F, 2, 1, 1, 0.0F, -0.3F, -0.45F, -0.08F, -0.3F, -0.2F, -0.08F, -0.3F, -0.2F, -0.08F, -0.3F, -0.45F, -0.08F, -0.3F, -0.25F, -0.08F, -0.3F, -0.25F, -0.08F, -0.3F, -0.25F, -0.08F, -0.3F, -0.25F, -0.08F);
     
-    gun_1_Model[1][28].addShapeBox(-6.8F, -0.5F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.5F, -0.2F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.5F, -0.2F, 0.0F, -0.5F, -0.2F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.5F, -0.2F);
+    turretModel[27].addShapeBox(-7.5F, -0.5F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F, 0.0F, -0.25F, -0.25F);
     
-    gun_1_Model[1][29].addShapeBox(-6.8F, -0.4F, -0.5F, 1, 1, 1, 0.0F, 0.0F, 0.0F, -0.2F, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, -0.2F, 0.0F, -0.6F, -0.2F, 0.0F, -0.75F, -0.1F, 0.0F, -0.75F, -0.1F, 0.0F, -0.6F, -0.2F);
+    turretModel[28].addShapeBox(-6.8F, -0.5F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.5F, -0.2F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.5F, -0.2F, 0.0F, -0.5F, -0.2F, 0.0F, -0.35F, -0.1F, 0.0F, -0.35F, -0.1F, 0.0F, -0.5F, -0.2F);
     
-    gun_1_Model[1][30].addShapeBox(-6.8F, -0.6F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.6F, -0.2F, 0.0F, -0.75F, -0.1F, 0.0F, -0.75F, -0.1F, 0.0F, -0.6F, -0.2F, 0.0F, 0.0F, -0.2F, 0.0F, -0.05F, -0.2F, 0.0F, -0.05F, -0.2F, 0.0F, 0.0F, -0.2F);
+    turretModel[29].addShapeBox(-6.8F, -0.4F, -0.5F, 1, 1, 1, 0.0F, 0.0F, 0.0F, -0.2F, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, -0.2F, 0.0F, -0.6F, -0.2F, 0.0F, -0.75F, -0.1F, 0.0F, -0.75F, -0.1F, 0.0F, -0.6F, -0.2F);
     
-    gun_1_Model[1][31].addShapeBox(-6.1F, -0.75F, -0.5F, 1, 1, 1, 0.0F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F);
+    turretModel[30].addShapeBox(-6.8F, -0.6F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.6F, -0.2F, 0.0F, -0.75F, -0.1F, 0.0F, -0.75F, -0.1F, 0.0F, -0.6F, -0.2F, 0.0F, 0.0F, -0.2F, 0.0F, -0.05F, -0.2F, 0.0F, -0.05F, -0.2F, 0.0F, 0.0F, -0.2F);
     
-    gun_1_Model[1][32].addShapeBox(-4.3F, 0.25F, -0.5F, 1, 1, 1, 0.0F, 0.0F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, 0.0F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F);
+    turretModel[31].addShapeBox(-6.1F, -0.75F, -0.5F, 1, 1, 1, 0.0F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F, -0.2F, -0.25F, -0.05F);
     
-    gun_1_Model[1][33].addShapeBox(-5.3F, 0.25F, -0.5F, 1, 1, 1, 0.0F, -0.4F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, -0.4F, 0.0F, -0.15F, -0.4F, -0.6F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, -0.4F, -0.6F, -0.15F);
+    turretModel[32].addShapeBox(-4.3F, 0.25F, -0.5F, 1, 1, 1, 0.0F, 0.0F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, 0.0F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, -0.3F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F);
     
-    gun_1_Model[1][34].addShapeBox(-3.6F, -0.15F, -0.5F, 3, 1, 1, 0.0F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F);
+    turretModel[33].addShapeBox(-5.3F, 0.25F, -0.5F, 1, 1, 1, 0.0F, -0.4F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, -0.4F, 0.0F, -0.15F, -0.4F, -0.6F, -0.15F, 0.0F, -0.4F, -0.15F, 0.0F, -0.4F, -0.15F, -0.4F, -0.6F, -0.15F);
     
-    gun_1_Model[1][35].addShapeBox(11.4F, -0.5F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.3F, -0.3F, -0.2F, -0.25F, -0.25F, -0.2F, -0.25F, -0.25F, 0.0F, -0.3F, -0.3F, 0.0F, -0.3F, -0.3F, -0.2F, -0.25F, -0.25F, -0.2F, -0.25F, -0.25F, 0.0F, -0.3F, -0.3F);
+    turretModel[34].addShapeBox(-3.6F, -0.15F, -0.5F, 3, 1, 1, 0.0F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F, -0.2F, -0.4F, -0.15F);
     
-    gun_1_Model[1][36].addShapeBox(-5.9F, 0.25F, -0.5F, 1, 1, 1, 0.0F, -0.4F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, -0.4F, 0.0F, -0.15F, -0.4F, -0.75F, -0.15F, 0.0F, -0.6F, -0.15F, 0.0F, -0.6F, -0.15F, -0.4F, -0.75F, -0.15F);
+    turretModel[35].addShapeBox(11.4F, -0.5F, -0.5F, 1, 1, 1, 0.0F, 0.0F, -0.3F, -0.3F, -0.2F, -0.25F, -0.25F, -0.2F, -0.25F, -0.25F, 0.0F, -0.3F, -0.3F, 0.0F, -0.3F, -0.3F, -0.2F, -0.25F, -0.25F, -0.2F, -0.25F, -0.25F, 0.0F, -0.3F, -0.3F);
     
-    gun_1_Model[1][37].addShapeBox(5.8F, -1.05F, -0.5F, 1, 1, 1, 0.0F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F);
+    turretModel[36].addShapeBox(-5.9F, 0.25F, -0.5F, 1, 1, 1, 0.0F, -0.4F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, 0.0F, 0.0F, -0.15F, -0.4F, 0.0F, -0.15F, -0.4F, -0.75F, -0.15F, 0.0F, -0.6F, -0.15F, 0.0F, -0.6F, -0.15F, -0.4F, -0.75F, -0.15F);
     
-    gun_1_Model[1][38].addShapeBox(9.3F, -1.15F, -0.5F, 1, 1, 1, 0.0F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F);
+    turretModel[37].addShapeBox(5.8F, -1.05F, -0.5F, 1, 1, 1, 0.0F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F, -0.4F, -0.3F, -0.48F);
     
-    gun_1_Model[1][39].addShapeBox(9.3F, -1.3F, -0.5F, 1, 1, 1, 0.0F, -0.45F, 0.0F, -0.48F, -0.45F, 0.0F, -0.48F, -0.45F, 0.0F, -0.48F, -0.45F, 0.0F, -0.48F, -0.45F, -0.8F, -0.48F, -0.45F, -0.8F, -0.48F, -0.45F, -0.8F, -0.48F, -0.45F, -0.8F, -0.48F);
+    turretModel[38].addShapeBox(9.3F, -1.15F, -0.5F, 1, 1, 1, 0.0F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F, -0.4F, 0.0F, -0.46F);
     
-    gun_1_Model[1][40].addShapeBox(-0.4F, -1.85F, -0.26F, 1, 2, 1, 0.0F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F);
+    turretModel[39].addShapeBox(9.3F, -1.3F, -0.5F, 1, 1, 1, 0.0F, -0.45F, 0.0F, -0.48F, -0.45F, 0.0F, -0.48F, -0.45F, 0.0F, -0.48F, -0.45F, 0.0F, -0.48F, -0.45F, -0.8F, -0.48F, -0.45F, -0.8F, -0.48F, -0.45F, -0.8F, -0.48F, -0.45F, -0.8F, -0.48F);
     
-    gun_1_Model[1][41].addShapeBox(-0.4F, -1.2F, -0.4F, 1, 1, 1, 0.0F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F);
+    turretModel[40].addShapeBox(-0.4F, -1.85F, -0.26F, 1, 2, 1, 0.0F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F, -0.44F, 0.0F, -0.4F);
     
-    gun_1_Model[1][42].addShapeBox(-3.0F, -0.8F, 0.1F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[41].addShapeBox(-0.4F, -1.2F, -0.4F, 1, 1, 1, 0.0F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F, -0.3F, -0.35F, -0.15F);
     
-    gun_1_Model[1][43].addShapeBox(-1.7F, -0.8F, 0.1F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[42].addShapeBox(-3.0F, -0.8F, 0.1F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][44].addShapeBox(-3.0F, -0.65F, 0.4F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[43].addShapeBox(-1.7F, -0.8F, 0.1F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][45].addShapeBox(-1.7F, -0.65F, 0.4F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[44].addShapeBox(-3.0F, -0.65F, 0.4F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][46].addShapeBox(-3.0F, -0.35F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[45].addShapeBox(-1.7F, -0.65F, 0.4F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][47].addShapeBox(-1.7F, -0.35F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[46].addShapeBox(-3.0F, -0.35F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][48].addShapeBox(-3.0F, -0.05F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[47].addShapeBox(-1.7F, -0.35F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][49].addShapeBox(-1.7F, -0.05F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[48].addShapeBox(-3.0F, -0.05F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][50].addShapeBox(-3.0F, 0.25F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[49].addShapeBox(-1.7F, -0.05F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][51].addShapeBox(-1.7F, 0.25F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[50].addShapeBox(-3.0F, 0.25F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][52].addShapeBox(-3.0F, 0.55F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[51].addShapeBox(-1.7F, 0.25F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][53].addShapeBox(-1.7F, 0.55F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[52].addShapeBox(-3.0F, 0.55F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][54].addShapeBox(-3.0F, 0.85F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[53].addShapeBox(-1.7F, 0.55F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][55].addShapeBox(-1.7F, 0.85F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[54].addShapeBox(-3.0F, 0.85F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][56].addShapeBox(-3.0F, 1.15F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[55].addShapeBox(-1.7F, 0.85F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][57].addShapeBox(-1.7F, 1.15F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[56].addShapeBox(-3.0F, 1.15F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][58].addShapeBox(-3.0F, 1.45F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[57].addShapeBox(-1.7F, 1.15F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][59].addShapeBox(-1.7F, 1.45F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[58].addShapeBox(-3.0F, 1.45F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][60].addShapeBox(-3.0F, 1.75F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[59].addShapeBox(-1.7F, 1.45F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][61].addShapeBox(-1.7F, 1.75F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[60].addShapeBox(-3.0F, 1.75F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][62].addShapeBox(-3.0F, 2.05F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[61].addShapeBox(-1.7F, 1.75F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][63].addShapeBox(-1.7F, 2.05F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[62].addShapeBox(-3.0F, 2.05F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][64].addShapeBox(-3.0F, 2.35F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[63].addShapeBox(-1.7F, 2.05F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][65].addShapeBox(-1.7F, 2.35F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[64].addShapeBox(-3.0F, 2.35F, 0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][66].addShapeBox(-3.0F, -0.8F, -0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[65].addShapeBox(-1.7F, 2.35F, 0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][67].addShapeBox(-1.7F, -0.8F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[66].addShapeBox(-3.0F, -0.8F, -0.5F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][68].addShapeBox(-2.5F, 2.7755576E-16F, 0.5F, 1, 3, 1, 0.0F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F);
+    turretModel[67].addShapeBox(-1.7F, -0.8F, -0.5F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][69].addShapeBox(-2.5F, -0.2F, 0.5F, 1, 1, 1, 0.0F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, -0.8F, -0.45F, -0.2F, -0.8F, -0.45F, -0.2F, -0.8F, -0.45F, -0.2F, -0.8F, -0.45F);
+    turretModel[68].addShapeBox(-2.5F, 2.7755576E-16F, 0.5F, 1, 3, 1, 0.0F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F);
     
-    gun_1_Model[1][70].addShapeBox(-2.5F, -0.75F, 0.25F, 1, 1, 1, 0.0F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F);
+    turretModel[69].addShapeBox(-2.5F, -0.2F, 0.5F, 1, 1, 1, 0.0F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, 0.0F, -0.45F, -0.2F, -0.8F, -0.45F, -0.2F, -0.8F, -0.45F, -0.2F, -0.8F, -0.45F, -0.2F, -0.8F, -0.45F);
     
-    gun_1_Model[1][71].addShapeBox(-3.0F, -0.8F, -0.2F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
+    turretModel[70].addShapeBox(-2.5F, -0.75F, 0.25F, 1, 1, 1, 0.0F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F);
     
-    gun_1_Model[1][72].addShapeBox(-1.7F, -0.8F, -0.2F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
+    turretModel[71].addShapeBox(-3.0F, -0.8F, -0.2F, 2, 1, 1, 0.0F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.4F, -0.38F, -0.38F, -0.45F, -0.38F, -0.38F);
     
-    gun_1_Model[1][73].addShapeBox(-2.5F, -0.8F, -0.05F, 1, 1, 1, 0.0F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F);
+    turretModel[72].addShapeBox(-1.7F, -0.8F, -0.2F, 1, 1, 1, 0.0F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F, -0.3F, -0.38F, -0.38F, -0.35F, -0.45F, -0.45F, -0.35F, -0.45F, -0.45F, -0.3F, -0.38F, -0.38F);
     
-    gun_1_Model[1][74].addShapeBox(-4.3F, 0.4F, -0.5F, 1, 2, 1, 0.0F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, 0.8F, -0.3F, -0.4F, -1.2F, 0.0F, -0.4F, -1.2F, 0.0F, -0.4F, 0.8F, -0.3F, -0.4F);
+    turretModel[73].addShapeBox(-2.5F, -0.8F, -0.05F, 1, 1, 1, 0.0F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F, -0.2F, -0.45F, -0.45F);
     
-    gun_1_Model[1][75].addShapeBox(-0.4F, -1.27F, -0.57F, 1, 1, 1, 0.0F, -0.48F, 0.0F, -0.3F, -0.48F, 0.0F, -0.3F, -0.48F, 0.0F, -0.46F, -0.48F, 0.0F, -0.46F, -0.48F, -0.6F, -0.3F, -0.48F, -0.6F, -0.3F, -0.48F, -0.6F, -0.46F, -0.48F, -0.6F, -0.46F);
+    turretModel[74].addShapeBox(-4.3F, 0.4F, -0.5F, 1, 2, 1, 0.0F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, 0.8F, -0.3F, -0.4F, -1.2F, 0.0F, -0.4F, -1.2F, 0.0F, -0.4F, 0.8F, -0.3F, -0.4F);
     
-    gun_1_Model[1][76].addShapeBox(-0.4F, -1.27F, -0.43F, 1, 1, 1, 0.0F, -0.48F, 0.0F, -0.46F, -0.48F, 0.0F, -0.46F, -0.48F, 0.0F, -0.4F, -0.48F, 0.0F, -0.4F, -0.48F, -0.6F, -0.46F, -0.48F, -0.6F, -0.46F, -0.48F, -0.6F, -0.4F, -0.48F, -0.6F, -0.4F);
+    turretModel[75].addShapeBox(-0.4F, -1.27F, -0.57F, 1, 1, 1, 0.0F, -0.48F, 0.0F, -0.3F, -0.48F, 0.0F, -0.3F, -0.48F, 0.0F, -0.46F, -0.48F, 0.0F, -0.46F, -0.48F, -0.6F, -0.3F, -0.48F, -0.6F, -0.3F, -0.48F, -0.6F, -0.46F, -0.48F, -0.6F, -0.46F);
     
-    gun_1_Model[1][77].addShapeBox(-0.4F, -1.3F, -0.5F, 1, 1, 1, 0.0F, -0.48F, -0.1F, -0.47F, -0.48F, -0.1F, -0.47F, -0.48F, -0.1F, -0.47F, -0.48F, -0.1F, -0.47F, -0.48F, -0.57F, -0.47F, -0.48F, -0.57F, -0.47F, -0.48F, -0.57F, -0.47F, -0.48F, -0.57F, -0.47F);
+    turretModel[76].addShapeBox(-0.4F, -1.27F, -0.43F, 1, 1, 1, 0.0F, -0.48F, 0.0F, -0.46F, -0.48F, 0.0F, -0.46F, -0.48F, 0.0F, -0.4F, -0.48F, 0.0F, -0.4F, -0.48F, -0.6F, -0.46F, -0.48F, -0.6F, -0.46F, -0.48F, -0.6F, -0.4F, -0.48F, -0.6F, -0.4F);
     
-    gun_1_Model[1][78].addShapeBox(-4.3F, 0.4F, -0.3F, 1, 2, 1, 0.0F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.3F, 0.0F, -0.4F, -0.3F, 0.0F, -0.4F, 0.8F, -0.3F, -0.4F, -1.2F, 0.0F, -0.4F, -1.3F, -0.2F, -0.4F, 0.5F, -0.3F, -0.4F);
+    turretModel[77].addShapeBox(-0.4F, -1.3F, -0.5F, 1, 1, 1, 0.0F, -0.48F, -0.1F, -0.47F, -0.48F, -0.1F, -0.47F, -0.48F, -0.1F, -0.47F, -0.48F, -0.1F, -0.47F, -0.48F, -0.57F, -0.47F, -0.48F, -0.57F, -0.47F, -0.48F, -0.57F, -0.47F, -0.48F, -0.57F, -0.47F);
     
-    gun_1_Model[1][79].addShapeBox(-4.3F, 0.4F, -0.7F, 1, 2, 1, 0.0F, -0.3F, 0.0F, -0.4F, -0.3F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, 0.5F, -0.3F, -0.4F, -1.3F, -0.2F, -0.4F, -1.2F, 0.0F, -0.4F, 0.8F, -0.3F, -0.4F);
+    turretModel[78].addShapeBox(-4.3F, 0.4F, -0.3F, 1, 2, 1, 0.0F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.3F, 0.0F, -0.4F, -0.3F, 0.0F, -0.4F, 0.8F, -0.3F, -0.4F, -1.2F, 0.0F, -0.4F, -1.3F, -0.2F, -0.4F, 0.5F, -0.3F, -0.4F);
     
-    gun_1_Model[1][80].addShapeBox(-3.2F, 0.4F, -0.45F, 1, 1, 1, 0.0F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, -0.5F, -0.4F, -0.4F, -0.5F, -0.4F, -0.4F, -0.5F, -0.4F, -0.4F, -0.5F, -0.4F);
+    turretModel[79].addShapeBox(-4.3F, 0.4F, -0.7F, 1, 2, 1, 0.0F, -0.3F, 0.0F, -0.4F, -0.3F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, -0.2F, 0.0F, -0.4F, 0.5F, -0.3F, -0.4F, -1.3F, -0.2F, -0.4F, -1.2F, 0.0F, -0.4F, 0.8F, -0.3F, -0.4F);
     
-    gun_1_Model[1][81].addShapeBox(-3.8F, 0.9F, -0.45F, 1, 1, 1, 0.0F, 0.2F, 0.0F, -0.4F, 0.2F, 0.0F, -0.4F, 0.2F, 0.0F, -0.4F, 0.2F, 0.0F, -0.4F, 0.2F, -0.8F, -0.4F, 0.0F, -0.8F, -0.4F, 0.0F, -0.8F, -0.4F, 0.2F, -0.8F, -0.4F);
+    turretModel[80].addShapeBox(-3.2F, 0.4F, -0.45F, 1, 1, 1, 0.0F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, 0.0F, -0.4F, -0.4F, -0.5F, -0.4F, -0.4F, -0.5F, -0.4F, -0.4F, -0.5F, -0.4F, -0.4F, -0.5F, -0.4F);
     
-    gun_1_Model[1][82].addShapeBox(-3.8F, -0.2F, -0.5F, 1, 1, 1, 0.0F, -0.45F, 0.0F, -0.45F, -0.45F, 0.0F, -0.45F, -0.45F, 0.0F, -0.45F, -0.45F, 0.0F, -0.45F, -0.45F, -0.5F, -0.45F, -0.45F, -0.5F, -0.45F, -0.45F, -0.5F, -0.45F, -0.45F, -0.5F, -0.45F);
+    turretModel[81].addShapeBox(-3.8F, 0.9F, -0.45F, 1, 1, 1, 0.0F, 0.2F, 0.0F, -0.4F, 0.2F, 0.0F, -0.4F, 0.2F, 0.0F, -0.4F, 0.2F, 0.0F, -0.4F, 0.2F, -0.8F, -0.4F, 0.0F, -0.8F, -0.4F, 0.0F, -0.8F, -0.4F, 0.2F, -0.8F, -0.4F);
+    
+    turretModel[82].addShapeBox(-3.8F, -0.2F, -0.5F, 1, 1, 1, 0.0F, -0.45F, 0.0F, -0.45F, -0.45F, 0.0F, -0.45F, -0.45F, 0.0F, -0.45F, -0.45F, 0.0F, -0.45F, -0.45F, -0.5F, -0.45F, -0.45F, -0.5F, -0.45F, -0.45F, -0.5F, -0.45F, -0.45F, -0.5F, -0.45F);
 
     
-    for (ModelRendererTurbo gunPart : gun_1_Model[1])
+    for(int i = 0; i < turretModel.length; i++)
     {
-      gunPart.setRotationPoint(-5.0F, -35.0F, -5.0F);
+    	turretModel[i].setRotationPoint(-5.0F, -35.0F, -5.0F);
     }
 
-    
-    gun_1_Model[2] = new ModelRendererTurbo[0];
-    
     
     //barrelAttach = new Vector3f(0.625F, 1.625F, 0.0F);
     
@@ -3381,6 +3373,10 @@ public class ModelStuG3G extends ModelVehicle
 		{
 			bodyModel[i].render(f5);
 		}
+		for(int i = 0; i < turretModel.length; i++)
+	    {
+	    	turretModel[i].render(f5);
+	    }
 		for(int i = 0; i < barrelModel.length; i++)
 		{
 			barrelModel[i].render(f5);

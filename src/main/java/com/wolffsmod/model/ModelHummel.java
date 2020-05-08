@@ -1474,7 +1474,7 @@ public class ModelHummel
 		{
 			rightTrackWheelModels[i].render(f5);
 		}
-		for(int i = 0; i < rightTrackWheelModels.length; i++)
+		for(int i = 0; i < bodyDoorCloseModel.length; i++)
 		{
 			bodyDoorCloseModel[i].render(f5);
 		}
