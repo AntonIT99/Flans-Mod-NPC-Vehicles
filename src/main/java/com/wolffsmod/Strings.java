@@ -3,5 +3,5 @@ package com.wolffsmod;
 public class Strings {
 	public static final String MODID = "wolffsmod";
 	public static final String name = "Wolff's NPCs";
-	public static final String version = "2.1";
+	public static final String version = "2.4";
 }
