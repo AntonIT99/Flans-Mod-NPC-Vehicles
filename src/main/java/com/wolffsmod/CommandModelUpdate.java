@@ -1,11 +1,16 @@
 package com.wolffsmod;
-
+import net.minecraft.entity.Entity;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
+
+
+
+
+
 
 public class CommandModelUpdate extends CommandBase {
 
@@ -28,6 +33,11 @@ public class CommandModelUpdate extends CommandBase {
 		
 	}
 
+
+
+	
+	
+	
 	@Override
 	public void processCommand(ICommandSender p_71515_1_, String[] p_71515_2_) {
 		updateModels();
