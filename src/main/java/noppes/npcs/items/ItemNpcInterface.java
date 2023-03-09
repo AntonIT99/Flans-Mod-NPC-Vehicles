@@ -1,58 +1,61 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.items;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.registry.GameRegistry;
-import org.lwjgl.opengl.GL11;
-import noppes.npcs.CustomNpcs;
-import net.minecraft.creativetab.CreativeTabs;
-import noppes.npcs.CustomItems;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.MinecraftForgeClient;
+import noppes.npcs.CustomItems;
+import noppes.npcs.CustomNpcs;
+import noppes.npcs.client.renderer.NpcItemRenderer;
 
-public class ItemNpcInterface extends Item implements ItemRenderInterface
-{
-    public ItemNpcInterface(final int par1) {
-        this();
-    }
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.common.registry.GameRegistry;
+
+public class ItemNpcInterface extends Item implements ItemRenderInterface{
     
-    public ItemNpcInterface() {
-        this.setCreativeTab((CreativeTabs)CustomItems.tab);
-        CustomNpcs.proxy.registerItem(this);
+	public ItemNpcInterface(int par1) {
+		this();
+	}
+	public ItemNpcInterface() {
+		setCreativeTab(CustomItems.tab);
+		CustomNpcs.proxy.registerItem(this);
+	}
+	public void renderSpecial(){
+        GL11.glScalef(0.66f, 0.66f,0.66f);
+        GL11.glTranslatef(0, 0.3f, 0);
+    };
+
+    @Override
+    public int getItemEnchantability()
+    {
+        //return this.toolMaterial.getEnchantability();
+    	return super.getItemEnchantability();
     }
-    
-    public void renderSpecial() {
-        GL11.glScalef(0.66f, 0.66f, 0.66f);
-        GL11.glTranslatef(0.0f, 0.3f, 0.0f);
+
+    @Override
+    public Item setUnlocalizedName(String name){
+    	super.setUnlocalizedName(name);
+		GameRegistry.registerItem(this, name);
+    	return this;
     }
-    
-    public int getItemEnchantability() {
-        return super.getItemEnchantability();
-    }
-    
-    public Item setUnlocalizedName(final String name) {
-        super.setUnlocalizedName(name);
-        GameRegistry.registerItem((Item)this, name);
-        return this;
-    }
-    
-    public boolean hitEntity(final ItemStack par1ItemStack, final EntityLivingBase par2EntityLiving, final EntityLivingBase par3EntityLiving) {
-        if (par2EntityLiving.getHealth() <= 0.0f) {
-            return false;
-        }
+
+    @Override
+    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLiving, EntityLivingBase par3EntityLiving)
+    {
+    	if(par2EntityLiving.getHealth() <= 0)
+    		return false;
         par1ItemStack.damageItem(1, par3EntityLiving);
         return true;
     }
-    
-    public boolean hasItem(final EntityPlayer player, final Item item) {
-        return player.inventory.hasItem(item);
-    }
-    
-    public boolean consumeItem(final EntityPlayer player, final Item item) {
-        return player.inventory.consumeInventoryItem(item);
-    }
+
+	public boolean hasItem(EntityPlayer player, Item item) {
+		return player.inventory.hasItem(item);
+	}
+	
+	public boolean consumeItem(EntityPlayer player, Item item) {
+		return player.inventory.consumeInventoryItem(item);
+	}
 }

@@ -1,33 +1,27 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.scripted;
 
 import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.entity.player.EntityPlayer;
-import noppes.npcs.controllers.PixelmonHelper;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.NBTTagCompound;
+import noppes.npcs.api.IPixelmonPlayerData;
+import noppes.npcs.controllers.PixelmonHelper;
+import noppes.npcs.scripted.entity.ScriptPixelmon;
 
-public class ScriptPixelmonPlayerData
-{
-    private EntityPlayerMP player;
-    
-    public ScriptPixelmonPlayerData(final EntityPlayerMP player) {
-        this.player = player;
-    }
-    
-    public ScriptPixelmon getPartySlot(final int slot) {
-        final NBTTagCompound compound = PixelmonHelper.getPartySlot(slot, (EntityPlayer)this.player);
-        if (compound == null) {
-            return null;
-        }
-        final EntityTameable pixelmon = PixelmonHelper.pixelmonFromNBT(compound, (EntityPlayer)this.player);
-        return new ScriptPixelmon(pixelmon, compound);
-    }
-    
-    public int countPCPixelmon() {
-        return PixelmonHelper.countPCPixelmon(this.player);
-    }
+public class ScriptPixelmonPlayerData implements IPixelmonPlayerData {
+	private EntityPlayerMP player;
+	public ScriptPixelmonPlayerData(EntityPlayerMP player){
+		this.player = player;
+	}
+	
+	public ScriptPixelmon getPartySlot(int slot){
+		NBTTagCompound compound = PixelmonHelper.getPartySlot(slot, player);
+		if(compound == null)
+			return null;
+		EntityTameable pixelmon = PixelmonHelper.pixelmonFromNBT(compound, player);
+		return new ScriptPixelmon(pixelmon, compound);
+	}
+	
+	public int countPCPixelmon(){
+		return PixelmonHelper.countPCPixelmon(player);
+	}
 }

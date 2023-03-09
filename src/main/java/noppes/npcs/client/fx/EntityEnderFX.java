@@ -1,98 +1,94 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.fx;
 
-import org.lwjgl.opengl.GL11;
-import noppes.npcs.client.ClientProxy;
-import net.minecraft.client.renderer.Tessellator;
-import noppes.npcs.ModelPartData;
-import net.minecraft.util.ResourceLocation;
-import noppes.npcs.entity.EntityCustomNpc;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.particle.EntityPortalFX;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.ResourceLocation;
+import noppes.npcs.ModelPartData;
+import noppes.npcs.client.ClientProxy;
+import noppes.npcs.entity.EntityCustomNpc;
 
-public class EntityEnderFX extends EntityPortalFX
-{
+import org.lwjgl.opengl.GL11;
+
+public class EntityEnderFX extends EntityPortalFX{
+
     private float portalParticleScale;
     private int particleNumber;
     private EntityCustomNpc npc;
-    private static final ResourceLocation resource;
+    private static final ResourceLocation resource = new ResourceLocation("textures/particle/particles.png");
     private final ResourceLocation location;
-    private boolean move;
-    private float startX;
-    private float startY;
-    private float startZ;
+    private boolean move = true;
+    private float startX = 0, startY = 0, startZ = 0;
     
-    public EntityEnderFX(final EntityCustomNpc npc, final double par2, final double par4, final double par6, final double par8, final double par10, final double par12, final ModelPartData data) {
-        super(npc.worldObj, par2, par4, par6, par8, par10, par12);
-        this.move = true;
-        this.startX = 0.0f;
-        this.startY = 0.0f;
-        this.startZ = 0.0f;
-        this.npc = npc;
-        this.particleNumber = npc.getRNG().nextInt(2);
-        final float n = this.rand.nextFloat() * 0.2f + 0.5f;
-        this.particleScale = n;
-        this.portalParticleScale = n;
-        this.particleRed = (data.color >> 16 & 0xFF) / 255.0f;
-        this.particleGreen = (data.color >> 8 & 0xFF) / 255.0f;
-        this.particleBlue = (data.color & 0xFF) / 255.0f;
-        if (npc.getRNG().nextInt(3) == 1) {
-            this.move = false;
-            this.startX = (float)npc.posX;
-            this.startY = (float)npc.posY;
-            this.startZ = (float)npc.posZ;
+	public EntityEnderFX(EntityCustomNpc npc, double par2, double par4,
+			double par6, double par8, double par10, double par12, ModelPartData data) {
+		super(npc.worldObj, par2, par4, par6, par8, par10, par12);
+		
+		this.npc = npc;
+		particleNumber = npc.getRNG().nextInt(2);
+        portalParticleScale = particleScale = rand.nextFloat() * 0.2F + 0.5F;
+
+        particleRed = (data.color >> 16 & 255) / 255f;
+        particleGreen = (data.color >> 8  & 255) / 255f;
+        particleBlue = (data.color & 255) / 255f;
+        
+        if(npc.getRNG().nextInt(3) == 1){
+        	move = false;
+            this.startX = (float) npc.posX;
+            this.startY = (float) npc.posY;
+            this.startZ = (float) npc.posZ;
         }
-        if (data.playerTexture) {
-            this.location = npc.textureLocation;
-        }
-        else {
-            this.location = new ResourceLocation(data.texture);
-        }
-    }
-    
-    public void renderParticle(final Tessellator par1Tessellator, final float par2, final float par3, final float par4, final float par5, final float par6, final float par7) {
-        if (this.move) {
-            this.startX = (float)(this.npc.prevPosX + (this.npc.posX - this.npc.prevPosX) * par2);
-            this.startY = (float)(this.npc.prevPosY + (this.npc.posY - this.npc.prevPosY) * par2);
-            this.startZ = (float)(this.npc.prevPosZ + (this.npc.posZ - this.npc.prevPosZ) * par2);
-        }
-        final Tessellator tessellator = Tessellator.instance;
+        
+        if(data.playerTexture)
+        	location = npc.textureLocation;
+        else
+        	location = new ResourceLocation(data.texture);
+	}
+
+	@Override
+    public void renderParticle(Tessellator par1Tessellator, float par2, float par3, float par4, float par5, float par6, float par7)
+    {		
+		if(move){
+			startX = (float)(npc.prevPosX + (npc.posX - npc.prevPosX) * (double)par2);
+			startY = (float)(npc.prevPosY + (npc.posY - npc.prevPosY) * (double)par2);
+			startZ = (float)(npc.prevPosZ + (npc.posZ - npc.prevPosZ) * (double)par2);
+		}
+        Tessellator tessellator = Tessellator.instance;
         tessellator.draw();
-        float scale = (this.particleAge + par2) / this.particleMaxAge;
-        scale = 1.0f - scale;
+        float scale = ((float)particleAge + par2) / (float)particleMaxAge;
+        scale = 1.0F - scale;
         scale *= scale;
-        scale = 1.0f - scale;
-        this.particleScale = this.portalParticleScale * scale;
-        ClientProxy.bindTexture(this.location);
-        final float f = 0.875f;
-        final float f2 = f + 0.125f;
-        final float f3 = 0.75f - this.particleNumber * 0.25f;
-        final float f4 = f3 + 0.25f;
-        final float f5 = 0.1f * this.particleScale;
-        final float f6 = (float)(this.prevPosX + (this.posX - this.prevPosX) * par2 - EntityEnderFX.interpPosX + this.startX);
-        final float f7 = (float)(this.prevPosY + (this.posY - this.prevPosY) * par2 - EntityEnderFX.interpPosY + this.startY);
-        final float f8 = (float)(this.prevPosZ + (this.posZ - this.prevPosZ) * par2 - EntityEnderFX.interpPosZ + this.startZ);
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+        scale = 1.0F - scale;
+        particleScale = portalParticleScale * scale;
+        
+    	ClientProxy.bindTexture(location);
+    	
+        float f = 0.875f;
+        float f1 = f + 0.125f;
+        float f2 = 0.75f - (particleNumber * 0.25f);
+        float f3 = f2 + 0.25f;
+        float f4 = 0.1F * particleScale;
+        float f5 = (float)(((prevPosX + (posX - prevPosX) * (double)par2) - interpPosX) + startX);
+        float f6 = (float)(((prevPosY + (posY - prevPosY) * (double)par2) - interpPosY) + startY);
+        float f7 = (float)(((prevPosZ + (posZ - prevPosZ) * (double)par2) - interpPosZ) + startZ);
+
+        GL11.glColor4f(1, 1, 1, 1.0F);
         tessellator.startDrawingQuads();
         tessellator.setBrightness(240);
-        par1Tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
-        par1Tessellator.setColorRGBA_F(this.particleRed, this.particleGreen, this.particleBlue, 1.0f);
-        par1Tessellator.addVertexWithUV((double)(f6 - par3 * f5 - par6 * f5), (double)(f7 - par4 * f5), (double)(f8 - par5 * f5 - par7 * f5), (double)f2, (double)f4);
-        par1Tessellator.addVertexWithUV((double)(f6 - par3 * f5 + par6 * f5), (double)(f7 + par4 * f5), (double)(f8 - par5 * f5 + par7 * f5), (double)f2, (double)f3);
-        par1Tessellator.addVertexWithUV((double)(f6 + par3 * f5 + par6 * f5), (double)(f7 + par4 * f5), (double)(f8 + par5 * f5 + par7 * f5), (double)f, (double)f3);
-        par1Tessellator.addVertexWithUV((double)(f6 + par3 * f5 - par6 * f5), (double)(f7 - par4 * f5), (double)(f8 + par5 * f5 - par7 * f5), (double)f, (double)f4);
+        par1Tessellator.setColorOpaque_F(1, 1, 1);
+        par1Tessellator.setColorRGBA_F(particleRed, particleGreen, particleBlue, 1);
+        par1Tessellator.addVertexWithUV(f5 - par3 * f4 - par6 * f4, f6 - par4 * f4, f7 - par5 * f4 - par7 * f4, f1, f3);
+        par1Tessellator.addVertexWithUV((f5 - par3 * f4) + par6 * f4, f6 + par4 * f4, (f7 - par5 * f4) + par7 * f4, f1, f2);
+        par1Tessellator.addVertexWithUV(f5 + par3 * f4 + par6 * f4, f6 + par4 * f4, f7 + par5 * f4 + par7 * f4, f, f2);
+        par1Tessellator.addVertexWithUV((f5 + par3 * f4) - par6 * f4, f6 - par4 * f4, (f7 + par5 * f4) - par7 * f4, f, f3);
+        
         tessellator.draw();
-        ClientProxy.bindTexture(EntityEnderFX.resource);
+        ClientProxy.bindTexture(resource);
         tessellator.startDrawingQuads();
     }
     
-    public int getFXLayer() {
-        return 0;
-    }
-    
-    static {
-        resource = new ResourceLocation("textures/particle/particles.png");
+    public int getFXLayer(){
+    	return 0;
     }
 }

@@ -1,37 +1,45 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) braces deadcode fieldsfirst 
 
 package noppes.npcs.entity;
 
-import noppes.npcs.ModelData;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import noppes.npcs.ModelData;
+
+// Referenced classes of package net.minecraft.src:
+//            EntityAnimal, Item, EntityPlayer, InventoryPlayer, 
+//            ItemStack, World, NBTTagCompound
 
 public class EntityNpcCrystal extends EntityNPCInterface
 {
-    public EntityNpcCrystal(final World world) {
+    public EntityNpcCrystal(World world)
+    {
         super(world);
-        this.scaleX = 0.7f;
-        this.scaleY = 0.7f;
-        this.scaleZ = 0.7f;
-        this.display.texture = "customnpcs:textures/entity/crystal/EnderCrystal.png";
+		scaleX = 0.7f;
+		scaleY = 0.7f;
+		scaleZ = 0.7f;
+		display.texture = "customnpcs:textures/entity/crystal/EnderCrystal.png";
     }
     
     @Override
-    public void onUpdate() {
-        this.isDead = true;
-        if (!this.worldObj.isRemote) {
-            final NBTTagCompound compound = new NBTTagCompound();
-            this.writeToNBT(compound);
-            final EntityCustomNpc npc = new EntityCustomNpc(this.worldObj);
-            npc.readFromNBT(compound);
-            final ModelData data = npc.modelData;
-            data.setEntityClass((Class<? extends EntityLivingBase>)EntityNpcCrystal.class);
-            this.worldObj.spawnEntityInWorld((Entity)npc);
-        }
+    public void onUpdate()
+    {
+    	isDead = true;
+    	if(!worldObj.isRemote){
+	    	NBTTagCompound compound = new NBTTagCompound();
+	    	
+	    	writeToNBT(compound);
+	    	EntityCustomNpc npc = new EntityCustomNpc(worldObj);
+	    	npc.readFromNBT(compound);
+	    	ModelData data = npc.modelData;
+			data.setEntityClass(EntityNpcCrystal.class);
+	    	
+	    	
+	    	worldObj.spawnEntityInWorld(npc);
+    	}
         super.onUpdate();
     }
+
 }

@@ -1,0 +1,13 @@
+Setup:
+gradlew setupDecompWorkspace --refresh-dependencies
+
+IntelliJ:
+gradlew idea
+gradlew genIntellijRuns
+
+Eclipse:
+gradlew eclipse
+gradlew genEclipseRuns
+
+Build:
+gradlew build

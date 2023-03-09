@@ -1,37 +1,46 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) braces deadcode fieldsfirst 
 
 package noppes.npcs.entity.old;
 
-import noppes.npcs.ModelData;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.passive.EntityVillager;
-import noppes.npcs.entity.EntityCustomNpc;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import noppes.npcs.ModelData;
+import noppes.npcs.entity.EntityCustomNpc;
 import noppes.npcs.entity.EntityNPCInterface;
+
+// Referenced classes of package net.minecraft.src:
+//            EntityAnimal, Item, EntityPlayer, InventoryPlayer, 
+//            ItemStack, World, NBTTagCompound
 
 public class EntityNPCVillager extends EntityNPCInterface
 {
-    public EntityNPCVillager(final World world) {
+
+    public EntityNPCVillager(World world)
+    {
         super(world);
-        this.display.texture = "textures/entity/villager/villager.png";
+        display.texture = "textures/entity/villager/villager.png";
     }
-    
-    @Override
-    public void onUpdate() {
-        this.isDead = true;
-        if (!this.worldObj.isRemote) {
-            final NBTTagCompound compound = new NBTTagCompound();
-            this.writeToNBT(compound);
-            final EntityCustomNpc npc = new EntityCustomNpc(this.worldObj);
-            npc.readFromNBT(compound);
-            final ModelData data = npc.modelData;
-            data.setEntityClass((Class<? extends EntityLivingBase>)EntityVillager.class);
-            this.worldObj.spawnEntityInWorld((Entity)npc);
-        }
+    public void onUpdate()
+    {
+    	isDead = true;
+
+    	if(!worldObj.isRemote){
+	    	NBTTagCompound compound = new NBTTagCompound();
+	    	
+	    	writeToNBT(compound);
+	    	EntityCustomNpc npc = new EntityCustomNpc(worldObj);
+	    	npc.readFromNBT(compound);
+	    	ModelData data = npc.modelData;
+			data.setEntityClass(EntityVillager.class);
+	    	
+	    	
+	    	worldObj.spawnEntityInWorld(npc);
+    	}
         super.onUpdate();
     }
+
 }

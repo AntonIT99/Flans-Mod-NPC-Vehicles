@@ -1,47 +1,44 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.gui.util;
 
-import java.util.List;
 import java.util.ArrayList;
-import org.lwjgl.opengl.GL11;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.client.gui.GuiScreen;
+import java.util.List;
 
-public class GuiHoverText extends GuiScreen
-{
-    private int x;
-    private int y;
-    public int id;
-    protected static final ResourceLocation buttonTextures;
-    private String text;
-    
-    public GuiHoverText(final int id, final String text, final int x, final int y) {
-        this.text = text;
-        this.id = id;
-        this.x = x;
-        this.y = y;
-    }
-    
-    public void drawScreen(final int par1, final int par2, final float par3) {
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        this.mc.getTextureManager().bindTexture(GuiHoverText.buttonTextures);
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
+public class GuiHoverText extends GuiScreen{
+	private int x, y;
+	public int id;
+
+    protected static final ResourceLocation buttonTextures = new ResourceLocation("customnpcs:textures/gui/info.png");
+	private String text;
+	public GuiHoverText(int id, String text, int x, int y){
+		this.text = text;
+		this.id = id;
+		this.x = x;
+		this.y = y;
+	}
+	
+	@Override
+    public void drawScreen(int par1, int par2, float par3){
+		GL11.glColor4f(1, 1, 1, 1);
+        mc.getTextureManager().bindTexture(buttonTextures);
         this.drawTexturedModalRect(this.x, this.y, 0, 0, 12, 12);
-        if (this.inArea(this.x, this.y, 12, 12, par1, par2)) {
-            final List<String> lines = new ArrayList<String>();
-            lines.add(this.text);
-            this.drawHoveringText((List)lines, this.x + 8, this.y + 6, this.fontRendererObj);
-            GL11.glDisable(2896);
+        
+        if(inArea(x, y, 12, 12, par1, par2)){
+	        List<String> lines = new ArrayList<String>();
+	        lines.add(text);
+	        this.drawHoveringText(lines, x + 8, y + 6, this.fontRendererObj);
+	        GL11.glDisable(GL11.GL_LIGHTING);
         }
     }
-    
-    public boolean inArea(final int x, final int y, final int width, final int height, final int mouseX, final int mouseY) {
-        return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
-    }
-    
-    static {
-        buttonTextures = new ResourceLocation("customnpcs:textures/gui/info.png");
-    }
+	public boolean inArea(int x, int y, int width, int height, int mouseX, int mouseY){
+		if(mouseX < x || mouseX > x + width || mouseY < y || mouseY > y + height)
+			return false;
+		return true;
+	}
 }

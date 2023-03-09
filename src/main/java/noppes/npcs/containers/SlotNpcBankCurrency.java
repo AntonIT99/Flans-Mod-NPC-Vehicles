@@ -1,26 +1,34 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.containers;
 
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 public class SlotNpcBankCurrency extends Slot
 {
-    public ItemStack item;
-    
-    public SlotNpcBankCurrency(final ContainerNPCBankInterface containerplayer, final IInventory iinventory, final int i, final int j, final int k) {
+
+    public ItemStack item; 
+
+    public SlotNpcBankCurrency(ContainerNPCBankInterface containerplayer, IInventory iinventory, int i, int j, int k)
+    {
         super(iinventory, i, j, k);
     }
-    
-    public int getSlotStackLimit() {
+
+    @Override
+    public int getSlotStackLimit()
+    {
         return 64;
     }
-    
-    public boolean isItemValid(final ItemStack itemstack) {
-        return this.item != null && (this.item.getItem() == itemstack.getItem() && (!this.item.getHasSubtypes() || this.item.getItemDamage() == itemstack.getItemDamage()));
+
+    @Override
+    public boolean isItemValid(ItemStack itemstack)
+    {
+    	if(item == null)
+    		return false;
+		if(item.getItem() == itemstack.getItem()){
+			if(!item.getHasSubtypes() || item.getItemDamage() == itemstack.getItemDamage())
+				return true;
+		}
+		return false;
     }
 }

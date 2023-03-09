@@ -1,37 +1,29 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.util;
 
-import noppes.npcs.entity.EntityNPCInterface;
 import java.util.UUID;
+
+import noppes.npcs.entity.EntityNPCInterface;
+
 import com.mojang.authlib.GameProfile;
 
-public class GameProfileAlt extends GameProfile
-{
-    private static final UUID id;
-    public EntityNPCInterface npc;
-    
-    public GameProfileAlt() {
-        super((UUID)null, "customnpc");
-    }
-    
+public class GameProfileAlt extends GameProfile{
+	private static final UUID id = UUID.randomUUID();
+	public EntityNPCInterface npc;
+	public GameProfileAlt() {
+		super(null, "customnpc");
+	}
+
+	@Override
     public String getName() {
-        if (this.npc == null) {
-            return super.getName();
-        }
-        return this.npc.getCommandSenderName();
+    	if(npc == null)
+    		return super.getName();
+        return npc.getCommandSenderName();
     }
     
-    public UUID getId() {
-        if (this.npc == null) {
-            return GameProfileAlt.id;
-        }
-        return this.npc.getPersistentID();
-    }
-    
-    static {
-        id = UUID.randomUUID();
+    @Override
+    public UUID getId(){
+    	if(npc == null)
+    		return id;
+    	return npc.getPersistentID();
     }
 }

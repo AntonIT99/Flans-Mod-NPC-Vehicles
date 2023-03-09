@@ -1,92 +1,91 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.gui;
 
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.RenderHelper;
-import org.lwjgl.opengl.GL11;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.entity.RenderManager;
 import noppes.npcs.entity.EntityNPCInterface;
+
+import org.lwjgl.opengl.GL11;
 
 public class GuiNpcTextureCloaks extends GuiNpcSelectionInterface
 {
-    public GuiNpcTextureCloaks(final EntityNPCInterface npc, final GuiScreen parent) {
-        super(npc, parent, npc.display.cloakTexture.isEmpty() ? "customnpcs:textures/cloak/" : npc.display.cloakTexture);
-        this.title = "Select Cloak";
+    public GuiNpcTextureCloaks(EntityNPCInterface npc,GuiScreen parent)
+    {
+    	super(npc, parent, npc.display.cloakTexture.isEmpty()?"customnpcs:textures/cloak/":npc.display.cloakTexture);
+    	title = "Select Cloak";
     }
-    
-    @Override
-    public void initGui() {
+
+    public void initGui()
+    {
         super.initGui();
-        final int index = this.npc.display.cloakTexture.lastIndexOf("/");
-        if (index > 0) {
-            final String asset = this.npc.display.cloakTexture.substring(index + 1);
-            if (this.npc.display.cloakTexture.equals(this.assets.getAsset(asset))) {
-                this.slot.selected = asset;
-            }
+        int index = npc.display.cloakTexture.lastIndexOf("/");
+        if(index > 0){
+        	String asset = npc.display.cloakTexture.substring(index + 1);
+        	if(npc.display.cloakTexture.equals(assets.getAsset(asset)))
+        		slot.selected = asset;
         }
     }
-    
-    @Override
-    public void drawScreen(final int i, final int j, final float f) {
-        final int l = this.width / 2 - 180;
-        final int i2 = this.height / 2 - 90;
-        GL11.glEnable(32826);
-        GL11.glEnable(2903);
+
+
+    public void drawScreen(int i, int j, float f)
+    {
+    	int l = (width/2)-180;
+    	int i1 =  (height/2) - 90;
+        GL11.glEnable(32826 /*GL_RESCALE_NORMAL_EXT*/);
+        GL11.glEnable(2903 /*GL_COLOR_MATERIAL*/);
         GL11.glPushMatrix();
-        GL11.glTranslatef((float)(l + 33), (float)(i2 + 131), 50.0f);
-        final float f2 = 250.0f / this.npc.display.modelSize;
-        GL11.glScalef(-f2, f2, f2);
-        GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
-        final float f3 = this.npc.renderYawOffset;
-        final float f4 = this.npc.rotationYaw;
-        final float f5 = this.npc.rotationPitch;
-        final float f6 = this.npc.rotationYawHead;
-        final float f7 = l + 33 - i;
-        final float f8 = i2 + 131 - 50 - j;
-        GL11.glRotatef(135.0f, 0.0f, 1.0f, 0.0f);
+        GL11.glTranslatef(l + 33, i1 + 131, 50F);
+        float f1 = (50F * 5) / npc.display.modelSize;
+        GL11.glScalef(-f1, f1, f1);
+        GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+        float f2 = npc.renderYawOffset;
+        float f3 = npc.rotationYaw;
+        float f4 = npc.rotationPitch;
+        float f7 = npc.rotationYawHead;
+        float f5 = (float)(l + 33) - i;
+        float f6 = (float)((i1 + 131) - 50) - j;
+        GL11.glRotatef(135F, 0.0F, 1.0F, 0.0F);
         RenderHelper.enableStandardItemLighting();
-        GL11.glRotatef(-135.0f, 0.0f, 1.0f, 0.0f);
-        GL11.glRotatef(-(float)Math.atan(f8 / 40.0f) * 20.0f, 1.0f, 0.0f, 0.0f);
-        this.npc.renderYawOffset = (float)Math.atan(f7 / 40.0f) * 20.0f + 180.0f;
-        this.npc.rotationYaw = (float)Math.atan(f7 / 40.0f) * 40.0f + 180.0f;
-        this.npc.rotationPitch = -(float)Math.atan(f8 / 40.0f) * 20.0f;
-        this.npc.rotationYawHead = this.npc.rotationYaw;
-        this.npc.cloakUpdate();
-        GL11.glTranslatef(0.0f, this.npc.yOffset, 0.0f);
-        RenderManager.instance.playerViewY = 180.0f;
-        RenderManager.instance.renderEntityWithPosYaw((Entity)this.npc, 0.0, 0.0, 0.0, 0.0f, 1.0f);
-        this.npc.renderYawOffset = f3;
-        this.npc.rotationYaw = f4;
-        this.npc.rotationPitch = f5;
-        this.npc.rotationYawHead = f6;
+        GL11.glRotatef(-135F, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(-(float)Math.atan(f6 / 40F) * 20F, 1.0F, 0.0F, 0.0F);
+        npc.renderYawOffset = (float)Math.atan(f5 / 40F) * 20F + 180;
+        npc.rotationYaw = (float)Math.atan(f5 / 40F) * 40f + 180;
+        npc.rotationPitch = -(float)Math.atan(f6 / 40F) * 20F;
+        npc.rotationYawHead = npc.rotationYaw;
+		npc.cloakUpdate();
+        GL11.glTranslatef(0.0F, npc.yOffset, 0.0F);
+        RenderManager.instance.playerViewY = 180F;
+        RenderManager.instance.renderEntityWithPosYaw(npc, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
+        npc.renderYawOffset = f2;
+        npc.rotationYaw = f3;
+        npc.rotationPitch = f4;
+        npc.rotationYawHead = f7;
         GL11.glPopMatrix();
         RenderHelper.disableStandardItemLighting();
-        GL11.glDisable(32826);
+        GL11.glDisable(32826 /*GL_RESCALE_NORMAL_EXT*/);
+
         OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-        GL11.glDisable(3553);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
         OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+        
         super.drawScreen(i, j, f);
     }
-    
     @Override
-    public void elementClicked() {
-        if (this.dataTextures.contains(this.slot.selected) && this.slot.selected != null) {
-            this.npc.display.cloakTexture = this.assets.getAsset(this.slot.selected);
-            this.npc.textureCloakLocation = null;
-        }
+    public void elementClicked(){
+    	if(dataTextures.contains(slot.selected) && slot.selected != null){
+    		npc.display.cloakTexture = assets.getAsset(slot.selected);
+    		npc.textureCloakLocation = null;
+    	}
     }
     
-    @Override
-    public void save() {
-    }
-    
-    @Override
-    public String[] getExtension() {
-        return new String[] { "png" };
-    }
+	public void save() {
+	}
+
+	@Override
+	public String[] getExtension() {
+		return new String[]{"png"};
+	}
+
+
 }

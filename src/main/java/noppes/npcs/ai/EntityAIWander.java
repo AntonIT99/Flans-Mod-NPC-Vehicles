@@ -1,23 +1,17 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.ai;
 
-import noppes.npcs.controllers.Line;
-import net.minecraft.entity.EntityCreature;
-import noppes.npcs.CustomNpcs;
 import java.util.Iterator;
 import java.util.List;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.Vec3;
-import net.minecraft.entity.EntityLivingBase;
+
+import net.minecraft.command.IEntitySelector;
+import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
+import noppes.npcs.CustomNpcs;
 import noppes.npcs.ai.selector.NPCInteractSelector;
 import noppes.npcs.constants.AiMutex;
-import net.minecraft.command.IEntitySelector;
+import noppes.npcs.controllers.data.Line;
 import noppes.npcs.entity.EntityNPCInterface;
-import net.minecraft.entity.ai.EntityAIBase;
 
 public class EntityAIWander extends EntityAIBase
 {
@@ -27,100 +21,110 @@ public class EntityAIWander extends EntityAIBase
     private double yPosition;
     private double zPosition;
     private EntityNPCInterface nearbyNPC;
-    
-    public EntityAIWander(final EntityNPCInterface npc) {
+
+    public EntityAIWander(EntityNPCInterface npc){
         this.entity = npc;
-        this.setMutexBits((int)AiMutex.PASSIVE);
-        this.selector = (IEntitySelector)new NPCInteractSelector(npc);
+        this.setMutexBits(AiMutex.PASSIVE);
+        selector = new NPCInteractSelector(npc);
     }
-    
-    public boolean shouldExecute() {
-        if (this.entity.getAge() >= 100 || !this.entity.getNavigator().noPath() || this.entity.isInteracting() || this.entity.getRNG().nextInt(80) != 0) {
+
+    @Override
+    public boolean shouldExecute(){
+        if (this.entity.getAge() >= 100 || !entity.getNavigator().noPath() || entity.isInteracting() || this.entity.getRNG().nextInt(80) != 0){
             return false;
         }
-        if (this.entity.ai.npcInteracting && this.entity.getRNG().nextInt(4) == 1) {
-            this.nearbyNPC = this.getNearbyNPC();
+        if(entity.ai.npcInteracting && entity.getRNG().nextInt(4) == 1)
+        	nearbyNPC = getNearbyNPC();
+        
+        if(nearbyNPC != null){
+            this.xPosition = MathHelper.floor_double(nearbyNPC.posX);
+            this.yPosition = MathHelper.floor_double(nearbyNPC.posY);
+            this.zPosition = MathHelper.floor_double(nearbyNPC.posZ);
+    		nearbyNPC.addInteract(entity);
         }
-        if (this.nearbyNPC != null) {
-            this.xPosition = MathHelper.floor_double(this.nearbyNPC.posX);
-            this.yPosition = MathHelper.floor_double(this.nearbyNPC.posY);
-            this.zPosition = MathHelper.floor_double(this.nearbyNPC.posZ);
-            this.nearbyNPC.addInteract((EntityLivingBase)this.entity);
-        }
-        else {
-            final Vec3 vec = this.getVec();
-            if (vec == null) {
+        else{
+        	Vec3 vec = getVec();
+            if (vec == null){
                 return false;
             }
-            this.xPosition = vec.xCoord;
-            this.yPosition = vec.yCoord;
-            this.zPosition = vec.zCoord;
+            else{
+                this.xPosition = vec.xCoord;
+                this.yPosition = vec.yCoord;
+
+                if(entity.canFly())
+                    this.yPosition = entity.getStartYPos() + entity.getRNG().nextFloat() * 0.75 * entity.ai.walkingRange;
+                this.zPosition = vec.zCoord;
+            }
         }
         return true;
     }
-    
+
+    @Override
     public void updateTask() {
-        if (this.nearbyNPC != null) {
-            this.nearbyNPC.getNavigator().clearPathEntity();
-        }
+    	if(nearbyNPC != null){
+    		nearbyNPC.getNavigator().clearPathEntity();
+    	}
     }
-    
     private EntityNPCInterface getNearbyNPC() {
-        final List<EntityNPCInterface> list = (List<EntityNPCInterface>)this.entity.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this.entity, this.entity.boundingBox.expand((double)this.entity.ai.walkingRange, (this.entity.ai.walkingRange > 7) ? 7.0 : ((double)this.entity.ai.walkingRange), (double)this.entity.ai.walkingRange), this.selector);
-        final Iterator<EntityNPCInterface> ita = list.iterator();
-        while (ita.hasNext()) {
-            final EntityNPCInterface npc = ita.next();
-            if (!npc.ai.stopAndInteract || npc.isAttacking() || !npc.isEntityAlive() || this.entity.faction.isAggressiveToNpc(npc)) {
-                ita.remove();
+		List<EntityNPCInterface> list = entity.worldObj.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(entity.ai.walkingRange, entity.ai.walkingRange > 7?7:entity.ai.walkingRange, entity.ai.walkingRange), selector);
+		Iterator<EntityNPCInterface> ita = list.iterator();
+		while(ita.hasNext()){
+			EntityNPCInterface npc = ita.next();
+			if(!npc.ai.stopAndInteract || npc.isAttacking() || !npc.isEntityAlive() || entity.faction.isAggressiveToNpc(npc))
+				ita.remove();
+		}
+		
+		if(list.isEmpty())
+			return null;
+		
+		return list.get(entity.getRNG().nextInt(list.size()));
+	}
+
+	private Vec3 getVec(){
+    	if(entity.ai.walkingRange > 0){
+            double distance = this.entity.getDistanceSq(this.entity.getStartXPos(), this.entity.getStartYPos(), this.entity.getStartZPos());
+            int range = (int) MathHelper.sqrt_double(this.entity.ai.walkingRange * this.entity.ai.walkingRange - distance);
+            if(range > CustomNpcs.NpcNavRange)
+            	range = CustomNpcs.NpcNavRange;
+            if(range < 3){
+                range = this.entity.ai.walkingRange;
+                if(range > CustomNpcs.NpcNavRange)
+                	range = CustomNpcs.NpcNavRange;
+                Vec3 start = Vec3.createVectorHelper(this.entity.getStartXPos(), this.entity.getStartYPos(), this.entity.getStartZPos());
+                return RandomPositionGeneratorAlt.findRandomTargetBlockTowards(this.entity, range / 2, range / 2 > 7?7:range / 2, start);
             }
-        }
-        if (list.isEmpty()) {
-            return null;
-        }
-        return list.get(this.entity.getRNG().nextInt(list.size()));
-    }
-    
-    private Vec3 getVec() {
-        if (this.entity.ai.walkingRange <= 0) {
-            return RandomPositionGeneratorAlt.findRandomTarget(this.entity, CustomNpcs.NpcNavRange, 7);
-        }
-        final double distance = this.entity.getDistanceSq((double)this.entity.getStartXPos(), this.entity.getStartYPos(), (double)this.entity.getStartZPos());
-        int range = (int)MathHelper.sqrt_double(this.entity.ai.walkingRange * this.entity.ai.walkingRange - distance);
-        if (range > CustomNpcs.NpcNavRange) {
-            range = CustomNpcs.NpcNavRange;
-        }
-        if (range < 3) {
-            range = this.entity.ai.walkingRange;
-            if (range > CustomNpcs.NpcNavRange) {
-                range = CustomNpcs.NpcNavRange;
+            else{
+                return RandomPositionGeneratorAlt.findRandomTarget(this.entity, range, range / 2 > 7?7:range / 2);
             }
-            final Vec3 start = Vec3.createVectorHelper((double)this.entity.getStartXPos(), this.entity.getStartYPos(), (double)this.entity.getStartZPos());
-            return RandomPositionGeneratorAlt.findRandomTargetBlockTowards(this.entity, range / 2, (range / 2 > 7) ? 7 : (range / 2), start);
-        }
-        return RandomPositionGeneratorAlt.findRandomTarget(this.entity, range, (range / 2 > 7) ? 7 : (range / 2));
+    	}
+    	return RandomPositionGeneratorAlt.findRandomTarget(this.entity, CustomNpcs.NpcNavRange, 7);
     }
-    
-    public boolean continueExecuting() {
-        return (this.nearbyNPC == null || (this.selector.isEntityApplicable((Entity)this.nearbyNPC) && this.entity.getDistanceSqToEntity((Entity)this.nearbyNPC) >= this.entity.width * 1.5)) && !this.entity.getNavigator().noPath() && this.entity.isEntityAlive() && !this.entity.isInteracting();
+
+    @Override
+    public boolean continueExecuting(){
+    	if(nearbyNPC != null && (!selector.isEntityApplicable(nearbyNPC) || entity.getDistanceSqToEntity(nearbyNPC) < entity.width * 1.5))
+    		return false;
+        return !this.entity.getNavigator().noPath() && this.entity.isEntityAlive() && !entity.isInteracting();
     }
-    
-    public void startExecuting() {
-        this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, 1.0);
+
+    @Override
+    public void startExecuting(){
+        this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, 1);
     }
-    
+
+    @Override
     public void resetTask() {
-        if (this.nearbyNPC != null && this.entity.getDistanceSqToEntity((Entity)this.nearbyNPC) < 12.0) {
-            final Line line = new Line(".........");
-            line.hideText = true;
-            if (this.entity.getRNG().nextBoolean()) {
-                this.entity.saySurrounding(line);
-            }
-            else {
-                this.nearbyNPC.saySurrounding(line);
-            }
-            this.entity.addInteract((EntityLivingBase)this.nearbyNPC);
-            this.nearbyNPC.addInteract((EntityLivingBase)this.entity);
-        }
-        this.nearbyNPC = null;
+    	if(nearbyNPC != null && entity.getDistanceSqToEntity(nearbyNPC) < 12){
+    		Line line = new Line(".........");
+    		line.hideText = true;
+    		if(entity.getRNG().nextBoolean())
+    			entity.saySurrounding(line);
+    		else
+    			nearbyNPC.saySurrounding(line);
+    		
+    		entity.addInteract(nearbyNPC);
+    		nearbyNPC.addInteract(entity);
+    	}
+    	nearbyNPC = null;
     }
 }

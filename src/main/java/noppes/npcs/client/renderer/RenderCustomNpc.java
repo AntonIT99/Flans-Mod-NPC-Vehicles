@@ -1,121 +1,125 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-import net.minecraft.entity.EntityLiving;
 import java.lang.reflect.Method;
-import net.minecraft.entity.EntityList;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
-import noppes.npcs.controllers.PixelmonHelper;
 import net.minecraft.client.renderer.entity.NPCRendererHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.client.renderer.entity.RenderManager;
-import noppes.npcs.entity.EntityCustomNpc;
-import noppes.npcs.entity.EntityNPCInterface;
-import noppes.npcs.client.model.ModelNPCMale;
+import net.minecraft.client.renderer.entity.RendererLivingEntity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.BossStatus;
 import noppes.npcs.client.model.ModelMPM;
 import noppes.npcs.client.model.util.ModelRenderPassHelper;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.client.renderer.entity.RendererLivingEntity;
+import noppes.npcs.constants.EnumStandingType;
+import noppes.npcs.controllers.PixelmonHelper;
+import noppes.npcs.entity.EntityCustomNpc;
+import noppes.npcs.entity.EntityNPCInterface;
 
-public class RenderCustomNpc extends RenderNPCHumanMale
-{
-    private RendererLivingEntity renderEntity;
-    private EntityLivingBase entity;
-    private ModelRenderPassHelper renderpass;
-    
-    public RenderCustomNpc() {
-        super(new ModelMPM(0.0f), new ModelMPM(1.0f), new ModelMPM(0.5f));
-        this.renderpass = new ModelRenderPassHelper();
+import org.lwjgl.opengl.GL11;
+
+public class RenderCustomNpc extends RenderNPCHumanMale{
+
+	private RendererLivingEntity renderEntity;
+	private EntityLivingBase entity;
+
+	private ModelRenderPassHelper renderpass = new ModelRenderPassHelper();
+
+	// Default Renderer
+	public RenderCustomNpc() {
+		super(new ModelMPM(0,0), new ModelMPM(1,0), new ModelMPM(0.5f,0));
+	}
+
+	@Override
+    public void renderPlayer(EntityNPCInterface npcInterface, double d, double d1, double d2, float f, float f1){
+		EntityCustomNpc npc = (EntityCustomNpc) npcInterface;
+		entity = npc.modelData.getEntity(npc);
+		ModelBase model = null;
+		renderEntity = null;
+		if(entity != null){
+			renderEntity = (RendererLivingEntity) RenderManager.instance.getEntityRenderObject(entity);
+			model = NPCRendererHelper.getMainModel(renderEntity);
+			if(PixelmonHelper.isPixelmon(entity)){
+				try {
+					Class c = Class.forName("com.pixelmonmod.pixelmon.entities.pixelmon.Entity2HasModel");
+					Method m = c.getMethod("getModel");
+					model = (ModelBase) m.invoke(entity);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if(EntityList.getEntityString(entity).equals("doggystyle.Dog")){
+				try {
+					Method m = entity.getClass().getMethod("getBreed");
+					Object breed = m.invoke(entity);
+					m = breed.getClass().getMethod("getModel");
+					model = (ModelBase) m.invoke(breed);
+					model.getClass().getMethod("setPosition", int.class).invoke(model, 0);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			renderPassModel = renderpass;
+			renderpass.renderer = renderEntity;
+			renderpass.entity = entity;
+		}
+		((ModelMPM)this.modelArmor).entityModel = model;
+		((ModelMPM)this.modelArmor).entity = entity;
+
+		((ModelMPM)this.modelArmorChestplate).entityModel = model;
+		((ModelMPM)this.modelArmorChestplate).entity = entity;
+
+		((ModelMPM)this.mainModel).entityModel = model;
+		((ModelMPM)this.mainModel).entity = entity;
+		
+		super.renderPlayer(npc, d, d1, d2, f, f1);
+
+    }    
+	
+	@Override
+    protected void renderEquippedItems(EntityLivingBase entityliving, float f){
+		if(renderEntity != null)
+			NPCRendererHelper.renderEquippedItems(entity, f, renderEntity);
+		else
+			super.renderEquippedItems(entityliving, f);
     }
-    
-    @Override
-    public void renderPlayer(final EntityNPCInterface npcInterface, final double d, final double d1, final double d2, final float f, final float f1) {
-        final EntityCustomNpc npc = (EntityCustomNpc)npcInterface;
-        this.entity = npc.modelData.getEntity(npc);
-        ModelBase model = null;
-        this.renderEntity = null;
-        if (this.entity != null) {
-            this.renderEntity = (RendererLivingEntity)RenderManager.instance.getEntityRenderObject((Entity)this.entity);
-            model = NPCRendererHelper.getMainModel(this.renderEntity);
-            if (PixelmonHelper.isPixelmon((Entity)this.entity)) {
-                try {
-                    final Class c = Class.forName("com.pixelmonmod.pixelmon.entities.pixelmon.Entity2HasModel");
-                    final Method m = c.getMethod("getModel", (Class[])new Class[0]);
-                    model = (ModelBase)m.invoke(this.entity, new Object[0]);
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            if (EntityList.getEntityString((Entity)this.entity).equals("doggystyle.Dog")) {
-                try {
-                    Method i = this.entity.getClass().getMethod("getBreed", (Class<?>[])new Class[0]);
-                    final Object breed = i.invoke(this.entity, new Object[0]);
-                    i = breed.getClass().getMethod("getModel", (Class<?>[])new Class[0]);
-                    model = (ModelBase)i.invoke(breed, new Object[0]);
-                    model.getClass().getMethod("setPosition", Integer.TYPE).invoke(model, 0);
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            this.renderPassModel = this.renderpass;
-            this.renderpass.renderer = this.renderEntity;
-            this.renderpass.entity = this.entity;
-        }
-        ((ModelMPM)this.modelArmor).entityModel = model;
-        ((ModelMPM)this.modelArmor).entity = this.entity;
-        ((ModelMPM)this.modelArmorChestplate).entityModel = model;
-        ((ModelMPM)this.modelArmorChestplate).entity = this.entity;
-        ((ModelMPM)this.mainModel).entityModel = model;
-        ((ModelMPM)this.mainModel).entity = this.entity;
-        super.renderPlayer(npc, d, d1, d2, f, f1);
-    }
-    
-    @Override
-    protected void renderEquippedItems(final EntityLivingBase entityliving, final float f) {
-        if (this.renderEntity != null) {
-            NPCRendererHelper.renderEquippedItems(this.entity, f, this.renderEntity);
-        }
-        else {
-            super.renderEquippedItems(entityliving, f);
-        }
-    }
-    
-    @Override
-    protected int shouldRenderPass(final EntityLivingBase par1EntityLivingBase, final int par2, final float par3) {
-        if (this.renderEntity != null) {
-            return NPCRendererHelper.shouldRenderPass(this.entity, par2, par3, this.renderEntity);
-        }
+
+	@Override
+    protected int shouldRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3){
+		if(renderEntity != null){
+			return NPCRendererHelper.shouldRenderPass(entity, par2, par3, renderEntity);
+		}
         return this.func_130006_a((EntityLiving)par1EntityLivingBase, par2, par3);
     }
-    
-    @Override
-    protected void preRenderCallback(final EntityLivingBase entityliving, final float f) {
-        if (this.renderEntity != null) {
-            final EntityNPCInterface npc = (EntityNPCInterface)entityliving;
-            final int size = npc.display.modelSize;
-            if (this.entity instanceof EntityNPCInterface) {
-                ((EntityNPCInterface)this.entity).display.modelSize = 5;
-            }
-            NPCRendererHelper.preRenderCallback(this.entity, f, this.renderEntity);
-            npc.display.modelSize = size;
-            GL11.glScalef(0.2f * npc.display.modelSize, 0.2f * npc.display.modelSize, 0.2f * npc.display.modelSize);
-        }
-        else {
-            super.preRenderCallback(entityliving, f);
-        }
+	
+	@Override
+    protected void preRenderCallback(EntityLivingBase entityliving, float f){
+		if(renderEntity != null){
+			EntityNPCInterface npc = (EntityNPCInterface) entityliving;
+			int size = npc.display.modelSize;
+			if(entity instanceof EntityNPCInterface){
+				((EntityNPCInterface)entity).display.modelSize = 5;
+			}
+			NPCRendererHelper.preRenderCallback(entity, f, renderEntity);
+			npc.display.modelSize = size;
+	        GL11.glScalef(0.2f * npc.display.modelSize, 0.2f * npc.display.modelSize, 0.2f * npc.display.modelSize);
+		}
+		else
+			super.preRenderCallback(entityliving, f);
     }
-    
-    @Override
-    protected float handleRotationFloat(final EntityLivingBase par1EntityLivingBase, final float par2) {
-        if (this.renderEntity != null) {
-            return NPCRendererHelper.handleRotationFloat(this.entity, par2, this.renderEntity);
-        }
+
+	@Override
+	public void doRender(EntityLiving entityliving, double d, double d1, double d2, float f, float f1){
+		super.doRender(entityliving, d, d1, d2, f, f1);
+	}
+
+	@Override
+    protected float handleRotationFloat(EntityLivingBase par1EntityLivingBase, float par2){
+		if(renderEntity != null){
+			return NPCRendererHelper.handleRotationFloat(entity, par2, renderEntity);
+		}
         return super.handleRotationFloat(par1EntityLivingBase, par2);
     }
 }

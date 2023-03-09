@@ -1,65 +1,71 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.blocks;
 
-import net.minecraft.block.material.MapColor;
-import net.minecraft.world.IBlockAccess;
+import java.util.List;
+
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.item.ItemStack;
-import java.util.List;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockBreakable;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.BlockBreakable;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.IBlockAccess;
 
-public class BlockCrystal extends BlockBreakable
-{
-    public BlockCrystal() {
-        super("customnpcs:npcCrystal", Material.glass, false);
-        this.setLightLevel(0.8f);
-    }
+public class BlockCrystal extends BlockBreakable{
     
-    public boolean isOpaqueCube() {
+	public BlockCrystal() {
+		super("customnpcs:npcCrystal",Material.glass, false);
+		setLightLevel(0.8f);
+	}
+
+    @Override
+    public boolean isOpaqueCube(){
         return false;
     }
     
-    public boolean renderAsNormalBlock() {
+    @Override
+    public boolean renderAsNormalBlock(){
         return false;
-    }
-    
-    public int getRenderBlockPass() {
+    }    
+
+    @Override
+    public int getRenderBlockPass(){
         return 1;
     }
-    
-    public int damageDropped(final int meta) {
+
+    @Override
+    public int damageDropped(int meta){
         return meta;
     }
-    
+
+    @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(final Item item, final CreativeTabs tab, final List list) {
-        for (int i = 0; i < 16; ++i) {
-            list.add(new ItemStack(item, 1, i));
+    public void getSubBlocks(Item item, CreativeTabs tab, List list){
+        for (int i = 0; i < 16; ++i){
+        	list.add(new ItemStack(item, 1, i));
         }
     }
-    
+
+    @Override
     @SideOnly(Side.CLIENT)
-    public int colorMultiplier(final IBlockAccess world, final int x, final int y, final int z) {
-        return this.getRenderColor(world.getBlockMetadata(x, y, z));
+    public int colorMultiplier(IBlockAccess world, int x, int y, int z){
+        return getRenderColor(world.getBlockMetadata(x, y, z));
     }
-    
+
+    @Override
     @SideOnly(Side.CLIENT)
-    public int getRenderColor(final int meta) {
+    public int getRenderColor(int meta){
         return MapColor.getMapColorForBlockColored(meta).colorValue;
     }
-    
-    public MapColor getMapColor(final int p_149728_1_) {
+
+    public MapColor getMapColor(int p_149728_1_){
         return MapColor.getMapColorForBlockColored(p_149728_1_);
     }
-    
-    public String getUnlocalizedName() {
-        return "item.npcCrystal";
+    @Override   
+    public String getUnlocalizedName(){
+    	return "item.npcCrystal";
     }
 }

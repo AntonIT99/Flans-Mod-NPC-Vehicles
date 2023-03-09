@@ -1,18 +1,7 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.constants;
 
-public class AiMutex
-{
-    public static byte PASSIVE;
-    public static byte LOOK;
-    public static byte PATHING;
-    
-    static {
-        AiMutex.PASSIVE = 1;
-        AiMutex.LOOK = 2;
-        AiMutex.PATHING = 4;
-    }
+public class AiMutex {
+	public static byte PASSIVE = 1; //Usually ai which runs ones
+	public static byte LOOK = 2; //Used for ai which affect rotation
+	public static byte PATHING = 4; //Used for ai which runs during pathing
 }

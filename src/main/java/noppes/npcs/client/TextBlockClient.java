@@ -1,89 +1,86 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client;
 
-import net.minecraft.util.IChatComponent;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.Minecraft;
-import noppes.npcs.NoppesStringUtils;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
+import noppes.npcs.NoppesStringUtils;
 import noppes.npcs.TextBlock;
+import noppes.npcs.controllers.data.Dialog;
+import noppes.npcs.entity.EntityNPCInterface;
 
-public class TextBlockClient extends TextBlock
-{
-    private ChatStyle style;
-    public int color;
-    private String name;
-    private ICommandSender sender;
-    
-    public TextBlockClient(final ICommandSender sender, final String text, final int lineWidth, final int color, final Object... obs) {
-        this(text, lineWidth, false, obs);
-        this.color = color;
-        this.sender = sender;
-    }
-    
-    public TextBlockClient(final String name, final String text, final int lineWidth, final int color, final Object... obs) {
-        this(text, lineWidth, false, obs);
-        this.color = color;
-        this.name = name;
-    }
-    
-    public String getName() {
-        if (this.sender != null) {
-            return this.sender.getCommandSenderName();
-        }
-        return this.name;
-    }
-    
-    public TextBlockClient(String text, final int lineWidth, final boolean mcFont, final Object... obs) {
-        this.color = 14737632;
-        this.style = new ChatStyle();
-        text = NoppesStringUtils.formatText(text, obs);
-        String line = "";
-        text = text.replace("\n", " \n ");
-        text = text.replace("\r", " \r ");
-        final String[] words = text.split(" ");
-        final FontRenderer font = Minecraft.getMinecraft().fontRenderer;
-        for (final String word : words) {
-            Label_0235: {
-                if (!word.isEmpty()) {
-                    if (word.length() == 1) {
-                        final char c = word.charAt(0);
-                        if (c == '\r' || c == '\n') {
-                            this.addLine(line);
-                            line = "";
-                            break Label_0235;
-                        }
-                    }
-                    String newLine;
-                    if (line.isEmpty()) {
-                        newLine = word;
-                    }
-                    else {
-                        newLine = line + " " + word;
-                    }
-                    if ((mcFont ? font.getStringWidth(newLine) : ClientProxy.Font.width(newLine)) > lineWidth) {
-                        this.addLine(line);
-                        line = word.trim();
-                    }
-                    else {
-                        line = newLine;
-                    }
-                }
-            }
-        }
-        if (!line.isEmpty()) {
-            this.addLine(line);
-        }
-    }
-    
-    private void addLine(final String text) {
-        final ChatComponentText line = new ChatComponentText(text);
-        line.setChatStyle(this.style);
-        this.lines.add((IChatComponent)line);
-    }
+public class TextBlockClient extends TextBlock{
+	private ChatStyle style;
+	public int color = 0xe0e0e0;
+	public int titleColor = 0xe0e0e0;
+	public int titlePos = 0;
+	private String name;
+	private ICommandSender sender;
+
+	public TextBlockClient(ICommandSender sender, Dialog dialog, Object... obs) {
+		this(dialog.text, dialog.textWidth, false, obs);
+		this.color = dialog.color;
+		this.titleColor = dialog.titleColor;
+		this.titlePos = dialog.titlePos;
+		this.sender = sender;
+	}
+
+	public TextBlockClient(String name, String text, int lineWidth, int color, Object... obs) {
+		this(text, lineWidth, false, obs);
+		this.color = color;
+		this.name = name;
+	}
+	
+	public String getName(){
+		if(sender != null)
+			return sender.getCommandSenderName();
+		return name;
+	}
+	
+	public TextBlockClient(String text, int lineWidth, boolean mcFont, Object... obs){
+		style = new ChatStyle();
+		text = NoppesStringUtils.formatText(text, obs);
+		
+		String line = "";
+		text = text.replace("\n", " \n ");
+		text = text.replace("\r", " \r ");
+		String[] words = text.split(" ");
+		
+		FontRenderer font = Minecraft.getMinecraft().fontRenderer;
+		for(String word : words){
+			if(word.isEmpty())
+				continue;
+			if(word.length() == 1){
+				char c = word.charAt(0);
+				if(c == '\r' || c == '\n'){
+	        		addLine(line);
+					line = "";
+					continue;
+				}
+			}
+			String newLine;
+			if(line.isEmpty())
+				newLine = word;
+			else
+				newLine = line + " " + word;
+
+			if((mcFont?font.getStringWidth(newLine): ClientProxy.Font.width(newLine)) > lineWidth){
+				addLine(line);
+				line = word.trim();
+			}
+			else{
+				line = newLine;
+			}			
+		}
+		if(!line.isEmpty())
+			addLine(line);
+	}
+
+	private void addLine(String text){
+		ChatComponentText line = new ChatComponentText(text);
+		line.setChatStyle(style);
+		lines.add(line);
+	}
 }

@@ -1,59 +1,61 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) braces deadcode fieldsfirst 
 
 package noppes.npcs.entity.old;
 
-import noppes.npcs.ModelData;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityEnderman;
-import noppes.npcs.entity.EntityCustomNpc;
 import net.minecraft.nbt.NBTTagCompound;
-import noppes.npcs.constants.EnumAnimation;
 import net.minecraft.world.World;
+import noppes.npcs.ModelData;
+import noppes.npcs.constants.EnumAnimation;
+import noppes.npcs.controllers.data.SkinOverlay;
+import noppes.npcs.entity.EntityCustomNpc;
 
 public class EntityNPCEnderman extends EntityNpcEnderchibi
 {
-    public EntityNPCEnderman(final World world) {
+    public EntityNPCEnderman(World world)
+    {
         super(world);
-        this.display.texture = "customnpcs:textures/entity/enderman/enderman.png";
-        this.display.glowTexture = "customnpcs:textures/overlays/ender_eyes.png";
-        this.width = 0.6f;
-        this.height = 2.9f;
+        display.texture = "customnpcs:textures/entity/enderman/enderman.png";
+        //display.glowTexture = ;
+		display.skinOverlayData.overlayList.put(0,new SkinOverlay("customnpcs:textures/overlays/ender_eyes.png"));
+        this.width = 0.6F;
+        this.height = 2.9F;
     }
     
-    @Override
     public void updateHitbox() {
-        if (this.currentAnimation == EnumAnimation.LYING) {
-            final float n = 0.2f;
-            this.height = n;
-            this.width = n;
-        }
-        else if (this.currentAnimation == EnumAnimation.SITTING) {
-            this.width = 0.6f;
-            this.height = 2.3f;
-        }
-        else {
-            this.width = 0.6f;
-            this.height = 2.9f;
-        }
-        this.width = this.width / 5.0f * this.display.modelSize;
-        this.height = this.height / 5.0f * this.display.modelSize;
-    }
+		
+		if(currentAnimation == EnumAnimation.LYING){
+			width = height = 0.2f;
+		}
+		else if (currentAnimation == EnumAnimation.SITTING){
+			width = 0.6f;
+			height = 2.3f;
+		}
+		else{
+			width = 0.6f;
+			height = 2.9f;
+		}
+		width = (width / 5f) * display.modelSize;
+		height = (height / 5f) * display.modelSize;
+	}
     
-    @Override
-    public void onUpdate() {
-        this.isDead = true;
-        if (!this.worldObj.isRemote) {
-            final NBTTagCompound compound = new NBTTagCompound();
-            this.writeToNBT(compound);
-            final EntityCustomNpc npc = new EntityCustomNpc(this.worldObj);
-            npc.readFromNBT(compound);
-            final ModelData data = npc.modelData;
-            data.setEntityClass((Class<? extends EntityLivingBase>)EntityEnderman.class);
-            this.worldObj.spawnEntityInWorld((Entity)npc);
-        }
+    public void onUpdate()
+    {
+    	isDead = true;
+
+    	if(!worldObj.isRemote){
+	    	NBTTagCompound compound = new NBTTagCompound();
+	    	
+	    	writeToNBT(compound);
+	    	EntityCustomNpc npc = new EntityCustomNpc(worldObj);
+	    	npc.readFromNBT(compound);
+	    	ModelData data = npc.modelData;
+			data.setEntityClass(EntityEnderman.class);
+	    	
+	    	worldObj.spawnEntityInWorld(npc);
+    	}
         super.onUpdate();
     }
 }

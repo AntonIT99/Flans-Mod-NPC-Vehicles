@@ -1,32 +1,22 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.blocks.tiles;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-public class TileCouchWood extends TileColorable
-{
-    public boolean hasLeft;
-    public boolean hasRight;
-    
-    public TileCouchWood() {
-        this.hasLeft = false;
-        this.hasRight = false;
-    }
-    
-    @Override
-    public void readFromNBT(final NBTTagCompound compound) {
+
+public class TileCouchWood extends TileColorable {
+	public boolean hasLeft = false;
+	public boolean hasRight = false;
+	
+
+    public void readFromNBT(NBTTagCompound compound){
         super.readFromNBT(compound);
-        this.hasLeft = compound.getBoolean("CouchLeft");
-        this.hasRight = compound.getBoolean("CouchRight");
+        hasLeft = compound.getBoolean("CouchLeft");
+        hasRight = compound.getBoolean("CouchRight");
     }
-    
-    @Override
-    public void writeToNBT(final NBTTagCompound compound) {
-        super.writeToNBT(compound);
-        compound.setBoolean("CouchLeft", this.hasLeft);
-        compound.setBoolean("CouchRight", this.hasRight);
+
+    public void writeToNBT(NBTTagCompound compound){
+    	super.writeToNBT(compound);
+    	compound.setBoolean("CouchLeft", hasLeft);
+    	compound.setBoolean("CouchRight", hasRight);
     }
 }

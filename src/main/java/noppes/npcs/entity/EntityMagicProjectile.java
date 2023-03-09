@@ -1,35 +1,36 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.entity;
 
-import net.minecraft.util.StatCollector;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.world.World;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
 
-public class EntityMagicProjectile extends EntityProjectile
-{
-    private EntityPlayer player;
-    private ItemStack equiped;
-    
-    public EntityMagicProjectile(final World par1World, final EntityPlayer player, final ItemStack item, final boolean isNPC) {
-        super(par1World, (EntityLivingBase)player, item, isNPC);
-        this.player = player;
-        this.equiped = player.inventory.getCurrentItem();
-    }
-    
-    @Override
-    public void onUpdate() {
-        if (this.player.inventory.getCurrentItem() != this.equiped) {
-            this.setDead();
-        }
-        super.onUpdate();
-    }
-    
-    public String getCommandSenderName() {
-        return StatCollector.translateToLocal("entity.throwableitem.name");
-    }
+public class EntityMagicProjectile extends EntityProjectile{
+	private EntityPlayer player;
+	private ItemStack equiped;
+
+	public EntityMagicProjectile(World par1World){
+		super(par1World);
+	}
+
+	public EntityMagicProjectile(World par1World,
+								 EntityPlayer player, ItemStack item, boolean isNPC) {
+		super(par1World, player, item, isNPC);
+
+		this.player = player;
+		this.equiped = player.inventory.getCurrentItem();
+	}
+
+	@Override
+	public void onUpdate(){
+		if(!worldObj.isRemote && (player == null || player.inventory.getCurrentItem() != equiped))
+			this.setDead();
+		super.onUpdate();
+	}
+
+	@Override
+	public String getCommandSenderName(){
+		return StatCollector.translateToLocal("entity.throwableitem.name");
+	}
 }

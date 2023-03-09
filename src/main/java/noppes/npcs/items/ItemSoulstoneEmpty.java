@@ -1,105 +1,106 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.items;
 
-import noppes.npcs.CustomNpcs;
-import net.minecraft.entity.passive.EntityAnimal;
-import noppes.npcs.roles.RoleFollower;
-import noppes.npcs.CustomNpcsPermissions;
-import noppes.npcs.NoppesUtilServer;
-import net.minecraft.entity.EntityLiving;
-import noppes.npcs.roles.RoleCompanion;
-import noppes.npcs.constants.EnumRoleType;
-import noppes.npcs.entity.EntityNPCInterface;
-import net.minecraft.entity.Entity;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.entity.EntityList;
-import net.minecraft.nbt.NBTBase;
-import noppes.npcs.controllers.ServerCloneController;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import noppes.npcs.CustomItems;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.entity.EntityLivingBase;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.item.Item;
+import noppes.npcs.CustomNpcs;
+import noppes.npcs.CustomNpcsPermissions;
+import noppes.npcs.NoppesUtilServer;
+import noppes.npcs.constants.EnumRoleType;
+import noppes.npcs.controllers.PlayerDataController;
+import noppes.npcs.controllers.ServerCloneController;
+import noppes.npcs.controllers.data.PlayerData;
+import noppes.npcs.entity.EntityNPCInterface;
+import noppes.npcs.roles.RoleCompanion;
+import noppes.npcs.roles.RoleFollower;
 
-public class ItemSoulstoneEmpty extends Item
-{
-    public ItemSoulstoneEmpty() {
-        this.setMaxStackSize(64);
+public class ItemSoulstoneEmpty extends Item {
+	public ItemSoulstoneEmpty(){
+		this.setMaxStackSize(64);
+	}
+    @Override
+    public Item setUnlocalizedName(String name){
+    	super.setUnlocalizedName(name);
+		GameRegistry.registerItem(this, name);
+    	return this;
     }
     
-    public Item setUnlocalizedName(final String name) {
-        super.setUnlocalizedName(name);
-        GameRegistry.registerItem((Item)this, name);
-        return this;
-    }
-    
-    public boolean store(final EntityLivingBase entity, final ItemStack stack, final EntityPlayer player) {
-        if (!this.hasPermission(entity, player) || entity instanceof EntityPlayer) {
-            return false;
+	public boolean store(EntityLivingBase entity, ItemStack stack, EntityPlayer player) {
+		if(!hasPermission(entity, player) || entity instanceof EntityPlayer)
+			return false;
+		ItemStack stone = new ItemStack(CustomItems.soulstoneFull);
+		NBTTagCompound compound = new NBTTagCompound();
+		if(!entity.writeToNBTOptional(compound))
+			return false;
+		ServerCloneController.Instance.cleanTags(compound);
+		if(stone.stackTagCompound == null)
+			stone.stackTagCompound = new NBTTagCompound();
+		stone.stackTagCompound.setTag("Entity", compound);
+		
+        String name = EntityList.getEntityString(entity);
+        if (name == null)
+        	name = "generic";
+		stone.stackTagCompound.setString("Name", "entity." + name + ".name");
+        if(entity instanceof EntityNPCInterface){
+        	EntityNPCInterface npc = (EntityNPCInterface) entity;
+    		stone.stackTagCompound.setString("DisplayName", entity.getCommandSenderName());
+    		if(npc.advanced.role == EnumRoleType.Companion){
+    			RoleCompanion role = (RoleCompanion) npc.roleInterface;
+        		stone.stackTagCompound.setString("ExtraText", "companion.stage,: ," + role.stage.name);
+    		}
         }
-        final ItemStack stone = new ItemStack(CustomItems.soulstoneFull);
-        final NBTTagCompound compound = new NBTTagCompound();
-        if (!entity.writeToNBTOptional(compound)) {
-            return false;
-        }
-        ServerCloneController.Instance.cleanTags(compound);
-        if (stone.stackTagCompound == null) {
-            stone.stackTagCompound = new NBTTagCompound();
-        }
-        stone.stackTagCompound.setTag("Entity", (NBTBase)compound);
-        String name = EntityList.getEntityString((Entity)entity);
-        if (name == null) {
-            name = "generic";
-        }
-        stone.stackTagCompound.setString("Name", "entity." + name + ".name");
-        if (entity instanceof EntityNPCInterface) {
-            final EntityNPCInterface npc = (EntityNPCInterface)entity;
-            stone.stackTagCompound.setString("DisplayName", entity.getCommandSenderName());
-            if (npc.advanced.role == EnumRoleType.Companion) {
-                final RoleCompanion role = (RoleCompanion)npc.roleInterface;
-                stone.stackTagCompound.setString("ExtraText", "companion.stage,: ," + role.stage.name);
-            }
-        }
-        else if (entity instanceof EntityLiving && ((EntityLiving)entity).hasCustomNameTag()) {
-            stone.stackTagCompound.setString("DisplayName", ((EntityLiving)entity).getCustomNameTag());
-        }
-        NoppesUtilServer.GivePlayerItem((Entity)player, player, stone);
-        if (!player.capabilities.isCreativeMode) {
-            stack.splitStack(1);
-            if (stack.stackSize <= 0) {
-                player.destroyCurrentEquippedItem();
-            }
-        }
-        return entity.isDead = true;
-    }
-    
-    public boolean hasPermission(final EntityLivingBase entity, final EntityPlayer player) {
-        if (NoppesUtilServer.isOp(player) && player.capabilities.isCreativeMode) {
-            return true;
-        }
-        if (CustomNpcsPermissions.enabled() && CustomNpcsPermissions.hasPermission(player, CustomNpcsPermissions.SOULSTONE_ALL)) {
-            return true;
-        }
-        if (entity instanceof EntityNPCInterface) {
-            final EntityNPCInterface npc = (EntityNPCInterface)entity;
-            if (npc.advanced.role == EnumRoleType.Companion) {
-                final RoleCompanion role = (RoleCompanion)npc.roleInterface;
-                if (role.getOwner() == player) {
-                    return true;
-                }
-            }
-            if (npc.advanced.role == EnumRoleType.Follower) {
-                final RoleFollower role2 = (RoleFollower)npc.roleInterface;
-                if (role2.getOwner() == player) {
-                    return !role2.refuseSoulStone;
-                }
-            }
-            return false;
-        }
-        return entity instanceof EntityAnimal && CustomNpcs.SoulStoneAnimals;
-    }
+        else if(entity instanceof EntityLiving && ((EntityLiving)entity).hasCustomNameTag())
+    		stone.stackTagCompound.setString("DisplayName", ((EntityLiving)entity).getCustomNameTag());
+		NoppesUtilServer.GivePlayerItem(player, player, stone);
+		
+		if(!player.capabilities.isCreativeMode){
+			stack.splitStack(1);
+			if(stack.stackSize <= 0)
+				player.destroyCurrentEquippedItem();
+		}
+		
+		entity.isDead = true;
+		return true;
+	}
+	
+	public boolean hasPermission(EntityLivingBase entity, EntityPlayer player){
+		if(NoppesUtilServer.isOp(player) && player.capabilities.isCreativeMode)
+			return true;
+		if(CustomNpcsPermissions.enabled() && CustomNpcsPermissions.hasPermission(player, CustomNpcsPermissions.SOULSTONE_ALL))
+			return true;
+		if(entity instanceof EntityNPCInterface){
+			EntityNPCInterface npc = (EntityNPCInterface) entity;
+			if (npc.advanced.refuseSoulStone) return false;
+			if (CustomNpcs.SoulStoneFriendlyNPCs && npc.getFaction() != null) {
+				int p = npc.advanced.minFactionPointsToSoulStone;
+				if (p == -1 && npc.getFaction().isFriendlyToPlayer(player)) return true;
+				else if (p != -1) {
+					PlayerData data = PlayerDataController.instance.getPlayerData(player);
+					return data.factionData.getFactionPoints(npc.getFaction().getId()) >= p;
+				}
+			}
+			if (npc.advanced.role == EnumRoleType.Companion){
+				RoleCompanion role = (RoleCompanion) npc.roleInterface;
+				if(role.getOwner() == player)
+					return true;
+			}
+			if (npc.advanced.role == EnumRoleType.Follower){
+				RoleFollower role = (RoleFollower) npc.roleInterface;
+				if(role.getOwner() == player)
+					return !role.refuseSoulStone;
+			}
+			return CustomNpcs.SoulStoneNPCs;
+		}
+		if (entity instanceof EntityAnimal) return CustomNpcs.SoulStoneAnimals;
+		if (entity instanceof EntityVillager) return CustomNpcs.SoulStoneVillagers;
+		return false;
+	}
 }

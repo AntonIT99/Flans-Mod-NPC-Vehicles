@@ -1,46 +1,63 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.ai.target;
 
-import noppes.npcs.constants.AiMutex;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
-import noppes.npcs.entity.EntityNPCInterface;
 import net.minecraft.entity.ai.EntityAITarget;
+import net.minecraft.entity.passive.EntityTameable;
+import noppes.npcs.constants.AiMutex;
+import noppes.npcs.entity.EntityNPCInterface;
 
 public class EntityAIOwnerHurtTarget extends EntityAITarget
 {
     EntityNPCInterface npc;
     EntityLivingBase theTarget;
     private int field_142050_e;
-    
-    public EntityAIOwnerHurtTarget(final EntityNPCInterface npc) {
-        super((EntityCreature)npc, false);
+
+    public EntityAIOwnerHurtTarget(EntityNPCInterface npc)
+    {
+        super(npc, false);
         this.npc = npc;
-        this.setMutexBits((int)AiMutex.PASSIVE);
+        this.setMutexBits(AiMutex.PASSIVE);
     }
-    
-    public boolean shouldExecute() {
-        if (!this.npc.isFollower() || this.npc.roleInterface == null || !this.npc.roleInterface.defendOwner()) {
+
+    /**
+     * Returns whether the EntityAIBase should begin execution.
+     */
+    public boolean shouldExecute()
+    {
+        if (!this.npc.isFollower() || !(npc.roleInterface != null && npc.roleInterface.defendOwner()))
+        {
             return false;
         }
-        final EntityLivingBase entitylivingbase = this.npc.getOwner();
-        if (entitylivingbase == null) {
-            return false;
+        else
+        {
+            EntityLivingBase entitylivingbase = this.npc.getOwner();
+
+            if (entitylivingbase == null)
+            {
+                return false;
+            }
+            else
+            {
+                this.theTarget = entitylivingbase.getLastAttacker();
+                int i = entitylivingbase.getLastAttackerTime();
+                return i != this.field_142050_e && this.isSuitableTarget(this.theTarget, false);
+            }
         }
-        this.theTarget = entitylivingbase.getLastAttacker();
-        final int i = entitylivingbase.getLastAttackerTime();
-        return i != this.field_142050_e && this.isSuitableTarget(this.theTarget, false);
     }
-    
-    public void startExecuting() {
+
+    /**
+     * Execute a one shot task or start executing a continuous task
+     */
+    public void startExecuting()
+    {
         this.taskOwner.setAttackTarget(this.theTarget);
-        final EntityLivingBase entitylivingbase = this.npc.getOwner();
-        if (entitylivingbase != null) {
+        EntityLivingBase entitylivingbase = this.npc.getOwner();
+
+        if (entitylivingbase != null)
+        {
             this.field_142050_e = entitylivingbase.getLastAttackerTime();
         }
+
         super.startExecuting();
     }
 }

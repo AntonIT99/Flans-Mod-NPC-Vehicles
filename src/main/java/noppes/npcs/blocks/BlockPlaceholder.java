@@ -1,58 +1,59 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import java.util.List;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.world.World;
-import net.minecraft.block.material.Material;
 import net.minecraft.util.IIcon;
-import net.minecraft.block.Block;
+import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockPlaceholder extends Block
-{
-    private IIcon[] icons;
-    
-    public BlockPlaceholder() {
+public class BlockPlaceholder extends Block{
+	
+	private IIcon[] icons = new IIcon[16];
+
+	public BlockPlaceholder() {
         super(Material.rock);
-        this.icons = new IIcon[16];
+	}
+	
+    @Override   
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack){
+    	super.onBlockPlacedBy(par1World, par2, par3, par4, par5EntityLivingBase, par6ItemStack);
+        par1World.setBlockMetadataWithNotify(par2, par3, par4, par6ItemStack.getItemDamage() , 2);
     }
     
-    public void onBlockPlacedBy(final World par1World, final int par2, final int par3, final int par4, final EntityLivingBase par5EntityLivingBase, final ItemStack par6ItemStack) {
-        super.onBlockPlacedBy(par1World, par2, par3, par4, par5EntityLivingBase, par6ItemStack);
-        par1World.setBlockMetadataWithNotify(par2, par3, par4, par6ItemStack.getItemDamage(), 2);
+    @Override   
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List){
+    	for(int i = 0; i < 16; i++)
+    		par3List.add(new ItemStack(par1, 1, i));
     }
-    
-    public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
-        for (int i = 0; i < 16; ++i) {
-            par3List.add(new ItemStack(par1, 1, i));
-        }
-    }
-    
-    public int damageDropped(final int par1) {
+
+    @Override   
+    public int damageDropped(int par1){
         return par1;
     }
-    
+
+    @Override
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(final IIconRegister par1IconRegister) {
-        for (int i = 0; i < 16; ++i) {
-            this.icons[i] = par1IconRegister.registerIcon("customnpcs:placeholder_" + i);
-        }
+    public void registerBlockIcons(IIconRegister par1IconRegister){
+    	for(int i = 0; i < 16; i++){
+    		icons[i] = par1IconRegister.registerIcon("customnpcs:placeholder_" + i);
+    	}
     }
     
+    @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(final int p_149691_1_, final int meta) {
-        if (meta < this.icons.length) {
-            return this.icons[meta];
-        }
-        return this.icons[0];
+    public IIcon getIcon(int p_149691_1_, int meta)
+    {
+    	if(meta < icons.length)
+    		return icons[meta];
+        return icons[0];
     }
+
 }

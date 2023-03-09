@@ -1,13 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.ai;
 
-import net.minecraft.util.Vec3;
-import noppes.npcs.constants.AiMutex;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.RandomPositionGenerator;
+import net.minecraft.util.Vec3;
+import noppes.npcs.constants.AiMutex;
 
 public class EntityAIPanic extends EntityAIBase
 {
@@ -16,32 +13,50 @@ public class EntityAIPanic extends EntityAIBase
     private double randPosX;
     private double randPosY;
     private double randPosZ;
-    
-    public EntityAIPanic(final EntityCreature par1EntityCreature, final float par2) {
+
+    public EntityAIPanic(EntityCreature par1EntityCreature, float par2)
+    {
         this.theEntityCreature = par1EntityCreature;
         this.speed = par2;
-        this.setMutexBits((int)AiMutex.PASSIVE);
+        this.setMutexBits(AiMutex.PASSIVE);
     }
-    
-    public boolean shouldExecute() {
-        if (this.theEntityCreature.getAttackTarget() == null && !this.theEntityCreature.isBurning()) {
+
+    /**
+     * Returns whether the EntityAIBase should begin execution.
+     */
+    public boolean shouldExecute(){
+        if (this.theEntityCreature.getAttackTarget() == null && !this.theEntityCreature.isBurning()){
             return false;
         }
-        final Vec3 var1 = RandomPositionGeneratorAlt.findRandomTarget(this.theEntityCreature, 5, 4);
-        if (var1 == null) {
-            return false;
+        else
+        {
+            Vec3 var1 = RandomPositionGeneratorAlt.findRandomTarget(this.theEntityCreature, 5, 4);
+
+            if (var1 == null){
+                return false;
+            }
+            else{
+                this.randPosX = var1.xCoord;
+                this.randPosY = var1.yCoord;
+                this.randPosZ = var1.zCoord;
+                return true;
+            }
         }
-        this.randPosX = var1.xCoord;
-        this.randPosY = var1.yCoord;
-        this.randPosZ = var1.zCoord;
-        return true;
     }
-    
-    public void startExecuting() {
-        this.theEntityCreature.getNavigator().tryMoveToXYZ(this.randPosX, this.randPosY, this.randPosZ, (double)this.speed);
+
+    /**
+     * Execute a one shot task or start executing a continuous task
+     */
+    public void startExecuting(){
+        this.theEntityCreature.getNavigator().tryMoveToXYZ(this.randPosX, this.randPosY, this.randPosZ, this.speed);
     }
-    
-    public boolean continueExecuting() {
-        return this.theEntityCreature.getAttackTarget() != null && !this.theEntityCreature.getNavigator().noPath();
+
+    /**
+     * Returns whether an in-progress EntityAIBase should continue executing
+     */
+    public boolean continueExecuting(){
+    	if(this.theEntityCreature.getAttackTarget() == null)
+    		return false;
+        return !this.theEntityCreature.getNavigator().noPath();
     }
 }

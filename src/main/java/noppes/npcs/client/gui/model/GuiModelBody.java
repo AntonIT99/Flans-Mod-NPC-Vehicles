@@ -1,171 +1,254 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.gui.model;
 
 import net.minecraft.client.gui.GuiButton;
-import noppes.npcs.ModelPartData;
-import noppes.npcs.client.gui.util.GuiNpcLabel;
-import noppes.npcs.client.gui.util.GuiNpcButton;
-import noppes.npcs.entity.EntityCustomNpc;
 import net.minecraft.client.gui.GuiScreen;
+import noppes.npcs.ModelPartData;
 import noppes.npcs.client.gui.util.GuiModelInterface;
+import noppes.npcs.client.gui.util.GuiNpcButton;
+import noppes.npcs.client.gui.util.GuiNpcLabel;
+import noppes.npcs.entity.EntityCustomNpc;
 
-public class GuiModelBody extends GuiModelInterface
-{
-    private GuiScreen parent;
-    private final String[] arrWing;
-    private final String[] arrBreasts;
-    private final String[] arrParticles;
-    private final String[] arrfins;
-    
-    public GuiModelBody(final GuiScreen parent, final EntityCustomNpc npc) {
-        super(npc);
-        this.arrWing = new String[] { "gui.no", "Player", "Type1", "Type2", "Type3" };
-        this.arrBreasts = new String[] { "gui.no", "Type1", "Type2", "Type3" };
-        this.arrParticles = new String[] { "gui.no", "Player", "Type1", "Type2", "Rainbow" };
-        this.arrfins = new String[] { "gui.no", "Player", "Type1" };
-        this.parent = parent;
-        this.xOffset = 60;
-    }
-    
+public class GuiModelBody extends GuiModelInterface{
+
+	private GuiScreen parent;
+	private final String[] arrBody = new String[]{"gui.no","gui.yes"};
+	private final String[] arrBodywear = new String[]{"gui.no","gui.yes","Solid"};
+	private final String[] arrWing = new String[]{"gui.no","Player","Type1","Type2","Type3","Type4","Type5","Type6","Type7","Type8","Type9",
+            "Type10","Type11","Type12","Type13","Type14","Type15"};
+	private final String[] arrBreasts = new String[]{"gui.no","Type1","Type2","Type3"};
+	private final String[] arrParticles = new String[]{"gui.no","Player","Type1", "Type2", "Rainbow", "Type3", "Type4", "Type5", "Type6", "Type7"};
+	private final String[] arrfins = new String[]{"gui.no","Player","Type1","Type2","Type3","Type4","Type5","Type6"};
+	private final String[] arrskirt = new String[]{"gui.no","Player","Type1"};
+	
+	public GuiModelBody(GuiScreen parent, EntityCustomNpc npc){
+		super(npc);
+		this.parent = parent;
+		this.xOffset = 60;
+	}
+
     @Override
     public void initGui() {
-        super.initGui();
-        int y = this.guiTop + 20;
-        final boolean i = true;
-        final int j = this.guiLeft + 50;
-        y += 22;
-        this.addButton(new GuiNpcButton((int)(i ? 1 : 0), j, y, 70, 20, this.arrBreasts, this.playerdata.breasts));
-        this.addLabel(new GuiNpcLabel(1, "Breasts", this.guiLeft, y + 5, 16777215));
-        final ModelPartData wing = this.playerdata.getPartData("wings");
-        final boolean k = false;
-        final int l = this.guiLeft + 50;
-        y += 22;
-        this.addButton(new GuiNpcButton((int)(k ? 1 : 0), l, y, 70, 20, this.arrWing, (wing == null) ? 0 : (wing.type + 1)));
-        this.addLabel(new GuiNpcLabel(0, "Wings", this.guiLeft, y + 5, 16777215));
-        if (wing != null) {
-            this.addButton(new GuiNpcButton(11, this.guiLeft + 122, y, 40, 20, wing.getColor()));
-        }
-        final ModelPartData particles = this.playerdata.getPartData("particles");
-        final int m = 2;
-        final int j2 = this.guiLeft + 50;
-        y += 22;
-        this.addButton(new GuiNpcButton(m, j2, y, 70, 20, this.arrParticles, this.getParticleIndex(particles)));
-        this.addLabel(new GuiNpcLabel(2, "Particles", this.guiLeft, y + 5, 16777215));
-        if (particles != null && particles.type != 1) {
-            this.addButton(new GuiNpcButton(12, this.guiLeft + 122, y, 40, 20, particles.getColor()));
-        }
-        final ModelPartData fin = this.playerdata.getPartData("fin");
-        final int i2 = 3;
-        final int j3 = this.guiLeft + 50;
-        y += 22;
-        this.addButton(new GuiNpcButton(i2, j3, y, 70, 20, this.arrfins, this.getFinIndex(fin)));
-        this.addLabel(new GuiNpcLabel(3, "Fin", this.guiLeft, y + 5, 16777215));
-        if (fin != null) {
-            this.addButton(new GuiNpcButton(13, this.guiLeft + 122, y, 40, 20, fin.getColor()));
-        }
+    	super.initGui();
+
+		int y = guiTop + 20;
+
+		addButton(new GuiNpcButton(30, guiLeft + 50, y += 22, 70, 20, arrBody, playerdata.hideBody));
+		addLabel(new GuiNpcLabel(30, "Hide", guiLeft, y + 5, 0xFFFFFF));
+
+		if (npc.display.modelType == 1 || npc.display.modelType == 2) {
+			addButton(new GuiNpcButton(8, guiLeft + 50, y += 22, 70, 20, arrBodywear, playerdata.bodywear));
+			addLabel(new GuiNpcLabel(8, "Bodywear", guiLeft, y + 5, 0xFFFFFF));
+		}
+
+    	addButton(new GuiNpcButton(1, guiLeft + 50, y += 22, 70, 20, arrBreasts, playerdata.breasts));
+		addLabel(new GuiNpcLabel(1, "Breasts", guiLeft, y + 5, 0xFFFFFF));
+
+		ModelPartData wing = playerdata.getPartData("wings");
+    	addButton(new GuiNpcButton(0, guiLeft + 50, y += 22, 70, 20, arrWing, wing == null?0:wing.type + 1));
+		addLabel(new GuiNpcLabel(0, "Wings", guiLeft, y + 5, 0xFFFFFF));
+		if(wing != null)
+			addButton(new GuiNpcButton(11, guiLeft + 122, y, 40, 20, wing.getColor()));
+
+		ModelPartData particles = playerdata.getPartData("particles");
+    	addButton(new GuiNpcButton(2, guiLeft + 50, y += 22, 70, 20, arrParticles, getParticleIndex(particles)));
+		addLabel(new GuiNpcLabel(2, "Particles", guiLeft, y + 5, 0xFFFFFF));
+		if(particles != null && particles.type != 1)
+			addButton(new GuiNpcButton(12, guiLeft + 122, y, 40, 20, particles.getColor()));
+
+		ModelPartData fin = playerdata.getPartData("fin");
+    	addButton(new GuiNpcButton(3, guiLeft + 50, y += 22, 70, 20, arrfins, getFinIndex(fin)));
+		addLabel(new GuiNpcLabel(3, "Fin", guiLeft, y + 5, 0xFFFFFF));
+		if(fin != null)
+			addButton(new GuiNpcButton(13, guiLeft + 122, y, 40, 20, fin.getColor()));
+
+		ModelPartData skirt = playerdata.getPartData("skirt");
+		addButton(new GuiNpcButton(4, guiLeft + 50, y += 22, 70, 20, arrskirt, getSkirtindex(skirt)));
+		addLabel(new GuiNpcLabel(4, "Skirt", guiLeft, y + 5, 0xFFFFFF));
+		if(skirt != null)
+			addButton(new GuiNpcButton(14, guiLeft + 122, y, 40, 20, skirt.getColor()));
     }
-    
-    private int getFinIndex(final ModelPartData fin) {
-        if (fin == null) {
+
+
+    private int getFinIndex(ModelPartData fin) {
+        if(fin == null)
             return 0;
-        }
-        return fin.playerTexture ? 1 : 2;
-    }
-    
-    private int getParticleIndex(final ModelPartData particles) {
-        if (particles == null) {
-            return 0;
-        }
-        if (particles.type == 0) {
-            if (particles.playerTexture) {
-                return 1;
-            }
-            if (particles.texture.contains("1")) {
+        if(fin.type == 0){
+            if(fin.playerTexture)
+            return 1;
+            if(fin.texture.contains("1"))
                 return 2;
-            }
-            if (particles.texture.contains("2")) {
+            if(fin.texture.contains("2"))
                 return 3;
-            }
-        }
-        if (particles.type == 1) {
-            return 4;
+            if(fin.texture.contains("3"))
+                return 4;
+            if(fin.texture.contains("4"))
+                return 5;
+            if(fin.texture.contains("5"))
+                return 6;
+            if(fin.texture.contains("6"))
+                return 7;
         }
         return 0;
+	}
+
+	private int getSkirtindex(ModelPartData skirt) {
+		if(skirt == null)
+			return 0;
+		if(skirt.type == 0){
+			if(skirt.playerTexture)
+				return 1;
+			if(skirt.texture.contains("1"))
+				return 2;
+			if(skirt.texture.contains("2"))
+				return 3;
+			if(skirt.texture.contains("3"))
+				return 4;
+			if(skirt.texture.contains("4"))
+				return 5;
+			if(skirt.texture.contains("5"))
+				return 6;
+			if(skirt.texture.contains("6"))
+				return 7;
+		}
+		return 0;
+	}
+
+	private int getParticleIndex(ModelPartData particles) {
+    	if(particles == null)
+    		return 0;
+    	if(particles.type == 0){
+    		if(particles.playerTexture)
+    			return 1;
+    		if(particles.texture.contains("1"))
+    			return 2;
+    		if(particles.texture.contains("2"))
+    			return 3;
+			if(particles.texture.contains("3"))
+				return 5;
+			if(particles.texture.contains("4"))
+				return 6;
+			if(particles.texture.contains("5"))
+				return 7;
+			if(particles.texture.contains("6"))
+				return 8;
+			if(particles.texture.contains("7"))
+				return 9;
+    	}
+    	if(particles.type == 1){
+    		return 4;
+    	}
+    				
+		return 0;
+	}
+
+	@Override
+    protected void actionPerformed(GuiButton btn) {
+    	super.actionPerformed(btn);
+    	GuiNpcButton button = (GuiNpcButton) btn;
+
+    	if(button.id == 0){
+    		if(button.getValue() == 0)
+    			playerdata.removePart("wings");
+    		else{
+    			ModelPartData data = playerdata.getOrCreatePart("wings");
+    			if(button.getValue() > 1)
+    				data.setTexture("wings/wing" + (button.getValue() - 1), button.getValue() - 1);
+    		}
+    		initGui();
+    	}
+    	if(button.id == 1){
+    		playerdata.breasts = (byte) button.getValue();
+    	}
+    	if(button.id == 2){
+    		int value = button.getValue();
+    		if(value == 0)
+    			playerdata.removePart("particles");
+    		else{
+    			ModelPartData particles = playerdata.getOrCreatePart("particles");
+	    		if(value == 1)
+	    			particles.setTexture("", 0);
+	    		if(value == 2)
+	    			particles.setTexture("particle/type1", 0);
+	    		if(value == 3)
+	    			particles.setTexture("particle/type2", 0);
+	    		if(value == 4)
+	    			particles.setTexture("", 1);
+				if(value == 5)
+					particles.setTexture("particle/type3", 0);
+				if(value == 6)
+					particles.setTexture("particle/type4", 0);
+				if(value == 7)
+					particles.setTexture("particle/type5", 0);
+				if(value == 8)
+					particles.setTexture("particle/type6", 0);
+				if(value == 9)
+					particles.setTexture("particle/type7", 0);
+    		}
+    		initGui();
+    	}
+    	if(button.id == 3){
+			int value = button.getValue();
+			if(value == 0)
+				playerdata.removePart("fin");
+			else{
+				ModelPartData particles = playerdata.getOrCreatePart("fin");
+				if(value == 1)
+					particles.setTexture("", 0);
+				if(value == 2)
+					particles.setTexture("fin/fin1", 0);
+				if(value == 3)
+					particles.setTexture("fin/fin2", 0);
+				if(value == 4)
+					particles.setTexture("fin/fin3", 0);
+				if(value == 5)
+					particles.setTexture("fin/fin4", 0);
+				if(value == 6)
+					particles.setTexture("fin/fin5", 0);
+                if(value == 7)
+                    particles.setTexture("fin/fin6", 0);
+
+			}
+			initGui();
+    	}
+
+		if(button.id == 4){
+			int value = button.getValue();
+			if(value == 0)
+				playerdata.removePart("skirt");
+			else{
+				ModelPartData skirt = playerdata.getOrCreatePart("skirt");
+				if(value == 1)
+					skirt.setTexture("", 0);
+				if(value == 2)
+					skirt.setTexture("skirt/skirt1", 0);
+			}
+			initGui();
+		}
+
+		if(button.id == 8){
+			playerdata.bodywear = (byte) button.getValue();
+		}
+
+		if(button.id == 30){
+			playerdata.hideBody = (byte) button.getValue();
+		}
+
+    	if(button.id == 11){
+    		this.mc.displayGuiScreen(new GuiModelColor(this, playerdata.getPartData("wings"), npc));
+    	}
+    	if(button.id == 12){
+    		this.mc.displayGuiScreen(new GuiModelColor(this, playerdata.getPartData("particles"), npc));
+    	}
+    	if(button.id == 13){
+    		this.mc.displayGuiScreen(new GuiModelColor(this, playerdata.getPartData("fin"), npc));
+    	}
+        if(button.id == 14){
+            this.mc.displayGuiScreen(new GuiModelColor(this, playerdata.getPartData("skirt"), npc));
+        }
     }
     
     @Override
-    protected void actionPerformed(final GuiButton btn) {
-        super.actionPerformed(btn);
-        final GuiNpcButton button = (GuiNpcButton)btn;
-        if (button.id == 0) {
-            if (button.getValue() == 0) {
-                this.playerdata.removePart("wings");
-            }
-            else {
-                final ModelPartData data = this.playerdata.getOrCreatePart("wings");
-                if (button.getValue() > 1) {
-                    data.setTexture("wings/wing" + (button.getValue() - 1), button.getValue() - 1);
-                }
-            }
-            this.initGui();
-        }
-        if (button.id == 1) {
-            this.playerdata.breasts = (byte)button.getValue();
-        }
-        if (button.id == 2) {
-            final int value = button.getValue();
-            if (value == 0) {
-                this.playerdata.removePart("particles");
-            }
-            else {
-                final ModelPartData particles = this.playerdata.getOrCreatePart("particles");
-                if (value == 1) {
-                    particles.setTexture("", 0);
-                }
-                if (value == 2) {
-                    particles.setTexture("particle/type1", 0);
-                }
-                if (value == 3) {
-                    particles.setTexture("particle/type2", 0);
-                }
-                if (value == 4) {
-                    particles.setTexture("", 1);
-                }
-            }
-            this.initGui();
-        }
-        if (button.id == 3) {
-            final int value = button.getValue();
-            if (value == 0) {
-                this.playerdata.removePart("fin");
-            }
-            else {
-                final ModelPartData particles = this.playerdata.getOrCreatePart("fin");
-                if (value == 1) {
-                    particles.setTexture("", 0);
-                }
-                if (value == 2) {
-                    particles.setTexture("fin/fin1", 0);
-                }
-            }
-            this.initGui();
-        }
-        if (button.id == 11) {
-            this.mc.displayGuiScreen((GuiScreen)new GuiModelColor(this, this.playerdata.getPartData("wings"), this.npc));
-        }
-        if (button.id == 12) {
-            this.mc.displayGuiScreen((GuiScreen)new GuiModelColor(this, this.playerdata.getPartData("particles"), this.npc));
-        }
-        if (button.id == 13) {
-            this.mc.displayGuiScreen((GuiScreen)new GuiModelColor(this, this.playerdata.getPartData("fin"), this.npc));
-        }
-    }
-    
-    @Override
-    public void close() {
-        this.mc.displayGuiScreen(this.parent);
+    public void close(){
+        this.mc.displayGuiScreen(parent);
     }
 }

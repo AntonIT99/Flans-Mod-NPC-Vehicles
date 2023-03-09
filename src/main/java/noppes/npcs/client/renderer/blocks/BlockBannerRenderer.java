@@ -1,106 +1,109 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.renderer.blocks;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
-import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
-import noppes.npcs.blocks.tiles.TileBanner;
 import net.minecraft.tileentity.TileEntity;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraft.util.ResourceLocation;
 import noppes.npcs.CustomItems;
 import noppes.npcs.blocks.BlockBanner;
-import net.minecraft.util.ResourceLocation;
-import noppes.npcs.client.model.blocks.ModelBannerFlag;
+import noppes.npcs.blocks.tiles.TileBanner;
 import noppes.npcs.client.model.blocks.ModelBanner;
+import noppes.npcs.client.model.blocks.ModelBannerFlag;
 
-public class BlockBannerRenderer extends BlockRendererInterface
-{
-    private final ModelBanner model;
-    private final ModelBannerFlag flag;
-    public static final ResourceLocation resourceFlag;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
+import cpw.mods.fml.client.registry.RenderingRegistry;
+
+public class BlockBannerRenderer extends BlockRendererInterface{
+
+	private final ModelBanner model = new ModelBanner();
+	private final ModelBannerFlag flag = new ModelBannerFlag();
     
-    public BlockBannerRenderer() {
-        this.model = new ModelBanner();
-        this.flag = new ModelBannerFlag();
-        ((BlockBanner)CustomItems.banner).renderId = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler((ISimpleBlockRenderingHandler)this);
+    public static final ResourceLocation resourceFlag = new ResourceLocation("customnpcs","textures/models/BannerFlag.png");
+
+
+    
+    public BlockBannerRenderer(){
+		((BlockBanner)CustomItems.banner).renderId = RenderingRegistry.getNextAvailableRenderId();
+		RenderingRegistry.registerBlockHandler(this);
     }
-    
-    public void renderTileEntityAt(final TileEntity var1, final double var2, final double var4, final double var6, final float var8) {
-        final TileBanner tile = (TileBanner)var1;
-        GL11.glDisable(32826);
-        GL11.glEnable(3008);
+
+	@Override
+	public void renderTileEntityAt(TileEntity var1, double var2, double var4,
+			double var6, float var8) {
+		TileBanner tile = (TileBanner) var1;
+        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
         GL11.glPushMatrix();
         GL11.glTranslatef((float)var2 + 0.5f, (float)var4 + 1.5f, (float)var6 + 0.5f);
-        GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
-        GL11.glRotatef((float)(90 * tile.rotation), 0.0f, 1.0f, 0.0f);
-        GL11.glColor3f(1.0f, 1.0f, 1.0f);
-        BlockRendererInterface.setMaterialTexture(var1.getBlockMetadata());
-        this.model.render(null, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
-        this.bindTexture(BlockBannerRenderer.resourceFlag);
-        final float[] color = BlockBannerRenderer.colorTable[tile.color];
+        //GL11.glScalef(0.95f, 0.95f, 0.95f);
+        GL11.glRotatef(180, 0, 0, 1);
+        GL11.glRotatef(90 * tile.rotation, 0, 1, 0);
+        GL11.glColor3f(1, 1, 1);
+        
+        setMaterialTexture(var1.getBlockMetadata());
+        model.render(null, 0, 0, 0, 0, 0.0F, 0.0625F);
+
+        this.bindTexture(resourceFlag);
+        float[] color = colorTable[tile.color];
         GL11.glColor3f(color[0], color[1], color[2]);
-        this.flag.render(null, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
-        GL11.glPopMatrix();
-        GL11.glColor3f(1.0f, 1.0f, 1.0f);
-        if (tile.icon != null && !this.playerTooFar(tile)) {
-            this.doRender(var2, var4, var6, tile.rotation, tile.icon);
+        flag.render(null, 0, 0, 0, 0, 0.0F, 0.0625F);
+
+		GL11.glPopMatrix();
+        GL11.glColor3f(1, 1, 1);
+        if(tile.icon != null && !this.playerTooFar(tile)){
+        	doRender(var2, var4, var6, tile.rotation, tile.icon);
         }
-    }
-    
-    public void doRender(final double par2, final double par4, final double par6, final int meta, final ItemStack iicon) {
-        if (iicon.getItemSpriteNumber() == 0 && RenderBlocks.renderItemIn3d(Block.getBlockFromItem(iicon.getItem()).getRenderType())) {
-            return;
-        }
+	}
+    public void doRender(double par2, double par4, double par6, int meta, ItemStack iicon)
+    {
+        if (iicon.getItemSpriteNumber() == 0 && RenderBlocks.renderItemIn3d(Block.getBlockFromItem(iicon.getItem()).getRenderType()))
+        	return;
         GL11.glPushMatrix();
-        this.bindTexture(TextureMap.locationItemsTexture);
-        GL11.glTranslatef((float)par2 + 0.5f, (float)par4 + 1.3f, (float)par6 + 0.5f);
-        GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
-        GL11.glRotatef((float)(90 * meta), 0.0f, 1.0f, 0.0f);
-        GL11.glTranslatef(0.0f, 0.0f, -0.14f);
+        bindTexture(TextureMap.locationItemsTexture);
+        GL11.glTranslatef((float)par2 + 0.5f, (float)par4 +1.3f, (float)par6 + 0.5f);
+        GL11.glRotatef(180, 0, 0, 1);
+    	GL11.glRotatef(90 * meta, 0, 1, 0);
+        GL11.glTranslatef(0, 0, -0.14f);
         GL11.glDepthMask(false);
-        final float f2 = 0.05f;
-        final Minecraft mc = Minecraft.getMinecraft();
+        float f2 = 0.05f;
+        Minecraft mc = Minecraft.getMinecraft();
         GL11.glScalef(f2, f2, f2);
-        BlockBannerRenderer.renderer.renderItemIntoGUI(this.func_147498_b(), mc.renderEngine, iicon, -8, -8);
+    	renderer.renderItemIntoGUI(this.func_147498_b(), mc.renderEngine, iicon, -8, -8);
         GL11.glDepthMask(true);
         GL11.glPopMatrix();
     }
-    
-    public void renderInventoryBlock(final Block block, final int metadata, final int modelId, final RenderBlocks renderer) {
+
+	@Override
+	public void renderInventoryBlock(Block block, int metadata, int modelId,
+			RenderBlocks renderer) {
         GL11.glPushMatrix();
-        GL11.glTranslatef(0.0f, 0.44f, 0.0f);
+        GL11.glTranslatef(0, 0.44f, 0);
         GL11.glScalef(0.76f, 0.66f, 0.76f);
-        GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
-        GL11.glRotatef(180.0f, 0.0f, 1.0f, 0.0f);
-        BlockRendererInterface.setMaterialTexture(metadata);
-        GL11.glColor3f(1.0f, 1.0f, 1.0f);
-        this.model.render(null, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
-        this.bindTexture(BlockBannerRenderer.resourceFlag);
-        final float[] color = BlockBannerRenderer.colorTable[15 - metadata];
+        GL11.glRotatef(180, 0, 0, 1);
+        GL11.glRotatef(180, 0, 1, 0);
+
+        setMaterialTexture(metadata);
+        GL11.glColor3f(1, 1, 1);
+        model.render(null, 0, 0, 0, 0, 0.0F, 0.0625F);
+
+        this.bindTexture(resourceFlag);
+        float[] color = colorTable[15 - metadata];
         GL11.glColor3f(color[0], color[1], color[2]);
-        this.flag.render(null, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
-        GL11.glPopMatrix();
-    }
-    
-    public int getRenderId() {
-        return CustomItems.banner.getRenderType();
-    }
-    
-    @Override
-    public int specialRenderDistance() {
-        return 26;
-    }
-    
-    static {
-        resourceFlag = new ResourceLocation("customnpcs", "textures/models/BannerFlag.png");
-    }
+        flag.render(null, 0, 0, 0, 0, 0.0F, 0.0625F);
+		GL11.glPopMatrix();
+	}
+
+	@Override
+	public int getRenderId() {
+		return CustomItems.banner.getRenderType();
+	}
+	
+	public int specialRenderDistance(){
+		return 26;
+	}
 }

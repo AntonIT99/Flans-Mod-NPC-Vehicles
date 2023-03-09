@@ -1,211 +1,204 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.scripted.roles;
 
 import noppes.npcs.entity.EntityNPCInterface;
 import noppes.npcs.roles.JobPuppet;
+import noppes.npcs.scripted.constants.JobType;
+import noppes.npcs.api.jobs.IJobPuppet;
 
-public class ScriptJobPuppet extends ScriptJobInterface
-{
-    private JobPuppet job;
-    
-    public ScriptJobPuppet(final EntityNPCInterface npc) {
-        super(npc);
-        this.job = (JobPuppet)npc.jobInterface;
-    }
-    
-    public int getRotationX(final int part) {
-        if (part == 0) {
-            return this.floatToInt(this.job.head.rotationX);
-        }
-        if (part == 1) {
-            return this.floatToInt(this.job.body.rotationX);
-        }
-        if (part == 2) {
-            return this.floatToInt(this.job.larm.rotationX);
-        }
-        if (part == 3) {
-            return this.floatToInt(this.job.rarm.rotationX);
-        }
-        if (part == 4) {
-            return this.floatToInt(this.job.lleg.rotationX);
-        }
-        if (part == 5) {
-            return this.floatToInt(this.job.rleg.rotationX);
-        }
-        return 0;
-    }
-    
-    public int getRotationY(final int part) {
-        if (part == 0) {
-            return this.floatToInt(this.job.head.rotationY);
-        }
-        if (part == 1) {
-            return this.floatToInt(this.job.body.rotationY);
-        }
-        if (part == 2) {
-            return this.floatToInt(this.job.larm.rotationY);
-        }
-        if (part == 3) {
-            return this.floatToInt(this.job.rarm.rotationY);
-        }
-        if (part == 4) {
-            return this.floatToInt(this.job.lleg.rotationY);
-        }
-        if (part == 5) {
-            return this.floatToInt(this.job.rleg.rotationY);
-        }
-        return 0;
-    }
-    
-    public int getRotationZ(final int part) {
-        if (part == 0) {
-            return this.floatToInt(this.job.head.rotationZ);
-        }
-        if (part == 1) {
-            return this.floatToInt(this.job.body.rotationZ);
-        }
-        if (part == 2) {
-            return this.floatToInt(this.job.larm.rotationZ);
-        }
-        if (part == 3) {
-            return this.floatToInt(this.job.rarm.rotationZ);
-        }
-        if (part == 4) {
-            return this.floatToInt(this.job.lleg.rotationZ);
-        }
-        if (part == 5) {
-            return this.floatToInt(this.job.rleg.rotationZ);
-        }
-        return 0;
-    }
-    
-    public void setRotationX(final int part, final int rotation) {
-        final float f = rotation / 360.0f - 0.5f;
-        if (this.getRotationX(part) != f) {
-            this.npc.script.clientNeedsUpdate = true;
-        }
-        if (part == 0) {
-            this.job.head.rotationX = f;
-        }
-        if (part == 1) {
-            this.job.body.rotationX = f;
-        }
-        if (part == 2) {
-            this.job.larm.rotationX = f;
-        }
-        if (part == 3) {
-            this.job.rarm.rotationX = f;
-        }
-        if (part == 4) {
-            this.job.lleg.rotationX = f;
-        }
-        if (part == 5) {
-            this.job.rleg.rotationX = f;
-        }
-    }
-    
-    public void setRotationY(final int part, final int rotation) {
-        final float f = rotation / 360.0f - 0.5f;
-        if (this.getRotationY(part) != f) {
-            this.npc.script.clientNeedsUpdate = true;
-        }
-        if (part == 0) {
-            this.job.head.rotationY = f;
-        }
-        if (part == 1) {
-            this.job.body.rotationY = f;
-        }
-        if (part == 2) {
-            this.job.larm.rotationY = f;
-        }
-        if (part == 3) {
-            this.job.rarm.rotationY = f;
-        }
-        if (part == 4) {
-            this.job.lleg.rotationY = f;
-        }
-        if (part == 5) {
-            this.job.rleg.rotationY = f;
-        }
-    }
-    
-    public void setRotationZ(final int part, final int rotation) {
-        final float f = rotation / 360.0f - 0.5f;
-        if (this.getRotationZ(part) != f) {
-            this.npc.script.clientNeedsUpdate = true;
-        }
-        if (part == 0) {
-            this.job.head.rotationZ = f;
-        }
-        if (part == 1) {
-            this.job.body.rotationZ = f;
-        }
-        if (part == 2) {
-            this.job.larm.rotationZ = f;
-        }
-        if (part == 3) {
-            this.job.rarm.rotationZ = f;
-        }
-        if (part == 4) {
-            this.job.lleg.rotationZ = f;
-        }
-        if (part == 5) {
-            this.job.rleg.rotationZ = f;
-        }
-    }
-    
-    public boolean isEnabled(final int part) {
-        if (part == 0) {
-            return !this.job.head.disabled;
-        }
-        if (part == 1) {
-            return !this.job.body.disabled;
-        }
-        if (part == 2) {
-            return !this.job.larm.disabled;
-        }
-        if (part == 3) {
-            return !this.job.rarm.disabled;
-        }
-        if (part == 4) {
-            return !this.job.lleg.disabled;
-        }
-        return part == 5 && !this.job.rleg.disabled;
-    }
-    
-    public void setEnabled(final int part, final boolean bo) {
-        if (this.isEnabled(part) != bo) {
-            this.npc.script.clientNeedsUpdate = true;
-        }
-        if (part == 0) {
-            this.job.head.disabled = !bo;
-        }
-        if (part == 1) {
-            this.job.body.disabled = !bo;
-        }
-        if (part == 2) {
-            this.job.larm.disabled = !bo;
-        }
-        if (part == 3) {
-            this.job.rarm.disabled = !bo;
-        }
-        if (part == 4) {
-            this.job.lleg.disabled = !bo;
-        }
-        if (part == 5) {
-            this.job.rleg.disabled = !bo;
-        }
-    }
-    
-    private int floatToInt(final float f) {
-        return (int)((f + 0.5) * 360.0);
-    }
-    
-    @Override
-    public int getType() {
-        return 8;
-    }
+public class ScriptJobPuppet extends ScriptJobInterface implements IJobPuppet {
+	private JobPuppet job;
+	public ScriptJobPuppet(EntityNPCInterface npc){
+		super(npc);
+		this.job = (JobPuppet) npc.jobInterface;
+	}
+
+	/**
+	 * @since 1.7.10c
+	 * @param part Body part (0:head, 1:body, 2:leftarm, 3:rightarm, 4:leftleg, 5:rightleg)
+	 * @return Returns X rotation in degrees (0-360)
+	 */
+	public int getRotationX(int part){
+		if(part == 0)
+			return floatToInt(job.head.rotationX);
+		if(part == 1)
+			return floatToInt(job.body.rotationX);
+		if(part == 2)
+			return floatToInt(job.larm.rotationX);
+		if(part == 3)
+			return floatToInt(job.rarm.rotationX);
+		if(part == 4)
+			return floatToInt(job.lleg.rotationX);
+		if(part == 5)
+			return floatToInt(job.rleg.rotationX);
+		return 0;
+	}
+
+	/**
+	 * @since 1.7.10c
+	 * @param part Body part (0:head, 1:body, 2:leftarm, 3:rightarm, 4:leftleg, 5:rightleg)
+	 * @return Returns Y rotation in degrees (0-360)
+	 */
+	public int getRotationY(int part){
+		if(part == 0)
+			return floatToInt(job.head.rotationY);
+		if(part == 1)
+			return floatToInt(job.body.rotationY);
+		if(part == 2)
+			return floatToInt(job.larm.rotationY);
+		if(part == 3)
+			return floatToInt(job.rarm.rotationY);
+		if(part == 4)
+			return floatToInt(job.lleg.rotationY);
+		if(part == 5)
+			return floatToInt(job.rleg.rotationY);
+		return 0;
+	}
+	
+	/**
+	 * @since 1.7.10c
+	 * @param part Body part (0:head, 1:body, 2:leftarm, 3:rightarm, 4:leftleg, 5:rightleg)
+	 * @return Returns Z rotation in degrees (0-360)
+	 */
+	public int getRotationZ(int part){
+		if(part == 0)
+			return floatToInt(job.head.rotationZ);
+		if(part == 1)
+			return floatToInt(job.body.rotationZ);
+		if(part == 2)
+			return floatToInt(job.larm.rotationZ);
+		if(part == 3)
+			return floatToInt(job.rarm.rotationZ);
+		if(part == 4)
+			return floatToInt(job.lleg.rotationZ);
+		if(part == 5)
+			return floatToInt(job.rleg.rotationZ);
+		return 0;
+	}
+
+	/**
+	 * @since 1.7.10c
+	 * @param part Body part (0:head, 1:body, 2:leftarm, 3:rightarm, 4:leftleg, 5:rightleg)
+	 * @param rotation Rotation the of the body part
+	 */
+	public void setRotationX(int part, int rotation){
+		float f = rotation / 360f - 0.5f;
+		if(getRotationX(part) != f)
+			npc.script.clientNeedsUpdate = true;
+		
+		if(part == 0)
+			job.head.rotationX = f;
+		if(part == 1)
+			job.body.rotationX = f;
+		if(part == 2)
+			job.larm.rotationX = f;
+		if(part == 3)
+			job.rarm.rotationX = f;
+		if(part == 4)
+			job.lleg.rotationX = f;
+		if(part == 5)
+			job.rleg.rotationX = f;
+	}
+
+	/**
+	 * @since 1.7.10c
+	 * @param part Body part (0:head, 1:body, 2:leftarm, 3:rightarm, 4:leftleg, 5:rightleg)
+	 * @param rotation Rotation the of the body part
+	 */
+	public void setRotationY(int part, int rotation){
+		float f = rotation / 360f - 0.5f;
+		if(getRotationY(part) != f)
+			npc.script.clientNeedsUpdate = true;
+		
+		if(part == 0)
+			job.head.rotationY = f;
+		if(part == 1)
+			job.body.rotationY = f;
+		if(part == 2)
+			job.larm.rotationY = f;
+		if(part == 3)
+			job.rarm.rotationY = f;
+		if(part == 4)
+			job.lleg.rotationY = f;
+		if(part == 5)
+			job.rleg.rotationY = f;
+	}
+
+	/**
+	 * @since 1.7.10c
+	 * @param part Body part (0:head, 1:body, 2:leftarm, 3:rightarm, 4:leftleg, 5:rightleg)
+	 * @param rotation Rotation the of the body part
+	 */
+	public void setRotationZ(int part, int rotation){
+		float f = rotation / 360f - 0.5f;
+		if(getRotationZ(part) != f)
+			npc.script.clientNeedsUpdate = true;
+		
+		if(part == 0)
+			job.head.rotationZ = f;
+		if(part == 1)
+			job.body.rotationZ = f;
+		if(part == 2)
+			job.larm.rotationZ = f;
+		if(part == 3)
+			job.rarm.rotationZ = f;
+		if(part == 4)
+			job.lleg.rotationZ = f;
+		if(part == 5)
+			job.rleg.rotationZ = f;
+	}
+	
+	/**
+	 * @since 1.7.10c
+	 * @param part Body part (0:head, 1:body, 2:leftarm, 3:rightarm, 4:leftleg, 5:rightleg)
+	 * @return Returns whether or not the body part is enabled
+	 */
+	public boolean isEnabled(int part){
+		if(part == 0)
+			return !job.head.disabled;
+		if(part == 1)
+			return !job.body.disabled;
+		if(part == 2)
+			return !job.larm.disabled;
+		if(part == 3)
+			return !job.rarm.disabled;
+		if(part == 4)
+			return !job.lleg.disabled;
+		if(part == 5)
+			return !job.rleg.disabled;
+		
+		return false;
+	}
+	
+	/**
+	 * @since 1.7.10c
+	 * @param part Body part (0:head, 1:body, 2:leftarm, 3:rightarm, 4:leftleg, 5:rightleg)
+	 * @param bo Whether or not the body part is enabled
+	 */
+	public void setEnabled(int part, boolean bo){
+		if(isEnabled(part) != bo)
+			npc.script.clientNeedsUpdate = true;
+		
+		if(part == 0)
+			job.head.disabled = !bo;
+		if(part == 1)
+			job.body.disabled = !bo;
+		if(part == 2)
+			job.larm.disabled = !bo;
+		if(part == 3)
+			job.rarm.disabled = !bo;
+		if(part == 4)
+			job.lleg.disabled = !bo;
+		if(part == 5)
+			job.rleg.disabled = !bo;
+	}
+	
+	private int floatToInt(float f){
+		return (int)((f + 0.5) * 360);
+	}
+	
+	@Override
+	public int getType(){
+		return JobType.PUPPET;
+	}
+	
 }

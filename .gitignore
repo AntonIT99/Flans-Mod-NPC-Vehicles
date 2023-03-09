@@ -1,0 +1,22 @@
+# Build and Bins
+.gradle/
+build/
+bin/
+out/
+
+# IDEs
+.classpath
+.project
+.settings/
+.idea/
+run/*
+*.iml
+*.ipr
+*.iws
+
+# System
+Thumbs.db
+.DS_Store
+
+# Flan's Mod
+!run/Flan/

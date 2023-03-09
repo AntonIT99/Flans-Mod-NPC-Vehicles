@@ -1,45 +1,48 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) braces deadcode fieldsfirst 
 
 package noppes.npcs.entity.old;
 
-import noppes.npcs.ModelData;
-import net.minecraft.entity.Entity;
-import noppes.npcs.constants.EnumAnimation;
-import noppes.npcs.entity.EntityCustomNpc;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import noppes.npcs.ModelData;
+import noppes.npcs.constants.EnumAnimation;
+import noppes.npcs.entity.EntityCustomNpc;
 import noppes.npcs.entity.EntityNPCInterface;
+
+// Referenced classes of package net.minecraft.src:
+//            EntityAnimal, Item, EntityPlayer, InventoryPlayer, 
+//            ItemStack, World, NBTTagCompound
 
 public class EntityNpcMonsterFemale extends EntityNPCInterface
 {
-    public EntityNpcMonsterFemale(final World world) {
+    public EntityNpcMonsterFemale(World world)
+    {
         super(world);
-        final float scaleX = 0.9075f;
-        this.scaleZ = scaleX;
-        this.scaleY = scaleX;
-        this.scaleX = scaleX;
-        this.display.texture = "customnpcs:textures/entity/monsterfemale/ZombieStephanie.png";
+        scaleX = scaleY = scaleZ = 0.9075f;
+        display.texture = "customnpcs:textures/entity/monsterfemale/ZombieStephanie.png";
     }
-    
-    @Override
-    public void onUpdate() {
-        this.isDead = true;
-        if (!this.worldObj.isRemote) {
-            final NBTTagCompound compound = new NBTTagCompound();
-            this.writeToNBT(compound);
-            final EntityCustomNpc npc = new EntityCustomNpc(this.worldObj);
-            npc.readFromNBT(compound);
-            final ModelData data = npc.modelData;
-            data.breasts = 2;
-            data.head.setScale(0.95f, 0.95f);
-            data.legs.setScale(0.92f, 0.92f);
-            data.arms.setScale(0.8f, 0.92f);
-            data.body.setScale(0.92f, 0.92f);
-            npc.ai.animationType = EnumAnimation.HUG;
-            this.worldObj.spawnEntityInWorld((Entity)npc);
-        }
-        super.onUpdate();
+
+    public void onUpdate(){
+    	isDead = true;
+
+    	if(!worldObj.isRemote){
+	    	NBTTagCompound compound = new NBTTagCompound();
+	    	
+	    	writeToNBT(compound);
+	    	EntityCustomNpc npc = new EntityCustomNpc(worldObj);
+	    	npc.readFromNBT(compound);
+	    	ModelData data = npc.modelData;
+			data.breasts = 2;
+			data.head.setScale(0.95f,0.95f);
+			data.legs.setScale(0.92f,0.92f);
+			data.arms.setScale(0.80f,0.92f);
+			data.body.setScale(0.92f, 0.92f);
+	    	npc.ai.animationType = EnumAnimation.HUG;
+	    	worldObj.spawnEntityInWorld(npc);
+    	}
+    	super.onUpdate();
     }
+
 }

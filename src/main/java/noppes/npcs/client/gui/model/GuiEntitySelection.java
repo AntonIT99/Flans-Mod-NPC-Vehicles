@@ -1,168 +1,181 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.gui.model;
 
+import java.util.Collections;
+import java.util.Vector;
+
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.NPCRendererHelper;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.RenderHelper;
-import org.lwjgl.opengl.GL11;
-import noppes.npcs.client.EntityUtil;
-import noppes.npcs.entity.EntityNPCInterface;
-import noppes.npcs.client.gui.util.GuiNpcButton;
 import net.minecraft.entity.EntityList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Collections;
-import java.util.Collection;
-import java.util.Vector;
-import noppes.npcs.entity.EntityCustomNpc;
-import noppes.npcs.ModelData;
 import net.minecraft.entity.EntityLivingBase;
-import noppes.npcs.client.gui.util.GuiNPCStringSlot;
+import noppes.npcs.ModelData;
+import noppes.npcs.client.EntityUtil;
 import noppes.npcs.client.gui.util.GuiNPCInterface;
+import noppes.npcs.client.gui.util.GuiNPCStringSlot;
+import noppes.npcs.client.gui.util.GuiNpcButton;
+import noppes.npcs.entity.*;
+
+import org.lwjgl.opengl.GL11;
 
 public class GuiEntitySelection extends GuiNPCInterface
 {
-    private GuiNPCStringSlot slot;
-    private GuiCreationScreen parent;
-    private Class<? extends EntityLivingBase> prevModel;
-    private ModelData playerdata;
-    private EntityCustomNpc npc;
-    
-    public GuiEntitySelection(final GuiCreationScreen parent, final ModelData playerdata, final EntityCustomNpc npc) {
-        this.parent = parent;
-        this.playerdata = playerdata;
-        this.npc = npc;
-        this.drawDefaultBackground = false;
-        this.prevModel = playerdata.getEntityClass();
+	private GuiNPCStringSlot slot;
+	private GuiCreationScreen parent;
+	private Class<? extends EntityLivingBase> prevModel;
+	private ModelData playerdata;
+	private EntityCustomNpc npc;
+	
+    public GuiEntitySelection(GuiCreationScreen parent, ModelData playerdata, EntityCustomNpc npc)
+    {
+    	this.parent = parent;
+    	this.playerdata = playerdata;
+    	this.npc = npc;
+    	drawDefaultBackground = false;
+		prevModel = playerdata.getEntityClass();
     }
     
     @Override
-    public void initGui() {
+    public void initGui()
+    {
         super.initGui();
-        final Vector<String> list = new Vector<String>(this.parent.data.keySet());
+        Vector<String> list = new Vector<String>(parent.data.keySet());
         list.add("CustomNPC");
-        Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
-        this.slot = new GuiNPCStringSlot(list, this, false, 18);
-        if (this.playerdata.getEntityClass() != null) {
-            this.slot.selected = (String) EntityList.classToStringMapping.get(this.playerdata.getEntityClass());
+		Collections.sort(list,String.CASE_INSENSITIVE_ORDER);
+        slot = new GuiNPCStringSlot(list,this,false,18);
+        if(playerdata.getEntityClass() != null){
+            slot.selected = (String) EntityList.classToStringMapping.get(playerdata.getEntityClass());
         }
-        else {
-            this.slot.selected = "CustomNPC";
+        else{
+        	slot.selected = "CustomNPC";
         }
-        this.slot.registerScrollButtons(4, 5);
-        this.buttonList.add(new GuiNpcButton(2, this.width / 2 - 100, this.height - 44, 98, 20, "gui.back"));
+        slot.registerScrollButtons(4, 5);
+        
+    	this.buttonList.add(new GuiNpcButton(2, width / 2 - 100, height - 44,98, 20, "gui.back"));
     }
-    
+
     @Override
-    public void drawScreen(final int i, final int j, final float f) {
-        EntityLivingBase entity = this.playerdata.getEntity(this.npc);
-        if (entity == null) {
-            entity = (EntityLivingBase)this.npc;
-        }
-        else {
-            EntityUtil.Copy((EntityLivingBase)this.npc, entity);
-        }
-        final int l = this.width / 2 - 180;
-        final int i2 = this.height / 2 - 90;
-        GL11.glEnable(32826);
-        GL11.glEnable(2903);
+    public void drawScreen(int i, int j, float f)
+    {
+    	EntityLivingBase entity = playerdata.getEntity(npc);
+    	if(entity == null)
+    		entity = this.npc;
+    	else
+    		EntityUtil.Copy(npc, entity);
+    	
+    	int l = (width/2)-180;
+    	int i1 =  (height/2) - 90;
+        GL11.glEnable(32826 /*GL_RESCALE_NORMAL_EXT*/);
+        GL11.glEnable(2903 /*GL_COLOR_MATERIAL*/);
         GL11.glPushMatrix();
-        GL11.glTranslatef((float)(l + 33), (float)(i2 + 131), 50.0f);
-        float scale = 1.0f;
-        if (entity.height > 2.4) {
-            scale = 2.0f / entity.height;
-        }
-        GL11.glScalef(-50.0f * scale, 50.0f * scale, 50.0f * scale);
-        GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
-        final float f2 = entity.renderYawOffset;
-        final float f3 = entity.rotationYaw;
-        final float f4 = entity.rotationPitch;
-        final float f5 = entity.rotationYawHead;
-        final float f6 = l + 33 - i;
-        final float f7 = i2 + 131 - 50 - j;
-        GL11.glRotatef(135.0f, 0.0f, 1.0f, 0.0f);
+        GL11.glTranslatef(l + 33, i1 + 131, 50F);
+        
+        float scale = 1;
+        if(entity.height > 2.4)
+        	scale = 2 / entity.height;
+        
+        GL11.glScalef(-50 * scale, 50 * scale, 50 * scale);
+        GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+        float f2 = entity.renderYawOffset;
+        float f3 = entity.rotationYaw;
+        float f4 = entity.rotationPitch;
+        float f7 = entity.rotationYawHead;
+        float f5 = (float)(l + 33) - i;
+        float f6 = (float)((i1 + 131) - 50) - j;
+        GL11.glRotatef(135F, 0.0F, 1.0F, 0.0F);
         RenderHelper.enableStandardItemLighting();
-        GL11.glRotatef(-135.0f, 0.0f, 1.0f, 0.0f);
-        GL11.glRotatef(-(float)Math.atan(f7 / 40.0f) * 20.0f, 1.0f, 0.0f, 0.0f);
-        entity.renderYawOffset = (float)Math.atan(f6 / 40.0f) * 20.0f;
-        entity.rotationYaw = (float)Math.atan(f6 / 40.0f) * 40.0f;
-        entity.rotationPitch = -(float)Math.atan(f7 / 40.0f) * 20.0f;
+        GL11.glRotatef(-135F, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(-(float)Math.atan(f6 / 40F) * 20F, 1.0F, 0.0F, 0.0F);
+        entity.renderYawOffset = (float)Math.atan(f5 / 40F) * 20F;
+        entity.rotationYaw = (float)Math.atan(f5 / 40F) * 40F;
+        entity.rotationPitch = -(float)Math.atan(f6 / 40F) * 20F;
         entity.rotationYawHead = entity.rotationYaw;
-        GL11.glTranslatef(0.0f, entity.yOffset, 0.0f);
-        RenderManager.instance.playerViewY = 180.0f;
-        try {
-            RenderManager.instance.renderEntityWithPosYaw((Entity)entity, 0.0, 0.0, 0.0, 0.0f, 1.0f);
+        GL11.glTranslatef(0.0F, entity.yOffset, 0.0F);
+    	RenderManager.instance.playerViewY = 180F;
+        try{
+            RenderManager.instance.renderEntityWithPosYaw(entity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
         }
-        catch (Exception e) {
-            this.playerdata.setEntityClass((Class<? extends EntityLivingBase>)null);
+        catch(Exception e){
+        	playerdata.setEntityClass(null);
         }
         entity.renderYawOffset = f2;
         entity.rotationYaw = f3;
         entity.rotationPitch = f4;
-        entity.rotationYawHead = f5;
+        entity.rotationYawHead = f7;
         GL11.glPopMatrix();
         RenderHelper.disableStandardItemLighting();
-        GL11.glDisable(32826);
+        GL11.glDisable(32826 /*GL_RESCALE_NORMAL_EXT*/);
+
         OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-        GL11.glDisable(3553);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
         OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
-        this.slot.drawScreen(i, j, f);
-        super.drawScreen(i, j, f);
+    	slot.drawScreen(i, j, f);
+    	super.drawScreen(i, j, f);
     }
-    
-    @Override
-    public void elementClicked() {
-        try {
-            this.playerdata.setEntityClass(this.parent.data.get(this.slot.selected));
-            final EntityLivingBase entity = this.playerdata.getEntity(this.npc);
-            if (entity != null) {
-                final RendererLivingEntity render = (RendererLivingEntity)RenderManager.instance.getEntityRenderObject((Entity)entity);
-                this.npc.display.texture = NPCRendererHelper.getTexture(render, (Entity)entity);
-            }
-            else {
-                this.npc.display.texture = "customnpcs:textures/entity/humanmale/Steve.png";
-            }
-            this.npc.display.glowTexture = "";
-            this.npc.textureLocation = null;
-            this.npc.textureGlowLocation = null;
-            this.npc.updateHitbox();
+    public void elementClicked(){
+        if (playerdata.getEntityClass() != null && playerdata.getEntityClass().equals(parent.data.get(slot.selected))) {
+            return;
         }
-        catch (Exception ex) {
-            this.npc.display.texture = "customnpcs:textures/entity/humanmale/Steve.png";
+
+    	try{
+	    	playerdata.setEntityClass(parent.data.get(slot.selected));
+	    	EntityLivingBase entity = playerdata.getEntity(npc);
+	    	if(entity != null){
+                npc.display.modelType = 0;
+                if (entity instanceof EntityNpcCrystal) {
+                    npc.display.texture = "customnpcs:textures/entity/crystal/EnderCrystal.png";
+                } else if (entity instanceof EntityNPCGolem) {
+                    npc.display.texture = "customnpcs:textures/entity/golem/Iron Golem.png";
+                } else if (entity instanceof EntityNpcPony) {
+                    npc.display.texture = "customnpcs:textures/entity/ponies/MineLP Derpy Hooves.png";
+                } else if (entity instanceof EntityNpcSlime) {
+                    npc.display.texture = "customnpcs:textures/entity/slime/Slime.png";
+                } else if (entity instanceof EntityNpcDragon) {
+                    npc.display.texture = "customnpcs:textures/entity/dragon/BlackDragon.png";
+                } else {
+                    RendererLivingEntity render = (RendererLivingEntity) RenderManager.instance.getEntityRenderObject(entity);
+                    npc.display.texture = NPCRendererHelper.getTexture(render, entity);
+                }
+	    	}
+	    	else{
+	    		npc.display.texture = "customnpcs:textures/entity/humanmale/Steve.png";
+	    	}
+	    	//npc.display.glowTexture = "";
+            npc.display.skinOverlayData.overlayList.remove(0);
+			npc.textureLocation = null;
+			npc.updateHitbox();
+    	} catch(Exception ex) {
+    		npc.display.texture = "customnpcs:textures/entity/humanmale/Steve.png";
+    	}
+    }
+    public void doubleClicked(){
+        close();
+    }
+
+    public void keyTyped(char par1, int par2)
+    {
+        if (par2 == 1)
+        {
+            close();
         }
     }
+    public void close() {		
+		this.mc.displayGuiScreen(parent);
+	}
+
     
-    @Override
-    public void doubleClicked() {
-        this.close();
+	protected void actionPerformed(GuiButton guibutton)
+    {
+		close();
     }
-    
-    @Override
-    public void keyTyped(final char par1, final int par2) {
-        if (par2 == 1) {
-            this.close();
-        }
-    }
-    
-    @Override
-    public void close() {
-        this.mc.displayGuiScreen((GuiScreen)this.parent);
-    }
-    
-    @Override
-    protected void actionPerformed(final GuiButton guibutton) {
-        this.close();
-    }
-    
-    @Override
-    public void save() {
-    }
+
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

@@ -1,10 +1,5 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.gui.util;
 
-public interface IJTextAreaListener
-{
-    void saveText(final String p0);
+public interface IJTextAreaListener {
+	public void saveText(String text);
 }

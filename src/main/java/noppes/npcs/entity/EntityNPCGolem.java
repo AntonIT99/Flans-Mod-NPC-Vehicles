@@ -1,55 +1,61 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) braces deadcode fieldsfirst 
 
 package noppes.npcs.entity;
 
-import noppes.npcs.ModelData;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.nbt.NBTTagCompound;
-import noppes.npcs.constants.EnumAnimation;
 import net.minecraft.world.World;
+import noppes.npcs.ModelData;
+import noppes.npcs.constants.EnumAnimation;
+
+// Referenced classes of package net.minecraft.src:
+//            EntityAnimal, Item, EntityPlayer, InventoryPlayer, 
+//            ItemStack, World, NBTTagCompound
 
 public class EntityNPCGolem extends EntityNPCInterface
 {
-    public EntityNPCGolem(final World world) {
+
+    public EntityNPCGolem(World world)
+    {
         super(world);
-        this.display.texture = "customnpcs:textures/entity/golem/Iron Golem.png";
-        this.width = 1.4f;
-        this.height = 2.5f;
+        display.texture = "customnpcs:textures/entity/golem/Iron Golem.png";
+
+		width = 1.4f;
+		height = 2.5f;
     }
     
-    @Override
     public void updateHitbox() {
-        this.currentAnimation = EnumAnimation.values()[this.dataWatcher.getWatchableObjectInt(14)];
-        if (this.currentAnimation == EnumAnimation.LYING) {
-            final float n = 0.5f;
-            this.height = n;
-            this.width = n;
-        }
-        else if (this.currentAnimation == EnumAnimation.SITTING) {
-            this.width = 1.4f;
-            this.height = 2.0f;
-        }
-        else {
-            this.width = 1.4f;
-            this.height = 2.5f;
-        }
-    }
-    
-    @Override
-    public void onUpdate() {
-        this.isDead = true;
-        if (!this.worldObj.isRemote) {
-            final NBTTagCompound compound = new NBTTagCompound();
-            this.writeToNBT(compound);
-            final EntityCustomNpc npc = new EntityCustomNpc(this.worldObj);
-            npc.readFromNBT(compound);
-            final ModelData data = npc.modelData;
-            data.setEntityClass((Class<? extends EntityLivingBase>)EntityNPCGolem.class);
-            this.worldObj.spawnEntityInWorld((Entity)npc);
-        }
+		currentAnimation = EnumAnimation.values()[dataWatcher.getWatchableObjectInt(14)];
+		if(currentAnimation == EnumAnimation.LYING){
+			width = height = 0.5f;
+		}
+		else if (currentAnimation == EnumAnimation.SITTING){
+			width = 1.4f;
+			height = 2f;
+		}
+		else{
+			width = 1.4f;
+			height = 2.5f;
+		}
+	}
+    public void onUpdate()
+    {
+    	isDead = true;
+
+    	if(!worldObj.isRemote){
+	    	NBTTagCompound compound = new NBTTagCompound();
+	    	
+	    	writeToNBT(compound);
+	    	EntityCustomNpc npc = new EntityCustomNpc(worldObj);
+	    	npc.readFromNBT(compound);
+	    	ModelData data = npc.modelData;
+			data.setEntityClass(EntityNPCGolem.class);
+	    	
+	    	
+	    	worldObj.spawnEntityInWorld(npc);
+    	}
         super.onUpdate();
     }
 }

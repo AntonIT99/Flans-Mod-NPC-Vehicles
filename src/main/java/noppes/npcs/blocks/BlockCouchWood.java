@@ -1,62 +1,57 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.blocks;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.util.IIcon;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.block.Block;
-import noppes.npcs.blocks.tiles.TileCouchWood;
-import net.minecraft.util.MathHelper;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.AxisAlignedBB;
 import java.util.List;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockColored;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import noppes.npcs.NoppesUtilServer;
-import net.minecraft.block.BlockColored;
-import noppes.npcs.blocks.tiles.TileColorable;
-import net.minecraft.init.Items;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.BlockContainer;
+import noppes.npcs.NoppesUtilServer;
+import noppes.npcs.blocks.tiles.TileColorable;
+import noppes.npcs.blocks.tiles.TileCouchWood;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockCouchWood extends BlockContainer
-{
-    public int renderId;
-    
+public class BlockCouchWood extends BlockContainer{
+	
+	public int renderId = -1;
+	
     public BlockCouchWood() {
         super(Material.wood);
-        this.renderId = -1;
+	}
+    @Override    
+    public boolean onBlockActivated(World par1World, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9){
+    	ItemStack item = player.inventory.getCurrentItem();
+    	if(item == null || item.getItem() != Items.dye)
+    		return BlockChair.MountBlock(par1World, i, j, k, player);
+    	int meta = par1World.getBlockMetadata(i, j, k);
+    	if(meta >= 7)
+    		j--;
+    	TileColorable tile = (TileColorable) par1World.getTileEntity(i, j, k);
+    	int color = BlockColored.func_150031_c(item.getItemDamage());
+    	if(tile.color != color){
+    		NoppesUtilServer.consumeItemStack(1, player);
+			tile.color = color;
+	    	par1World.markBlockForUpdate(i, j, k);
+    	}
+    	return true;
     }
     
-    public boolean onBlockActivated(final World par1World, final int i, int j, final int k, final EntityPlayer player, final int par6, final float par7, final float par8, final float par9) {
-        final ItemStack item = player.inventory.getCurrentItem();
-        if (item == null || item.getItem() != Items.dye) {
-            return BlockChair.MountBlock(par1World, i, j, k, player);
-        }
-        final int meta = par1World.getBlockMetadata(i, j, k);
-        if (meta >= 7) {
-            --j;
-        }
-        final TileColorable tile = (TileColorable)par1World.getTileEntity(i, j, k);
-        final int color = BlockColored.func_150031_c(item.getItemDamage());
-        if (tile.color != color) {
-            NoppesUtilServer.consumeItemStack(1, player);
-            tile.color = color;
-            par1World.markBlockForUpdate(i, j, k);
-        }
-        return true;
-    }
-    
-    public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
+    @Override   
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List){
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));
         par3List.add(new ItemStack(par1, 1, 2));
@@ -64,101 +59,108 @@ public class BlockCouchWood extends BlockContainer
         par3List.add(new ItemStack(par1, 1, 4));
         par3List.add(new ItemStack(par1, 1, 5));
     }
-    
-    public int damageDropped(final int par1) {
+
+    @Override   
+    public int damageDropped(int par1)
+    {
         return par1;
     }
-    
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(final World p_149668_1_, final int x, final int y, final int z) {
-        return AxisAlignedBB.getBoundingBox((double)x, (double)y, (double)z, (double)(x + 1), y + 0.5, (double)(z + 1));
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int x, int y, int z){
+        return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 0.5, z + 1);
     }
-    
-    public void onBlockPlacedBy(final World par1World, final int par2, final int par3, final int par4, final EntityLivingBase par5EntityLivingBase, final ItemStack par6ItemStack) {
-        int l = MathHelper.floor_double(par5EntityLivingBase.rotationYaw * 4.0f / 360.0f + 0.5) & 0x3;
+
+    @Override   
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
+    {
+        int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
         l %= 4;
-        final TileCouchWood tile = (TileCouchWood)par1World.getTileEntity(par2, par3, par4);
-        tile.rotation = l;
-        tile.color = 15 - par6ItemStack.getItemDamage();
+        TileCouchWood tile = (TileCouchWood) par1World.getTileEntity(par2, par3, par4);
+    	tile.rotation = l;
+    	tile.color = 15 - par6ItemStack.getItemDamage();
+        
         par1World.setBlockMetadataWithNotify(par2, par3, par4, par6ItemStack.getItemDamage(), 2);
-        this.updateModel(par1World, par2, par3, par4, tile);
-        this.onNeighborBlockChange(par1World, par2 + 1, par3, par4, (Block)this);
-        this.onNeighborBlockChange(par1World, par2 - 1, par3, par4, (Block)this);
-        this.onNeighborBlockChange(par1World, par2, par3, par4 + 1, (Block)this);
-        this.onNeighborBlockChange(par1World, par2, par3, par4 - 1, (Block)this);
-        this.updateModel(par1World, par2, par3, par4, tile);
+    	updateModel(par1World, par2, par3, par4, tile);
+        onNeighborBlockChange(par1World, par2 + 1, par3, par4, this);
+        onNeighborBlockChange(par1World, par2 - 1, par3, par4, this);
+        onNeighborBlockChange(par1World, par2, par3, par4 + 1, this);
+        onNeighborBlockChange(par1World, par2, par3, par4 - 1, this);
+    	updateModel(par1World, par2, par3, par4, tile);
         par1World.markBlockForUpdate(par2, par3, par4);
     }
-    
-    public void onNeighborBlockChange(final World worldObj, final int x, final int y, final int z, final Block block) {
-        if (worldObj.isRemote || block != this) {
-            return;
-        }
-        final TileEntity tile = worldObj.getTileEntity(x, y, z);
-        if (tile == null || !(tile instanceof TileCouchWood)) {
-            return;
-        }
-        this.updateModel(worldObj, x, y, z, (TileCouchWood)tile);
-        worldObj.markBlockForUpdate(x, y, z);
+
+    @Override  
+    public void onNeighborBlockChange(World worldObj, int x, int y, int z, Block block) {
+    	if(worldObj.isRemote || block != this)
+    		return;
+    	TileEntity tile = worldObj.getTileEntity(x, y, z);
+    	if(tile == null || !(tile instanceof TileCouchWood))
+    		return;
+    	updateModel(worldObj, x, y, z, (TileCouchWood) tile);
+    	worldObj.markBlockForUpdate(x, y, z);
     }
     
-    private void updateModel(final World world, final int x, final int y, final int z, final TileCouchWood tile) {
-        if (world.isRemote) {
-            return;
-        }
-        final int meta = tile.getBlockMetadata();
-        if (tile.rotation == 0) {
-            tile.hasLeft = this.compareTiles(tile, x - 1, y, z, world, meta);
-            tile.hasRight = this.compareTiles(tile, x + 1, y, z, world, meta);
-        }
-        else if (tile.rotation == 2) {
-            tile.hasLeft = this.compareTiles(tile, x + 1, y, z, world, meta);
-            tile.hasRight = this.compareTiles(tile, x - 1, y, z, world, meta);
-        }
-        else if (tile.rotation == 1) {
-            tile.hasLeft = this.compareTiles(tile, x, y, z - 1, world, meta);
-            tile.hasRight = this.compareTiles(tile, x, y, z + 1, world, meta);
-        }
-        else if (tile.rotation == 3) {
-            tile.hasLeft = this.compareTiles(tile, x, y, z + 1, world, meta);
-            tile.hasRight = this.compareTiles(tile, x, y, z - 1, world, meta);
-        }
+    private void updateModel(World world, int x, int y, int z, TileCouchWood tile){
+    	if(world.isRemote)
+    		return;
+    	int meta = tile.getBlockMetadata();
+    	if(tile.rotation == 0){
+        	tile.hasLeft = compareTiles(tile, x - 1, y, z, world, meta);
+        	tile.hasRight = compareTiles(tile, x + 1, y, z, world, meta);
+    	}
+    	else if(tile.rotation == 2){
+        	tile.hasLeft = compareTiles(tile, x + 1, y, z, world, meta);
+        	tile.hasRight = compareTiles(tile, x - 1, y, z, world, meta);
+    	}
+    	else if(tile.rotation == 1){
+        	tile.hasLeft = compareTiles(tile, x, y, z - 1, world, meta);
+        	tile.hasRight = compareTiles(tile, x, y, z + 1, world, meta);
+    	}
+    	else if(tile.rotation == 3){
+        	tile.hasLeft = compareTiles(tile, x, y, z + 1, world, meta);
+        	tile.hasRight = compareTiles(tile, x, y, z - 1, world, meta);
+    	}
     }
-    
-    private boolean compareTiles(final TileCouchWood tile, final int x, final int y, final int z, final World world, final int meta) {
-        final int meta2 = world.getBlockMetadata(x, y, z);
-        if (meta2 != meta) {
-            return false;
-        }
-        final TileEntity tile2 = world.getTileEntity(x, y, z);
-        if (tile2 == null || !(tile2 instanceof TileCouchWood)) {
-            return false;
-        }
-        final TileCouchWood couch = (TileCouchWood)tile2;
-        return tile.rotation == couch.rotation;
+    private boolean compareTiles(TileCouchWood tile, int x, int y, int z, World world, int meta){
+    	int meta2 = world.getBlockMetadata(x, y, z);
+    	if(meta2 != meta)
+    		return false;
+    	TileEntity tile2 = world.getTileEntity(x, y, z);
+    	if(tile2 == null || !(tile2 instanceof TileCouchWood))
+    		return false;
+    	TileCouchWood couch = (TileCouchWood) tile2;
+    	return tile.rotation == couch.rotation;
     }
-    
-    public boolean isOpaqueCube() {
-        return false;
-    }
-    
-    public boolean renderAsNormalBlock() {
-        return false;
-    }
-    
-    public int getRenderType() {
-        return this.renderId;
-    }
-    
+
+    @Override   
+	public boolean isOpaqueCube(){
+		return false;
+	}
+
+    @Override   
+	public boolean renderAsNormalBlock(){
+		return false;
+	}
+    @Override   
+	public int getRenderType(){
+		return renderId; 	
+	}
+
+    @Override
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(final IIconRegister par1IconRegister) {
+    public void registerBlockIcons(IIconRegister par1IconRegister)
+    {
+    	
     }
-    
+    @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(final int p_149691_1_, final int meta) {
+    public IIcon getIcon(int p_149691_1_, int meta)
+    {
         return Blocks.planks.getIcon(p_149691_1_, meta);
     }
-    
-    public TileEntity createNewTileEntity(final World var1, final int var2) {
-        return new TileCouchWood();
-    }
+
+	@Override
+	public TileEntity createNewTileEntity(World var1, int var2) {
+		return new TileCouchWood();
+	}
+
 }

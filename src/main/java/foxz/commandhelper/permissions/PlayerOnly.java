@@ -1,21 +1,27 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package foxz.commandhelper.permissions;
 
-import net.minecraft.entity.player.EntityPlayer;
 import foxz.commandhelper.AbstractCommandHelper;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class PlayerOnly extends AbstractPermission
-{
+/**
+ *
+ * @author foxz
+ */
+public class PlayerOnly extends AbstractPermission {
+
     @Override
     public String errorMsg() {
         return "Player Only";
     }
-    
+
     @Override
-    public boolean delegate(final AbstractCommandHelper parent, final String[] args) {
+    public boolean delegate(AbstractCommandHelper parent, String[] args) {
         return parent.pcParam instanceof EntityPlayer;
     }
+
 }

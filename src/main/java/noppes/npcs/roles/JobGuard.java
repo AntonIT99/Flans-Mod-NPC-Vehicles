@@ -1,73 +1,72 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.roles;
 
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.Entity;
-import net.minecraft.nbt.NBTBase;
-import noppes.npcs.NBTTags;
-import net.minecraft.nbt.NBTTagCompound;
 import java.util.ArrayList;
-import noppes.npcs.entity.EntityNPCInterface;
 import java.util.List;
 
-public class JobGuard extends JobInterface
-{
-    public boolean attacksAnimals;
-    public boolean attackHostileMobs;
-    public boolean attackCreepers;
-    public List<String> targets;
-    public boolean specific;
-    
-    public JobGuard(final EntityNPCInterface npc) {
-        super(npc);
-        this.attacksAnimals = false;
-        this.attackHostileMobs = true;
-        this.attackCreepers = false;
-        this.targets = new ArrayList<String>();
-        this.specific = false;
-    }
-    
-    @Override
-    public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound) {
-        nbttagcompound.setBoolean("GuardAttackAnimals", this.attacksAnimals);
-        nbttagcompound.setBoolean("GuardAttackMobs", this.attackHostileMobs);
-        nbttagcompound.setBoolean("GuardAttackCreepers", this.attackCreepers);
-        nbttagcompound.setBoolean("GuardSpecific", this.specific);
-        nbttagcompound.setTag("GuardTargets", (NBTBase)NBTTags.nbtStringList(this.targets));
-        return nbttagcompound;
-    }
-    
-    @Override
-    public void readFromNBT(final NBTTagCompound nbttagcompound) {
-        this.attacksAnimals = nbttagcompound.getBoolean("GuardAttackAnimals");
-        this.attackHostileMobs = nbttagcompound.getBoolean("GuardAttackMobs");
-        this.attackCreepers = nbttagcompound.getBoolean("GuardAttackCreepers");
-        this.specific = nbttagcompound.getBoolean("GuardSpecific");
-        this.targets = NBTTags.getStringList(nbttagcompound.getTagList("GuardTargets", 10));
-    }
-    
-    public boolean isEntityApplicable(final Entity entity) {
-        if (entity instanceof EntityPlayer || entity instanceof EntityNPCInterface) {
-            return false;
-        }
-        if (this.specific && this.targets.contains("entity." + EntityList.getEntityString(entity) + ".name")) {
-            return true;
-        }
-        if (entity instanceof EntityAnimal) {
-            return this.attacksAnimals && (!(entity instanceof EntityTameable) || ((EntityTameable)entity).getOwner() == null);
-        }
-        if (entity instanceof EntityCreeper) {
-            return this.attackCreepers;
-        }
-        return (entity instanceof IMob || entity instanceof EntityDragon) && this.attackHostileMobs;
-    }
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import noppes.npcs.NBTTags;
+import noppes.npcs.entity.EntityNPCInterface;
+
+public class JobGuard extends JobInterface{
+
+	public boolean attacksAnimals = false;
+	public boolean attackHostileMobs = true;
+	public boolean attackCreepers = false;
+	
+	public List<String> targets = new ArrayList<String>();
+	public boolean specific = false;
+	
+	public JobGuard(EntityNPCInterface npc) {
+		super(npc);
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbttagcompound) {
+		nbttagcompound.setBoolean("GuardAttackAnimals", attacksAnimals);
+		nbttagcompound.setBoolean("GuardAttackMobs", attackHostileMobs);
+		nbttagcompound.setBoolean("GuardAttackCreepers", attackCreepers);
+		nbttagcompound.setBoolean("GuardSpecific", specific);
+		
+		nbttagcompound.setTag("GuardTargets", NBTTags.nbtStringList(targets));
+		return nbttagcompound;
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound) {
+		attacksAnimals = nbttagcompound.getBoolean("GuardAttackAnimals");
+		attackHostileMobs = nbttagcompound.getBoolean("GuardAttackMobs");
+		attackCreepers = nbttagcompound.getBoolean("GuardAttackCreepers");
+		specific = nbttagcompound.getBoolean("GuardSpecific");
+
+		targets = NBTTags.getStringList(nbttagcompound.getTagList("GuardTargets", 10));		
+	}
+	
+	public boolean isEntityApplicable(Entity entity) {
+    	if(entity instanceof EntityPlayer || entity instanceof EntityNPCInterface)
+    		return false;
+    	if(specific && targets.contains("entity." + EntityList.getEntityString(entity) + ".name"))
+    		return true;
+    	
+    	if(entity instanceof EntityAnimal){
+    		if(!attacksAnimals || entity instanceof EntityTameable && ((EntityTameable)entity).getOwner() != null)
+    			return false;
+    		return true;
+    	}
+    	else if (entity instanceof EntityCreeper) {
+			return attackCreepers;
+    	}
+    	else if(entity instanceof IMob || entity instanceof EntityDragon){
+    		return attackHostileMobs;
+    	}
+		return false;
+	}
 }

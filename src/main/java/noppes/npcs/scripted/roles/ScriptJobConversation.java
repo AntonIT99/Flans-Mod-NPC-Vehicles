@@ -1,23 +1,20 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.scripted.roles;
 
 import noppes.npcs.entity.EntityNPCInterface;
 import noppes.npcs.roles.JobConversation;
+import noppes.npcs.scripted.constants.JobType;
+import noppes.npcs.api.jobs.IJobConversation;
 
-public class ScriptJobConversation extends ScriptJobInterface
-{
-    private JobConversation job;
-    
-    public ScriptJobConversation(final EntityNPCInterface npc) {
-        super(npc);
-        this.job = (JobConversation)npc.jobInterface;
-    }
-    
-    @Override
-    public int getType() {
-        return 6;
-    }
+public class ScriptJobConversation extends ScriptJobInterface implements IJobConversation {
+	private JobConversation job;
+	public ScriptJobConversation(EntityNPCInterface npc){
+		super(npc);
+		this.job = (JobConversation) npc.jobInterface;
+	}
+		
+	@Override
+	public int getType(){
+		return JobType.SPAWNER;
+	}
+	
 }

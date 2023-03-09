@@ -1,289 +1,295 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.renderer;
 
-import net.minecraft.init.Items;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EntityLiving;
-import java.awt.image.BufferedImage;
-import net.minecraft.client.resources.IResource;
-import java.io.IOException;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import noppes.npcs.entity.EntityNpcPony;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import org.lwjgl.opengl.GL11;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.RenderBiped;
-import net.minecraft.item.ItemArmor;
-import noppes.npcs.entity.EntityNPCInterface;
-import net.minecraft.client.model.ModelBase;
-import noppes.npcs.client.model.ModelPonyArmor;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.resources.IResource;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Items;
+import net.minecraft.item.*;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.util.ResourceLocation;
 import noppes.npcs.client.model.ModelPony;
+import noppes.npcs.client.model.ModelPonyArmor;
+import noppes.npcs.entity.EntityNPCInterface;
+import noppes.npcs.entity.EntityNpcPony;
+
+import org.lwjgl.opengl.GL11;
 
 public class RenderNPCPony extends RenderNPCInterface
 {
+
     private ModelPony modelBipedMain;
     private ModelPonyArmor modelArmorChestplate;
     private ModelPonyArmor modelArmor;
-    
-    public RenderNPCPony() {
-        super(new ModelPony(0.0f), 0.5f);
-        this.modelBipedMain = (ModelPony)this.mainModel;
-        this.modelArmorChestplate = new ModelPonyArmor(1.0f);
-        this.modelArmor = new ModelPonyArmor(0.5f);
+
+    public RenderNPCPony()
+    {
+        super(new ModelPony(0.0F), 0.5F);
+        modelBipedMain = (ModelPony)mainModel;
+        modelArmorChestplate = new ModelPonyArmor(1.0F);
+        modelArmor = new ModelPonyArmor(0.5F);
     }
-    
-    protected int setArmorModel(final EntityNPCInterface entityplayer, final int i, final float f) {
-        final ItemStack itemstack = entityplayer.inventory.armorItemInSlot(i);
-        if (itemstack != null) {
-            final Item item = itemstack.getItem();
-            if (item instanceof ItemArmor) {
-                final ItemArmor itemarmor = (ItemArmor)item;
-                this.bindTexture(RenderBiped.getArmorResource((Entity)entityplayer, itemstack, i, (String)null));
-                final ModelPonyArmor modelbiped = (i != 2) ? this.modelArmorChestplate : this.modelArmor;
-                modelbiped.head.showModel = (i == 0);
-                modelbiped.Body.showModel = (i == 1);
-                modelbiped.BodyBack.showModel = (i == 1);
-                modelbiped.rightarm.showModel = (i == 3);
-                modelbiped.LeftArm.showModel = (i == 3);
-                modelbiped.RightLeg.showModel = (i == 3);
-                modelbiped.LeftLeg.showModel = (i == 3);
-                modelbiped.rightarm2.showModel = (i == 2);
-                modelbiped.LeftArm2.showModel = (i == 2);
-                modelbiped.RightLeg2.showModel = (i == 2);
-                modelbiped.LeftLeg2.showModel = (i == 2);
-                this.setRenderPassModel((ModelBase)modelbiped);
-                final float var8 = 1.0f;
-                if (itemarmor.getArmorMaterial() != ItemArmor.ArmorMaterial.CLOTH) {
-                    GL11.glColor3f(var8, var8, var8);
-                    return itemstack.isItemEnchanted() ? 15 : 1;
+
+    protected int setArmorModel(EntityNPCInterface entityplayer, int i, float f)
+    {
+        ItemStack itemstack = entityplayer.inventory.armorItemInSlot(i);
+        if(itemstack != null)
+        {
+            Item item = itemstack.getItem();
+            if(item instanceof ItemArmor)
+            {
+                ItemArmor itemarmor = (ItemArmor)item;
+                this.bindTexture(RenderBiped.getArmorResource(entityplayer, itemstack, i, null));
+                ModelPonyArmor modelbiped = i != 2 ? modelArmorChestplate : modelArmor;
+                modelbiped.head.showModel = i == 0;
+
+                modelbiped.Body.showModel = i == 1 ;
+                modelbiped.BodyBack.showModel = i == 1 ;
+                modelbiped.rightarm.showModel = i == 3;
+                modelbiped.LeftArm.showModel = i == 3;
+                modelbiped.RightLeg.showModel =  i == 3;
+                modelbiped.LeftLeg.showModel = i == 3;
+
+                modelbiped.rightarm2.showModel = i == 2;
+                modelbiped.LeftArm2.showModel = i == 2;
+                modelbiped.RightLeg2.showModel = i == 2;
+                modelbiped.LeftLeg2.showModel = i == 2;
+                setRenderPassModel(modelbiped);
+
+                float var8 = 1.0F;
+
+                if (itemarmor.getArmorMaterial() == ArmorMaterial.CLOTH)
+                {
+                    int var9 = itemarmor.getColor(itemstack);
+                    float var10 = (float)(var9 >> 16 & 255) / 255.0F;
+                    float var11 = (float)(var9 >> 8 & 255) / 255.0F;
+                    float var12 = (float)(var9 & 255) / 255.0F;
+                    GL11.glColor3f(var8 * var10, var8 * var11, var8 * var12);
+
+                    if (itemstack.isItemEnchanted())
+                    {
+                        return 31;
+                    }
+
+                    return 16;
                 }
-                final int var9 = itemarmor.getColor(itemstack);
-                final float var10 = (var9 >> 16 & 0xFF) / 255.0f;
-                final float var11 = (var9 >> 8 & 0xFF) / 255.0f;
-                final float var12 = (var9 & 0xFF) / 255.0f;
-                GL11.glColor3f(var8 * var10, var8 * var11, var8 * var12);
-                if (itemstack.isItemEnchanted()) {
-                    return 31;
-                }
-                return 16;
+
+                GL11.glColor3f(var8, var8, var8);
+                
+                return !itemstack.isItemEnchanted() ? 1 : 15;
             }
         }
         return -1;
     }
-    
-    @Override
-    public ResourceLocation getEntityTexture(final Entity entity) {
-        final EntityNpcPony pony = (EntityNpcPony)entity;
-        final boolean check = pony.textureLocation == null || pony.textureLocation != pony.checked;
-        final ResourceLocation loc = super.getEntityTexture((Entity)pony);
-        if (check) {
-            try {
-                final IResource resource = Minecraft.getMinecraft().getResourceManager().getResource(loc);
-                final BufferedImage bufferedimage = ImageIO.read(resource.getInputStream());
-                pony.isPegasus = false;
-                pony.isUnicorn = false;
-                final Color color = new Color(bufferedimage.getRGB(0, 0), true);
-                final Color color2 = new Color(249, 177, 49, 255);
-                final Color color3 = new Color(136, 202, 240, 255);
-                final Color color4 = new Color(209, 159, 228, 255);
-                final Color color5 = new Color(254, 249, 252, 255);
-                if (color.equals(color2)) {}
-                if (color.equals(color3)) {
-                    pony.isPegasus = true;
-                }
-                if (color.equals(color4)) {
-                    pony.isUnicorn = true;
-                }
-                if (color.equals(color5)) {
-                    pony.isPegasus = true;
-                    pony.isUnicorn = true;
-                }
-                pony.checked = loc;
-            }
-            catch (IOException ex) {}
+
+	@Override
+	public ResourceLocation getEntityTexture(Entity entity) {
+		EntityNpcPony pony = (EntityNpcPony) entity;
+		boolean check = pony.textureLocation == null || pony.textureLocation != pony.checked;
+		ResourceLocation loc = super.getEntityTexture(pony);
+    	if(check){
+    		try {
+				IResource resource = Minecraft.getMinecraft().getResourceManager().getResource(loc);
+				BufferedImage bufferedimage = ImageIO.read(resource.getInputStream());
+
+				pony.isPegasus = false;
+				pony.isUnicorn = false;
+		        Color color = new Color(bufferedimage.getRGB(0, 0), true);
+		        Color color1 = new Color(249, 177, 49, 255);
+		        Color color2 = new Color(136, 202, 240, 255);
+		        Color color3 = new Color(209, 159, 228, 255);
+		        Color color4 = new Color(254, 249, 252, 255);
+		        if(color.equals(color1))
+		        {
+		        }
+		        if(color.equals(color2))
+		        {
+		        	pony.isPegasus = true;
+		        }
+		        if(color.equals(color3))
+		        {
+		        	pony.isUnicorn = true;
+		        }
+		        if(color.equals(color4))
+		        {
+		        	pony.isPegasus = true;
+		        	pony.isUnicorn = true;
+		        }
+		        pony.checked = loc;
+    		
+    		} catch (IOException e) {
+				
+			}
+    	}
+		return loc;
+	}
+
+    public void renderPlayer(EntityNpcPony pony, double d, double d1, double d2, 
+            float f, float f1)
+    {    	
+        ItemStack itemstack = pony.getHeldItem();
+        setRenderPassModel(modelBipedMain);
+        
+        modelArmorChestplate.heldItemRight = modelArmor.heldItemRight = modelBipedMain.heldItemRight = itemstack == null ? 0 : 1;
+        modelArmorChestplate.isSneak = modelArmor.isSneak = modelBipedMain.isSneak = pony.isSneaking();
+        modelArmorChestplate.isRiding = modelArmor.isRiding = modelBipedMain.isRiding = false;
+        modelArmorChestplate.isSleeping = modelArmor.isSleeping = modelBipedMain.isSleeping = pony.isPlayerSleeping();
+        modelArmorChestplate.isUnicorn = modelArmor.isUnicorn = modelBipedMain.isUnicorn = pony.isUnicorn;
+        modelArmorChestplate.isPegasus = modelArmor.isPegasus = modelBipedMain.isPegasus = pony.isPegasus;
+        double d3 = d1 - (double)pony.yOffset;
+        if(pony.isSneaking())
+        {
+            d3 -= 0.125D;
         }
-        return loc;
+        super.doRender(pony, d, d3, d2, f, f1);
+        modelArmorChestplate.aimedBow = modelArmor.aimedBow = modelBipedMain.aimedBow = false;
+        modelArmorChestplate.isRiding = modelArmor.isRiding = modelBipedMain.isRiding = false;
+        modelArmorChestplate.isSneak = modelArmor.isSneak = modelBipedMain.isSneak = false;
+        modelArmorChestplate.heldItemRight = modelArmor.heldItemRight = modelBipedMain.heldItemRight = 0;
     }
-    
-    public void renderPlayer(final EntityNpcPony pony, final double d, final double d1, final double d2, final float f, final float f1) {
-        final ItemStack itemstack = pony.getHeldItem();
-        this.setRenderPassModel((ModelBase)this.modelBipedMain);
-        final ModelPonyArmor modelArmorChestplate = this.modelArmorChestplate;
-        final ModelPonyArmor modelArmor = this.modelArmor;
-        final ModelPony modelBipedMain = this.modelBipedMain;
-        final boolean heldItemRight;
-        final boolean b = heldItemRight = (((itemstack == null) ? 0 : 1) != 0);
-        modelBipedMain.heldItemRight = (b ? 1 : 0);
-        modelArmor.heldItemRight = (b ? 1 : 0);
-        modelArmorChestplate.heldItemRight = (heldItemRight ? 1 : 0);
-        final ModelPonyArmor modelArmorChestplate2 = this.modelArmorChestplate;
-        final ModelPonyArmor modelArmor2 = this.modelArmor;
-        final ModelPony modelBipedMain2 = this.modelBipedMain;
-        final boolean sneaking = pony.isSneaking();
-        modelBipedMain2.isSneak = sneaking;
-        modelArmor2.isSneak = sneaking;
-        modelArmorChestplate2.isSneak = sneaking;
-        final ModelPonyArmor modelArmorChestplate3 = this.modelArmorChestplate;
-        final ModelPonyArmor modelArmor3 = this.modelArmor;
-        final ModelPony modelBipedMain3 = this.modelBipedMain;
-        final boolean isRiding = false;
-        modelBipedMain3.isRiding = isRiding;
-        modelArmor3.isRiding = isRiding;
-        modelArmorChestplate3.isRiding = isRiding;
-        final ModelPonyArmor modelArmorChestplate4 = this.modelArmorChestplate;
-        final ModelPonyArmor modelArmor4 = this.modelArmor;
-        final ModelPony modelBipedMain4 = this.modelBipedMain;
-        final boolean playerSleeping = pony.isPlayerSleeping();
-        modelBipedMain4.isSleeping = playerSleeping;
-        modelArmor4.isSleeping = playerSleeping;
-        modelArmorChestplate4.isSleeping = playerSleeping;
-        final ModelPonyArmor modelArmorChestplate5 = this.modelArmorChestplate;
-        final ModelPonyArmor modelArmor5 = this.modelArmor;
-        final ModelPony modelBipedMain5 = this.modelBipedMain;
-        final boolean isUnicorn = pony.isUnicorn;
-        modelBipedMain5.isUnicorn = isUnicorn;
-        modelArmor5.isUnicorn = isUnicorn;
-        modelArmorChestplate5.isUnicorn = isUnicorn;
-        final ModelPonyArmor modelArmorChestplate6 = this.modelArmorChestplate;
-        final ModelPonyArmor modelArmor6 = this.modelArmor;
-        final ModelPony modelBipedMain6 = this.modelBipedMain;
-        final boolean isPegasus = pony.isPegasus;
-        modelBipedMain6.isPegasus = isPegasus;
-        modelArmor6.isPegasus = isPegasus;
-        modelArmorChestplate6.isPegasus = isPegasus;
-        double d3 = d1 - pony.yOffset;
-        if (pony.isSneaking()) {
-            d3 -= 0.125;
-        }
-        super.doRender((EntityLiving)pony, d, d3, d2, f, f1);
-        final ModelPonyArmor modelArmorChestplate7 = this.modelArmorChestplate;
-        final ModelPonyArmor modelArmor7 = this.modelArmor;
-        final ModelPony modelBipedMain7 = this.modelBipedMain;
-        final boolean aimedBow = false;
-        modelBipedMain7.aimedBow = aimedBow;
-        modelArmor7.aimedBow = aimedBow;
-        modelArmorChestplate7.aimedBow = aimedBow;
-        final ModelPonyArmor modelArmorChestplate8 = this.modelArmorChestplate;
-        final ModelPonyArmor modelArmor8 = this.modelArmor;
-        final ModelPony modelBipedMain8 = this.modelBipedMain;
-        final boolean isRiding2 = false;
-        modelBipedMain8.isRiding = isRiding2;
-        modelArmor8.isRiding = isRiding2;
-        modelArmorChestplate8.isRiding = isRiding2;
-        final ModelPonyArmor modelArmorChestplate9 = this.modelArmorChestplate;
-        final ModelPonyArmor modelArmor9 = this.modelArmor;
-        final ModelPony modelBipedMain9 = this.modelBipedMain;
-        final boolean isSneak = false;
-        modelBipedMain9.isSneak = isSneak;
-        modelArmor9.isSneak = isSneak;
-        modelArmorChestplate9.isSneak = isSneak;
-        final ModelPonyArmor modelArmorChestplate10 = this.modelArmorChestplate;
-        final ModelPonyArmor modelArmor10 = this.modelArmor;
-        final ModelPony modelBipedMain10 = this.modelBipedMain;
-        final boolean heldItemRight2 = false;
-        modelBipedMain10.heldItemRight = (heldItemRight2 ? 1 : 0);
-        modelArmor10.heldItemRight = (heldItemRight2 ? 1 : 0);
-        modelArmorChestplate10.heldItemRight = (heldItemRight2 ? 1 : 0);
-    }
-    
-    protected void renderSpecials(final EntityNpcPony entityplayer, final float f) {
-        super.renderEquippedItems((EntityLivingBase)entityplayer, f);
-        if (!entityplayer.isPlayerSleeping()) {
-            if (entityplayer.isUnicorn) {
-                this.renderDrop(this.renderManager, entityplayer, this.modelBipedMain.unicornarm, 1.0f, 0.35f, 0.5375f, -0.45f);
-            }
-            else {
-                this.renderDrop(this.renderManager, entityplayer, this.modelBipedMain.RightArm, 1.0f, -0.0625f, 0.8375f, 0.0625f);
+//    @Override
+//    protected void rotatePlayer(EntityNPCInterface entityplayer, float f, float f1, float f2)
+//    {
+//        if(entityplayer.isEntityAlive() && entityplayer.isPlayerSleeping())
+//        {
+//            GL11.glRotatef(entityplayer.orientation, 0.0F, 1.0F, 0.0F);
+//            GL11.glTranslatef(-1.25F, -0.875F, 0.0F);
+//            GL11.glRotatef(90F, 0.0F, 1.0F, 0.0F);
+//        } else
+//        {
+//            GL11.glRotatef(180F - f1, 0.0F, 1.0F, 0.0F);
+//            if(entityplayer.deathTime > 0)
+//            {
+//                float f3 = ((((float)entityplayer.deathTime + f2) - 1.0F) / 20F) * 1.6F;
+//                f3 = MathHelper.sqrt_float(f3);
+//                if(f3 > 1.0F)
+//                {
+//                    f3 = 1.0F;
+//                }
+//                GL11.glRotatef(f3 * getDeathMaxRotation(entityplayer), 0.0F, 0.0F, 1.0F);
+//            }
+//        }
+//    }
+    protected void renderSpecials(EntityNpcPony entityplayer, float f)
+    {
+        super.renderEquippedItems(entityplayer, f);
+        if(!entityplayer.isPlayerSleeping())
+        {
+            if(entityplayer.isUnicorn)
+            {
+                renderDrop(this.renderManager, entityplayer, modelBipedMain.unicornarm, 1.0F, 0.35F, 0.5375F, -0.45F);
+            } else
+            {
+                renderDrop(this.renderManager, entityplayer, modelBipedMain.RightArm, 1.0F, -0.0625F, 0.8375F, 0.0625F);
             }
         }
     }
-    
-    protected void renderDrop(final RenderManager rendermanager, final EntityNpcPony entityplayer, final ModelRenderer modelrenderer, final float f, final float f1, final float f2, final float f3) {
-        final ItemStack itemstack = entityplayer.getHeldItem();
-        if (itemstack == null) {
+
+
+    protected void renderDrop(RenderManager rendermanager, EntityNpcPony entityplayer, ModelRenderer modelrenderer, float f, float f1, float f2, float f3)
+    {
+        ItemStack itemstack = entityplayer.getHeldItem();
+        if(itemstack == null)
+        {
             return;
         }
         GL11.glPushMatrix();
-        if (modelrenderer != null) {
-            modelrenderer.postRender(f * 0.0625f);
+        if(modelrenderer != null)
+        {
+            modelrenderer.postRender(f * 0.0625F);
         }
         GL11.glTranslatef(f1, f2, f3);
-        if (itemstack.getItem() instanceof ItemBlock && RenderBlocks.renderItemIn3d(Block.getBlockFromItem(itemstack.getItem()).getRenderType())) {
-            GL11.glTranslatef(0.0f, 0.1875f, -0.3125f);
-            GL11.glRotatef(20.0f, 1.0f, 0.0f, 0.0f);
-            GL11.glRotatef(45.0f, 0.0f, 1.0f, 0.0f);
-            final float f4 = 0.375f * f;
+        if(itemstack.getItem() instanceof ItemBlock && RenderBlocks.renderItemIn3d(Block.getBlockFromItem(itemstack.getItem()).getRenderType()))
+        {
+            GL11.glTranslatef(0.0F, 0.1875F, -0.3125F);
+            GL11.glRotatef(20F, 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef(45F, 0.0F, 1.0F, 0.0F);
+            float f4 = 0.375F * f;
             GL11.glScalef(f4, -f4, f4);
-        }
-        else if (itemstack.getItem() == Items.bow) {
-            GL11.glTranslatef(0.0f, 0.125f, 0.3125f);
-            GL11.glRotatef(-20.0f, 0.0f, 1.0f, 0.0f);
-            final float f5 = 0.625f * f;
+        } else
+        if(itemstack.getItem() instanceof ItemBow)
+        {
+            GL11.glTranslatef(0.0F, 0.125F, 0.3125F);
+            GL11.glRotatef(-20F, 0.0F, 1.0F, 0.0F);
+            float f5 = 0.625F * f;
             GL11.glScalef(f5, -f5, f5);
-            GL11.glRotatef(-100.0f, 1.0f, 0.0f, 0.0f);
-            GL11.glRotatef(45.0f, 0.0f, 1.0f, 0.0f);
-        }
-        else if (itemstack.getItem().isFull3D()) {
-            if (itemstack.getItem().shouldRotateAroundWhenRendering()) {
-                GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
-                GL11.glTranslatef(0.0f, -0.125f, 0.0f);
+            GL11.glRotatef(-100F, 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef(45F, 0.0F, 1.0F, 0.0F);
+        } else
+        if(itemstack.getItem().isFull3D())
+        {
+            if(itemstack.getItem().shouldRotateAroundWhenRendering())
+            {
+                GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+                GL11.glTranslatef(0.0F, -0.125F, 0.0F);
             }
-            GL11.glTranslatef(0.0f, 0.1875f, 0.0f);
-            final float f6 = 0.625f * f;
+            GL11.glTranslatef(0.0F, 0.1875F, 0.0F);
+            float f6 = 0.625F * f;
             GL11.glScalef(f6, -f6, f6);
-            GL11.glRotatef(-100.0f, 1.0f, 0.0f, 0.0f);
-            GL11.glRotatef(45.0f, 0.0f, 1.0f, 0.0f);
-        }
-        else {
-            GL11.glTranslatef(0.25f, 0.1875f, -0.1875f);
-            final float f7 = 0.375f * f;
+            GL11.glRotatef(-100F, 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef(45F, 0.0F, 1.0F, 0.0F);
+        } else
+        {
+            GL11.glTranslatef(0.25F, 0.1875F, -0.1875F);
+            float f7 = 0.375F * f;
             GL11.glScalef(f7, f7, f7);
-            GL11.glRotatef(60.0f, 0.0f, 0.0f, 1.0f);
-            GL11.glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
-            GL11.glRotatef(20.0f, 0.0f, 0.0f, 1.0f);
+            GL11.glRotatef(60F, 0.0F, 0.0F, 1.0F);
+            GL11.glRotatef(-90F, 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef(20F, 0.0F, 0.0F, 1.0F);
         }
-        if (itemstack.getItem() == Items.potionitem) {
-            for (int j = 0; j <= 1; ++j) {
-                final int k = itemstack.getItem().getColorFromItemStack(itemstack, j);
-                final float f8 = (k >> 16 & 0xFF) / 255.0f;
-                final float f9 = (k >> 8 & 0xFF) / 255.0f;
-                final float f10 = (k & 0xFF) / 255.0f;
-                GL11.glColor4f(f8, f9, f10, 1.0f);
-                this.renderManager.itemRenderer.renderItem((EntityLivingBase)entityplayer, itemstack, j);
+        if(itemstack.getItem() == Items.potionitem)
+        {
+            for (int j = 0; j <= 1; j++)
+            {
+                int k = itemstack.getItem().getColorFromItemStack(itemstack, j);
+                float f9 = (float)(k >> 16 & 0xff) / 255F;
+                float f10 = (float)(k >> 8 & 0xff) / 255F;
+                float f12 = (float)(k & 0xff) / 255F;
+                GL11.glColor4f(f9, f10, f12, 1.0F);
+                renderManager.itemRenderer.renderItem(entityplayer, itemstack, j);
             }
-        }
-        else {
-            rendermanager.itemRenderer.renderItem((EntityLivingBase)entityplayer, itemstack, 0);
+        } else
+        {
+            rendermanager.itemRenderer.renderItem(entityplayer, itemstack, 0);
         }
         GL11.glPopMatrix();
     }
-    
-    protected int shouldRenderPass(final EntityLivingBase entityliving, final int i, final float f) {
-        return this.setArmorModel((EntityNPCInterface)entityliving, i, f);
-    }
-    
-    protected void renderEquippedItems(final EntityLivingBase entityliving, final float f) {
-        this.renderSpecials((EntityNpcPony)entityliving, f);
-    }
-    
     @Override
-    public void doRender(final EntityLiving entityliving, final double d, final double d1, final double d2, final float f, final float f1) {
-        this.renderPlayer((EntityNpcPony)entityliving, d, d1, d2, f, f1);
+    protected int shouldRenderPass(EntityLivingBase entityliving, int i, float f)
+    {
+        return setArmorModel((EntityNPCInterface)entityliving, i, f);
     }
-    
-    public void doRender(final Entity entity, final double d, final double d1, final double d2, final float f, final float f1) {
-        this.renderPlayer((EntityNpcPony)entity, d, d1, d2, f, f1);
+
+    @Override
+    protected void renderEquippedItems(EntityLivingBase entityliving, float f)
+    {
+        renderSpecials((EntityNpcPony)entityliving, f);
     }
+
+    @Override
+    public void doRender(EntityLiving entityliving, double d, double d1, double d2, 
+            float f, float f1)
+    {
+        renderPlayer((EntityNpcPony)entityliving, d, d1, d2, f, f1);
+    }
+
+    @Override
+    public void doRender(Entity entity, double d, double d1, double d2, 
+            float f, float f1)
+    {
+        renderPlayer((EntityNpcPony)entity, d, d1, d2, f, f1);
+    }
+
 }

@@ -1,19 +1,18 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.Teleporter;
+import net.minecraft.world.WorldServer;
 
-public class CustomTeleporter extends Teleporter
-{
-    public CustomTeleporter(final WorldServer par1WorldServer) {
-        super(par1WorldServer);
-    }
-    
-    public void placeInPortal(final Entity par1Entity, final double par2, final double par4, final double par6, final float par8) {
+public class CustomTeleporter extends Teleporter{
+	
+	public CustomTeleporter(WorldServer par1WorldServer) {
+		super(par1WorldServer);
+	}
+
+	@Override
+    public void placeInPortal(Entity par1Entity, double par2, double par4, double par6, float par8)
+    {
+    	
     }
 }

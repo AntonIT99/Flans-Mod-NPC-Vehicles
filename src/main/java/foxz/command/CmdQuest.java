@@ -1,158 +1,184 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package foxz.command;
 
-import noppes.npcs.controllers.DialogController;
-import foxz.commandhelper.permissions.ParamCheck;
-import foxz.commandhelper.permissions.OpOnly;
-import foxz.commandhelper.annotations.SubCommand;
-import java.util.Iterator;
 import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayerMP;
 import noppes.npcs.Server;
 import noppes.npcs.constants.EnumPacketClient;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.nbt.NBTTagCompound;
-import noppes.npcs.controllers.QuestData;
-import noppes.npcs.controllers.PlayerData;
+import noppes.npcs.controllers.DialogController;
+import noppes.npcs.controllers.data.PlayerData;
+import noppes.npcs.controllers.data.Quest;
 import noppes.npcs.controllers.QuestController;
-import noppes.npcs.controllers.Quest;
-import foxz.commandhelper.annotations.Command;
+import noppes.npcs.controllers.data.QuestData;
 import foxz.commandhelper.ChMcLogger;
+import foxz.commandhelper.annotations.Command;
+import foxz.commandhelper.annotations.SubCommand;
+import foxz.commandhelper.permissions.OpOnly;
+import foxz.commandhelper.permissions.ParamCheck;
 
-@Command(name = "quest", usage = "help", desc = "Quest operations")
-public class CmdQuest extends ChMcLogger
-{
-    public CmdQuest(final Object sender) {
+@Command(
+        name = "quest",
+        usage = "help",
+        desc = "Quest operations"
+)
+public class CmdQuest extends ChMcLogger{
+
+    public CmdQuest(Object sender) {
         super(sender);
     }
-    
-    @SubCommand(desc = "Start a quest", usage = "<player> <quest>", permissions = { OpOnly.class, ParamCheck.class })
-    public Boolean start(final String[] args) {
-        final String playername = args[0];
+
+    @SubCommand(
+            desc = "Start a quest",
+            usage = "<player> <quest>",
+            permissions = {OpOnly.class, ParamCheck.class}
+    )
+    public Boolean start(String[] args) {
+        String playername=args[0];
         int questid;
         try {
-            questid = Integer.parseInt(args[1]);
-        }
-        catch (NumberFormatException ex) {
-            this.sendmessage("QuestID must be an integer");
+        	questid = Integer.parseInt(args[1]);
+        } catch (NumberFormatException ex) {
+            sendmessage("QuestID must be an integer");
             return false;
         }
-        final List<PlayerData> data = this.getPlayersData(playername);
+        List<PlayerData> data = getPlayersData(playername);
         if (data.isEmpty()) {
-            this.sendmessage(String.format("Unknow player '%s'", playername));
+            sendmessage(String.format("Unknow player '%s'", playername));
             return false;
         }
-        final Quest quest = QuestController.instance.quests.get(questid);
-        if (quest == null) {
-            this.sendmessage("Unknown QuestID");
+        Quest quest = QuestController.instance.quests.get(questid);
+        if (quest == null){
+            sendmessage("Unknown QuestID");
             return false;
         }
-        for (final PlayerData playerdata : data) {
-            if (playerdata.questData.activeQuests.containsKey(questid)) {
-                continue;
-            }
-            final QuestData questdata = new QuestData(quest);
-            playerdata.questData.activeQuests.put(questid, questdata);
-            playerdata.saveNBTData(null);
-            if (playerdata.player == null) {
-                continue;
-            }
-            Server.sendData((EntityPlayerMP)playerdata.player, EnumPacketClient.MESSAGE, "quest.newquest", quest.title);
-            Server.sendData((EntityPlayerMP)playerdata.player, EnumPacketClient.CHAT, "quest.newquest", ": ", quest.title);
+        for(PlayerData playerdata : data){  
+	        if(playerdata.questData.activeQuests.containsKey(questid))
+	        	continue;
+	        QuestData questdata = new QuestData(quest);    
+	        playerdata.questData.activeQuests.put(questid, questdata);
+	        playerdata.savePlayerDataOnFile();
+	        if(playerdata.player != null){
+				Server.sendData((EntityPlayerMP)playerdata.player, EnumPacketClient.MESSAGE, "quest.newquest", quest.title);
+				Server.sendData((EntityPlayerMP)playerdata.player, EnumPacketClient.CHAT, "quest.newquest", ": ", quest.title);
+	        }
         }
         return true;
     }
     
-    @SubCommand(desc = "Finish a quest", usage = "<player> <quest>", permissions = { OpOnly.class, ParamCheck.class })
-    public Boolean finish(final String[] args) {
-        final String playername = args[0];
+    @SubCommand(
+            desc = "Finish a quest",
+            usage = "<player> <quest>",
+            permissions = {OpOnly.class, ParamCheck.class}
+    )
+    public Boolean finish(String args[]){
+        String playername=args[0];
         int questid;
         try {
-            questid = Integer.parseInt(args[1]);
-        }
+        	questid = Integer.parseInt(args[1]);
+        } 
         catch (NumberFormatException ex) {
-            this.sendmessage("QuestID must be an integer");
+            sendmessage("QuestID must be an integer");
             return false;
         }
-        final List<PlayerData> data = this.getPlayersData(playername);
+        List<PlayerData> data = getPlayersData(playername);
         if (data.isEmpty()) {
-            this.sendmessage(String.format("Unknow player '%s'", playername));
+            sendmessage(String.format("Unknow player '%s'", playername));
             return false;
         }
-        final Quest quest = QuestController.instance.quests.get(questid);
-        if (quest == null) {
-            this.sendmessage("Unknown QuestID");
+        
+        Quest quest = QuestController.instance.quests.get(questid);
+        if (quest == null){
+            sendmessage("Unknown QuestID");
+            return false;
+        }             
+        for(PlayerData playerdata : data){  
+	        playerdata.questData.finishedQuests.put(questid, System.currentTimeMillis());    
+	        playerdata.savePlayerDataOnFile(); 
+        }
+        return true;
+    }
+
+    @SubCommand(
+            desc = "Stop a started quest",
+            usage = "<player> <quest>",
+            permissions = {OpOnly.class, ParamCheck.class}
+    )
+    public Boolean stop(String[] args) {
+        String playername=args[0];
+        int questid;
+        try {
+        	questid = Integer.parseInt(args[1]);
+        } catch (NumberFormatException ex) {
+            sendmessage("QuestID must be an integer");
             return false;
         }
-        for (final PlayerData playerdata : data) {
-            playerdata.questData.finishedQuests.put(questid, System.currentTimeMillis());
-            playerdata.saveNBTData(null);
+        List<PlayerData> data = getPlayersData(playername);
+        if (data.isEmpty()) {
+            sendmessage(String.format("Unknow player '%s'", playername));
+            return false;
+        }
+        Quest quest = QuestController.instance.quests.get(questid);
+        if (quest == null){
+            sendmessage("Unknown QuestID");
+            return false;
+        }       
+        for(PlayerData playerdata : data){  
+	        playerdata.questData.activeQuests.remove(questid);
+	        playerdata.savePlayerDataOnFile(); 
         }
         return true;
     }
     
-    @SubCommand(desc = "Stop a started quest", usage = "<player> <quest>", permissions = { OpOnly.class, ParamCheck.class })
-    public Boolean stop(final String[] args) {
-        final String playername = args[0];
+    @SubCommand(
+            desc = "Removes a quest from finished and active quests",
+            usage = "<player> <quest>",
+            permissions = {OpOnly.class, ParamCheck.class}
+    )
+    public Boolean remove(String[] args) {
+        String playername=args[0];
         int questid;
         try {
-            questid = Integer.parseInt(args[1]);
-        }
-        catch (NumberFormatException ex) {
-            this.sendmessage("QuestID must be an integer");
+        	questid = Integer.parseInt(args[1]);
+        } catch (NumberFormatException ex) {
+            sendmessage("QuestID must be an integer");
             return false;
         }
-        final List<PlayerData> data = this.getPlayersData(playername);
+        List<PlayerData> data = getPlayersData(playername);
         if (data.isEmpty()) {
-            this.sendmessage(String.format("Unknow player '%s'", playername));
+            sendmessage(String.format("Unknow player '%s'", playername));
             return false;
         }
-        final Quest quest = QuestController.instance.quests.get(questid);
-        if (quest == null) {
-            this.sendmessage("Unknown QuestID");
+        Quest quest = QuestController.instance.quests.get(questid);
+        if (quest == null){
+            sendmessage("Unknown QuestID");
             return false;
-        }
-        for (final PlayerData playerdata : data) {
-            playerdata.questData.activeQuests.remove(questid);
-            playerdata.saveNBTData(null);
+        }     
+        for(PlayerData playerdata : data){  
+	        playerdata.questData.activeQuests.remove(questid);
+	        playerdata.questData.finishedQuests.remove(questid);
+	        playerdata.savePlayerDataOnFile(); 
         }
         return true;
     }
-    
-    @SubCommand(desc = "Removes a quest from finished and active quests", usage = "<player> <quest>", permissions = { OpOnly.class, ParamCheck.class })
-    public Boolean remove(final String[] args) {
-        final String playername = args[0];
-        int questid;
-        try {
-            questid = Integer.parseInt(args[1]);
-        }
-        catch (NumberFormatException ex) {
-            this.sendmessage("QuestID must be an integer");
-            return false;
-        }
-        final List<PlayerData> data = this.getPlayersData(playername);
-        if (data.isEmpty()) {
-            this.sendmessage(String.format("Unknow player '%s'", playername));
-            return false;
-        }
-        final Quest quest = QuestController.instance.quests.get(questid);
-        if (quest == null) {
-            this.sendmessage("Unknown QuestID");
-            return false;
-        }
-        for (final PlayerData playerdata : data) {
-            playerdata.questData.activeQuests.remove(questid);
-            playerdata.questData.finishedQuests.remove(questid);
-            playerdata.saveNBTData(null);
-        }
-        return true;
-    }
-    
-    @SubCommand(desc = "reload quests from disk", permissions = { OpOnly.class })
-    public boolean reload(final String[] args) {
-        new DialogController();
-        return true;
+    @SubCommand(
+            desc="reload quests from disk",
+            permissions={OpOnly.class}
+    )      
+    public boolean reload(String args[]){
+    	new DialogController();
+    	return true;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

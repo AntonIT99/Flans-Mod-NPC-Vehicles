@@ -1,12 +1,8 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.model.blocks;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
 
 public class ModelBarrel extends ModelBase
 {
@@ -22,65 +18,93 @@ public class ModelBarrel extends ModelBase
     ModelRenderer Plank10;
     ModelRenderer Plank11;
     ModelRenderer Plank12;
-    
-    public ModelBarrel() {
-        (this.Plank1 = new ModelRenderer((ModelBase)this, 10, 0)).addBox(0.0f, 6.5f, -2.0f, 17, 1, 4);
-        this.Plank1.setRotationPoint(0.0f, 7.01f, 0.0f);
-        this.setRotation(this.Plank1, 0.0f, 0.0f, 1.570796f);
-        (this.Plank2 = new ModelRenderer((ModelBase)this, 10, 8)).addBox(0.0f, 6.5f, -2.0f, 17, 1, 4);
-        this.Plank2.setRotationPoint(0.0f, 7.0f, 0.0f);
-        this.setRotation(this.Plank2, 0.0f, 0.5235988f, 1.570796f);
-        (this.Plank3 = new ModelRenderer((ModelBase)this, 10, 0)).addBox(0.0f, 6.5f, -2.0f, 17, 1, 4);
-        this.Plank3.setRotationPoint(0.0f, 7.01f, 0.0f);
-        this.setRotation(this.Plank3, 0.0f, 1.047198f, 1.570796f);
-        (this.Plank4 = new ModelRenderer((ModelBase)this, 10, 8)).addBox(0.0f, 6.5f, -2.0f, 17, 1, 4);
-        this.Plank4.setRotationPoint(0.0f, 7.0f, 0.0f);
-        this.setRotation(this.Plank4, 0.0f, 1.570796f, 1.570796f);
-        (this.Plank5 = new ModelRenderer((ModelBase)this, 10, 0)).addBox(0.0f, 6.5f, -2.0f, 17, 1, 4);
-        this.Plank5.setRotationPoint(0.0f, 7.01f, 0.0f);
-        this.setRotation(this.Plank5, 0.0f, 2.094395f, 1.570796f);
-        (this.Plank6 = new ModelRenderer((ModelBase)this, 10, 8)).addBox(0.0f, 6.5f, -2.0f, 17, 1, 4);
-        this.Plank6.setRotationPoint(0.0f, 7.0f, 0.0f);
-        this.setRotation(this.Plank6, 0.0f, 2.617994f, 1.570796f);
-        (this.Plank7 = new ModelRenderer((ModelBase)this, 10, 0)).addBox(0.0f, 6.5f, -2.0f, 17, 1, 4);
-        this.Plank7.setRotationPoint(0.0f, 7.01f, 0.0f);
-        this.setRotation(this.Plank7, 0.0f, 3.150901f, 1.570796f);
-        (this.Plank8 = new ModelRenderer((ModelBase)this, 10, 8)).addBox(0.0f, 6.5f, -2.0f, 17, 1, 4);
-        this.Plank8.setRotationPoint(0.0f, 7.0f, 0.0f);
-        this.setRotation(this.Plank8, 0.0f, -2.617994f, 1.570796f);
-        (this.Plank9 = new ModelRenderer((ModelBase)this, 10, 0)).addBox(0.0f, 6.5f, -2.0f, 17, 1, 4);
-        this.Plank9.setRotationPoint(0.0f, 7.01f, 0.0f);
-        this.setRotation(this.Plank9, 0.0f, -2.094395f, 1.570796f);
-        (this.Plank10 = new ModelRenderer((ModelBase)this, 10, 8)).addBox(0.0f, 6.5f, -2.0f, 17, 1, 4);
-        this.Plank10.setRotationPoint(0.0f, 7.0f, 0.0f);
-        this.setRotation(this.Plank10, 0.0f, -1.570796f, 1.570796f);
-        (this.Plank11 = new ModelRenderer((ModelBase)this, 10, 0)).addBox(0.0f, 6.5f, -2.0f, 17, 1, 4);
-        this.Plank11.setRotationPoint(0.0f, 7.01f, 0.0f);
-        this.setRotation(this.Plank11, 0.0f, -1.047198f, 1.570796f);
-        (this.Plank12 = new ModelRenderer((ModelBase)this, 10, 0)).addBox(0.0f, 6.5f, -2.0f, 17, 1, 4);
-        this.Plank12.setRotationPoint(0.0f, 7.0f, 0.0f);
-        this.setRotation(this.Plank12, 0.0f, -0.5235988f, 1.570796f);
-    }
-    
-    public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
-        super.render(entity, f, f1, f2, f3, f4, f5);
-        this.Plank1.render(f5);
-        this.Plank2.render(f5);
-        this.Plank3.render(f5);
-        this.Plank4.render(f5);
-        this.Plank5.render(f5);
-        this.Plank6.render(f5);
-        this.Plank7.render(f5);
-        this.Plank8.render(f5);
-        this.Plank9.render(f5);
-        this.Plank10.render(f5);
-        this.Plank11.render(f5);
-        this.Plank12.render(f5);
-    }
-    
-    private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {
-        model.rotateAngleX = y;
-        model.rotateAngleY = x;
-        model.rotateAngleZ = z;
-    }
+  
+  public ModelBarrel()
+  {      
+      Plank1 = new ModelRenderer(this, 10, 0);
+      Plank1.addBox(0F, 6.5F, -2F, 17, 1, 4);
+      Plank1.setRotationPoint(0F, 7.01F, 0F);
+      setRotation(Plank1, 0F, 0F, 1.570796F);
+      
+      Plank2 = new ModelRenderer(this, 10, 8);
+      Plank2.addBox(0F, 6.5F, -2F, 17, 1, 4);
+      Plank2.setRotationPoint(0F, 7F, 0F);
+      setRotation(Plank2, 0F, 0.5235988F, 1.570796F);
+      
+      Plank3 = new ModelRenderer(this, 10, 0);
+      Plank3.addBox(0F, 6.5F, -2F, 17, 1, 4);
+      Plank3.setRotationPoint(0F, 7.01F, 0F);
+      setRotation(Plank3, 0F, 1.047198F, 1.570796F);
+      
+      Plank4 = new ModelRenderer(this, 10, 8);
+      Plank4.addBox(0F, 6.5F, -2F, 17, 1, 4);
+      Plank4.setRotationPoint(0F, 7F, 0F);
+      setRotation(Plank4, 0F, 1.570796F, 1.570796F);
+      
+      Plank5 = new ModelRenderer(this, 10, 0);
+      Plank5.addBox(0F, 6.5F, -2F, 17, 1, 4);
+      Plank5.setRotationPoint(0F, 7.01F, 0F);
+      setRotation(Plank5, 0F, 2.094395F, 1.570796F);
+      
+      Plank6 = new ModelRenderer(this, 10, 8);
+      Plank6.addBox(0F, 6.5F, -2F, 17, 1, 4);
+      Plank6.setRotationPoint(0F, 7F, 0F);
+      setRotation(Plank6, 0F, 2.617994F, 1.570796F);
+      
+      Plank7 = new ModelRenderer(this, 10, 0);
+      Plank7.addBox(0F, 6.5F, -2F, 17, 1, 4);
+      Plank7.setRotationPoint(0F, 7.01F, 0F);
+      setRotation(Plank7, 0F, 3.150901F, 1.570796F);
+      
+      Plank8 = new ModelRenderer(this, 10, 8);
+      Plank8.addBox(0F, 6.5F, -2F, 17, 1, 4);
+      Plank8.setRotationPoint(0F, 7F, 0F);
+      setRotation(Plank8, 0F, -2.617994F, 1.570796F);
+      
+      Plank9 = new ModelRenderer(this, 10, 0);
+      Plank9.addBox(0F, 6.5F, -2F, 17, 1, 4);
+      Plank9.setRotationPoint(0F, 7.01F, 0F);
+      setRotation(Plank9, 0F, -2.094395F, 1.570796F);
+      
+      Plank10 = new ModelRenderer(this, 10, 8);
+      Plank10.addBox(0F, 6.5F, -2F, 17, 1, 4);
+      Plank10.setRotationPoint(0F, 7F, 0F);
+      setRotation(Plank10, 0F, -1.570796F, 1.570796F);
+      
+      Plank11 = new ModelRenderer(this, 10, 0);
+      Plank11.addBox(0F, 6.5F, -2F, 17, 1, 4);
+      Plank11.setRotationPoint(0F, 7.01F, 0F);
+      setRotation(Plank11, 0F, -1.047198F, 1.570796F);
+      
+      Plank12 = new ModelRenderer(this, 10, 0);
+      Plank12.addBox(0F, 6.5F, -2F, 17, 1, 4);
+      Plank12.setRotationPoint(0F, 7F, 0F);
+      setRotation(Plank12, 0F, -0.5235988F, 1.570796F);
+  }
+  
+  public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+  {
+    super.render(entity, f, f1, f2, f3, f4, f5);
+    Plank1.render(f5);
+    Plank2.render(f5);
+    Plank3.render(f5);
+    Plank4.render(f5);
+    Plank5.render(f5);
+    Plank6.render(f5);
+    Plank7.render(f5);
+    Plank8.render(f5);
+    Plank9.render(f5);
+    Plank10.render(f5);
+    Plank11.render(f5);
+    Plank12.render(f5);
+  }
+  
+  private void setRotation(ModelRenderer model, float x, float y, float z)
+  {
+    model.rotateAngleX = y;
+    model.rotateAngleY = x;
+    model.rotateAngleZ = z;
+  }
+  
+
 }

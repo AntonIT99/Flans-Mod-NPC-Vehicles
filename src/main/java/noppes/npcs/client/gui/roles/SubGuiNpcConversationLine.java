@@ -1,69 +1,62 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.gui.roles;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.client.entity.EntityPlayerSP;
-import noppes.npcs.client.NoppesUtil;
 import net.minecraft.client.gui.GuiButton;
-import noppes.npcs.client.gui.util.GuiNpcButton;
-import net.minecraft.client.gui.GuiScreen;
-import noppes.npcs.client.gui.util.GuiNpcTextField;
-import noppes.npcs.client.gui.util.GuiNpcLabel;
+import noppes.npcs.client.NoppesUtil;
 import noppes.npcs.client.gui.GuiNpcSoundSelection;
+import noppes.npcs.client.gui.util.GuiNpcButton;
+import noppes.npcs.client.gui.util.GuiNpcLabel;
+import noppes.npcs.client.gui.util.GuiNpcTextField;
 import noppes.npcs.client.gui.util.ITextfieldListener;
 import noppes.npcs.client.gui.util.SubGuiInterface;
 
-public class SubGuiNpcConversationLine extends SubGuiInterface implements ITextfieldListener
-{
-    public String line;
-    public String sound;
-    private GuiNpcSoundSelection gui;
-    
-    public SubGuiNpcConversationLine(final String line, final String sound) {
-        this.line = line;
-        this.sound = sound;
-        this.setBackground("menubg.png");
-        this.xSize = 256;
-        this.ySize = 216;
-        this.closeOnEsc = true;
+public class SubGuiNpcConversationLine extends SubGuiInterface implements ITextfieldListener{
+	public String line;
+	public String sound;
+	private GuiNpcSoundSelection gui;
+	
+    public SubGuiNpcConversationLine(String line, String sound){
+    	this.line = line;
+    	this.sound = sound;
+		setBackground("menubg.png");
+		xSize = 256;
+		ySize = 216;
+		closeOnEsc = true;
     }
-    
-    @Override
-    public void initGui() {
+
+    public void initGui(){
         super.initGui();
-        this.addLabel(new GuiNpcLabel(0, "Line", this.guiLeft + 4, this.guiTop + 10));
-        this.addTextField(new GuiNpcTextField(0, this, this.fontRendererObj, this.guiLeft + 4, this.guiTop + 22, 200, 20, this.line));
-        this.addButton(new GuiNpcButton(1, this.guiLeft + 4, this.guiTop + 55, 90, 20, "Select Sound"));
-        this.addButton(new GuiNpcButton(2, this.guiLeft + 96, this.guiTop + 55, 20, 20, "X"));
-        this.addLabel(new GuiNpcLabel(1, this.sound, this.guiLeft + 4, this.guiTop + 81));
-        this.addButton(new GuiNpcButton(66, this.guiLeft + 162, this.guiTop + 192, 90, 20, "gui.done"));
+        
+        addLabel(new GuiNpcLabel(0, "Line", guiLeft + 4, guiTop+ 10));
+        addTextField(new GuiNpcTextField(0, this, fontRendererObj, guiLeft + 4, guiTop + 22, 200, 20, line));
+
+        addButton(new GuiNpcButton(1, guiLeft + 4, guiTop + 55, 90, 20, "Select Sound"));
+        addButton(new GuiNpcButton(2, guiLeft + 96, guiTop + 55, 20, 20, "X"));
+        addLabel(new GuiNpcLabel(1, sound, guiLeft + 4, guiTop + 81));
+        
+    	addButton(new GuiNpcButton(66, guiLeft + 162, guiTop + 192, 90, 20, "gui.done"));
+    }
+
+	public void unFocused(GuiNpcTextField textfield) {
+		line = textfield.getText();
+	}
+
+    @Override
+    public void elementClicked(){
+		sound = gui.getSelected();
     }
     
-    @Override
-    public void unFocused(final GuiNpcTextField textfield) {
-        this.line = textfield.getText();
-    }
-    
-    @Override
-    public void elementClicked() {
-        this.sound = this.gui.getSelected();
-    }
-    
-    @Override
-    protected void actionPerformed(final GuiButton guibutton) {
-        final int id = guibutton.id;
-        if (id == 1) {
-            NoppesUtil.openGUI((EntityPlayer)this.player, this.gui = new GuiNpcSoundSelection(this.npc, this.parent, this.sound));
+	protected void actionPerformed(GuiButton guibutton){
+		int id = guibutton.id;
+        if(id == 1){
+        	NoppesUtil.openGUI(player, gui = new GuiNpcSoundSelection(npc, parent, sound));
         }
-        if (id == 2) {
-            this.sound = "";
-            this.initGui();
+        if(id == 2){
+        	sound = "";
+        	initGui();
         }
-        if (id == 66) {
-            this.close();
+        if(id == 66){
+        	close();
         }
     }
+
 }

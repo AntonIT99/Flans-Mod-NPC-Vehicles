@@ -1,82 +1,80 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs;
 
-import java.util.Iterator;
-import noppes.npcs.constants.EnumQuestCompletion;
-import noppes.npcs.controllers.Quest;
-import noppes.npcs.controllers.PlayerQuestController;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
-import java.util.Vector;
 import java.util.HashMap;
+import java.util.Vector;
 
-public class QuestLogData
-{
-    public HashMap<String, Vector<String>> categories;
-    public String selectedQuest;
-    public String selectedCategory;
-    public HashMap<String, String> questText;
-    public HashMap<String, Vector<String>> questStatus;
-    public HashMap<String, String> finish;
-    
-    public QuestLogData() {
-        this.categories = new HashMap<String, Vector<String>>();
-        this.selectedQuest = "";
-        this.selectedCategory = "";
-        this.questText = new HashMap<String, String>();
-        this.questStatus = new HashMap<String, Vector<String>>();
-        this.finish = new HashMap<String, String>();
-    }
-    
-    public NBTTagCompound writeNBT() {
-        final NBTTagCompound compound = new NBTTagCompound();
-        compound.setTag("Categories", (NBTBase)NBTTags.nbtVectorMap(this.categories));
-        compound.setTag("Logs", (NBTBase)NBTTags.nbtStringStringMap(this.questText));
-        compound.setTag("Status", (NBTBase)NBTTags.nbtVectorMap(this.questStatus));
-        compound.setTag("QuestFinisher", (NBTBase)NBTTags.nbtStringStringMap(this.finish));
-        return compound;
-    }
-    
-    public void readNBT(final NBTTagCompound compound) {
-        this.categories = NBTTags.getVectorMap(compound.getTagList("Categories", 10));
-        this.questText = NBTTags.getStringStringMap(compound.getTagList("Logs", 10));
-        this.questStatus = NBTTags.getVectorMap(compound.getTagList("Status", 10));
-        this.finish = NBTTags.getStringStringMap(compound.getTagList("QuestFinisher", 10));
-    }
-    
-    public void setData(final EntityPlayer player) {
-        for (final Quest quest : PlayerQuestController.getActiveQuests(player)) {
-            final String category = quest.category.title;
-            if (!this.categories.containsKey(category)) {
-                this.categories.put(category, new Vector<String>());
-            }
-            final Vector<String> list = this.categories.get(category);
-            list.add(quest.title);
-            this.questText.put(category + ":" + quest.title, quest.logText);
-            this.questStatus.put(category + ":" + quest.title, quest.questInterface.getQuestLogStatus(player));
-            if (quest.completion == EnumQuestCompletion.Npc && quest.questInterface.isCompleted(player)) {
-                this.finish.put(category + ":" + quest.title, quest.completerNpc);
-            }
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import noppes.npcs.constants.EnumQuestCompletion;
+import noppes.npcs.controllers.data.PlayerData;
+import noppes.npcs.controllers.PlayerDataController;
+import noppes.npcs.controllers.PlayerQuestController;
+import noppes.npcs.controllers.data.Quest;
+
+public class QuestLogData {
+	public String trackedQuestKey = "";
+	public HashMap<String,Vector<String>> categories = new HashMap<String,Vector<String>>();
+	public String selectedQuest = "";
+	public String selectedCategory = "";
+	public HashMap<String,String> questText = new HashMap<String,String>();
+	public HashMap<String,Vector<String>> questStatus = new HashMap<String,Vector<String>>();
+	public HashMap<String,String> finish = new HashMap<String,String>();
+	
+	public NBTTagCompound writeNBT(){
+		NBTTagCompound compound = new NBTTagCompound();
+		compound.setTag("Categories", NBTTags.nbtVectorMap(categories));
+		compound.setTag("Logs", NBTTags.nbtStringStringMap(questText));
+		compound.setTag("Status", NBTTags.nbtVectorMap(questStatus));
+		compound.setTag("QuestFinisher", NBTTags.nbtStringStringMap(finish));
+		compound.setString("TrackedQuestID", trackedQuestKey);
+		return compound;
+	}
+
+	public void readNBT(NBTTagCompound compound){
+		categories = NBTTags.getVectorMap(compound.getTagList("Categories", 10));
+		questText = NBTTags.getStringStringMap(compound.getTagList("Logs", 10));
+		questStatus = NBTTags.getVectorMap(compound.getTagList("Status", 10));
+		finish = NBTTags.getStringStringMap(compound.getTagList("QuestFinisher", 10));
+		trackedQuestKey = compound.getString("TrackedQuestID");
+	}
+	public void setData(EntityPlayer player){
+		PlayerData playerData = PlayerDataController.instance.getPlayerData(player);
+
+		for(Quest quest : PlayerQuestController.getActiveQuests(player))
+        {
+    		String category = quest.category.title;
+    		if(!categories.containsKey(category))
+    			categories.put(category, new Vector<String>());
+    		Vector<String> list = categories.get(category);
+    		list.add(quest.title);
+    		
+    		questText.put(category + ":" + quest.title, quest.logText);
+
+    		questStatus.put(category + ":" + quest.title, quest.questInterface.getQuestLogStatus(player));
+    		if(quest.completion == EnumQuestCompletion.Npc && quest.questInterface.isCompleted(playerData))
+    			finish.put(category + ":" + quest.title, quest.completerNpc);
+
+			if (playerData.questData.trackedQuest != null) {
+				if (quest.id == playerData.questData.trackedQuest.getId()) {
+					trackedQuestKey = category + ":" + quest.title;
+				}
+			}
         }
-    }
-    
-    public boolean hasSelectedQuest() {
-        return !this.selectedQuest.isEmpty();
-    }
-    
-    public String getQuestText() {
-        return this.questText.get(this.selectedCategory + ":" + this.selectedQuest);
-    }
-    
-    public Vector<String> getQuestStatus() {
-        return this.questStatus.get(this.selectedCategory + ":" + this.selectedQuest);
-    }
-    
-    public String getComplete() {
-        return this.finish.get(this.selectedCategory + ":" + this.selectedQuest);
-    }
+	}
+
+	public boolean hasSelectedQuest() {
+		return !selectedQuest.isEmpty();
+	}
+
+	public String getQuestText() {
+		return questText.get(selectedCategory + ":" + selectedQuest);
+	}
+
+	public Vector<String> getQuestStatus() {
+		return questStatus.get(selectedCategory + ":" + selectedQuest);
+	}
+
+	public String getComplete() {
+		return finish.get(selectedCategory + ":" + selectedQuest);
+	}
 }

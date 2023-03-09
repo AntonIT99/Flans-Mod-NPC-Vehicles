@@ -1,18 +1,15 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.renderer;
 
-import net.minecraft.client.model.ModelBase;
+import net.minecraft.entity.Entity;
 import noppes.npcs.client.model.ModelNpcCrystal;
+import noppes.npcs.entity.EntityNpcCrystal;
 
 public class RenderNpcCrystal extends RenderNPCInterface
 {
-    ModelNpcCrystal mainmodel;
-    
-    public RenderNpcCrystal(final ModelNpcCrystal model) {
-        super(model, 0.0f);
-        this.mainmodel = model;
+	ModelNpcCrystal mainmodel;
+    public RenderNpcCrystal(ModelNpcCrystal model)
+    {
+    	super(model,0);
+    	mainmodel = model;
     }
 }

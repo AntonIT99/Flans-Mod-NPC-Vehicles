@@ -1,75 +1,87 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.gui.util;
 
-import org.lwjgl.opengl.GL11;
+import java.util.List;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import noppes.npcs.entity.EntityNPCInterface;
+import net.minecraft.inventory.Slot;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import noppes.npcs.client.Client;
+import noppes.npcs.client.NoppesUtil;
+import noppes.npcs.constants.EnumPacketServer;
+import noppes.npcs.entity.EntityNPCInterface;
+
+import org.lwjgl.opengl.GL11;
 
 public abstract class GuiContainerNPCInterface2 extends GuiContainerNPCInterface
 {
-    private ResourceLocation background;
-    private final ResourceLocation defaultBackground;
+	private ResourceLocation background = new ResourceLocation("customnpcs","textures/gui/menubg.png");
+	private final ResourceLocation defaultBackground = new ResourceLocation("customnpcs","textures/gui/menubg.png");
+    private final ResourceLocation defaultBackground2 = new ResourceLocation("customnpcs","textures/gui/menubg2.png");
+
     private GuiNpcMenu menu;
-    public int menuYOffset;
-    
-    public GuiContainerNPCInterface2(final EntityNPCInterface npc, final Container cont) {
-        this(npc, cont, -1);
+	public int menuYOffset = 0;
+
+    public GuiContainerNPCInterface2(EntityNPCInterface npc,Container cont)
+    {
+    	this(npc, cont, -1);
+    }
+    public GuiContainerNPCInterface2(EntityNPCInterface npc,Container cont,int activeMenu)
+    {
+    	super(npc, cont);
+    	this.xSize = 420;
+    	this.menu = new GuiNpcMenu(this,activeMenu,npc);
+    	title = "";
+    }
+    public void setBackground(String texture){
+    	background = new ResourceLocation("customnpcs","textures/gui/" + texture);
+    }
+    public ResourceLocation getResource(String texture){
+    	return new ResourceLocation("customnpcs","textures/gui/" + texture);
     }
     
-    public GuiContainerNPCInterface2(final EntityNPCInterface npc, final Container cont, final int activeMenu) {
-        super(npc, cont);
-        this.background = new ResourceLocation("customnpcs", "textures/gui/menubg.png");
-        this.defaultBackground = new ResourceLocation("customnpcs", "textures/gui/menubg.png");
-        this.menuYOffset = 0;
-        this.xSize = 420;
-        this.menu = new GuiNpcMenu((GuiScreen)this, activeMenu, npc);
-        this.title = "";
-    }
-    
-    public void setBackground(final String texture) {
-        this.background = new ResourceLocation("customnpcs", "textures/gui/" + texture);
-    }
-    
+	@Override
+    public void initGui()
+    {
+    	super.initGui();
+        menu.initGui(guiLeft, guiTop + menuYOffset, xSize);
+    }   
+
     @Override
-    public ResourceLocation getResource(final String texture) {
-        return new ResourceLocation("customnpcs", "textures/gui/" + texture);
+    protected void mouseClicked(int i, int j, int k)
+    {
+    	super.mouseClicked(i, j, k);
+    	if(!hasSubGui())
+	    	menu.mouseClicked(i, j, k);
     }
     
+    public void delete(){
+    	npc.delete();
+        displayGuiScreen(null);
+        mc.setIngameFocus();
+    }
+
     @Override
-    public void initGui() {
-        super.initGui();
-        this.menu.initGui(this.guiLeft, this.guiTop + this.menuYOffset, this.xSize);
-    }
-    
-    @Override
-    protected void mouseClicked(final int i, final int j, final int k) {
-        super.mouseClicked(i, j, k);
-        if (!this.hasSubGui()) {
-            this.menu.mouseClicked(i, j, k);
-        }
-    }
-    
-    public void delete() {
-        this.npc.delete();
-        this.displayGuiScreen(null);
-        this.mc.setIngameFocus();
-    }
-    
-    @Override
-    protected void drawGuiContainerBackgroundLayer(final float f, final int i, final int j) {
-        this.drawDefaultBackground();
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        this.mc.renderEngine.bindTexture(this.background);
-        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, 256, 256);
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        this.mc.renderEngine.bindTexture(this.defaultBackground);
-        this.drawTexturedModalRect(this.guiLeft + this.xSize - 200, this.guiTop, 26, 0, 200, 220);
-        this.menu.drawElements(this.fontRendererObj, i, j, this.mc, f);
+    protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
+    {
+    	drawDefaultBackground();
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        mc.renderEngine.bindTexture(background);
+        drawTexturedModalRect(guiLeft, guiTop, 0, 0, 256, 256);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        mc.renderEngine.bindTexture(defaultBackground2);
+        drawTexturedModalRect(guiLeft + xSize-256, guiTop, 0, 0, 256, 220);
+        
+        menu.drawElements(fontRendererObj, i, j, mc, f);
+        
         super.drawGuiContainerBackgroundLayer(f, i, j);
     }
+
 }

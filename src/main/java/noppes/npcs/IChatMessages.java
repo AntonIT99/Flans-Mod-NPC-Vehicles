@@ -1,14 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs;
 
 import noppes.npcs.entity.EntityNPCInterface;
 
-public interface IChatMessages
-{
-    void addMessage(final String p0, final EntityNPCInterface p1);
-    
-    void renderMessages(final double p0, final double p1, final double p2, final float p3);
+public interface IChatMessages {
+
+	public void addMessage(String message, EntityNPCInterface npc);
+	public void renderMessages(double par3, double par5, double par7, float scale);
+	
 }

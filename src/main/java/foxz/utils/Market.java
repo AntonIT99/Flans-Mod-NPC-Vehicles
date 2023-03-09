@@ -1,63 +1,58 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package foxz.utils;
 
-import noppes.npcs.entity.EntityNPCInterface;
-import noppes.npcs.CustomNpcs;
 import java.io.File;
-import noppes.npcs.util.NBTJsonUtil;
-import net.minecraft.nbt.NBTTagCompound;
-import noppes.npcs.roles.RoleTrader;
 
-public class Market
-{
-    public static void save(final RoleTrader r, final String name) {
-        if (name.isEmpty()) {
-            return;
-        }
-        final File file = getFile(name + "_new");
-        final File file2 = getFile(name);
+import net.minecraft.nbt.NBTTagCompound;
+import noppes.npcs.CustomNpcs;
+import noppes.npcs.entity.EntityNPCInterface;
+import noppes.npcs.roles.RoleTrader;
+import noppes.npcs.util.NBTJsonUtil;
+
+public class Market {
+
+    static public void save(RoleTrader r, String name) {
+    	if(name.isEmpty())
+    		return;
+    	File file = getFile(name + "_new");
+    	File file1 = getFile(name);
+        
         try {
-            NBTJsonUtil.SaveFile(file, r.writeNBT(new NBTTagCompound()));
-            if (file2.exists()) {
-                file2.delete();
-            }
-            file.renameTo(file2);
-        }
-        catch (Exception ex) {}
+			NBTJsonUtil.SaveFile(file, r.writeNBT(new NBTTagCompound()));
+	        if(file1.exists()){
+	        	file1.delete();
+	        }
+	        file.renameTo(file1);
+		} catch (Exception e) {
+			
+		} 
     }
-    
-    public static void load(final RoleTrader role, final String name) {
-        if (role.npc.worldObj.isRemote) {
-            return;
-        }
-        final File file = getFile(name);
-        if (!file.exists()) {
-            return;
-        }
-        try {
-            role.readNBT(NBTJsonUtil.LoadFile(file));
-        }
-        catch (Exception ex) {}
+
+
+    static public void load(RoleTrader role, String name){
+    	if(role.npc.worldObj.isRemote)
+    		return;
+    	File file = getFile(name);
+    	if(!file.exists())
+    		return;
+    	
+    	try {
+			role.readNBT(NBTJsonUtil.LoadFile(file));
+		} catch (Exception e) {
+		} 
     }
-    
-    private static File getFile(final String name) {
-        final File dir = new File(CustomNpcs.getWorldSaveDirectory(), "markets");
-        if (!dir.exists()) {
-            dir.mkdir();
-        }
-        return new File(dir, name.toLowerCase() + ".json");
+    private static File getFile(String name){
+    	File dir = new File(CustomNpcs.getWorldSaveDirectory(), "markets");
+    	if(!dir.exists())
+    		dir.mkdir();
+    	return new File(dir, name.toLowerCase() + ".json");
     }
-    
-    public static void setMarket(final EntityNPCInterface npc, final String marketName) {
-        if (marketName.isEmpty()) {
-            return;
-        }
-        if (!getFile(marketName).exists()) {
-            save((RoleTrader)npc.roleInterface, marketName);
-        }
-        load((RoleTrader)npc.roleInterface, marketName);
+
+    static public void setMarket(EntityNPCInterface npc, String marketName) {
+    	if(marketName.isEmpty())
+    		return;
+    	if(!getFile(marketName).exists())
+    		Market.save((RoleTrader) npc.roleInterface, marketName);
+		
+        Market.load((RoleTrader) npc.roleInterface, marketName);
     }
 }

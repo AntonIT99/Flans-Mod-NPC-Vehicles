@@ -1,254 +1,257 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.gui.player;
 
-import net.minecraft.nbt.NBTTagCompound;
-import noppes.npcs.client.NoppesUtil;
-import net.minecraft.util.IChatComponent;
-import noppes.npcs.client.TextBlockClient;
-import noppes.npcs.client.CustomNpcResourceListener;
-import net.minecraft.util.StatCollector;
-import org.lwjgl.opengl.GL11;
-import net.minecraft.client.gui.GuiButton;
-import java.util.Iterator;
-import noppes.npcs.client.gui.util.GuiNpcButton;
-import noppes.npcs.client.gui.util.GuiButtonNextPage;
-import java.util.List;
-import java.util.Vector;
-import net.minecraft.client.gui.GuiScreen;
-import java.util.Comparator;
-import java.util.Collections;
-import java.util.Collection;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
+import noppes.npcs.NoppesUtilPlayer;
+import noppes.npcs.QuestLogData;
+import noppes.npcs.client.Client;
+import noppes.npcs.client.CustomNpcResourceListener;
+import noppes.npcs.client.NoppesUtil;
+import noppes.npcs.client.TextBlockClient;
+import noppes.npcs.client.gui.util.*;
+import noppes.npcs.constants.EnumPacketServer;
+import noppes.npcs.constants.EnumPlayerPacket;
+
+import org.lwjgl.opengl.GL11;
+
 import tconstruct.client.tabs.InventoryTabQuests;
 import tconstruct.client.tabs.TabRegistry;
-import noppes.npcs.NoppesUtilPlayer;
-import noppes.npcs.constants.EnumPlayerPacket;
-import net.minecraft.client.Minecraft;
-import noppes.npcs.QuestLogData;
-import noppes.npcs.client.gui.util.GuiMenuSideButton;
-import java.util.HashMap;
-import noppes.npcs.client.gui.util.GuiCustomScroll;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
-import noppes.npcs.client.gui.util.IGuiData;
-import noppes.npcs.client.gui.util.ICustomScrollListener;
-import noppes.npcs.client.gui.util.ITopButtonListener;
-import noppes.npcs.client.gui.util.GuiNPCInterface;
 
-public class GuiQuestLog extends GuiNPCInterface implements ITopButtonListener, ICustomScrollListener, IGuiData
-{
-    private final ResourceLocation resource;
+public class GuiQuestLog extends GuiNPCInterface implements ITopButtonListener,ICustomScrollListener, IGuiData{
+
+	private final ResourceLocation resource = new ResourceLocation("customnpcs","textures/gui/standardbg.png");
+
     private EntityPlayer player;
     private GuiCustomScroll scroll;
-    private HashMap<Integer, GuiMenuSideButton> sideButtons;
-    private QuestLogData data;
-    private boolean noQuests;
-    private boolean questDetails;
-    private Minecraft mc;
-    
-    public GuiQuestLog(final EntityPlayer player) {
-        this.resource = new ResourceLocation("customnpcs", "textures/gui/standardbg.png");
-        this.sideButtons = new HashMap<Integer, GuiMenuSideButton>();
-        this.data = new QuestLogData();
-        this.noQuests = false;
-        this.questDetails = true;
-        this.mc = Minecraft.getMinecraft();
-        this.player = player;
-        this.xSize = 280;
-        this.ySize = 180;
-        NoppesUtilPlayer.sendData(EnumPlayerPacket.QuestLog, new Object[0]);
-        this.drawDefaultBackground = false;
-    }
-    
-    @Override
-    public void initGui() {
+	private HashMap<Integer,GuiMenuSideButton> sideButtons = new HashMap<Integer,GuiMenuSideButton>();
+	private QuestLogData data = new QuestLogData();
+	private boolean noQuests = false;
+	private boolean questDetails = true;
+
+	private Minecraft mc = Minecraft.getMinecraft();
+
+	public GuiQuestLog(EntityPlayer player) {
+		super();
+		this.player = player;
+        xSize = 280;
+        ySize = 180;
+        NoppesUtilPlayer.sendData(EnumPlayerPacket.QuestLog);
+        drawDefaultBackground = false;
+	}
+    public void initGui(){
         super.initGui();
-        this.sideButtons.clear();
-        this.guiTop += 10;
-        TabRegistry.addTabsToList(this.buttonList);
-        TabRegistry.updateTabValues(this.guiLeft, this.guiTop, InventoryTabQuests.class);
-        this.noQuests = false;
-        if (this.data.categories.isEmpty()) {
-            this.noQuests = true;
-            return;
+    	sideButtons.clear();
+        guiTop +=10;
+
+		TabRegistry.addTabsToList(buttonList);
+		TabRegistry.updateTabValues(guiLeft, guiTop, InventoryTabQuests.class);
+
+        noQuests = false;
+
+        if(data.categories.isEmpty()){
+        	noQuests = true;
+        	return;
         }
-        final List<String> categories = new ArrayList<String>();
-        categories.addAll(this.data.categories.keySet());
-        Collections.sort(categories, String.CASE_INSENSITIVE_ORDER);
+        List<String> categories = new ArrayList<String>();
+        categories.addAll(data.categories.keySet());
+        Collections.sort(categories,String.CASE_INSENSITIVE_ORDER);
         int i = 0;
-        for (final String category : categories) {
-            if (this.data.selectedCategory.isEmpty()) {
-                this.data.selectedCategory = category;
+        for(String category : categories){
+        	if(data.selectedCategory.isEmpty())
+        		data.selectedCategory = category;
+        	sideButtons.put(i, new GuiMenuSideButton(i,guiLeft - 69, this.guiTop +2 + i*21, 70,22, category));
+        	i++;
+        }
+        sideButtons.get(categories.indexOf(data.selectedCategory)).active = true;
+
+        if(scroll == null)
+        	scroll = new GuiCustomScroll(this,0);
+
+        scroll.setList(data.categories.get(data.selectedCategory));
+        scroll.setSize(134, 174);
+        scroll.guiLeft = guiLeft + 5;
+        scroll.guiTop = guiTop + 15;
+        addScroll(scroll);
+
+        addButton(new GuiButtonNextPage(1, guiLeft + 286, guiTop + 176, true));
+        addButton(new GuiButtonNextPage(2, guiLeft + 144, guiTop + 176, false));
+
+        GuiNpcButton trackingButton = new GuiNpcButton(3, guiLeft + 260, guiTop + 151, 50, 20, new String[]{"Track", "Tracking"}, data.trackedQuestKey.equals(data.selectedCategory + ":" + data.selectedQuest) ? 1 : 0);
+        if (trackingButton.displayString.equals("Tracking")) {
+            trackingButton.packedFGColour = 0x32CD32;
+        }
+        addButton(trackingButton);
+
+        getButton(1).visible = questDetails && data.hasSelectedQuest();
+        getButton(2).visible = !questDetails && data.hasSelectedQuest();
+        getButton(3).visible = !data.selectedQuest.isEmpty() && getButton(1).visible;
+    }
+    @Override
+	protected void actionPerformed(GuiButton guibutton){
+    	if(guibutton.id == 1){
+    		questDetails = false;
+    	}
+    	if(guibutton.id == 2){
+    		questDetails = true;
+    	}
+        if(guibutton.id == 3){
+            if (!data.trackedQuestKey.equals(data.selectedCategory + ":" + data.selectedQuest)) {
+                data.trackedQuestKey = data.selectedCategory + ":" + data.selectedQuest;
+            } else {
+                data.trackedQuestKey = "";
             }
-            this.sideButtons.put(i, new GuiMenuSideButton(i, this.guiLeft - 69, this.guiTop + 2 + i * 21, 70, 22, category));
-            ++i;
         }
-        this.sideButtons.get(categories.indexOf(this.data.selectedCategory)).active = true;
-        if (this.scroll == null) {
-            this.scroll = new GuiCustomScroll(this, 0);
-        }
-        this.scroll.setList(this.data.categories.get(this.data.selectedCategory));
-        this.scroll.setSize(134, 174);
-        this.scroll.guiLeft = this.guiLeft + 5;
-        this.scroll.guiTop = this.guiTop + 15;
-        this.addScroll(this.scroll);
-        this.addButton(new GuiButtonNextPage(1, this.guiLeft + 286, this.guiTop + 176, true));
-        this.addButton(new GuiButtonNextPage(2, this.guiLeft + 144, this.guiTop + 176, false));
-        this.getButton(1).visible = (this.questDetails && this.data.hasSelectedQuest());
-        this.getButton(2).visible = (!this.questDetails && this.data.hasSelectedQuest());
+        initGui();
     }
-    
     @Override
-    protected void actionPerformed(final GuiButton guibutton) {
-        if (!(guibutton instanceof GuiButtonNextPage)) {
-            return;
-        }
-        if (guibutton.id == 1) {
-            this.questDetails = false;
-            this.initGui();
-        }
-        if (guibutton.id == 2) {
-            this.questDetails = true;
-            this.initGui();
-        }
-    }
-    
-    @Override
-    public void drawScreen(final int i, final int j, final float f) {
-        if (this.scroll != null) {
-            this.scroll.visible = !this.noQuests;
-        }
-        this.drawDefaultBackground();
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        this.mc.renderEngine.bindTexture(this.resource);
-        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, 252, 195);
-        this.drawTexturedModalRect(this.guiLeft + 252, this.guiTop, 188, 0, 67, 195);
+    public void drawScreen(int i, int j, float f){
+    	if(scroll != null)
+    		scroll.visible = !noQuests;
+    	drawDefaultBackground();
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        mc.renderEngine.bindTexture(resource);
+        drawTexturedModalRect(guiLeft, guiTop, 0, 0, 252, 195);
+        drawTexturedModalRect(guiLeft + 252, guiTop, 188, 0, 67, 195);
         super.drawScreen(i, j, f);
-        if (this.noQuests) {
-            this.mc.fontRenderer.drawString(StatCollector.translateToLocal("quest.noquests"), this.guiLeft + 84, this.guiTop + 80, CustomNpcResourceListener.DefaultTextColor);
-            return;
+
+        if(noQuests){
+        	fontRendererObj.drawString(StatCollector.translateToLocal("quest.noquests"),guiLeft + 84,guiTop + 80, CustomNpcResourceListener.DefaultTextColor);
+        	return;
         }
-        for (final GuiMenuSideButton button : this.sideButtons.values().toArray(new GuiMenuSideButton[this.sideButtons.size()])) {
-            button.drawButton(this.mc, i, j);
+        for(GuiMenuSideButton button: sideButtons.values().toArray(new GuiMenuSideButton[sideButtons.size()])){
+        	button.drawButton(mc, i, j);
         }
-        this.mc.fontRenderer.drawString(this.data.selectedCategory, this.guiLeft + 5, this.guiTop + 5, CustomNpcResourceListener.DefaultTextColor);
-        if (!this.data.hasSelectedQuest()) {
-            return;
+    	fontRendererObj.drawString(data.selectedCategory,guiLeft + 5,guiTop + 5, CustomNpcResourceListener.DefaultTextColor);
+
+        if(!data.hasSelectedQuest())
+        	return;
+
+        if (questDetails) {
+        	drawProgress();
+        	String title = StatCollector.translateToLocal("gui.text");
+        	fontRendererObj.drawString(title, guiLeft + 284 - fontRendererObj.getStringWidth(title), guiTop + 179, CustomNpcResourceListener.DefaultTextColor);
+        } else {
+        	drawQuestText();
+        	String title = StatCollector.translateToLocal("quest.objectives");
+        	fontRendererObj.drawString(title, guiLeft + 168, guiTop + 179, CustomNpcResourceListener.DefaultTextColor);
         }
-        if (this.questDetails) {
-            this.drawProgress();
-            final String title = StatCollector.translateToLocal("gui.text");
-            this.mc.fontRenderer.drawString(title, this.guiLeft + 284 - this.mc.fontRenderer.getStringWidth(title), this.guiTop + 179, CustomNpcResourceListener.DefaultTextColor);
-        }
-        else {
-            this.drawQuestText();
-            final String title = StatCollector.translateToLocal("quest.objectives");
-            this.mc.fontRenderer.drawString(title, this.guiLeft + 168, this.guiTop + 179, CustomNpcResourceListener.DefaultTextColor);
-        }
+
         GL11.glPushMatrix();
-        GL11.glTranslatef((float)(this.guiLeft + 148), (float)this.guiTop, 0.0f);
+        GL11.glTranslatef(guiLeft + 148, guiTop, 0);
         GL11.glScalef(1.24f, 1.24f, 1.24f);
-        this.fontRendererObj.drawString(this.data.selectedQuest, (130 - this.fontRendererObj.getStringWidth(this.data.selectedQuest)) / 2, 4, CustomNpcResourceListener.DefaultTextColor);
+        fontRendererObj.drawString(data.selectedQuest, (130 - fontRendererObj.getStringWidth(data.selectedQuest)) / 2, 4, CustomNpcResourceListener.DefaultTextColor);
         GL11.glPopMatrix();
-        this.drawHorizontalLine(this.guiLeft + 142, this.guiLeft + 312, this.guiTop + 17, -16777216 + CustomNpcResourceListener.DefaultTextColor);
+        drawHorizontalLine(guiLeft + 142, guiLeft + 312, guiTop + 17,  + 0xFF000000 + CustomNpcResourceListener.DefaultTextColor);
     }
-    
-    private void drawQuestText() {
-        final TextBlockClient block = new TextBlockClient(this.data.getQuestText(), 174, true, new Object[] { this.player });
-        final int yoffset = this.guiTop + 5;
-        for (int i = 0; i < block.lines.size(); ++i) {
-            final String text = block.lines.get(i).getFormattedText();
-            this.fontRendererObj.drawString(text, this.guiLeft + 142, this.guiTop + 20 + i * this.fontRendererObj.FONT_HEIGHT, CustomNpcResourceListener.DefaultTextColor);
-        }
+
+    private void drawQuestText(){
+    	TextBlockClient block = new TextBlockClient(data.getQuestText(), 174, true, player);
+        int yoffset = guiTop + 5;
+    	for(int i = 0; i < block.lines.size(); i++){
+    		String text = block.lines.get(i).getFormattedText();
+    		fontRendererObj.drawString(text, guiLeft + 142, guiTop + 20 + (i * fontRendererObj.FONT_HEIGHT), CustomNpcResourceListener.DefaultTextColor);
+    	}
     }
-    
+
     private void drawProgress() {
-        final String complete = this.data.getComplete();
-        if (complete != null && !complete.isEmpty()) {
-            this.mc.fontRenderer.drawString(StatCollector.translateToLocalFormatted("quest.completewith", new Object[] { complete }), this.guiLeft + 144, this.guiTop + 105, CustomNpcResourceListener.DefaultTextColor);
+        String complete = data.getComplete();
+        if(complete != null && !complete.isEmpty())
+        	fontRendererObj.drawString(StatCollector.translateToLocalFormatted("quest.completewith", complete), guiLeft + 144, guiTop + 105, CustomNpcResourceListener.DefaultTextColor);
+
+    	int yoffset = guiTop + 22;
+        for(String process : data.getQuestStatus()){
+        	int index = process.lastIndexOf(":");
+        	if(index > 0){
+        		String name = process.substring(0, index);
+        		String trans = StatCollector.translateToLocal(name);
+        		if(!trans.equals(name))
+        			name = trans;
+        		trans = StatCollector.translateToLocal("entity." + name + ".name");
+        		if(!trans.equals("entity." + name + ".name")){
+        			name = trans;
+        		}
+        		process = name + process.substring(index);
+        	}
+        	fontRendererObj.drawString("- " + process, guiLeft + 144, yoffset , CustomNpcResourceListener.DefaultTextColor);
+	        yoffset += 10;
         }
-        int yoffset = this.guiTop + 22;
-        for (String process : this.data.getQuestStatus()) {
-            final int index = process.lastIndexOf(":");
-            if (index > 0) {
-                String name = process.substring(0, index);
-                String trans = StatCollector.translateToLocal(name);
-                if (!trans.equals(name)) {
-                    name = trans;
-                }
-                trans = StatCollector.translateToLocal("entity." + name + ".name");
-                if (!trans.equals("entity." + name + ".name")) {
-                    name = trans;
-                }
-                process = name + process.substring(index);
-            }
-            this.mc.fontRenderer.drawString("- " + process, this.guiLeft + 144, yoffset, CustomNpcResourceListener.DefaultTextColor);
-            yoffset += 10;
-        }
+	}
+
+	protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
+    {
     }
-    
-    protected void drawGuiContainerBackgroundLayer(final float f, final int i, final int j) {
-    }
-    
     @Override
-    public void mouseClicked(final int i, final int j, final int k) {
-        super.mouseClicked(i, j, k);
-        if (k == 0) {
-            if (this.scroll != null) {
-                this.scroll.mouseClicked(i, j, k);
-            }
-            for (final GuiMenuSideButton button : new ArrayList<GuiMenuSideButton>(this.sideButtons.values())) {
-                if (button.mousePressed(this.mc, i, j)) {
-                    this.sideButtonPressed(button);
+    public void mouseClicked(int i, int j, int k)
+    {
+    	super.mouseClicked(i, j, k);
+        if (k == 0){
+        	if(scroll != null)
+        		scroll.mouseClicked(i, j, k);
+            for (GuiMenuSideButton button : new ArrayList<GuiMenuSideButton>(sideButtons.values())){
+                if (button.mousePressed(mc, i, j)){
+                	sideButtonPressed(button);
                 }
             }
         }
     }
-    
-    private void sideButtonPressed(final GuiMenuSideButton button) {
-        if (button.active) {
-            return;
-        }
-        NoppesUtil.clickSound();
-        this.data.selectedCategory = button.displayString;
-        this.data.selectedQuest = "";
+    private void sideButtonPressed(GuiMenuSideButton button) {
+    	if(button.active)
+    		return;
+    	NoppesUtil.clickSound();
+        data.selectedCategory = button.displayString;
+        data.selectedQuest = "";
         this.initGui();
     }
-    
+	@Override
+	public void customScrollClicked(int i, int j, int k, GuiCustomScroll scroll) {
+		if(!scroll.hasSelected())
+			return;
+		data.selectedQuest = scroll.getSelected();
+		initGui();
+	}
+
     @Override
-    public void customScrollClicked(final int i, final int j, final int k, final GuiCustomScroll scroll) {
-        if (!scroll.hasSelected()) {
-            return;
+    public void keyTyped(char c, int i)
+    {
+        if (i == 1 || i == mc.gameSettings.keyBindInventory.getKeyCode()) // inventory key
+        {
+            mc.displayGuiScreen(null);
+            mc.setIngameFocus();
         }
-        this.data.selectedQuest = scroll.getSelected();
-        this.initGui();
     }
-    
+
     @Override
-    public void keyTyped(final char c, final int i) {
-        if (i == 1 || i == this.mc.gameSettings.keyBindInventory.getKeyCode()) {
-            this.mc.displayGuiScreen((GuiScreen)null);
-            this.mc.setIngameFocus();
-        }
-    }
-    
-    @Override
-    public boolean doesGuiPauseGame() {
+    public boolean doesGuiPauseGame()
+    {
         return false;
     }
-    
+	@Override
+	public void setGuiData(NBTTagCompound compound) {
+		QuestLogData data = new QuestLogData();
+		data.readNBT(compound);
+		this.data = data;
+		initGui();
+	}
+
     @Override
-    public void setGuiData(final NBTTagCompound compound) {
-        final QuestLogData data = new QuestLogData();
-        data.readNBT(compound);
-        this.data = data;
-        this.initGui();
+    public void onGuiClosed() {
+        super.onGuiClosed();
+        this.save();
     }
-    
+
     @Override
-    public void save() {
-    }
+	public void save() {
+        if (this.data != null)
+        Client.sendData(EnumPacketServer.UpdateTrackedQuest, this.data.trackedQuestKey);
+	}
+	
 }

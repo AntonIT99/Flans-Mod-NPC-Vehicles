@@ -1,37 +1,46 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package foxz.utils;
 
-import net.minecraft.world.WorldServer;
-import net.minecraft.world.World;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.AxisAlignedBB;
 import java.util.List;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.DimensionManager;
 
-public class Utils
-{
-    public static <T> List<T> getNearbeEntityFromPlayer(final Class<? extends T> cls, final EntityPlayerMP player, final int dis) {
-        final AxisAlignedBB range = player.boundingBox.expand((double)dis, (double)dis, (double)dis);
-        final List<T> list = (List<T>)player.worldObj.getEntitiesWithinAABB((Class)cls, range);
+public class Utils {
+
+    static public <T> List<T> getNearbeEntityFromPlayer(Class<? extends T> cls,EntityPlayerMP player, int dis) {
+        AxisAlignedBB range = player.boundingBox.expand(dis, dis, dis);
+        List<T> list = player.worldObj.getEntitiesWithinAABB(cls, range);
         return list;
     }
     
-    public static EntityPlayer getOnlinePlayer(final String playername) {
-        return (EntityPlayer)MinecraftServer.getServer().getConfigurationManager().func_152612_a(playername);
+    static public EntityPlayer getOnlinePlayer(String playername){
+        return MinecraftServer.getServer().getConfigurationManager().func_152612_a(playername);
     }
     
-    public static World getWorld(final String t) {
-        final WorldServer[] worldServers;
-        final WorldServer[] ws = worldServers = MinecraftServer.getServer().worldServers;
-        for (final WorldServer w : worldServers) {
-            if (w != null && (w.provider.dimensionId + "").equalsIgnoreCase(t)) {
-                return (World)w;
+    static public World getWorld(String t){
+        WorldServer[] ws=MinecraftServer.getServer().worldServers;
+        for (WorldServer w:ws){
+            if (w!=null){
+                if ((w.provider.dimensionId + "").equalsIgnoreCase(t)){
+                     return w;
+                 }
             }
         }
         return null;
     }
+    
+    // <editor-fold desc="--- Foxz fork (pls keep it)">
+//    static public void savePlayerAltInv(EntityPlayer p,String n){        
+//        NBTTagList tag=p.inventory.writeToNBT(new NBTTagList());
+//        p.getEntityData().setTag("AltInv_"+n, tag);
+//    }
+//    
+//    static public void loadPlayerAltInv(EntityPlayer p,String n){
+//        p.inventory.readFromNBT((NBTTagList) p.getEntityData().getTag("AltInv_"+n));
+//    }
+    // </editor-fold>
 }

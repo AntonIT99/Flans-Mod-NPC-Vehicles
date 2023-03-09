@@ -1,26 +1,22 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.ai.selector;
 
+import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import noppes.npcs.entity.EntityNPCInterface;
-import net.minecraft.command.IEntitySelector;
 
-public class NPCInteractSelector implements IEntitySelector
-{
-    private EntityNPCInterface npc;
-    
-    public NPCInteractSelector(final EntityNPCInterface npc) {
-        this.npc = npc;
-    }
-    
-    public boolean isEntityApplicable(final Entity entity) {
-        if (entity == this.npc || !(entity instanceof EntityNPCInterface) || !this.npc.isEntityAlive()) {
-            return false;
-        }
-        final EntityNPCInterface selected = (EntityNPCInterface)entity;
-        return !selected.isAttacking() && !this.npc.getFaction().isAggressiveToNpc(selected) && this.npc.ai.stopAndInteract;
-    }
+public class NPCInteractSelector implements IEntitySelector {
+	private EntityNPCInterface npc;
+	public NPCInteractSelector(EntityNPCInterface npc){
+		this.npc = npc;
+	}
+	@Override
+	public boolean isEntityApplicable(Entity entity) {
+		if(entity == npc || !(entity instanceof EntityNPCInterface) || !npc.isEntityAlive())
+			return false;
+		EntityNPCInterface selected = (EntityNPCInterface) entity;
+		if(selected.isAttacking() || npc.getFaction().isAggressiveToNpc(selected) || !npc.ai.stopAndInteract)
+			return false;
+		return true;
+	}
+
 }

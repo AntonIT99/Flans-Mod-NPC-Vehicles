@@ -1,305 +1,352 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.gui.util;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.input.Mouse;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.MathHelper;
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.client.gui.GuiScreen;
-import noppes.npcs.client.ClientProxy;
 
-public class GuiNpcTextArea extends GuiNpcTextField
-{
-    public boolean inMenu;
-    public boolean numbersOnly;
-    private int posX;
-    private int posY;
-    private int width;
-    private int height;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.MathHelper;
+import noppes.npcs.client.ClientProxy;
+import noppes.npcs.client.ClientProxy.FontContainer;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+
+public class GuiNpcTextArea extends GuiNpcTextField implements IGui{
+	public boolean inMenu = true;
+	public boolean numbersOnly = false;
+	private int posX,posY,width,height;
     private int cursorCounter;
-    private ClientProxy.FontContainer font;
-    private int cursorPosition;
-    private int listHeight;
-    private float scrolledY;
-    private int startClick;
-    private boolean clickVerticalBar;
-    private boolean wrapLine;
-    
-    public GuiNpcTextArea(final int id, final GuiScreen guiscreen, final int i, final int j, final int k, final int l, final String s) {
-        super(id, guiscreen, i, j, k, l, s);
-        this.inMenu = true;
-        this.numbersOnly = false;
-        this.cursorPosition = 0;
-        this.scrolledY = 0.0f;
-        this.startClick = -1;
-        this.clickVerticalBar = false;
-        this.wrapLine = true;
-        this.posX = i;
-        this.posY = j;
-        this.width = k;
-        this.height = l;
-        this.listHeight = l;
-        this.font = ClientProxy.Font;
-        this.setMaxStringLength(Integer.MAX_VALUE);
-        this.setText(s);
+	private FontContainer font;
+	private int cursorPosition = 0;
+	private int listHeight;
+	private float scrolledY = 0;
+	private int startClick = -1;
+	private boolean clickVerticalBar = false;
+	private boolean wrapLine = true;
+	private List<String> lines = new ArrayList<>();
+
+	public GuiNpcTextArea(int id,GuiScreen guiscreen, int i, int j, int k, int l, String s) {
+		super(id,guiscreen, i, j, k, l, s);
+		posX = i;
+		posY = j;
+		width = k;
+		listHeight = height = l;
+		this.font = ClientProxy.Font;
+		setMaxStringLength(Integer.MAX_VALUE);
+		this.setText(s);
+	}
+
+	@Override
+	public void setText(String text) {
+		super.setText(text);
+
+		updateLineList();
+	}
+
+	public void updateLineList() {
+		List<String> list = new ArrayList<String>();
+		StringBuilder line = new StringBuilder();
+		for(char c : getText().toCharArray()){
+			if(c == '\r' || c == '\n'){
+				list.add(line.toString());
+				line = new StringBuilder();
+			}
+			else
+				line.append(c);
+		}
+		list.add(line.toString());
+		lines = list;
+	}
+
+	@Override
+    public void updateCursorCounter(){
+        cursorCounter++;
     }
-    
-    public void updateCursorCounter() {
-        ++this.cursorCounter;
-    }
-    
-    @Override
-    public boolean textboxKeyTyped(final char c, final int i) {
-        if (this.isFocused() && this.canEdit) {
-            final String originalText = this.getText();
-            this.setText(originalText);
-            if (c == '\r' || c == '\n') {
-                this.setText(originalText.substring(0, this.cursorPosition) + c + originalText.substring(this.cursorPosition));
-            }
-            this.setCursorPositionZero();
-            this.moveCursorBy(this.cursorPosition);
-            final boolean bo = super.textboxKeyTyped(c, i);
-            final String newText = this.getText();
-            if (i != 211) {
-                this.cursorPosition += newText.length() - originalText.length();
-            }
-            if (i == 203 && this.cursorPosition > 0) {
-                --this.cursorPosition;
-            }
-            if (i == 205 && this.cursorPosition < newText.length()) {
-                ++this.cursorPosition;
-            }
-            return bo;
-        }
-        return false;
-    }
-    
-    @Override
-    public void mouseClicked(final int i, final int j, final int k) {
-        final boolean wasFocused = this.isFocused();
+
+	@Override
+	public boolean textboxKeyTyped(char c, int i){
+		if (isFocused() && canEdit){
+			String originalText = getText();
+			this.setText(originalText);
+			if(c == '\r' || c == '\n'){
+				this.setText(originalText.substring(0, cursorPosition) + c + originalText.substring(cursorPosition));
+			}
+			this.setCursorPositionZero();
+			this.moveCursorBy(cursorPosition);
+			boolean bo = super.textboxKeyTyped(c, i);
+			updateLineList();
+			String newText = getText();
+			if(i != Keyboard.KEY_DELETE)
+				cursorPosition += newText.length() - originalText.length();
+			if(i == Keyboard.KEY_LEFT && cursorPosition > 0)
+				cursorPosition--;
+			if(i == Keyboard.KEY_RIGHT && cursorPosition < newText.length())
+				cursorPosition++;
+			return bo;
+
+		}
+		return false;
+	}
+	
+	@Override
+    public void mouseClicked(int i, int j, int k){
+    	boolean wasFocused = isFocused();
         super.mouseClicked(i, j, k);
-        if (this.hoverVerticalScrollBar(i, j)) {
-            this.clickVerticalBar = true;
-            this.startClick = -1;
-            return;
+        
+        if(hoverVerticalScrollBar(i, j)){
+        	clickVerticalBar = true;
+        	startClick = -1;
+        	return;
         }
-        if (k != 0 || !this.canEdit) {
-            return;
-        }
-        final int x = i - this.posX;
-        final int y = (j - this.posY - 4) / this.font.height() + this.getStartLineY();
-        this.cursorPosition = 0;
-        final List<String> lines = this.getLines();
+        if(k != 0 || !canEdit)
+        	return;
+        
+    	int x = i - posX;
+    	int y = (j - posY - 4) / font.height() + getStartLineY();
+    	cursorPosition = 0;
         int charCount = 0;
         int lineCount = 0;
-        final int maxSize = this.width - (this.isScrolling() ? 14 : 4);
-        for (int g = 0; g < lines.size(); ++g) {
-            final String wholeLine = lines.get(g);
-            String line = "";
-            for (final char c : wholeLine.toCharArray()) {
-                this.cursorPosition = charCount;
-                if (this.font.width(line + c) > maxSize && this.wrapLine) {
-                    ++lineCount;
-                    line = "";
-                    if (y < lineCount) {
-                        break;
+        int maxSize = width - (isScrolling()?14:4);
+        for(int g = 0; g < lines.size(); g++){
+        	String wholeLine = lines.get(g);
+        	String line = "";
+    		for(char c : wholeLine.toCharArray()){
+				cursorPosition = charCount;
+        		if(font.width(line + c) > maxSize && wrapLine){
+        			lineCount++;
+        			line = "";
+                    if(y < lineCount){
+                    	break;
                     }
-                }
-                if (lineCount == y && x <= this.font.width(line + c)) {
-                    return;
-                }
-                ++charCount;
-                line += c;
+        		}
+        		if(lineCount == y && x <= font.width(line + c))
+            		return;
+        		charCount++;
+        		line += c;
+        		
+    		}
+    		cursorPosition = charCount;
+
+            	
+
+    		lineCount++;
+			charCount++;
+            if(y < lineCount){
+            	break;
             }
-            this.cursorPosition = charCount;
-            ++lineCount;
-            ++charCount;
-            if (y < lineCount) {
-                break;
-            }
-        }
-        if (y >= lineCount) {
-            this.cursorPosition = this.getText().length();
-        }
+		}        
+        if(y >= lineCount)
+        	cursorPosition = getText().length();
     }
-    
-    private List<String> getLines() {
-        final List<String> list = new ArrayList<String>();
-        String line = "";
-        for (final char c : this.getText().toCharArray()) {
-            if (c == '\r' || c == '\n') {
-                list.add(line);
-                line = "";
-            }
-            else {
-                line += c;
-            }
-        }
-        list.add(line);
-        return list;
-    }
-    
-    private int getStartLineY() {
-        if (!this.isScrolling()) {
-            this.scrolledY = 0.0f;
-        }
-        return MathHelper.ceiling_double_int((double)(this.scrolledY * this.listHeight / this.font.height()));
-    }
-    
-    @Override
-    public void drawTextBox(final int mouseX, final int mouseY) {
-        drawRect(this.posX - 1, this.posY - 1, this.posX + this.width + 1, this.posY + this.height + 1, -6250336);
-        drawRect(this.posX, this.posY, this.posX + this.width, this.posY + this.height, -16777216);
-        final int color = 14737632;
-        final boolean flag = this.isFocused() && this.cursorCounter / 6 % 2 == 0;
-        final int startLine = this.getStartLineY();
-        final int maxLine = this.height / this.font.height() + startLine;
-        final List<String> lines = this.getLines();
+	
+	private List<String> getLines(){
+		List<String> list = new ArrayList<String>();
+		String line = "";
+		for(char c : getText().toCharArray()){
+        	if(c == '\r' || c == '\n'){
+        		list.add(line);
+        		line = "";
+        	}
+        	else
+        		line += c;
+		}
+    	list.add(line);
+		return list;
+	}
+	
+	private int getStartLineY(){
+		if(!isScrolling())
+			scrolledY = 0;
+		return MathHelper.ceiling_double_int(scrolledY * (listHeight) / font.height());
+	}
+
+	@Override
+	public void drawTextBox(int mouseX, int mouseY) {
+        drawRect(posX - 1, posY - 1, posX + width + 1, posY + height + 1, 0xffa0a0a0);
+        drawRect(posX, posY, posX + width, posY + height, 0xff000000);
+
+        //int color = isEnabled?0xe0e0e0:0x707070;
+        int color = 0xe0e0e0;
+        boolean flag = isFocused() && (cursorCounter / 6) % 2 == 0;
+        
+        int startLine = getStartLineY();
+        
+        int maxLine = height / font.height() + startLine;
+
         int charCount = 0;
         int lineCount = 0;
-        final int maxSize = this.width - (this.isScrolling() ? 14 : 4);
-        for (int i = 0; i < lines.size(); ++i) {
-            final String wholeLine = lines.get(i);
-            String line = "";
-            for (final char c : wholeLine.toCharArray()) {
-                if (this.font.width(line + c) > maxSize && this.wrapLine) {
-                    if (lineCount >= startLine && lineCount < maxLine) {
-                        this.drawString(null, line, this.posX + 4, this.posY + 4 + (lineCount - startLine) * this.font.height(), color);
-                    }
-                    line = "";
-                    ++lineCount;
-                }
-                if (flag && charCount == this.cursorPosition && lineCount >= startLine && lineCount < maxLine && this.canEdit) {
-                    final int xx = this.posX + this.font.width(line) + 4;
-                    final int yy = this.posY + (lineCount - startLine) * this.font.height() + 4;
-                    if (this.getText().length() == this.cursorPosition) {
-                        this.font.drawString("_", xx, yy, color);
-                    }
-                    else {
-                        this.drawCursorVertical(xx, yy, xx + 1, yy + this.font.height());
-                    }
-                }
-                ++charCount;
-                line += c;
-            }
-            if (lineCount >= startLine && lineCount < maxLine) {
-                this.drawString(null, line, this.posX + 4, this.posY + 4 + (lineCount - startLine) * this.font.height(), color);
-                if (flag && charCount == this.cursorPosition && this.canEdit) {
-                    final int xx2 = this.posX + this.font.width(line) + 4;
-                    final int yy2 = this.posY + (lineCount - startLine) * this.font.height() + 4;
-                    if (this.getText().length() == this.cursorPosition) {
-                        this.font.drawString("_", xx2, yy2, color);
-                    }
-                    else {
-                        this.drawCursorVertical(xx2, yy2, xx2 + 1, yy2 + this.font.height());
-                    }
-                }
-            }
-            ++lineCount;
-            ++charCount;
+        int maxSize = width - (isScrolling()?14:4);
+        for(int i = 0; i < lines.size(); i++){
+        	String wholeLine = lines.get(i);
+        	String line = "";
+    		for(char c : wholeLine.toCharArray()){
+        		if(font.width(line + c) > maxSize && wrapLine){
+        			if(lineCount >= startLine && lineCount < maxLine)
+        				drawString(null, line, posX + 4, posY + 4 + ((lineCount - startLine) * font.height()), color);
+        			line = "";
+        			lineCount++;
+        		}
+            	if(flag && charCount == cursorPosition && lineCount >= startLine && lineCount < maxLine && canEdit){
+        			int xx = posX + font.width(line) + 4;
+        			int yy = posY + ((lineCount - startLine) * font.height()) + 4;
+            		if(getText().length() == cursorPosition){
+            			font.drawString("_", xx, yy, color);  
+            		}
+            		else{
+            			drawCursorVertical(xx, yy, xx + 1, yy + font.height());
+            		}
+            	}
+        		charCount++;
+        		line += c;
+    		}
+			if(lineCount >= startLine && lineCount < maxLine){
+				drawString(null, line, posX + 4, posY + 4 + ((lineCount - startLine) * (font.height())), color);
+	        	if(flag && charCount == cursorPosition && canEdit){
+	    			int xx = posX + font.width(line) + 4;
+	    			int yy = posY + ((lineCount - startLine) * font.height()) + 4;
+	        		if(getText().length() == cursorPosition){
+	        			font.drawString("_", xx, yy, color);  
+	        		}
+	        		else{
+	        			drawCursorVertical(xx, yy, xx + 1, yy + font.height());
+	        		}
+	        	}
+			}
+    		lineCount++;
+        	charCount++;
         }
-        final int k2 = Mouse.getDWheel();
-        if (k2 != 0 && this.isFocused()) {
-            this.addScrollY((k2 < 0) ? -10 : 10);
+        
+        
+        int k2 = Mouse.getDWheel();
+        if(k2 != 0 && isFocused()){
+        	addScrollY(k2 < 0?-10:10);
         }
-        if (Mouse.isButtonDown(0)) {
-            if (this.clickVerticalBar) {
-                if (this.startClick >= 0) {
-                    this.addScrollY(this.startClick - (mouseY - this.posY));
-                }
-                if (this.hoverVerticalScrollBar(mouseX, mouseY)) {
-                    this.startClick = mouseY - this.posY;
-                }
-                this.startClick = mouseY - this.posY;
-            }
+
+        if(Mouse.isButtonDown(0)){
+        	if(clickVerticalBar){
+	        	if(startClick >= 0)
+	        		addScrollY(startClick - (mouseY - posY));
+	        	
+	        	if(hoverVerticalScrollBar(mouseX, mouseY))
+	        		startClick = mouseY - posY;
+	
+	    		startClick = mouseY - posY;
+        	}
         }
-        else {
-            this.clickVerticalBar = false;
-        }
-        this.listHeight = lineCount * this.font.height();
-        this.drawVerticalScrollBar();
+        else
+        	clickVerticalBar = false;
+
+        listHeight = lineCount * font.height();
+        drawVerticalScrollBar();
     }
-    
-    public void drawString(final FontRenderer fontRendererIn, final String text, final int x, final int y, final int color) {
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        this.font.drawString(text, x, y, color);
+	
+    public void drawString(FontRenderer fontRendererIn, String text, int x, int y, int color){
+    	GL11.glColor4f(1, 1, 1, 1);
+    	font.drawString(text, x, y, color);
+    	//super.drawString(fontRendererIn, text, x, y, color);
     }
-    
-    private boolean isScrolling() {
-        return this.listHeight > this.height - 4;
-    }
-    
-    private void addScrollY(final int scrolled) {
-        this.scrolledY -= 1.0f * scrolled / this.height;
-        if (this.scrolledY < 0.0f) {
-            this.scrolledY = 0.0f;
-        }
-        final float max = 1.0f - 1.0f * (this.height + 2) / this.listHeight;
-        if (this.scrolledY > max) {
-            this.scrolledY = max;
-        }
-    }
-    
-    private boolean hoverVerticalScrollBar(final int x, final int y) {
-        return this.listHeight > this.height - 4 && (this.posY < y && this.posY + this.height > y && x < this.posX + this.width && x > this.posX + (this.width - 8));
-    }
-    
-    private void drawCursorVertical(int p_146188_1_, int p_146188_2_, int p_146188_3_, int p_146188_4_) {
-        if (p_146188_1_ < p_146188_3_) {
-            final int i1 = p_146188_1_;
+	
+	private boolean isScrolling() {
+    	return listHeight > height - 4;
+	}
+
+	private void addScrollY(int scrolled){
+		scrolledY -= 1f * scrolled / height;
+		
+    	if(scrolledY < 0)
+    		scrolledY = 0;
+
+    	float max = 1 - 1f * (height + 2) / listHeight;
+    	if(scrolledY > max )
+    		scrolledY = max;
+	}
+	
+	private boolean hoverVerticalScrollBar(int x, int y){
+    	if(listHeight <= height - 4)
+    		return false;
+    	
+    	if(posY < y && posY + height > y && x < posX + width && x > posX + (width - 8))
+    		return true;
+    	
+		return false;
+	}
+	
+    private void drawCursorVertical(int p_146188_1_, int p_146188_2_, int p_146188_3_, int p_146188_4_){
+        int i1;
+
+        if (p_146188_1_ < p_146188_3_){
+            i1 = p_146188_1_;
             p_146188_1_ = p_146188_3_;
             p_146188_3_ = i1;
         }
-        if (p_146188_2_ < p_146188_4_) {
-            final int i1 = p_146188_2_;
+
+        if (p_146188_2_ < p_146188_4_){
+            i1 = p_146188_2_;
             p_146188_2_ = p_146188_4_;
             p_146188_4_ = i1;
         }
-        if (p_146188_3_ > this.posX + this.width) {
+
+        if (p_146188_3_ > this.posX + this.width){
             p_146188_3_ = this.posX + this.width;
         }
-        if (p_146188_1_ > this.posX + this.width) {
+
+        if (p_146188_1_ > this.posX + this.width){
             p_146188_1_ = this.posX + this.width;
         }
-        final Tessellator tessellator = Tessellator.instance;
-        GL11.glColor4f(0.0f, 0.0f, 255.0f, 255.0f);
-        GL11.glDisable(3553);
-        GL11.glEnable(3058);
-        GL11.glLogicOp(5387);
+
+        Tessellator tessellator = Tessellator.instance;
+        GL11.glColor4f(0.0F, 0.0F, 255.0F, 255.0F);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_COLOR_LOGIC_OP);
+        GL11.glLogicOp(GL11.GL_OR_REVERSE);
         tessellator.startDrawingQuads();
-        tessellator.addVertex((double)p_146188_1_, (double)p_146188_4_, 0.0);
-        tessellator.addVertex((double)p_146188_3_, (double)p_146188_4_, 0.0);
-        tessellator.addVertex((double)p_146188_3_, (double)p_146188_2_, 0.0);
-        tessellator.addVertex((double)p_146188_1_, (double)p_146188_2_, 0.0);
+        tessellator.addVertex((double)p_146188_1_, (double)p_146188_4_, 0.0D);
+        tessellator.addVertex((double)p_146188_3_, (double)p_146188_4_, 0.0D);
+        tessellator.addVertex((double)p_146188_3_, (double)p_146188_2_, 0.0D);
+        tessellator.addVertex((double)p_146188_1_, (double)p_146188_2_, 0.0D);
         tessellator.draw();
-        GL11.glDisable(3058);
-        GL11.glEnable(3553);
+        GL11.glDisable(GL11.GL_COLOR_LOGIC_OP);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
     }
-    
-    private int getVerticalBarSize() {
-        return (int)(1.0f * this.height / this.listHeight * (this.height - 4));
+    private int getVerticalBarSize(){
+    	return (int) (1f * height / listHeight * (height - 4));
     }
-    
-    private void drawVerticalScrollBar() {
-        if (this.listHeight <= this.height - 4) {
-            return;
-        }
+    private void drawVerticalScrollBar(){
+    	if(listHeight <= height - 4)
+    		return;
         Minecraft.getMinecraft().renderEngine.bindTexture(GuiCustomScroll.resource);
-        final int x = this.posX + this.width - 6;
-        final int y = (int)(this.posY + this.scrolledY * this.height) + 2;
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        final int sbSize = this.getVerticalBarSize();
-        this.drawTexturedModalRect(x, y, this.width, 9, 5, 1);
-        for (int k = 0; k < sbSize; ++k) {
-            this.drawTexturedModalRect(x, y + k, this.width, 10, 5, 1);
+        int x = posX + width - 6;
+        int y = (int) (posY + scrolledY * height) + 2;
+        GL11.glColor4f(1, 1, 1, 1);
+        int sbSize = getVerticalBarSize();
+        drawTexturedModalRect(x, y, width, 9, 5, 1);
+        for(int k = 0; k < sbSize; k++){
+            drawTexturedModalRect(x, y + k, width, 10, 5, 1);
         }
-        this.drawTexturedModalRect(x, y, this.width, 11, 5, 1);
+        drawTexturedModalRect(x, y, width, 11, 5, 1);
     }
+
+	@Override
+	public int getID() {
+		return 0;
+	}
+
+	@Override
+	public void drawScreen(int var1, int var2) {
+
+	}
+
+	@Override
+	public void updateScreen() {
+
+	}
+
+	@Override
+	public boolean isActive() {
+		return isFieldActive();
+	}
 }

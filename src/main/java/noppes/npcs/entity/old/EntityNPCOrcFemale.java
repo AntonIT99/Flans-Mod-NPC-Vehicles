@@ -1,43 +1,45 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) braces deadcode fieldsfirst 
 
 package noppes.npcs.entity.old;
 
-import noppes.npcs.ModelData;
-import net.minecraft.entity.Entity;
-import noppes.npcs.entity.EntityCustomNpc;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import noppes.npcs.ModelData;
+import noppes.npcs.entity.EntityCustomNpc;
 import noppes.npcs.entity.EntityNPCInterface;
+
+// Referenced classes of package net.minecraft.src:
+//            EntityAnimal, Item, EntityPlayer, InventoryPlayer, 
+//            ItemStack, World, NBTTagCompound
 
 public class EntityNPCOrcFemale extends EntityNPCInterface
 {
-    public EntityNPCOrcFemale(final World world) {
+    public EntityNPCOrcFemale(World world)
+    {
         super(world);
-        final float scaleX = 0.9375f;
-        this.scaleZ = scaleX;
-        this.scaleY = scaleX;
-        this.scaleX = scaleX;
-        this.display.texture = "customnpcs:textures/entity/orcfemale/StrandedFemaleOrc.png";
+		scaleX = scaleY = scaleZ = 0.9375f;
+		display.texture = "customnpcs:textures/entity/orcfemale/StrandedFemaleOrc.png";
     }
-    
-    @Override
-    public void onUpdate() {
-        this.isDead = true;
-        if (!this.worldObj.isRemote) {
-            final NBTTagCompound compound = new NBTTagCompound();
-            this.writeToNBT(compound);
-            final EntityCustomNpc npc = new EntityCustomNpc(this.worldObj);
-            npc.readFromNBT(compound);
-            final ModelData data = npc.modelData;
-            data.breasts = 2;
-            data.legs.setScale(0.9f, 0.65f);
-            data.arms.setScale(0.9f, 0.65f);
-            data.body.setScale(1.0f, 0.65f, 1.1f);
-            data.head.setScale(0.85f, 0.85f);
-            this.worldObj.spawnEntityInWorld((Entity)npc);
-        }
-        super.onUpdate();
+
+    public void onUpdate(){
+    	isDead = true;
+
+    	if(!worldObj.isRemote){
+	    	NBTTagCompound compound = new NBTTagCompound();
+	    	
+	    	writeToNBT(compound);
+	    	EntityCustomNpc npc = new EntityCustomNpc(worldObj);
+	    	npc.readFromNBT(compound);
+	    	ModelData data = npc.modelData;
+			data.breasts = 2;
+			data.legs.setScale(0.9f,0.65f);
+			data.arms.setScale(0.9f,0.65f);
+			data.body.setScale(1f, 0.65f, 1.1f);
+			data.head.setScale(0.85f,0.85f);
+	    	worldObj.spawnEntityInWorld(npc);
+    	}
+    	super.onUpdate();
     }
 }

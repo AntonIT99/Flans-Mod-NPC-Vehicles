@@ -1,64 +1,47 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs;
 
-import noppes.npcs.util.ValueUtil;
 import net.minecraft.nbt.NBTTagCompound;
+import noppes.npcs.util.ValueUtil;
 
-public class ModelPartConfig
-{
-    public float scaleX;
-    public float scaleY;
-    public float scaleZ;
-    public float transX;
-    public float transY;
-    public float transZ;
-    
-    public ModelPartConfig() {
-        this.scaleX = 1.0f;
-        this.scaleY = 1.0f;
-        this.scaleZ = 1.0f;
-        this.transX = 0.0f;
-        this.transY = 0.0f;
-        this.transZ = 0.0f;
-    }
-    
-    public NBTTagCompound writeToNBT() {
-        final NBTTagCompound compound = new NBTTagCompound();
-        compound.setFloat("ScaleX", this.scaleX);
-        compound.setFloat("ScaleY", this.scaleY);
-        compound.setFloat("ScaleZ", this.scaleZ);
-        compound.setFloat("TransX", this.transX);
-        compound.setFloat("TransY", this.transY);
-        compound.setFloat("TransZ", this.transZ);
-        return compound;
-    }
-    
-    public void readFromNBT(final NBTTagCompound compound) {
-        this.scaleX = ValueUtil.correctFloat(compound.getFloat("ScaleX"), 0.5f, 1.5f);
-        this.scaleY = ValueUtil.correctFloat(compound.getFloat("ScaleY"), 0.5f, 1.5f);
-        this.scaleZ = ValueUtil.correctFloat(compound.getFloat("ScaleZ"), 0.5f, 1.5f);
-        this.transX = compound.getFloat("TransX");
-        this.transY = compound.getFloat("TransY");
-        this.transZ = compound.getFloat("TransZ");
-    }
-    
-    @Override
-    public String toString() {
-        return "ScaleX: " + this.scaleX + " - ScaleY: " + this.scaleY + " - ScaleZ: " + this.scaleZ;
-    }
-    
-    public void setScale(final float x, final float y, final float z) {
-        this.scaleX = x;
-        this.scaleY = y;
-        this.scaleZ = z;
-    }
-    
-    public void setScale(final float x, final float y) {
-        this.scaleX = x;
-        this.scaleZ = x;
-        this.scaleY = y;
-    }
+public class ModelPartConfig {
+	public float scaleX = 1, scaleY = 1, scaleZ = 1;
+	public float transX = 0, transY = 0, transZ = 0;
+	
+
+	public NBTTagCompound writeToNBT(){
+		NBTTagCompound compound = new NBTTagCompound();
+		compound.setFloat("ScaleX", scaleX);
+		compound.setFloat("ScaleY", scaleY);
+		compound.setFloat("ScaleZ", scaleZ);
+		
+		compound.setFloat("TransX", transX);
+		compound.setFloat("TransY", transY);
+		compound.setFloat("TransZ", transZ);
+		return compound;
+	}
+	
+	public void readFromNBT(NBTTagCompound compound){
+		scaleX = ValueUtil.correctFloat(compound.getFloat("ScaleX"), 0.5f, 1.5f);
+		scaleY = ValueUtil.correctFloat(compound.getFloat("ScaleY"), 0.5f, 1.5f);
+		scaleZ = ValueUtil.correctFloat(compound.getFloat("ScaleZ"), 0.5f, 1.5f);
+
+		transX = compound.getFloat("TransX");
+		transY = compound.getFloat("TransY");
+		transZ = compound.getFloat("TransZ");
+	}
+	
+	public String toString(){
+		return "ScaleX: " + scaleX + " - ScaleY: " + scaleY + " - ScaleZ: " + scaleZ;
+	}
+
+	public void setScale(float x, float y, float z) {
+		scaleX = x;
+		scaleY = y;
+		scaleZ = z;
+	}
+	public void setScale(float x, float y) {
+		scaleZ = scaleX = x;
+		scaleY = y;
+	}
+
 }

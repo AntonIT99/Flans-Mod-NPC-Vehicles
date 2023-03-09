@@ -1,37 +1,37 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.containers;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 class SlotNpcTraderItems extends Slot
 {
-    public SlotNpcTraderItems(final IInventory iinventory, final int i, final int j, final int k) {
+
+
+    public SlotNpcTraderItems( IInventory iinventory, int i, int j, int k)
+    {
         super(iinventory, i, j, k);
     }
-    
-    public void onPickupFromSlot(final ItemStack itemstack) {
-        if (itemstack == null) {
-            return;
-        }
-        if (this.getStack() == null) {
-            return;
-        }
-        if (itemstack.getItem() != this.getStack().getItem()) {
-            return;
-        }
-        --itemstack.stackSize;
+    public void onPickupFromSlot(ItemStack itemstack)
+    {
+    	if(itemstack == null)
+    		return;
+    	if(getStack() == null)
+    		return;
+    	if(itemstack.getItem() != getStack().getItem())
+    		return;
+    	itemstack.stackSize--;
+        //onSlotChanged();
     }
-    
-    public int getSlotStackLimit() {
+
+    public int getSlotStackLimit()
+    {
         return 64;
     }
-    
-    public boolean isItemValid(final ItemStack itemstack) {
+
+    public boolean isItemValid(ItemStack itemstack)
+    {
         return false;
+        
     }
 }

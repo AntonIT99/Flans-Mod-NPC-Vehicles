@@ -1,231 +1,237 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.gui;
 
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagDouble;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.entity.Entity;
-import net.minecraft.client.Minecraft;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.nbt.NBTTagCompound;
-import java.util.Collection;
-import noppes.npcs.client.controllers.ClientCloneController;
-import noppes.npcs.client.Client;
-import noppes.npcs.constants.EnumPacketServer;
-import java.util.Iterator;
-import java.util.Map;
-import java.lang.reflect.Modifier;
 import net.minecraft.world.World;
-import net.minecraft.entity.EntityLiving;
-import java.util.ArrayList;
-import net.minecraft.entity.EntityList;
-import noppes.npcs.client.gui.util.GuiMenuSideButton;
-import noppes.npcs.client.gui.util.GuiNpcButton;
-import net.minecraft.client.gui.GuiButton;
-import noppes.npcs.client.gui.util.GuiMenuTopButton;
-import noppes.npcs.client.gui.util.GuiNpcTextField;
-import net.minecraft.client.gui.GuiScreen;
-import java.util.List;
+import noppes.npcs.client.Client;
+import noppes.npcs.client.controllers.ClientCloneController;
 import noppes.npcs.client.gui.util.GuiCustomScroll;
-import noppes.npcs.client.gui.util.IGuiData;
+import noppes.npcs.client.gui.util.GuiMenuSideButton;
+import noppes.npcs.client.gui.util.GuiMenuTopButton;
 import noppes.npcs.client.gui.util.GuiNPCInterface;
+import noppes.npcs.client.gui.util.GuiNpcButton;
+import noppes.npcs.client.gui.util.GuiNpcTextField;
+import noppes.npcs.client.gui.util.IGuiData;
+import noppes.npcs.constants.EnumPacketServer;
 
-public class GuiNpcMobSpawnerMounter extends GuiNPCInterface implements IGuiData
-{
+public class GuiNpcMobSpawnerMounter extends GuiNPCInterface implements IGuiData{
+    
     private GuiCustomScroll scroll;
-    private int posX;
-    private int posY;
-    private int posZ;
+    
+    private int posX,posY,posZ;
+    
     private List<String> list;
-    private static int showingClones;
-    private static String search;
-    private int activeTab;
     
-    public GuiNpcMobSpawnerMounter(final int i, final int j, final int k) {
-        this.activeTab = 1;
-        this.xSize = 256;
-        this.posX = i;
-        this.posY = j;
-        this.posZ = k;
+    private static int showingClones = 0;
+
+	private static String search = "";
+	
+	private int activeTab =  1;
+    
+	public GuiNpcMobSpawnerMounter(int i, int j, int k) {
+		super();
+        xSize = 256;
+
+        posX = i;
+        posY = j;
+        posZ = k;
+        
         this.closeOnEsc = true;
-        this.setBackground("menubg.png");
-    }
-    
-    @Override
-    public void initGui() {
+        
+        setBackground("menubg.png");
+	}
+    public void initGui()
+    {
         super.initGui();
-        this.guiTop += 10;
-        if (this.scroll == null) {
-            (this.scroll = new GuiCustomScroll(this, 0)).setSize(165, 188);
+        guiTop += 10;
+        
+        if(scroll == null){
+	        scroll = new GuiCustomScroll(this,0);
+	        scroll.setSize(165, 188);
         }
-        else {
-            this.scroll.clear();
-        }
-        this.scroll.guiLeft = this.guiLeft + 4;
-        this.scroll.guiTop = this.guiTop + 26;
-        this.addScroll(this.scroll);
-        this.addTextField(new GuiNpcTextField(1, this, this.fontRendererObj, this.guiLeft + 4, this.guiTop + 4, 165, 20, GuiNpcMobSpawnerMounter.search));
+        else
+        	scroll.clear();
+        scroll.guiLeft = guiLeft + 4;
+        scroll.guiTop = guiTop + 26;
+        addScroll(scroll);
+        
+    	addTextField(new GuiNpcTextField(1, this, fontRendererObj, guiLeft + 4, guiTop + 4, 165, 20, search));
+
         GuiMenuTopButton button;
-        this.addTopButton(button = new GuiMenuTopButton(3, this.guiLeft + 4, this.guiTop - 17, "spawner.clones"));
-        button.active = (GuiNpcMobSpawnerMounter.showingClones == 0);
-        this.addTopButton(button = new GuiMenuTopButton(4, button, "spawner.entities"));
-        button.active = (GuiNpcMobSpawnerMounter.showingClones == 1);
-        this.addTopButton(button = new GuiMenuTopButton(5, button, "gui.server"));
-        button.active = (GuiNpcMobSpawnerMounter.showingClones == 2);
-        this.addButton(new GuiNpcButton(1, this.guiLeft + 170, this.guiTop + 6, 82, 20, "spawner.mount"));
-        this.addButton(new GuiNpcButton(2, this.guiLeft + 170, this.guiTop + 50, 82, 20, "spawner.mountplayer"));
-        if (GuiNpcMobSpawnerMounter.showingClones == 0 || GuiNpcMobSpawnerMounter.showingClones == 2) {
-            this.addSideButton(new GuiMenuSideButton(21, this.guiLeft - 69, this.guiTop + 2, 70, 22, "Tab 1"));
-            this.addSideButton(new GuiMenuSideButton(22, this.guiLeft - 69, this.guiTop + 23, 70, 22, "Tab 2"));
-            this.addSideButton(new GuiMenuSideButton(23, this.guiLeft - 69, this.guiTop + 44, 70, 22, "Tab 3"));
-            this.addSideButton(new GuiMenuSideButton(24, this.guiLeft - 69, this.guiTop + 65, 70, 22, "Tab 4"));
-            this.addSideButton(new GuiMenuSideButton(25, this.guiLeft - 69, this.guiTop + 86, 70, 22, "Tab 5"));
-            this.addSideButton(new GuiMenuSideButton(26, this.guiLeft - 69, this.guiTop + 107, 70, 22, "Tab 6"));
-            this.addSideButton(new GuiMenuSideButton(27, this.guiLeft - 69, this.guiTop + 128, 70, 22, "Tab 7"));
-            this.addSideButton(new GuiMenuSideButton(28, this.guiLeft - 69, this.guiTop + 149, 70, 22, "Tab 8"));
-            this.addSideButton(new GuiMenuSideButton(29, this.guiLeft - 69, this.guiTop + 170, 70, 22, "Tab 9"));
-            this.getSideButton(20 + this.activeTab).active = true;
-            this.showClones();
+        addTopButton(button = new GuiMenuTopButton(3,guiLeft + 4, guiTop - 17, "spawner.clones"));
+        button.active = showingClones == 0;
+        addTopButton(button = new GuiMenuTopButton(4, button, "spawner.entities"));
+        button.active = showingClones == 1;
+        addTopButton(button = new GuiMenuTopButton(5, button, "gui.server"));
+        button.active = showingClones == 2;
+
+        addButton(new GuiNpcButton(1, guiLeft + 170, guiTop + 6, 82, 20, "spawner.mount"));
+
+        addButton(new GuiNpcButton(2, guiLeft + 170, guiTop + 50, 82, 20, "spawner.mountplayer"));
+
+        if(showingClones == 0 || showingClones == 2){
+			addSideButton(new GuiMenuSideButton(21,guiLeft - 90, this.guiTop + 2, 90,22, "1"));
+			addSideButton(new GuiMenuSideButton(22,guiLeft - 90, this.guiTop + 23, 90,22, "2"));
+			addSideButton(new GuiMenuSideButton(23,guiLeft - 90, this.guiTop + 44, 90,22, "3"));
+			addSideButton(new GuiMenuSideButton(24,guiLeft - 90, this.guiTop + 65, 90,22, "4"));
+			addSideButton(new GuiMenuSideButton(25,guiLeft - 90, this.guiTop + 86, 90,22, "5"));
+			addSideButton(new GuiMenuSideButton(26,guiLeft - 45, this.guiTop + 107, 45,22, "6"));
+			addSideButton(new GuiMenuSideButton(27,guiLeft - 90, this.guiTop + 107, 45,22, "7"));
+			addSideButton(new GuiMenuSideButton(28,guiLeft - 45, this.guiTop + 128, 45,22, "8"));
+			addSideButton(new GuiMenuSideButton(29,guiLeft - 90, this.guiTop + 128, 45,22, "9"));
+			addSideButton(new GuiMenuSideButton(30,guiLeft - 45, this.guiTop + 149, 45,22, "10"));
+			addSideButton(new GuiMenuSideButton(31,guiLeft - 90, this.guiTop + 149, 45,22, "11"));
+			addSideButton(new GuiMenuSideButton(32,guiLeft - 45, this.guiTop + 170, 45,22, "12"));
+			addSideButton(new GuiMenuSideButton(33,guiLeft - 90, this.guiTop + 170, 45,22, "13"));
+			addSideButton(new GuiMenuSideButton(34,guiLeft - 45, this.guiTop + 191, 45,22, "14"));
+			addSideButton(new GuiMenuSideButton(35,guiLeft - 90, this.guiTop + 191, 45,22, "15"));
+        	
+        	getSideButton(20 + activeTab).active = true;
+        	showClones();
         }
-        else {
-            this.showEntities();
-        }
+        else
+        	showEntities();
     }
-    
-    private void showEntities() {
-        final Map<?, ?> data = (Map<?, ?>)EntityList.stringToClassMapping;
-        final ArrayList<String> list = new ArrayList<String>();
-        for (final Object name : data.keySet()) {
-            final Class<?> c = (Class<?>)data.get(name);
-            try {
-                if (!EntityLiving.class.isAssignableFrom(c) || c.getConstructor(World.class) == null || Modifier.isAbstract(c.getModifiers())) {
-                    continue;
-                }
-                list.add(name.toString());
-            }
-            catch (SecurityException e) {
-                e.printStackTrace();
-            }
-            catch (NoSuchMethodException ex) {}
-        }
+	private void showEntities() {
+        Map<?,?> data = EntityList.stringToClassMapping;
+        ArrayList<String> list = new ArrayList<String>();
+        for(Object name : data.keySet()){
+        	Class<?> c = (Class<?>) data.get(name);
+        	try {
+        		if(EntityLiving.class.isAssignableFrom(c) && c.getConstructor(new Class[] {World.class}) != null && !Modifier.isAbstract(c.getModifiers()))
+        				list.add(name.toString());
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+			}
+        }  
         this.list = list;
-        this.scroll.setList(this.getSearchList());
+        scroll.setList(getSearchList());
+	}
+	private void showClones() {
+
+		if(showingClones == 2){
+			Client.sendData(EnumPacketServer.CloneList, activeTab);
+			return;
+		}
+        
+        ArrayList<String> list = new ArrayList<String>();
+        this.list = ClientCloneController.Instance.getClones(activeTab);
+        scroll.setList(getSearchList());
+	}
+    public void keyTyped(char c, int i)
+    {
+    	super.keyTyped(c, i);
+    	
+    	if(search.equals(getTextField(1).getText()))
+    		return;
+    	search = getTextField(1).getText().toLowerCase();
+    	scroll.setList(getSearchList());
     }
-    
-    private void showClones() {
-        if (GuiNpcMobSpawnerMounter.showingClones == 2) {
-            Client.sendData(EnumPacketServer.CloneList, this.activeTab);
-            return;
-        }
-        final ArrayList<String> list = new ArrayList<String>();
-        this.list = ClientCloneController.Instance.getClones(this.activeTab);
-        this.scroll.setList(this.getSearchList());
+    private List<String> getSearchList(){
+    	if(search.isEmpty())
+    		return new ArrayList<String>(list);
+    	List<String> list = new ArrayList<String>();
+    	for(String name : this.list){
+    		if(name.toLowerCase().contains(search))
+    			list.add(name);
+    	}
+    	return list;
     }
-    
-    @Override
-    public void keyTyped(final char c, final int i) {
-        super.keyTyped(c, i);
-        if (GuiNpcMobSpawnerMounter.search.equals(this.getTextField(1).getText())) {
-            return;
-        }
-        GuiNpcMobSpawnerMounter.search = this.getTextField(1).getText().toLowerCase();
-        this.scroll.setList(this.getSearchList());
+	private NBTTagCompound getCompound(){
+    	String sel = scroll.getSelected();
+    	if(sel == null)
+    		return null;
+    	
+    	if(showingClones == 0){
+    		return ClientCloneController.Instance.getCloneData(player, sel, activeTab);
+    	}
+    	else{
+    		Entity entity = EntityList.createEntityByName(sel, Minecraft.getMinecraft().theWorld);
+    		if(entity == null)
+    			return null;
+    		NBTTagCompound compound = new NBTTagCompound();
+    		entity.writeToNBTOptional(compound);
+    		return compound;
+    	}
+		
+	}
+	
+	protected void actionPerformed(GuiButton guibutton)
+    {
+		int id = guibutton.id;
+    	if(id == 0){
+    		close();
+    	}
+    	if(id == 1){
+    		NBTTagCompound compound = getCompound();
+    		if(compound != null){
+    			compound.setTag("Pos", this.newDoubleNBTList(new double[] {this.posX + 0.5, this.posY + 1, this.posZ + 0.5}));
+    			Client.sendData(EnumPacketServer.SpawnRider, compound);
+	    		close();
+    		}
+    	}
+    	if(id == 2){
+			Client.sendData(EnumPacketServer.PlayerRider);
+    		close();
+    	}
+    	if(id == 3){
+    		showingClones = 0;
+    		initGui();
+    	}
+    	if(id == 4){
+    		showingClones = 1;
+    		initGui();
+    	}
+    	if(id == 5){
+    		showingClones = 2;
+    		initGui();
+    	}
+    	if(id > 20){
+    		activeTab = id - 20;
+    		initGui();
+    	}
     }
-    
-    private List<String> getSearchList() {
-        if (GuiNpcMobSpawnerMounter.search.isEmpty()) {
-            return new ArrayList<String>(this.list);
+    protected NBTTagList newDoubleNBTList(double ... par1ArrayOfDouble)
+    {
+        NBTTagList nbttaglist = new NBTTagList();
+        double[] adouble = par1ArrayOfDouble;
+        int i = par1ArrayOfDouble.length;
+
+        for (int j = 0; j < i; ++j)
+        {
+            double d1 = adouble[j];
+            nbttaglist.appendTag(new NBTTagDouble(d1));
         }
-        final List<String> list = new ArrayList<String>();
-        for (final String name : this.list) {
-            if (name.toLowerCase().contains(GuiNpcMobSpawnerMounter.search)) {
-                list.add(name);
-            }
-        }
-        return list;
-    }
-    
-    private NBTTagCompound getCompound() {
-        final String sel = this.scroll.getSelected();
-        if (sel == null) {
-            return null;
-        }
-        if (GuiNpcMobSpawnerMounter.showingClones == 0) {
-            return ClientCloneController.Instance.getCloneData((ICommandSender)this.player, sel, this.activeTab);
-        }
-        final Entity entity = EntityList.createEntityByName(sel, (World)Minecraft.getMinecraft().theWorld);
-        if (entity == null) {
-            return null;
-        }
-        final NBTTagCompound compound = new NBTTagCompound();
-        entity.writeToNBTOptional(compound);
-        return compound;
-    }
-    
-    @Override
-    protected void actionPerformed(final GuiButton guibutton) {
-        final int id = guibutton.id;
-        if (id == 0) {
-            this.close();
-        }
-        if (id == 1) {
-            final NBTTagCompound compound = this.getCompound();
-            if (compound != null) {
-                compound.setTag("Pos", (NBTBase)this.newDoubleNBTList(this.posX + 0.5, this.posY + 1, this.posZ + 0.5));
-                Client.sendData(EnumPacketServer.SpawnRider, compound);
-                this.close();
-            }
-        }
-        if (id == 2) {
-            Client.sendData(EnumPacketServer.PlayerRider, new Object[0]);
-            this.close();
-        }
-        if (id == 3) {
-            GuiNpcMobSpawnerMounter.showingClones = 0;
-            this.initGui();
-        }
-        if (id == 4) {
-            GuiNpcMobSpawnerMounter.showingClones = 1;
-            this.initGui();
-        }
-        if (id == 5) {
-            GuiNpcMobSpawnerMounter.showingClones = 2;
-            this.initGui();
-        }
-        if (id > 20) {
-            this.activeTab = id - 20;
-            this.initGui();
-        }
-    }
-    
-    protected NBTTagList newDoubleNBTList(final double... par1ArrayOfDouble) {
-        final NBTTagList nbttaglist = new NBTTagList();
-        for (final double d1 : par1ArrayOfDouble) {
-            nbttaglist.appendTag((NBTBase)new NBTTagDouble(d1));
-        }
+
         return nbttaglist;
     }
-    
-    @Override
-    public void save() {
-    }
-    
-    @Override
-    public void setGuiData(final NBTTagCompound compound) {
-        final NBTTagList nbtlist = compound.getTagList("List", 8);
-        final List<String> list = new ArrayList<String>();
-        for (int i = 0; i < nbtlist.tagCount(); ++i) {
-            list.add(nbtlist.getStringTagAt(i));
-        }
-        this.list = list;
-        this.scroll.setList(this.getSearchList());
-    }
-    
-    static {
-        GuiNpcMobSpawnerMounter.showingClones = 0;
-        GuiNpcMobSpawnerMounter.search = "";
-    }
+	
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setGuiData(NBTTagCompound compound) {
+		NBTTagList nbtlist = compound.getTagList("List", 8);
+		List<String> list = new ArrayList<String>();
+		for(int i = 0; i < nbtlist.tagCount(); i++){
+			list.add(nbtlist.getStringTagAt(i));
+		}
+		this.list = list;
+        scroll.setList(getSearchList());
+	}
 }

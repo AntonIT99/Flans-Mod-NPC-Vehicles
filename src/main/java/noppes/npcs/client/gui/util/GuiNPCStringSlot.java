@@ -1,86 +1,107 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package noppes.npcs.client.gui.util;
 
-import net.minecraft.client.renderer.Tessellator;
-import java.util.Comparator;
-import java.util.Collections;
 import java.util.ArrayList;
-import net.minecraft.client.Minecraft;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Vector;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiSlot;
+import net.minecraft.client.renderer.Tessellator;
+import noppes.npcs.entity.EntityNPCInterface;
 
 public class GuiNPCStringSlot extends GuiSlot
 {
-    private List<String> list;
+
+	private List<String> list; /* synthetic field */
     public String selected;
     public HashSet<String> selectedList;
     private boolean multiSelect;
     private GuiNPCInterface parent;
     public int size;
-    private long prevTime;
-    
-    public GuiNPCStringSlot(final Collection<String> list, final GuiNPCInterface parent, final boolean multiSelect, final int size) {
+    public GuiNPCStringSlot(Collection<String> list,GuiNPCInterface parent,boolean multiSelect, int size)
+    {
         super(Minecraft.getMinecraft(), parent.width, parent.height, 32, parent.height - 64, size);
-        this.prevTime = 0L;
-        this.selectedList = new HashSet<String>();
+        selectedList = new HashSet<String>();
         this.parent = parent;
-        Collections.sort(this.list = new ArrayList<String>(list), String.CASE_INSENSITIVE_ORDER);
+        this.list = new ArrayList(list);
+        Collections.sort(this.list,String.CASE_INSENSITIVE_ORDER);
         this.multiSelect = multiSelect;
         this.size = size;
     }
-    
-    public void setList(final List<String> list) {
-        Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+    public void setList(List<String> list){
+        Collections.sort(list,String.CASE_INSENSITIVE_ORDER);
         this.list = list;
-        this.selected = "";
+        selected = "";
     }
-    
-    protected int getSize() {
-        return this.list.size();
+
+    @Override
+    protected int getSize()
+    {
+        return list.size();
     }
-    
-    protected void elementClicked(final int i, final boolean flag, final int j, final int k) {
-        final long time = System.currentTimeMillis();
-        if (this.selected != null && this.selected.equals(this.list.get(i)) && time - this.prevTime < 400L) {
-            this.parent.doubleClicked();
-        }
-        this.selected = this.list.get(i);
-        if (this.selectedList.contains(this.selected)) {
-            this.selectedList.remove(this.selected);
-        }
-        else {
-            this.selectedList.add(this.selected);
-        }
-        this.parent.elementClicked();
-        this.prevTime = time;
+    private long prevTime = 0;
+
+    @Override
+    protected void elementClicked(int i, boolean flag, int j, int k)
+    {
+//        GuiSelectWorld.onElementSelected(parentWorldGui, i);
+//        boolean flag1 = GuiSelectWorld.getSelectedWorld(parentWorldGui) >= 0 && GuiSelectWorld.getSelectedWorld(parentWorldGui) < getSize();
+//        GuiSelectWorld.getSelectButton(parentWorldGui).enabled = flag1;
+//        GuiSelectWorld.getRenameButton(parentWorldGui).enabled = flag1;
+//        GuiSelectWorld.getDeleteButton(parentWorldGui).enabled = flag1;
+//        if(flag && flag1)
+//        {
+//            parentWorldGui.selectWorld(i);
+//        }
+    	long time = System.currentTimeMillis();
+    	if(selected != null && selected.equals(list.get(i)) && time - prevTime < 400 )
+    		parent.doubleClicked();
+		selected = list.get(i);
+		if(selectedList.contains(selected))
+			selectedList.remove(selected);
+		else
+			selectedList.add(selected);
+		parent.elementClicked();
+		prevTime = time;
     }
-    
-    protected boolean isSelected(final int i) {
-        if (!this.multiSelect) {
-            return this.selected != null && this.selected.equals(this.list.get(i));
-        }
-        return this.selectedList.contains(this.list.get(i));
+
+    @Override
+    protected boolean isSelected(int i)
+    {
+    	if(!multiSelect){
+	    	if(selected == null)
+	    		return false;
+	        return selected.equals(list.get(i));
+    	}
+    	else{
+	        return selectedList.contains(list.get(i));
+    	}
     }
-    
-    protected int getContentHeight() {
-        return this.list.size() * this.size;
+
+    @Override
+    protected int getContentHeight()
+    {
+        return list.size() * size;
     }
-    
-    protected void drawBackground() {
-        this.parent.drawDefaultBackground();
+
+    @Override
+    protected void drawBackground()
+    {
+        parent.drawDefaultBackground();
     }
-    
-    protected void drawSlot(final int i, final int j, final int k, final int l, final Tessellator tessellator, final int var6, final int var7) {
-        final String s = this.list.get(i);
-        this.parent.drawString(this.parent.getFontRenderer(), s, j + 50, k + 3, 16777215);
+
+    @Override
+	protected void drawSlot(int i, int j, int k, int l, Tessellator tessellator, int var6, int var7) {
+    	String s = list.get(i);
+    	//if(!parent.drawSlot(i, j, k, l, tessellator, s))
+    	parent.drawString(parent.getFontRenderer(), s, j + 50, k + 3, 0xFFFFFF);
     }
-    
-    public void clear() {
-        this.list.clear();
-    }
+
+	public void clear() {
+		list.clear();
+	}
+	
 }

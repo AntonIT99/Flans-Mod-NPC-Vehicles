@@ -4,8 +4,9 @@ import org.lwjgl.opengl.GL11;
 
 import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.flansmod.common.teams.ArmourType;
+import noppes.npcs.constants.EnumAnimation;
+import noppes.npcs.entity.EntityCustomNpc;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -14,14 +15,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
-import noppes.npcs.client.model.ModelMPM;
-import noppes.npcs.client.model.ModelNPCMale;
-import noppes.npcs.client.model.animation.AniCrawling;
-import noppes.npcs.client.model.animation.AniHug;
-import noppes.npcs.client.model.util.ModelScaleRenderer;
-import noppes.npcs.constants.EnumAnimation;
-import noppes.npcs.entity.EntityCustomNpc;
-import noppes.npcs.entity.EntityNPCInterface;
 
 public class ModelCustomArmour extends ModelBiped 
 {
@@ -36,131 +29,132 @@ public class ModelCustomArmour extends ModelBiped
 	public ModelRendererTurbo[] skirtFrontModel = new ModelRendererTurbo[0]; //Acts like a leg piece, but its pitch is set to the maximum of the two legs
 	public ModelRendererTurbo[] skirtRearModel = new ModelRendererTurbo[0]; //Acts like a leg piece, but its pitch is set to the minimum of the two legs
 
-	public void setRotationAnglesDANCING(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
+	public void setRotationAnglesDancing(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
 	{
 	    float dancing = entity.ticksExisted / 4.0F;
 	    float x = (float)Math.sin(dancing);
 	    float y = (float)Math.abs(Math.cos(dancing));
 	    
-        this.bipedRightArm.rotationPointX = -5.0F;
-        this.bipedLeftArm.rotationPointX = 5.0F;
-        this.bipedRightArm.rotationPointY += 2.0F;
-        this.bipedLeftArm.rotationPointY += 2.0F;
-        this.bipedRightArm.rotationPointZ = 0.0F;
-        this.bipedLeftArm.rotationPointZ = 0.0F;
+        bipedRightArm.rotationPointX = -5.0F;
+        bipedLeftArm.rotationPointX = 5.0F;
+        bipedRightArm.rotationPointY += 2.0F;
+        bipedLeftArm.rotationPointY += 2.0F;
+        bipedRightArm.rotationPointZ = 0.0F;
+        bipedLeftArm.rotationPointZ = 0.0F;
 	    
-	    this.bipedHeadwear.rotationPointX = (this.bipedHead.rotationPointX = x * 0.75F);
-	    this.bipedHeadwear.rotationPointY = (this.bipedHead.rotationPointY = y * 1.25F - 0.02F);
-	    this.bipedHeadwear.rotationPointZ = (this.bipedHead.rotationPointZ = -y * 0.75F);
+	    bipedHeadwear.rotationPointX = (bipedHead.rotationPointX = x * 0.75F);
+	    bipedHeadwear.rotationPointY = (bipedHead.rotationPointY = y * 1.25F - 0.02F);
+	    bipedHeadwear.rotationPointZ = (bipedHead.rotationPointZ = -y * 0.75F);
 	    
-	    this.bipedLeftArm.rotationPointX += x * 0.25F;
-	    this.bipedLeftArm.rotationPointY = y * 1.25F;
+	    bipedLeftArm.rotationPointX += x * 0.25F;
+	    bipedLeftArm.rotationPointY = y * 1.25F;
 	    
-	    this.bipedRightArm.rotationPointX += x * 0.25F;
-	    this.bipedRightArm.rotationPointY = y * 1.25F;
+	    bipedRightArm.rotationPointX += x * 0.25F;
+	    bipedRightArm.rotationPointY = y * 1.25F;
 	    
-	    this.bipedBody.rotationPointX = (x * 0.25F);
+	    bipedBody.rotationPointX = (x * 0.25F);
 	}
 	
-	public void setRotationAnglesAIMING(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
+	public void setRotationAnglesAiming(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
 	{
 		float f6 = 0.0F;
         float f7 = 0.0F;
-        this.bipedHead.rotateAngleY = par4 / (180F / (float)Math.PI);
-        this.bipedHead.rotateAngleX = par5 / (180F / (float)Math.PI);
-        this.bipedRightArm.rotateAngleZ = 0.0F;
-        this.bipedLeftArm.rotateAngleZ = 0.0F;
-        this.bipedRightArm.rotateAngleY = -(0.1F - f6 * 0.6F) + this.bipedHead.rotateAngleY;
-        this.bipedLeftArm.rotateAngleY = 0.1F - f6 * 0.6F + this.bipedHead.rotateAngleY + 0.4F;
-        this.bipedRightArm.rotateAngleX = -((float)Math.PI / 2F) + this.bipedHead.rotateAngleX;
-        this.bipedLeftArm.rotateAngleX = -((float)Math.PI / 2F) + this.bipedHead.rotateAngleX;
-        this.bipedRightArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
-        this.bipedLeftArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
-		this.bipedRightArm.rotateAngleZ += MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
-        this.bipedLeftArm.rotateAngleZ -= MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
-        this.bipedRightArm.rotateAngleX += MathHelper.sin(par3 * 0.067F) * 0.05F;
-        this.bipedLeftArm.rotateAngleX -= MathHelper.sin(par3 * 0.067F) * 0.05F;
-        this.bipedRightLeg.rotateAngleX = 0.0F;
-        this.bipedLeftLeg.rotateAngleX = 0.0F;
+        bipedHead.rotateAngleY = par4 / (180F / (float)Math.PI);
+        bipedHead.rotateAngleX = par5 / (180F / (float)Math.PI);
+        bipedRightArm.rotateAngleZ = 0.0F;
+        bipedLeftArm.rotateAngleZ = 0.0F;
+        bipedRightArm.rotateAngleY = -(0.1F - f6 * 0.6F) + bipedHead.rotateAngleY;
+        bipedLeftArm.rotateAngleY = 0.1F - f6 * 0.6F + bipedHead.rotateAngleY + 0.4F;
+        bipedRightArm.rotateAngleX = -((float)Math.PI / 2F) + bipedHead.rotateAngleX;
+        bipedLeftArm.rotateAngleX = -((float)Math.PI / 2F) + bipedHead.rotateAngleX;
+        bipedRightArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
+        bipedLeftArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
+		bipedRightArm.rotateAngleZ += MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
+        bipedLeftArm.rotateAngleZ -= MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
+        bipedRightArm.rotateAngleX += MathHelper.sin(par3 * 0.067F) * 0.05F;
+        bipedLeftArm.rotateAngleX -= MathHelper.sin(par3 * 0.067F) * 0.05F;
+        bipedRightLeg.rotateAngleX = 0.0F;
+        bipedLeftLeg.rotateAngleX = 0.0F;
 	 }
 	
-	public void setRotationAnglesSITTING(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
+	public void setRotationAnglesSitting(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
 	{
-		this.bipedRightArm.rotateAngleX = -((float)Math.PI / 5F);
-	    this.bipedLeftArm.rotateAngleX = -((float)Math.PI / 5F);
-	    this.bipedRightLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
-	    this.bipedLeftLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
-	    this.bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
-	    this.bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
-	    this.bipedHead.rotateAngleY = par4 / (180F / (float)Math.PI);
-        this.bipedHead.rotateAngleX = par5 / (180F / (float)Math.PI);
+		bipedRightArm.rotateAngleX = -((float)Math.PI / 5F);
+	    bipedLeftArm.rotateAngleX = -((float)Math.PI / 5F);
+	    bipedRightLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
+	    bipedLeftLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
+	    bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
+	    bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
+	    bipedHead.rotateAngleY = par4 / (180F / (float)Math.PI);
+        bipedHead.rotateAngleX = par5 / (180F / (float)Math.PI);
 	}
 	
 	public void setRotationAnglesHUG(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
 	{
-		final float f6 = MathHelper.sin(this.onGround * 3.141593f);
-        final float f7 = MathHelper.sin((1.0f - (1.0f - this.onGround) * (1.0f - this.onGround)) * 3.141593f);
-        /*this.bipedRightArm.rotateAngleZ = 0.0f;
-        this.bipedLeftArm.rotateAngleZ = 0.0f;
-        this.bipedRightArm.rotateAngleY = -(0.1f - f6 * 0.6f);
-        this.bipedLeftArm.rotateAngleY = 0.1f;
-        this.bipedRightArm.rotateAngleX = -1.570796f;
-        this.bipedLeftArm.rotateAngleX = -1.570796f;
-        this.bipedRightArm.rotateAngleX -= f6 * 1.2f - f7 * 0.4f;
-        this.bipedLeftArm.rotateAngleZ -= MathHelper.cos(par3 * 0.09f) * 0.05f + 0.05f;*/
-        this.bipedRightArm.rotateAngleZ = 0.0F;
-        this.bipedLeftArm.rotateAngleZ = 0.0F;
-        this.bipedRightArm.rotateAngleY = (-(0.1F - f6 * 0.6F));
-        this.bipedLeftArm.rotateAngleY = 0.1F;
-        this.bipedRightArm.rotateAngleX = -1.570796F;
-        this.bipedLeftArm.rotateAngleX = -1.570796F;
-        this.bipedRightArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
+		final float f6 = MathHelper.sin(onGround * 3.141593f);
+        final float f7 = MathHelper.sin((1.0f - (1.0f - onGround) * (1.0f - onGround)) * 3.141593f);
+        /*bipedRightArm.rotateAngleZ = 0.0f;
+        bipedLeftArm.rotateAngleZ = 0.0f;
+        bipedRightArm.rotateAngleY = -(0.1f - f6 * 0.6f);
+        bipedLeftArm.rotateAngleY = 0.1f;
+        bipedRightArm.rotateAngleX = -1.570796f;
+        bipedLeftArm.rotateAngleX = -1.570796f;
+        bipedRightArm.rotateAngleX -= f6 * 1.2f - f7 * 0.4f;
+        bipedLeftArm.rotateAngleZ -= MathHelper.cos(par3 * 0.09f) * 0.05f + 0.05f;*/
+        bipedRightArm.rotateAngleZ = 0.0F;
+        bipedLeftArm.rotateAngleZ = 0.0F;
+        bipedRightArm.rotateAngleY = (-(0.1F - f6 * 0.6F));
+        bipedLeftArm.rotateAngleY = 0.1F;
+        bipedRightArm.rotateAngleX = -1.570796F;
+        bipedLeftArm.rotateAngleX = -1.570796F;
+        bipedRightArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
         
-        this.bipedRightArm.rotateAngleZ += MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
-        this.bipedLeftArm.rotateAngleZ -= MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
-        this.bipedRightArm.rotateAngleX += MathHelper.sin(par3 * 0.067F) * 0.05F;
-        this.bipedLeftArm.rotateAngleX -= MathHelper.sin(par3 * 0.067F) * 0.05F;
+        bipedRightArm.rotateAngleZ += MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
+        bipedLeftArm.rotateAngleZ -= MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
+        bipedRightArm.rotateAngleX += MathHelper.sin(par3 * 0.067F) * 0.05F;
+        bipedLeftArm.rotateAngleX -= MathHelper.sin(par3 * 0.067F) * 0.05F;
         
 	}
 	
-	public void setRotationAnglesCRAWLING(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
+	public void setRotationAnglesCrawling(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
 	{
-		this.bipedHead.rotateAngleZ = -par4 / 57.295776f;
-		this.bipedHead.rotateAngleY = 0.0f;
-		this.bipedHead.rotateAngleX = -0.95993114f;
-		this.bipedHeadwear.rotateAngleX = this.bipedHead.rotateAngleX;
-		this.bipedHeadwear.rotateAngleY = this.bipedHead.rotateAngleY;
-		this.bipedHeadwear.rotateAngleZ = this.bipedHead.rotateAngleZ;
+		bipedHead.rotateAngleZ = -par4 / 57.295776f;
+		bipedHead.rotateAngleY = 0.0f;
+		bipedHead.rotateAngleX = -0.95993114f;
+		bipedHeadwear.rotateAngleX = bipedHead.rotateAngleX;
+		bipedHeadwear.rotateAngleY = bipedHead.rotateAngleY;
+		bipedHeadwear.rotateAngleZ = bipedHead.rotateAngleZ;
         if (par2 > 0.25) {
             par2 = 0.25f;
         }
         final float movement = MathHelper.cos(par1 * 0.8f + 3.1415927f) * par2;
-        this.bipedLeftArm.rotateAngleX = 3.1415927f - movement * 0.25f;
-        this.bipedLeftArm.rotateAngleY = movement * -0.46f;
-        this.bipedLeftArm.rotateAngleZ = movement * -0.2f;
-        this.bipedLeftArm.rotationPointY = 2.0f - movement * 9.0f;
-        this.bipedRightArm.rotateAngleX = 3.1415927f + movement * 0.25f;
-        this.bipedRightArm.rotateAngleY = movement * -0.4f;
-        this.bipedRightArm.rotateAngleZ = movement * -0.2f;
-        this.bipedRightArm.rotationPointY = 2.0f + movement * 9.0f;
-        this.bipedBody.rotateAngleY = movement * 0.1f;
-        this.bipedBody.rotateAngleX = 0.0f;
-        this.bipedBody.rotateAngleZ = movement * 0.1f;
-        this.bipedLeftLeg.rotateAngleX = movement * 0.1f;
-        this.bipedLeftLeg.rotateAngleY = movement * 0.1f;
-        this.bipedLeftLeg.rotateAngleZ = -0.122173056f - movement * 0.25f;
-        this.bipedLeftLeg.rotationPointY = 10.4f + movement * 9.0f;
-        this.bipedLeftLeg.rotationPointZ = movement * 0.6f - 0.01f;
-        this.bipedRightLeg.rotateAngleX = movement * -0.1f;
-        this.bipedRightLeg.rotateAngleY = movement * 0.1f;
-        this.bipedRightLeg.rotateAngleZ = 0.122173056f - movement * 0.25f;
-        this.bipedRightLeg.rotationPointY = 10.4f - movement * 9.0f;
-        this.bipedRightLeg.rotationPointZ = movement * -0.6f - 0.01f;
+        bipedLeftArm.rotateAngleX = 3.1415927f - movement * 0.25f;
+        bipedLeftArm.rotateAngleY = movement * -0.46f;
+        bipedLeftArm.rotateAngleZ = movement * -0.2f;
+        bipedLeftArm.rotationPointY = 2.0f - movement * 9.0f;
+        bipedRightArm.rotateAngleX = 3.1415927f + movement * 0.25f;
+        bipedRightArm.rotateAngleY = movement * -0.4f;
+        bipedRightArm.rotateAngleZ = movement * -0.2f;
+        bipedRightArm.rotationPointY = 2.0f + movement * 9.0f;
+        bipedBody.rotateAngleY = movement * 0.1f;
+        bipedBody.rotateAngleX = 0.0f;
+        bipedBody.rotateAngleZ = movement * 0.1f;
+        bipedLeftLeg.rotateAngleX = movement * 0.1f;
+        bipedLeftLeg.rotateAngleY = movement * 0.1f;
+        bipedLeftLeg.rotateAngleZ = -0.122173056f - movement * 0.25f;
+        bipedLeftLeg.rotationPointY = 10.4f + movement * 9.0f;
+        bipedLeftLeg.rotationPointZ = movement * 0.6f - 0.01f;
+        bipedRightLeg.rotateAngleX = movement * -0.1f;
+        bipedRightLeg.rotateAngleY = movement * 0.1f;
+        bipedRightLeg.rotateAngleZ = 0.122173056f - movement * 0.25f;
+        bipedRightLeg.rotationPointY = 10.4f - movement * 9.0f;
+        bipedRightLeg.rotationPointZ = movement * -0.6f - 0.01f;
         
-        this.bipedBody.rotationPointX -= 0.1f;
-        this.bipedHead.rotationPointY -= 0.1f;
+        bipedBody.rotationPointX -= 0.1f;
+        bipedHead.rotationPointY -= 0.1f;
 	}
-	
+
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{ 
 		GL11.glPushMatrix();
@@ -170,66 +164,24 @@ public class ModelCustomArmour extends ModelBiped
         heldItemRight = itemstack != null ? 1 : 0;
 
         aimedBow = false;
+		if (itemstack != null && entity instanceof EntityPlayer && ((EntityPlayer)entity).getItemInUseCount() > 0)
+		{
+			EnumAction enumaction = itemstack.getItemUseAction();
+			if (enumaction == EnumAction.block)
+			{
+				heldItemRight = 3;
+			}
+			else if (enumaction == EnumAction.bow)
+			{
+				aimedBow = true;
+			}
+		}
+
         if ((entity instanceof EntityCustomNpc)) 
         {
-        	final EntityCustomNpc npc = (EntityCustomNpc)entity;
-        	this.bipedLeftArm.rotateAngleX = 0.0F;
-        	if (npc.currentAnimation == EnumAnimation.NONE || npc.currentAnimation == EnumAnimation.LYING || npc.currentAnimation == EnumAnimation.SNEAKING) {
-        		heldItemLeft = 0;
-        		if (npc.getOffHand() != null) heldItemLeft = 1;
-        		if (this.heldItemLeft != 0) 
-        		{
-        			this.bipedLeftArm.rotateAngleX = this.bipedLeftArm.rotateAngleX * 0.5f - 0.31415927f * this.heldItemLeft;
-        		}
-        	}
-        	this.bipedRightArm.rotationPointY = 2.0F;
-            this.bipedLeftArm.rotationPointY = 2.0F;
-            this.bipedRightLeg.rotateAngleZ = 0.0F;
-            this.bipedLeftLeg.rotateAngleZ = 0.0F;
-            this.bipedLeftArm.rotateAngleX = 0.0F;
-            setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        	/*this.bipedRightLeg.rotationPointX = -1.9F;
-            this.bipedLeftLeg.rotationPointX = 2.1F;*/
-        	
-        	
-        	if (npc.currentAnimation == EnumAnimation.HUG) 
-        	{
-        		setRotationAnglesHUG(f, f1, f2, f3, f4, f5, entity);
-        	} 
-        	else if (npc.currentAnimation == EnumAnimation.AIMING) 
-        	{
-        		setRotationAnglesAIMING(f, f1, f2, f3, f4, f5, entity);
-        	} 
-        	else if (npc.currentAnimation == EnumAnimation.SITTING) 
-        	{
-                this.bipedRightArm.rotateAngleX -= 0.62831855f;
-                this.bipedLeftArm.rotateAngleX -= 0.62831855f;
-                this.bipedRightLeg.rotateAngleX = -1.2566371f;
-                this.bipedLeftLeg.rotateAngleX = -1.2566371f;
-                this.bipedRightLeg.rotateAngleY = 0.31415927f;
-                this.bipedLeftLeg.rotateAngleY = -0.31415927f;
-        	} 
-        	else if (npc.currentAnimation == EnumAnimation.DANCING) 
-        	{
-        		setRotationAnglesDANCING(f, f1, f2, f3, f4, f5, entity);
-        	} 
-        	else if (npc.currentAnimation == EnumAnimation.CRAWLING) 
-        	{
-        		setRotationAnglesCRAWLING(f, f1, f2, f3, f4, f5, entity);
-        	} 
-        	else if (npc.currentAnimation == EnumAnimation.SNEAKING) 
-        	{
-        		this.bipedBody.rotateAngleX = 0.5f;
-                this.bipedRightLeg.rotateAngleX -= 0.0f;
-                this.bipedLeftLeg.rotateAngleX -= 0.0f;
-                this.bipedRightLeg.rotationPointZ = 4.0f;
-                this.bipedLeftLeg.rotationPointZ = 4.0f;
-                this.bipedRightLeg.rotationPointY = 9.0f;
-                this.bipedLeftLeg.rotationPointY = 9.0f;
-                this.bipedHead.rotationPointY = 1.0f;
-        	}
+			setRotationAnglesForCustomNpc(f, f1, f2, f3, f4, f5, (EntityCustomNpc)entity);
         }
-		else 
+		else
 		{
         	setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         }
@@ -287,6 +239,65 @@ public class ModelCustomArmour extends ModelBiped
 			mod.rotationPointX = bodyPart.rotationPointX / scale;
 			mod.rotationPointY = bodyPart.rotationPointY / scale;
 			mod.rotationPointZ = bodyPart.rotationPointZ / scale;
+		}
+	}
+
+	public void setRotationAnglesForCustomNpc(float f, float f1, float f2, float f3, float f4, float f5, EntityCustomNpc entity)
+	{
+		bipedLeftArm.rotateAngleX = 0.0F;
+		if (entity.currentAnimation == EnumAnimation.NONE || entity.currentAnimation == EnumAnimation.LYING || entity.currentAnimation == EnumAnimation.SNEAKING) {
+			heldItemLeft = 0;
+			if (entity.getOffHand() != null) heldItemLeft = 1;
+			if (heldItemLeft != 0)
+			{
+				bipedLeftArm.rotateAngleX = bipedLeftArm.rotateAngleX * 0.5f - 0.31415927f * heldItemLeft;
+			}
+		}
+		bipedRightArm.rotationPointY = 2.0F;
+		bipedLeftArm.rotationPointY = 2.0F;
+		bipedRightLeg.rotateAngleZ = 0.0F;
+		bipedLeftLeg.rotateAngleZ = 0.0F;
+		bipedLeftArm.rotateAngleX = 0.0F;
+		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		/*bipedRightLeg.rotationPointX = -1.9F;
+        bipedLeftLeg.rotationPointX = 2.1F;*/
+
+
+		if (entity.currentAnimation == EnumAnimation.HUG)
+		{
+			setRotationAnglesHUG(f, f1, f2, f3, f4, f5, entity);
+		}
+		else if (entity.currentAnimation == EnumAnimation.AIMING)
+		{
+			setRotationAnglesAiming(f, f1, f2, f3, f4, f5, entity);
+		}
+		else if (entity.currentAnimation == EnumAnimation.SITTING)
+		{
+			bipedRightArm.rotateAngleX -= 0.62831855f;
+			bipedLeftArm.rotateAngleX -= 0.62831855f;
+			bipedRightLeg.rotateAngleX = -1.2566371f;
+			bipedLeftLeg.rotateAngleX = -1.2566371f;
+			bipedRightLeg.rotateAngleY = 0.31415927f;
+			bipedLeftLeg.rotateAngleY = -0.31415927f;
+		}
+		else if (entity.currentAnimation == EnumAnimation.DANCING)
+		{
+			setRotationAnglesDancing(f, f1, f2, f3, f4, f5, entity);
+		}
+		else if (entity.currentAnimation == EnumAnimation.CRAWLING)
+		{
+			setRotationAnglesCrawling(f, f1, f2, f3, f4, f5, entity);
+		}
+		else if (entity.currentAnimation == EnumAnimation.SNEAKING)
+		{
+			bipedBody.rotateAngleX = 0.5f;
+			bipedRightLeg.rotateAngleX -= 0.0f;
+			bipedLeftLeg.rotateAngleX -= 0.0f;
+			bipedRightLeg.rotationPointZ = 4.0f;
+			bipedLeftLeg.rotationPointZ = 4.0f;
+			bipedRightLeg.rotationPointY = 9.0f;
+			bipedLeftLeg.rotationPointY = 9.0f;
+			bipedHead.rotationPointY = 1.0f;
 		}
 	}
 }

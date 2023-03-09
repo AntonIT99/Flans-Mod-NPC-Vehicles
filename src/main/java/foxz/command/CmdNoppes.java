@@ -1,222 +1,267 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package foxz.command;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityHorse;
-import foxz.commandhelper.permissions.PlayerOnly;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IChatComponent;
-import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.monster.EntityGhast;
-import java.util.ArrayList;
 import net.minecraft.entity.player.EntityPlayerMP;
-import java.util.List;
-import foxz.commandhelper.permissions.ParamCheck;
-import foxz.commandhelper.permissions.OpOnly;
-import foxz.commandhelper.annotations.SubCommand;
-import net.minecraft.nbt.NBTTagCompound;
-import noppes.npcs.controllers.PlayerData;
-import java.util.Arrays;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentTranslation;
 import noppes.npcs.controllers.FactionController;
-import java.util.Iterator;
-import java.util.HashMap;
-import net.minecraft.entity.EntityList;
+import noppes.npcs.controllers.data.PlayerData;
 import noppes.npcs.entity.EntityNPCInterface;
-import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.EntityLivingBase;
-import java.util.Map;
-import foxz.commandhelper.annotations.Command;
 import foxz.commandhelper.ChMcLogger;
+import foxz.commandhelper.annotations.Command;
+import foxz.commandhelper.annotations.SubCommand;
+import foxz.commandhelper.permissions.OpOnly;
+import foxz.commandhelper.permissions.ParamCheck;
+import foxz.commandhelper.permissions.PlayerOnly;
 
-@Command(name = "noppes", desc = "noppes root command", sub = { CmdClone.class, CmdScript.class, CmdQuest.class, CmdDialog.class, CmdConfig.class })
-public class CmdNoppes extends ChMcLogger
-{
-    public CmdFaction cmdfaction;
-    public CmdNpc cmdnpc;
-    public static Map<String, Class<?>> SlayMap;
+@Command(
+        name = "noppes",
+        desc = "noppes root command",
+        sub = {CmdClone.class, CmdScript.class, CmdQuest.class, CmdDialog.class, CmdConfig.class}
+)
+public class CmdNoppes extends ChMcLogger {
+
+    public CmdFaction cmdfaction = new CmdFaction(ctorParm);
+    public CmdNpc cmdnpc= new CmdNpc(ctorParm);
+	public static Map<String,Class<?>> SlayMap = new LinkedHashMap<String,Class<?>>();
     
-    public CmdNoppes(final Object sender) {
+    public CmdNoppes(Object sender) {
         super(sender);
-        this.cmdfaction = new CmdFaction(this.ctorParm);
-        this.cmdnpc = new CmdNpc(this.ctorParm);
-        CmdNoppes.SlayMap.clear();
-        CmdNoppes.SlayMap.put("all", EntityLivingBase.class);
-        CmdNoppes.SlayMap.put("mobs", EntityMob.class);
-        CmdNoppes.SlayMap.put("animals", EntityAnimal.class);
-        CmdNoppes.SlayMap.put("items", EntityItem.class);
-        CmdNoppes.SlayMap.put("xporbs", EntityXPOrb.class);
-        CmdNoppes.SlayMap.put("npcs", EntityNPCInterface.class);
-        final HashMap<String, Class<?>> list = new HashMap<String, Class<?>>(EntityList.stringToClassMapping);
-        for (final String name : list.keySet()) {
-            final Class<?> cls = list.get(name);
-            if (EntityNPCInterface.class.isAssignableFrom(cls)) {
-                continue;
-            }
-            if (!EntityLivingBase.class.isAssignableFrom(cls)) {
-                continue;
-            }
-            CmdNoppes.SlayMap.put(name.toLowerCase(), list.get(name));
-        }
-        CmdNoppes.SlayMap.remove("monster");
-        CmdNoppes.SlayMap.remove("mob");
+        
+        SlayMap.clear();
+		
+		SlayMap.put("all",EntityLivingBase.class);
+		SlayMap.put("mobs",EntityMob.class);
+		SlayMap.put("animals", EntityAnimal.class);
+		SlayMap.put("items", EntityItem.class);
+		SlayMap.put("xporbs", EntityXPOrb.class);
+		SlayMap.put("npcs", EntityNPCInterface.class);
+		
+		HashMap<String,Class<?>> list = new HashMap<String,Class<?>>(EntityList.stringToClassMapping);		
+		for(String name : list.keySet()){
+			Class<?> cls = list.get(name);
+			if(EntityNPCInterface.class.isAssignableFrom(cls))
+				continue;
+			if(!EntityLivingBase.class.isAssignableFrom(cls))
+				continue;
+			SlayMap.put(name.toLowerCase(), list.get(name));
+		}
+
+		SlayMap.remove("monster");
+		SlayMap.remove("mob");
     }
-    
-    @SubCommand(name = "faction", desc = "Faction operations", usage = "<player> <faction> <command>", permissions = { OpOnly.class, ParamCheck.class })
+
+
+    @SubCommand(
+            name = "faction",
+            desc = "Faction operations",
+            usage = "<player> <faction> <command>",
+            permissions = {OpOnly.class, ParamCheck.class}
+    )
     public Boolean faction(String[] args) {
-        final String playername = args[0];
-        final String factionname = args[1];
-        this.cmdfaction.data = this.getPlayersData(playername);
-        if (this.cmdfaction.data.isEmpty()) {
-            this.sendmessage(String.format("Unknow player '%s'", playername));
+        String playername = args[0];
+        String factionname = args[1];
+        
+        cmdfaction.data = getPlayersData(playername);
+        if (cmdfaction.data.isEmpty()) {
+            sendmessage(String.format("Unknow player '%s'", playername));
             return false;
+        } 
+        try{
+            cmdfaction.selectedFaction = FactionController.getInstance().get(Integer.parseInt(factionname));
         }
-        try {
-            this.cmdfaction.selectedFaction = FactionController.getInstance().getFaction(Integer.parseInt(factionname));
+        catch(NumberFormatException e){
+            cmdfaction.selectedFaction = FactionController.getInstance().getFactionFromName(factionname); // get faction data
         }
-        catch (NumberFormatException e) {
-            this.cmdfaction.selectedFaction = FactionController.getInstance().getFactionFromName(factionname);
-        }
-        if (this.cmdfaction.selectedFaction == null) {
-            this.sendmessage(String.format("Unknow facion '%s", factionname));
+        if (cmdfaction.selectedFaction == null) {
+            sendmessage(String.format("Unknow facion '%s", factionname));
             return false;
         }
         args = Arrays.copyOfRange(args, 2, args.length);
-        this.cmdfaction.processCommand(this.pcParam, args);
-        for (final PlayerData playerdata : this.cmdfaction.data) {
-            playerdata.saveNBTData(null);
+        cmdfaction.processCommand(this.pcParam, args);
+        
+        for(PlayerData playerdata : cmdfaction.data){
+        	playerdata.savePlayerDataOnFile();
         }
         return true;
     }
     
-    @SubCommand(desc = "NPC manipulations", usage = "<npc> <command>", permissions = { OpOnly.class, ParamCheck.class })
-    public boolean npc(String[] args) {
-        final String npcname = args[0].replace("%", " ");
+    @SubCommand(
+            desc="NPC manipulations",
+            usage="<npc> <command>",
+            permissions={OpOnly.class,ParamCheck.class}
+    )
+    public boolean npc(String[] args){
+        String npcname=args[0].replace("%", " ");
         args = Arrays.copyOfRange(args, 1, args.length);
-        if (args[0].equalsIgnoreCase("create")) {
-            this.cmdnpc.processCommand(this.pcParam, new String[] { args[0], npcname });
-            return true;
-        }
-        final int x = this.pcParam.getPlayerCoordinates().posX;
-        final int y = this.pcParam.getPlayerCoordinates().posY;
-        final int z = this.pcParam.getPlayerCoordinates().posZ;
-        final List<EntityNPCInterface> list = this.getNearbeEntityFromPlayer((Class<? extends EntityNPCInterface>)EntityNPCInterface.class, this.pcParam.getEntityWorld(), x, y, z, 80);
+    	if(args[0].equalsIgnoreCase("create")){
+            cmdnpc.processCommand(this.pcParam, new String[]{args[0], npcname});
+    		return true;
+    	}
+    	int x = pcParam.getPlayerCoordinates().posX;
+    	int y = pcParam.getPlayerCoordinates().posY;
+    	int z = pcParam.getPlayerCoordinates().posZ;
+        List<EntityNPCInterface> list = getNearbeEntityFromPlayer(EntityNPCInterface.class, pcParam.getEntityWorld(), x, y, z, 80);
         EntityNPCInterface closest = null;
-        for (final EntityNPCInterface npc : list) {
-            final String name = npc.display.name.replace(" ", "_");
-            if (name.equalsIgnoreCase(npcname) && (closest == null || closest.getDistanceSq((double)x, (double)y, (double)z) > npc.getDistanceSq((double)x, (double)y, (double)z))) {
-                closest = npc;
+        for (EntityNPCInterface npc : list) {
+            String name = npc.display.name.replace(" ", "_");
+            if (name.equalsIgnoreCase(npcname)){
+            	if(closest == null || closest.getDistanceSq(x, y, z) > npc.getDistanceSq(x, y, z))
+            		closest = npc;
             }
         }
-        if (closest != null) {
-            this.cmdnpc.selectedNpc = closest;
-            this.cmdnpc.processCommand(this.pcParam, args);
-            this.cmdnpc.selectedNpc = null;
+        if(closest != null){
+            cmdnpc.selectedNpc=closest;
+            cmdnpc.processCommand(this.pcParam, args);
+            cmdnpc.selectedNpc = null;
         }
-        else {
-            this.sendmessage(String.format("NPC '%s' was not found", npcname));
-        }
+        else
+        	sendmessage(String.format("NPC '%s' was not found",npcname));
         return true;
     }
     
-    @SubCommand(name = "slay", desc = "Kills given entity within range. Also has all, mobs, animal options. Can have multiple types", usage = "<type>.. [range]", permissions = { PlayerOnly.class, OpOnly.class, ParamCheck.class })
-    public Boolean slay(final String[] args) {
-        final EntityPlayerMP player = (EntityPlayerMP)this.pcParam;
-        final ArrayList<Class<?>> toDelete = new ArrayList<Class<?>>();
-        boolean deleteNPCs = false;
-        for (String delete : args) {
-            delete = delete.toLowerCase();
-            final Class<?> cls = CmdNoppes.SlayMap.get(delete);
-            if (cls != null) {
-                toDelete.add(cls);
-            }
-            if (delete.equals("mobs")) {
-                toDelete.add(EntityGhast.class);
-                toDelete.add(EntityDragon.class);
-            }
-            if (delete.equals("npcs")) {
-                deleteNPCs = true;
-            }
-        }
-        int count = 0;
-        int range = 120;
-        try {
-            range = Integer.parseInt(args[args.length - 1]);
-        }
-        catch (NumberFormatException ex) {}
-        final AxisAlignedBB box = player.boundingBox.expand((double)range, (double)range, (double)range);
-        List<Entity> list = (List<Entity>)player.worldObj.getEntitiesWithinAABB((Class)EntityLivingBase.class, box);
-        for (final Entity entity : list) {
-            if (entity instanceof EntityPlayer) {
-                continue;
-            }
-            if (entity instanceof EntityTameable && ((EntityTameable)entity).isTamed()) {
-                continue;
-            }
-            if (entity instanceof EntityNPCInterface && !deleteNPCs) {
-                continue;
-            }
-            if (!this.delete(entity, toDelete)) {
-                continue;
-            }
-            ++count;
-        }
-        if (toDelete.contains(EntityXPOrb.class)) {
-            list = (List<Entity>)player.worldObj.getEntitiesWithinAABB((Class)EntityXPOrb.class, box);
-            for (final Entity entity : list) {
-                entity.isDead = true;
-                ++count;
-            }
-        }
-        if (toDelete.contains(EntityItem.class)) {
-            list = (List<Entity>)player.worldObj.getEntitiesWithinAABB((Class)EntityItem.class, box);
-            for (final Entity entity : list) {
-                entity.isDead = true;
-                ++count;
-            }
-        }
-        player.addChatMessage((IChatComponent)new ChatComponentTranslation(count + " entities deleted", new Object[0]));
+    @SubCommand(
+            name = "slay",
+            desc = "Kills given entity within range. Also has all, mobs, animal options. Can have multiple types",
+            usage = "<type>.. [range]",
+            permissions = {PlayerOnly.class, OpOnly.class, ParamCheck.class}
+    )
+    public Boolean slay(String[] args) {
+        EntityPlayerMP player = (EntityPlayerMP) pcParam;
+		ArrayList<Class<?>> toDelete = new ArrayList<Class<?>>();
+		boolean deleteNPCs = false;
+		for(String delete : args){
+			delete = delete.toLowerCase();
+			Class<?> cls = SlayMap.get(delete);
+			if(cls != null)
+				toDelete.add(cls);
+			if(delete.equals("mobs")){
+				toDelete.add(EntityGhast.class);
+				toDelete.add(EntityDragon.class);
+			}
+			if(delete.equals("npcs"))
+				deleteNPCs = true;
+		}
+		int count = 0;
+		int range = 120;
+		try{
+			range = Integer.parseInt(args[args.length - 1]);
+		}
+		catch(NumberFormatException ex){
+			
+		}
+		AxisAlignedBB box = player.boundingBox.expand(range, range, range);
+		List<Entity> list = player.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, box);
+		
+		for(Entity entity : list){
+			if(entity instanceof EntityPlayer)
+				continue;
+			if(entity instanceof EntityTameable && ((EntityTameable)entity).isTamed())
+				continue;
+			if(entity instanceof EntityNPCInterface && !deleteNPCs)
+				continue;
+			if(delete(entity,toDelete))
+				count++;
+		}
+		if(toDelete.contains(EntityXPOrb.class)){
+			list = player.worldObj.getEntitiesWithinAABB(EntityXPOrb.class, box);
+			for(Entity entity : list){
+				entity.isDead = true;
+				count++;
+			}
+		}
+		if(toDelete.contains(EntityItem.class)){
+			list = player.worldObj.getEntitiesWithinAABB(EntityItem.class, box);
+			for(Entity entity : list){
+				entity.isDead = true;
+				count++;
+			}
+		}
+		
+		player.addChatMessage(new ChatComponentTranslation(count + " entities deleted"));
         return true;
     }
     
-    private boolean delete(final Entity entity, final ArrayList<Class<?>> toDelete) {
-        for (final Class<?> delete : toDelete) {
-            if (delete == EntityAnimal.class && entity instanceof EntityHorse) {
-                continue;
-            }
-            if (delete.isAssignableFrom(entity.getClass())) {
-                return entity.isDead = true;
-            }
-        }
-        return false;
-    }
-    
+    private boolean delete(Entity entity, ArrayList<Class<?>> toDelete) {
+		for(Class<?> delete : toDelete){
+			if(delete == EntityAnimal.class && (entity instanceof EntityHorse)){
+				continue;
+			}
+			if(delete.isAssignableFrom(entity.getClass())){
+				entity.isDead = true;
+				return true;
+			}
+		}
+		return false;
+	}
+
     @Override
-    public List addTabCompletion(final ICommandSender par1, final String[] args) {
-        if (args[0].equalsIgnoreCase("slay")) {
-            return CommandBase.getListOfStringsMatchingLastWord(args, (String[])CmdNoppes.SlayMap.keySet().toArray(new String[CmdNoppes.SlayMap.size()]));
-        }
-        if (args[0].equalsIgnoreCase("npc") && args.length == 3) {
-            return this.cmdnpc.addTabCompletion(par1, Arrays.copyOfRange(args, 1, args.length));
-        }
-        if (args[0].equalsIgnoreCase("faction") && args.length == 4) {
-            return CommandBase.getListOfStringsMatchingLastWord(args, new String[] { "add", "subtract", "set", "reset", "drop", "create" });
-        }
-        return super.addTabCompletion(par1, args);
+	public List addTabCompletion(ICommandSender par1, String[] args) {
+    	if(args[0].equalsIgnoreCase("slay")){
+			return CommandBase.getListOfStringsMatchingLastWord(args, SlayMap.keySet().toArray(new String[SlayMap.size()]));
+    	}
+		if(args[0].equalsIgnoreCase("npc") && args.length == 3){
+			return cmdnpc.addTabCompletion(par1, Arrays.copyOfRange(args, 1, args.length));
+		}
+		if(args[0].equalsIgnoreCase("faction") && args.length == 4){
+			return CommandBase.getListOfStringsMatchingLastWord(args, new String[]{"add", "subtract", "set", "reset", "drop", "create"});
+		}
+    	return super.addTabCompletion(par1, args);
     }
-    
-    static {
-        CmdNoppes.SlayMap = new LinkedHashMap<String, Class<?>>();
-    }
+    //<editor-fold desc="--- FoxZ fork (keep it pls)">
+//    @SubCommand(
+//            desc = "Save AltPlayerInv",
+//            usage = "{player} {inv}",
+//            permissions={OpOnly.class}
+//    )
+//    public boolean sapi(String[] args) {
+//        EntityPlayer p = getOnlinePlayer(args[0]);
+//        sendmessage(String.format("noppes.sapi:%s %s", args[0], args[1]));
+//        if (p == null) {
+//            sendmessage("noppes.sapi:unkow " + args[0]);
+//            return false;
+//        }
+//        savePlayerAltInv(p, args[1]);
+//        sendmessage("noppes.sapi:saved");
+//        return true;
+//    }
+//
+//    @SubCommand(
+//            desc = "Load AltPlayerInv",
+//            usage = "{player} {inv}",
+//            permissions={OpOnly.class}
+//    )
+//    public boolean lapi(String[] args) {
+//        EntityPlayer p = getOnlinePlayer(args[0]);
+//        sendmessage(String.format("noppes.lapi:%s %s", args[0], args[1]));
+//        if (p == null) {
+//            sendmessage("noppes.sapi:unknow " + args[0]);
+//            return false;
+//        }
+//
+//        loadPlayerAltInv(p, args[1]);
+//        sendmessage("noppes.lapi:loaded");
+//        return true;
+//    }
+    //</editor-fold>
 }
