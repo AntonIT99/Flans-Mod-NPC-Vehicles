@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderSentryGun extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/SentryGun/SentryGun.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/SentryGun/SentryGun.png");
 
     public RenderSentryGun(ModelBase par1ModelBase, float par2)
     {

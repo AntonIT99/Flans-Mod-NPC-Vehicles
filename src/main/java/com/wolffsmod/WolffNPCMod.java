@@ -1,9 +1,5 @@
 package com.wolffsmod;
 
-import net.minecraft.block.Block;
-import net.minecraft.command.ServerCommandManager;
-import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.common.util.EnumHelper;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -12,39 +8,36 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = Strings.MODID, name = Strings.name, version = Strings.version, dependencies="required-after:flansmod")
+@Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.MOD_VERSION, dependencies="required-after:flansmod")
 
-public class Main {
+public class WolffNPCMod
+{
 	
 	@SidedProxy(clientSide = "com.wolffsmod.ClientProxy", serverSide = "com.wolffsmod.ServerProxy")
 	public static ServerProxy proxy;
 	
-	@Instance(Strings.MODID)
-	public static Main modInstance;
+	@Instance(Strings.MOD_ID)
+	public static WolffNPCMod modInstance;
 	
 	
 	@EventHandler
-	public static void Preinit(FMLPreInitializationEvent PreEvent) {
-		ModEntityRegistry.mainRegistry();
+	public static void preInit(FMLPreInitializationEvent PreEvent)
+	{
+		ModEntityRegistry.registerEntities();
 		proxy.registerRenderThings();
-		
 	}
 	@EventHandler
-	public static void init(FMLInitializationEvent event) {
-	}
+	public static void init(FMLInitializationEvent event) {}
 	
 	
 	@EventHandler
-	public static void Postinit(FMLPostInitializationEvent PostEvent) {
-	
-	}
+	public static void postInit(FMLPostInitializationEvent PostEvent) {}
 	
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
-		event.registerServerCommand(new CommandModelUpdate());
+		//event.registerServerCommand(new CommandModelUpdate());
 	}
 
 }

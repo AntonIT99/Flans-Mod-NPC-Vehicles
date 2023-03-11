@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class Render105leFH18B2 extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/105leFH18B2/105leFH18B2.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/105leFH18B2/105leFH18B2.png");
     private static final String __OBFID3 = "CL_00000986";
 
     public Render105leFH18B2(ModelBase par1ModelBase, float par2)

@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderPak40 extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/Pak40/Pak40.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/Pak40/Pak40.png");
 
     public RenderPak40(ModelBase par1ModelBase, float par2)
     {

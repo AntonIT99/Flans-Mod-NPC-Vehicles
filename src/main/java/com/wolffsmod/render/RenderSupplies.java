@@ -9,7 +9,6 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.wolffsmod.Strings;
-import com.wolffsmod.entity.EntityB1;
 import com.wolffsmod.entity.EntitySupplies;
 
 import cpw.mods.fml.relauncher.Side;
@@ -18,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderSupplies extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/Supplies/Supplies.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/Supplies/Supplies.png");
     private static final String __OBFID3 = "CL_00000986";
 
     public RenderSupplies(ModelBase par1ModelBase, float par2)

@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderT72A1979 extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/T72A1979/T72A1979.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/T72A1979/T72A1979.png");
     private static final String __OBFID3 = "CL_00000986";
 
     public RenderT72A1979(ModelBase par1ModelBase, float par2)

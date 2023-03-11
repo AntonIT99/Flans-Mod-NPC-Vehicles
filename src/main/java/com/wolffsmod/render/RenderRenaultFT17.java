@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderRenaultFT17 extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/RenaultFT17/RenaultFT17.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/RenaultFT17/RenaultFT17.png");
     private static final String __OBFID3 = "CL_00000986";
 
     public RenderRenaultFT17(ModelBase par1ModelBase, float par2)

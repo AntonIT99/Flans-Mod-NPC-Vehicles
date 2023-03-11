@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderLeopard2A7 extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/Leopard2A7/Leopard2A7.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/Leopard2A7/Leopard2A7.png");
 
     public RenderLeopard2A7(ModelBase par1ModelBase, float par2)
     {

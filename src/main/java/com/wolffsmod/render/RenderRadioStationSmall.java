@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderRadioStationSmall extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/RadioStationSmall/RadioStationSmall.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/RadioStationSmall/RadioStationSmall.png");
 
     public RenderRadioStationSmall(ModelBase par1ModelBase, float par2)
     {

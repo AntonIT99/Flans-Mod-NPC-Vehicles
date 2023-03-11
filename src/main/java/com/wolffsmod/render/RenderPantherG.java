@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderPantherG extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/PantherG/PantherG.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/PantherG/PantherG.png");
     private static final String __OBFID3 = "CL_00000986";
 
     public RenderPantherG(ModelBase par1ModelBase, float par2)

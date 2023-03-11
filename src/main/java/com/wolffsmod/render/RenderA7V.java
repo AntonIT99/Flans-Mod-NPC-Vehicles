@@ -10,7 +10,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.wolffsmod.Strings;
 import com.wolffsmod.entity.EntityA7V;
-import com.wolffsmod.entity.EntityB1;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderA7V extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/A7V/A7V.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/A7V/A7V.png");
     private static final String __OBFID3 = "CL_00000986";
 
     public RenderA7V(ModelBase par1ModelBase, float par2)

@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderSdKfz251D extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/SdKfz251D/SdKfz251D.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/SdKfz251D/SdKfz251D.png");
     private static final String __OBFID3 = "CL_00000986";
 
     public RenderSdKfz251D(ModelBase par1ModelBase, float par2)

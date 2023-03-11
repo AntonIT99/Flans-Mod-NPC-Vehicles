@@ -8,14 +8,13 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import com.wolffsmod.Strings;
 import com.wolffsmod.entity.EntityA6M1;
-import com.wolffsmod.entity.EntityM41;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderA6M1 extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/A6M1/A6M1.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/A6M1/A6M1.png");
 
     public RenderA6M1(ModelBase par1ModelBase, float par2)
     {

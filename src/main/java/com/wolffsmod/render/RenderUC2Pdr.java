@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderUC2Pdr extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/UC2PDR/UC2PDR.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/UC2PDR/UC2PDR.png");
 
     public RenderUC2Pdr(ModelBase par1ModelBase, float par2)
     {

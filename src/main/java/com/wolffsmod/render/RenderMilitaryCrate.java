@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderMilitaryCrate extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/MilitaryCrate/MilitaryCrate.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/MilitaryCrate/MilitaryCrate.png");
 
     public RenderMilitaryCrate(ModelBase par1ModelBase, float par2)
     {

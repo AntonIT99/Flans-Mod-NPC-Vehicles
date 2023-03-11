@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderTiger131 extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/Tiger131/Tiger131.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/Tiger131/Tiger131.png");
     private static final String __OBFID3 = "CL_00000986";
 
     public RenderTiger131(ModelBase par1ModelBase, float par2)

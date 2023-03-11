@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderJagdtiger extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/Jagdtiger/Jagdtiger.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/Jagdtiger/Jagdtiger.png");
     private static final String __OBFID3 = "CL_00000986";
 
     public RenderJagdtiger(ModelBase par1ModelBase, float par2)

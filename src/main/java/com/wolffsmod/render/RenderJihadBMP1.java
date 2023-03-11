@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderJihadBMP1 extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/JihadBMP1/JihadBMP1.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/JihadBMP1/JihadBMP1.png");
 
     public RenderJihadBMP1(ModelBase par1ModelBase, float par2)
     {

@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderPzkpfw3 extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/Pzkpfw3/Pzkpfw3.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/Pzkpfw3/Pzkpfw3.png");
 
     public RenderPzkpfw3(ModelBase par1ModelBase, float par2)
     {

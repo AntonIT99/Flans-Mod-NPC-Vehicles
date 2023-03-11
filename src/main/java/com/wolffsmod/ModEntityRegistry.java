@@ -1,19 +1,17 @@
 package com.wolffsmod;
 
-import net.minecraft.entity.EntityList;
-
-import com.wolffsmod.Main;
 import com.wolffsmod.entity.*;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 
 public class ModEntityRegistry {
-	public static void mainRegistry(){
-		registerEntity();
-	}
-	public static void registerEntity(){
+	private ModEntityRegistry() {}
+
+	public static void registerEntities()
+	{
 		createEntity(EntitySdKfz251D.class, "[FlansMod] SdKfz251 Ausf. D (Wolff's Pack)", 0x356633, 0x0A8000);
+
 		createEntity(EntityTiger.class, "[FlansMod] Panzer VII Tiger (Official Pack)", 0x356633, 0x0A8000);
 		createEntity(EntitySherman.class, "[FlansMod] M4A3E8 Sherman Easy Eight (Official Pack)", 0x356633, 0x0A8000);
 		createEntity(EntityChaffee.class, "[FlansMod] M24 Chaffee (Official Pack)", 0x356633, 0x0A8000);
@@ -53,7 +51,7 @@ public class ModEntityRegistry {
 		createEntity(EntityT34.class, "[FlansMod] T-34", 0x356633, 0x0A8000);
 		createEntity(EntityPanzerI.class, "[FlansMod] Panzer I Ausf. A (Kikkoceccato)", 0x356633, 0x0A8000);
 		createEntity(EntitySkwI.class, "[FlansMod] Sanitätskraftwagen I Ausf. A (Kikkoceccato)", 0x356633, 0x0A8000);
-		
+
 		createEntity(EntityJagdpanther.class, "[FlansMod] Jagdpanzer V Jagdpanther (Manus Pack)", 0x356633, 0x0A8000);
 		createEntity(EntityJagdpanzerIV.class, "[FlansMod] Jagdpanzer IV/70 Guderian Ente (Manus Pack)", 0x356633, 0x0A8000);
 		createEntity(EntityJagdtiger.class, "[FlansMod] Jagdpanzer VI Jagdtiger (Manus Pack)", 0x356633, 0x0A8000);
@@ -62,7 +60,7 @@ public class ModEntityRegistry {
 		createEntity(EntityPanzerIVH.class, "[FlansMod] Panzer IV Ausf. H (Manus Pack)", 0x356633, 0x0A8000);
 		createEntity(EntityTigerIE.class, "[FlansMod] Panzer VII Tiger Ausf. E (Manus Pack)", 0x356633, 0x0A8000);
 		createEntity(EntityTigerIIB.class, "[FlansMod] Panzer VII Tiger II Ausf. B (Manus Pack)", 0x356633, 0x0A8000);
-		
+
 		createEntity(EntityFlakpanzerIV.class, "[FlansMod] Flakpanzer IV Wirbelwind (Manus Pack)", 0x356633, 0x0A8000);
 		createEntity(EntityHummel.class, "[FlansMod] Panzerhaubitze Hummel (Manus Pack)", 0x356633, 0x0A8000);
 		createEntity(EntityM4A1.class, "[FlansMod] M4A1 Sherman (Manus Pack)", 0x356633, 0x0A8000);
@@ -74,9 +72,9 @@ public class ModEntityRegistry {
 		createEntity(EntitySU85.class, "[FlansMod] SU-85 (Manus Pack)", 0x356633, 0x0A8000);
 		createEntity(EntityT34_76.class, "[FlansMod] T-34/76 (Manus Pack)", 0x356633, 0x0A8000);
 		createEntity(EntityT34_85.class, "[FlansMod] T-34/85 (Manus Pack)", 0x356633, 0x0A8000);
-		
+
 		createEntity(EntityStuG3G.class, "[FlansMod] StuG III Ausf. G (Warfare 44)", 0x356633, 0x0A8000);
-		
+
 		createEntity(Entity38t.class, "[FlansMod] Panzer 38(t) (Extra Zero 8)", 0x356633, 0x0A8000);
 		createEntity(EntityA39.class, "[FlansMod] A39 Tortoise (Extra Zero 8)", 0x356633, 0x0A8000);
 		createEntity(EntityHetzer.class, "[FlansMod] Jagdpanzer 38(t) Hetzer (Extra Zero 8)", 0x356633, 0x0A8000);
@@ -96,8 +94,7 @@ public class ModEntityRegistry {
 		createEntity(EntityType97.class, "[FlansMod] Type 97 Chi-Ha (Extra Zero 8)", 0x356633, 0x0A8000);
 		createEntity(EntityZis3.class, "[FlansMod] 76.2mm ZiS-3 (Extra Zero 8)", 0x356633, 0x0A8000);
 	
-//Price additions 
-		
+		//Price additions
 		createEntity(EntityM41.class, "[FlansMod] M41", 0x356633, 0x0A8000);
 		createEntity(EntityA6M1.class, "[FlansMod] A6M1", 0x356633, 0x0A8000);
 		createEntity(EntityRomeoClassSub.class, "[FlansMod] Romeo Class Sub", 0x356633, 0x0A8000);	
@@ -127,7 +124,7 @@ public class ModEntityRegistry {
 		createEntity(EntityRadioStation.class, "[FlansMod] Radio Station (Price)", 0x356633, 0x0A8000);		
 		createEntity(EntityRadioStationSmall.class, "[FlansMod] Radio Station Small (Price)", 0x356633, 0x0A8000);		
 		
-//2.2 stuff
+		//2.2 stuff
 		createEntity(EntityBMWR75.class, "[FlansMod] BMW R 75 Gespann (Official Pack)", 0x356633, 0x0A8000);
 		createEntity(EntityBofors.class, "[FlansMod] 40mm Bofors (Official Pack)", 0x356633, 0x0A8000);
 		createEntity(EntityBwTruck.class, "[FlansMod] German Bundeswehr Truck (Manus Pack)", 0x356633, 0x0A8000);
@@ -151,12 +148,6 @@ public class ModEntityRegistry {
 	}
 	public static void createEntity(Class entityClass, String entityName, int solidColour, int spotColour){
 		int randomId = EntityRegistry.findGlobalUniqueEntityId();
-		EntityRegistry.registerGlobalEntityID(entityClass, entityName, randomId);
-		EntityRegistry.registerModEntity(entityClass, entityName, randomId, Main.modInstance, 64, 1, true);
-		//createEgg(randomId,  solidColour,  spotColour);
+		EntityRegistry.registerModEntity(entityClass, entityName, randomId, WolffNPCMod.modInstance, 64, 1, true);
 	}
-	private static void createEgg(int randomId, int solidColour, int spotColour){
-		EntityList.entityEggs.put(Integer.valueOf(randomId), new EntityList.EntityEggInfo(randomId,  solidColour,  spotColour));
-	}
-
 }

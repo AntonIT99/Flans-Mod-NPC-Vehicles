@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderSturmtiger extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/Sturmtiger/Sturmtiger.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/Sturmtiger/Sturmtiger.png");
 
     public RenderSturmtiger(ModelBase par1ModelBase, float par2)
     {

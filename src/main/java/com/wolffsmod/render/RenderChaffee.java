@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderChaffee extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/Chaffee/Chaffee.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/Chaffee/Chaffee.png");
     private static final String __OBFID3 = "CL_00000986";
 
     public RenderChaffee(ModelBase par1ModelBase, float par2)

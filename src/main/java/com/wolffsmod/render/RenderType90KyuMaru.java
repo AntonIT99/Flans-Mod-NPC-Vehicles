@@ -9,7 +9,6 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.wolffsmod.Strings;
-import com.wolffsmod.entity.EntityCromwell;
 import com.wolffsmod.entity.EntityType90KyuMaru;
 
 import cpw.mods.fml.relauncher.Side;
@@ -18,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderType90KyuMaru extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/Type90KyuMaru/Type90KyuMaru.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/Type90KyuMaru/Type90KyuMaru.png");
     private static final String __OBFID3 = "CL_00000986";
 
     public RenderType90KyuMaru(ModelBase par1ModelBase, float par2)

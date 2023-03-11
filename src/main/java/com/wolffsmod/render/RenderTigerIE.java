@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderTigerIE extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/TigerIE/TigerIE.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/TigerIE/TigerIE.png");
     private static final String __OBFID3 = "CL_00000986";
 
     public RenderTigerIE(ModelBase par1ModelBase, float par2)

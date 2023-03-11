@@ -9,7 +9,6 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.wolffsmod.Strings;
-import com.wolffsmod.entity.EntityChaffee;
 import com.wolffsmod.entity.EntityMirageF1;
 
 import cpw.mods.fml.relauncher.Side;
@@ -18,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderMirageF1 extends RenderLiving
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MODID + ":textures/entity/MirageF1/MirageF1.png");
+    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/MirageF1/MirageF1.png");
     private static final String __OBFID3 = "CL_00000986";
 
     public RenderMirageF1(ModelBase par1ModelBase, float par2)
