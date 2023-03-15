@@ -1,48 +1,39 @@
 package com.wolffsmod.render;
-
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderLivingBase;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import com.wolffsmod.Strings;
 import com.wolffsmod.entity.EntitySdKfz251D;
+import com.wolffsmod.model.ModelSdKfz251D;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
-public class RenderSdKfz251D extends RenderLiving
+public class RenderSdKfz251D extends RenderLiving<EntitySdKfz251D>
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/SdKfz251D/SdKfz251D.png");
-    private static final String __OBFID3 = "CL_00000986";
-
-    public RenderSdKfz251D(ModelBase par1ModelBase, float par2)
+    public static final ResourceLocation TEXTURES = new ResourceLocation(Strings.MODID + ":textures/entity/SdKfz251D/SdKfz251D.png");
+    public RenderSdKfz251D(RenderManager manager)
     {
-        super(par1ModelBase, par2);
+        super(manager, new ModelSdKfz251D(), 0);
     }
     
-    protected void preRenderCallback(EntityLivingBase entity, float f){
-    	GL11.glTranslatef(0F, 0.9F, 0F);
-    	GL11.glRotatef(90, 0, 1, 0);
-    }
-
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
     protected ResourceLocation getEntityTexture(EntitySdKfz251D par1Entity)
     {
-        return Texture;
+        return TEXTURES;
     }
-
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
+    
+    protected void preRenderCallback(EntitySdKfz251D entitylivingbaseIn, float partialTickTime)
     {
-        return this.getEntityTexture((EntitySdKfz251D)par1Entity);
+    	GL11.glTranslatef(0.0f, -2.25f, 0.0f);
+        GL11.glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
+        GL11.glRotatef(270.0f, 0.0f, 1.0f, 0.0f);
+        GL11.glScalef(1.1F, 1.1F, 1.1F);
     }
 }

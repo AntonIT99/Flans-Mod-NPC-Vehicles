@@ -6,7 +6,6 @@ import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.flansmod.client.tmt.Shape2D;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
 
 
 public class ModelHummel
@@ -1479,17 +1478,6 @@ public class ModelHummel
 		{
 			bodyDoorCloseModel[i].render(f5);
 		}
+		
 	}
-		
-  //added - Price Test
-  
-//		@Override
-//		public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e)
-//		{
-//		
-//			float rightTrackModel = MathHelper.cos(f * 0.5662F) * 1.4F * f1;;
-//	}
-		
-		
-		//added - Price Test
 }

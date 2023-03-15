@@ -1,49 +1,38 @@
 package com.wolffsmod.render;
-
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderLivingBase;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import com.wolffsmod.Strings;
 import com.wolffsmod.entity.EntityType90KyuMaru;
+import com.wolffsmod.model.ModelType90KyuMaru;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
-public class RenderType90KyuMaru extends RenderLiving
+public class RenderType90KyuMaru extends RenderLiving<EntityType90KyuMaru>
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/Type90KyuMaru/Type90KyuMaru.png");
-    private static final String __OBFID3 = "CL_00000986";
-
-    public RenderType90KyuMaru(ModelBase par1ModelBase, float par2)
+    public static final ResourceLocation TEXTURES = new ResourceLocation(Strings.MODID + ":textures/entity/Type90KyuMaru/Type90KyuMaru.png");
+    public RenderType90KyuMaru(RenderManager manager)
     {
-        super(par1ModelBase, par2);
+        super(manager, new ModelType90KyuMaru(), 0);
     }
     
-    protected void preRenderCallback(EntityLivingBase entity, float f){
-    	GL11.glTranslatef(0F, 0.7F, 0F);
-    	GL11.glRotatef(90, 0, 1, 0);
-    	GL11.glScalef(0.85f, 0.85f, 0.85f);
-    }
-
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
     protected ResourceLocation getEntityTexture(EntityType90KyuMaru par1Entity)
     {
-        return Texture;
+        return TEXTURES;
     }
-
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
+    
+    protected void preRenderCallback(EntityType90KyuMaru entitylivingbaseIn, float partialTickTime)
     {
-        return this.getEntityTexture((EntityType90KyuMaru)par1Entity);
+        GL11.glTranslatef(0F, 0.7F, 0F);
+        GL11.glRotatef(90, 0, 1, 0);
+        GL11.glScalef(0.85f, 0.85f, 0.85f);
     }
 }

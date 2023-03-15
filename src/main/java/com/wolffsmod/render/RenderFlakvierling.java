@@ -1,42 +1,38 @@
 package com.wolffsmod.render;
-
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderLivingBase;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import com.wolffsmod.Strings;
-
 import com.wolffsmod.entity.EntityFlakvierling;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
+import com.wolffsmod.model.ModelFlakvierling;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
-public class RenderFlakvierling extends RenderLiving
+public class RenderFlakvierling extends RenderLiving<EntityFlakvierling>
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/Flakvierling/Flakvierling.png");
-
-    public RenderFlakvierling(ModelBase par1ModelBase, float par2)
+    public static final ResourceLocation TEXTURES = new ResourceLocation(Strings.MODID + ":textures/entity/Flakvierling/Flakvierling.png");
+    public RenderFlakvierling(RenderManager manager)
     {
-        super(par1ModelBase, par2);
+        super(manager, new ModelFlakvierling(), 0);
     }
-
-    protected void preRenderCallback(EntityLivingBase entity, float f){
-    	GL11.glTranslatef(0F, -2.1F, 0F);
-    	GL11.glRotatef(180, 1, 0, 0);
-    	GL11.glRotatef(270, 0, 1, 0);
-    	GL11.glScalef(1.1f, 1.1f, 1.1f);
-    }
-
+    
     protected ResourceLocation getEntityTexture(EntityFlakvierling par1Entity)
     {
-        return Texture;
+        return TEXTURES;
     }
-
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
+    
+    protected void preRenderCallback(EntityFlakvierling entitylivingbaseIn, float partialTickTime)
     {
-        return this.getEntityTexture((EntityFlakvierling)par1Entity);
+        GL11.glTranslatef(0.0f, -2.8f, 0.0f);
+        GL11.glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
+        GL11.glRotatef(270.0f, 0.0f, 1.0f, 0.0f);
+        GL11.glScalef(1.5f, 1.5f, 1.5f);
     }
 }

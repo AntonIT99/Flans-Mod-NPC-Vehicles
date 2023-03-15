@@ -1,50 +1,39 @@
 package com.wolffsmod.render;
-
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderLivingBase;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import com.wolffsmod.Strings;
 import com.wolffsmod.entity.EntityLuchs;
+import com.wolffsmod.model.ModelLuchs;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
-public class RenderLuchs extends RenderLiving
+public class RenderLuchs extends RenderLiving<EntityLuchs>
 {
-    private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/Luchs/Luchs.png");
-    private static final String __OBFID3 = "CL_00000986";
-
-    public RenderLuchs(ModelBase par1ModelBase, float par2)
+    public static final ResourceLocation TEXTURES = new ResourceLocation(Strings.MODID + ":textures/entity/Luchs/Luchs.png");
+    public RenderLuchs(RenderManager manager)
     {
-        super(par1ModelBase, par2);
+        super(manager, new ModelLuchs(), 0);
     }
     
-    protected void preRenderCallback(EntityLivingBase entity, float f){
-    	GL11.glTranslatef(0F, -2.1F, 0F);
-    	GL11.glRotatef(180, 1, 0, 0);
-    	GL11.glRotatef(270, 0, 1, 0);
-    	GL11.glScalef(1f, 1f, 1f);
-    }
-
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
     protected ResourceLocation getEntityTexture(EntityLuchs par1Entity)
     {
-        return Texture;
+        return TEXTURES;
     }
-
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
+    
+    protected void preRenderCallback(EntityLuchs entitylivingbaseIn, float partialTickTime)
     {
-        return this.getEntityTexture((EntityLuchs)par1Entity);
+        GL11.glTranslatef(0F, -2.1F, 0F);
+        GL11.glRotatef(180, 1, 0, 0);
+        GL11.glRotatef(270, 0, 1, 0);
+        GL11.glScalef(1f, 1f, 1f);
     }
 }

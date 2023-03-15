@@ -14,10 +14,13 @@ import com.flansmod.client.tmt.Coord2D;
 import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.flansmod.client.tmt.Shape2D;
 
+import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 public class Model105leFH18B2 extends ModelVehicle //Same as Filename
 {
+	
 	int textureX = 512;
 	int textureY = 512;
 	
@@ -2985,4 +2988,5 @@ public class Model105leFH18B2 extends ModelVehicle //Same as Filename
 			steeringWheelModel[i].render(f5);
 		}
 	}
+	
 }

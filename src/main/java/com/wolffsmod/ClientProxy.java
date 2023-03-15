@@ -1,146 +1,997 @@
 package com.wolffsmod;
 
-import com.wolffsmod.entity.*;
-import com.wolffsmod.model.*;
-import com.wolffsmod.render.*;
-import cpw.mods.fml.client.registry.RenderingRegistry;
+import com.wolffsmod.entity.Entity105leFH18B2;
+import com.wolffsmod.entity.EntityB1;
+import com.wolffsmod.entity.EntityBMWR75;
+import com.wolffsmod.entity.EntityBofors;
+import com.wolffsmod.entity.EntityBwTruck;
+import com.wolffsmod.entity.EntityChaffee;
+import com.wolffsmod.entity.EntityChiHa;
+import com.wolffsmod.entity.EntityChiNu;
+import com.wolffsmod.entity.EntityChurchill;
+import com.wolffsmod.entity.EntityCromwell;
+import com.wolffsmod.entity.EntityCrusader;
+import com.wolffsmod.entity.EntityFlak88;
+import com.wolffsmod.entity.EntityFlakpanzerIV;
+import com.wolffsmod.entity.EntityFlakvierling;
+import com.wolffsmod.entity.EntityGreyhound;
+import com.wolffsmod.entity.EntityHellcat;
+import com.wolffsmod.entity.EntityHummel;
+import com.wolffsmod.entity.EntityIS2;
+import com.wolffsmod.entity.EntityJagdpanther;
+import com.wolffsmod.entity.EntityJagdpanzerIV;
+import com.wolffsmod.entity.EntityJagdtiger;
+import com.wolffsmod.entity.EntityJeep;
+import com.wolffsmod.entity.EntityK2;
+import com.wolffsmod.entity.EntityKV1;
+import com.wolffsmod.entity.EntityKubel;
+import com.wolffsmod.entity.EntityLeopard2A6;
+import com.wolffsmod.entity.EntityLeopard2A7;
+import com.wolffsmod.entity.EntityLeopardIIA6;
+import com.wolffsmod.entity.EntityLuchs;
+import com.wolffsmod.entity.EntityM10;
+import com.wolffsmod.entity.EntityM113A1;
+import com.wolffsmod.entity.EntityM157MM;
+import com.wolffsmod.entity.EntityM1Abrams;
+import com.wolffsmod.entity.EntityM3Halftrack;
+import com.wolffsmod.entity.EntityM4;
+import com.wolffsmod.entity.EntityM45Quad;
+import com.wolffsmod.entity.EntityM4A1;
+import com.wolffsmod.entity.EntityM4A1Calliope;
+import com.wolffsmod.entity.EntityM4A3;
+import com.wolffsmod.entity.EntityM60A1;
+import com.wolffsmod.entity.EntityPantherG;
+import com.wolffsmod.entity.EntityPanzer;
+import com.wolffsmod.entity.EntityPanzerI;
+import com.wolffsmod.entity.EntityPanzerIV;
+import com.wolffsmod.entity.EntityPanzerIVG;
+import com.wolffsmod.entity.EntityPanzerIVH;
+import com.wolffsmod.entity.EntityPanzerIVJ;
+import com.wolffsmod.entity.EntityRenaultFT17;
+import com.wolffsmod.entity.EntitySASJeep;
+import com.wolffsmod.entity.EntitySU100;
+import com.wolffsmod.entity.EntitySU112;
+import com.wolffsmod.entity.EntitySU122;
+import com.wolffsmod.entity.EntitySU85;
+import com.wolffsmod.entity.EntitySdKfz251D;
+import com.wolffsmod.entity.EntitySentryGun;
+import com.wolffsmod.entity.EntitySherman;
+import com.wolffsmod.entity.EntityShermanFury;
+import com.wolffsmod.entity.EntitySkwI;
+import com.wolffsmod.entity.EntityStuG3G;
+import com.wolffsmod.entity.EntityStuGIV;
+import com.wolffsmod.entity.EntityT14Armata;
+import com.wolffsmod.entity.EntityT34;
+import com.wolffsmod.entity.EntityT3476;
+import com.wolffsmod.entity.EntityT3485;
+import com.wolffsmod.entity.EntityT34_76;
+import com.wolffsmod.entity.EntityT34_85;
+import com.wolffsmod.entity.EntityT55A;
+import com.wolffsmod.entity.EntityT72A1979;
+import com.wolffsmod.entity.EntityT90;
+import com.wolffsmod.entity.EntityTiger;
+import com.wolffsmod.entity.EntityTiger131;
+import com.wolffsmod.entity.EntityTigerIE;
+import com.wolffsmod.entity.EntityTigerII;
+import com.wolffsmod.entity.EntityTigerIIB;
+import com.wolffsmod.entity.EntityType4HoRo;
+import com.wolffsmod.entity.EntityType90KyuMaru;
+import com.wolffsmod.render.Render105leFH18B2;
+import com.wolffsmod.render.RenderB1;
+import com.wolffsmod.render.RenderBMWR75;
+import com.wolffsmod.render.RenderBofors;
+import com.wolffsmod.render.RenderBwTruck;
+import com.wolffsmod.render.RenderChaffee;
+import com.wolffsmod.render.RenderChiHa;
+import com.wolffsmod.render.RenderChiNu;
+import com.wolffsmod.render.RenderChurchill;
+import com.wolffsmod.render.RenderCromwell;
+import com.wolffsmod.render.RenderCrusader;
+import com.wolffsmod.render.RenderFlak88;
+import com.wolffsmod.render.RenderFlakpanzerIV;
+import com.wolffsmod.render.RenderFlakvierling;
+import com.wolffsmod.render.RenderGreyhound;
+import com.wolffsmod.render.RenderHellcat;
+import com.wolffsmod.render.RenderHummel;
+import com.wolffsmod.render.RenderIS2;
+import com.wolffsmod.render.RenderJagdpanther;
+import com.wolffsmod.render.RenderJagdpanzerIV;
+import com.wolffsmod.render.RenderJagdtiger;
+import com.wolffsmod.render.RenderJeep;
+import com.wolffsmod.render.RenderK2;
+import com.wolffsmod.render.RenderKV1;
+import com.wolffsmod.render.RenderKubel;
+import com.wolffsmod.render.RenderLeopard2A6;
+import com.wolffsmod.render.RenderLeopard2A7;
+import com.wolffsmod.render.RenderLeopardIIA6;
+import com.wolffsmod.render.RenderLuchs;
+import com.wolffsmod.render.RenderM10;
+import com.wolffsmod.render.RenderM113A1;
+import com.wolffsmod.render.RenderM157MM;
+import com.wolffsmod.render.RenderM1Abrams;
+import com.wolffsmod.render.RenderM3Halftrack;
+import com.wolffsmod.render.RenderM4;
+import com.wolffsmod.render.RenderM45Quad;
+import com.wolffsmod.render.RenderM4A1;
+import com.wolffsmod.render.RenderM4A1Calliope;
+import com.wolffsmod.render.RenderM4A3;
+import com.wolffsmod.render.RenderM60A1;
+import com.wolffsmod.render.RenderPantherG;
+import com.wolffsmod.render.RenderPanzer;
+import com.wolffsmod.render.RenderPanzerI;
+import com.wolffsmod.render.RenderPanzerIV;
+import com.wolffsmod.render.RenderPanzerIVG;
+import com.wolffsmod.render.RenderPanzerIVH;
+import com.wolffsmod.render.RenderPanzerIVJ;
+import com.wolffsmod.render.RenderRenaultFT17;
+import com.wolffsmod.render.RenderSASJeep;
+import com.wolffsmod.render.RenderSU100;
+import com.wolffsmod.render.RenderSU112;
+import com.wolffsmod.render.RenderSU122;
+import com.wolffsmod.render.RenderSU85;
+import com.wolffsmod.render.RenderSdKfz251D;
+import com.wolffsmod.render.RenderSentryGun;
+import com.wolffsmod.render.RenderSherman;
+import com.wolffsmod.render.RenderShermanFury;
+import com.wolffsmod.render.RenderSkwI;
+import com.wolffsmod.render.RenderStuG3G;
+import com.wolffsmod.render.RenderStuGIV;
+import com.wolffsmod.render.RenderT14Armata;
+import com.wolffsmod.render.RenderT34;
+import com.wolffsmod.render.RenderT3476;
+import com.wolffsmod.render.RenderT3485;
+import com.wolffsmod.render.RenderT34_76;
+import com.wolffsmod.render.RenderT34_85;
+import com.wolffsmod.render.RenderT55A;
+import com.wolffsmod.render.RenderT72A1979;
+import com.wolffsmod.render.RenderT90;
+import com.wolffsmod.render.RenderTiger;
+import com.wolffsmod.render.RenderTiger131;
+import com.wolffsmod.render.RenderTigerIE;
+import com.wolffsmod.render.RenderTigerII;
+import com.wolffsmod.render.RenderTigerIIB;
+import com.wolffsmod.render.RenderType4HoRo;
+import com.wolffsmod.render.RenderType90KyuMaru;
+import com.wolffsmod.entity.Entity38t;
+import com.wolffsmod.render.Render38t;
+import com.wolffsmod.entity.EntityA39;
+import com.wolffsmod.render.RenderA39;
+import com.wolffsmod.entity.EntityHetzer;
+import com.wolffsmod.render.RenderHetzer;
+import com.wolffsmod.entity.EntityLVT2;
+import com.wolffsmod.render.RenderLVT2;
+import com.wolffsmod.entity.EntityLVTA1;
+import com.wolffsmod.render.RenderLVTA1;
+import com.wolffsmod.entity.EntityMaus;
+import com.wolffsmod.entity.EntityPak40;
+import com.wolffsmod.render.RenderMaus;
+import com.wolffsmod.render.RenderPak40;
+import com.wolffsmod.entity.EntityML20;
+import com.wolffsmod.render.RenderML20;
+import com.wolffsmod.entity.EntityPzkpfw2;
+import com.wolffsmod.render.RenderPzkpfw2;
+import com.wolffsmod.entity.EntityPzkpfw3;
+import com.wolffsmod.render.RenderPzkpfw3;
+import com.wolffsmod.entity.EntityStug3;
+import com.wolffsmod.render.RenderStug3;
+import com.wolffsmod.entity.EntitySturmtiger;
+import com.wolffsmod.render.RenderSturmtiger;
+import com.wolffsmod.entity.EntityT35;
+import com.wolffsmod.render.RenderT35;
+import com.wolffsmod.entity.EntityTiger1E;
+import com.wolffsmod.render.RenderTiger1E;
+import com.wolffsmod.entity.EntityTKS;
+import com.wolffsmod.render.RenderTKS;
+import com.wolffsmod.entity.EntityTKS20;
+import com.wolffsmod.render.RenderTKS20;
+import com.wolffsmod.entity.EntityType95;
+import com.wolffsmod.render.RenderType95;
+import com.wolffsmod.entity.EntityType97;
+import com.wolffsmod.entity.EntityUC2Pdr;
+import com.wolffsmod.render.RenderType97;
+import com.wolffsmod.render.RenderUC2Pdr;
+import com.wolffsmod.entity.EntityZis3;
+import com.wolffsmod.model.Model105leFH18B2;
+import com.wolffsmod.model.Model38t;
+import com.wolffsmod.model.ModelA39;
+import com.wolffsmod.model.ModelB1;
+import com.wolffsmod.model.ModelChaffee;
+import com.wolffsmod.model.ModelChiHa;
+import com.wolffsmod.model.ModelChiNu;
+import com.wolffsmod.model.ModelChurchill;
+import com.wolffsmod.model.ModelCromwell;
+import com.wolffsmod.model.ModelCrusader;
+import com.wolffsmod.model.ModelFlakpanzerIV;
+import com.wolffsmod.model.ModelHetzer;
+import com.wolffsmod.model.ModelHummel;
+import com.wolffsmod.model.ModelIS2;
+import com.wolffsmod.model.ModelJagdpanther;
+import com.wolffsmod.model.ModelJagdpanzerIV;
+import com.wolffsmod.model.ModelJagdtiger;
+import com.wolffsmod.model.ModelK2;
+import com.wolffsmod.model.ModelKV1;
+import com.wolffsmod.model.ModelLVT2;
+import com.wolffsmod.model.ModelLVTA1;
+import com.wolffsmod.model.ModelLeopard2A6;
+import com.wolffsmod.model.ModelLuchs;
+import com.wolffsmod.model.ModelM113A1;
+import com.wolffsmod.model.ModelM1Abrams;
+import com.wolffsmod.model.ModelM4;
+import com.wolffsmod.model.ModelM4A1;
+import com.wolffsmod.model.ModelM4A1Calliope;
+import com.wolffsmod.model.ModelM4A3;
+import com.wolffsmod.model.ModelM60A1;
+import com.wolffsmod.model.ModelML20;
+import com.wolffsmod.model.ModelMaus;
+import com.wolffsmod.model.ModelPantherG;
+import com.wolffsmod.model.ModelPanzer;
+import com.wolffsmod.model.ModelPanzerI;
+import com.wolffsmod.model.ModelPanzerIV;
+import com.wolffsmod.model.ModelPanzerIVG;
+import com.wolffsmod.model.ModelPanzerIVH;
+import com.wolffsmod.model.ModelPanzerIVJ;
+import com.wolffsmod.model.ModelPzkpfw2;
+import com.wolffsmod.model.ModelPzkpfw3;
+import com.wolffsmod.model.ModelRenaultFT17;
+import com.wolffsmod.model.ModelSU100;
+import com.wolffsmod.model.ModelSU122;
+import com.wolffsmod.model.ModelSU85;
+import com.wolffsmod.model.ModelSdKfz251D;
+import com.wolffsmod.model.ModelSherman;
+import com.wolffsmod.model.ModelShermanFury;
+import com.wolffsmod.model.ModelSkwI;
+import com.wolffsmod.model.ModelStuG3G;
+import com.wolffsmod.model.ModelStuGIV;
+import com.wolffsmod.model.ModelStug3;
+import com.wolffsmod.model.ModelSturmtiger;
+import com.wolffsmod.model.ModelT14Armata;
+import com.wolffsmod.model.ModelT34;
+import com.wolffsmod.model.ModelT3476;
+import com.wolffsmod.model.ModelT3485;
+import com.wolffsmod.model.ModelT34_76;
+import com.wolffsmod.model.ModelT34_85;
+import com.wolffsmod.model.ModelT35;
+import com.wolffsmod.model.ModelT55A;
+import com.wolffsmod.model.ModelT72A1979;
+import com.wolffsmod.model.ModelT90;
+import com.wolffsmod.model.ModelTKS;
+import com.wolffsmod.model.ModelTKS20;
+import com.wolffsmod.model.ModelTiger;
+import com.wolffsmod.model.ModelTiger131;
+import com.wolffsmod.model.ModelTiger1E;
+import com.wolffsmod.model.ModelTigerIE;
+import com.wolffsmod.model.ModelTigerII;
+import com.wolffsmod.model.ModelTigerIIB;
+import com.wolffsmod.model.ModelType4HoRo;
+import com.wolffsmod.model.ModelType90KyuMaru;
+import com.wolffsmod.model.ModelType95;
+import com.wolffsmod.model.ModelType97;
+import com.wolffsmod.model.ModelZis3;
+import com.wolffsmod.render.RenderZis3;
 
-public class ClientProxy extends ServerProxy{
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+
+public class ClientProxy extends CommonProxy{
+	
 	
 	@Override
-	public void registerRenderThings()
-	{
-		RenderingRegistry.registerEntityRenderingHandler(EntitySdKfz251D.class, new RenderSdKfz251D(new ModelSdKfz251D(), 0));
-
-		RenderingRegistry.registerEntityRenderingHandler(EntitySherman.class, new RenderSherman(new ModelSherman(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTiger.class, new RenderTiger(new ModelTiger(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(Entity105leFH18B2.class, new Render105leFH18B2(new Model105leFH18B2(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityChaffee.class, new RenderChaffee(new ModelChaffee(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityCromwell.class, new RenderCromwell(new ModelCromwell(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityCrusader.class, new RenderCrusader(new ModelCrusader(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityB1.class, new RenderB1(new ModelB1(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityChiHa.class, new RenderChiHa(new ModelChiHa(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityChiNu.class, new RenderChiNu(new ModelChiNu(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityChurchill.class, new RenderChurchill(new ModelChurchill(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityIS2.class, new RenderIS2(new ModelIS2(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityKV1.class, new RenderKV1(new ModelKV1(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityLuchs.class, new RenderLuchs(new ModelLuchs(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPanzerIV.class, new RenderPanzerIV(new ModelPanzerIV(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityShermanFury.class, new RenderShermanFury(new ModelShermanFury(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityStuGIV.class, new RenderStuGIV(new ModelStuGIV(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT3476.class, new RenderT3476(new ModelT3476(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT3485.class, new RenderT3485(new ModelT3485(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTiger131.class, new RenderTiger131(new ModelTiger131(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTigerII.class, new RenderTigerII(new ModelTigerII(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityType4HoRo.class, new RenderType4HoRo(new ModelType4HoRo(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityB1.class, new RenderB1(new ModelB1(), 0));
+	public void registerRenderThings(){
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityM113A1.class, new RenderM113A1(new ModelM113A1(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT55A.class, new RenderT55A(new ModelT55A(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityType90KyuMaru.class, new RenderType90KyuMaru(new ModelType90KyuMaru(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT14Armata.class, new RenderT14Armata(new ModelT14Armata(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityK2.class, new RenderK2(new ModelK2(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityM60A1.class, new RenderM60A1(new ModelM60A1(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityM1Abrams.class, new RenderM1Abrams(new ModelM1Abrams(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityLeopard2A6.class, new RenderLeopard2A6(new ModelLeopard2A6(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT90.class, new RenderT90(new ModelT90(), 0));
+		RenderingRegistry.registerEntityRenderingHandler(Entity105leFH18B2.class, new IRenderFactory<Entity105leFH18B2>()
+		{
+			@Override
+			public Render<? super Entity105leFH18B2> createRenderFor(RenderManager manager) 
+			{
+				return new Render105leFH18B2(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(Entity38t.class, new IRenderFactory<Entity38t>()
+		{
+			@Override
+			public Render<? super Entity38t> createRenderFor(RenderManager manager) 
+			{
+				return new Render38t(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityA39.class, new IRenderFactory<EntityA39>()
+		{
+			@Override
+			public Render<? super EntityA39> createRenderFor(RenderManager manager) 
+			{
+				return new RenderA39(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityB1.class, new IRenderFactory<EntityB1>()
+		{
+			@Override
+			public Render<? super EntityB1> createRenderFor(RenderManager manager) 
+			{
+				return new RenderB1(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityChaffee.class, new IRenderFactory<EntityChaffee>()
+		{
+			@Override
+			public Render<? super EntityChaffee> createRenderFor(RenderManager manager) 
+			{
+				return new RenderChaffee(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityChiHa.class, new IRenderFactory<EntityChiHa>()
+		{
+			@Override
+			public Render<? super EntityChiHa> createRenderFor(RenderManager manager) 
+			{
+				return new RenderChiHa(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityChiNu.class, new IRenderFactory<EntityChiNu>()
+		{
+			@Override
+			public Render<? super EntityChiNu> createRenderFor(RenderManager manager) 
+			{
+				return new RenderChiNu(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityChurchill.class, new IRenderFactory<EntityChurchill>()
+		{
+			@Override
+			public Render<? super EntityChurchill> createRenderFor(RenderManager manager) 
+			{
+				return new RenderChurchill(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityCromwell.class, new IRenderFactory<EntityCromwell>()
+		{
+			@Override
+			public Render<? super EntityCromwell> createRenderFor(RenderManager manager) 
+			{
+				return new RenderCromwell(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityCrusader.class, new IRenderFactory<EntityCrusader>()
+		{
+			@Override
+			public Render<? super EntityCrusader> createRenderFor(RenderManager manager) 
+			{
+				return new RenderCrusader(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityFlakpanzerIV.class, new IRenderFactory<EntityFlakpanzerIV>()
+		{
+			@Override
+			public Render<? super EntityFlakpanzerIV> createRenderFor(RenderManager manager) 
+			{
+				return new RenderFlakpanzerIV(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityHetzer.class, new IRenderFactory<EntityHetzer>()
+		{
+			@Override
+			public Render<? super EntityHetzer> createRenderFor(RenderManager manager) 
+			{
+				return new RenderHetzer(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityHummel.class, new IRenderFactory<EntityHummel>()
+		{
+			@Override
+			public Render<? super EntityHummel> createRenderFor(RenderManager manager) 
+			{
+				return new RenderHummel(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityIS2.class, new IRenderFactory<EntityIS2>()
+		{
+			@Override
+			public Render<? super EntityIS2> createRenderFor(RenderManager manager) 
+			{
+				return new RenderIS2(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityJagdpanther.class, new IRenderFactory<EntityJagdpanther>()
+		{
+			@Override
+			public Render<? super EntityJagdpanther> createRenderFor(RenderManager manager) 
+			{
+				return new RenderJagdpanther(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityJagdpanzerIV.class, new IRenderFactory<EntityJagdpanzerIV>()
+		{
+			@Override
+			public Render<? super EntityJagdpanzerIV> createRenderFor(RenderManager manager) 
+			{
+				return new RenderJagdpanzerIV(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityJagdtiger.class, new IRenderFactory<EntityJagdtiger>()
+		{
+			@Override
+			public Render<? super EntityJagdtiger> createRenderFor(RenderManager manager) 
+			{
+				return new RenderJagdtiger(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityK2.class, new IRenderFactory<EntityK2>()
+		{
+			@Override
+			public Render<? super EntityK2> createRenderFor(RenderManager manager) 
+			{
+				return new RenderK2(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityKV1.class, new IRenderFactory<EntityKV1>()
+		{
+			@Override
+			public Render<? super EntityKV1> createRenderFor(RenderManager manager) 
+			{
+				return new RenderKV1(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityLeopard2A6.class, new IRenderFactory<EntityLeopard2A6>()
+		{
+			@Override
+			public Render<? super EntityLeopard2A6> createRenderFor(RenderManager manager) 
+			{
+				return new RenderLeopard2A6(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityLuchs.class, new IRenderFactory<EntityLuchs>()
+		{
+			@Override
+			public Render<? super EntityLuchs> createRenderFor(RenderManager manager) 
+			{
+				return new RenderLuchs(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityLVT2.class, new IRenderFactory<EntityLVT2>()
+		{
+			@Override
+			public Render<? super EntityLVT2> createRenderFor(RenderManager manager) 
+			{
+				return new RenderLVT2(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityLVTA1.class, new IRenderFactory<EntityLVTA1>()
+		{
+			@Override
+			public Render<? super EntityLVTA1> createRenderFor(RenderManager manager) 
+			{
+				return new RenderLVTA1(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityM113A1.class, new IRenderFactory<EntityM113A1>()
+		{
+			@Override
+			public Render<? super EntityM113A1> createRenderFor(RenderManager manager) 
+			{
+				return new RenderM113A1(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityM1Abrams.class, new IRenderFactory<EntityM1Abrams>()
+		{
+			@Override
+			public Render<? super EntityM1Abrams> createRenderFor(RenderManager manager) 
+			{
+				return new RenderM1Abrams(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityM4.class, new IRenderFactory<EntityM4>()
+		{
+			@Override
+			public Render<? super EntityM4> createRenderFor(RenderManager manager) 
+			{
+				return new RenderM4(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityM4A1.class, new IRenderFactory<EntityM4A1>()
+		{
+			@Override
+			public Render<? super EntityM4A1> createRenderFor(RenderManager manager) 
+			{
+				return new RenderM4A1(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityM4A3.class, new IRenderFactory<EntityM4A3>()
+		{
+			@Override
+			public Render<? super EntityM4A3> createRenderFor(RenderManager manager) 
+			{
+				return new RenderM4A3(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityM60A1.class, new IRenderFactory<EntityM60A1>()
+		{
+			@Override
+			public Render<? super EntityM60A1> createRenderFor(RenderManager manager) 
+			{
+				return new RenderM60A1(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityMaus.class, new IRenderFactory<EntityMaus>()
+		{
+			@Override
+			public Render<? super EntityMaus> createRenderFor(RenderManager manager) 
+			{
+				return new RenderMaus(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityML20.class, new IRenderFactory<EntityML20>()
+		{
+			@Override
+			public Render<? super EntityML20> createRenderFor(RenderManager manager) 
+			{
+				return new RenderML20(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityPantherG.class, new IRenderFactory<EntityPantherG>()
+		{
+			@Override
+			public Render<? super EntityPantherG> createRenderFor(RenderManager manager) 
+			{
+				return new RenderPantherG(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityPanzer.class, new IRenderFactory<EntityPanzer>()
+		{
+			@Override
+			public Render<? super EntityPanzer> createRenderFor(RenderManager manager) 
+			{
+				return new RenderPanzer(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityPanzerI.class, new IRenderFactory<EntityPanzerI>()
+		{
+			@Override
+			public Render<? super EntityPanzerI> createRenderFor(RenderManager manager) 
+			{
+				return new RenderPanzerI(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityPanzerIV.class, new IRenderFactory<EntityPanzerIV>()
+		{
+			@Override
+			public Render<? super EntityPanzerIV> createRenderFor(RenderManager manager) 
+			{
+				return new RenderPanzerIV(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityPzkpfw2.class, new IRenderFactory<EntityPzkpfw2>()
+		{
+			@Override
+			public Render<? super EntityPzkpfw2> createRenderFor(RenderManager manager) 
+			{
+				return new RenderPzkpfw2(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityPzkpfw3.class, new IRenderFactory<EntityPzkpfw3>()
+		{
+			@Override
+			public Render<? super EntityPzkpfw3> createRenderFor(RenderManager manager) 
+			{
+				return new RenderPzkpfw3(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityRenaultFT17.class, new IRenderFactory<EntityRenaultFT17>()
+		{
+			@Override
+			public Render<? super EntityRenaultFT17> createRenderFor(RenderManager manager) 
+			{
+				return new RenderRenaultFT17(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntitySdKfz251D.class, new IRenderFactory<EntitySdKfz251D>()
+		{
+			@Override
+			public Render<? super EntitySdKfz251D> createRenderFor(RenderManager manager) 
+			{
+				return new RenderSdKfz251D(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityStug3.class, new IRenderFactory<EntityStug3>()
+		{
+			@Override
+			public Render<? super EntityStug3> createRenderFor(RenderManager manager) 
+			{
+				return new RenderStug3(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityStuG3G.class, new IRenderFactory<EntityStuG3G>()
+		{
+			@Override
+			public Render<? super EntityStuG3G> createRenderFor(RenderManager manager) 
+			{
+				return new RenderStuG3G(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityStuGIV.class, new IRenderFactory<EntityStuGIV>()
+		{
+			@Override
+			public Render<? super EntityStuGIV> createRenderFor(RenderManager manager) 
+			{
+				return new RenderStuGIV(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntitySturmtiger.class, new IRenderFactory<EntitySturmtiger>()
+		{
+			@Override
+			public Render<? super EntitySturmtiger> createRenderFor(RenderManager manager) 
+			{
+				return new RenderSturmtiger(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntitySU100.class, new IRenderFactory<EntitySU100>()
+		{
+			@Override
+			public Render<? super EntitySU100> createRenderFor(RenderManager manager) 
+			{
+				return new RenderSU100(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntitySU122.class, new IRenderFactory<EntitySU122>()
+		{
+			@Override
+			public Render<? super EntitySU122> createRenderFor(RenderManager manager) 
+			{
+				return new RenderSU122(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntitySU85.class, new IRenderFactory<EntitySU85>()
+		{
+			@Override
+			public Render<? super EntitySU85> createRenderFor(RenderManager manager) 
+			{
+				return new RenderSU85(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityT14Armata.class, new IRenderFactory<EntityT14Armata>()
+		{
+			@Override
+			public Render<? super EntityT14Armata> createRenderFor(RenderManager manager) 
+			{
+				return new RenderT14Armata(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityT34.class, new IRenderFactory<EntityT34>()
+		{
+			@Override
+			public Render<? super EntityT34> createRenderFor(RenderManager manager) 
+			{
+				return new RenderT34(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityT3476.class, new IRenderFactory<EntityT3476>()
+		{
+			@Override
+			public Render<? super EntityT3476> createRenderFor(RenderManager manager) 
+			{
+				return new RenderT3476(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityT3485.class, new IRenderFactory<EntityT3485>()
+		{
+			@Override
+			public Render<? super EntityT3485> createRenderFor(RenderManager manager) 
+			{
+				return new RenderT3485(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityT34_76.class, new IRenderFactory<EntityT34_76>()
+		{
+			@Override
+			public Render<? super EntityT34_76> createRenderFor(RenderManager manager) 
+			{
+				return new RenderT34_76(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityT34_85.class, new IRenderFactory<EntityT34_85>()
+		{
+			@Override
+			public Render<? super EntityT34_85> createRenderFor(RenderManager manager) 
+			{
+				return new RenderT34_85(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityT35.class, new IRenderFactory<EntityT35>()
+		{
+			@Override
+			public Render<? super EntityT35> createRenderFor(RenderManager manager) 
+			{
+				return new RenderT35(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityT55A.class, new IRenderFactory<EntityT55A>()
+		{
+			@Override
+			public Render<? super EntityT55A> createRenderFor(RenderManager manager) 
+			{
+				return new RenderT55A(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityT72A1979.class, new IRenderFactory<EntityT72A1979>()
+		{
+			@Override
+			public Render<? super EntityT72A1979> createRenderFor(RenderManager manager) 
+			{
+				return new RenderT72A1979(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityT90.class, new IRenderFactory<EntityT90>()
+		{
+			@Override
+			public Render<? super EntityT90> createRenderFor(RenderManager manager) 
+			{
+				return new RenderT90(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityTiger.class, new IRenderFactory<EntityTiger>()
+		{
+			@Override
+			public Render<? super EntityTiger> createRenderFor(RenderManager manager) 
+			{
+				return new RenderTiger(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityTiger131.class, new IRenderFactory<EntityTiger131>()
+		{
+			@Override
+			public Render<? super EntityTiger131> createRenderFor(RenderManager manager) 
+			{
+				return new RenderTiger131(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityTiger1E.class, new IRenderFactory<EntityTiger1E>()
+		{
+			@Override
+			public Render<? super EntityTiger1E> createRenderFor(RenderManager manager) 
+			{
+				return new RenderTiger1E(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityTigerIE.class, new IRenderFactory<EntityTigerIE>()
+		{
+			@Override
+			public Render<? super EntityTigerIE> createRenderFor(RenderManager manager) 
+			{
+				return new RenderTigerIE(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityTigerII.class, new IRenderFactory<EntityTigerII>()
+		{
+			@Override
+			public Render<? super EntityTigerII> createRenderFor(RenderManager manager) 
+			{
+				return new RenderTigerII(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityTigerIIB.class, new IRenderFactory<EntityTigerIIB>()
+		{
+			@Override
+			public Render<? super EntityTigerIIB> createRenderFor(RenderManager manager) 
+			{
+				return new RenderTigerIIB(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityTKS.class, new IRenderFactory<EntityTKS>()
+		{
+			@Override
+			public Render<? super EntityTKS> createRenderFor(RenderManager manager) 
+			{
+				return new RenderTKS(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityTKS20.class, new IRenderFactory<EntityTKS20>()
+		{
+			@Override
+			public Render<? super EntityTKS20> createRenderFor(RenderManager manager) 
+			{
+				return new RenderTKS20(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityType4HoRo.class, new IRenderFactory<EntityType4HoRo>()
+		{
+			@Override
+			public Render<? super EntityType4HoRo> createRenderFor(RenderManager manager) 
+			{
+				return new RenderType4HoRo(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityType90KyuMaru.class, new IRenderFactory<EntityType90KyuMaru>()
+		{
+			@Override
+			public Render<? super EntityType90KyuMaru> createRenderFor(RenderManager manager) 
+			{
+				return new RenderType90KyuMaru(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityType95.class, new IRenderFactory<EntityType95>()
+		{
+			@Override
+			public Render<? super EntityType95> createRenderFor(RenderManager manager) 
+			{
+				return new RenderType95(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityType97.class, new IRenderFactory<EntityType97>()
+		{
+			@Override
+			public Render<? super EntityType97> createRenderFor(RenderManager manager) 
+			{
+				return new RenderType97(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityZis3.class, new IRenderFactory<EntityZis3>()
+		{
+			@Override
+			public Render<? super EntityZis3> createRenderFor(RenderManager manager) 
+			{
+				return new RenderZis3(manager);
+			}
+		});
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityStuG3G.class, new RenderStuG3G(new ModelStuG3G(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPanzerIVJ.class, new RenderPanzerIVJ(new ModelPanzerIVJ(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPanzer.class, new RenderPanzer(new ModelPanzer(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPanzerI.class, new RenderPanzerI(new ModelPanzerI(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySkwI.class, new RenderSkwI(new ModelSkwI(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityM4.class, new RenderM4(new ModelM4(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT34.class, new RenderT34(new ModelT34(), 0));
-		
-		RenderingRegistry.registerEntityRenderingHandler(EntityJagdpanzerIV.class, new RenderJagdpanzerIV(new ModelJagdpanzerIV(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityJagdpanther.class, new RenderJagdpanther(new ModelJagdpanther(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityJagdtiger.class, new RenderJagdtiger(new ModelJagdtiger(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPantherG.class, new RenderPantherG(new ModelPantherG(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPanzerIVG.class, new RenderPanzerIVG(new ModelPanzerIVG(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPanzerIVH.class, new RenderPanzerIVH(new ModelPanzerIVH(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTigerIE.class, new RenderTigerIE(new ModelTigerIE(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTigerIIB.class, new RenderTigerIIB(new ModelTigerIIB(), 0));
-		
-		RenderingRegistry.registerEntityRenderingHandler(EntityFlakpanzerIV.class, new RenderFlakpanzerIV(new ModelFlakpanzerIV(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityHummel.class, new RenderHummel(new ModelHummel(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityM4A1.class, new RenderM4A1(new ModelM4A1(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityM4A1Calliope.class, new RenderM4A1Calliope(new ModelM4A1Calliope(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityM4A3.class, new RenderM4A3(new ModelM4A3(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityRenaultFT17.class, new RenderRenaultFT17(new ModelRenaultFT17(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySU100.class, new RenderSU100(new ModelSU100(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySU122.class, new RenderSU122(new ModelSU122(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySU85.class, new RenderSU85(new ModelSU85(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT34_76.class, new RenderT34_76(new ModelT34_76(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT34_85.class, new RenderT34_85(new ModelT34_85(), 0));
-		
-		RenderingRegistry.registerEntityRenderingHandler(Entity38t.class, new Render38t(new Model38t(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityA39.class, new RenderA39(new ModelA39(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityHetzer.class, new RenderHetzer(new ModelHetzer(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityLVT2.class, new RenderLVT2(new ModelLVT2(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityLVTA1.class, new RenderLVTA1(new ModelLVTA1(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityMaus.class, new RenderMaus(new ModelMaus(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityML20.class, new RenderML20(new ModelML20(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPzkpfw2.class, new RenderPzkpfw2(new ModelPzkpfw2(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPzkpfw3.class, new RenderPzkpfw3(new ModelPzkpfw3(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityStug3.class, new RenderStug3(new ModelStug3(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySturmtiger.class, new RenderSturmtiger(new ModelSturmtiger(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT35.class, new RenderT35(new ModelT35(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTiger1E.class, new RenderTiger1E(new ModelTiger1E(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTKS.class, new RenderTKS(new ModelTKS(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTKS20.class, new RenderTKS20(new ModelTKS20(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityType95.class, new RenderType95(new ModelType95(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityType97.class, new RenderType97(new ModelType97(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityZis3.class, new RenderZis3(new ModelZis3(), 0));
-
-		//Price additions
-		RenderingRegistry.registerEntityRenderingHandler(EntityM41.class, new RenderM41(new ModelM41(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityA6M1.class, new RenderA6M1(new ModelA6M1(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityRomeoClassSub.class, new RenderRomeoClassSub(new ModelRomeoClassSub(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityMirageF1.class, new RenderMirageF1(new ModelMirageF1(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySupplies.class, new RenderSupplies(new ModelSupplies(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityHigginsBoat.class, new RenderHigginsBoat(new ModelHigginsBoat(), 0));			
-		RenderingRegistry.registerEntityRenderingHandler(EntitySlava.class, new RenderSlava(new ModelSlava(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityA7V.class, new RenderA7V(new ModelA7V(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityEurocopterTigerHAP.class, new RenderEurocopterTigerHAP(new ModelEurocopterTigerHAP(), 0));		
-		RenderingRegistry.registerEntityRenderingHandler(EntityT26.class, new RenderT26(new ModelT26(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityPak40.class, new RenderPak40(new ModelPak40(), 0));		
-		RenderingRegistry.registerEntityRenderingHandler(EntitySandBags1.class, new RenderSandBags1(new ModelSandBags1(), 0));		
-		RenderingRegistry.registerEntityRenderingHandler(EntitySandBags2.class, new RenderSandBags2(new ModelSandBags2(), 0));		
-		RenderingRegistry.registerEntityRenderingHandler(EntityPak43.class, new RenderPak43(new ModelPak43(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntitySoDa.class, new RenderSoDa(new ModelSoDa(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityTeKe.class, new RenderTeKe(new ModelTeKe(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityTKlate.class, new RenderTKlate(new ModelTKlate(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityBF109E3.class, new RenderBF109E3(new ModelBF109E3(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityBF109G10.class, new RenderBF109G10(new ModelBF109G10(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityHawkerHurricane.class, new RenderHawkerHurricane(new ModelHawkerHurricane(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityMark3.class, new RenderMark3(new ModelMark3(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityMilitaryCrate.class, new RenderMilitaryCrate(new ModelMilitaryCrate(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityOccupier.class, new RenderOccupier(new ModelOccupier(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityP51D.class, new RenderP51D(new ModelP51D(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityJihadBMP1.class, new RenderJihadBMP1(new ModelJihadBMP1(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityMCOMStation.class, new RenderMCOMStation(new ModelMCOMStation(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityRadioStation.class, new RenderRadioStation(new ModelRadioStation(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityRadioStationSmall.class, new RenderRadioStationSmall(new ModelRadioStationSmall(), 0));
-		
-		//2.2 stuff
-		RenderingRegistry.registerEntityRenderingHandler(EntityBMWR75.class, new RenderBMWR75(new ModelBMWR75(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityBofors.class, new RenderBofors(new ModelBofors(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityBwTruck.class, new RenderBwTruck(new ModelBwTruck(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityFlak88.class, new RenderFlak88(new ModelFlak88(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityFlakvierling.class, new RenderFlakvierling(new ModelFlakvierling(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityGreyhound.class, new RenderGreyhound(new ModelGreyhound(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityHellcat.class, new RenderHellcat(new ModelHellcat(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityJeep.class, new RenderJeep(new ModelJeep(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityKubel.class, new RenderKubel(new ModelKubel(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityLeopard2A7.class, new RenderLeopard2A7(new ModelLeopard2A7(), 0));		
-		RenderingRegistry.registerEntityRenderingHandler(EntityM3Halftrack.class, new RenderM3Halftrack(new ModelM3Halftrack(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityM10.class, new RenderM10(new ModelM10(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityM45Quad.class, new RenderM45Quad(new ModelM45Quad(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityM157MM.class, new RenderM157MM(new ModelM157MM(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntitySASJeep.class, new RenderSASJeep(new ModelSASJeep(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntitySentryGun.class, new RenderSentryGun(new ModelSentryGun(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntitySU112.class, new RenderSU112(new ModelSU112(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityUC2Pdr.class, new RenderUC2Pdr(new ModelUC2Pdr(), 0));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBMWR75.class, new IRenderFactory<EntityBMWR75>()
+		{
+			@Override
+			public Render<? super EntityBMWR75> createRenderFor(RenderManager manager) 
+			{
+				return new RenderBMWR75(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityBofors.class, new IRenderFactory<EntityBofors>()
+		{
+			@Override
+			public Render<? super EntityBofors> createRenderFor(RenderManager manager) 
+			{
+				return new RenderBofors(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityBwTruck.class, new IRenderFactory<EntityBwTruck>()
+		{
+			@Override
+			public Render<? super EntityBwTruck> createRenderFor(RenderManager manager) 
+			{
+				return new RenderBwTruck(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityFlak88.class, new IRenderFactory<EntityFlak88>()
+		{
+			@Override
+			public Render<? super EntityFlak88> createRenderFor(RenderManager manager) 
+			{
+				return new RenderFlak88(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityFlakvierling.class, new IRenderFactory<EntityFlakvierling>()
+		{
+			@Override
+			public Render<? super EntityFlakvierling> createRenderFor(RenderManager manager) 
+			{
+				return new RenderFlakvierling(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityGreyhound.class, new IRenderFactory<EntityGreyhound>()
+		{
+			@Override
+			public Render<? super EntityGreyhound> createRenderFor(RenderManager manager) 
+			{
+				return new RenderGreyhound(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityHellcat.class, new IRenderFactory<EntityHellcat>()
+		{
+			@Override
+			public Render<? super EntityHellcat> createRenderFor(RenderManager manager) 
+			{
+				return new RenderHellcat(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityJeep.class, new IRenderFactory<EntityJeep>()
+		{
+			@Override
+			public Render<? super EntityJeep> createRenderFor(RenderManager manager) 
+			{
+				return new RenderJeep(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityKubel.class, new IRenderFactory<EntityKubel>()
+		{
+			@Override
+			public Render<? super EntityKubel> createRenderFor(RenderManager manager) 
+			{
+				return new RenderKubel(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityLeopard2A7.class, new IRenderFactory<EntityLeopard2A7>()
+		{
+			@Override
+			public Render<? super EntityLeopard2A7> createRenderFor(RenderManager manager) 
+			{
+				return new RenderLeopard2A7(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityLeopardIIA6.class, new IRenderFactory<EntityLeopardIIA6>()
+		{
+			@Override
+			public Render<? super EntityLeopardIIA6> createRenderFor(RenderManager manager) 
+			{
+				return new RenderLeopardIIA6(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityM10.class, new IRenderFactory<EntityM10>()
+		{
+			@Override
+			public Render<? super EntityM10> createRenderFor(RenderManager manager) 
+			{
+				return new RenderM10(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityM157MM.class, new IRenderFactory<EntityM157MM>()
+		{
+			@Override
+			public Render<? super EntityM157MM> createRenderFor(RenderManager manager) 
+			{
+				return new RenderM157MM(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityM3Halftrack.class, new IRenderFactory<EntityM3Halftrack>()
+		{
+			@Override
+			public Render<? super EntityM3Halftrack> createRenderFor(RenderManager manager) 
+			{
+				return new RenderM3Halftrack(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityM45Quad.class, new IRenderFactory<EntityM45Quad>()
+		{
+			@Override
+			public Render<? super EntityM45Quad> createRenderFor(RenderManager manager) 
+			{
+				return new RenderM45Quad(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityPak40.class, new IRenderFactory<EntityPak40>()
+		{
+			@Override
+			public Render<? super EntityPak40> createRenderFor(RenderManager manager) 
+			{
+				return new RenderPak40(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntitySASJeep.class, new IRenderFactory<EntitySASJeep>()
+		{
+			@Override
+			public Render<? super EntitySASJeep> createRenderFor(RenderManager manager) 
+			{
+				return new RenderSASJeep(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntitySentryGun.class, new IRenderFactory<EntitySentryGun>()
+		{
+			@Override
+			public Render<? super EntitySentryGun> createRenderFor(RenderManager manager) 
+			{
+				return new RenderSentryGun(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntitySU112.class, new IRenderFactory<EntitySU112>()
+		{
+			@Override
+			public Render<? super EntitySU112> createRenderFor(RenderManager manager) 
+			{
+				return new RenderSU112(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityUC2Pdr.class, new IRenderFactory<EntityUC2Pdr>()
+		{
+			@Override
+			public Render<? super EntityUC2Pdr> createRenderFor(RenderManager manager) 
+			{
+				return new RenderUC2Pdr(manager);
+			}
+		});
 	}
 }

@@ -10,30 +10,28 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import com.wolffsmod.Strings;
-import com.wolffsmod.entity.EntityTiger1E;
-import com.wolffsmod.model.ModelTiger1E;
-
+import com.wolffsmod.entity.EntityLeopardIIA6;
+import com.wolffsmod.model.ModelLeopardIIA6;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
-public class RenderTiger1E extends RenderLiving<EntityTiger1E>
+public class RenderLeopardIIA6 extends RenderLiving<EntityLeopardIIA6>
 {
-    public static final ResourceLocation TEXTURES = new ResourceLocation(Strings.MODID + ":textures/entity/Tiger1E/Tiger1E.png");
-    public RenderTiger1E(RenderManager manager)
+    public static final ResourceLocation TEXTURES = new ResourceLocation(Strings.MODID + ":textures/entity/LeopardIIA6/LeopardIIA6.png");
+    public RenderLeopardIIA6(RenderManager manager)
     {
-        super(manager, new ModelTiger1E(), 0);
+        super(manager, new ModelLeopardIIA6(), 0);
     }
     
-    protected ResourceLocation getEntityTexture(EntityTiger1E par1Entity)
+    protected ResourceLocation getEntityTexture(EntityLeopardIIA6 par1Entity)
     {
         return TEXTURES;
     }
     
-    protected void preRenderCallback(EntityTiger1E entitylivingbaseIn, float partialTickTime)
+    protected void preRenderCallback(EntityLeopardIIA6 entitylivingbaseIn, float partialTickTime)
     {
-        GL11.glTranslatef(0F, -2.4F, 0F);
-        GL11.glRotatef(180, 1, 0, 0);
-        GL11.glRotatef(270, 0, 1, 0);
-        GL11.glScalef(1.1F, 1.1F, 1.1F);
+        GL11.glTranslatef(0.0f, -2.1f, 0.0f);
+        GL11.glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
+        GL11.glRotatef(270.0f, 0.0f, 1.0f, 0.0f);
     }
 }
