@@ -28,6 +28,7 @@ public class BlockFlansWorkbench extends Block
         setCreativeTab(FlansMod.tabFlanDriveables);
     }
     
+    @SuppressWarnings("unchecked")
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List par3List)
     {
@@ -44,7 +45,12 @@ public class BlockFlansWorkbench extends Block
     {
         if(i == 1)
         {
-            return top[j];
+            if (j <= 2 && j >= 0) {
+                return top[j];
+            } else {
+                return side;
+            }
+            
         } else
         {
             return side;

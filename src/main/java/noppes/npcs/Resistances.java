@@ -1,5 +1,7 @@
 package noppes.npcs;
 
+import com.flansmod.common.guns.EntityDamageSourceFlans;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 
@@ -35,13 +37,13 @@ public class Resistances {
 			return 0;
 		}
 
-		if(source.damageType.equals("arrow") || source.damageType.equals("thrown")){
+		if(source.damageType.equals("arrow") || source.damageType.equals("thrown") || source.isProjectile()){
 			damage *= (2 - arrow);
 		}
-		else if(source.damageType.equals("player") || source.damageType.equals("mob")){
+		else if(source.damageType.equals("player") || source.damageType.equals("mob") || (source instanceof EntityDamageSourceFlans && ((EntityDamageSourceFlans) source).melee)){
 			damage *= (2 - playermelee);
 		}
-		else if(source.damageType.equals("explosion") || source.damageType.equals("explosion.player")){
+		else if(source.damageType.equals("explosion") || source.damageType.equals("explosion.player") || source.isExplosion()){
 			damage *= (2 - explosion);
 		}
 		

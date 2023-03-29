@@ -57,6 +57,19 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
 	public Vector3f() {
 		super();
 	}
+	
+	public Vector3f(String input, String typeName)
+	{
+		//Input should be of the form [float,float,float]
+		String noBrackets = input.substring(1, input.length() - 1);
+		String[] split = noBrackets.split(",");
+		if(split.length == 3)
+		{
+			x = Float.parseFloat(split[0]);
+			y = Float.parseFloat(split[1]);
+			z = Float.parseFloat(split[2]);
+		}
+	}
 
 	/**
 	 * Constructor
@@ -367,4 +380,11 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
 	public float getZ() {
 		return z;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof Vector3f) && ((Vector3f) obj).x == this.x && ((Vector3f) obj).y == this.y && ((Vector3f) obj).z == this.z;
+	}
+
+	public static Vector3f Zero = new Vector3f(0, 0, 0);
 }

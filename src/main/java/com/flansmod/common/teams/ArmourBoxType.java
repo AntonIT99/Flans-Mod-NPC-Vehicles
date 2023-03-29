@@ -3,6 +3,7 @@ package com.flansmod.common.teams;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
@@ -19,15 +20,12 @@ public class ArmourBoxType extends InfoType
 	public String topTexturePath;
 	public String sideTexturePath;
 	public String bottomTexturePath;
-	@SideOnly(Side.CLIENT)
 	public IIcon top;
-	@SideOnly(Side.CLIENT)
 	public IIcon side;
-	@SideOnly(Side.CLIENT)
 	public IIcon bottom;
 	
 	public BlockArmourBox block;
-	
+
 	public ArrayList<ArmourBoxEntry> pages = new ArrayList<ArmourBoxEntry>();
 	
 	/** The static box map. Indexed by shortName for server ~ client syncing */
@@ -39,9 +37,13 @@ public class ArmourBoxType extends InfoType
 	}
 	
 	@Override
+	public void preRead(TypeFile file)
+	{
+	}
+	
+	@Override
 	public void postRead(TypeFile file)
 	{
-    	super.postRead(file);
 		boxes.put(shortName, this);
 	}
 	
@@ -86,8 +88,11 @@ public class ArmourBoxType extends InfoType
 						else
 							stack = getRecipeElement(lineSplit[j * 2 + 1], Integer.valueOf(lineSplit[j * 2 + 2]), 0, shortName);
 						
-						if(stack != null)
+						if(stack != null) {
 							entry.requiredStacks[i].add(stack);
+						} else {
+							if (FlansMod.printDebugLog) { FlansMod.log("Could not add part %s to %s in armourbox %s", lineSplit[j * 2 + 1], name, shortName); }
+						}
 					}
 				}
 				
@@ -96,8 +101,9 @@ public class ArmourBoxType extends InfoType
 			
 		} catch (Exception e)
 		{
-			FlansMod.log("Reading gun box file failed : " + shortName);
-			e.printStackTrace();
+			FlansMod.log("Reading armour box file failed : " + shortName);
+			if (FlansMod.printStackTrace)
+				e.printStackTrace();
 		}
 	}
 
@@ -125,5 +131,18 @@ public class ArmourBoxType extends InfoType
 	public static ArmourBoxType getBox(String boxShortName) 
 	{
 		return boxes.get(boxShortName);
+	}
+
+	@Override
+	public float GetRecommendedScale() 
+	{
+		return 50.0f;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBase GetModel() 
+	{
+		return null;
 	}
 }

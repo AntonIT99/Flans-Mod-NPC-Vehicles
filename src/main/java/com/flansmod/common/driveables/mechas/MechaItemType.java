@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.model.ModelBase;
 
 import com.flansmod.client.model.ModelMechaTool;
 import com.flansmod.common.FlansMod;
@@ -31,7 +32,7 @@ public class MechaItemType extends InfoType
 	public float speedMultiplier = 1F;
 	/** This allows upgrades to reduce incoming damage */
 	public float damageResistance = 0F;
-	/** This allows a sound to be played upon use (RocketPack only for the moment) */
+	/** This allows a sound to be played upon use (RocketPack only for the moment) */	
 	public String soundEffect = "";
 	public String detectSound = "";
 	public float soundTime = 0;
@@ -43,6 +44,8 @@ public class MechaItemType extends InfoType
 	*/
 	public boolean stopMechaFallDamage = false, forceBlockFallDamage = false, vacuumItems = false, refineIron = false, autoCoal = false, autoRepair = false, rocketPack = false, diamondDetect = false, infiniteAmmo = false, forceDark = false, wasteCompact = false, flameBurst = false;
 	
+	public float autoRepairAmount = 1F;
+
 	/** The drop rate of these items are multiplied by this float. They stack between items too. 
 	 * Once dropRate has been calculated, each block then gives floor(dropRate) items with a 
 	 * dropRate - floor(dropRate) chance of getting one more */
@@ -58,6 +61,16 @@ public class MechaItemType extends InfoType
 	public MechaItemType(TypeFile file)
 	{
 		super(file);
+	}
+	
+	@Override
+	protected void preRead(TypeFile file) 
+	{		
+	}
+
+	@Override
+	protected void postRead(TypeFile file) 
+	{		
 	}
 	
     @Override
@@ -118,6 +131,8 @@ public class MechaItemType extends InfoType
 				lightLevel = Integer.parseInt(split[1]);
 			if(split[0].equals("Nanorepair"))
 				autoRepair = Boolean.parseBoolean(split[1].toLowerCase());
+			if (split[0].equals("NanorepairAmount"))
+				autoRepairAmount = Float.parseFloat(split[1]);
 			if(split[0].equals("RedstoneMultiplier"))
 				fortuneRedstone = Float.parseFloat(split[1]);
 			if(split[0].equals("RocketPack"))
@@ -154,6 +169,19 @@ public class MechaItemType extends InfoType
 	{
 		if(modelString != null)
 			model = FlansMod.proxy.loadModel(modelString, shortName, ModelMechaTool.class);
+	}
+
+	@Override
+	public float GetRecommendedScale() 
+	{
+		return 0.0f;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBase GetModel() 
+	{
+		return null;
 	}
 
 }

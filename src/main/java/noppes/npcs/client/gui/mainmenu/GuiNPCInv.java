@@ -6,15 +6,10 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+
 import noppes.npcs.client.Client;
 import noppes.npcs.client.gui.util.*;
 import noppes.npcs.constants.EnumPacketServer;
@@ -63,6 +58,18 @@ public class GuiNPCInv extends GuiContainerNPCInterface2 implements IGuiData, IT
         addButton(new GuiNpcButton(11, guiLeft + 375, guiTop + 13, 30, 20, "1"));
         addButton(new GuiNpcButton(12, guiLeft + 375, guiTop + 34, 30, 20, "2"));
 
+        addLabel(new GuiNpcLabel(70,"Melee", guiLeft + 371, guiTop + 60));
+        addLabel(new GuiNpcLabel(71,"Stats", guiLeft + 371, guiTop + 70));
+        addButton(new GuiNpcButton(72,guiLeft + 375, guiTop + 80, 30, 20, new String[]{"gui.no", "gui.yes"}, npc.inventory.useWeaponMeleeStats ? 1:0));
+
+        addLabel(new GuiNpcLabel(73,"Ranged", guiLeft + 371, guiTop + 110));
+        addLabel(new GuiNpcLabel(74,"Stats", guiLeft + 371, guiTop + 120));
+        addButton(new GuiNpcButton(75,guiLeft + 375, guiTop + 130, 30, 20, new String[]{"gui.no", "gui.yes"}, npc.inventory.useWeaponRangedStats ? 1:0));
+
+        addLabel(new GuiNpcLabel(76,"Armor", guiLeft + 371, guiTop + 160));
+        addLabel(new GuiNpcLabel(77,"Stats", guiLeft + 371, guiTop + 170));
+        addButton(new GuiNpcButton(78,guiLeft + 375, guiTop + 180, 30, 20, new String[]{"gui.no", "gui.yes"}, npc.inventory.useArmorStats ? 1:0));
+
         for(int c = 0; c < 4; c++) {
             for (int r = 0; r < 9; r++) {
                 double chance = 100;
@@ -102,14 +109,39 @@ public class GuiNPCInv extends GuiContainerNPCInterface2 implements IGuiData, IT
     }
 
     @Override
-	protected void actionPerformed(GuiButton guibutton) {
-    	if(guibutton.id == 10){
+	protected void actionPerformed(GuiButton guibutton)
+    {
+    	if(guibutton.id == 10)
+        {
     		npc.inventory.lootMode = ((GuiNpcButton)guibutton).getValue();
     	}
-        if(guibutton.id == 11 || guibutton.id == 12){
+        if(guibutton.id == 11 || guibutton.id == 12)
+        {
             this.inventoryTab = Integer.parseInt(guibutton.displayString)-1;
             initGui();
         }
+        if(guibutton.id == 72)
+        {
+           npc.inventory.useWeaponMeleeStats = ((GuiNpcButton)guibutton).getValue() == 1;
+           if (npc.inventory.useWeaponMeleeStats)
+               npc.inventory.setWeapons(npc.inventory.getWeapons());
+           save();
+        }
+        if(guibutton.id == 75)
+        {
+            npc.inventory.useWeaponRangedStats = ((GuiNpcButton)guibutton).getValue() == 1;
+            if (npc.inventory.useWeaponRangedStats)
+                npc.inventory.setWeapons(npc.inventory.getWeapons());
+            save();
+        }
+        if(guibutton.id == 78)
+        {
+            npc.inventory.useArmorStats = ((GuiNpcButton)guibutton).getValue() == 1;
+            if (npc.inventory.useArmorStats)
+                npc.inventory.setArmor(npc.inventory.getArmor());
+            save();
+        }
+
     }
 
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
@@ -183,6 +215,7 @@ public class GuiNPCInv extends GuiContainerNPCInterface2 implements IGuiData, IT
     	npc.inventory.minExp = getTextField(0).getInteger();
     	npc.inventory.maxExp = getTextField(1).getInteger();
     	Client.sendData(EnumPacketServer.MainmenuInvSave, npc.inventory.writeEntityToNBT(new NBTTagCompound()));
+        Client.sendData(EnumPacketServer.MainmenuStatsSave, npc.stats.writeToNBT(new NBTTagCompound()));
 	}
 	
 	@Override

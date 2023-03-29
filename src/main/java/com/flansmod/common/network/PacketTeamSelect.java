@@ -23,6 +23,7 @@ public class PacketTeamSelect extends PacketBase
 	public boolean classChoicesPacket = false;
 	public Team[] teams;
 	public PlayerClass[] playerClasses;
+	public int playerLvl;
 	/** If true, then this packet simply updates the available choices, rather than forcing the player to choose */
 	public boolean info = false;
 	
@@ -41,11 +42,12 @@ public class PacketTeamSelect extends PacketBase
 		this(t, false);
 	}
 	
-	public PacketTeamSelect(PlayerClass[] c)
+	public PacketTeamSelect(PlayerClass[] c, int lvl)
 	{
 		selectionPacket = false;
 		classChoicesPacket = true;
 		playerClasses = c;
+		playerLvl = lvl;
 	}
 		
 	public PacketTeamSelect(String shortName, boolean classPacket)
@@ -61,6 +63,7 @@ public class PacketTeamSelect extends PacketBase
 		data.writeBoolean(selectionPacket);
 		data.writeBoolean(classChoicesPacket);
 		data.writeBoolean(info);
+		data.writeInt(playerLvl);
 
 		//If it is a selection packet, then we need only send the selection
 		if(selectionPacket)
@@ -93,7 +96,7 @@ public class PacketTeamSelect extends PacketBase
 		selectionPacket = data.readBoolean();
 		classChoicesPacket = data.readBoolean();
 		info = data.readBoolean();
-		
+		playerLvl = data.readInt();
 		if(selectionPacket)
 		{
 			selection = readUTF(data);
@@ -152,7 +155,7 @@ public class PacketTeamSelect extends PacketBase
 		}
 		if(classChoicesPacket)
 		{
-			Minecraft.getMinecraft().displayGuiScreen(new GuiTeamSelect(playerClasses));
+			Minecraft.getMinecraft().displayGuiScreen(new GuiTeamSelect(playerClasses,playerLvl));
 		}
 		else if(info)
 		{

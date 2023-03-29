@@ -1,35 +1,38 @@
 package com.flansmod.common.tools;
 
-import java.util.Collections;
-import java.util.List;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
-import net.minecraft.world.World;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import com.flansmod.client.debug.EntityDebugVector;
 import com.flansmod.common.FlansMod;
 import com.flansmod.common.PlayerData;
 import com.flansmod.common.PlayerHandler;
 import com.flansmod.common.driveables.DriveablePart;
 import com.flansmod.common.driveables.EntityDriveable;
+import com.flansmod.common.guns.EntityGrenade;
+import com.flansmod.common.network.PacketDriveableDamage;
 import com.flansmod.common.network.PacketFlak;
 import com.flansmod.common.vector.Vector3f;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.World;
 
-public class ItemTool extends ItemFood 
-{
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+public class ItemTool extends ItemFood {
 	public ToolType type;
+
 
     public ItemTool(ToolType t)
     {
@@ -50,12 +53,25 @@ public class ItemTool extends ItemFood
     }
     
 	@Override
+	@SuppressWarnings("unchecked")
 	public void addInformation(ItemStack stack, EntityPlayer player, List lines, boolean b)
 	{
+		if(!type.packName.isEmpty() && FlansMod.showPackNameInItemDescriptions)
+		{
+			lines.add(type.packName);
+		}
 		if(type.description != null)
 		{
             Collections.addAll(lines, type.description.split("_"));
 		}
+		if(stack.stackTagCompound != null){
+			lines.add(stack.stackTagCompound.getString("key"));
+		}
+	}
+	
+	
+	public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {
+	    itemStack.stackTagCompound = new NBTTagCompound();
 	}
     
     @Override
@@ -80,27 +96,43 @@ public class ItemTool extends ItemFood
 		
 		else if(type.parachute)
 		{
-			//Create a parachute, spawn it and put the player in it
-			if(!world.isRemote)
+			if(EntityParachute.canUseParachute(entityplayer))
 			{
-				EntityParachute parachute = new EntityParachute(world, type, entityplayer);
-				world.spawnEntityInWorld(parachute);
-				entityplayer.mountEntity(parachute);
+				//Create a parachute, spawn it and put the player in it
+				if(!world.isRemote)
+				{
+					EntityParachute parachute = new EntityParachute(world, type, entityplayer);
+					if(!parachute.isDead)
+					{
+						world.spawnEntityInWorld(parachute);
+						entityplayer.mountEntity(parachute);
+					}
+				}
+				
+				//If not in creative and the tool should decay, damage it
+				if(!entityplayer.capabilities.isCreativeMode && type.toolLife > 0)
+					itemstack.setItemDamage(itemstack.getItemDamage() + 1);
+				//If the tool is damagable and is destroyed upon being used up, then destroy it
+				if(type.toolLife > 0 && type.destroyOnEmpty && itemstack.getItemDamage() == itemstack.getMaxDamage())
+					itemstack.stackSize--;
 			}
-			
-			//If not in creative and the tool should decay, damage it
-			if(!entityplayer.capabilities.isCreativeMode && type.toolLife > 0)
-				itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-			//If the tool is damagable and is destroyed upon being used up, then destroy it
-			if(type.toolLife > 0 && type.destroyOnEmpty && itemstack.getItemDamage() == itemstack.getMaxDamage())
-				itemstack.stackSize--;
 			//Our work here is done. Let's be off
 			return itemstack;
 		}
-		
 		else if(type.remote)
 		{
 			PlayerData data = PlayerHandler.getPlayerData(entityplayer, world.isRemote ? Side.CLIENT : Side.SERVER);
+			if(data == null)
+				return null;
+			Iterator<EntityGrenade> i = data.remoteExplosives.iterator();
+			while (i.hasNext())
+			{
+				EntityGrenade grenade = i.next();
+				if(grenade.isDead)
+				{
+					i.remove();
+				}
+			}
 			//If we have some remote explosives out there
 			if(data.remoteExplosives.size() > 0)
 			{
@@ -119,10 +151,7 @@ public class ItemTool extends ItemFood
 				//Our work here is done. Let's be off
 				return itemstack;
 			}
-		}
-		else
-		{
-		
+		} else {
 	    	//Raytracing
 	        float cosYaw = MathHelper.cos(-entityplayer.rotationYaw * 0.01745329F);
 	        float sinYaw = MathHelper.sin(-entityplayer.rotationYaw * 0.01745329F);
@@ -151,7 +180,7 @@ public class ItemTool extends ItemFood
 						//If we hit something that is healable
 						if(part != null && part.maxHealth > 0)
 						{
-							//If its broken and the tool is inifinite or has durability left
+							//If its broken and the tool is infinite or has durability left
 							if(part.health < part.maxHealth && (type.toolLife == 0 || itemstack.getItemDamage() < itemstack.getMaxDamage()))
 							{
 								//Heal it
@@ -159,10 +188,14 @@ public class ItemTool extends ItemFood
 								//If it is over full health, cap it
 								if(part.health > part.maxHealth)
 									part.health = part.maxHealth;
+
+								// I don't think sending this is necessary.
+								//FlansMod.packetHandler.sendToAllAround(new PacketDriveableDamage(driveable), driveable.posX, driveable.posY, driveable.posZ, FlansMod.driveableUpdateRange, driveable.dimension);
+
 								//If not in creative and the tool should decay, damage it
 								if(!entityplayer.capabilities.isCreativeMode && type.toolLife > 0)
 									itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-								//If the tool is damagable and is destroyed upon being used up, then destroy it
+								//If the tool is damageable and is destroyed upon being used up, then destroy it
 								if(type.toolLife > 0 && type.destroyOnEmpty && itemstack.getItemDamage() == itemstack.getMaxDamage())
 									itemstack.stackSize--;
 								//Our work here is done. Let's be off
@@ -196,22 +229,32 @@ public class ItemTool extends ItemFood
 						hitLiving = checkEntity;
 				}
 		        //Now heal whatever it was we just decided to heal
-		        if(hitLiving != null)
-		        {        		
-		        	//If its finished, don't use it
-		        	if(itemstack.getItemDamage() >= itemstack.getMaxDamage() && type.toolLife > 0)
-		        		return itemstack;
-		        	
-		        	hitLiving.heal(type.healAmount);
-		        	FlansMod.getPacketHandler().sendToAllAround(new PacketFlak(hitLiving.posX, hitLiving.posY, hitLiving.posZ, 5, "heart"), new NetworkRegistry.TargetPoint(hitLiving.dimension, hitLiving.posX, hitLiving.posY, hitLiving.posZ, 50F));
-		        	
-					//If not in creative and the tool should decay, damage it
-					if(!entityplayer.capabilities.isCreativeMode && type.toolLife > 0)
-						itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-					//If the tool is damagable and is destroyed upon being used up, then destroy it
-					if(type.toolLife > 0 && type.destroyOnEmpty && itemstack.getItemDamage() >= itemstack.getMaxDamage())
-						itemstack.stackSize--;
-		        }
+				//If its finished, don't use it
+				if(itemstack.getItemDamage() >= itemstack.getMaxDamage() && type.toolLife > 0)
+					return itemstack;
+
+				hitLiving.heal(type.healAmount);
+				FlansMod.getPacketHandler().sendToAllAround(new PacketFlak(hitLiving.posX, hitLiving.posY, hitLiving.posZ, 5, "heart"), new NetworkRegistry.TargetPoint(hitLiving.dimension, hitLiving.posX, hitLiving.posY, hitLiving.posZ, 50F));
+
+				//If not in creative and the tool should decay, damage it
+				if(!entityplayer.capabilities.isCreativeMode && type.toolLife > 0)
+					itemstack.setItemDamage(itemstack.getItemDamage() + 1);
+				//If the tool is damagable and is destroyed upon being used up, then destroy it
+				if(type.toolLife > 0 && type.destroyOnEmpty && itemstack.getItemDamage() >= itemstack.getMaxDamage())
+					itemstack.stackSize--;
+			}
+	        if(!world.isRemote && type.key){
+				for(int i = 0; i < world.loadedEntityList.size(); i++)
+				{
+					Object obj = world.loadedEntityList.get(i);
+					if(obj instanceof EntityDriveable)
+					{
+						EntityDriveable driveable = (EntityDriveable)obj;
+						//Raytrace
+						driveable.raytraceParts(new Vector3f(posVec), Vector3f.sub(new Vector3f(lookVec), new Vector3f(posVec), null));
+						//If we hit something that is healable
+					}
+				}
 	        }
 		}
         return itemstack;

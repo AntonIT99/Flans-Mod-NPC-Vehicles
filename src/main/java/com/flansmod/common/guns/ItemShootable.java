@@ -33,7 +33,7 @@ public abstract class ItemShootable extends Item
 
 	//Can be overriden to allow new types of bullets to be created, AA/MG constructor
 	public abstract EntityShootable getEntity(World worldObj, Vec3 origin, float yaw,
-			float pitch, EntityLivingBase shooter, float spread, float damage,
+			float pitch, EntityLivingBase shooter, float spread, float damage, float speed,
 			int itemDamage, InfoType shotFrom);
 
 	//Can be overriden to allow new types of bullets to be created, Handheld constructor

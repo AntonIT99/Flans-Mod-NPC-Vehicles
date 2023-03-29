@@ -128,7 +128,7 @@ public class ItemGrenade extends ItemShootable implements IFlanItem
 
 	@Override
 	public EntityShootable getEntity(World worldObj, Vec3 origin, float yaw,
-			float pitch, EntityLivingBase shooter, float spread, float damage,
+			float pitch, EntityLivingBase shooter, float spread, float damage, float speed,
 			int itemDamage, InfoType shotFrom) {
 		// TODO Auto-generated method stub
 		return null;

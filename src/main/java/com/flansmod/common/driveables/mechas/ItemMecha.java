@@ -3,12 +3,14 @@ package com.flansmod.common.driveables.mechas;
 import java.util.Collections;
 import java.util.List;
 
+import com.flansmod.common.teams.TeamsManager;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
@@ -21,15 +23,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 import com.flansmod.common.FlansMod;
 import com.flansmod.common.driveables.DriveableData;
 import com.flansmod.common.driveables.EnumDriveablePart;
+import com.flansmod.common.paintjob.IPaintableItem;
+import com.flansmod.common.paintjob.PaintableType;
 import com.flansmod.common.parts.PartType;
 import com.flansmod.common.types.EnumType;
 import com.flansmod.common.types.IFlanItem;
 import com.flansmod.common.types.InfoType;
+import com.flansmod.common.sync.Sync;
 
-public class ItemMecha extends Item implements IFlanItem
+public class ItemMecha extends Item implements IPaintableItem
 {
 	public MechaType type;
 
+	public IIcon[] icons;
+	
 	public ItemMecha(MechaType type1)
 	{
 		maxStackSize = 1;
@@ -42,6 +49,10 @@ public class ItemMecha extends Item implements IFlanItem
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List lines, boolean b)
 	{
+		if(!type.packName.isEmpty() && FlansMod.showPackNameInItemDescriptions)
+		{
+			lines.add(type.packName);
+		}
 		if(type.description != null)
 		{
             Collections.addAll(lines, type.description.split("_"));
@@ -74,6 +85,10 @@ public class ItemMecha extends Item implements IFlanItem
     @Override
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
+		if (!(TeamsManager.survivalCanPlaceVehicles || entityplayer.capabilities.isCreativeMode)) {
+			// player isn't allowed to place vehicles.
+			return itemstack;
+		}
     	//Raytracing
         float cosYaw = MathHelper.cos(-entityplayer.rotationYaw * 0.01745329F - 3.141593F);
         float sinYaw = MathHelper.sin(-entityplayer.rotationYaw * 0.01745329F - 3.141593F);
@@ -96,7 +111,9 @@ public class ItemMecha extends Item implements IFlanItem
             int k = movingobjectposition.blockZ;
             if(!world.isRemote)
             {
-				world.spawnEntityInWorld(new EntityMecha(world, (double)i + 0.5F, (double)j + 1.5F + type.yOffset, (double)k + 0.5F, entityplayer, type, getData(itemstack, world), getTagCompound(itemstack, world)));
+            	EntityMecha mecha = new EntityMecha(world, (double)i + 0.5F, (double)j + 1.5F + type.yOffset, (double)k + 0.5F, entityplayer, type, getData(itemstack, world), getTagCompound(itemstack, world));
+				FlansMod.log("Player %s placed mecha %s (%d) at (%d, %d, %d)", entityplayer.getDisplayName(), type.shortName, mecha.getEntityId(), i, j, k);
+				world.spawnEntityInWorld(mecha);
             }
 			if(!entityplayer.capabilities.isCreativeMode)
 			{	
@@ -108,7 +125,7 @@ public class ItemMecha extends Item implements IFlanItem
 	
     public DriveableData getData(ItemStack itemstack, World world)
     {
-		return new DriveableData(getTagCompound(itemstack, world));
+		return new DriveableData(getTagCompound(itemstack, world), itemstack.getItemDamage());
     }
    
     @Override
@@ -128,7 +145,7 @@ public class ItemMecha extends Item implements IFlanItem
     		tags.setString("Engine", PartType.defaultEngines.get(EnumType.mecha).shortName);
     	for(EnumDriveablePart part : EnumDriveablePart.values())
     	{
-    		tags.setInteger(part.getShortName() + "_Health", type.health.get(part) == null ? 0 : type.health.get(part).health);
+    		tags.setFloat(part.getShortName() + "_Health", type.health.get(part) == null ? 0 : type.health.get(part).health);
     		tags.setBoolean(part.getShortName() + "_Fire", false);
     	}
     	mechaStack.stackTagCompound = tags;
@@ -137,13 +154,39 @@ public class ItemMecha extends Item implements IFlanItem
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister icon) 
+    public void registerIcons(IIconRegister icon)
     {
-    	itemIcon = icon.registerIcon("FlansMod:" + type.iconPath);
+    	icons = new IIcon[type.paintjobs.size()];
+    	
+        itemIcon = icon.registerIcon("FlansMod:" + type.iconPath);
+    	for(int i = 0; i < type.paintjobs.size(); i++)
+    	{
+    		icons[i] = icon.registerIcon("FlansMod:" + type.paintjobs.get(i).iconName);
+    	}
     }
+
+	@SideOnly(Side.CLIENT)
+	public IIcon getIconIndex(ItemStack stack)
+	{
+		try {
+			if (stack.getItemDamage() < icons.length) {
+				return icons[stack.getItemDamage()];
+			} else {
+				return icons[0];
+			}
+		} catch (NullPointerException e) {
+			return null;
+		}
+	}
     
 	@Override
 	public InfoType getInfoType() 
+	{
+		return type;
+	}
+
+	@Override
+	public PaintableType GetPaintableType() 
 	{
 		return type;
 	}

@@ -2,6 +2,7 @@ package com.flansmod.common.guns;
 
 import java.util.ArrayList;
 
+import com.flansmod.common.teams.TeamsManager;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,6 +42,11 @@ public class ItemAAGun extends Item implements IFlanItem
     @Override
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
 	{
+		if (!(TeamsManager.survivalCanPlaceVehicles || entityplayer.capabilities.isCreativeMode)) {
+			// player isn't allowed to place vehicles.
+			return itemstack;
+		}
+
     	//Raytracing
         float cosYaw = MathHelper.cos(-entityplayer.rotationYaw * 0.01745329F - 3.141593F);
         float sinYaw = MathHelper.sin(-entityplayer.rotationYaw * 0.01745329F - 3.141593F);
@@ -63,7 +69,9 @@ public class ItemAAGun extends Item implements IFlanItem
 			int k = movingobjectposition.blockZ;
 			if (!world.isRemote && world.isSideSolid(i, j, k, ForgeDirection.UP))
 			{
-				world.spawnEntityInWorld(new EntityAAGun(world, type, (double) i + 0.5F, (double) j + 1F, (double) k + 0.5F, entityplayer));
+				EntityAAGun aaGun = new EntityAAGun(world, type, (double) i + 0.5F, (double) j + 1F, (double) k + 0.5F, entityplayer);
+				if (!world.isRemote) { FlansMod.log("Player %s placed AA Gun %s (%d) at (%d, %d, %d)", entityplayer.getDisplayName(), type.shortName, aaGun.getEntityId(), i, j, k); }
+				world.spawnEntityInWorld(aaGun);
 			}
 			if (!entityplayer.capabilities.isCreativeMode)
 			{

@@ -1,80 +1,76 @@
-/*
- * Decompiled with CFR 0_114.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.relauncher.Side
- *  cpw.mods.fml.relauncher.SideOnly
- *  io.netty.buffer.ByteBuf
- *  io.netty.channel.ChannelHandlerContext
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.entity.player.EntityPlayerMP
- */
 package com.flansmod.common.network;
 
-import com.flansmod.common.CommonProxy;
-import com.flansmod.common.FlansMod;
-import com.flansmod.common.network.PacketBase;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 
-public class PacketParticle
-extends PacketBase {
-    public float x;
-    public float y;
-    public float z;
-    public float mx;
-    public float my;
-    public float mz;
-    public String particleType;
+import com.flansmod.common.FlansMod;
 
-    public PacketParticle() {
-    }
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-    public PacketParticle(String s, double x1, double y1, double z1, double x2, double y2, double z2) {
-        this.x = (float)x1;
-        this.y = (float)y1;
-        this.z = (float)z1;
-        this.mx = (float)x2;
-        this.my = (float)y2;
-        this.mz = (float)z2;
-        this.particleType = s;
-    }
+public class PacketParticle extends PacketBase
+{
+	public float x, y, z;
+	public float mx, my, mz;
+	public float scale;
+	/** Particle type */
+	public String particleType;
 
-    @Override
-    public void encodeInto(ChannelHandlerContext ctx, ByteBuf data) {
-        data.writeFloat(this.x);
-        data.writeFloat(this.y);
-        data.writeFloat(this.z);
-        data.writeFloat(this.mx);
-        data.writeFloat(this.my);
-        data.writeFloat(this.mz);
-        this.writeUTF(data, this.particleType);
-    }
+	public PacketParticle() {}
 
-    @Override
-    public void decodeInto(ChannelHandlerContext ctx, ByteBuf data) {
-        this.x = data.readFloat();
-        this.y = data.readFloat();
-        this.z = data.readFloat();
-        this.mx = data.readFloat();
-        this.my = data.readFloat();
-        this.mz = data.readFloat();
-        this.particleType = this.readUTF(data);
-    }
+	public PacketParticle(String s, double x1, double y1, double z1, double x2, double y2, double z2)
+	{ this(s, x1, y1, z1, x2, y2, z2, 1.0F); }
+	
+	public PacketParticle(String s, double x1, double y1, double z1, double x2, double y2, double z2, float size)
+	{
+		x = (float)x1;
+		y = (float)y1;
+		z = (float)z1;
+		mx = (float)x2;
+		my = (float)y2;
+		mz = (float)z2;
+		particleType = s;
+		scale = size;
+	}
 
-    @Override
-    public void handleServerSide(EntityPlayerMP playerEntity) {
-        FlansMod.log("Received particle packet on server. Disregarding.");
-    }
+	@Override
+	public void encodeInto(ChannelHandlerContext ctx, ByteBuf data) 
+	{
+		data.writeFloat(x);
+		data.writeFloat(y);
+		data.writeFloat(z);
+		data.writeFloat(mx);
+		data.writeFloat(my);
+		data.writeFloat(mz);
+		data.writeFloat(scale);
+		writeUTF(data, particleType);
+	}
 
-    @SideOnly(value=Side.CLIENT)
-    @Override
-    public void handleClientSide(EntityPlayer clientPlayer) {
-        FlansMod.proxy.spawnParticle(this.particleType, this.x, this.y, this.z, this.mx, this.my, this.mz);
-    }
+	@Override
+	public void decodeInto(ChannelHandlerContext ctx, ByteBuf data) 
+	{
+		x = data.readFloat();
+		y = data.readFloat();
+		z = data.readFloat();
+		mx = data.readFloat();
+		my = data.readFloat();
+		mz = data.readFloat();
+		scale = data.readFloat();
+		particleType = readUTF(data);
+	}
+
+	@Override
+	public void handleServerSide(EntityPlayerMP playerEntity) 
+	{
+		FlansMod.log("Received particle packet on server. Disregarding.");
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void handleClientSide(EntityPlayer clientPlayer) 
+	{
+		FlansMod.proxy.spawnParticle(particleType, x, y, z, mx, my, mz, scale);
+	}
 }
-
