@@ -1,9 +1,41 @@
 package noppes.npcs.entity;
 
+import com.flansmod.client.FlansModClient;
+import com.flansmod.client.model.GunAnimations;
+import com.flansmod.common.guns.*;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
-
-import java.io.IOException;
-import java.util.*;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.event.ServerChatEvent;
+import noppes.npcs.*;
+import noppes.npcs.ai.EntityAIMoveIndoors;
+import noppes.npcs.ai.EntityAIPanic;
+import noppes.npcs.ai.EntityAIWander;
+import noppes.npcs.ai.EntityAIWatchClosest;
+import noppes.npcs.ai.*;
+import noppes.npcs.ai.pathfinder.FlyingMoveHelper;
+import noppes.npcs.ai.pathfinder.PathNavigateFlying;
+import noppes.npcs.ai.selector.NPCAttackSelector;
+import noppes.npcs.ai.target.EntityAIClearTarget;
+import noppes.npcs.ai.target.EntityAIClosestTarget;
+import noppes.npcs.ai.target.EntityAIOwnerHurtByTarget;
+import noppes.npcs.ai.target.EntityAIOwnerHurtTarget;
+import noppes.npcs.api.entity.ICustomNpc;
+import noppes.npcs.api.item.IItemStack;
+import noppes.npcs.client.EntityUtil;
+import noppes.npcs.constants.*;
+import noppes.npcs.controllers.FactionController;
+import noppes.npcs.controllers.LinkedNpcController;
+import noppes.npcs.controllers.LinkedNpcController.LinkedData;
+import noppes.npcs.controllers.PlayerDataController;
+import noppes.npcs.controllers.data.*;
+import noppes.npcs.entity.data.DataTimers;
+import noppes.npcs.roles.*;
+import noppes.npcs.scripted.entity.ScriptNpc;
+import noppes.npcs.scripted.event.NpcEvent;
+import noppes.npcs.util.GameProfileAlt;
+import noppes.npcs.util.NPCInterfaceUtil;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -13,70 +45,27 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
 import net.minecraft.entity.boss.IBossDisplayData;
+import net.minecraft.entity.item.EntityExpBottle;
+import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.entity.projectile.*;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBow;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.IChatComponent;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.event.ServerChatEvent;
-import noppes.npcs.*;
-import noppes.npcs.ai.*;
-import noppes.npcs.ai.EntityAIMoveIndoors;
-import noppes.npcs.ai.EntityAIPanic;
-import noppes.npcs.ai.EntityAIWander;
-import noppes.npcs.ai.EntityAIWatchClosest;
-import noppes.npcs.ai.pathfinder.FlyingMoveHelper;
-import noppes.npcs.ai.pathfinder.PathNavigateFlying;
-import noppes.npcs.ai.selector.NPCAttackSelector;
-import noppes.npcs.ai.target.EntityAIClearTarget;
-import noppes.npcs.ai.target.EntityAIClosestTarget;
-import noppes.npcs.ai.target.EntityAIOwnerHurtByTarget;
-import noppes.npcs.ai.target.EntityAIOwnerHurtTarget;
-import noppes.npcs.client.EntityUtil;
-import noppes.npcs.constants.EnumAnimation;
-import noppes.npcs.constants.EnumJobType;
-import noppes.npcs.constants.EnumMovingType;
-import noppes.npcs.constants.EnumNavType;
-import noppes.npcs.constants.EnumPacketClient;
-import noppes.npcs.constants.EnumPotionType;
-import noppes.npcs.constants.EnumRoleType;
-import noppes.npcs.constants.EnumStandingType;
-import noppes.npcs.controllers.data.*;
-import noppes.npcs.controllers.FactionController;
-import noppes.npcs.controllers.LinkedNpcController;
-import noppes.npcs.controllers.LinkedNpcController.LinkedData;
-import noppes.npcs.controllers.PlayerDataController;
-import noppes.npcs.entity.data.DataTimers;
-import noppes.npcs.roles.*;
-import noppes.npcs.scripted.entity.ScriptNpc;
-import noppes.npcs.scripted.event.*;
-import noppes.npcs.api.entity.ICustomNpc;
-import noppes.npcs.api.item.IItemStack;
-import noppes.npcs.util.GameProfileAlt;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+
+import java.io.IOException;
+import java.util.*;
 
 public abstract class EntityNPCInterface extends EntityCreature implements IEntityAdditionalSpawnData, ICommandSender, IRangedAttackMob, IBossDisplayData{
 	public ICustomNpc wrappedNPC;
@@ -127,6 +116,8 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 
 	public boolean updateClient = false;
 	public boolean updateAI = false;
+
+	public boolean lastBurst = false;
 
 	public FlyingMoveHelper flyMoveHelper = new FlyingMoveHelper(this);
 	public PathNavigate flyNavigator = new PathNavigateFlying(this, worldObj);
@@ -240,6 +231,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		}
 
 		boolean var4 = par1Entity.attackEntityFrom(new NpcDamageSource("mob", this), f);
+		NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumPacketClient.ANIMATE_FLAN_MELEE);
 
 		if (var4){
 			if(getOwner() instanceof EntityPlayer)
@@ -583,16 +575,244 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			updateTasks();
 			return;
 		}
-		if (!isRemote()) {
+		if (!isRemote())
+		{
 			NpcEvent.RangedLaunchedEvent event = new NpcEvent.RangedLaunchedEvent(wrappedNPC,stats.pDamage,entity);
 			if (EventHooks.onNPCRangedAttack(this, event))
 				return;
-			for (int i = 0; i < this.stats.shotCount; i++) {
-				EntityProjectile projectile = shoot(entity, stats.accuracy, proj, f == 1);
-				projectile.damage = event.getDamage();
+
+			if (!getGuns().isEmpty())
+			{
+				for(ItemStack gun: getGuns())
+				{
+					for (int i = 0; i < ((ItemGun)gun.getItem()).type.getNumBullets(gun); i++)
+					{
+						shootProjectile(entity, event, gun, proj, f);
+					}
+				}
 			}
-			this.playSound(this.stats.fireSound, 2.0F, 1.0f);
+			else
+			{
+				for (int i = 0; i < stats.shotCount; i++)
+				{
+					shootProjectile(entity, event, null, proj, f);
+				}
+			}
+
+			if (inventory.useWeaponRangedStats && !getGuns().isEmpty())
+			{
+				for(ItemStack gun: getGuns())
+					NPCInterfaceUtil.playGunFireSound(gun, posX, posY, posZ, dimension, lastBurst);
+			}
+			else
+			{
+				playSound(stats.fireSound, 2.0F, 1.0f);
+			}
+
+			NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumPacketClient.ANIMATE_FLAN_SHOOT);
 		}
+	}
+
+	public void shootProjectile(EntityLivingBase entity, NpcEvent.RangedLaunchedEvent event, ItemStack gunItemStack, ItemStack projectileItemStack, float f)
+	{
+		Item projectileItem = projectileItemStack.getItem();
+		if (projectileItem instanceof ItemShootable)
+		{
+			shootFlanProjectile(gunItemStack, projectileItemStack);
+		}
+		else if (projectileItem instanceof ItemPotion)
+		{
+			shootThrowable(new EntityPotion(worldObj, this, projectileItemStack), entity, f == 1);
+		}
+		else if (projectileItem instanceof ItemExpBottle)
+		{
+			shootThrowable(new EntityExpBottle(worldObj, this), entity, f == 1);
+		}
+		else if (projectileItem instanceof ItemEgg)
+		{
+			shootThrowable(new EntityEgg(worldObj, this), entity, f == 1);
+		}
+		else if (projectileItem instanceof ItemFirework)
+		{
+			EntityFireworkRocket entityfireworkrocket = new EntityFireworkRocket(worldObj, posX, posY, posZ, projectileItemStack);
+			worldObj.spawnEntityInWorld(entityfireworkrocket);
+		}
+		else
+		{
+			EntityProjectile projectile = shoot(entity, stats.accuracy, projectileItemStack, f == 1);
+			projectile.damage = event.getDamage();
+		}
+	}
+
+	public void shootThrowable(EntityThrowable throwable, EntityLivingBase entity, boolean indirect)
+	{
+		double varX = entity.posX - this.posX;
+		double varY = entity.boundingBox.minY + (double)(entity.height / 2.0F) - (this.posY + this.getEyeHeight());
+		double varZ = entity.posZ - this.posZ;
+		float varF = stats.pPhysics ? MathHelper.sqrt_double(varX * varX + varZ * varZ) : 0.0F;
+		float angle = NPCInterfaceUtil.getAngleForXYZ(stats.pSpeed, varY, varF, indirect);
+		float acc = 20.0F - MathHelper.floor_float(stats.accuracy / 5.0F);
+		NPCInterfaceUtil.setThrowableHeading(throwable, stats.pSpeed, stats.pPhysics, varX, varY, varZ, angle, acc);
+		worldObj.spawnEntityInWorld(throwable);
+	}
+
+	public void reloadGuns()
+	{
+		for(ItemStack gun: getGuns())
+			NPCInterfaceUtil.playGunReloadSound(gun, posX, posY, posZ, dimension);
+		NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumPacketClient.ANIMATE_FLAN_RELOAD);
+	}
+
+	public List<ItemStack> getGuns()
+	{
+		ArrayList<ItemStack> guns = new ArrayList<>();
+		ItemStack mainHand = getHeldItem();
+		ItemStack offHand = getOffHand();
+
+		if(mainHand != null && mainHand.getItem() instanceof ItemGun && (NPCInterfaceUtil.isGunRangedWeapon((ItemGun) mainHand.getItem())))
+		{
+			guns.add(mainHand);
+		}
+		if(offHand != null && offHand.getItem() instanceof ItemGun && (NPCInterfaceUtil.isGunRangedWeapon((ItemGun) offHand.getItem())))
+		{
+			guns.add(offHand);
+		}
+ 		return guns;
+	}
+
+	public void animateFlanGunMelee()
+	{
+		ItemStack heldItem = getHeldItem();
+		ItemStack offHandItem = getOffHand();
+		if (heldItem != null && heldItem.getItem() instanceof ItemGun)
+		{
+			GunAnimations animations = FlansModClient.getGunAnimations(this, false);
+
+			animations.doMelee(stats.attackSpeed);
+		}
+		if (offHandItem != null && offHandItem.getItem() instanceof ItemGun)
+		{
+			GunAnimations animations = FlansModClient.getGunAnimations(this, true);
+
+			animations.doMelee(stats.attackSpeed);
+		}
+	}
+
+
+	public void animateFlanGunReload()
+	{
+		ItemStack heldItem = getHeldItem();
+		ItemStack offHandItem = getOffHand();
+		if (heldItem != null && heldItem.getItem() instanceof ItemGun)
+		{
+			GunType gunType = ((ItemGun)heldItem.getItem()).type;
+			GunAnimations animations = FlansModClient.getGunAnimations(this, false);
+
+			int pumpDelay = gunType.model == null ? 0 : gunType.model.pumpDelayAfterReload;
+			int pumpTime = gunType.model == null ? 1 : gunType.model.pumpTime;
+			int chargeDelay = gunType.model == null ? 0 : gunType.model.chargeDelayAfterReload;
+			int chargeTime = gunType.model == null ? 1 : gunType.model.chargeTime;
+
+			animations.doReload(stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime, 1, false);
+		}
+		if (offHandItem != null && offHandItem.getItem() instanceof ItemGun)
+		{
+			GunType gunType = ((ItemGun)offHandItem.getItem()).type;
+			GunAnimations animations = FlansModClient.getGunAnimations(this, true);
+
+			int pumpDelay = gunType.model == null ? 0 : gunType.model.pumpDelayAfterReload;
+			int pumpTime = gunType.model == null ? 1 : gunType.model.pumpTime;
+			int chargeDelay = gunType.model == null ? 0 : gunType.model.chargeDelayAfterReload;
+			int chargeTime = gunType.model == null ? 1 : gunType.model.chargeTime;
+
+			animations.doReload(this.stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime, 1, false);
+		}
+	}
+
+	public void animateFlanGunShoot()
+	{
+		ItemStack heldItem = getHeldItem();
+		ItemStack offHandItem = getOffHand();
+		if (heldItem != null && heldItem.getItem() instanceof ItemGun)
+		{
+			GunType gunType = ((ItemGun)heldItem.getItem()).type;
+			GunAnimations animations = FlansModClient.getGunAnimations(this, false);
+
+			int pumpDelay = gunType.model == null ? 0 : gunType.model.pumpDelay;
+			int pumpTime = gunType.model == null ? 1 : gunType.model.pumpTime;
+			int hammerDelay = gunType.model == null ? 0 : gunType.model.hammerDelay;
+			int casingDelay = gunType.model == null ? 0 : gunType.model.casingDelay;
+			float hammerAngle = gunType.model == null ? 0 : gunType.model.hammerAngle;
+			float althammerAngle = gunType.model == null ? 0 : gunType.model.althammerAngle;
+
+			animations.doShoot(pumpDelay, pumpTime, hammerDelay, hammerAngle, althammerAngle, casingDelay);
+		}
+		if (offHandItem != null && offHandItem.getItem() instanceof ItemGun)
+		{
+			GunType gunType = ((ItemGun)offHandItem.getItem()).type;
+			GunAnimations animations = FlansModClient.getGunAnimations(this, true);
+
+			int pumpDelay = gunType.model == null ? 0 : gunType.model.pumpDelay;
+			int pumpTime = gunType.model == null ? 1 : gunType.model.pumpTime;
+			int hammerDelay = gunType.model == null ? 0 : gunType.model.hammerDelay;
+			int casingDelay = gunType.model == null ? 0 : gunType.model.casingDelay;
+			float hammerAngle = gunType.model == null ? 0 : gunType.model.hammerAngle;
+			float althammerAngle = gunType.model == null ? 0 : gunType.model.althammerAngle;
+
+			animations.doShoot(pumpDelay, pumpTime, hammerDelay, hammerAngle, althammerAngle, casingDelay);
+		}
+	}
+
+	public void shootFlanProjectile(ItemStack itemStackGun, ItemStack itemStackShootable)
+	{
+		ItemShootable itemShootable = (ItemShootable) itemStackShootable.getItem();
+		EntityShootable shot;
+
+		if (itemShootable instanceof ItemGrenade)
+		{
+			shot = ((ItemGrenade) itemShootable).getGrenade(worldObj, this);
+		}
+		else
+		{
+			float spread;
+			float damage;
+			int speed;
+			boolean shotgun;
+
+			if(itemStackGun != null && inventory.useWeaponRangedStats)
+			{
+				GunType gunType = ((ItemGun)itemStackGun.getItem()).type;
+				damage = ((ItemGun)itemStackGun.getItem()).type.getDamage(itemStackGun);
+				speed = Math.round(Math.max(((ItemGun)itemStackGun.getItem()).type.getBulletSpeed(itemStackGun, itemStackShootable), 1F));
+				spread = gunType.getSpread(itemStackGun, isSneaking(), isSprinting());
+				shotgun = (gunType.getNumBullets(itemStackGun) > 1);
+			}
+			else
+			{
+				damage = stats.pDamage;
+				speed = stats.pSpeed;
+				spread =  NPCInterfaceUtil.accuracyToBulletSpread(stats.accuracy);
+				shotgun = (stats.shotCount > 1);
+			}
+
+			shot = itemShootable.getEntity(
+					worldObj,
+					Vec3.createVectorHelper(posX, posY + getEyeHeight(), posZ),
+					rotationYawHead,
+					rotationPitch,
+					this,
+					spread,
+					damage,
+					speed,
+					0,
+					itemShootable.type
+			);
+
+			if (shot instanceof EntityBullet)
+				((EntityBullet) shot).shotgun = shotgun;
+		}
+
+		worldObj.spawnEntityInWorld(shot);
 	}
 
 	public EntityProjectile shoot(EntityLivingBase entity, int accuracy, ItemStack proj, boolean indirect){

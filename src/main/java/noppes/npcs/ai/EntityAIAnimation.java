@@ -1,6 +1,8 @@
 package noppes.npcs.ai;
 
 import net.minecraft.entity.ai.EntityAIBase;
+
+import com.flansmod.common.guns.ItemGun;
 import noppes.npcs.constants.AiMutex;
 import noppes.npcs.constants.EnumAnimation;
 import noppes.npcs.constants.EnumMovingType;
@@ -27,7 +29,11 @@ public class EntityAIAnimation extends EntityAIBase
     		return npc.currentAnimation != EnumAnimation.LYING;
     	
     	if(npc.stats.aimWhileShooting && npc.isAttacking())
-    		return npc.currentAnimation != EnumAnimation.AIMING;
+		{
+			if (npc.getOffHand() != null && npc.getOffHand().getItem() instanceof ItemGun)
+				return npc.currentAnimation != EnumAnimation.HUG;
+			return npc.currentAnimation != EnumAnimation.AIMING;
+		}
     	if(npc.ai.animationType == EnumAnimation.NONE)
     		return npc.currentAnimation != EnumAnimation.NONE;
     	isAttacking = npc.isAttacking();
@@ -45,6 +51,11 @@ public class EntityAIAnimation extends EntityAIBase
     @Override
     public void updateTask(){
     	if(npc.stats.aimWhileShooting && npc.isAttacking()){
+			if (npc.getOffHand() != null && npc.getOffHand().getItem() instanceof ItemGun)
+			{
+				setAnimation(EnumAnimation.HUG);
+				return;
+			}
     		setAnimation(EnumAnimation.AIMING);
     		return;
     	}

@@ -10,10 +10,10 @@ import noppes.npcs.util.ValueUtil;
 
 public class DataStats {
 	
-	private float attackStrength = 5;
+	private float attackStrength = 1;
 	public int attackSpeed = 20, attackRange = 2, knockback = 0;
-	public int minDelay = 20, maxDelay = 40, rangedRange = 15, fireRate = 5, burstCount = 1, shotCount = 1, accuracy = 60;
-	public int aggroRange = 16;
+	public int minDelay = 20, maxDelay = 40, rangedRange = 64, fireRate = 5, burstCount = 1, shotCount = 1, accuracy = 60;
+	public int aggroRange = 64;
 	
 	public EnumPotionType potionType = EnumPotionType.None;
 	public int potionDuration = 5; //20 = 1 second
@@ -44,7 +44,7 @@ public class DataStats {
     public EnumParticleType pTrail = EnumParticleType.None;
     public int pEffAmp = 0;
     public String fireSound = "random.bow";
-	public boolean aimWhileShooting = false;
+	public boolean aimWhileShooting = true;
 	public boolean projectilesKeepTerrain = false;
 	
 	public EnumCreatureAttribute creatureType = EnumCreatureAttribute.UNDEFINED;

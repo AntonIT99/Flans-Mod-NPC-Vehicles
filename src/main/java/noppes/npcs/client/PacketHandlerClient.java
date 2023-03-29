@@ -327,5 +327,24 @@ public class PacketHandlerClient extends PacketHandlerServer{
 		else if(type == EnumPacketClient.STOP_SOUNDS) {
 			ScriptSoundController.Instance.stopAllSounds();
 		}
+		else if (type == EnumPacketClient.ANIMATE_FLAN_SHOOT || type == EnumPacketClient.ANIMATE_FLAN_RELOAD || type == EnumPacketClient.ANIMATE_FLAN_MELEE)
+		{
+			Entity entity = Minecraft.getMinecraft().theWorld.getEntityByID(buffer.readInt());
+			if(!(entity instanceof EntityNPCInterface))
+				return;
+			EntityNPCInterface npc = (EntityNPCInterface) entity;
+			switch(type)
+			{
+				case ANIMATE_FLAN_SHOOT:
+					npc.animateFlanGunShoot();
+					break;
+				case ANIMATE_FLAN_RELOAD:
+					npc.animateFlanGunReload();
+					break;
+				case ANIMATE_FLAN_MELEE:
+					npc.animateFlanGunMelee();
+					break;
+			}
+		}
 	}
 }

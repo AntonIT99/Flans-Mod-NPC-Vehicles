@@ -4,11 +4,13 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 import noppes.npcs.constants.AiMutex;
 import noppes.npcs.constants.EnumAnimation;
 import noppes.npcs.constants.EnumNavType;
+import noppes.npcs.constants.EnumPacketClient;
 import noppes.npcs.entity.EntityNPCInterface;
+
+import java.sql.SQLOutput;
 
 public class EntityAIRangedAttack extends EntityAIBase
 {
@@ -26,8 +28,8 @@ public class EntityAIRangedAttack extends EntityAIBase
      * maxRangedAttackTime.
      */
     private int rangedAttackTime = 0;
-    private int field_75318_f = 0;
-    private int field_70846_g = 0;
+    private int moveTries = 0;
+    private int burstCount = 0;
     private int attackTick = 0;
     private boolean hasFired = false;
     private boolean navOverride = false;
@@ -88,7 +90,7 @@ public class EntityAIRangedAttack extends EntityAIBase
         this.attackTarget = null;
         this.entityHost.setAttackTarget(null);
         this.entityHost.getNavigator().clearPathEntity();
-        this.field_75318_f = 0;
+        this.moveTries = 0;
         this.hasFired = false;
         this.rangedAttackTime = this.entityHost.stats.minDelay / 2;
     }
@@ -100,20 +102,20 @@ public class EntityAIRangedAttack extends EntityAIBase
     {
     	this.entityHost.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30.0F, 30.0F);
         double var1 = this.entityHost.getDistanceSq(this.attackTarget.posX, this.attackTarget.boundingBox.minY, this.attackTarget.posZ);
-		float field_82642_h = this.entityHost.stats.rangedRange * this.entityHost.stats.rangedRange;
+		float range = this.entityHost.stats.rangedRange * this.entityHost.stats.rangedRange;
 
 		if (!navOverride && this.entityHost.ai.directLOS)
 		{
 			if (this.entityHost.getEntitySenses().canSee(this.attackTarget))
 		    {
-				++this.field_75318_f;
+				this.moveTries++;
 		    }
 			else
 			{
-				this.field_75318_f = 0;
+				this.moveTries = 0;
 			}
 			int v = this.entityHost.ai.tacticalVariant == EnumNavType.Default ? 20 : 5;
-			if (var1 <= (double)field_82642_h && this.field_75318_f >= v)
+			if (var1 <= (double)range && this.moveTries >= v)
 			{
 				this.entityHost.getNavigator().clearPathEntity();
 			}
@@ -127,29 +129,31 @@ public class EntityAIRangedAttack extends EntityAIBase
         
         if (this.rangedAttackTime <= 0)
         {
-            if (var1 <= (double)field_82642_h && (this.entityHost.getEntitySenses().canSee(this.attackTarget) || this.entityHost.ai.canFireIndirect == 2))
+            if (var1 <= (double)range && (this.entityHost.getEntitySenses().canSee(this.attackTarget) || this.entityHost.ai.canFireIndirect == 2))
             {
-            	 if (this.field_70846_g++ <= this.entityHost.stats.burstCount)
+                 if (burstCount++ <= entityHost.stats.burstCount)
                  {
+                     entityHost.lastBurst = (burstCount > entityHost.stats.burstCount);
                      this.rangedAttackTime = this.entityHost.stats.fireRate;
                  }
                  else
                  {
-                	 this.field_70846_g = 0;
+                	 this.burstCount = 0;
                 	 this.hasFired = true;
                 	 this.rangedAttackTime = (this.entityHost.stats.maxDelay - MathHelper.floor_float(this.entityHost.getRNG().nextFloat() * (this.entityHost.stats.maxDelay - this.entityHost.stats.minDelay)));
+                     entityHost.reloadGuns();
                  }
-            	 
-            	 if (this.field_70846_g > 1)
+
+            	 if (this.burstCount > 1)
                  {
             		 boolean indirect = false;
-            		 
+
             		 switch(this.entityHost.ai.canFireIndirect)
             		 {
-            		     case 1 : indirect = var1 > (double)field_82642_h / 2; break;
+            		     case 1 : indirect = var1 > (double)range / 2; break;
             		     case 2 : indirect = !this.entityHost.getEntitySenses().canSee(this.attackTarget);
             		 }
-            		 
+
             		 this.rangedAttackEntityHost.attackEntityWithRangedAttack(this.attackTarget, indirect ? 1 : 0);
             		 if (this.entityHost.currentAnimation != EnumAnimation.AIMING)
             		 {
