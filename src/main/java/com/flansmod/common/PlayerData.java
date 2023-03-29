@@ -13,7 +13,6 @@ import com.flansmod.common.guns.GunType;
 import com.flansmod.common.guns.ItemGun;
 import com.flansmod.common.guns.raytracing.PlayerSnapshot;
 import com.flansmod.common.network.PacketSelectOffHandGun;
-import com.flansmod.common.teams.ItemTeamArmour;
 import com.flansmod.common.teams.PlayerClass;
 import com.flansmod.common.teams.Team;
 import com.flansmod.common.vector.Vector3f;
@@ -42,7 +41,7 @@ public class PlayerData
 	/** The MG this player is using */
 	public EntityMG mountingGun;
 	/** Tickers to stop shooting too fast */
-	public int shootTimeRight, shootTimeLeft;
+	public float shootTimeRight, shootTimeLeft;
 	/** Stops player shooting immediately after swapping weapons */
 	public int shootClickDelay;
 	/** True if this player is shooting */
@@ -61,7 +60,10 @@ public class PlayerData
 	public int meleeProgress, meleeLength;
 	/** When the player shoots a burst fire weapon, one shot is fired immediately and this counter keeps track of how many more should be fired */
 	public int burstRoundsRemainingLeft = 0, burstRoundsRemainingRight = 0;
-	
+
+	public boolean isAmmoEmpty;
+	public boolean reloadedAfterRespawn = false;
+
 	public Vector3f[] lastMeleePositions;
 	
 	//Teams related fields
@@ -83,6 +85,8 @@ public class PlayerData
 	public PlayerClass newPlayerClass;
 	/** Keeps the player out of having to rechose their team each round */
 	public boolean builder;
+	/** e.e */
+	public boolean playerMovedByAutobalancer=false;
 	/** Save the player's skin here, to replace after having done a swap for a certain class override */
 	@SideOnly(Side.CLIENT)
 	public ResourceLocation skin;
@@ -99,14 +103,14 @@ public class PlayerData
 			clientTick(player);
 		if(shootTimeRight > 0)
 			shootTimeRight--;
-		if(shootTimeRight == 0)
+		if(shootTimeRight <= 0)
 			reloadingRight = false;
 		
 		if(shootTimeLeft > 0)
 			shootTimeLeft--;
-		if(shootTimeLeft == 0)
+		if(shootTimeLeft <= 0)
 			reloadingLeft = false;
-		
+
 		if(shootClickDelay > 0)
 			shootClickDelay--;
 		
@@ -129,7 +133,7 @@ public class PlayerData
 	
 	public void clientTick(EntityPlayer player)
 	{
-		if(player.getCurrentEquippedItem() == null || !(player.getCurrentEquippedItem().getItem() instanceof ItemGun) || ((ItemGun)player.getCurrentEquippedItem().getItem()).type.oneHanded || player.getCurrentEquippedItem() == offHandGunStack)
+		if(player.getCurrentEquippedItem() == null || !(player.getCurrentEquippedItem().getItem() instanceof ItemGun) || ((ItemGun)player.getCurrentEquippedItem().getItem()).type.getOneHanded() || player.getCurrentEquippedItem() == offHandGunStack)
 		{
 			//offHandGunSlot = 0;
 			offHandGunStack = null;
@@ -175,7 +179,7 @@ public class PlayerData
 		if(stackInSlot.getItem() instanceof ItemGun)
 		{
 			ItemGun item = ((ItemGun)stackInSlot.getItem());
-			if(item.type.oneHanded)
+			if(item.type.getOneHanded())
 				return true;
 		}
 		return false;
@@ -197,7 +201,7 @@ public class PlayerData
 	{
 		meleeLength = meleeTime;
 		lastMeleePositions = new Vector3f[type.meleePath.size()];
-		
+
 		for(int k = 0; k < type.meleeDamagePoints.size(); k++)
 		{
 			Vector3f meleeDamagePoint = type.meleeDamagePoints.get(k);

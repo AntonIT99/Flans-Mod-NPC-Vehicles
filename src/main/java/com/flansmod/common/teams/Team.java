@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,6 +16,9 @@ import com.flansmod.common.PlayerHandler;
 import com.flansmod.common.types.EnumType;
 import com.flansmod.common.types.InfoType;
 import com.flansmod.common.types.TypeFile;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class Team extends InfoType
 {
@@ -29,6 +33,7 @@ public class Team extends InfoType
 	
 	public int teamColour = 0xffffff;
 	public char textColour = 'f';
+	public boolean allowedForRoundsGenerator = false;
 	
 	public ItemStack hat;
 	public ItemStack chest;
@@ -37,7 +42,7 @@ public class Team extends InfoType
 	
 	public Team(String s, String s1, int teamCol, char textCol)
 	{
-		super(new TypeFile(EnumType.team, s, false));
+		super(new TypeFile(EnumType.team, s, "", false));
 		shortName = s;
 		name = s1;
 		teamColour = teamCol;
@@ -49,6 +54,18 @@ public class Team extends InfoType
 	{
 		super(file);
 		teams.add(this);
+	}
+	
+
+	@Override
+	protected void preRead(TypeFile file) 
+	{
+	}
+	
+
+	@Override
+	protected void postRead(TypeFile file) 
+	{
 	}
 	
 	@Override
@@ -144,9 +161,12 @@ public class Team extends InfoType
 			{
 				classes.add(PlayerClass.getClass(split[1]));
 			}
+			if(split[0].equals("allowedForRoundsGenerator")){
+				this.allowedForRoundsGenerator = Boolean.parseBoolean(split[1]);
+			}
 		} catch (Exception e)
 		{
-			System.out.println("Reading team file failed.");
+			FlansMod.log("Reading team file failed.");
 			e.printStackTrace();
 		}
 	}
@@ -232,5 +252,18 @@ public class Team extends InfoType
 			return dataB.score - dataA.score;
 		}
 		
+	}
+
+	@Override
+	public float GetRecommendedScale() 
+	{
+		return 50.0f;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBase GetModel() 
+	{
+		return null;
 	}
 }

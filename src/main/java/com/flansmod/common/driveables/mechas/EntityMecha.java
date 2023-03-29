@@ -2,6 +2,41 @@ package com.flansmod.common.driveables.mechas;
 
 import java.util.ArrayList;
 
+import com.flansmod.client.debug.EntityDebugVector;
+import com.flansmod.client.gui.GuiDriveableController;
+import com.flansmod.client.model.GunAnimations;
+import com.flansmod.common.FlansMod;
+import com.flansmod.common.RotatedAxes;
+import com.flansmod.common.driveables.DriveableData;
+import com.flansmod.common.driveables.DriveablePart;
+import com.flansmod.common.driveables.DriveableType;
+import com.flansmod.common.driveables.EntityDriveable;
+import com.flansmod.common.driveables.EntitySeat;
+import com.flansmod.common.driveables.EnumDriveablePart;
+import com.flansmod.common.driveables.mechas.MechaType.LegNode;
+import com.flansmod.common.eventhandlers.DriveableDeathByHandEvent;
+import com.flansmod.common.eventhandlers.GunFiredEvent;
+import com.flansmod.common.guns.BulletType;
+import com.flansmod.common.guns.EntityBullet;
+import com.flansmod.common.guns.EnumFireMode;
+import com.flansmod.common.guns.GunType;
+import com.flansmod.common.guns.InventoryHelper;
+import com.flansmod.common.guns.ItemBullet;
+import com.flansmod.common.guns.ItemGun;
+import com.flansmod.common.guns.raytracing.DriveableHit;
+import com.flansmod.common.network.PacketDriveableDamage;
+import com.flansmod.common.network.PacketDriveableGUI;
+import com.flansmod.common.network.PacketDriveableKey;
+import com.flansmod.common.network.PacketMechaControl;
+import com.flansmod.common.network.PacketPlaySound;
+import com.flansmod.common.teams.TeamsManager;
+import com.flansmod.common.tools.ItemTool;
+import com.flansmod.common.vector.Vector3f;
+import com.flansmod.common.vector.Vector3i;
+
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -24,37 +59,8 @@ import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings.GameType;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent;
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import com.flansmod.client.debug.EntityDebugVector;
-import com.flansmod.client.gui.GuiDriveableController;
-import com.flansmod.client.model.GunAnimations;
-import com.flansmod.common.FlansMod;
-import com.flansmod.common.RotatedAxes;
-import com.flansmod.common.driveables.DriveableData;
-import com.flansmod.common.driveables.DriveablePart;
-import com.flansmod.common.driveables.DriveableType;
-import com.flansmod.common.driveables.EntityDriveable;
-import com.flansmod.common.driveables.EntitySeat;
-import com.flansmod.common.driveables.EnumDriveablePart;
-import com.flansmod.common.guns.BulletType;
-import com.flansmod.common.guns.EnumFireMode;
-import com.flansmod.common.guns.GunType;
-import com.flansmod.common.guns.InventoryHelper;
-import com.flansmod.common.guns.ItemBullet;
-import com.flansmod.common.guns.ItemGun;
-import com.flansmod.common.network.PacketDriveableDamage;
-import com.flansmod.common.network.PacketDriveableGUI;
-import com.flansmod.common.network.PacketDriveableKey;
-import com.flansmod.common.network.PacketMechaControl;
-import com.flansmod.common.network.PacketPlaySound;
-import com.flansmod.common.teams.TeamsManager;
-import com.flansmod.common.tools.ItemTool;
-import com.flansmod.common.vector.Vector3f;
-import com.flansmod.common.vector.Vector3i;
 
 public class EntityMecha extends EntityDriveable
 {
@@ -67,7 +73,7 @@ public class EntityMecha extends EntityDriveable
     public MechaInventory inventory;
     public float legSwing = 0;
     /** Used for shooting guns */
-    public int shootDelayLeft = 0, shootDelayRight = 0;
+    public float shootDelayLeft = 0, shootDelayRight = 0;
     /** Used for gun sounds */
     public int soundDelayLeft = 0, soundDelayRight = 0;
     /** The coords of the blocks being destroyed */
@@ -78,6 +84,48 @@ public class EntityMecha extends EntityDriveable
     private float rocketTimer = 0F;
     private int diamondTimer = 0;
     
+    public int legAnimTimer = 1;
+    public int legAnimMax = 1;
+    
+    public int animState;
+    
+    
+    //Animation speeds
+	public int targetLeftUpper = 0;
+	public int targetLeftLower = 0;
+	public int targetLeftFoot = 0;
+	public int targetLeftUpperSpeed = 1;
+	public int targetLeftLowerSpeed = 1;
+	public int targetLeftFootSpeed = 1;
+	
+	int targetRightUpper = 0;
+	int targetRightLower = 0;
+	int targetRightFoot = 0;
+	int targetRightUpperSpeed = 1;
+	int targetRightLowerSpeed = 1;
+	int targetRightFootSpeed = 1;
+	
+	//Animation positions
+	public float leftLegUpperAngle = 0;
+	public float leftLegLowerAngle = 0;
+	public float leftFootAngle = 0;
+    
+	public float rightLegUpperAngle = 0;
+	public float rightLegLowerAngle = 0;
+	public float rightFootAngle = 0;
+	
+	//Duplicate values for smoothness
+	public float prevLeftLegUpperAngle = 0;
+	public float prevLeftLegLowerAngle = 0;
+	public float prevLeftFootAngle = 0;
+	public float prevRightLegUpperAngle = 0;
+	public float prevRightLegLowerAngle = 0;
+	public float prevRightFootAngle = 0;
+	
+	public float legPosition = 0;
+	
+	public int stompDelay;
+	
     /** Gun animations */
     public GunAnimations leftAnimations = new GunAnimations(), rightAnimations = new GunAnimations();
 	boolean couldNotFindFuel;
@@ -91,25 +139,28 @@ public class EntityMecha extends EntityDriveable
 		stepHeight = 3;
 		legAxes = new RotatedAxes();
 		inventory = new MechaInventory(this);
+		isMecha = true;
 	}
 	
-	public EntityMecha(World world, double x, double y, double z, MechaType type, DriveableData data, NBTTagCompound tags) 
+	public EntityMecha(World world, double x, double y, double z, MechaType type, DriveableData data, NBTTagCompound tags, EntityPlayer p)
 	{
-		super(world, type, data);
+		super(world, type, data, p);
 		legAxes = new RotatedAxes();
 		setSize(2F, 3F);
 		stepHeight = 3;
 		setPosition(x, y, z);
 		initType(type, false);
 		inventory = new MechaInventory(this, tags);
+		isMecha = true;
 	}
 	
 	public EntityMecha(World world, double x, double y, double z, EntityPlayer placer, MechaType type, DriveableData data, NBTTagCompound tags) 
 	{
-		this(world, x, y, z, type, data, tags);
+		this(world, x, y, z, type, data, tags, placer);
 		rotateYaw(placer.rotationYaw + 90F);
 		legAxes.rotateGlobalYaw(placer.rotationYaw + 90F);
 		prevLegsYaw = legAxes.getYaw();
+		isMecha = true;
 	}
 	
     @Override
@@ -118,6 +169,7 @@ public class EntityMecha extends EntityDriveable
     	super.initType(type, clientSide);
     	setSize(((MechaType)type).width, ((MechaType)type).height);
     	stepHeight = ((MechaType)type).stepHeight;
+		isMecha = true;
     }
 	
 	@Override
@@ -126,6 +178,7 @@ public class EntityMecha extends EntityDriveable
         super.writeEntityToNBT(tag);
         tag.setFloat("LegsYaw", legAxes.getYaw());
         tag.setTag("Inventory", inventory.writeToNBT(new NBTTagCompound()));
+		isMecha = true;
     }
 
 	@Override
@@ -134,6 +187,7 @@ public class EntityMecha extends EntityDriveable
         super.readEntityFromNBT(tag);
         legAxes.setAngles(tag.getFloat("LegsYaw"), 0, 0);
         inventory.readFromNBT(tag.getCompoundTag("Inventory"));
+		isMecha = true;
     }
 	
 	@Override
@@ -141,6 +195,7 @@ public class EntityMecha extends EntityDriveable
 	{
 		super.writeSpawnData(data);
 		ByteBufUtils.writeTag(data, inventory.writeToNBT(new NBTTagCompound()));
+		isMecha = true;
 	}
 	
 	@Override
@@ -151,6 +206,7 @@ public class EntityMecha extends EntityDriveable
 		prevLegsYaw = legAxes.getYaw();
 
 		inventory.readFromNBT(ByteBufUtils.readTag(data));
+		isMecha = true;
 	}
 
 	@Override
@@ -197,6 +253,7 @@ public class EntityMecha extends EntityDriveable
     		FlansMod.getPacketHandler().sendToServer(new PacketDriveableKey(key));
     		return true;
     	}
+		
     	switch(key)
     	{
     		case 0 : //Forwards (these movement cases are redundant, as Mechas need to stop when the key is released)
@@ -233,7 +290,11 @@ public class EntityMecha extends EntityDriveable
 			}
 			case 6 : //Exit : Get out
 			{
-				seats[0].riddenByEntity.mountEntity(null);
+				if (seats[0].riddenByEntity != null) {
+					seats[0].riddenByEntity.setInvisible(false);
+					seats[0].riddenByEntity.mountEntity(null);
+				}
+				
           		return true;
 			}
 			case 7 : //Inventory
@@ -252,6 +313,8 @@ public class EntityMecha extends EntityDriveable
 			}
 			case 10 : //Change control mode : Do nothing
 			{
+				FlansMod.proxy.changeControlMode((EntityPlayer)seats[0].riddenByEntity);
+				seats[0].playerLooking = new RotatedAxes(0,0,0);
 				return true;
 			}
 			case 11 : //Roll left : Do nothing
@@ -331,9 +394,14 @@ public class EntityMecha extends EntityDriveable
 			{
 				ItemGun gunItem = (ItemGun)heldItem;
 				GunType gunType = gunItem.type;
+
+				//If gun is in secondary/underbarrel fire, turn it off.
+				if(heldStack.stackTagCompound.hasKey("secondaryAmmo"))
+					if(gunType.getSecondaryFire(heldStack))
+						gunType.setSecondaryFire(heldStack, false);
 				
 				//Get the correct shoot delay
-				int delay = left ? shootDelayLeft : shootDelayRight;
+				float delay = left ? shootDelayLeft : shootDelayRight;
 				
 				//If we can shoot
 				if(delay <= 0)
@@ -341,7 +409,7 @@ public class EntityMecha extends EntityDriveable
 					//Go through the bullet stacks in the gun and see if any of them are not null
 					int bulletID = 0;
 					ItemStack bulletStack = null;
-					for(; bulletID < gunType.numAmmoItemsInGun; bulletID++)
+					for(; bulletID < gunType.getNumAmmoItemsInGun(heldStack); bulletID++)
 					{
 						ItemStack checkingStack = gunItem.getBulletItemStack(heldStack, bulletID);
 						if(checkingStack != null && checkingStack.getItem() != null && checkingStack.getItemDamage() < checkingStack.getMaxDamage())
@@ -360,6 +428,10 @@ public class EntityMecha extends EntityDriveable
 					else if(bulletStack.getItem() instanceof ItemBullet)
 					{
 						//Shoot
+						GunFiredEvent gunFiredEvent = new GunFiredEvent(this);
+		                MinecraftForge.EVENT_BUS.post(gunFiredEvent);
+		                if(gunFiredEvent.isCanceled()) return false;
+						
 						shoot(heldStack, gunType, bulletStack, creative, left);
 						
 						//Apply animations to 3D modelled guns
@@ -368,13 +440,18 @@ public class EntityMecha extends EntityDriveable
 						{
 							int pumpDelay = gunType.model == null ? 0 : gunType.model.pumpDelay;
 							int pumpTime = gunType.model == null ? 1 : gunType.model.pumpTime;
+							int hammerDelay = gunType.model == null ? 0 : gunType.model.hammerDelay;
+							int casingDelay = gunType.model == null ? 0 : gunType.model.casingDelay;
+							float hammerAngle = gunType.model == null ? 0 : gunType.model.hammerAngle;
+							float althammerAngle = gunType.model == null ? 0 : gunType.model.althammerAngle;
+
 							if(left)
 							{
-								leftAnimations.doShoot(pumpDelay, pumpTime);
+								leftAnimations.doShoot(pumpDelay, pumpTime, hammerDelay, hammerAngle, althammerAngle, casingDelay);
 							}
 							else
 							{
-								rightAnimations.doShoot(pumpDelay, pumpTime);
+								rightAnimations.doShoot(pumpDelay, pumpTime, hammerDelay, hammerAngle, althammerAngle, casingDelay);
 							}
 						}
 						//Damage the bullet item
@@ -412,7 +489,7 @@ public class EntityMecha extends EntityDriveable
 				
 		if(!worldObj.isRemote)
 			for (int k = 0; k < gunType.numBullets; k++)
-				worldObj.spawnEntityInWorld(((ItemBullet)bulletStack.getItem()).getEntity(worldObj, bulletOrigin, armVector, (EntityLivingBase)(seats[0].riddenByEntity), gunType.getSpread(stack) / 2F, gunType.getDamage(stack), gunType.getBulletSpeed(stack),bulletStack.getItemDamage(), mechaType));
+				worldObj.spawnEntityInWorld(((ItemBullet)bulletStack.getItem()).getEntity(worldObj, bulletOrigin, armVector, (EntityLivingBase)(seats[0].riddenByEntity), gunType.getSpread(stack, false, false) / 2F, gunType.getDamage(stack), gunType.getBulletSpeed(stack, bulletStack),bulletStack.getItemDamage(), mechaType));
 		
 		if(left)
 			shootDelayLeft = gunType.mode == EnumFireMode.SEMIAUTO ? Math.max(gunType.shootDelay, 5) : gunType.shootDelay;
@@ -424,18 +501,41 @@ public class EntityMecha extends EntityDriveable
 		// Play a sound if the previous sound has finished
 		if((left ? soundDelayLeft : soundDelayRight) <= 0 && gunType.shootSound != null)
 		{
-			PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, gunType.shootSound, gunType.distortSound);
+			PacketPlaySound.sendSoundPacket(posX, posY, posZ, gunType.gunSoundRange, dimension, gunType.shootSound, gunType.distortSound);
 			if(left)
 				soundDelayLeft = gunType.shootSoundLength;
 			else soundDelayRight = gunType.shootSoundLength;
+			if (gunType.distantShootSound != null) {
+				FlansMod.packetHandler.sendToDonut(new PacketPlaySound(posX, posY, posZ, gunType.distantShootSound), posX,
+						posY, posZ, gunType.gunSoundRange, gunType.distantSoundRange, dimension);
+			}
 		}		
 	}
+	
 	
 	@Override
     protected void fall(float f)
     {
 		attackEntityFrom(DamageSource.fall, f);
     }
+	
+	public void setLegAngles(float LLU, float pLLU, float RLU, float pRLU, float LLL, float pLLL, float RLL, float pRLL, float LLF, float pLLF, float RLF, float pRLF)
+	{
+		leftLegUpperAngle = LLU;
+		leftLegLowerAngle = LLL;
+		leftFootAngle = LLF;
+		rightLegUpperAngle = RLU;
+		rightLegLowerAngle = RLL;
+		rightFootAngle = RLF;
+		
+		prevLeftLegUpperAngle = pLLU;
+		prevLeftLegLowerAngle = pLLL;
+		prevLeftFootAngle = pLLF;
+		prevRightLegUpperAngle = pRLU;
+		prevRightLegLowerAngle = pRLL;
+		prevRightFootAngle = pRLF;
+		
+	}
 	
 	@Override
     public boolean attackEntityFrom(DamageSource damagesource, float i)
@@ -464,27 +564,163 @@ public class EntityMecha extends EntityDriveable
         		worldObj.createExplosion(this, posX, posY, posZ, blockDamageFromFalling, TeamsManager.explosions);
         	}
         }
-        
-        else if(damagesource.damageType.equals("player") && damagesource.getEntity().onGround && (seats[0] == null || seats[0].riddenByEntity == null))
+        // assert that player is on ground, vehicle is empty and the player is in creative or non creatives can break
+        else if(
+        		damagesource.damageType.equals("player") &&
+				damagesource.getEntity().onGround &&
+				(seats[0] == null || seats[0].riddenByEntity == null) &&
+				((damagesource.getEntity() instanceof EntityPlayer && ((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode) || TeamsManager.survivalCanBreakVehicles)
+		)
 		{
-			ItemStack mechaStack = new ItemStack(type.item, 1, 0);
+			ItemStack mechaStack = new ItemStack(type.item, 1, driveableData.paintjobID);
 			mechaStack.stackTagCompound = new NBTTagCompound();
 			driveableData.writeToNBT(mechaStack.stackTagCompound);
 			inventory.writeToNBT(mechaStack.stackTagCompound);
-			entityDropItem(mechaStack, 0.5F);
-	 		setDead();
+			
+			DriveableDeathByHandEvent driveableDeathByHandEvent = new DriveableDeathByHandEvent(this, (EntityPlayer)damagesource.getEntity(), mechaStack);
+	        MinecraftForge.EVENT_BUS.post(driveableDeathByHandEvent);
+	       
+	        if(!driveableDeathByHandEvent.isCanceled()) {
+	        	entityDropItem(mechaStack, 0.5F);
+				if (!worldObj.isRemote && damagesource.getEntity() instanceof EntityPlayer) { FlansMod.log("Player %s broke mecha %s (%d) at (%f, %f, %f)", ((EntityPlayerMP)damagesource.getEntity()).getDisplayName(), type.shortName, getEntityId(), posX, posY, posZ); }
+		 		setDead();
+	        }			
+			
 		}
         else
         {
         	driveableData.parts.get(EnumDriveablePart.core).attack(i * vulnerability(), damagesource.isFireDamage());
         }
         return true;
-    }
+	}
+	
+	@Override
+	public float bulletHit(EntityBullet bullet, DriveableHit hit, float penetratingPower) {
+		DriveablePart part = getDriveableData().parts.get(hit.part);
+		if (bullet != null)
+			penetratingPower = part.hitByBullet(bullet, hit, penetratingPower, vulnerability());
+		else
+			penetratingPower -= 5F;
+
+		// This is server side bsns
+		if (!worldObj.isRemote) {
+			checkParts();
+			// If it hit, send a damage update packet
+			FlansMod.getPacketHandler().sendToAllAround(new PacketDriveableDamage(this), posX, posY, posZ, FlansMod.driveableUpdateRange, dimension);
+		}
+
+		return penetratingPower;
+	}
 	
 	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
+		
+		boolean legDir = true;
+
+		if(legPosition > 1){
+			legPosition = 0;
+		}
+		
+		prevLeftLegUpperAngle = leftLegUpperAngle;
+		prevLeftLegLowerAngle = leftLegLowerAngle;
+		prevLeftFootAngle = leftFootAngle;
+		prevRightLegUpperAngle = rightLegUpperAngle;
+		prevRightLegLowerAngle = rightLegLowerAngle;;
+		prevRightFootAngle = rightFootAngle;
+		
+		//Read leg position nodes, if our animation position is within bounds change the target angle
+        for(LegNode node : getMechaType().legNodes) 
+        {
+        	if(legPosition >= node.lowerBound && legPosition <= node.upperBound){
+        		if(node.legPart == (1)){
+        			targetLeftUpper = node.rotation;
+        			targetLeftUpperSpeed = node.speed;
+        		} 
+        		else if (node.legPart == (2)){
+        			targetLeftLower = node.rotation;
+        			targetLeftLowerSpeed = node.speed;
+        		} 
+        		else if (node.legPart == (3)){
+        			targetLeftFoot = node.rotation;
+        			targetLeftFootSpeed = node.speed;
+        		} 
+        		else if(node.legPart == (4)){
+        			targetRightUpper = node.rotation;
+        			targetRightUpperSpeed = node.speed;
+        		} 
+        		else if (node.legPart == (5)){
+        			targetRightLower = node.rotation;
+        			targetRightLowerSpeed = node.speed;
+        		} 
+        		else if (node.legPart == (6)){
+        			targetRightFoot = node.rotation;
+        			targetRightFootSpeed = node.speed;
+        		} 
+        	}
+        }
+        
+        //Move the leg parts... Fun
+       		if(leftLegUpperAngle < targetLeftUpper){
+			leftLegUpperAngle += targetLeftUpperSpeed;
+		} else if(leftLegUpperAngle > targetLeftUpper){
+			leftLegUpperAngle -= targetLeftUpperSpeed;
+		}
+        
+       	 if((float)Math.sqrt((leftLegUpperAngle-targetLeftUpper)*(leftLegUpperAngle-targetLeftUpper)) <= targetLeftUpperSpeed/2){
+       		 leftLegUpperAngle = targetLeftUpper;
+       	 }
+		
+		
+		if(rightLegUpperAngle < targetRightUpper){
+			rightLegUpperAngle += targetRightUpperSpeed;
+		} else if(rightLegUpperAngle > targetRightUpper){
+			rightLegUpperAngle -= targetRightUpperSpeed;
+		}
+		
+      	 if((float)Math.sqrt((rightLegUpperAngle-targetRightUpper)*(rightLegUpperAngle-targetRightUpper)) <= targetRightUpperSpeed/2){
+       		 rightLegUpperAngle = targetRightUpper;
+       	 }
+				
+		if(leftLegLowerAngle < targetLeftLower){
+			leftLegLowerAngle += targetLeftLowerSpeed;
+		} else if(leftLegLowerAngle > targetLeftLower){
+			leftLegLowerAngle -= targetRightLowerSpeed;
+		}
+				
+		if(rightLegLowerAngle < targetRightLower){
+			rightLegLowerAngle += targetRightLowerSpeed;
+		} else if(rightLegLowerAngle > targetRightLower){
+			rightLegLowerAngle -= targetRightLowerSpeed;
+		}
+		
+      	 if((float)Math.sqrt((leftLegLowerAngle-targetLeftLower)*(leftLegLowerAngle-targetLeftLower)) <= targetLeftLowerSpeed/2){
+       		 leftLegLowerAngle = targetLeftLower;
+       	 }       	 
+
+      	 if((float)Math.sqrt((rightLegLowerAngle-targetRightLower)*(rightLegLowerAngle-targetRightLower)) <= targetRightLowerSpeed/2){
+       		 rightLegLowerAngle = targetRightLower;
+       	 }
+		
+		if(leftFootAngle < targetLeftFoot){
+			leftFootAngle += targetLeftFootSpeed;
+		} else if(leftFootAngle > targetLeftFoot){
+			leftFootAngle -= targetLeftFootSpeed;
+		}
+		
+		if(rightFootAngle < targetRightFoot){
+			rightFootAngle += targetRightFootSpeed;
+		} else if(rightFootAngle > targetRightFoot){
+			rightFootAngle -= targetRightFootSpeed;
+		}
+		
+		if((float)Math.sqrt((rightFootAngle-targetRightFoot)*(rightFootAngle-targetRightFoot)) <= targetRightFootSpeed/2){
+     		 rightFootAngle = targetRightFoot;
+     	 }
+		if((float)Math.sqrt((leftFootAngle-targetLeftFoot)*(leftFootAngle-targetLeftFoot)) <= targetLeftFootSpeed/2){
+    		 leftFootAngle = targetLeftFoot;
+    	 }
 		
 		//Decrement delay variables
 		if(jumpDelay > 0) jumpDelay--;
@@ -510,11 +746,17 @@ public class EntityMecha extends EntityDriveable
 			return;
 		}
 		
+        if(stompDelay > 0)
+            stompDelay--;
+		
 		prevLegsYaw = legAxes.getYaw();
+
+		if (type.setPlayerInvisible && !this.worldObj.isRemote && seats[0].riddenByEntity != null)
+			seats[0].riddenByEntity.setInvisible(true);
 		
 		//Autorepair. Like a Boss.
 		
-		if(toggleTimer == 0 && autoRepair())
+		if(toggleTimer == 0 && autoRepair() > 0)
 		{
 			for(EnumDriveablePart part: EnumDriveablePart.values())
 			{
@@ -522,7 +764,7 @@ public class EntityMecha extends EntityDriveable
 				boolean hasCreativePlayer = seats != null && seats[0] != null && seats[0].riddenByEntity instanceof EntityPlayer && ((EntityPlayer)seats[0].riddenByEntity).capabilities.isCreativeMode;
 				if(thisPart != null && thisPart.health != 0 && thisPart.health < thisPart.maxHealth && (hasCreativePlayer || data.fuelInTank >= 10F))
 				{
-					thisPart.health += 1;
+					thisPart.health += autoRepair();
 					if(!hasCreativePlayer)
 						data.fuelInTank -= 10F;
 				}
@@ -639,6 +881,7 @@ public class EntityMecha extends EntityDriveable
 				float yaw = seats[0].looking.getYaw() - seats[0].prevLooking.getYaw();
 				axes.rotateGlobalYaw(yaw);
 				seats[0].looking.rotateGlobalYaw(-yaw);
+                seats[0].playerLooking.rotateGlobalYaw(-yaw);
 			}
 		}
 		
@@ -686,7 +929,7 @@ public class EntityMecha extends EntityDriveable
 				moveZ = 1;
 				/*
 				EntityLiving ent = (EntityLiving)seats[0].riddenByEntity;
-				//System.out.println(ent.moveForward);
+				//FlansMod.log(ent.moveForward);
 				Vec3 target = Vec3.createVectorHelper(0D, 0D, 0D);
 				if(ent.getNavigator().getPath() != null)
 					target = ent.getNavigator().getPath().getPosition(ent);
@@ -701,7 +944,18 @@ public class EntityMecha extends EntityDriveable
 			{
 				intent.normalise();
 				
+				//Update plebian leg animation
 				++legSwing;
+				
+				//Update fancy leg animation
+				legPosition += getMechaType().legAnimSpeed;
+				
+				
+				//Stomp stomp stomp!
+				if(stompDelay == 0 && legPosition >= getMechaType().stompRangeLower && legPosition <= getMechaType().stompRangeUpper){
+		            PacketPlaySound.sendSoundPacket(posX, posY, posZ, 50, dimension, getMechaType().stompSound, false);
+		            stompDelay = getMechaType().stompSoundLength;
+				}
 			
 				intent = axes.findLocalVectorGlobally(intent);
 							
@@ -739,6 +993,8 @@ public class EntityMecha extends EntityDriveable
 					if(!canThrustCreatively)
 						data.fuelInTank -= data.engine.fuelConsumption;
 				}
+			} else {
+				legPosition = 0;
 			}
 			
 			//Block breaking
@@ -1135,14 +1391,14 @@ public class EntityMecha extends EntityDriveable
 	}
 	
 	/** Automatically repair damage? */
-	public boolean autoRepair()
+	public float autoRepair()
 	{
 		for(MechaItemType type : getUpgradeTypes())
 		{
 			if(type.autoRepair)
-				return true;
+				return type.autoRepairAmount;
 		}
-		return false;
+		return -1;
 	}
 	
 	/** Float in water? */

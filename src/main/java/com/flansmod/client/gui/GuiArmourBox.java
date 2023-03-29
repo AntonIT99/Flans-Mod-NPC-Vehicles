@@ -17,7 +17,6 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.client.gui.Gui;
 
 public class GuiArmourBox extends GuiScreen 
 {

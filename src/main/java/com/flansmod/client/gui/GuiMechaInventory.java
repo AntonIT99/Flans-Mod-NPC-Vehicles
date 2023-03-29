@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraft.client.gui.Gui;
+
 import com.flansmod.client.FlansModResourceHandler;
 import com.flansmod.client.model.RenderMecha;
 import com.flansmod.common.FlansMod;

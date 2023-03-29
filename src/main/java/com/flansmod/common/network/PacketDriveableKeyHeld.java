@@ -12,46 +12,41 @@ import cpw.mods.fml.relauncher.SideOnly;
 import com.flansmod.api.IControllable;
 import com.flansmod.common.FlansMod;
 
-public class PacketDriveableKeyHeld extends PacketBase 
-{	
-	public int key;
-	public boolean held;
-	
-	public PacketDriveableKeyHeld() {}
-	
-	public PacketDriveableKeyHeld(int key, boolean held)
-	{
-		this.key = key;
-		this.held = held;
-	}
-		
-	@Override
-	public void encodeInto(ChannelHandlerContext ctx, ByteBuf data) 
-	{
-    	data.writeInt(key);
-    	data.writeBoolean(held);
-	}
+public class PacketDriveableKeyHeld extends PacketBase {
+    public int key;
+    public boolean held;
 
-	@Override
-	public void decodeInto(ChannelHandlerContext ctx, ByteBuf data) 
-	{
-		key = data.readInt();
-		held = data.readBoolean();
-	}
+    @SuppressWarnings("unused")
+    public PacketDriveableKeyHeld() {
+    }
 
-	@Override
-	public void handleServerSide(EntityPlayerMP playerEntity) 
-	{
-		if(playerEntity.ridingEntity != null && playerEntity.ridingEntity instanceof IControllable)
-		{
-			((IControllable)playerEntity.ridingEntity).updateKeyHeldState(key, held);
-		}
-	}
+    public PacketDriveableKeyHeld(int key, boolean held) {
+        this.key = key;
+        this.held = held;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void handleClientSide(EntityPlayer clientPlayer) 
-	{
-		FlansMod.log("Driveable key packet received on client. Skipping.");
-	}
+    @Override
+    public void encodeInto(ChannelHandlerContext ctx, ByteBuf data) {
+        data.writeInt(key);
+        data.writeBoolean(held);
+    }
+
+    @Override
+    public void decodeInto(ChannelHandlerContext ctx, ByteBuf data) {
+        key = data.readInt();
+        held = data.readBoolean();
+    }
+
+    @Override
+    public void handleServerSide(EntityPlayerMP playerEntity) {
+        if (playerEntity.ridingEntity instanceof IControllable) {
+            ((IControllable) playerEntity.ridingEntity).updateKeyHeldState(key, held);
+        }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void handleClientSide(EntityPlayer clientPlayer) {
+        FlansMod.log("Driveable key packet received on client. Skipping.");
+    }
 }

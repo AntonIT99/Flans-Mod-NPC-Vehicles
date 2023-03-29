@@ -6,7 +6,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.client.gui.Gui;
+
 import com.flansmod.client.FlansModClient;
 import com.flansmod.common.network.PacketTeamInfo;
 import com.flansmod.common.teams.Team;

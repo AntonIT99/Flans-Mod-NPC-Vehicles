@@ -15,12 +15,14 @@ public class ContainerMechaInventory extends Container
 	public int numItems;
 	public int maxScroll;
 	public int scroll;
+	public MechaType type;
 	
 	public ContainerMechaInventory(InventoryPlayer inv, World w, EntityMecha em)
 	{
 		inventory = inv;
 		world = w;
 		mecha = em;
+		type = (MechaType)mecha.getDriveableType();
 		numItems = mecha.getDriveableType().numCargoSlots;
 		int numRows = ((numItems + 7) / 8);
 		maxScroll = (numRows > 3 ? numRows - 3 : 0);
@@ -34,7 +36,7 @@ public class ContainerMechaInventory extends Container
 				yPos = 25 + 19 * (row - scroll);
 			for(int col = 0; col < ((row + scroll + 1) * 8 <= numItems ? 8 : numItems % 8); col++)
 			{
-				addSlotToContainer(new Slot(mecha.driveableData, startSlot + row * 8 + col, 186 + 18 * col, yPos));
+				addSlotToContainer(new SlotMechaInventory(mecha.driveableData, startSlot + row * 8 + col, 186 + 18 * col, yPos, type));
 			}
 		}
 		
@@ -109,7 +111,6 @@ public class ContainerMechaInventory extends Container
     {
 		ItemStack stack = null;
         Slot currentSlot = (Slot)inventorySlots.get(slotID);
-
         if(currentSlot != null && currentSlot.getHasStack())
         {
             ItemStack slotStack = currentSlot.getStack();
@@ -118,40 +119,111 @@ public class ContainerMechaInventory extends Container
             ///if(stack.getItem() instanceof ItemMechaAddon)
            // {
             	//((ItemMechaAddon)stack.getItem()).type;
-            //}
-            
+			//}
+			
+			// From player inventory to mecha inventory
             if(slotID >= numItems)
             {
             	if(!mergeItemStack(slotStack, 0, numItems, false))
             	{
-            		return null;
-            	}
-            }
+					return null;
+				}
+			}
+			// From mecha inventory to player inventory
             else {
             	if(!mergeItemStack(slotStack, numItems, inventorySlots.size(), true))
             	{
-            		return null;
+					return null;
             	}
             }
-            
+
             if (slotStack.stackSize == 0)
             {
-                currentSlot.putStack(null);
+				currentSlot.putStack(null);
             }
             else
             {
-                currentSlot.onSlotChanged();
+				currentSlot.onSlotChanged();
             }
 
             if (slotStack.stackSize == stack.stackSize)
             {
-                return null;
+				return null;	
             }
 
             currentSlot.onPickupFromSlot(player, slotStack);
         }
 
         return stack;
-    }
+	}
+	
 
+	// Code modified from https://www.minecraftforge.net/forum/topic/34525-18-solved-attempt-to-fix-mergeitemstack-isnt-working/
+	@Override
+	protected boolean mergeItemStack(ItemStack stack, int startIndex, int endIndex, boolean reverseDirection) {
+		boolean flag = false;
+		int i = startIndex;
+		if (reverseDirection)
+			i = endIndex - 1;
+		
+		if (stack.isStackable()) {
+			while (stack.stackSize > 0 && (!reverseDirection && i < endIndex || reverseDirection && i >= startIndex)) {
+				Slot slot = (Slot) this.inventorySlots.get(i);
+				ItemStack itemstack = slot.getStack();
+				int maxLimit = Math.min(stack.getMaxStackSize(), slot.getSlotStackLimit());
+				
+				if (itemstack != null && ItemStack.areItemStacksEqual(stack, itemstack)) {
+					int j = itemstack.stackSize + stack.stackSize;
+					if (j <= maxLimit) {
+						stack.stackSize = 0;
+						itemstack.stackSize = j;
+						slot.onSlotChanged();
+						flag = true;
+						
+					} else if (itemstack.stackSize < maxLimit) {
+						stack.stackSize = maxLimit;
+						itemstack.stackSize = maxLimit;
+						slot.onSlotChanged();
+						flag = true;
+					}
+				}
+				if (reverseDirection) { 
+					--i;
+				} else
+					++i;
+			}
+		}
+		if (stack.stackSize > 0) {
+			if (reverseDirection) {
+				i = endIndex - 1;
+			}else i = startIndex;
+
+			while (!reverseDirection && i < endIndex || reverseDirection && i >= startIndex) {
+				Slot slot1 = (Slot)this.inventorySlots.get(i);
+				ItemStack itemstack1 = slot1.getStack();
+
+				if (itemstack1 == null && slot1.isItemValid(stack)) {
+					if(stack.stackSize <= slot1.getSlotStackLimit()) {
+						slot1.putStack(stack.copy());
+						slot1.onSlotChanged();
+						stack.stackSize = 0;
+						flag = true;
+						break;
+					} else {
+						itemstack1 = stack.copy();
+						stack.stackSize -= slot1.getSlotStackLimit();
+						itemstack1.stackSize = slot1.getSlotStackLimit();
+						slot1.putStack(itemstack1);
+						slot1.onSlotChanged();
+						flag = true;
+					}					
+				}
+				if (reverseDirection) {
+					--i;
+				} else ++i;
+			}
+		}
+		return flag;
+	}
 }
+

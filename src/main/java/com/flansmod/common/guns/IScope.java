@@ -9,4 +9,12 @@ public interface IScope
 	public boolean hasZoomOverlay();
 	
 	public String getZoomOverlay();
+
+	public float getMinZoom();
+	
+	public float getMaxZoom();
+	
+	public float getZoomAugment();
+	
+	public boolean hasVariableZoom();
 }

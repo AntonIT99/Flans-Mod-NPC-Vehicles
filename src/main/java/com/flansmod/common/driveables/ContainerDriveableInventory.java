@@ -16,12 +16,15 @@ public class ContainerDriveableInventory extends Container
 	public int screen;
 	public int maxScroll;
 	public int scroll;
+	public DriveableType type;
 	
-    public ContainerDriveableInventory(InventoryPlayer inventoryplayer, World worldy, EntityDriveable entPlane, int i)
+    public ContainerDriveableInventory(InventoryPlayer inventoryplayer, World world, EntityDriveable entPlane, int i)
     {
 		inventory = inventoryplayer;
-        world = worldy;
+        this.world = world;
 		plane = entPlane;
+		type = plane.getDriveableType();
+
 		screen = i;
 		//Find the number of items in the inventory
 		numItems = 0;
@@ -64,7 +67,7 @@ public class ContainerDriveableInventory extends Container
 					int yPos = -1000;
 					if(slotsDone < 3 + scroll && slotsDone >= scroll)
 						yPos = 25 + 19 * slotsDone;
-					addSlotToContainer(new Slot(plane.driveableData, j, 29, yPos));
+					addSlotToContainer(new SlotDriveableAmmunition(plane.driveableData, j, 29, yPos, type.filterAmmunition));
 					slotsDone++;
 				}	
 				break;
@@ -86,7 +89,7 @@ public class ContainerDriveableInventory extends Container
 						yPos = 25 + 19 * (row - scroll);
 					for(int col = 0; col < ((row + scroll + 1) * 8 <= numItems ? 8 : numItems % 8); col++)
 					{
-						addSlotToContainer(new Slot(plane.driveableData, startSlot + row * 8 + col, 10 + 18 * col, yPos));
+						addSlotToContainer(new SlotDriveableAmmunition(plane.driveableData, startSlot + row * 8 + col, 10 + 18 * col, yPos, type.filterAmmunition));
 					}
 				}
 				break;
@@ -154,47 +157,105 @@ public class ContainerDriveableInventory extends Container
     }
 	
 	@Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int slotID)
-    {
+	public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
 		ItemStack stack = null;
-        Slot currentSlot = (Slot)inventorySlots.get(slotID);
+		Slot currentSlot = (Slot) inventorySlots.get(slotID);
+		if (currentSlot != null && currentSlot.getHasStack()) {
+			ItemStack slotStack = currentSlot.getStack();
+			stack = slotStack.copy();
 
-        if(currentSlot != null && currentSlot.getHasStack())
-        {
-            ItemStack slotStack = currentSlot.getStack();
-            stack = slotStack.copy();
-            
-            if(slotID >= numItems)
-            {
-            	if(!mergeItemStack(slotStack, 0, numItems, false))
-            	{
-            		return null;
-            	}
-            }
-            else {
-            	if(!mergeItemStack(slotStack, numItems, inventorySlots.size(), true))
-            	{
-            		return null;
-            	}
-            }
-            
-            if (slotStack.stackSize == 0)
-            {
-                currentSlot.putStack(null);
-            }
-            else
-            {
-                currentSlot.onSlotChanged();
-            }
+			if (slotID >= numItems) {
+				if (!mergeItemStack(slotStack, 0, numItems, false)) {
+					return null;
+				}
+			}
+			else {
+				if (!mergeItemStack(slotStack, numItems, inventorySlots.size(), true)) {
+					return null;
+				}
+			}
 
-            if (slotStack.stackSize == stack.stackSize)
-            {
-                return null;
-            }
+			if (slotStack.stackSize == 0) {
+				currentSlot.putStack(null);
+			} else {
+				currentSlot.onSlotChanged();
+			}
 
-            currentSlot.onPickupFromSlot(player, slotStack);
-        }
+			if (slotStack.stackSize == stack.stackSize) {
+				return null;
+			}
 
-        return stack;
-    }
+			currentSlot.onPickupFromSlot(player, slotStack);
+		}
+
+		return stack;
+	}	// Code modified from https://www.minecraftforge.net/forum/topic/34525-18-solved-attempt-to-fix-mergeitemstack-isnt-working/
+	@Override
+	protected boolean mergeItemStack(ItemStack stack, int startIndex, int endIndex, boolean reverseDirection) {
+		boolean flag = false;
+		int i = startIndex;
+		if (reverseDirection)
+			i = endIndex - 1;
+		
+		if (stack.isStackable()) {
+			while (stack.stackSize > 0 && (!reverseDirection && i < endIndex || reverseDirection && i >= startIndex)) {
+				Slot slot = (Slot) this.inventorySlots.get(i);
+				ItemStack itemstack = slot.getStack();
+				int maxLimit = Math.min(stack.getMaxStackSize(), slot.getSlotStackLimit());
+				
+				if (itemstack != null && ItemStack.areItemStacksEqual(stack, itemstack)) {
+					int j = itemstack.stackSize + stack.stackSize;
+					if (j <= maxLimit) {
+						stack.stackSize = 0;
+						itemstack.stackSize = j;
+						slot.onSlotChanged();
+						flag = true;
+						
+					} else if (itemstack.stackSize < maxLimit) {
+						stack.stackSize -= maxLimit -itemstack.stackSize;
+						itemstack.stackSize = maxLimit;
+						slot.onSlotChanged();
+						flag = true;
+					}
+				}
+				if (reverseDirection) { 
+					--i;
+				} else
+					++i;
+			}
+		}
+		if (stack.stackSize > 0) {
+			if (reverseDirection) {
+				i = endIndex - 1;
+			}else i = startIndex;
+
+			while (!reverseDirection && i < endIndex || reverseDirection && i >= startIndex) {
+				Slot slot1 = (Slot)this.inventorySlots.get(i);
+				ItemStack itemstack1 = slot1.getStack();
+
+				if (itemstack1 == null && slot1.isItemValid(stack)) {
+					if(stack.stackSize <= slot1.getSlotStackLimit()) {
+						slot1.putStack(stack.copy());
+						slot1.onSlotChanged();
+						stack.stackSize = 0;
+						flag = true;
+						break;
+					} else {
+						itemstack1 = stack.copy();
+						stack.stackSize -= slot1.getSlotStackLimit();
+						itemstack1.stackSize = slot1.getSlotStackLimit();
+						slot1.putStack(itemstack1);
+						slot1.onSlotChanged();
+						flag = true;
+					}					
+				}
+				if (reverseDirection) {
+					--i;
+				} else ++i;
+			}
+		}
+		return flag;
+	}
+	
+	
 }

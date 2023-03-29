@@ -16,14 +16,14 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
 
 import com.flansmod.client.ClientProxy;
 import com.flansmod.client.FlansModResourceHandler;
 import com.flansmod.common.FlansMod;
 import com.flansmod.common.driveables.DriveablePart;
-import com.flansmod.common.driveables.DriveablePosition;
+import com.flansmod.common.driveables.DriveableType;
+import com.flansmod.common.driveables.EntityDriveable;
+import com.flansmod.common.driveables.ShootPoint;
 import com.flansmod.common.driveables.EnumDriveablePart;
 import com.flansmod.common.driveables.mechas.EntityMecha;
 import com.flansmod.common.driveables.mechas.EnumMechaSlotType;
@@ -33,6 +33,8 @@ import com.flansmod.common.driveables.mechas.MechaItemType;
 import com.flansmod.common.driveables.mechas.MechaType;
 import com.flansmod.common.guns.GunType;
 import com.flansmod.common.guns.ItemGun;
+import com.flansmod.common.paintjob.Paintjob;
+import com.flansmod.common.vector.Vector3f;
 
 public class RenderMecha extends Render implements IItemRenderer
 {
@@ -41,7 +43,7 @@ public class RenderMecha extends Render implements IItemRenderer
     
 	public RenderMecha()
 	{
-		shadowSize = 0.5F;
+		shadowSize = 1.5F;
 	}
 	
     public void render(EntityMecha mecha, double d, double d1, double d2, float f, float f1)
@@ -52,26 +54,33 @@ public class RenderMecha extends Render implements IItemRenderer
         GL11.glPushMatrix();
         GL11.glTranslatef((float)d, (float)d1, (float)d2);
         float dYaw = (mecha.axes.getYaw() - mecha.prevRotationYaw);
-        for(; dYaw > 180F; dYaw -= 360F) {}
-        for(; dYaw <= -180F; dYaw += 360F) {}
-        float dPitch = (mecha.axes.getPitch() - mecha.prevRotationPitch);
-        for(; dPitch > 180F; dPitch -= 360F) {}
-        for(; dPitch <= -180F; dPitch += 360F) {}
-        float dRoll = (mecha.axes.getRoll() - mecha.prevRotationRoll);
-        for(; dRoll > 180F; dRoll -= 360F) {}
-        for(; dRoll <= -180F; dRoll += 360F) {}
-        GL11.glRotatef(-mecha.prevRotationYaw - dYaw * f1, 0.0F, 1.0F, 0.0F);
+
+		while (dYaw > 180F) { dYaw -= 360F; }
+		while (dYaw <= -180F) { dYaw += 360F; }
+
+		float dPitch = (mecha.axes.getPitch() - mecha.prevRotationPitch);
+
+		while (dPitch > 180F) { dPitch -= 360F; }
+		while (dPitch <= -180F) { dPitch += 360F; }
+
+		float dRoll = (mecha.axes.getRoll() - mecha.prevRotationRoll);
+
+		while (dRoll > 180F) { dRoll -= 360F; }
+		while (dRoll <= -180F) { dRoll += 360F; }
+
+		GL11.glRotatef(-mecha.prevRotationYaw - dYaw * f1, 0.0F, 1.0F, 0.0F);
         GL11.glRotatef(mecha.prevRotationPitch + dPitch * f1, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(mecha.prevRotationRoll + dRoll * f1, 1.0F, 0.0F, 0.0F);
 		float modelScale = mecha.getMechaType().modelScale;	
 		ModelMecha model = (ModelMecha)type.model;
+		if (model == null) { return; }
 		
 		//Body Render
 		{
 			GL11.glPushMatrix();
 			GL11.glScalef(modelScale, modelScale, modelScale);
-			if(model != null)
-				model.render(mecha, f1);	
+
+			model.render(mecha, f1);
 			
 			//Render hips slot : jetpack item
 			ItemStack hipsSlot = mecha.inventory.getStackInSlot(EnumMechaSlotType.hips);
@@ -113,7 +122,7 @@ public class RenderMecha extends Render implements IItemRenderer
 			GL11.glTranslatef(type.leftArmOrigin.x, mecha.getMechaType().leftArmOrigin.y, mecha.getMechaType().leftArmOrigin.z);
 			GL11.glRotatef(90F - smoothedPitch, 0F, 0F, 1F);
 			GL11.glPushMatrix();
-			GL11.glScalef(modelScale, modelScale, modelScale);	
+			GL11.glScalef(modelScale, modelScale, modelScale);
 			model.renderLeftArm(scale, mecha, f1);
 			GL11.glPopMatrix();
 			
@@ -194,12 +203,12 @@ public class RenderMecha extends Render implements IItemRenderer
 			
 			//Render shoot points
 			GL11.glColor4f(0F, 0F, 1F, 0.3F);
-			for(DriveablePosition point : type.shootPointsPrimary)			
-				renderAABB(AxisAlignedBB.getBoundingBox(point.position.x - 0.25F, point.position.y - 0.25F, point.position.z - 0.25F, point.position.x + 0.25F, point.position.y + 0.25F, point.position.z + 0.25F));
+			for(ShootPoint point : type.shootPointsPrimary)			
+				renderAABB(AxisAlignedBB.getBoundingBox(point.rootPos.position.x - 0.25F, point.rootPos.position.y - 0.25F, point.rootPos.position.z - 0.25F, point.rootPos.position.x + 0.25F, point.rootPos.position.y + 0.25F, point.rootPos.position.z + 0.25F));
 			
 			GL11.glColor4f(0F, 1F, 0F, 0.3F);
-			for(DriveablePosition point : type.shootPointsSecondary)			
-				renderAABB(AxisAlignedBB.getBoundingBox(point.position.x - 0.25F, point.position.y - 0.25F, point.position.z - 0.25F, point.position.x + 0.25F, point.position.y + 0.25F, point.position.z + 0.25F));
+			for(ShootPoint point : type.shootPointsSecondary)			
+				renderAABB(AxisAlignedBB.getBoundingBox(point.rootPos.position.x - 0.25F, point.rootPos.position.y - 0.25F, point.rootPos.position.z - 0.25F, point.rootPos.position.x + 0.25F, point.rootPos.position.y + 0.25F, point.rootPos.position.z + 0.25F));
 			
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 			GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -221,52 +230,124 @@ public class RenderMecha extends Render implements IItemRenderer
 	    GL11.glRotatef(mecha.prevRotationPitch + dPitch * f1, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(mecha.prevRotationRoll + dRoll * f1, 1.0F, 0.0F, 0.0F);
 		GL11.glScalef(modelScale, modelScale, modelScale);
-		if(model != null)
+
+		float legLength = type.legLength;
+
+		float dLLUR = mecha.leftLegUpperAngle - mecha.prevLeftLegUpperAngle;
+		float dLLLR = mecha.leftLegLowerAngle - mecha.prevLeftLegLowerAngle;
+		float dLFR = mecha.leftFootAngle - mecha.prevLeftFootAngle;
+		float dRLUR = mecha.rightLegUpperAngle - mecha.prevRightLegUpperAngle;
+		float dRLLR = mecha.rightLegLowerAngle - mecha.prevRightLegLowerAngle;
+		float dRFR = mecha.rightFootAngle - mecha.prevRightFootAngle;
+
+		float leftLegUpperRot = (float)Math.toRadians(mecha.prevLeftLegUpperAngle + dLLUR*f1);
+		float rightLegUpperRot = (float)Math.toRadians(mecha.prevRightLegUpperAngle + dRLUR*f1);
+		float leftLegLowerRot = (float)Math.toRadians(mecha.prevLeftLegLowerAngle + dLLLR*f1);
+		Vector3f leftLegLowerPos;
+		float rightLegLowerRot = (float)Math.toRadians(mecha.prevRightLegLowerAngle + dRLLR*f1);
+		Vector3f rightLegLowerPos;
+		float leftFootRot = (float)Math.toRadians(mecha.prevLeftFootAngle + dLFR*f1);
+		Vector3f leftFootPos;
+		float rightFootRot = (float)Math.toRadians(mecha.rightFootAngle + dRFR*f1);
+		Vector3f rightFootPos;
+
+		float legsYaw = (float)Math.sin(((mecha.ticksExisted) + f1) / type.legSwingTime) * mecha.legSwing;
+		float footH = (float)Math.sin(legsYaw) * legLength;
+		float footV = (float)Math.cos(legsYaw) * legLength;
+
+		//Hips
+		model.renderHips(scale, mecha, f1);
+
+		GL11.glPushMatrix();
 		{
-			float legLength = type.legLength;
-	    	
-	    	float legsYaw = (float)Math.sin(((mecha.ticksExisted) + f1) / type.legSwingTime) * mecha.legSwing;
-	    	float footH = (float)Math.sin(legsYaw) * legLength;
-	    	float footV = (float)Math.cos(legsYaw) * legLength;
-	    	
-			//Hips
-			model.renderHips(scale, mecha, f1);
-			
+			GL11.glTranslatef(0F, legLength, 0F);
+
+			//Left Foot
 			GL11.glPushMatrix();
-			{
-				GL11.glTranslatef(0F, legLength, 0F);
-				
-				//Left Foot
-				GL11.glPushMatrix();
-				GL11.glTranslatef(footH, -footV, 0F);
-				model.renderLeftFoot(scale, mecha, f1);
-				GL11.glPopMatrix();
-				
-				//Right Foot
-				GL11.glPushMatrix();
-				GL11.glTranslatef(-footH, -footV, 0F);
-				model.renderRightFoot(scale, mecha, f1);
-				GL11.glPopMatrix();
-				
-				//Left Leg
-				GL11.glPushMatrix();
-				GL11.glRotatef(legsYaw * 180F / 3.14159265F, 0F, 0F, 1F);
-				GL11.glTranslatef(0F, -legLength, 0F);
-				model.renderLeftLeg(scale, mecha, f1);
-				GL11.glPopMatrix();
-				
-				//Right Leg
-				GL11.glPushMatrix();
-				GL11.glRotatef(-legsYaw * 180F / 3.14159265F, 0F, 0F, 1F);
-				GL11.glTranslatef(0F, -legLength, 0F);
-				model.renderRightLeg(scale, mecha, f1);
-				GL11.glPopMatrix();
-			}
+			GL11.glTranslatef(footH, -footV, 0F);
+			model.renderLeftFoot(scale, mecha, f1);
 			GL11.glPopMatrix();
+
+			//Right Foot
+			GL11.glPushMatrix();
+			GL11.glTranslatef(-footH, -footV, 0F);
+			model.renderRightFoot(scale, mecha, f1);
+			GL11.glPopMatrix();
+
+			//Left Leg
+			GL11.glPushMatrix();
+			GL11.glRotatef(legsYaw * 180F / 3.14159265F, 0F, 0F, 1F);
+			GL11.glTranslatef(0F, -legLength, 0F);
+			model.renderLeftLeg(scale, mecha, f1);
+			GL11.glPopMatrix();
+
+			//Right Leg
+			GL11.glPushMatrix();
+			GL11.glRotatef(-legsYaw * 180F / 3.14159265F, 0F, 0F, 1F);
+			GL11.glTranslatef(0F, -legLength, 0F);
+			model.renderRightLeg(scale, mecha, f1);
+			GL11.glPopMatrix();
+
+			//Left Leg Upper
+			GL11.glPushMatrix();
+			GL11.glRotatef(leftLegUpperRot * 180F / 3.14159265F, 0F, 0F, 1F);
+			GL11.glTranslatef(0F, -legLength, 0F);
+			model.renderLeftAnimLegUpper(scale, mecha, f1);
+			GL11.glPopMatrix();
+
+			//Right Leg Upper
+			GL11.glPushMatrix();
+			GL11.glRotatef(rightLegUpperRot * 180F / 3.14159265F, 0F, 0F, 1F);
+			GL11.glTranslatef(0F, -legLength, 0F);
+			model.renderRightAnimLegUpper(scale, mecha, f1);
+			GL11.glPopMatrix();
+
+		}
+		GL11.glPopMatrix();
+
+		GL11.glPushMatrix();
+		{
+			//Left Leg Lower
+			GL11.glPushMatrix();
+			leftLegLowerPos = rotatedChildPosition(model.leftLegUpperOrigin, model.leftLegLowerOrigin, leftLegUpperRot);
+			GL11.glTranslatef(model.leftLegUpperOrigin.x, model.leftLegUpperOrigin.y, model.leftLegUpperOrigin.z);
+			GL11.glTranslatef(leftLegLowerPos.x, -leftLegLowerPos.y, 0F);
+			GL11.glRotatef(leftLegLowerRot * 180F / 3.14159265F, 0F, 0F, 1F);
+			model.renderLeftAnimLegLower(scale, mecha, f1);
+			GL11.glPopMatrix();
+
+			//Right Leg Lower
+			GL11.glPushMatrix();
+			rightLegLowerPos = rotatedChildPosition(model.rightLegUpperOrigin, model.rightLegLowerOrigin, rightLegUpperRot);
+			GL11.glTranslatef(model.rightLegUpperOrigin.x, model.rightLegUpperOrigin.y, model.rightLegUpperOrigin.z);
+			GL11.glTranslatef(rightLegLowerPos.x, -rightLegLowerPos.y, 0F);
+			GL11.glRotatef(rightLegLowerRot * 180F / 3.14159265F, 0F, 0F, 1F);
+			model.renderRightAnimLegLower(scale, mecha, f1);
+			GL11.glPopMatrix();
+
+
+			//Left Foot Anim
+			GL11.glPushMatrix();
+			leftFootPos = rotatedChildPosition(model.leftLegLowerOrigin, model.leftFootOrigin, leftLegLowerRot);
+			GL11.glTranslatef(-model.leftFootOrigin.x, legLength, -model.leftFootOrigin.z);
+			GL11.glTranslatef(leftFootPos.x + leftLegLowerPos.x, -leftFootPos.y - leftLegLowerPos.y, 0F);
+			GL11.glRotatef(leftFootRot * 180F / 3.14159265F, 0F, 0F, 1F);
+			model.renderLeftAnimFoot(scale, mecha, f1);
+			GL11.glPopMatrix();
+
+			//Right Foot Anim
+			GL11.glPushMatrix();
+			rightFootPos = rotatedChildPosition(model.rightLegLowerOrigin, model.rightFootOrigin, rightLegLowerRot);
+			GL11.glTranslatef(-model.rightFootOrigin.x, legLength, -model.rightFootOrigin.z);
+			GL11.glTranslatef(rightFootPos.x + rightLegLowerPos.x, -rightFootPos.y - rightLegLowerPos.y, 0F);
+			GL11.glRotatef(rightFootRot * 180F / 3.14159265F, 0F, 0F, 1F);
+			model.renderRightAnimFoot(scale, mecha, f1);
+			GL11.glPopMatrix();
+		}
+		GL11.glPopMatrix();
 			
 		}
 		GL11.glPopMatrix();
-	    }
     }
 	
 	@Override
@@ -274,11 +355,27 @@ public class RenderMecha extends Render implements IItemRenderer
 	{
 		render((EntityMecha)entity, d0, d1, d2, f, f1);
 	}
+	
+	public Vector3f rotatedChildPosition (Vector3f parentJoint, Vector3f childJoint, float rotation){
+		Vector3f position;
+		float initialRot;
+		float yDiff = parentJoint.y - childJoint.y;
+		float xDiff = parentJoint.x - childJoint.x;
+		float length = (float)Math.sqrt((yDiff*yDiff) + (xDiff*xDiff));
+		initialRot = (float)Math.atan(xDiff/yDiff);
+		float xPos = (float)Math.sin(rotation - initialRot) * length;
+		float yPos = (float)Math.cos(rotation - initialRot) * length;
+		position = new Vector3f(xPos, yPos, 0f);
+		return position;
+		
+	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) 
 	{
-		return FlansModResourceHandler.getTexture(((EntityMecha)entity).getMechaType());
+		DriveableType type = ((EntityDriveable)entity).getDriveableType();
+		Paintjob paintjob = type.getPaintjob(((EntityDriveable)entity).getDriveableData().paintjobID);
+		return FlansModResourceHandler.getPaintjobTexture(paintjob);
 	}
 
 	
@@ -317,7 +414,8 @@ public class RenderMecha extends Render implements IItemRenderer
 			
 			GL11.glRotatef(-90F, 0F, 0F, 1F);
 			texturemanager.bindTexture(FlansModResourceHandler.getTexture(gunType));
-			ClientProxy.gunRenderer.renderGun(stack, gunType, 1F / 16F, model, leftHand ? mecha.leftAnimations : mecha.rightAnimations, 0F);
+			ItemRenderType type = ItemRenderType.ENTITY;
+			ClientProxy.gunRenderer.renderGunModel(stack, gunType, 1F / 16F, model, leftHand ? mecha.leftAnimations : mecha.rightAnimations, type);
 		}
 		else
 		{
@@ -344,7 +442,7 @@ public class RenderMecha extends Render implements IItemRenderer
 	        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
 	        GL11.glRotatef(-133.0F, 0.0F, 0.0F, 1.0F);
 	        
-	        renderer.renderItemIn2D(tessellator, f1, f2, f, f3, icon.getIconWidth(), icon.getIconHeight(), 0.0625F);
+	        ItemRenderer.renderItemIn2D(tessellator, f1, f2, f, f3, icon.getIconWidth(), icon.getIconHeight(), 0.0625F);
 	
 	        if (stack.hasEffect(par3))
 	        {
@@ -362,14 +460,14 @@ public class RenderMecha extends Render implements IItemRenderer
 	            float f9 = (float)(Minecraft.getSystemTime() % 3000L) / 3000.0F * 8.0F;
 	            GL11.glTranslatef(f9, 0.0F, 0.0F);
 	            GL11.glRotatef(-50.0F, 0.0F, 0.0F, 1.0F);
-	            renderer.renderItemIn2D(tessellator, 0.0F, 0.0F, 1.0F, 1.0F, 256, 256, 0.0625F);
+	            ItemRenderer.renderItemIn2D(tessellator, 0.0F, 0.0F, 1.0F, 1.0F, 256, 256, 0.0625F);
 	            GL11.glPopMatrix();
 	            GL11.glPushMatrix();
 	            GL11.glScalef(f8, f8, f8);
 	            f9 = (float)(Minecraft.getSystemTime() % 4873L) / 4873.0F * 8.0F;
 	            GL11.glTranslatef(-f9, 0.0F, 0.0F);
 	            GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
-	            renderer.renderItemIn2D(tessellator, 0.0F, 0.0F, 1.0F, 1.0F, 256, 256, 0.0625F);
+	            ItemRenderer.renderItemIn2D(tessellator, 0.0F, 0.0F, 1.0F, 1.0F, 256, 256, 0.0625F);
 	            GL11.glPopMatrix();
 	            GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	            GL11.glDisable(GL11.GL_BLEND);
