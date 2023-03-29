@@ -232,6 +232,7 @@ public class ModelNPCMale extends ModelBiped
         EntityNPCInterface npc = (EntityNPCInterface) entity;
         isRiding = npc.isRiding();
 
+
         if(isSneak && (npc.currentAnimation == EnumAnimation.CRAWLING || npc.currentAnimation == EnumAnimation.LYING))
             isSneak = false;
         bipedHead.rotateAngleY = par4 / (180F / (float)Math.PI);
