@@ -3,8 +3,13 @@ package com.wolffsmod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ChatComponentText;
 
 public class CommandModelUpdate extends CommandBase {
 
@@ -24,12 +29,16 @@ public class CommandModelUpdate extends CommandBase {
 	@SideOnly(Side.CLIENT)
 	private void updateModels(ICommandSender commandSender)
 	{
-		/*
-		RenderManager.instance.entityRenderMap.put(EntityT34.class, new RenderT34(new ModelT34(), 0));
-		Render r = (Render) RenderManager.instance.entityRenderMap.get(EntityT34.class);
-		r.setRenderManager(RenderManager.instance);
-		getCommandSenderAsPlayer(commandSender).addChatComponentMessage(new ChatComponentText("Flan's NPC models reloaded"));
-		*/
+		for (Object entityClass: RenderManager.instance.entityRenderMap.keySet())
+		{
+			if (entityClass instanceof Class)
+			{
+				RenderManager.instance.entityRenderMap.put(entityClass, RenderManager.instance.entityRenderMap.get(entityClass));
+				Render r = (Render) RenderManager.instance.entityRenderMap.get(entityClass);
+				r.setRenderManager(RenderManager.instance);
+			}
+		}
+		getCommandSenderAsPlayer(commandSender).addChatComponentMessage(new ChatComponentText("Models reloaded"));
 	}
 
 	@Override

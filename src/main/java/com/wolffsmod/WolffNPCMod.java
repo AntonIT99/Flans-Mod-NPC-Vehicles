@@ -22,7 +22,7 @@ public class WolffNPCMod
 	
 	
 	@EventHandler
-	public static void preInit(FMLPreInitializationEvent PreEvent)
+	public static void preInit(FMLPreInitializationEvent preEvent)
 	{
 		ModEntityRegistry.registerEntities();
 		proxy.registerRenderThings();
@@ -32,12 +32,13 @@ public class WolffNPCMod
 	
 	
 	@EventHandler
-	public static void postInit(FMLPostInitializationEvent PostEvent) {}
-	
-	@EventHandler
+	public static void postInit(FMLPostInitializationEvent postEvent) {}
+
+	// Only for debug
+	/*@EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
-		//event.registerServerCommand(new CommandModelUpdate());
-	}
+		event.registerServerCommand(new CommandModelUpdate());
+	}*/
 
 }

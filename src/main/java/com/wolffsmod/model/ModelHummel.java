@@ -1481,15 +1481,10 @@ public class ModelHummel
 		}
 	}
 		
-  //added - Price Test
-  
-//		@Override
-//		public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e)
-//		{
-//		
-//			float rightTrackModel = MathHelper.cos(f * 0.5662F) * 1.4F * f1;;
-//	}
-		
-		
-		//added - Price Test
+    //added - Price Test
+    /*@Override
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e)
+    {
+      float rightTrackModel = MathHelper.cos(f * 0.5662F) * 1.4F * f1;;
+    }*/
 }
