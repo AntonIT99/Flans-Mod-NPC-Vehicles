@@ -18,14 +18,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderSdKfz251D extends RenderLiving
 {
     private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/SdKfz251D/SdKfz251D.png");
-    private static final String __OBFID3 = "CL_00000986";
 
     public RenderSdKfz251D(ModelBase par1ModelBase, float par2)
     {
         super(par1ModelBase, par2);
     }
     
-    protected void preRenderCallback(EntityLivingBase entity, float f){
+    protected void preRenderCallback(EntityLivingBase entity, float f)
+    {
     	GL11.glTranslatef(0F, 0.9F, 0F);
     	GL11.glRotatef(90, 0, 1, 0);
     }
@@ -33,16 +33,9 @@ public class RenderSdKfz251D extends RenderLiving
     /**
      * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
      */
-    protected ResourceLocation getEntityTexture(EntitySdKfz251D par1Entity)
-    {
-        return Texture;
-    }
-
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
+    @Override
     protected ResourceLocation getEntityTexture(Entity par1Entity)
     {
-        return this.getEntityTexture((EntitySdKfz251D)par1Entity);
+        return Texture;
     }
 }

@@ -17,24 +17,25 @@ public class ModelSentryGun extends ModelVehicle
     public ModelSentryGun() {
         this.textureX = 64;
         this.textureY = 64;
-        (this.bodyModel = new ModelRendererTurbo[18])[0] = new ModelRendererTurbo((ModelBase)this, 0, 0, this.textureX, this.textureY);
-        this.bodyModel[1] = new ModelRendererTurbo((ModelBase)this, 32, 0, this.textureX, this.textureY);
-        this.bodyModel[2] = new ModelRendererTurbo((ModelBase)this, 40, 0, this.textureX, this.textureY);
-        this.bodyModel[3] = new ModelRendererTurbo((ModelBase)this, 48, 0, this.textureX, this.textureY);
-        this.bodyModel[4] = new ModelRendererTurbo((ModelBase)this, 56, 0, this.textureX, this.textureY);
-        this.bodyModel[5] = new ModelRendererTurbo((ModelBase)this, 0, 10, this.textureX, this.textureY);
-        this.bodyModel[6] = new ModelRendererTurbo((ModelBase)this, 0, 19, this.textureX, this.textureY);
-        this.bodyModel[7] = new ModelRendererTurbo((ModelBase)this, 16, 19, this.textureX, this.textureY);
-        this.bodyModel[8] = new ModelRendererTurbo((ModelBase)this, 0, 27, this.textureX, this.textureY);
-        this.bodyModel[9] = new ModelRendererTurbo((ModelBase)this, 17, 27, this.textureX, this.textureY);
-        this.bodyModel[10] = new ModelRendererTurbo((ModelBase)this, 0, 37, this.textureX, this.textureY);
-        this.bodyModel[11] = new ModelRendererTurbo((ModelBase)this, 0, 49, this.textureX, this.textureY);
-        this.bodyModel[12] = new ModelRendererTurbo((ModelBase)this, 12, 49, this.textureX, this.textureY);
-        this.bodyModel[13] = new ModelRendererTurbo((ModelBase)this, 24, 49, this.textureX, this.textureY);
-        this.bodyModel[14] = new ModelRendererTurbo((ModelBase)this, 34, 18, this.textureX, this.textureY);
-        this.bodyModel[15] = new ModelRendererTurbo((ModelBase)this, 34, 20, this.textureX, this.textureY);
-        this.bodyModel[16] = new ModelRendererTurbo((ModelBase)this, 34, 22, this.textureX, this.textureY);
-        this.bodyModel[17] = new ModelRendererTurbo((ModelBase)this, 34, 24, this.textureX, this.textureY);
+        this.bodyModel = new ModelRendererTurbo[18];
+        this.bodyModel[0] = new ModelRendererTurbo(this, 0, 0, this.textureX, this.textureY); // Base
+        this.bodyModel[1] = new ModelRendererTurbo(this, 32, 0, this.textureX, this.textureY); // Base
+        this.bodyModel[2] = new ModelRendererTurbo(this, 40, 0, this.textureX, this.textureY); // Base
+        this.bodyModel[3] = new ModelRendererTurbo(this, 48, 0, this.textureX, this.textureY); // Base
+        this.bodyModel[4] = new ModelRendererTurbo(this, 56, 0, this.textureX, this.textureY); // Base
+        this.bodyModel[5] = new ModelRendererTurbo(this, 0, 10, this.textureX, this.textureY); // Turret Part 1
+        this.bodyModel[6] = new ModelRendererTurbo(this, 0, 19, this.textureX, this.textureY); // Turret Part 1
+        this.bodyModel[7] = new ModelRendererTurbo(this, 16, 19, this.textureX, this.textureY); // Turret Part 1
+        this.bodyModel[8] = new ModelRendererTurbo(this, 0, 27, this.textureX, this.textureY); // Turret Part 1
+        this.bodyModel[9] = new ModelRendererTurbo(this, 17, 27, this.textureX, this.textureY); // Turret Part 1
+        this.bodyModel[10] = new ModelRendererTurbo(this, 0, 37, this.textureX, this.textureY); // Turret Part 1
+        this.bodyModel[11] = new ModelRendererTurbo(this, 0, 49, this.textureX, this.textureY); // Turret Part 1
+        this.bodyModel[12] = new ModelRendererTurbo(this, 12, 49, this.textureX, this.textureY); // Turret Part 2
+        this.bodyModel[13] = new ModelRendererTurbo(this, 24, 49, this.textureX, this.textureY); // Turret Part 2
+        this.bodyModel[14] = new ModelRendererTurbo(this, 34, 18, this.textureX, this.textureY); // Turret Part 2
+        this.bodyModel[15] = new ModelRendererTurbo(this, 34, 20, this.textureX, this.textureY); // Turret Part 2
+        this.bodyModel[16] = new ModelRendererTurbo(this, 34, 22, this.textureX, this.textureY); // Turret Part 2
+        this.bodyModel[17] = new ModelRendererTurbo(this, 34, 24, this.textureX, this.textureY); // Turret Part 2
         this.bodyModel[0].addBox(-4.0f, -8.0f, -4.0f, 8, 2, 8, 0.0f);
         this.bodyModel[0].setRotationPoint(0.0f, -13.8f, 0.0f);
         this.bodyModel[0].rotateAngleY = -3.1415927f;
@@ -94,17 +95,26 @@ public class ModelSentryGun extends ModelVehicle
         this.translateAll(0.0f, 0.0f, 0.0f);
         this.flipAll();
     }
-    
-    public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
-        for (int i = 0; i < this.bodyModel.length; ++i) {
-            this.bodyModel[i].render(f5);
+
+    @Override
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        super.render(entity, f, f1, f2, f3, f4, f5);
+        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        for (ModelRendererTurbo modelRendererTurbo : this.bodyModel)
+        {
+            modelRendererTurbo.render(f5);
         }
     }
-    
-    public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity) {
+
+    @Override
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
+    {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        for (int i = 10; i < 18; ++i) {
-            this.bodyModel[i].rotateAngleY = f3 / 57.295776f - 1.5707964f;
+        for (int i = 5; i < 18; i++)
+        {
+            this.bodyModel[i].rotateAngleZ = ((i <= 12) ? 1F : -1F) * (f4 / (180F / (float)Math.PI) + ((i <= 9) ? 3.1241393f : 0F));
+            this.bodyModel[i].rotateAngleY = - f3 / (180F / (float)Math.PI) + ((i <= 9) ? -3.1415927f : 0F);
         }
     }
 }
