@@ -34,6 +34,7 @@ import noppes.npcs.entity.data.DataTimers;
 import noppes.npcs.roles.*;
 import noppes.npcs.scripted.entity.ScriptNpc;
 import noppes.npcs.scripted.event.NpcEvent;
+import noppes.npcs.util.EntityNPCFlanBullet;
 import noppes.npcs.util.GameProfileAlt;
 import noppes.npcs.util.NPCInterfaceUtil;
 
@@ -795,18 +796,34 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 				shotgun = (stats.shotCount > 1);
 			}
 
-			shot = itemShootable.getEntity(
-					worldObj,
-					Vec3.createVectorHelper(posX, posY + getEyeHeight(), posZ),
-					rotationYawHead,
-					rotationPitch,
-					this,
-					spread,
-					damage,
-					speed,
-					0,
-					itemShootable.type
-			);
+			if (itemShootable instanceof ItemBullet)
+			{
+				shot = new EntityNPCFlanBullet(
+						worldObj,
+						Vec3.createVectorHelper(posX, posY + getEyeHeight(), posZ),
+						rotationYawHead,
+						rotationPitch,
+						this,
+						spread,
+						damage,
+						((ItemBullet)itemShootable).type,
+						speed,
+						itemShootable.type);
+			}
+			else
+			{
+				shot = itemShootable.getEntity(
+						worldObj,
+						Vec3.createVectorHelper(posX, posY + getEyeHeight(), posZ),
+						rotationYawHead,
+						rotationPitch,
+						this,
+						spread,
+						damage,
+						speed,
+						0,
+						itemShootable.type);
+			}
 
 			if (shot instanceof EntityBullet)
 				((EntityBullet) shot).shotgun = shotgun;
