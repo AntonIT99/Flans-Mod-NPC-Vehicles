@@ -1478,7 +1478,7 @@ public class EntityBullet extends EntityShootable implements IEntityAdditionalSp
             String name = ByteBufUtils.readUTF8String(data);
             for (Object obj : worldObj.loadedEntityList) {
                 if (((Entity) obj).getCommandSenderName().equals(name))
-                    owner = (EntityLivingBase)obj;
+                    owner = (EntityPlayer)obj;
             }
         } catch (Exception e) {
             FlansMod.log("Failed to read bullet owner from server.");
