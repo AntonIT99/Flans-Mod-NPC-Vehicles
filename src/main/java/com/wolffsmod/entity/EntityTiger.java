@@ -1,11 +1,8 @@
 package com.wolffsmod.entity;
 
-import com.flansmod.common.driveables.EntityVehicle;
-
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.world.World;
 
-public class EntityTiger extends EntityCreature {
+public class EntityTiger extends EntityFlanVehicle {
 
 	public EntityTiger(World par1World) {
 		super(par1World);

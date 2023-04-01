@@ -15,7 +15,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderRomeoClassSub extends RenderLiving
 {
     private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/RomeoClassSub/RomeoClassSub.png");
-    private static final String __OBFID3 = "CL_00000986";
     
     public RenderRomeoClassSub(ModelBase par1ModelBase, float par2)
     {
@@ -23,9 +22,12 @@ public class RenderRomeoClassSub extends RenderLiving
     }
 
     protected void preRenderCallback(EntityLivingBase entity, float f){
-    	GL11.glTranslatef(0F, -2.1F, 0F);
+        // real-life scale is 8, scale in the original content pack is 3
+        float scale = 8.0F;
+    	GL11.glTranslatef(0F, -2.1F * scale, 0F);
     	GL11.glRotatef(180, 1, 0, 0);
     	GL11.glRotatef(270, 0, 1, 0);
+        GL11.glScalef(scale, scale, scale);
     }
 
     protected ResourceLocation getEntityTexture(EntityRomeoClassSub par1Entity)
@@ -40,8 +42,3 @@ public class RenderRomeoClassSub extends RenderLiving
 
 
 }
-
-//GL11.glRotatef(180, 1, 0, 0);
-//GL11.glRotatef(90, 0, 1, 0);
-//    	GL11.glRotatef(180, 1, 0, 0);
-//GL11.glRotatef(270, 0, 1, 0);

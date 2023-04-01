@@ -1,14 +1,13 @@
 package com.wolffsmod.entity;
 
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.world.World;
 
-public class EntityRomeoClassSub extends EntityCreature {
+public class EntityRomeoClassSub extends EntityFlanVehicle {
 
-	public EntityRomeoClassSub(World p_i1602_1_) {
-		super(p_i1602_1_);
+	public EntityRomeoClassSub(World w) {
+		super(w);
 		// TODO Auto-generated constructor stub
-		this.setSize(3.0F, 3.0F);
+		this.setSize(6.5F, 4.5F);
 	}
 
 }

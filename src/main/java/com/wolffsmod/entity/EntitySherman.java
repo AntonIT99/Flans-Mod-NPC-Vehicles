@@ -1,9 +1,8 @@
 package com.wolffsmod.entity;
 
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.world.World;
 
-public class EntitySherman extends EntityCreature {
+public class EntitySherman extends EntityFlanVehicle {
 
 	public EntitySherman(World par1World) {
 		super(par1World);

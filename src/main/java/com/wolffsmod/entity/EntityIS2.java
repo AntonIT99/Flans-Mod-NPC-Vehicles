@@ -1,9 +1,8 @@
 package com.wolffsmod.entity;
 
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.world.World;
 
-public class EntityIS2 extends EntityCreature {
+public class EntityIS2 extends EntityFlanVehicle {
 
 	public EntityIS2(World p_i1602_1_) {
 		super(p_i1602_1_);

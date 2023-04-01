@@ -5,5 +5,5 @@ public class Strings {
 
 	public static final String MOD_ID = "wolffsmod";
 	public static final String MOD_NAME = "Wolff's NPCs";
-	public static final String MOD_VERSION = "2.5";
+	public static final String MOD_VERSION = "3.0";
 }

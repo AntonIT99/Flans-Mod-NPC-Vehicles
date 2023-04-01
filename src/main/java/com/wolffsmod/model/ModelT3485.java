@@ -2163,886 +2163,692 @@ public class ModelT3485 extends ModelVehicle //Same as Filename
 		turretModel[193] = new ModelRendererTurbo(this, 0, 222, textureX, textureY); // Box 0
 		turretModel[194] = new ModelRendererTurbo(this, 0, 222, textureX, textureY); // Box 2
 
-		turretModel[0].addShapeBox(6F, -1F, -10F, 5, 3, 20, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 0F); // Box 13
+		turretModel[0].addShapeBox(6F, -1F, -10F, 5, 3, 20, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 0F);
 		turretModel[0].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[1].addShapeBox(-5F, 0F, -13F, 11, 2, 26, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F); // Box 14
+		turretModel[1].addShapeBox(-5F, 0F, -13F, 11, 2, 26, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F);
 		turretModel[1].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[2].addShapeBox(-19F, 0F, -10F, 3, 2, 20, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F); // Box 15
+		turretModel[2].addShapeBox(-19F, 0F, -10F, 3, 2, 20, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F);
 		turretModel[2].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[3].addShapeBox(-13F, 0F, -13F, 8, 2, 26, 0F, 3F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, -3F, 3F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, -3F); // Box 16
+		turretModel[3].addShapeBox(-13F, 0F, -13F, 8, 2, 26, 0F, 3F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, -3F, 3F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, -3F);
 		turretModel[3].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[4].addShapeBox(8F, -2F, -11F, 7, 3, 22, 0F, 0F, 0F, 1F, 1F, 1F, -4F, 1F, 1F, -4F, 0F, 0F, 1F, 0F, -1F, 0F, 0F, -2F, -5F, 0F, -2F, -5F, 0F, -1F, 0F); // Box 17
+		turretModel[4].addShapeBox(8F, -2F, -11F, 7, 3, 22, 0F, 0F, 0F, 1F, 1F, 1F, -4F, 1F, 1F, -4F, 0F, 0F, 1F, 0F, -1F, 0F, 0F, -2F, -5F, 0F, -2F, -5F, 0F, -1F, 0F);
 		turretModel[4].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[5].addShapeBox(-3F, -2F, -14F, 11, 2, 28, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F); // Box 18
+		turretModel[5].addShapeBox(-3F, -2F, -14F, 11, 2, 28, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F);
 		turretModel[5].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[6].addShapeBox(-13F, -2F, -14F, 10, 2, 28, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F); // Box 20
+		turretModel[6].addShapeBox(-13F, -2F, -14F, 10, 2, 28, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F);
 		turretModel[6].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[7].addShapeBox(-19F, -2F, -11F, 6, 2, 22, 0F, 7F, 0F, -2F, 0F, 0F, 1F, 0F, 0F, 1F, 7F, 0F, -2F, 6F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 6F, 0F, -3F); // Box 21
+		turretModel[7].addShapeBox(-19F, -2F, -11F, 6, 2, 22, 0F, 7F, 0F, -2F, 0F, 0F, 1F, 0F, 0F, 1F, 7F, 0F, -2F, 6F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 6F, 0F, -3F);
 		turretModel[7].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[8].addShapeBox(8F, -8F, -12F, 8, 5, 24, 0F, 0F, 0F, 0F, 0F, -1F, -5F, 0F, -1F, -5F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 1F, 0F); // Box 22
+		turretModel[8].addShapeBox(8F, -8F, -12F, 8, 5, 24, 0F, 0F, 0F, 0F, 0F, -1F, -5F, 0F, -1F, -5F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 1F, 0F);
 		turretModel[8].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[9].addShapeBox(-3F, -8F, -15F, 11, 5, 30, 0F, 0F, 0F, -1F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -1F, 0F, 1F, -1F, 0F, 1F, -3F, 0F, 1F, -3F, 0F, 1F, -1F); // Box 23
+		turretModel[9].addShapeBox(-3F, -8F, -15F, 11, 5, 30, 0F, 0F, 0F, -1F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -1F, 0F, 1F, -1F, 0F, 1F, -3F, 0F, 1F, -3F, 0F, 1F, -1F);
 		turretModel[9].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[10].addShapeBox(-13F, -8F, -15F, 10, 5, 30, 0F, 0F, 0F, -3F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -3F, 0F, 1F, -3F, 0F, 1F, -1F, 0F, 1F, -1F, 0F, 1F, -3F); // Box 25
+		turretModel[10].addShapeBox(-13F, -8F, -15F, 10, 5, 30, 0F, 0F, 0F, -3F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -3F, 0F, 1F, -3F, 0F, 1F, -1F, 0F, 1F, -1F, 0F, 1F, -3F);
 		turretModel[10].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[11].addShapeBox(-20F, -8F, -12F, 7, 5, 24, 0F, 5.5F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 5.5F, 0F, -3F, 6F, 1F, -3F, 0F, 1F, 0F, 0F, 1F, 0F, 6F, 1F, -3F); // Box 26
+		turretModel[11].addShapeBox(-20F, -8F, -12F, 7, 5, 24, 0F, 5.5F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 5.5F, 0F, -3F, 6F, 1F, -3F, 0F, 1F, 0F, 0F, 1F, 0F, 6F, 1F, -3F);
 		turretModel[11].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[12].addShapeBox(8F, -11F, -10F, 6, 1, 20, 0F, 0F, 0F, -2F, 2F, -2F, -5F, 2F, -2F, -5F, 0F, 0F, -2F, 0F, 0F, 1F, 1F, 1F, -4F, 1F, 1F, -4F, 0F, 0F, 1F); // Box 27
+		turretModel[12].addShapeBox(8F, -11F, -10F, 6, 1, 20, 0F, 0F, 0F, -2F, 2F, -2F, -5F, 2F, -2F, -5F, 0F, 0F, -2F, 0F, 0F, 1F, 1F, 1F, -4F, 1F, 1F, -4F, 0F, 0F, 1F);
 		turretModel[12].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[13].addShapeBox(-3F, -11F, -13F, 11, 1, 26, 0F, 0F, 0F, -3F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F); // Box 28
+		turretModel[13].addShapeBox(-3F, -11F, -13F, 11, 1, 26, 0F, 0F, 0F, -3F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F);
 		turretModel[13].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[14].addShapeBox(-19F, -10F, -11F, 6, 2, 22, 0F, 6F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 6F, 0F, -3F, 6.5F, 0F, -2F, 0F, 0F, 1F, 0F, 0F, 1F, 6.5F, 0F, -2F); // Box 32
+		turretModel[14].addShapeBox(-19F, -10F, -11F, 6, 2, 22, 0F, 6F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 6F, 0F, -3F, 6.5F, 0F, -2F, 0F, 0F, 1F, 0F, 0F, 1F, 6.5F, 0F, -2F);
 		turretModel[14].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[15].addShapeBox(-13F, -10F, -14F, 10, 2, 28, 0F, 0F, 0F, -3F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -3F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F); // Box 33
+		turretModel[15].addShapeBox(-13F, -10F, -14F, 10, 2, 28, 0F, 0F, 0F, -3F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -3F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F);
 		turretModel[15].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[16].addShapeBox(-3F, -10F, -14F, 11, 2, 28, 0F, 0F, 0F, -1F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F); // Box 35
+		turretModel[16].addShapeBox(-3F, -10F, -14F, 11, 2, 28, 0F, 0F, 0F, -1F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F);
 		turretModel[16].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[17].addShapeBox(8F, -10F, -11F, 7, 2, 22, 0F, 0F, 0F, 0F, 0F, -1F, -5F, 0F, -1F, -5F, 0F, 0F, 0F, 0F, 0F, 1F, 1F, 1F, -4F, 1F, 1F, -4F, 0F, 0F, 1F); // Box 36
+		turretModel[17].addShapeBox(8F, -10F, -11F, 7, 2, 22, 0F, 0F, 0F, 0F, 0F, -1F, -5F, 0F, -1F, -5F, 0F, 0F, 0F, 0F, 0F, 1F, 1F, 1F, -4F, 1F, 1F, -4F, 0F, 0F, 1F);
 		turretModel[17].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[18].addShapeBox(-18F, -11F, -10F, 5, 1, 20, 0F, 5F, 0F, -5F, 0F, 0F, -2F, 0F, 0F, -2F, 5F, 0F, -5F, 7F, 0F, -2F, 0F, 0F, 1F, 0F, 0F, 1F, 7F, 0F, -2F); // Box 37
+		turretModel[18].addShapeBox(-18F, -11F, -10F, 5, 1, 20, 0F, 5F, 0F, -5F, 0F, 0F, -2F, 0F, 0F, -2F, 5F, 0F, -5F, 7F, 0F, -2F, 0F, 0F, 1F, 0F, 0F, 1F, 7F, 0F, -2F);
 		turretModel[18].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[19].addShapeBox(-13F, -11F, -13F, 10, 1, 26, 0F, 0F, 0F, -5F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -5F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F); // Box 38
+		turretModel[19].addShapeBox(-13F, -11F, -13F, 10, 1, 26, 0F, 0F, 0F, -5F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -5F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F);
 		turretModel[19].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[20].addShapeBox(16F, -7F, -7F, 1, 3, 14, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F); // Box 39
+		turretModel[20].addShapeBox(16F, -7F, -7F, 1, 3, 14, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F);
 		turretModel[20].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[21].addShapeBox(16F, -9F, -6F, 1, 2, 12, 0F, 1F, 0F, 0F, -1F, 0F, -1F, -1F, 0F, -1F, 1F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F); // Box 40
+		turretModel[21].addShapeBox(16F, -9F, -6F, 1, 2, 12, 0F, 1F, 0F, 0F, -1F, 0F, -1F, -1F, 0F, -1F, 1F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F);
 		turretModel[21].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[22].addShapeBox(16F, -4F, -6F, 1, 2, 12, 0F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 1F, 0F, 0F, -1F, 0F, -1F, -1F, 0F, -1F, 1F, 0F, 0F); // Box 42
+		turretModel[22].addShapeBox(16F, -4F, -6F, 1, 2, 12, 0F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 1F, 0F, 0F, -1F, 0F, -1F, -1F, 0F, -1F, 1F, 0F, 0F);
 		turretModel[22].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[23].addShapeBox(-29F, -5.5F, -6F, 3, 9, 12, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, -0.5F, 0F); // Box 66
+		turretModel[23].addShapeBox(-29F, -5.5F, -6F, 3, 9, 12, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, -0.5F, 0F);
 		turretModel[23].setRotationPoint(0F, -17F, 0F);
-		turretModel[23].rotateAngleZ = -0.20943951F;
-
-		turretModel[24].addShapeBox(-31F, -4.5F, -6F, 1, 7, 12, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 67
+		turretModel[23].rotateAngleZ = -0.20943952F;
+		turretModel[24].addShapeBox(-31F, -4.5F, -6F, 1, 7, 12, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F);
 		turretModel[24].setRotationPoint(0F, -17F, 0F);
-		turretModel[24].rotateAngleZ = -0.20943951F;
-
-		turretModel[25].addShapeBox(-30F, -5.5F, -6F, 1, 9, 12, 0F, 0F, -1F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -1F, 0F); // Box 68
+		turretModel[24].rotateAngleZ = -0.20943952F;
+		turretModel[25].addShapeBox(-30F, -5.5F, -6F, 1, 9, 12, 0F, 0F, -1F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -1F, 0F);
 		turretModel[25].setRotationPoint(0F, -17F, 0F);
-		turretModel[25].rotateAngleZ = -0.20943951F;
-
-		turretModel[26].addShapeBox(-12F, -2F, -1F, 5, 4, 11, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 15
+		turretModel[25].rotateAngleZ = -0.20943952F;
+		turretModel[26].addShapeBox(-12F, -2F, -1F, 5, 4, 11, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F);
 		turretModel[26].setRotationPoint(0F, -29F, 0F);
-
-		turretModel[27].addShapeBox(-15F, -2F, -1F, 3, 4, 11, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F); // Box 16
+		turretModel[27].addShapeBox(-15F, -2F, -1F, 3, 4, 11, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F);
 		turretModel[27].setRotationPoint(0F, -29F, 0F);
-
-		turretModel[28].addShapeBox(-7F, -2F, -1F, 3, 4, 11, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F); // Box 17
+		turretModel[28].addShapeBox(-7F, -2F, -1F, 3, 4, 11, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F);
 		turretModel[28].setRotationPoint(0F, -29F, 0F);
-
-		turretModel[29].addShapeBox(-4F, 0.5F, -9F, 1, 1, 7, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 1F, 1F, 0F, -1F, 1F, 0F, -1F, 0F, 0F, 1F); // Box 122
+		turretModel[29].addShapeBox(-4F, 0.5F, -9F, 1, 1, 7, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 1F, 1F, 0F, -1F, 1F, 0F, -1F, 0F, 0F, 1F);
 		turretModel[29].setRotationPoint(4F, -29F, 0F);
-
-		turretModel[30].addShapeBox(-10F, 0.5F, -9F, 6, 1, 7, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 1F); // Box 123
+		turretModel[30].addShapeBox(-10F, 0.5F, -9F, 6, 1, 7, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 1F);
 		turretModel[30].setRotationPoint(4F, -29F, 0F);
-
-		turretModel[31].addShapeBox(-11F, 0.5F, -9F, 1, 1, 7, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 1F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 1F, 0F, -1F); // Box 124
+		turretModel[31].addShapeBox(-11F, 0.5F, -9F, 1, 1, 7, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 1F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 1F, 0F, -1F);
 		turretModel[31].setRotationPoint(4F, -29F, 0F);
-
-		turretModel[32].addShapeBox(-2.5F, -2.6F, -6F, 3, 2, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 131
+		turretModel[32].addShapeBox(-2.5F, -2.6F, -6F, 3, 2, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F);
 		turretModel[32].setRotationPoint(1F, -26F, -1F);
-
-		turretModel[33].addShapeBox(-2F, -3.6F, -5.5F, 2, 2, 2, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F); // Box 132
+		turretModel[33].addShapeBox(-2F, -3.6F, -5.5F, 2, 2, 2, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F);
 		turretModel[33].setRotationPoint(1F, -26F, -1F);
-
-		turretModel[34].addShapeBox(1F, -16F, -5.5F, 1, 2, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 59
+		turretModel[34].addShapeBox(1F, -16F, -5.5F, 1, 2, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F);
 		turretModel[34].setRotationPoint(0F, -17F, 0F);
-		turretModel[34].rotateAngleX = -1.18682389F;
-
-		turretModel[35].addShapeBox(-7F, -16F, -5.5F, 8, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F); // Box 60
+		turretModel[34].rotateAngleX = -1.1868238F;
+		turretModel[35].addShapeBox(-7F, -16F, -5.5F, 8, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F);
 		turretModel[35].setRotationPoint(0F, -17F, 0F);
-		turretModel[35].rotateAngleX = -1.18682389F;
-
-		turretModel[36].addShapeBox(-8F, -16F, -5.5F, 1, 2, 1, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 61
+		turretModel[35].rotateAngleX = -1.1868238F;
+		turretModel[36].addShapeBox(-8F, -16F, -5.5F, 1, 2, 1, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F);
 		turretModel[36].setRotationPoint(0F, -17F, 0F);
-		turretModel[36].rotateAngleX = -1.18682389F;
-
-		turretModel[37].addShapeBox(-8F, -16F, 4.5F, 1, 2, 1, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 62
+		turretModel[36].rotateAngleX = -1.1868238F;
+		turretModel[37].addShapeBox(-8F, -16F, 4.5F, 1, 2, 1, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F);
 		turretModel[37].setRotationPoint(0F, -17F, 0F);
-		turretModel[37].rotateAngleX = 1.18682389F;
-
-		turretModel[38].addShapeBox(1F, -16F, 4.5F, 1, 2, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 63
+		turretModel[37].rotateAngleX = 1.1868238F;
+		turretModel[38].addShapeBox(1F, -16F, 4.5F, 1, 2, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F);
 		turretModel[38].setRotationPoint(0F, -17F, 0F);
-		turretModel[38].rotateAngleX = 1.18682389F;
-
-		turretModel[39].addShapeBox(-7F, -16F, 4.5F, 8, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F); // Box 64
+		turretModel[38].rotateAngleX = 1.1868238F;
+		turretModel[39].addShapeBox(-7F, -16F, 4.5F, 8, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F);
 		turretModel[39].setRotationPoint(0F, -17F, 0F);
-		turretModel[39].rotateAngleX = 1.18682389F;
-
-		turretModel[40].addShapeBox(1F, -14.5F, -3.5F, 1, 2, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 71
+		turretModel[39].rotateAngleX = 1.1868238F;
+		turretModel[40].addShapeBox(1F, -14.5F, -3.5F, 1, 2, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F);
 		turretModel[40].setRotationPoint(0F, -17F, 0F);
-		turretModel[40].rotateAngleX = -1.57079633F;
-
-		turretModel[41].addShapeBox(-7F, -14.5F, -3.5F, 8, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F); // Box 72
+		turretModel[40].rotateAngleX = -1.5707964F;
+		turretModel[41].addShapeBox(-7F, -14.5F, -3.5F, 8, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F);
 		turretModel[41].setRotationPoint(0F, -17F, 0F);
-		turretModel[41].rotateAngleX = -1.57079633F;
-
-		turretModel[42].addShapeBox(-8F, -14.5F, -3.5F, 1, 2, 1, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 73
+		turretModel[41].rotateAngleX = -1.5707964F;
+		turretModel[42].addShapeBox(-8F, -14.5F, -3.5F, 1, 2, 1, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F);
 		turretModel[42].setRotationPoint(0F, -17F, 0F);
-		turretModel[42].rotateAngleX = -1.57079633F;
-
-		turretModel[43].addShapeBox(-8F, -14.5F, 2.5F, 1, 2, 1, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 74
+		turretModel[42].rotateAngleX = -1.5707964F;
+		turretModel[43].addShapeBox(-8F, -14.5F, 2.5F, 1, 2, 1, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F);
 		turretModel[43].setRotationPoint(0F, -17F, 0F);
-		turretModel[43].rotateAngleX = 1.57079633F;
-
-		turretModel[44].addShapeBox(-7F, -14.5F, 2.5F, 8, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F); // Box 75
+		turretModel[43].rotateAngleX = 1.5707964F;
+		turretModel[44].addShapeBox(-7F, -14.5F, 2.5F, 8, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F);
 		turretModel[44].setRotationPoint(0F, -17F, 0F);
-		turretModel[44].rotateAngleX = 1.57079633F;
-
-		turretModel[45].addShapeBox(1F, -14.5F, 2.5F, 1, 2, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 76
+		turretModel[44].rotateAngleX = 1.5707964F;
+		turretModel[45].addShapeBox(1F, -14.5F, 2.5F, 1, 2, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F);
 		turretModel[45].setRotationPoint(0F, -17F, 0F);
-		turretModel[45].rotateAngleX = 1.57079633F;
-
-		turretModel[46].addShapeBox(-3F, -8F, -17F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F); // Box 92
+		turretModel[45].rotateAngleX = 1.5707964F;
+		turretModel[46].addShapeBox(-3F, -8F, -17F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F);
 		turretModel[46].setRotationPoint(0F, -17F, 0F);
 		turretModel[46].rotateAngleX = -0.2268928F;
 		turretModel[46].rotateAngleY = 0.4712389F;
-
-		turretModel[47].addShapeBox(-3F, -1F, -17F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F); // Box 93
+		turretModel[47].addShapeBox(-3F, -1F, -17F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F);
 		turretModel[47].setRotationPoint(0F, -17F, 0F);
 		turretModel[47].rotateAngleX = -0.2268928F;
 		turretModel[47].rotateAngleY = 0.4712389F;
-
-		turretModel[48].addShapeBox(-3.3F, -7F, -17F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F); // Box 94
+		turretModel[48].addShapeBox(-3.3F, -7F, -17F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F);
 		turretModel[48].setRotationPoint(0F, -17F, 0F);
 		turretModel[48].rotateAngleX = -0.2268928F;
 		turretModel[48].rotateAngleY = 0.4712389F;
-
-		turretModel[49].addShapeBox(8.3F, -7F, -17F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F); // Box 95
+		turretModel[49].addShapeBox(8.3F, -7F, -17F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F);
 		turretModel[49].setRotationPoint(0F, -17F, 0F);
 		turretModel[49].rotateAngleX = -0.2268928F;
 		turretModel[49].rotateAngleY = 0.4712389F;
-
-		turretModel[50].addShapeBox(-2.5F, -7F, -17F, 6, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 96
+		turretModel[50].addShapeBox(-2.5F, -7F, -17F, 6, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[50].setRotationPoint(0F, -17F, 0F);
 		turretModel[50].rotateAngleX = -0.2268928F;
 		turretModel[50].rotateAngleY = 0.4712389F;
-
-		turretModel[51].addShapeBox(-1.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 97
+		turretModel[51].addShapeBox(-1.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[51].setRotationPoint(0F, -17F, 0F);
 		turretModel[51].rotateAngleX = -0.2268928F;
 		turretModel[51].rotateAngleY = 0.4712389F;
-
-		turretModel[52].addShapeBox(0.500000000000001F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 98
+		turretModel[52].addShapeBox(0.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[52].setRotationPoint(0F, -17F, 0F);
 		turretModel[52].rotateAngleX = -0.2268928F;
 		turretModel[52].rotateAngleY = 0.4712389F;
-
-		turretModel[53].addShapeBox(-0.499999999999999F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 99
+		turretModel[53].addShapeBox(-0.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[53].setRotationPoint(0F, -17F, 0F);
 		turretModel[53].rotateAngleX = -0.2268928F;
 		turretModel[53].rotateAngleY = 0.4712389F;
-
-		turretModel[54].addShapeBox(2.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 100
+		turretModel[54].addShapeBox(2.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[54].setRotationPoint(0F, -17F, 0F);
 		turretModel[54].rotateAngleX = -0.2268928F;
 		turretModel[54].rotateAngleY = 0.4712389F;
-
-		turretModel[55].addShapeBox(1.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 101
+		turretModel[55].addShapeBox(1.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[55].setRotationPoint(0F, -17F, 0F);
 		turretModel[55].rotateAngleX = -0.2268928F;
 		turretModel[55].rotateAngleY = 0.4712389F;
-
-		turretModel[56].addShapeBox(4.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 102
+		turretModel[56].addShapeBox(4.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[56].setRotationPoint(0F, -17F, 0F);
 		turretModel[56].rotateAngleX = -0.2268928F;
 		turretModel[56].rotateAngleY = 0.4712389F;
-
-		turretModel[57].addShapeBox(3.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 103
+		turretModel[57].addShapeBox(3.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[57].setRotationPoint(0F, -17F, 0F);
 		turretModel[57].rotateAngleX = -0.2268928F;
 		turretModel[57].rotateAngleY = 0.4712389F;
-
-		turretModel[58].addShapeBox(6.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 104
+		turretModel[58].addShapeBox(6.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[58].setRotationPoint(0F, -17F, 0F);
 		turretModel[58].rotateAngleX = -0.2268928F;
 		turretModel[58].rotateAngleY = 0.4712389F;
-
-		turretModel[59].addShapeBox(5.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 105
+		turretModel[59].addShapeBox(5.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[59].setRotationPoint(0F, -17F, 0F);
 		turretModel[59].rotateAngleX = -0.2268928F;
 		turretModel[59].rotateAngleY = 0.4712389F;
-
-		turretModel[60].addShapeBox(7.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 106
+		turretModel[60].addShapeBox(7.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[60].setRotationPoint(0F, -17F, 0F);
 		turretModel[60].rotateAngleX = -0.2268928F;
 		turretModel[60].rotateAngleY = 0.4712389F;
-
-		turretModel[61].addShapeBox(-2.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 107
+		turretModel[61].addShapeBox(-2.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[61].setRotationPoint(0F, -17F, 0F);
 		turretModel[61].rotateAngleX = -0.2268928F;
 		turretModel[61].rotateAngleY = 0.4712389F;
-
-		turretModel[62].addShapeBox(-2.5F, -6F, -17F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 109
+		turretModel[62].addShapeBox(-2.5F, -6F, -17F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[62].setRotationPoint(0F, -17F, 0F);
 		turretModel[62].rotateAngleX = -0.2268928F;
 		turretModel[62].rotateAngleY = 0.4712389F;
-
-		turretModel[63].addShapeBox(-2.5F, -4F, -17F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 110
+		turretModel[63].addShapeBox(-2.5F, -4F, -17F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[63].setRotationPoint(0F, -17F, 0F);
 		turretModel[63].rotateAngleX = -0.2268928F;
 		turretModel[63].rotateAngleY = 0.4712389F;
-
-		turretModel[64].addShapeBox(-0.5F, -5F, -17F, 9, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 111
+		turretModel[64].addShapeBox(-0.5F, -5F, -17F, 9, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[64].setRotationPoint(0F, -17F, 0F);
 		turretModel[64].rotateAngleX = -0.2268928F;
 		turretModel[64].rotateAngleY = 0.4712389F;
-
-		turretModel[65].addShapeBox(-2.5F, -2F, -17F, 6, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 112
+		turretModel[65].addShapeBox(-2.5F, -2F, -17F, 6, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[65].setRotationPoint(0F, -17F, 0F);
 		turretModel[65].rotateAngleX = -0.2268928F;
 		turretModel[65].rotateAngleY = 0.4712389F;
-
-		turretModel[66].addShapeBox(-2.5F, -3F, -17F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 113
+		turretModel[66].addShapeBox(-2.5F, -3F, -17F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[66].setRotationPoint(0F, -17F, 0F);
 		turretModel[66].rotateAngleX = -0.2268928F;
 		turretModel[66].rotateAngleY = 0.4712389F;
-
-		turretModel[67].addShapeBox(-8.7F, -7F, -18F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F); // Box 114
+		turretModel[67].addShapeBox(-8.7F, -7F, -18F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F);
 		turretModel[67].setRotationPoint(0F, -17F, 0F);
 		turretModel[67].rotateAngleX = -0.2268928F;
 		turretModel[67].rotateAngleY = -0.2268928F;
-
-		turretModel[68].addShapeBox(-20F, -8F, -18F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F); // Box 115
+		turretModel[68].addShapeBox(-20F, -8F, -18F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F);
 		turretModel[68].setRotationPoint(0F, -17F, 0F);
 		turretModel[68].rotateAngleX = -0.2268928F;
 		turretModel[68].rotateAngleY = -0.2268928F;
-
-		turretModel[69].addShapeBox(-20.3F, -7F, -18F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F); // Box 116
+		turretModel[69].addShapeBox(-20.3F, -7F, -18F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F);
 		turretModel[69].setRotationPoint(0F, -17F, 0F);
 		turretModel[69].rotateAngleX = -0.2268928F;
 		turretModel[69].rotateAngleY = -0.2268928F;
-
-		turretModel[70].addShapeBox(-19.5F, -7F, -18F, 6, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 117
+		turretModel[70].addShapeBox(-19.5F, -7F, -18F, 6, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[70].setRotationPoint(0F, -17F, 0F);
 		turretModel[70].rotateAngleX = -0.2268928F;
 		turretModel[70].rotateAngleY = -0.2268928F;
-
-		turretModel[71].addShapeBox(-18.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 118
+		turretModel[71].addShapeBox(-18.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[71].setRotationPoint(0F, -17F, 0F);
 		turretModel[71].rotateAngleX = -0.2268928F;
 		turretModel[71].rotateAngleY = -0.2268928F;
-
-		turretModel[72].addShapeBox(-19.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 119
+		turretModel[72].addShapeBox(-19.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[72].setRotationPoint(0F, -17F, 0F);
 		turretModel[72].rotateAngleX = -0.2268928F;
 		turretModel[72].rotateAngleY = -0.2268928F;
-
-		turretModel[73].addShapeBox(-17.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 120
+		turretModel[73].addShapeBox(-17.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[73].setRotationPoint(0F, -17F, 0F);
 		turretModel[73].rotateAngleX = -0.2268928F;
 		turretModel[73].rotateAngleY = -0.2268928F;
-
-		turretModel[74].addShapeBox(-16.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 121
+		turretModel[74].addShapeBox(-16.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[74].setRotationPoint(0F, -17F, 0F);
 		turretModel[74].rotateAngleX = -0.2268928F;
 		turretModel[74].rotateAngleY = -0.2268928F;
-
-		turretModel[75].addShapeBox(-15.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 122
+		turretModel[75].addShapeBox(-15.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[75].setRotationPoint(0F, -17F, 0F);
 		turretModel[75].rotateAngleX = -0.2268928F;
 		turretModel[75].rotateAngleY = -0.2268928F;
-
-		turretModel[76].addShapeBox(-14.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 123
+		turretModel[76].addShapeBox(-14.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[76].setRotationPoint(0F, -17F, 0F);
 		turretModel[76].rotateAngleX = -0.2268928F;
 		turretModel[76].rotateAngleY = -0.2268928F;
-
-		turretModel[77].addShapeBox(-13.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 124
+		turretModel[77].addShapeBox(-13.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[77].setRotationPoint(0F, -17F, 0F);
 		turretModel[77].rotateAngleX = -0.2268928F;
 		turretModel[77].rotateAngleY = -0.2268928F;
-
-		turretModel[78].addShapeBox(-12.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 125
+		turretModel[78].addShapeBox(-12.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[78].setRotationPoint(0F, -17F, 0F);
 		turretModel[78].rotateAngleX = -0.2268928F;
 		turretModel[78].rotateAngleY = -0.2268928F;
-
-		turretModel[79].addShapeBox(-11.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 126
+		turretModel[79].addShapeBox(-11.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[79].setRotationPoint(0F, -17F, 0F);
 		turretModel[79].rotateAngleX = -0.2268928F;
 		turretModel[79].rotateAngleY = -0.2268928F;
-
-		turretModel[80].addShapeBox(-10.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 127
+		turretModel[80].addShapeBox(-10.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[80].setRotationPoint(0F, -17F, 0F);
 		turretModel[80].rotateAngleX = -0.2268928F;
 		turretModel[80].rotateAngleY = -0.2268928F;
-
-		turretModel[81].addShapeBox(-9.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 128
+		turretModel[81].addShapeBox(-9.5F, -7F, -18F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[81].setRotationPoint(0F, -17F, 0F);
 		turretModel[81].rotateAngleX = -0.2268928F;
 		turretModel[81].rotateAngleY = -0.2268928F;
-
-		turretModel[82].addShapeBox(-19.5F, -6F, -18F, 6, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 129
+		turretModel[82].addShapeBox(-19.5F, -6F, -18F, 6, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[82].setRotationPoint(0F, -17F, 0F);
 		turretModel[82].rotateAngleX = -0.2268928F;
 		turretModel[82].rotateAngleY = -0.2268928F;
-
-		turretModel[83].addShapeBox(-17.5F, -5F, -18F, 9, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 130
+		turretModel[83].addShapeBox(-17.5F, -5F, -18F, 9, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[83].setRotationPoint(0F, -17F, 0F);
 		turretModel[83].rotateAngleX = -0.2268928F;
 		turretModel[83].rotateAngleY = -0.2268928F;
-
-		turretModel[84].addShapeBox(-19.5F, -4F, -18F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 131
+		turretModel[84].addShapeBox(-19.5F, -4F, -18F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[84].setRotationPoint(0F, -17F, 0F);
 		turretModel[84].rotateAngleX = -0.2268928F;
 		turretModel[84].rotateAngleY = -0.2268928F;
-
-		turretModel[85].addShapeBox(-19.5F, -3F, -18F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 132
+		turretModel[85].addShapeBox(-19.5F, -3F, -18F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[85].setRotationPoint(0F, -17F, 0F);
 		turretModel[85].rotateAngleX = -0.2268928F;
 		turretModel[85].rotateAngleY = -0.2268928F;
-
-		turretModel[86].addShapeBox(-19.5F, -2F, -18F, 6, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 133
+		turretModel[86].addShapeBox(-19.5F, -2F, -18F, 6, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[86].setRotationPoint(0F, -17F, 0F);
 		turretModel[86].rotateAngleX = -0.2268928F;
 		turretModel[86].rotateAngleY = -0.2268928F;
-
-		turretModel[87].addShapeBox(-20F, -1F, -18F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F); // Box 134
+		turretModel[87].addShapeBox(-20F, -1F, -18F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F);
 		turretModel[87].setRotationPoint(0F, -17F, 0F);
 		turretModel[87].rotateAngleX = -0.2268928F;
 		turretModel[87].rotateAngleY = -0.2268928F;
-
-		turretModel[88].addShapeBox(3.3F, -7F, -17F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F); // Box 135
+		turretModel[88].addShapeBox(3.3F, -7F, -17F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F);
 		turretModel[88].setRotationPoint(0F, -17F, 0F);
 		turretModel[88].rotateAngleX = -0.2268928F;
-		turretModel[88].rotateAngleY = -3.64773814F;
-
-		turretModel[89].addShapeBox(-8F, -8F, -17F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F); // Box 136
+		turretModel[88].rotateAngleY = -3.6477382F;
+		turretModel[89].addShapeBox(-8F, -8F, -17F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F);
 		turretModel[89].setRotationPoint(0F, -17F, 0F);
 		turretModel[89].rotateAngleX = -0.2268928F;
-		turretModel[89].rotateAngleY = -3.64773814F;
-
-		turretModel[90].addShapeBox(-8.3F, -7F, -17F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F); // Box 137
+		turretModel[89].rotateAngleY = -3.6477382F;
+		turretModel[90].addShapeBox(-8.3F, -7F, -17F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F);
 		turretModel[90].setRotationPoint(0F, -17F, 0F);
 		turretModel[90].rotateAngleX = -0.2268928F;
-		turretModel[90].rotateAngleY = -3.64773814F;
-
-		turretModel[91].addShapeBox(-7.5F, -7F, -17F, 8, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 138
+		turretModel[90].rotateAngleY = -3.6477382F;
+		turretModel[91].addShapeBox(-7.5F, -7F, -17F, 8, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[91].setRotationPoint(0F, -17F, 0F);
 		turretModel[91].rotateAngleX = -0.2268928F;
-		turretModel[91].rotateAngleY = -3.64773814F;
-
-		turretModel[92].addShapeBox(-6.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 139
+		turretModel[91].rotateAngleY = -3.6477382F;
+		turretModel[92].addShapeBox(-6.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[92].setRotationPoint(0F, -17F, 0F);
 		turretModel[92].rotateAngleX = -0.2268928F;
-		turretModel[92].rotateAngleY = -3.64773814F;
-
-		turretModel[93].addShapeBox(-7.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 140
+		turretModel[92].rotateAngleY = -3.6477382F;
+		turretModel[93].addShapeBox(-7.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[93].setRotationPoint(0F, -17F, 0F);
 		turretModel[93].rotateAngleX = -0.2268928F;
-		turretModel[93].rotateAngleY = -3.64773814F;
-
-		turretModel[94].addShapeBox(-5.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 141
+		turretModel[93].rotateAngleY = -3.6477382F;
+		turretModel[94].addShapeBox(-5.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[94].setRotationPoint(0F, -17F, 0F);
 		turretModel[94].rotateAngleX = -0.2268928F;
-		turretModel[94].rotateAngleY = -3.64773814F;
-
-		turretModel[95].addShapeBox(-4.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 142
+		turretModel[94].rotateAngleY = -3.6477382F;
+		turretModel[95].addShapeBox(-4.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[95].setRotationPoint(0F, -17F, 0F);
 		turretModel[95].rotateAngleX = -0.2268928F;
-		turretModel[95].rotateAngleY = -3.64773814F;
-
-		turretModel[96].addShapeBox(-3.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 143
+		turretModel[95].rotateAngleY = -3.6477382F;
+		turretModel[96].addShapeBox(-3.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[96].setRotationPoint(0F, -17F, 0F);
 		turretModel[96].rotateAngleX = -0.2268928F;
-		turretModel[96].rotateAngleY = -3.64773814F;
-
-		turretModel[97].addShapeBox(-2.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 144
+		turretModel[96].rotateAngleY = -3.6477382F;
+		turretModel[97].addShapeBox(-2.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[97].setRotationPoint(0F, -17F, 0F);
 		turretModel[97].rotateAngleX = -0.2268928F;
-		turretModel[97].rotateAngleY = -3.64773814F;
-
-		turretModel[98].addShapeBox(-1.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 145
+		turretModel[97].rotateAngleY = -3.6477382F;
+		turretModel[98].addShapeBox(-1.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[98].setRotationPoint(0F, -17F, 0F);
 		turretModel[98].rotateAngleX = -0.2268928F;
-		turretModel[98].rotateAngleY = -3.64773814F;
-
-		turretModel[99].addShapeBox(-0.500000000000001F, -7F, -17F, 1, 5, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 146
+		turretModel[98].rotateAngleY = -3.6477382F;
+		turretModel[99].addShapeBox(-0.5F, -7F, -17F, 1, 5, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[99].setRotationPoint(0F, -17F, 0F);
 		turretModel[99].rotateAngleX = -0.2268928F;
-		turretModel[99].rotateAngleY = -3.64773814F;
-
-		turretModel[100].addShapeBox(0.5F, -7F, -17F, 1, 5, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 147
+		turretModel[99].rotateAngleY = -3.6477382F;
+		turretModel[100].addShapeBox(0.5F, -7F, -17F, 1, 5, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[100].setRotationPoint(0F, -17F, 0F);
 		turretModel[100].rotateAngleX = -0.2268928F;
-		turretModel[100].rotateAngleY = -3.64773814F;
-
-		turretModel[101].addShapeBox(1.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 148
+		turretModel[100].rotateAngleY = -3.6477382F;
+		turretModel[101].addShapeBox(1.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[101].setRotationPoint(0F, -17F, 0F);
 		turretModel[101].rotateAngleX = -0.2268928F;
-		turretModel[101].rotateAngleY = -3.64773814F;
-
-		turretModel[102].addShapeBox(2.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 149
+		turretModel[101].rotateAngleY = -3.6477382F;
+		turretModel[102].addShapeBox(2.5F, -7F, -17F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[102].setRotationPoint(0F, -17F, 0F);
 		turretModel[102].rotateAngleX = -0.2268928F;
-		turretModel[102].rotateAngleY = -3.64773814F;
-
-		turretModel[103].addShapeBox(-7.5F, -6F, -17F, 8, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 150
+		turretModel[102].rotateAngleY = -3.6477382F;
+		turretModel[103].addShapeBox(-7.5F, -6F, -17F, 8, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[103].setRotationPoint(0F, -17F, 0F);
 		turretModel[103].rotateAngleX = -0.2268928F;
-		turretModel[103].rotateAngleY = -3.64773814F;
-
-		turretModel[104].addShapeBox(-7.5F, -5F, -17F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 151
+		turretModel[103].rotateAngleY = -3.6477382F;
+		turretModel[104].addShapeBox(-7.5F, -5F, -17F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[104].setRotationPoint(0F, -17F, 0F);
 		turretModel[104].rotateAngleX = -0.2268928F;
-		turretModel[104].rotateAngleY = -3.64773814F;
-
-		turretModel[105].addShapeBox(-7.5F, -4F, -17F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 152
+		turretModel[104].rotateAngleY = -3.6477382F;
+		turretModel[105].addShapeBox(-7.5F, -4F, -17F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[105].setRotationPoint(0F, -17F, 0F);
 		turretModel[105].rotateAngleX = -0.2268928F;
-		turretModel[105].rotateAngleY = -3.64773814F;
-
-		turretModel[106].addShapeBox(-6.5F, -3F, -17F, 5, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 153
+		turretModel[105].rotateAngleY = -3.6477382F;
+		turretModel[106].addShapeBox(-6.5F, -3F, -17F, 5, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[106].setRotationPoint(0F, -17F, 0F);
 		turretModel[106].rotateAngleX = -0.2268928F;
-		turretModel[106].rotateAngleY = -3.64773814F;
-
-		turretModel[107].addShapeBox(-6.5F, -2F, -17F, 5, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 154
+		turretModel[106].rotateAngleY = -3.6477382F;
+		turretModel[107].addShapeBox(-6.5F, -2F, -17F, 5, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[107].setRotationPoint(0F, -17F, 0F);
 		turretModel[107].rotateAngleX = -0.2268928F;
-		turretModel[107].rotateAngleY = -3.64773814F;
-
-		turretModel[108].addShapeBox(-8F, -1F, -17F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F); // Box 155
+		turretModel[107].rotateAngleY = -3.6477382F;
+		turretModel[108].addShapeBox(-8F, -1F, -17F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F);
 		turretModel[108].setRotationPoint(0F, -17F, 0F);
 		turretModel[108].rotateAngleX = -0.2268928F;
-		turretModel[108].rotateAngleY = -3.64773814F;
-
-		turretModel[109].addShapeBox(19.3F, -7F, -19F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F); // Box 156
+		turretModel[108].rotateAngleY = -3.6477382F;
+		turretModel[109].addShapeBox(19.3F, -7F, -19F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F);
 		turretModel[109].setRotationPoint(0F, -17F, 0F);
 		turretModel[109].rotateAngleX = -0.2268928F;
-		turretModel[109].rotateAngleY = -2.87979327F;
-
-		turretModel[110].addShapeBox(8F, -8F, -19F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F); // Box 157
+		turretModel[109].rotateAngleY = -2.8797932F;
+		turretModel[110].addShapeBox(8F, -8F, -19F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F);
 		turretModel[110].setRotationPoint(0F, -17F, 0F);
 		turretModel[110].rotateAngleX = -0.2268928F;
-		turretModel[110].rotateAngleY = -2.87979327F;
-
-		turretModel[111].addShapeBox(7.7F, -7F, -19F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F); // Box 158
+		turretModel[110].rotateAngleY = -2.8797932F;
+		turretModel[111].addShapeBox(7.7F, -7F, -19F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F);
 		turretModel[111].setRotationPoint(0F, -17F, 0F);
 		turretModel[111].rotateAngleX = -0.2268928F;
-		turretModel[111].rotateAngleY = -2.87979327F;
-
-		turretModel[112].addShapeBox(8.5F, -7F, -19F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 159
+		turretModel[111].rotateAngleY = -2.8797932F;
+		turretModel[112].addShapeBox(8.5F, -7F, -19F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[112].setRotationPoint(0F, -17F, 0F);
 		turretModel[112].rotateAngleX = -0.2268928F;
-		turretModel[112].rotateAngleY = -2.87979327F;
-
-		turretModel[113].addShapeBox(9.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 160
+		turretModel[112].rotateAngleY = -2.8797932F;
+		turretModel[113].addShapeBox(9.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[113].setRotationPoint(0F, -17F, 0F);
 		turretModel[113].rotateAngleX = -0.2268928F;
-		turretModel[113].rotateAngleY = -2.87979327F;
-
-		turretModel[114].addShapeBox(8.5F, -7F, -19F, 1, 5, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 161
+		turretModel[113].rotateAngleY = -2.8797932F;
+		turretModel[114].addShapeBox(8.5F, -7F, -19F, 1, 5, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[114].setRotationPoint(0F, -17F, 0F);
 		turretModel[114].rotateAngleX = -0.2268928F;
-		turretModel[114].rotateAngleY = -2.87979327F;
-
-		turretModel[115].addShapeBox(10.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 162
+		turretModel[114].rotateAngleY = -2.8797932F;
+		turretModel[115].addShapeBox(10.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[115].setRotationPoint(0F, -17F, 0F);
 		turretModel[115].rotateAngleX = -0.2268928F;
-		turretModel[115].rotateAngleY = -2.87979327F;
-
-		turretModel[116].addShapeBox(11.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 163
+		turretModel[115].rotateAngleY = -2.8797932F;
+		turretModel[116].addShapeBox(11.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[116].setRotationPoint(0F, -17F, 0F);
 		turretModel[116].rotateAngleX = -0.2268928F;
-		turretModel[116].rotateAngleY = -2.87979327F;
-
-		turretModel[117].addShapeBox(12.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 164
+		turretModel[116].rotateAngleY = -2.8797932F;
+		turretModel[117].addShapeBox(12.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[117].setRotationPoint(0F, -17F, 0F);
 		turretModel[117].rotateAngleX = -0.2268928F;
-		turretModel[117].rotateAngleY = -2.87979327F;
-
-		turretModel[118].addShapeBox(13.5F, -7F, -19F, 1, 5, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 165
+		turretModel[117].rotateAngleY = -2.8797932F;
+		turretModel[118].addShapeBox(13.5F, -7F, -19F, 1, 5, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[118].setRotationPoint(0F, -17F, 0F);
 		turretModel[118].rotateAngleX = -0.2268928F;
-		turretModel[118].rotateAngleY = -2.87979327F;
-
-		turretModel[119].addShapeBox(14.5F, -7F, -19F, 1, 5, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 166
+		turretModel[118].rotateAngleY = -2.8797932F;
+		turretModel[119].addShapeBox(14.5F, -7F, -19F, 1, 5, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[119].setRotationPoint(0F, -17F, 0F);
 		turretModel[119].rotateAngleX = -0.2268928F;
-		turretModel[119].rotateAngleY = -2.87979327F;
-
-		turretModel[120].addShapeBox(15.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 167
+		turretModel[119].rotateAngleY = -2.8797932F;
+		turretModel[120].addShapeBox(15.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[120].setRotationPoint(0F, -17F, 0F);
 		turretModel[120].rotateAngleX = -0.2268928F;
-		turretModel[120].rotateAngleY = -2.87979327F;
-
-		turretModel[121].addShapeBox(16.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 168
+		turretModel[120].rotateAngleY = -2.8797932F;
+		turretModel[121].addShapeBox(16.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[121].setRotationPoint(0F, -17F, 0F);
 		turretModel[121].rotateAngleX = -0.2268928F;
-		turretModel[121].rotateAngleY = -2.87979327F;
-
-		turretModel[122].addShapeBox(17.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 169
+		turretModel[121].rotateAngleY = -2.8797932F;
+		turretModel[122].addShapeBox(17.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[122].setRotationPoint(0F, -17F, 0F);
 		turretModel[122].rotateAngleX = -0.2268928F;
-		turretModel[122].rotateAngleY = -2.87979327F;
-
-		turretModel[123].addShapeBox(18.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 170
+		turretModel[122].rotateAngleY = -2.8797932F;
+		turretModel[123].addShapeBox(18.5F, -7F, -19F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[123].setRotationPoint(0F, -17F, 0F);
 		turretModel[123].rotateAngleX = -0.2268928F;
-		turretModel[123].rotateAngleY = -2.87979327F;
-
-		turretModel[124].addShapeBox(8.5F, -6F, -19F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 171
+		turretModel[123].rotateAngleY = -2.8797932F;
+		turretModel[124].addShapeBox(8.5F, -6F, -19F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[124].setRotationPoint(0F, -17F, 0F);
 		turretModel[124].rotateAngleX = -0.2268928F;
-		turretModel[124].rotateAngleY = -2.87979327F;
-
-		turretModel[125].addShapeBox(8.5F, -5F, -19F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 172
+		turretModel[124].rotateAngleY = -2.8797932F;
+		turretModel[125].addShapeBox(8.5F, -5F, -19F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[125].setRotationPoint(0F, -17F, 0F);
 		turretModel[125].rotateAngleX = -0.2268928F;
-		turretModel[125].rotateAngleY = -2.87979327F;
-
-		turretModel[126].addShapeBox(8.5F, -4F, -19F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 173
+		turretModel[125].rotateAngleY = -2.8797932F;
+		turretModel[126].addShapeBox(8.5F, -4F, -19F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[126].setRotationPoint(0F, -17F, 0F);
 		turretModel[126].rotateAngleX = -0.2268928F;
-		turretModel[126].rotateAngleY = -2.87979327F;
-
-		turretModel[127].addShapeBox(8.5F, -3F, -19F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 174
+		turretModel[126].rotateAngleY = -2.8797932F;
+		turretModel[127].addShapeBox(8.5F, -3F, -19F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[127].setRotationPoint(0F, -17F, 0F);
 		turretModel[127].rotateAngleX = -0.2268928F;
-		turretModel[127].rotateAngleY = -2.87979327F;
-
-		turretModel[128].addShapeBox(8.5F, -2F, -19F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 175
+		turretModel[127].rotateAngleY = -2.8797932F;
+		turretModel[128].addShapeBox(8.5F, -2F, -19F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[128].setRotationPoint(0F, -17F, 0F);
 		turretModel[128].rotateAngleX = -0.2268928F;
-		turretModel[128].rotateAngleY = -2.87979327F;
-
-		turretModel[129].addShapeBox(8F, -1F, -19F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F); // Box 176
+		turretModel[128].rotateAngleY = -2.8797932F;
+		turretModel[129].addShapeBox(8F, -1F, -19F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F);
 		turretModel[129].setRotationPoint(0F, -17F, 0F);
 		turretModel[129].rotateAngleX = -0.2268928F;
-		turretModel[129].rotateAngleY = -2.87979327F;
-
-		turretModel[130].addShapeBox(-7F, -8F, -16.6F, 1, 1, 5, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 177
+		turretModel[129].rotateAngleY = -2.8797932F;
+		turretModel[130].addShapeBox(-7F, -8F, -16.6F, 1, 1, 5, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[130].setRotationPoint(0F, -17F, 0F);
 		turretModel[130].rotateAngleX = -0.2268928F;
-		turretModel[130].rotateAngleY = -3.64773814F;
-
-		turretModel[131].addShapeBox(-7F, -1F, -16.6F, 1, 1, 5, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 179
+		turretModel[130].rotateAngleY = -3.6477382F;
+		turretModel[131].addShapeBox(-7F, -1F, -16.6F, 1, 1, 5, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[131].setRotationPoint(0F, -17F, 0F);
 		turretModel[131].rotateAngleX = -0.2268928F;
-		turretModel[131].rotateAngleY = -3.64773814F;
-
-		turretModel[132].addShapeBox(2F, -1F, -16.6F, 1, 1, 5, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 180
+		turretModel[131].rotateAngleY = -3.6477382F;
+		turretModel[132].addShapeBox(2F, -1F, -16.6F, 1, 1, 5, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[132].setRotationPoint(0F, -17F, 0F);
 		turretModel[132].rotateAngleX = -0.2268928F;
-		turretModel[132].rotateAngleY = -3.64773814F;
-
-		turretModel[133].addShapeBox(2F, -8F, -16.6F, 1, 1, 5, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 181
+		turretModel[132].rotateAngleY = -3.6477382F;
+		turretModel[133].addShapeBox(2F, -8F, -16.6F, 1, 1, 5, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[133].setRotationPoint(0F, -17F, 0F);
 		turretModel[133].rotateAngleX = -0.2268928F;
-		turretModel[133].rotateAngleY = -3.64773814F;
-
-		turretModel[134].addShapeBox(7F, -8F, -16.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 182
+		turretModel[133].rotateAngleY = -3.6477382F;
+		turretModel[134].addShapeBox(7F, -8F, -16.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[134].setRotationPoint(0F, -17F, 0F);
 		turretModel[134].rotateAngleX = -0.2268928F;
 		turretModel[134].rotateAngleY = 0.4712389F;
-
-		turretModel[135].addShapeBox(7F, -1F, -16.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 183
+		turretModel[135].addShapeBox(7F, -1F, -16.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[135].setRotationPoint(0F, -17F, 0F);
 		turretModel[135].rotateAngleX = -0.2268928F;
 		turretModel[135].rotateAngleY = 0.4712389F;
-
-		turretModel[136].addShapeBox(-2F, -1F, -16.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 184
+		turretModel[136].addShapeBox(-2F, -1F, -16.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[136].setRotationPoint(0F, -17F, 0F);
 		turretModel[136].rotateAngleX = -0.2268928F;
 		turretModel[136].rotateAngleY = 0.4712389F;
-
-		turretModel[137].addShapeBox(-2F, -8F, -16.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 185
+		turretModel[137].addShapeBox(-2F, -8F, -16.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[137].setRotationPoint(0F, -17F, 0F);
 		turretModel[137].rotateAngleX = -0.2268928F;
 		turretModel[137].rotateAngleY = 0.4712389F;
-
-		turretModel[138].addShapeBox(-19F, -8F, -17.8F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 188
+		turretModel[138].addShapeBox(-19F, -8F, -17.8F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[138].setRotationPoint(0F, -17F, 0F);
 		turretModel[138].rotateAngleX = -0.2268928F;
 		turretModel[138].rotateAngleY = -0.2268928F;
-
-		turretModel[139].addShapeBox(-10F, -8F, -17.8F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 189
+		turretModel[139].addShapeBox(-10F, -8F, -17.8F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[139].setRotationPoint(0F, -17F, 0F);
 		turretModel[139].rotateAngleX = -0.2268928F;
 		turretModel[139].rotateAngleY = -0.2268928F;
-
-		turretModel[140].addShapeBox(-10F, -1F, -17.8F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 190
+		turretModel[140].addShapeBox(-10F, -1F, -17.8F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[140].setRotationPoint(0F, -17F, 0F);
 		turretModel[140].rotateAngleX = -0.2268928F;
 		turretModel[140].rotateAngleY = -0.2268928F;
-
-		turretModel[141].addShapeBox(-19F, -1F, -17.8F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 191
+		turretModel[141].addShapeBox(-19F, -1F, -17.8F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[141].setRotationPoint(0F, -17F, 0F);
 		turretModel[141].rotateAngleX = -0.2268928F;
 		turretModel[141].rotateAngleY = -0.2268928F;
-
-		turretModel[142].addShapeBox(9F, -8F, -18.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 192
+		turretModel[142].addShapeBox(9F, -8F, -18.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[142].setRotationPoint(0F, -17F, 0F);
 		turretModel[142].rotateAngleX = -0.2268928F;
-		turretModel[142].rotateAngleY = -2.87979327F;
-
-		turretModel[143].addShapeBox(18F, -8F, -18.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 193
+		turretModel[142].rotateAngleY = -2.8797932F;
+		turretModel[143].addShapeBox(18F, -8F, -18.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[143].setRotationPoint(0F, -17F, 0F);
 		turretModel[143].rotateAngleX = -0.2268928F;
-		turretModel[143].rotateAngleY = -2.87979327F;
-
-		turretModel[144].addShapeBox(18F, -1F, -18.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 194
+		turretModel[143].rotateAngleY = -2.8797932F;
+		turretModel[144].addShapeBox(18F, -1F, -18.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[144].setRotationPoint(0F, -17F, 0F);
 		turretModel[144].rotateAngleX = -0.2268928F;
-		turretModel[144].rotateAngleY = -2.87979327F;
-
-		turretModel[145].addShapeBox(9F, -1F, -18.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 195
+		turretModel[144].rotateAngleY = -2.8797932F;
+		turretModel[145].addShapeBox(9F, -1F, -18.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[145].setRotationPoint(0F, -17F, 0F);
 		turretModel[145].rotateAngleX = -0.2268928F;
-		turretModel[145].rotateAngleY = -2.87979327F;
-
-		turretModel[146].addShapeBox(11F, -11F, -6.6F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F); // Box 199
+		turretModel[145].rotateAngleY = -2.8797932F;
+		turretModel[146].addShapeBox(11F, -11F, -6.6F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F);
 		turretModel[146].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[147].addShapeBox(10.25F, -11F, 5.4F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F); // Box 200
+		turretModel[147].addShapeBox(10.25F, -11F, 5.4F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F);
 		turretModel[147].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[148].addShapeBox(3.2F, -11F, -11F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F); // Box 201
+		turretModel[148].addShapeBox(3.2F, -11F, -11F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F);
 		turretModel[148].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[149].addShapeBox(-14.5F, -11F, -6.7F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F); // Box 202
+		turretModel[149].addShapeBox(-14.5F, -11F, -6.7F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F);
 		turretModel[149].setRotationPoint(0F, -17F, 0F);
 		turretModel[149].rotateAngleY = 0.2443461F;
-
-		turretModel[150].addShapeBox(-22.5F, -11F, -2.7F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F); // Box 203
+		turretModel[150].addShapeBox(-22.5F, -11F, -2.7F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F);
 		turretModel[150].setRotationPoint(0F, -17F, 0F);
 		turretModel[150].rotateAngleY = 0.2443461F;
-
-		turretModel[151].addShapeBox(-22.5F, -11.5F, 4F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F); // Box 204
+		turretModel[151].addShapeBox(-22.5F, -11.5F, 4F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F);
 		turretModel[151].setRotationPoint(0F, -17F, 0F);
 		turretModel[151].rotateAngleY = -0.13962634F;
-
-		turretModel[152].addShapeBox(-14.5F, -11.5F, 7.5F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F); // Box 205
+		turretModel[152].addShapeBox(-14.5F, -11.5F, 7.5F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F);
 		turretModel[152].setRotationPoint(0F, -17F, 0F);
 		turretModel[152].rotateAngleY = -0.13962634F;
-
-		turretModel[153].addShapeBox(2.75F, -11F, 10.3F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F); // Box 206
+		turretModel[153].addShapeBox(2.75F, -11F, 10.3F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F);
 		turretModel[153].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[154].addShapeBox(-6F, -12F, -15F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F); // Box 207
+		turretModel[154].addShapeBox(-6F, -12F, -15F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F);
 		turretModel[154].setRotationPoint(0F, -17F, 0F);
-		turretModel[154].rotateAngleX = -1.76278254F;
-		turretModel[154].rotateAngleY = -1.57079633F;
-
-		turretModel[155].addShapeBox(5.3F, -11F, -15F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F); // Box 208
+		turretModel[154].rotateAngleX = -1.7627826F;
+		turretModel[154].rotateAngleY = -1.5707964F;
+		turretModel[155].addShapeBox(5.3F, -11F, -15F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F);
 		turretModel[155].setRotationPoint(0F, -17F, 0F);
-		turretModel[155].rotateAngleX = -1.76278254F;
-		turretModel[155].rotateAngleY = -1.57079633F;
-
-		turretModel[156].addShapeBox(-6F, -5F, -15F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F); // Box 209
+		turretModel[155].rotateAngleX = -1.7627826F;
+		turretModel[155].rotateAngleY = -1.5707964F;
+		turretModel[156].addShapeBox(-6F, -5F, -15F, 12, 1, 1, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F);
 		turretModel[156].setRotationPoint(0F, -17F, 0F);
-		turretModel[156].rotateAngleX = -1.76278254F;
-		turretModel[156].rotateAngleY = -1.57079633F;
-
-		turretModel[157].addShapeBox(-6.3F, -11F, -15F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F); // Box 210
+		turretModel[156].rotateAngleX = -1.7627826F;
+		turretModel[156].rotateAngleY = -1.5707964F;
+		turretModel[157].addShapeBox(-6.3F, -11F, -15F, 1, 6, 1, 0F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F, -0.3F, 0.3F, -0.3F);
 		turretModel[157].setRotationPoint(0F, -17F, 0F);
-		turretModel[157].rotateAngleX = -1.76278254F;
-		turretModel[157].rotateAngleY = -1.57079633F;
-
-		turretModel[158].addShapeBox(-5F, -12F, -14.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 211
+		turretModel[157].rotateAngleX = -1.7627826F;
+		turretModel[157].rotateAngleY = -1.5707964F;
+		turretModel[158].addShapeBox(-5F, -12F, -14.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[158].setRotationPoint(0F, -17F, 0F);
-		turretModel[158].rotateAngleX = -1.76278254F;
-		turretModel[158].rotateAngleY = -1.57079633F;
-
-		turretModel[159].addShapeBox(4F, -12F, -14.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 212
+		turretModel[158].rotateAngleX = -1.7627826F;
+		turretModel[158].rotateAngleY = -1.5707964F;
+		turretModel[159].addShapeBox(4F, -12F, -14.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[159].setRotationPoint(0F, -17F, 0F);
-		turretModel[159].rotateAngleX = -1.76278254F;
-		turretModel[159].rotateAngleY = -1.57079633F;
-
-		turretModel[160].addShapeBox(4F, -5F, -14.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 213
+		turretModel[159].rotateAngleX = -1.7627826F;
+		turretModel[159].rotateAngleY = -1.5707964F;
+		turretModel[160].addShapeBox(4F, -5F, -14.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[160].setRotationPoint(0F, -17F, 0F);
-		turretModel[160].rotateAngleX = -1.76278254F;
-		turretModel[160].rotateAngleY = -1.57079633F;
-
-		turretModel[161].addShapeBox(-5F, -5F, -14.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F); // Box 214
+		turretModel[160].rotateAngleX = -1.7627826F;
+		turretModel[160].rotateAngleY = -1.5707964F;
+		turretModel[161].addShapeBox(-5F, -5F, -14.6F, 1, 1, 4, 0F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F, -0.4F, -0.3F, -0.3F);
 		turretModel[161].setRotationPoint(0F, -17F, 0F);
-		turretModel[161].rotateAngleX = -1.76278254F;
-		turretModel[161].rotateAngleY = -1.57079633F;
-
-		turretModel[162].addShapeBox(-3.5F, -7F, -15F, 7, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 215
+		turretModel[161].rotateAngleX = -1.7627826F;
+		turretModel[161].rotateAngleY = -1.5707964F;
+		turretModel[162].addShapeBox(-3.5F, -7F, -15F, 7, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[162].setRotationPoint(0F, -17F, 0F);
-		turretModel[162].rotateAngleX = -1.76278254F;
-		turretModel[162].rotateAngleY = -1.57079633F;
-
-		turretModel[163].addShapeBox(-5.5F, -11F, -15F, 9, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 216
+		turretModel[162].rotateAngleX = -1.7627826F;
+		turretModel[162].rotateAngleY = -1.5707964F;
+		turretModel[163].addShapeBox(-5.5F, -11F, -15F, 9, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[163].setRotationPoint(0F, -17F, 0F);
-		turretModel[163].rotateAngleX = -1.76278254F;
-		turretModel[163].rotateAngleY = -1.57079633F;
-
-		turretModel[164].addShapeBox(-3.5F, -10F, -15F, 7, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 217
+		turretModel[163].rotateAngleX = -1.7627826F;
+		turretModel[163].rotateAngleY = -1.5707964F;
+		turretModel[164].addShapeBox(-3.5F, -10F, -15F, 7, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[164].setRotationPoint(0F, -17F, 0F);
-		turretModel[164].rotateAngleX = -1.76278254F;
-		turretModel[164].rotateAngleY = -1.57079633F;
-
-		turretModel[165].addShapeBox(-5.5F, -9F, -15F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 218
+		turretModel[164].rotateAngleX = -1.7627826F;
+		turretModel[164].rotateAngleY = -1.5707964F;
+		turretModel[165].addShapeBox(-5.5F, -9F, -15F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[165].setRotationPoint(0F, -17F, 0F);
-		turretModel[165].rotateAngleX = -1.76278254F;
-		turretModel[165].rotateAngleY = -1.57079633F;
-
-		turretModel[166].addShapeBox(-5.5F, -8F, -15F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 219
+		turretModel[165].rotateAngleX = -1.7627826F;
+		turretModel[165].rotateAngleY = -1.5707964F;
+		turretModel[166].addShapeBox(-5.5F, -8F, -15F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[166].setRotationPoint(0F, -17F, 0F);
-		turretModel[166].rotateAngleX = -1.76278254F;
-		turretModel[166].rotateAngleY = -1.57079633F;
-
-		turretModel[167].addShapeBox(-5.5F, -6F, -15F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F); // Box 220
+		turretModel[166].rotateAngleX = -1.7627826F;
+		turretModel[166].rotateAngleY = -1.5707964F;
+		turretModel[167].addShapeBox(-5.5F, -6F, -15F, 11, 1, 1, 0F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F, 0.2F, -0.4F, -0.4F);
 		turretModel[167].setRotationPoint(0F, -17F, 0F);
-		turretModel[167].rotateAngleX = -1.76278254F;
-		turretModel[167].rotateAngleY = -1.57079633F;
-
-		turretModel[168].addShapeBox(-5.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 221
+		turretModel[167].rotateAngleX = -1.7627826F;
+		turretModel[167].rotateAngleY = -1.5707964F;
+		turretModel[168].addShapeBox(-5.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[168].setRotationPoint(0F, -17F, 0F);
-		turretModel[168].rotateAngleX = -1.76278254F;
-		turretModel[168].rotateAngleY = -1.57079633F;
-
-		turretModel[169].addShapeBox(-4.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 222
+		turretModel[168].rotateAngleX = -1.7627826F;
+		turretModel[168].rotateAngleY = -1.5707964F;
+		turretModel[169].addShapeBox(-4.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[169].setRotationPoint(0F, -17F, 0F);
-		turretModel[169].rotateAngleX = -1.76278254F;
-		turretModel[169].rotateAngleY = -1.57079633F;
-
-		turretModel[170].addShapeBox(-3.5F, -9F, -15F, 1, 2, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 223
+		turretModel[169].rotateAngleX = -1.7627826F;
+		turretModel[169].rotateAngleY = -1.5707964F;
+		turretModel[170].addShapeBox(-3.5F, -9F, -15F, 1, 2, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[170].setRotationPoint(0F, -17F, 0F);
-		turretModel[170].rotateAngleX = -1.76278254F;
-		turretModel[170].rotateAngleY = -1.57079633F;
-
-		turretModel[171].addShapeBox(-2.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 224
+		turretModel[170].rotateAngleX = -1.7627826F;
+		turretModel[170].rotateAngleY = -1.5707964F;
+		turretModel[171].addShapeBox(-2.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[171].setRotationPoint(0F, -17F, 0F);
-		turretModel[171].rotateAngleX = -1.76278254F;
-		turretModel[171].rotateAngleY = -1.57079633F;
-
-		turretModel[172].addShapeBox(-1.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 225
+		turretModel[171].rotateAngleX = -1.7627826F;
+		turretModel[171].rotateAngleY = -1.5707964F;
+		turretModel[172].addShapeBox(-1.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[172].setRotationPoint(0F, -17F, 0F);
-		turretModel[172].rotateAngleX = -1.76278254F;
-		turretModel[172].rotateAngleY = -1.57079633F;
-
-		turretModel[173].addShapeBox(-0.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 226
+		turretModel[172].rotateAngleX = -1.7627826F;
+		turretModel[172].rotateAngleY = -1.5707964F;
+		turretModel[173].addShapeBox(-0.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[173].setRotationPoint(0F, -17F, 0F);
-		turretModel[173].rotateAngleX = -1.76278254F;
-		turretModel[173].rotateAngleY = -1.57079633F;
-
-		turretModel[174].addShapeBox(0.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 227
+		turretModel[173].rotateAngleX = -1.7627826F;
+		turretModel[173].rotateAngleY = -1.5707964F;
+		turretModel[174].addShapeBox(0.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[174].setRotationPoint(0F, -17F, 0F);
-		turretModel[174].rotateAngleX = -1.76278254F;
-		turretModel[174].rotateAngleY = -1.57079633F;
-
-		turretModel[175].addShapeBox(1.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 228
+		turretModel[174].rotateAngleX = -1.7627826F;
+		turretModel[174].rotateAngleY = -1.5707964F;
+		turretModel[175].addShapeBox(1.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[175].setRotationPoint(0F, -17F, 0F);
-		turretModel[175].rotateAngleX = -1.76278254F;
-		turretModel[175].rotateAngleY = -1.57079633F;
-
-		turretModel[176].addShapeBox(2.5F, -11F, -15F, 1, 4, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 229
+		turretModel[175].rotateAngleX = -1.7627826F;
+		turretModel[175].rotateAngleY = -1.5707964F;
+		turretModel[176].addShapeBox(2.5F, -11F, -15F, 1, 4, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[176].setRotationPoint(0F, -17F, 0F);
-		turretModel[176].rotateAngleX = -1.76278254F;
-		turretModel[176].rotateAngleY = -1.57079633F;
-
-		turretModel[177].addShapeBox(3.5F, -11F, -15F, 1, 4, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 230
+		turretModel[176].rotateAngleX = -1.7627826F;
+		turretModel[176].rotateAngleY = -1.5707964F;
+		turretModel[177].addShapeBox(3.5F, -11F, -15F, 1, 4, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[177].setRotationPoint(0F, -17F, 0F);
-		turretModel[177].rotateAngleX = -1.76278254F;
-		turretModel[177].rotateAngleY = -1.57079633F;
-
-		turretModel[178].addShapeBox(4.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F); // Box 231
+		turretModel[177].rotateAngleX = -1.7627826F;
+		turretModel[177].rotateAngleY = -1.5707964F;
+		turretModel[178].addShapeBox(4.5F, -11F, -15F, 1, 6, 1, 0F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F, -0.4F, 0.3F, -0.4F);
 		turretModel[178].setRotationPoint(0F, -17F, 0F);
-		turretModel[178].rotateAngleX = -1.76278254F;
-		turretModel[178].rotateAngleY = -1.57079633F;
-
-		turretModel[179].addShapeBox(-9.5F, -5F, 18.8F, 1, 3, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 232
+		turretModel[178].rotateAngleX = -1.7627826F;
+		turretModel[178].rotateAngleY = -1.5707964F;
+		turretModel[179].addShapeBox(-9.5F, -5F, 18.8F, 1, 3, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F);
 		turretModel[179].setRotationPoint(0F, -17F, 0F);
-		turretModel[179].rotateAngleX = 0.26179939F;
-		turretModel[179].rotateAngleY = 0.26179939F;
-
-		turretModel[180].addShapeBox(-18.5F, -5F, 18.8F, 9, 3, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 233
+		turretModel[179].rotateAngleX = 0.2617994F;
+		turretModel[179].rotateAngleY = 0.2617994F;
+		turretModel[180].addShapeBox(-18.5F, -5F, 18.8F, 9, 3, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F);
 		turretModel[180].setRotationPoint(0F, -17F, 0F);
-		turretModel[180].rotateAngleX = 0.26179939F;
-		turretModel[180].rotateAngleY = 0.26179939F;
-
-		turretModel[181].addShapeBox(-19.5F, -6F, 18.8F, 11, 1, 4, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 234
+		turretModel[180].rotateAngleX = 0.2617994F;
+		turretModel[180].rotateAngleY = 0.2617994F;
+		turretModel[181].addShapeBox(-19.5F, -6F, 18.8F, 11, 1, 4, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F);
 		turretModel[181].setRotationPoint(0F, -17F, 0F);
-		turretModel[181].rotateAngleX = 0.26179939F;
-		turretModel[181].rotateAngleY = 0.26179939F;
-
-		turretModel[182].addShapeBox(-19.5F, -5F, 18.8F, 1, 3, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 235
+		turretModel[181].rotateAngleX = 0.2617994F;
+		turretModel[181].rotateAngleY = 0.2617994F;
+		turretModel[182].addShapeBox(-19.5F, -5F, 18.8F, 1, 3, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F);
 		turretModel[182].setRotationPoint(0F, -17F, 0F);
-		turretModel[182].rotateAngleX = 0.26179939F;
-		turretModel[182].rotateAngleY = 0.26179939F;
-
-		turretModel[183].addShapeBox(-2.5F, -5F, 16.9F, 3, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 236
+		turretModel[182].rotateAngleX = 0.2617994F;
+		turretModel[182].rotateAngleY = 0.2617994F;
+		turretModel[183].addShapeBox(-2.5F, -5F, 16.9F, 3, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F);
 		turretModel[183].setRotationPoint(0F, -17F, 0F);
-		turretModel[183].rotateAngleX = 0.26179939F;
-		turretModel[183].rotateAngleY = -0.50614548F;
-
-		turretModel[184].addShapeBox(-2.5F, -5.5F, 16.9F, 3, 1, 2, 0F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F); // Box 237
+		turretModel[183].rotateAngleX = 0.2617994F;
+		turretModel[183].rotateAngleY = -0.5061455F;
+		turretModel[184].addShapeBox(-2.5F, -5.5F, 16.9F, 3, 1, 2, 0F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F);
 		turretModel[184].setRotationPoint(0F, -17F, 0F);
-		turretModel[184].rotateAngleX = 0.26179939F;
-		turretModel[184].rotateAngleY = -0.50614548F;
-
-		turretModel[185].addShapeBox(2.5F, -4F, 16.9F, 3, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 238
+		turretModel[184].rotateAngleX = 0.2617994F;
+		turretModel[184].rotateAngleY = -0.5061455F;
+		turretModel[185].addShapeBox(2.5F, -4F, 16.9F, 3, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F);
 		turretModel[185].setRotationPoint(0F, -17F, 0F);
-		turretModel[185].rotateAngleX = 0.26179939F;
-		turretModel[185].rotateAngleY = -0.50614548F;
-
-		turretModel[186].addShapeBox(2.5F, -4.5F, 16.9F, 3, 1, 2, 0F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F); // Box 239
+		turretModel[185].rotateAngleX = 0.2617994F;
+		turretModel[185].rotateAngleY = -0.5061455F;
+		turretModel[186].addShapeBox(2.5F, -4.5F, 16.9F, 3, 1, 2, 0F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F);
 		turretModel[186].setRotationPoint(0F, -17F, 0F);
-		turretModel[186].rotateAngleX = 0.26179939F;
-		turretModel[186].rotateAngleY = -0.50614548F;
-
-		turretModel[187].addShapeBox(-2.5F, -5F, 16.78F, 4, 3, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 240
+		turretModel[186].rotateAngleX = 0.2617994F;
+		turretModel[186].rotateAngleY = -0.5061455F;
+		turretModel[187].addShapeBox(-2.5F, -5F, 16.78F, 4, 3, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F);
 		turretModel[187].setRotationPoint(0F, -17F, 0F);
-		turretModel[187].rotateAngleX = 0.26179939F;
-		turretModel[187].rotateAngleY = -2.65290046F;
-
-		turretModel[188].addShapeBox(-7.5F, -6.25F, 16.78F, 4, 3, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 241
+		turretModel[187].rotateAngleX = 0.2617994F;
+		turretModel[187].rotateAngleY = -2.6529005F;
+		turretModel[188].addShapeBox(-7.5F, -6.25F, 16.78F, 4, 3, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F);
 		turretModel[188].setRotationPoint(0F, -17F, 0F);
-		turretModel[188].rotateAngleX = 0.26179939F;
-		turretModel[188].rotateAngleY = -2.65290046F;
-
-		turretModel[189].addShapeBox(-7.5F, -6.5F, 16.78F, 4, 1, 2, 0F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F); // Box 243
+		turretModel[188].rotateAngleX = 0.2617994F;
+		turretModel[188].rotateAngleY = -2.6529005F;
+		turretModel[189].addShapeBox(-7.5F, -6.5F, 16.78F, 4, 1, 2, 0F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F);
 		turretModel[189].setRotationPoint(0F, -17F, 0F);
-		turretModel[189].rotateAngleX = 0.26179939F;
-		turretModel[189].rotateAngleY = -2.65290046F;
-
-		turretModel[190].addShapeBox(-2.5F, -5.5F, 16.78F, 4, 1, 2, 0F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F); // Box 244
+		turretModel[189].rotateAngleX = 0.2617994F;
+		turretModel[189].rotateAngleY = -2.6529005F;
+		turretModel[190].addShapeBox(-2.5F, -5.5F, 16.78F, 4, 1, 2, 0F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F, 0.2F, -0.2F, 0.2F);
 		turretModel[190].setRotationPoint(0F, -17F, 0F);
-		turretModel[190].rotateAngleX = 0.26179939F;
-		turretModel[190].rotateAngleY = -2.65290046F;
-
-		turretModel[191].addShapeBox(-1F, -5.2F, 18F, 1, 1, 1, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F); // Box 245
+		turretModel[190].rotateAngleX = 0.2617994F;
+		turretModel[190].rotateAngleY = -2.6529005F;
+		turretModel[191].addShapeBox(-1F, -5.2F, 18F, 1, 1, 1, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F);
 		turretModel[191].setRotationPoint(0F, -17F, 0F);
-		turretModel[191].rotateAngleX = 0.26179939F;
-		turretModel[191].rotateAngleY = -2.65290046F;
-
-		turretModel[192].addShapeBox(-6F, -6.2F, 18F, 1, 1, 1, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F); // Box 246
+		turretModel[191].rotateAngleX = 0.2617994F;
+		turretModel[191].rotateAngleY = -2.6529005F;
+		turretModel[192].addShapeBox(-6F, -6.2F, 18F, 1, 1, 1, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F);
 		turretModel[192].setRotationPoint(0F, -17F, 0F);
-		turretModel[192].rotateAngleX = 0.26179939F;
-		turretModel[192].rotateAngleY = -2.65290046F;
-
-		turretModel[193].addShapeBox(-5.5F, -8F, 13.1F, 16, 16, 1, 0F, 0F, 0F, 0F, -12F, 0F, 0F, -12F, 0F, 0F, 0F, 0F, 0F, 0F, -12F, 0F, -12F, -12F, 0F, -12F, -12F, 0F, 0F, -12F, 0F); // Box 0
+		turretModel[192].rotateAngleX = 0.2617994F;
+		turretModel[192].rotateAngleY = -2.6529005F;
+		turretModel[193].addShapeBox(-5.5F, -8F, 13.1F, 16, 16, 1, 0F, 0F, 0F, 0F, -12F, 0F, 0F, -12F, 0F, 0F, 0F, 0F, 0F, 0F, -12F, 0F, -12F, -12F, 0F, -12F, -12F, 0F, 0F, -12F, 0F);
 		turretModel[193].setRotationPoint(0F, -17F, 0F);
-
-		turretModel[194].addShapeBox(-5.5F, -8F, -14.1F, 16, 16, 1, 0F, 0F, 0F, 0F, -12F, 0F, 0F, -12F, 0F, 0F, 0F, 0F, 0F, 0F, -12F, 0F, -12F, -12F, 0F, -12F, -12F, 0F, 0F, -12F, 0F); // Box 2
+		turretModel[194].addShapeBox(-5.5F, -8F, -14.1F, 16, 16, 1, 0F, 0F, 0F, 0F, -12F, 0F, 0F, -12F, 0F, 0F, 0F, 0F, 0F, 0F, -12F, 0F, -12F, -12F, 0F, -12F, -12F, 0F, 0F, -12F, 0F);
 		turretModel[194].setRotationPoint(0F, -17F, 0F);
 	}
 
@@ -3063,47 +2869,52 @@ public class ModelT3485 extends ModelVehicle //Same as Filename
 		barrelModel[12] = new ModelRendererTurbo(this, 57, 41, textureX, textureY); // Box 58
 		barrelModel[13] = new ModelRendererTurbo(this, 25, 1, textureX, textureY); // Box 0
 
-		barrelModel[0].addShapeBox(-0.8F, -2.5F, -4F, 1, 4, 8, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 43
+		barrelModel[0].addShapeBox(16.2F, -7.5F, -4F, 1, 4, 8, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 43
 		barrelModel[0].setRotationPoint(17F, -22F, 0F);
 
-		barrelModel[1].addShapeBox(-0.8F, -4F, -4F, 1, 2, 8, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 44
+		barrelModel[1].addShapeBox(16.2F, -9F, -4F, 1, 2, 8, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 44
 		barrelModel[1].setRotationPoint(17F, -22F, 0F);
 
-		barrelModel[2].addShapeBox(-0.8F, 1.5F, -4F, 1, 1, 8, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 45
+		barrelModel[2].addShapeBox(16.2F, -3.5F, -4F, 1, 1, 8, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 45
 		barrelModel[2].setRotationPoint(17F, -22F, 0F);
 
-		barrelModel[3].addShapeBox(1.2F, -3F, -2.5F, 3, 1, 5, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 46
+		barrelModel[3].addShapeBox(18.2F, -8F, -2.5F, 3, 1, 5, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 46
 		barrelModel[3].setRotationPoint(17F, -22F, 0F);
 
-		barrelModel[4].addShapeBox(1.2F, 1F, -2.5F, 3, 1, 5, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 47
+		barrelModel[4].addShapeBox(18.2F, -4F, -2.5F, 3, 1, 5, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 47
 		barrelModel[4].setRotationPoint(17F, -22F, 0F);
 
-		barrelModel[5].addShapeBox(1.2F, -2F, -2.5F, 3, 3, 5, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 48
+		barrelModel[5].addShapeBox(18.2F, -7F, -2.5F, 3, 3, 5, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 48
 		barrelModel[5].setRotationPoint(17F, -22F, 0F);
 
-		barrelModel[6].addShapeBox(5.2F, -2F, -1.5F, 40, 3, 3, 0F, 0F, -0.4F, -0.4F, 0F, -0.6F, -0.6F, 0F, -0.6F, -0.6F, 0F, -0.4F, -0.4F, 0F, -0.4F, -0.4F, 0F, -0.6F, -0.6F, 0F, -0.6F, -0.6F, 0F, -0.4F, -0.4F); // Box 49
+		barrelModel[6].addShapeBox(22.2F, -7F, -1.5F, 40, 3, 3, 0F, 0F, -0.4F, -0.4F, 0F, -0.6F, -0.6F, 0F, -0.6F, -0.6F, 0F, -0.4F, -0.4F, 0F, -0.4F, -0.4F, 0F, -0.6F, -0.6F, 0F, -0.6F, -0.6F, 0F, -0.4F, -0.4F); // Box 49
 		barrelModel[6].setRotationPoint(17F, -22F, 0F);
 
-		barrelModel[7].addShapeBox(4.2F, -2F, -2.5F, 1, 3, 5, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F); // Box 52
+		barrelModel[7].addShapeBox(21.2F, -7F, -2.5F, 1, 3, 5, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F); // Box 52
 		barrelModel[7].setRotationPoint(17F, -22F, 0F);
 
-		barrelModel[8].addShapeBox(4.2F, -3F, -2.5F, 1, 1, 5, 0F, 0F, 0F, -1F, 0F, -0.5F, -1F, 0F, -0.5F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F); // Box 53
+		barrelModel[8].addShapeBox(21.2F, -8F, -2.5F, 1, 1, 5, 0F, 0F, 0F, -1F, 0F, -0.5F, -1F, 0F, -0.5F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F); // Box 53
 		barrelModel[8].setRotationPoint(17F, -22F, 0F);
 
-		barrelModel[9].addShapeBox(4.2F, 1F, -2.5F, 1, 1, 5, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -0.5F, -1F, 0F, -0.5F, -1F, 0F, 0F, -1F); // Box 54
+		barrelModel[9].addShapeBox(21.2F, -4F, -2.5F, 1, 1, 5, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -0.5F, -1F, 0F, -0.5F, -1F, 0F, 0F, -1F); // Box 54
 		barrelModel[9].setRotationPoint(17F, -22F, 0F);
 
-		barrelModel[10].addShapeBox(-0.799999999999998F, -2F, -2.5F, 2, 3, 5, 0F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F); // Box 56
+		barrelModel[10].addShapeBox(16.2F, -7F, -2.5F, 2, 3, 5, 0F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F); // Box 56
 		barrelModel[10].setRotationPoint(17F, -22F, 0F);
 
-		barrelModel[11].addShapeBox(-0.799999999999998F, 1F, -2.5F, 2, 1, 5, 0F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0.2F, -0.8F, 0F, 0.2F, -0.8F, 0F, 0.2F, -0.8F, 0F, 0.2F, -0.8F); // Box 57
+		barrelModel[11].addShapeBox(16.2F, -4F, -2.5F, 2, 1, 5, 0F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0.2F, -0.8F, 0F, 0.2F, -0.8F, 0F, 0.2F, -0.8F, 0F, 0.2F, -0.8F); // Box 57
 		barrelModel[11].setRotationPoint(17F, -22F, 0F);
 
-		barrelModel[12].addShapeBox(-0.8F, -3F, -2.5F, 2, 1, 5, 0F, 0F, 0.2F, -0.8F, 0F, 0.2F, -0.8F, 0F, 0.2F, -0.8F, 0F, 0.2F, -0.8F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F); // Box 58
+		barrelModel[12].addShapeBox(16.2F, -8F, -2.5F, 2, 1, 5, 0F, 0F, 0.2F, -0.8F, 0F, 0.2F, -0.8F, 0F, 0.2F, -0.8F, 0F, 0.2F, -0.8F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0.2F); // Box 58
 		barrelModel[12].setRotationPoint(17F, -22F, 0F);
 
-		barrelModel[13].addBox(0F, -0.5F, 0F, 1, 1, 1, 0F); // Box 0
+		barrelModel[13].addBox(17F, -5.5F, 0F, 1, 1, 1, 0F); // Box 0
 		barrelModel[13].setRotationPoint(0F, -3.5F, 0F);
+
+		for (ModelRendererTurbo modelRendererTurbo : barrelModel)
+		{
+			modelRendererTurbo.setRotationPoint(0F, -17F, 0F);
+		}
 	}
 
 	private void initleftTrackWheelModels_1()
@@ -3475,41 +3286,57 @@ public class ModelT3485 extends ModelVehicle //Same as Filename
 		rightTrackModel[24].setRotationPoint(-54.9F, 6.4F, -24.5F);
 		rightTrackModel[24].rotateAngleZ = 6.14355897F;
 	}
-	
+
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	public void render(Entity entity, float F, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < bodyModel.length; i++)
+		super.render(entity, F, f1, f2, f3, f4, f5);
+		setRotationAngles(F, f1, f2, f3, f4, f5, entity);
+		for (ModelRendererTurbo modelRendererTurbo : bodyModel)
 		{
-			bodyModel[i].render(f5);
+			modelRendererTurbo.render(f5);
 		}
-		for(int i = 0; i < turretModel.length; i++)
+		for (ModelRendererTurbo modelRendererTurbo : turretModel)
 		{
-			turretModel[i].render(f5);
+			modelRendererTurbo.render(f5);
 		}
-		for(int i = 0; i < barrelModel.length; i++)
+		for (ModelRendererTurbo modelRendererTurbo : barrelModel)
 		{
-			barrelModel[i].render(f5);
+			modelRendererTurbo.render(f5);
 		}
-		for(int i = 0; i < leftTrackModel.length; i++)
+		for (ModelRendererTurbo modelRendererTurbo : leftTrackModel)
 		{
-			leftTrackModel[i].render(f5);
+			modelRendererTurbo.render(f5);
 		}
-		for(int i = 0; i < rightTrackModel.length; i++)
+		for (ModelRendererTurbo modelRendererTurbo : rightTrackModel)
 		{
-			rightTrackModel[i].render(f5);
+			modelRendererTurbo.render(f5);
 		}
-		for(int i = 0; i < leftTrackWheelModels.length; i++)
+		for (ModelRendererTurbo leftTrackWheelModel : leftTrackWheelModels)
 		{
-			leftTrackWheelModels[i].render(f5);
+			leftTrackWheelModel.render(f5);
 		}
-		for(int i = 0; i < rightTrackWheelModels.length; i++)
+		for (ModelRendererTurbo rightTrackWheelModel : rightTrackWheelModels)
 		{
-			rightTrackWheelModels[i].render(f5);
+			rightTrackWheelModel.render(f5);
 		}
-		for(int i = 0; i < steeringWheelModel.length; i++)
+		for (ModelRendererTurbo modelRendererTurbo : steeringWheelModel)
 		{
-			steeringWheelModel[i].render(f5);
+			modelRendererTurbo.render(f5);
+		}
+	}
+
+	@Override
+	public void setRotationAngles(float F, float f1, float f2, float f3, float f4, float f5, Entity entity)
+	{
+		super.setRotationAngles(F, f1, f2, f3, f4, f5, entity);
+		for (ModelRendererTurbo modelRendererTurbo : turretModel)
+		{
+			modelRendererTurbo.rotateAngleY = -f3 * (float) Math.PI / 180;
+		}
+		for (ModelRendererTurbo modelRendererTurbo : barrelModel)
+		{
+			modelRendererTurbo.rotateAngleY = -f3 * (float) Math.PI / 180;
 		}
 	}
 }

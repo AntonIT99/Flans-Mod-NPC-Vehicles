@@ -1,9 +1,8 @@
 package com.wolffsmod.entity;
 
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.world.World;
 
-public class EntityRadioStationSmall extends EntityCreature {
+public class EntityRadioStationSmall extends EntityFlanVehicle {
 
 	public EntityRadioStationSmall(World p_i1602_1_) {
 		super(p_i1602_1_);

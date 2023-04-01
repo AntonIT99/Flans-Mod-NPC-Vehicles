@@ -8,7 +8,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 public class ClientProxy extends ServerProxy{
 	
 	@Override
-	public void registerRenderThings()
+	public void registerRenderers()
 	{
 		/*
 		* When using RenderFlansModEntity, a default Y-translation of -2.1F is applied

@@ -28,7 +28,7 @@ configurations {
 
 apply plugin: 'forge'
 
-version = "2.5"
+version = "3.0"
 group= "com.wolffsmod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Flan's Mod NPC Vehicles"
 sourceCompatibility = 1.8
@@ -127,7 +127,7 @@ build {
 //Add
 //--tweakClass org.spongepowered.asm.launch.MixinTweaker --mixin customnpcs.mixins.json
 //to your client and server program arguments if working in a dev environment.
-def embedMixin = !project.hasProperty("nomixin");
+def embedMixin = !project.hasProperty("nomixin")
 def yourMixinConfig = 'customnpcs.mixins.json'
 def refMapForYourConfig = 'customnpcs.refmap.json'
 def relativePathToMixinAP = 'tools/mixin-0.8-SNAPSHOT.jar'
