@@ -80,6 +80,12 @@ public class EntityCustomNpc extends EntityNPCFlying {
 				height = 0.1f;
 			this.setPosition(posX, posY, posZ);
 		}
+
+		//Rendering fix for large entities
+		if (height >= 3.0F || width >= 3.0F)
+		{
+			ignoreFrustumCheck = true;
+		}
 	}
 
 }
