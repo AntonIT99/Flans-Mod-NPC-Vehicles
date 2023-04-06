@@ -1,14 +1,20 @@
 package com.flansmod.common.network;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandlerContext;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import com.flansmod.common.FlansMod;
+
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 
 public class PacketModConfig extends PacketBase {
     boolean enableKillMessages;
@@ -46,6 +52,17 @@ public class PacketModConfig extends PacketBase {
     public float nameTagSneakRenderRange;
     public float maxHealth;
 
+    public int bonusRegenTickDelay;
+    public int bonusRegenFoodLimit;
+    public float bonusRegenAmount;
+
+    public boolean allowCombiningAmmoOnReload;
+    
+    public boolean enableBlockPenetration;
+    public float masterBlockPenetrationModifier;
+    public String[] penetrableBlocksArray;
+
+
     public PacketModConfig() {
         enableKillMessages = FlansMod.enableKillMessages;
         hitCrossHairEnable = FlansMod.hitCrossHairEnable;
@@ -81,6 +98,16 @@ public class PacketModConfig extends PacketBase {
         nameTagRenderRange = FlansMod.nameTagRenderRange;
         nameTagSneakRenderRange = FlansMod.nameTagSneakRenderRange;
         maxHealth = FlansMod.maxHealth;
+
+        bonusRegenTickDelay = FlansMod.bonusRegenTickDelay;
+        bonusRegenFoodLimit = FlansMod.bonusRegenFoodLimit;
+        bonusRegenAmount = FlansMod.bonusRegenAmount;
+
+        allowCombiningAmmoOnReload = FlansMod.allowCombiningAmmoOnReload;
+        
+        enableBlockPenetration = FlansMod.enableBlockPenetration;
+        masterBlockPenetrationModifier = FlansMod.masterBlockPenetrationModifier;
+        penetrableBlocksArray = FlansMod.penetrableBlocksArray;
     }
 
     @Override
@@ -119,6 +146,20 @@ public class PacketModConfig extends PacketBase {
         data.writeFloat(nameTagRenderRange);
         data.writeFloat(nameTagSneakRenderRange);
         data.writeFloat(maxHealth);
+
+        data.writeInt(bonusRegenTickDelay);
+        data.writeInt(bonusRegenFoodLimit);
+        data.writeFloat(bonusRegenAmount);
+
+        data.writeBoolean(allowCombiningAmmoOnReload);
+              
+        data.writeBoolean(enableBlockPenetration);
+        data.writeFloat(masterBlockPenetrationModifier);
+        data.writeInt(penetrableBlocksArray.length);
+        for(String s : penetrableBlocksArray) {
+        	 writeUTF(data, s);
+        }
+		
     }
 
     @Override
@@ -157,6 +198,21 @@ public class PacketModConfig extends PacketBase {
         nameTagRenderRange = data.readFloat();
         nameTagSneakRenderRange = data.readFloat();
         maxHealth = data.readFloat();
+
+        bonusRegenTickDelay = data.readInt();
+        bonusRegenFoodLimit = data.readInt();
+        bonusRegenAmount = data.readFloat();
+        
+        allowCombiningAmmoOnReload = data.readBoolean();
+        
+        enableBlockPenetration = data.readBoolean();
+        masterBlockPenetrationModifier = data.readFloat();
+        int penetrableBlocksArrayLength = data.readInt();
+        String[] penetrableBlocksArray = new String[penetrableBlocksArrayLength];        
+        for(int i = 0; i < penetrableBlocksArrayLength; i++) {
+        	penetrableBlocksArray[i] = readUTF(data);
+        }
+        this.penetrableBlocksArray = penetrableBlocksArray;
     }
 
     @Override
@@ -201,6 +257,18 @@ public class PacketModConfig extends PacketBase {
         FlansMod.nameTagRenderRange = nameTagRenderRange;
         FlansMod.nameTagSneakRenderRange = nameTagSneakRenderRange;
         FlansMod.maxHealth = maxHealth;
+
+        FlansMod.bonusRegenTickDelay = bonusRegenTickDelay;
+        FlansMod.bonusRegenFoodLimit = bonusRegenFoodLimit;
+        FlansMod.bonusRegenAmount = bonusRegenAmount;
+        
+        FlansMod.allowCombiningAmmoOnReload = allowCombiningAmmoOnReload;
+        
+        FlansMod.enableBlockPenetration = enableBlockPenetration;
+        FlansMod.masterBlockPenetrationModifier = masterBlockPenetrationModifier;
+        FlansMod.penetrableBlocksArray = penetrableBlocksArray;
+        FlansMod.convertPenetrableBlocksArray(penetrableBlocksArray);
+
         FlansMod.log("Config synced successfully");
     }
 }

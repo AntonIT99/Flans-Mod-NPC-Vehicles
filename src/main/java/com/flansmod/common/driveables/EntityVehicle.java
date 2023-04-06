@@ -800,7 +800,9 @@ public class EntityVehicle extends EntityDriveable implements IExplodeable {
 
                 yaw = axes.getYaw() / 180F * 3.14159F + effectiveWheelSpeed;
             } else {
-                float velocityScale = 0.1F * throttle * (throttle > 0 ? type.maxThrottle : type.maxNegativeThrottle) * data.engine.engineSpeed;
+                float throttleModifier = (float)(2.4F*Math.abs(throttle) - 2.5F*(throttle*throttle)+0.5F*Math.abs(Math.pow(throttle, 3))) * Math.signum(throttle);
+                float velocityScale = 0.1F * throttleModifier * (throttle > 0 ? type.maxThrottle : type.maxNegativeThrottle) * data.engine.engineSpeed;
+                //float velocityScale = 0.1F * throttle * (throttle > 0 ? type.maxThrottle : type.maxNegativeThrottle) * data.engine.engineSpeed;
                 float steeringScale = 0.1F * (wheelsYaw > 0 ? type.turnLeftModifier : type.turnRightModifier);
                 float effectiveWheelSpeed = ((wheelsYaw * steeringScale)) * velocityScale;
                 yaw = axes.getYaw() / 180F * 3.14159F + (effectiveWheelSpeed);

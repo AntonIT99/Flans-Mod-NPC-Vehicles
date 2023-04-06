@@ -289,6 +289,8 @@ public class CommonProxy {
                         break;
                 }
             }
+        } else if (bestEngineStack == null) {
+            bestEngineStack = new ItemStack(PartType.defaultEngines.get(EnumType.getFromObject(type)).item);
         }
 
         //Give them their brand new shiny driveable item :D

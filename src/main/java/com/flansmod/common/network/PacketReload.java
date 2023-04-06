@@ -1,41 +1,53 @@
 package com.flansmod.common.network;
 
 import com.flansmod.common.guns.*;
-import com.flansmod.common.teams.TeamsManager;
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandlerContext;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import com.flansmod.client.FlansModClient;
 import com.flansmod.client.model.GunAnimations;
 import com.flansmod.common.FlansMod;
 import com.flansmod.common.PlayerData;
 import com.flansmod.common.PlayerHandler;
+import com.flansmod.common.guns.AttachmentType;
+import com.flansmod.common.guns.GunType;
+import com.flansmod.common.guns.ItemGun;
+import com.flansmod.common.guns.ItemShootable;
+import com.flansmod.common.guns.ShootableType;
+import com.flansmod.common.teams.TeamsManager;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 
 //When the client receives one, it "reloads". Basically to stop client side recoil effects when the gun should be in a reload animation
 //When the server receives one, it is interpreted as a forced reload
 public class PacketReload extends PacketBase {
+	
     public boolean left;
     public Integer amount = 0;
     public Integer reloadTime = 0;
     public Boolean singlesReload = false;
+    public boolean combineAmmo;
+    public boolean ammoToUpperInventory;
 
     public PacketReload() {
     }
 
-    public PacketReload(boolean l) {
+    public PacketReload(boolean l, boolean combineAmmo, boolean ammoToUpperInventory) {
         left = l;
+        this.combineAmmo = combineAmmo;
+        this.ammoToUpperInventory = ammoToUpperInventory;
     }
 
-    public PacketReload(boolean l, int count, int reload, boolean single) {
+    public PacketReload(boolean l, int count, int reload, boolean single, boolean combineAmmo, boolean ammoToUpperInventory) {
         left = l;
         amount = count;
         reloadTime = reload;
         singlesReload = single;
+        this.combineAmmo = combineAmmo;
+        this.ammoToUpperInventory = ammoToUpperInventory;
     }
 
     @Override
@@ -44,6 +56,8 @@ public class PacketReload extends PacketBase {
         data.writeInt(amount);
         data.writeInt(reloadTime);
         data.writeBoolean(singlesReload);
+        data.writeBoolean(combineAmmo);
+        data.writeBoolean(ammoToUpperInventory);
     }
 
     @Override
@@ -52,15 +66,19 @@ public class PacketReload extends PacketBase {
         amount = data.readInt();
         reloadTime = data.readInt();
         singlesReload = data.readBoolean();
+        combineAmmo = data.readBoolean();
+        ammoToUpperInventory = data.readBoolean();
     }
 
     @Override
     public void handleServerSide(EntityPlayerMP playerEntity) {
         PlayerData data = PlayerHandler.getPlayerData(playerEntity);
         ItemStack gunStack = playerEntity.getCurrentEquippedItem();
+
         if (left && data.offHandGunSlot != 0) {
             gunStack = playerEntity.inventory.getStackInSlot(data.offHandGunSlot - 1);
         }
+        
         if (data != null && gunStack != null && gunStack.getItem() instanceof ItemGun) {
             GunType type = ((ItemGun) gunStack.getItem()).type;
             //Check if the gun is empty
@@ -90,8 +108,8 @@ public class PacketReload extends PacketBase {
             } else {
                 reloadCount = 1;
             }
-
-            if (((ItemGun) gunStack.getItem()).reload(gunStack, type, playerEntity.worldObj, playerEntity, true, left)) {
+            
+            if (((ItemGun) gunStack.getItem()).reload(gunStack, type, playerEntity.worldObj, playerEntity, true, left, combineAmmo, ammoToUpperInventory)) {
                 float reloadTime = singlesReload ? (type.getReloadTime(gunStack) / maxAmmo) * reloadCount : type.getReloadTime(gunStack);
                 if(!data.reloadedAfterRespawn && TeamsManager.getInstance().currentMap != null){
                     reloadTime=0;
@@ -105,7 +123,7 @@ public class PacketReload extends PacketBase {
                 else data.reloadingRight = true;
                 //Send reload packet to induce reload effects client side
 
-                FlansMod.getPacketHandler().sendTo(new PacketReload(left, reloadCount, (int) reloadTime, singlesReload), playerEntity);
+                FlansMod.getPacketHandler().sendTo(new PacketReload(left, reloadCount, (int) reloadTime, singlesReload, combineAmmo, ammoToUpperInventory), playerEntity);
 
                 //Play reload sound, empty variant if not null
                 String soundToPlay = null;
@@ -134,7 +152,8 @@ public class PacketReload extends PacketBase {
             data.burstRoundsRemainingLeft = 0;
         } else {
             data.burstRoundsRemainingRight = 0;
-        }
+        } 
+        
         if (stack != null && stack.getItem() instanceof ItemGun) {
             GunType type = ((ItemGun) stack.getItem()).type;
             if (left)
@@ -177,17 +196,7 @@ public class PacketReload extends PacketBase {
                     }
                 }
             }
-            //If there was a valid non-empty magazine / bullet item somewhere in the inventory, take one to put in the gun
-            if (bestSlot != -1) {
-                ItemStack newBulletStack = clientPlayer.inventory.getStackInSlot(bestSlot);
-                ShootableType newBulletType = ((ItemShootable) newBulletStack.getItem()).type;
-                //Remove the magazine from the inventory
-                if (!clientPlayer.capabilities.isCreativeMode)
-                    newBulletStack.stackSize--;
-                if (newBulletStack.stackSize <= 0)
-                    newBulletStack = null;
-                clientPlayer.inventory.setInventorySlotContents(bestSlot, newBulletStack);
-            }
+
         }
     }
 }

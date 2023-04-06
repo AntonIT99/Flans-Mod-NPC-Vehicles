@@ -103,7 +103,7 @@ public class GuiDriveableCrafting extends GuiScreen {
 
     @Override
     protected void actionPerformed(GuiButton button) {
-        if (button.id == 0) {
+        if (button.id == 0 && DriveableType.types.size() > 0) {
             FlansMod.proxy.craftDriveable(inventory.player, DriveableType.types.get(selectedBlueprint));
         }
     }

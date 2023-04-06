@@ -141,7 +141,11 @@ public class FlansModClient extends FlansMod {
     public static boolean hitMarkerHeadshot = false;
     public static float hitMarkerPenAmount = 1F;
     public static boolean hitMarkerExplosion = false;
-
+    
+    public static boolean combineAmmoOnReload = true;
+    public static boolean ammoToUpperInventoryOnReload = false;
+    
+    
     public void load() {
         log("Loading Flan's mod client side.");
         MinecraftForge.EVENT_BUS.register(this);
@@ -628,11 +632,26 @@ public class FlansModClient extends FlansMod {
         FlansMod.configFile.save();
         aimButton = buttonInput;
     }
-
+    
     public static void setFireButton(FlanMouseButton buttonInput) {
         Property cw = FlansMod.configFile.get("Input Settings", "Fire Button", "right", "The mouse button used to fire a gun 'left' or 'right'");
         cw.set(buttonInput.toString());
         FlansMod.configFile.save();
         fireButton = buttonInput;
     }
+    
+    public static void setCombineAmmoOnReload(boolean combineAmmoOnReload) {
+        Property cw = FlansMod.configFile.get("Input Settings", "Combine Ammo On Reload", true, "Whether or not to combine unloaded magazines with damaged magazines in the inventory");
+        cw.set(combineAmmoOnReload);
+        FlansMod.configFile.save();
+        FlansModClient.combineAmmoOnReload = combineAmmoOnReload;
+    }
+    
+    public static void setAmmoToUpperInventoryOnReload(boolean ammoToUpperInventoryOnReload) {   	                     
+        Property cw = FlansMod.configFile.get("Input Settings", "Ammo To Upper Inventory On Reload", false, "Whether or not to first try to put unloaded ammo in the upper inventory instead of the hotbar");
+        cw.set(ammoToUpperInventoryOnReload);
+        FlansMod.configFile.save();
+        FlansModClient.ammoToUpperInventoryOnReload = ammoToUpperInventoryOnReload;
+    }
+    
 }

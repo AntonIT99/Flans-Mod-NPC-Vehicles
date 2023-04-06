@@ -1,8 +1,9 @@
 package com.flansmod.client.model;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
-import com.flansmod.common.FlansMod;
 import com.flansmod.client.FlansModClient;
 import com.flansmod.common.vector.Vector3f;
 
@@ -83,6 +84,25 @@ public class GunAnimations {
      */
     public float switchAnimationProgress = 0, switchAnimationLength = 0;
     public static int lastInventorySlot = -1;
+
+    //Fancy stance / running animation stuff
+    public float runningStanceAnimationProgress = 0, runningStanceAnimationLength = 4F;
+    public Vector3f sprintingStance;
+    public int stanceTimer = 0;
+
+    public static float randomSeededFloat(float min, float max, long seed) {
+        Random random = new Random(seed);
+        return random.nextFloat() * (max - min) + min;
+    }
+
+    public void updateSprintStance(String shortName) {
+        long seed = getSeedFromString(shortName);
+        sprintingStance = new Vector3f(
+                randomSeededFloat(-15, -5, seed),
+                randomSeededFloat(0, 45, seed),
+                randomSeededFloat(-20, 10, seed)
+        );
+    }
 
     public GunAnimations() {
 
@@ -201,6 +221,14 @@ public class GunAnimations {
                 switchAnimationLength = switchAnimationLength = 0;
             }
         }
+
+        if (runningStanceAnimationProgress > 0 && runningStanceAnimationProgress < runningStanceAnimationLength) {
+            runningStanceAnimationProgress++;
+        }
+
+        if (stanceTimer > 0) {
+            stanceTimer--;
+        }
     }
 
     //Not to be used for mechas
@@ -223,6 +251,7 @@ public class GunAnimations {
         hammerRotation = hammerAngle;
         althammerRotation = althammerAngle;
         muzzleFlashTime = 2;
+        stanceTimer = 20;
 
         int Low = -1;
         int High = 3;
@@ -256,5 +285,19 @@ public class GunAnimations {
 
     public void doMelee(int meleeTime) {
         meleeAnimationLength = meleeTime;
+    }
+
+    private static long getSeedFromString(String str) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
+            byte[] digest = messageDigest.digest(str.getBytes());
+            long seed = 0;
+            for (int i = 0; i < 8; i++) {
+                seed = (seed << 8) | (digest[i] & 0xff);
+            }
+            return seed;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("SHA-1 not supported", e);
+        }
     }
 }

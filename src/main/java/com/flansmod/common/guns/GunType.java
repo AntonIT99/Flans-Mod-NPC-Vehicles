@@ -1182,10 +1182,10 @@ public class GunType extends PaintableType implements IScope {
             model.crouchZoom = Float.parseFloat(split[1]);
         else if (split[0].equals("animFancyStance"))
             model.fancyStance = Boolean.parseBoolean(split[1]);
-        else if (split[0].equals("animStanceTranslate"))
-            model.stanceTranslate = parseVector3f(split);
-        else if (split[0].equals("animStanceRotate"))
-            model.stanceRotate = parseVector3f(split);
+        else if (split[0].equals("animSprintStanceTranslate"))
+            model.sprintStanceTranslate = parseVector3f(split);
+        else if (split[0].equals("animSprintStanceRotate"))
+            model.sprintStanceRotate = parseVector3f(split);
 
         else if (split[0].equals("animRotateGunVertical"))
             model.rotateGunVertical = Float.parseFloat(split[1]);

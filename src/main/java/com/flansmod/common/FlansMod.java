@@ -1,14 +1,62 @@
 package com.flansmod.common;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.flansmod.client.AimType;
 import com.flansmod.client.FlanMouseButton;
 import com.flansmod.client.FlansCrash;
 import com.flansmod.client.FlansModClient;
 import com.flansmod.client.model.GunAnimations;
-import com.flansmod.common.driveables.*;
-import com.flansmod.common.driveables.mechas.*;
-import com.flansmod.common.eventhandlers.*;
-import com.flansmod.common.guns.*;
+import com.flansmod.common.driveables.EntityPlane;
+import com.flansmod.common.driveables.EntitySeat;
+import com.flansmod.common.driveables.EntityVehicle;
+import com.flansmod.common.driveables.EntityWheel;
+import com.flansmod.common.driveables.ItemPlane;
+import com.flansmod.common.driveables.ItemVehicle;
+import com.flansmod.common.driveables.PlaneType;
+import com.flansmod.common.driveables.VehicleType;
+import com.flansmod.common.driveables.mechas.EntityMecha;
+import com.flansmod.common.driveables.mechas.ItemMecha;
+import com.flansmod.common.driveables.mechas.ItemMechaAddon;
+import com.flansmod.common.driveables.mechas.MechaItemType;
+import com.flansmod.common.driveables.mechas.MechaType;
+import com.flansmod.common.eventhandlers.AnvilUpdateEventListener;
+import com.flansmod.common.eventhandlers.LivingSpawnEventListener;
+import com.flansmod.common.eventhandlers.PlayerDeathEventListener;
+import com.flansmod.common.eventhandlers.PlayerDropsEventListener;
+import com.flansmod.common.eventhandlers.PlayerLoginEventListener;
+import com.flansmod.common.eventhandlers.PlayerSpawnEventListener;
+import com.flansmod.common.eventhandlers.ServerTickEvent;
+import com.flansmod.common.guns.AAGunType;
+import com.flansmod.common.guns.AttachmentType;
+import com.flansmod.common.guns.BulletType;
+import com.flansmod.common.guns.EntityAAGun;
+import com.flansmod.common.guns.EntityBullet;
+import com.flansmod.common.guns.EntityGrenade;
+import com.flansmod.common.guns.EntityMG;
+import com.flansmod.common.guns.GrenadeType;
+import com.flansmod.common.guns.GunType;
+import com.flansmod.common.guns.ItemAAGun;
+import com.flansmod.common.guns.ItemAttachment;
+import com.flansmod.common.guns.ItemBullet;
+import com.flansmod.common.guns.ItemGrenade;
+import com.flansmod.common.guns.ItemGun;
 import com.flansmod.common.guns.boxes.BlockGunBox;
 import com.flansmod.common.guns.boxes.GunBoxEntry;
 import com.flansmod.common.guns.boxes.GunBoxType;
@@ -20,7 +68,22 @@ import com.flansmod.common.parts.ItemPart;
 import com.flansmod.common.parts.PartType;
 import com.flansmod.common.sync.Sync;
 import com.flansmod.common.sync.SyncEventHandler;
-import com.flansmod.common.teams.*;
+import com.flansmod.common.teams.ArmourBoxType;
+import com.flansmod.common.teams.ArmourType;
+import com.flansmod.common.teams.BlockArmourBox;
+import com.flansmod.common.teams.BlockSpawner;
+import com.flansmod.common.teams.ChunkLoadingHandler;
+import com.flansmod.common.teams.CommandTeams;
+import com.flansmod.common.teams.EntityFlag;
+import com.flansmod.common.teams.EntityFlagpole;
+import com.flansmod.common.teams.EntityGunItem;
+import com.flansmod.common.teams.EntityTeamItem;
+import com.flansmod.common.teams.ItemFlagpole;
+import com.flansmod.common.teams.ItemOpStick;
+import com.flansmod.common.teams.ItemTeamArmour;
+import com.flansmod.common.teams.Team;
+import com.flansmod.common.teams.TeamsManager;
+import com.flansmod.common.teams.TileEntitySpawner;
 import com.flansmod.common.tools.EntityParachute;
 import com.flansmod.common.tools.ItemTool;
 import com.flansmod.common.tools.ToolType;
@@ -28,6 +91,7 @@ import com.flansmod.common.types.EnumType;
 import com.flansmod.common.types.IGunboxDescriptionable;
 import com.flansmod.common.types.InfoType;
 import com.flansmod.common.types.TypeFile;
+
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -43,28 +107,18 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.CommandHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.io.*;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @Mod(modid = FlansMod.MODID, name = "Flan's Mod Ultimate (Stability Edition)", version = FlansMod.VERSION, acceptableRemoteVersions = "[" + FlansMod.VERSION + "]", guiFactory = "com.flansmod.client.gui.config.ModGuiFactory")
@@ -132,10 +186,21 @@ public class FlansMod {
     public static float masterLegModifier = 0.5F;
     public static boolean masterDualWieldDisable = false;
     public static boolean gunDevMode = false;
+    public static boolean enableWeaponSprintStance = true;
+    public static boolean enableRandomSprintStance = false;
 
     public static float nameTagRenderRange = 64F;
     public static float nameTagSneakRenderRange = 32F;
     public static float maxHealth = 20;
+    
+    public static boolean allowCombiningAmmoOnReload = true;
+    
+    public static boolean enableBlockPenetration = false;
+    public static float masterBlockPenetrationModifier = 0F;
+    public static String[] penetrableBlocksArray = {"ID=20,HARDNESS=1.0,BREAKS=false", "ID=98:2,HARDNESS=2.0,BREAKS=false"};
+    
+    public static ArrayList<PenetrableBlock> penetrableBlocks = new ArrayList<>();
+    
 
     public static int armourSpawnRate = 20;
 
@@ -188,6 +253,9 @@ public class FlansMod {
     public static HashMap<EntityLivingBase, GunAnimations> gunAnimationsRight = new HashMap<>(), gunAnimationsLeft = new HashMap<>();
 
     public static boolean debugMode = true;
+    public static int bonusRegenTickDelay = 80;
+    public static int bonusRegenFoodLimit = 18;
+    public static float bonusRegenAmount = 0F;
 
 
     /**
@@ -684,6 +752,21 @@ public class FlansMod {
         nameTagSneakRenderRange = configFile.getFloat("Name tag sneaking render range", "Gameplay Settings (synced)", nameTagSneakRenderRange, 0, 1000, "Max distance from which name tags can be seen on sneaking players");
         maxHealth = configFile.getFloat("Max Health", "Gameplay Settings (synced)", maxHealth, 0.5F, 100F, "Maximum player health (20 = 10 hearts)");
 
+        enableWeaponSprintStance = configFile.getBoolean("Enable Sprint Stance", "Gameplay Settings (synced)", enableWeaponSprintStance, "This will move weapons to a lowered position when sprinting");
+        enableRandomSprintStance = configFile.getBoolean("Enable Randomized Sprint Stance", "Gameplay Settings (synced)", enableRandomSprintStance, "This will randomly generate unique positions for each weapon using the weapon name as a seed");
+
+        bonusRegenAmount = configFile.getFloat("Bonus regen amount", "Gameplay Settings (synced)", bonusRegenAmount, 0.0F, 1000F, "Allows you to increase health regen, best used alongside increased max health");
+        bonusRegenTickDelay = configFile.getInt("Bonus regen interval", "Gameplay Settings (synced)", bonusRegenTickDelay, 0, 1000, "Number of ticks between heals, vanilla is 80");
+        bonusRegenFoodLimit = configFile.getInt("Bonus regen food limit", "Gameplay Settings (synced)", bonusRegenFoodLimit, 0, 20, "Amount of food required to activate this regen, vanilla is 18");
+
+        allowCombiningAmmoOnReload = configFile.getBoolean("Allow Combining Ammo on Reload", "Gameplay Settings (synced)", allowCombiningAmmoOnReload, "If this is set to 'false', players will not be able to combine their ammo on reload");
+        
+        enableBlockPenetration = configFile.getBoolean("Enable Block Penetration", "Gameplay Settings (synced)", enableBlockPenetration, "This will enable the block penetration system to be used");
+        masterBlockPenetrationModifier = configFile.getFloat("Master Block Penetration Modifier", "Gameplay Settings (synced)", masterBlockPenetrationModifier, 0, 100, "Default block penetration modifier power. Individual bullets will override");
+        penetrableBlocksArray = configFile.getStringList("Penetrable Blocks", "Gameplay Settings (synced)", penetrableBlocksArray, "Blocks that can be penetrated with bullets that have the required block penetrating power. (BREAKS = whether the block should break when hit)");
+        FlansMod.convertPenetrableBlocksArray(penetrableBlocksArray);
+
+
         //Client Side Settings
         holdingGunsDisablesChests = configFile.getBoolean("Block Chests While Holding Guns", Configuration.CATEGORY_GENERAL, holdingGunsDisablesChests, "Stops right clicking from opening chests, furnaces, etc while holding a gun");
         holdingGunsDisablesAll = configFile.getBoolean("Block All Interactions While Holding Guns", Configuration.CATEGORY_GENERAL, holdingGunsDisablesAll, "Disable all block interactions while holding a gun");
@@ -701,6 +784,37 @@ public class FlansMod {
 
         if (configFile.hasChanged())
             configFile.save();
+    }
+    
+    /*
+     * Converts the String[] from the config to an ArrayList which can be used in the code more easily
+     */
+    public static void convertPenetrableBlocksArray(String[] penetrableBlocksArray) {
+    	ArrayList<PenetrableBlock> list = new ArrayList<>();
+    	//ID=20,HARDNESS=1,BREAKS=false
+    	
+    	for(String s : penetrableBlocksArray) {
+    		try {
+    			String[] split = s.split(",");
+    			
+    			String[] blockData = split[0].substring(3).split(":");
+    			
+    			int metadata = -1;
+    			if(blockData.length > 1) metadata = Integer.parseInt(blockData[1]);
+    			Block block = Block.getBlockById(Integer.parseInt(blockData[0]));  
+    			
+    			float hardness = Float.parseFloat( split[1].substring(9) );  
+    			boolean breaks = Boolean.parseBoolean( split[2].substring(7) );
+    			
+    			PenetrableBlock pB = new PenetrableBlock(block, metadata, hardness, breaks);
+    			
+    			list.add(pB);
+    		} catch(Exception e) {
+    			System.out.println("ERROR! - '" + s + "' couldn't be recognized as a penetrable block!");
+    			e.printStackTrace();
+    		}    		
+    	}   	
+    	FlansMod.penetrableBlocks = list;
     }
 
     /** Handles client specific configuration */
@@ -734,7 +848,11 @@ public class FlansMod {
             log(String.format("The fire button type '%s' does not exist.", aimTypeInput));
             FlansModClient.fireButton = FlanMouseButton.RIGHT;
         }
+        
+        FlansModClient.combineAmmoOnReload = configFile.getBoolean("Combine Ammo On Reload", "Input Settings", true, "Whether or not to combine unloaded ammo with damaged ammo in the inventory");
 
+        FlansModClient.ammoToUpperInventoryOnReload = configFile.getBoolean("Ammo To Upper Inventory On Reload", "Input Settings", false, "Whether or not to first try to put unloaded ammo in the upper inventory instead of the hotbar");
+        
         if (configFile.hasChanged())
             configFile.save();
     }

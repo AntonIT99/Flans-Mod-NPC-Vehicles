@@ -32,11 +32,11 @@ public class PlayerDeathEventListener {
 		if((DamageEvent.source.getDamageType().equalsIgnoreCase("explosion") &&
 			((souceEntity instanceof EntityGrenade) || (souceEntity instanceof EntityBullet))) &&
 			DamageEvent.entityLiving instanceof EntityPlayer)
-		{
+		{			
 			InfoType info;
 			EntityPlayer killer;
 			EntityPlayer killed = (EntityPlayer) DamageEvent.entityLiving;
-
+			
 			if(souceEntity instanceof EntityGrenade) {
 				killer = (EntityPlayer) ((EntityGrenade) souceEntity).thrower;
 				info = ((EntityGrenade) souceEntity).type;

@@ -78,7 +78,9 @@ public abstract class ShootableType extends InfoType {
     public boolean breaksGlass = false;
     public float ignoreArmorProbability = 0;
     public float ignoreArmorDamageFactor = 0;
-
+    
+    private float blockPenetrationModifier = -1;
+    
     //Detonation Conditions
     /**
      * If 0, then the grenade will last until some other detonation condition is met, else the grenade will detonate after this time (in ticks)
@@ -223,12 +225,14 @@ public abstract class ShootableType extends InfoType {
                 breaksGlass = Boolean.parseBoolean(split[1].toLowerCase());
             else if(split[0].equals("Bounciness"))
                 bounciness = Float.parseFloat(split[1]);
+            else if(split[0].equals("BlockPenetrationModifier"))
+                blockPenetrationModifier = Float.parseFloat(split[1]);
 
             else if (split[0].equals("HasLight"))
                 hasLight = Boolean.parseBoolean(split[1].toLowerCase());
             else if (split[0].equals("HasDynamicLight"))
-                hasDynamicLight = Boolean.parseBoolean(split[1].toLowerCase());
-
+                hasDynamicLight = Boolean.parseBoolean(split[1].toLowerCase());          
+            
                 //Detonation conditions etc
             else if (split[0].equals("Fuse"))
                 fuse = Integer.parseInt(split[1]);
@@ -305,6 +309,10 @@ public abstract class ShootableType extends InfoType {
         return 0.0f;
     }
 
+    public float getBlockPenetrationModifier() {
+    	return blockPenetrationModifier < 0 ? FlansMod.masterBlockPenetrationModifier : blockPenetrationModifier;
+    }
+    
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBase GetModel() {

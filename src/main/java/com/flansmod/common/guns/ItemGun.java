@@ -26,6 +26,7 @@ import com.flansmod.common.driveables.EntitySeat;
 import com.flansmod.common.driveables.EntityVehicle;
 import com.flansmod.common.driveables.mechas.EntityMecha;
 import com.flansmod.common.eventhandlers.GunFiredEvent;
+import com.flansmod.common.eventhandlers.GunReloadEvent;
 import com.flansmod.common.guns.raytracing.BulletHit;
 import com.flansmod.common.guns.raytracing.EntityHit;
 import com.flansmod.common.guns.raytracing.EnumHitboxType;
@@ -1123,7 +1124,6 @@ public class ItemGun extends Item implements IPaintableItem, IGunboxDescriptiona
         }
     }
 
-
     public ItemStack tryToShoot(ItemStack gunStack, GunType gunType, World world, EntityPlayerMP entityplayer, boolean left) {
         sprinting = entityplayer.isSprinting();
         if (type.deployable || !type.usableByPlayers)
@@ -1162,8 +1162,8 @@ public class ItemGun extends Item implements IPaintableItem, IGunboxDescriptiona
                 } else {
                     reloadCount = 1;
                 }
-
-                if (reload(gunStack, gunType, world, entityplayer, false, left)) {
+                
+                if (reload(gunStack, gunType, world, entityplayer, false, left, false, false)) {
                     //Set player shoot delay to be the reload delay
                     //Set both gun delays to avoid reloading two guns at once
                     //data.shootTimeRight = data.shootTimeLeft = (int)gunType.getReloadTime(gunStack);
@@ -1180,7 +1180,7 @@ public class ItemGun extends Item implements IPaintableItem, IGunboxDescriptiona
                     }
                     //Send reload packet to induce reload effects client side
                     //ItemGun.setReloadCount(gunStack, reloadCount);
-                    FlansMod.getPacketHandler().sendTo(new PacketReload(left, reloadCount, (int) reloadTime, singlesReload), entityplayer);
+                    FlansMod.getPacketHandler().sendTo(new PacketReload(left, reloadCount, (int) reloadTime, singlesReload, false, false), entityplayer);
                     //Play reload sound
                     String soundToPlay = null;
                     AttachmentType grip = gunType.getGrip(gunStack);
@@ -1236,19 +1236,23 @@ public class ItemGun extends Item implements IPaintableItem, IGunboxDescriptiona
 
     /**
      * Reload method. Called automatically when firing with an empty clip
-     */
-    public boolean reload(ItemStack gunStack, GunType gunType, World world, EntityPlayer player, boolean forceReload, boolean left) {
-        return reload(gunStack, gunType, world, player, player.inventory, player.capabilities.isCreativeMode, forceReload);
+     */    
+    public boolean reload(ItemStack gunStack, GunType gunType, World world, EntityPlayer player, boolean forceReload, boolean left, boolean combineAmmoOnReload, boolean ammoToUpperInventory) {
+        return reload(gunStack, gunType, world, player, player.inventory, player.capabilities.isCreativeMode, forceReload, combineAmmoOnReload, ammoToUpperInventory);
     }
-
+    
     /**
      * Reload method. Called automatically when firing with an empty clip
      */
-    public boolean reload(ItemStack gunStack, GunType gunType, World world, Entity entity, IInventory inventory, boolean creative, boolean forceReload) {
-        boolean reloadedSomething = false;
+    public boolean reload(ItemStack gunStack, GunType gunType, World world, Entity entity, IInventory inventory, boolean creative, boolean forceReload, boolean combineAmmoOnReload, boolean ammoToUpperInventory) {
+    	GunReloadEvent gunReloadEvent = new GunReloadEvent(entity, gunStack);
+    	MinecraftForge.EVENT_BUS.post(gunReloadEvent);
+    	if(gunReloadEvent.isCanceled()) return false;   
+    	
+    	boolean reloadedSomething = false;
 
-        //Load the gun without having the ammo if gunDevMode is enabled
-        if (FlansMod.gunDevMode) {
+        //Load the gun without having the ammo if gunDevMode is enabled or it's set in the event
+        if (FlansMod.gunDevMode || !gunReloadEvent.isNeedsAmmo()) {
             ShootableType ammo = type.getDefaultAmmo();
             if (ammo != null) {
                 ItemStack stackToLoad = new ItemStack(ammo.item);
@@ -1267,7 +1271,7 @@ public class ItemGun extends Item implements IPaintableItem, IGunboxDescriptiona
         //If you cannot reload half way through a clip, reject the player for trying to do so
         if (forceReload && !gunType.canForceReload)
             return false;
-
+        
         String preferredAmmoShortname = ((ItemGun) gunStack.getItem()).getPreferredAmmoStack(gunStack);
         //Check each ammo slot, one at a time
         for (int i = 0; i < gunType.getNumAmmoItemsInGun(gunStack); i++) {
@@ -1296,6 +1300,7 @@ public class ItemGun extends Item implements IPaintableItem, IGunboxDescriptiona
                         }
                     }
                 }
+               
                 //If there was a valid non-empty magazine / bullet item somewhere in the inventory, load it
                 if (bestSlot != -1) {
                     ItemStack newBulletStack = inventory.getStackInSlot(bestSlot);
@@ -1304,7 +1309,7 @@ public class ItemGun extends Item implements IPaintableItem, IGunboxDescriptiona
                         dropItem(world, entity, ((ItemShootable) bulletStack.getItem()).type.dropItemOnReload);
                     //The magazine was not finished, pull it out and give it back to the player or, failing that, drop it
                     if (bulletStack != null && bulletStack.getItemDamage() < bulletStack.getMaxDamage()) {
-                        if (!InventoryHelper.addItemStackToInventory(inventory, bulletStack, creative))
+                        if (!InventoryHelper.addItemStackToInventory(inventory, bulletStack, creative, combineAmmoOnReload, ammoToUpperInventory))
                             entity.entityDropItem(bulletStack, 0.5F);
                     }
 

@@ -48,6 +48,16 @@ public class BulletType extends ShootableType
 	public float penetratingPower = 1F;
 	// In % of penetration to remove per tick.
 	public float penetrationDecay = 0F;
+	
+	/*
+	 * How much the loss of penetration power affects the damage of the bullet. 0 = damage not affected by that kind of penetration, 
+	 * 1 = damage is fully affected by bullet penetration of that kind
+	 */
+	public float playerPenetrationEffectOnDamage = 0F;
+	public float entityPenetrationEffectOnDamage = 0F;
+	public float blockPenetrationEffectOnDamage = 0F;
+	public float penetrationDecayEffectOnDamage = 0F;
+	
 	// Knocback modifier. less gives less kb, more gives more kb, 1 = normal kb.
 	public float knockbackModifier;
 	/** Lock on variables. If true, then the bullet will search for a target at the moment it is fired */
@@ -159,6 +169,16 @@ public class BulletType extends ShootableType
 				penetratingPower = Float.parseFloat(split[1]);
 			else if(split[0].equals("PenetrationDecay"))
 				penetrationDecay = Float.parseFloat(split[1]);
+						
+			else if(split[0].equals("PlayerPenetrationDamageEffect"))
+				playerPenetrationEffectOnDamage = Float.parseFloat(split[1]);
+			else if(split[0].equals("EntityPenetrationDamageEffect"))
+				entityPenetrationEffectOnDamage = Float.parseFloat(split[1]);
+			else if(split[0].equals("BlockPenetrationDamageEffect"))
+				blockPenetrationEffectOnDamage = Float.parseFloat(split[1]);
+			else if(split[0].equals("PenetrationDecayDamageEffect"))
+				penetrationDecayEffectOnDamage = Float.parseFloat(split[1]);
+			
 			else if(split[0].equals("DragInAir"))
 			{
 				dragInAir = Float.parseFloat(split[1]);
@@ -285,7 +305,7 @@ public class BulletType extends ShootableType
 			}
 		}
 	}
-
+	
 	public static BulletType getBullet(String s)
 	{
 		for(BulletType bullet : bullets)

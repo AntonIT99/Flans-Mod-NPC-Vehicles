@@ -76,7 +76,7 @@ public class PacketTeamInfo extends PacketBase
 	@Override
 	public void encodeInto(ChannelHandlerContext ctx, ByteBuf data) 
 	{
-    	data.writeBoolean(TeamsManager.canBreakGlass);
+		data.writeBoolean(TeamsManager.canBreakGlass);
     	data.writeBoolean(TeamsManager.vehiclesNeedFuel);
     	data.writeBoolean(TeamsManager.driveablesBreakBlocks);
     	data.writeBoolean(TeamsManager.allowVehicleZoom);
@@ -184,13 +184,14 @@ public class PacketTeamInfo extends PacketBase
 
 	@Override
 	public void decodeInto(ChannelHandlerContext ctx, ByteBuf data) 
-	{
+	{		
 		TeamsManager.canBreakGlass = data.readBoolean();
 		TeamsManager.vehiclesNeedFuel = data.readBoolean();
 		TeamsManager.driveablesBreakBlocks = data.readBoolean();
 		TeamsManager.allowVehicleZoom = data.readBoolean();
 		TeamsManager.survivalCanBreakVehicles = data.readBoolean();
 		TeamsManager.survivalCanPlaceVehicles = data.readBoolean();
+		
 		gametype = readUTF(data);
 		if(gametype.equals("No Gametype"))
 		{

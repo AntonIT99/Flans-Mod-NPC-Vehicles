@@ -131,7 +131,7 @@ public class KeyInputHandler {
             return;
         }
         if (reloadKey.isPressed() && FlansModClient.shootTime(false) <= 0) {
-            FlansMod.getPacketHandler().sendToServer(new PacketReload(false));
+            FlansMod.getPacketHandler().sendToServer(new PacketReload(false, FlansMod.allowCombiningAmmoOnReload ? FlansModClient.combineAmmoOnReload : false, FlansModClient.ammoToUpperInventoryOnReload));
             return;
         }
         if (selectPreferredAmmo.isPressed() && FlansModClient.shootTime(false) <= 0) {

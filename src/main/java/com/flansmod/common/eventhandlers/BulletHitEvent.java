@@ -16,6 +16,7 @@ import cpw.mods.fml.common.eventhandler.Event;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 
 @Cancelable
 public class BulletHitEvent extends Event {
@@ -24,6 +25,8 @@ public class BulletHitEvent extends Event {
 	private BulletHit hit;
 	private Entity entity;
 	private Block block;
+	
+	private boolean allowBlockDestruction = true;
 	
 	
 	public BulletHitEvent(EntityBullet bullet, BulletHit hit) {
@@ -41,7 +44,7 @@ public class BulletHitEvent extends Event {
 		
 		//Try to set the block field
 		if(hit instanceof BlockHit) {
-            MovingObjectPosition raytraceResult = ((BlockHit)hit).raytraceResult;           
+            MovingObjectPosition raytraceResult = ((BlockHit)hit).raytraceResult; 
            	block = bullet.worldObj.getBlock(raytraceResult.blockX, raytraceResult.blockY, raytraceResult.blockZ);
 		}
 		
@@ -71,6 +74,14 @@ public class BulletHitEvent extends Event {
 	 */
 	public Block getHitBlock() {
 		return block;
+	}
+	
+	public boolean isAllowBlockDestruction() {
+		return allowBlockDestruction;
+	}
+	
+	public void setAllowBlockDestruction(boolean allowBlockDestruction) {
+		this.allowBlockDestruction = allowBlockDestruction;
 	}
 	
 }
