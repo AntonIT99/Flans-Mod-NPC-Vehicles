@@ -1,0 +1,11 @@
+Name Engineer
+ShortName marineEngineer1
+AddItem m1014
+AddItem at4
+AddItem m9
+AddItem c4 2
+AddItem c4Remote
+AddItem mwKnife
+AddItem m1014Ammo 4
+AddItem at4Ammo 1
+AddItem m9Ammo 2

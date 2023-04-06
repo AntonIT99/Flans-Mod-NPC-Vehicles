@@ -1,0 +1,8 @@
+Name Light Assault
+ShortName marineAssault1
+AddItem m16a4+flanMWACOG
+AddItem m9+flanMWSilencer
+AddItem m67 2
+AddItem mwKnife
+AddItem m16a4Ammo 3
+AddItem m9Ammo 3

@@ -1,0 +1,8 @@
+Name Light Assault
+ShortName spetsnazAssault1
+AddItem ak47+flanMWACOG
+AddItem desertEagle
+AddItem m67 2
+AddItem mwKnife
+AddItem ak47Ammo 3
+AddItem desertEagleAmmo 2
