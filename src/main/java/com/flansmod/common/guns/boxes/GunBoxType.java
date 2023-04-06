@@ -21,11 +21,15 @@ import com.flansmod.common.types.TypeFile;
 public class GunBoxType extends InfoType
 {
 	public BlockGunBox block;
+	
 	public String topTexturePath;
 	public String sideTexturePath;
 	public String bottomTexturePath;
+	@SideOnly(Side.CLIENT)
 	public IIcon top;
+	@SideOnly(Side.CLIENT)
 	public IIcon side;
+	@SideOnly(Side.CLIENT)
 	public IIcon bottom;
 	public int nextGun = -1;
 
@@ -54,7 +58,7 @@ public class GunBoxType extends InfoType
 	public void preRead(TypeFile file)
 	{
 		gunEntries = new GunBoxEntry[8];
-		currentPage = new GunPage("Default");
+		currentPage = new GunPage("default");
 	}
 	
 	@Override
@@ -82,56 +86,31 @@ public class GunBoxType extends InfoType
 			if (split[0].equals("Page") || split[0].equals("SetPage"))
 			{
 				//If empty, rename the page. If not, add the current page to list and start next one.
-				String[] pageNameArray = Arrays.copyOfRange(split, 1, split.length);
-				StringBuilder pageName = new StringBuilder();
-				for(int i = 0; i < pageNameArray.length; i++)
-				{
-				    pageName.append(pageNameArray[i]);
-				    if((i + 1) < pageNameArray.length)
-				    {
-				        pageName.append(" ");
-				    }
-				}
+				String pageName = String.join(" ", Arrays.copyOfRange(split, 1, split.length));
 				if(gunEntries[0] != null)
 				{
 					currentPage.addGunList(Arrays.copyOf(gunEntries, nextGun + 1));
-					iteratePage(pageName.toString());
+					iteratePage(pageName);
 				}
 				else
 				{
-					currentPage.setPageName(pageName.toString());
+					currentPage.setPageName(pageName);
 				}
 
 			}
 			if (split[0].equals("AddGun"))
 			{
-				try {
-					List<ItemStack> parts = getRecipe(split);
+				nextGun++;
+				if(nextGun > gunEntries.length - 1)
+				{
+					currentPage.addGunList(Arrays.copyOf(gunEntries, nextGun));
+					iteratePage("default " + (gunPages.size() + 2));
 					nextGun++;
-					if(nextGun > gunEntries.length - 1)
-					{
-						currentPage.addGunList(Arrays.copyOf(gunEntries, nextGun));
-						iteratePage("Default " + (gunPages.size() + 2));
-						nextGun++;
-					}
-					gunEntries[nextGun] = new GunBoxEntry(InfoType.getType(split[1]), parts);
-				} catch(Exception e) {
-					if (FlansMod.printDebugLog) {
-						FlansMod.log("Failed to add gun %s to box %s", split[1], shortName);
-					}
-					
 				}
-
+				gunEntries[nextGun] = new GunBoxEntry(InfoType.getType(split[1]), getRecipe(split));
 			}
-			if (split[0].equals("AddAmmo") || split[0].equals("AddAltAmmo") || split[0].equals("AddAlternateAmmo")) {
-				try {
-					if	(InfoType.getType(split[1]) != null && InfoType.getType(split[1]).item != null) {
-						gunEntries[nextGun].addAmmoEntry(new GunBoxEntry(InfoType.getType(split[1]), getRecipe(split)));
-					}
-				} catch(Exception e) {
-					FlansMod.log("Failed to add ammo (%s) to box (%s)", split[1], shortName);
-				}
-			}
+			if (split[0].equals("AddAmmo") || split[0].equals("AddAltAmmo") || split[0].equals("AddAlternateAmmo"))
+				gunEntries[nextGun].addAmmoEntry(new GunBoxEntry(InfoType.getType(split[1]), getRecipe(split)));
 
 			//GunBox gui customisation
 			if(split[0].equals("GuiTexture"))
@@ -153,9 +132,7 @@ public class GunBoxType extends InfoType
 		catch (Exception e)
 		{
 			FlansMod.log("Reading gun box file failed : " + shortName);
-			if (FlansMod.printStackTrace) {
-				FlansMod.log(e.toString());
-			}
+			e.printStackTrace();
 		}
 	}
 
@@ -304,8 +281,8 @@ public class GunBoxType extends InfoType
 		{
 			if(recipe!=null)
 			{
-				StringBuilder msg = new StringBuilder(" : ");
-				for(Object o : recipe) msg.append(" ").append(o);
+				String msg = " : ";
+				for(Object o : recipe) msg = msg + " " + o;
 				FlansMod.log("Failed to add recipe for : " + shortName + msg);
 			}
 			else

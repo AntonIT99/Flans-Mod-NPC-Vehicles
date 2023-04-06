@@ -8,18 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import com.flansmod.common.FlansMod;
-import com.flansmod.common.driveables.EntityDriveable;
-import com.flansmod.common.driveables.EntityPlane;
-import com.flansmod.common.driveables.EntitySeat;
-import com.flansmod.common.driveables.EntityVehicle;
-import com.flansmod.common.driveables.EntityWheel;
-import com.flansmod.common.network.PacketExplosion;
-import com.flansmod.common.network.PacketHitMarker;
-import com.flansmod.common.network.PacketParticle;
-import com.flansmod.common.types.InfoType;
-
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentProtection;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,6 +17,8 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.server.S27PacketExplosion;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -34,6 +26,19 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
+
+import com.flansmod.common.FlansMod;
+import com.flansmod.common.driveables.EntityDriveable;
+import com.flansmod.common.driveables.EntityPlane;
+import com.flansmod.common.driveables.EntitySeat;
+import com.flansmod.common.driveables.EntityVehicle;
+import com.flansmod.common.driveables.EntityWheel;
+import com.flansmod.common.network.PacketExplosion;
+import com.flansmod.common.network.PacketFlak;
+import com.flansmod.common.network.PacketParticle;
+import com.flansmod.common.teams.ItemTeamArmour;
+import com.flansmod.common.types.InfoType;
 
 public class FlansModExplosion extends Explosion
 {
@@ -43,42 +48,34 @@ public class FlansModExplosion extends Explosion
     private World worldObj;
     public InfoType type;
     public EntityPlayer player;
-	private float radius;
-	private float power;
+    private float radius;
     private final float damageVsLiving;
     private final float damageVsPlayer;
     private final float damageVsPlane;
     private final float damageVsVehicle;
     public boolean breakBlocks;
-    public boolean canceled = false;
-    public boolean canDamageSelf;
 
 	public FlansModExplosion(World w, Entity e, EntityPlayer p, InfoType t,
-			double x, double y, double z, float explosionRadius, float explosionPower, boolean breakBlocks,
-			 float damageLiving, float damagePlayer, float damagePlane, float damageVehicle, int smokeCount, int debrisCount, boolean damageSelf)
+			double x, double y, double z, float r, boolean breakBlocks,
+			 float damageLiving, float damagePlayer, float damagePlane, float damageVehicle, int smokeCount, int debrisCount)
 	{
-		super(w, e, x, y, z, explosionRadius);
-		this.radius = explosionRadius;
-		power = explosionPower;
+		super(w, e, x, y, z, r);
+		this.radius = r;
 		worldObj = w;
 		type = t;
 		player = p;
         isFlaming = false;
-        isSmoking = true;
+        this.isSmoking = breakBlocks;
+        //ok bob
         this.breakBlocks = breakBlocks;
         damageVsPlayer = damagePlayer;
         damageVsLiving  = damageLiving;
         damageVsPlane   = damagePlane;
         damageVsVehicle = damageVehicle;
-
-        canDamageSelf = damageSelf;
-
         doExplosionA();
         doExplosionB(true);
         spawnParticle(smokeCount, debrisCount);
 
-        canceled = net.minecraftforge.event.ForgeEventFactory.onExplosionStart(worldObj, this);
-        
         if(!worldObj.isRemote)
         {
             for (Object playerEntity : worldObj.playerEntities) {
@@ -87,7 +84,7 @@ public class FlansModExplosion extends Explosion
             		EntityPlayerMP entityplayer = (EntityPlayerMP)playerEntity;
             		if (entityplayer.getDistanceSq(x, y, z) < 4096.0D)
             		{
-            			FlansMod.getPacketHandler().sendTo(new PacketExplosion(x, y, z, explosionRadius), entityplayer);
+            			FlansMod.getPacketHandler().sendTo(new PacketExplosion(x, y, z, r), entityplayer);
             		}
             	}
             }
@@ -102,26 +99,24 @@ public class FlansModExplosion extends Explosion
         HashSet hashset = new HashSet();
         double d0;
         double d1;
-		double d2;
-		
-		float largeRadius = radius * 2;
+        double d2;
 
-        for(int i = 0; i < largeRadius; ++i)
+        for(int i = 0; i < boomRadius; ++i)
         {
-            for(int j = 0; j < largeRadius; ++j)
+            for(int j = 0; j < boomRadius; ++j)
             {
-                for(int k = 0; k < largeRadius; ++k)
+                for(int k = 0; k < boomRadius; ++k)
                 {
-                    if(i == 0 || i == largeRadius - 1 || j == 0 || j == largeRadius - 1 || k == 0 || k == largeRadius - 1)
+                    if(i == 0 || i == boomRadius - 1 || j == 0 || j == boomRadius - 1 || k == 0 || k == boomRadius - 1)
                     {
-                        double d3 = (i / (largeRadius - 1.0F) * 2.0F - 1.0F);
-                        double d4 = (j / (largeRadius - 1.0F) * 2.0F - 1.0F);
-                        double d5 = (k / (largeRadius - 1.0F) * 2.0F - 1.0F);
+                        double d3 = (i / (boomRadius - 1.0F) * 2.0F - 1.0F);
+                        double d4 = (j / (boomRadius - 1.0F) * 2.0F - 1.0F);
+                        double d5 = (k / (boomRadius - 1.0F) * 2.0F - 1.0F);
                         double d6 = Math.sqrt(d3 * d3 + d4 * d4 + d5 * d5);
                         d3 /= d6;
                         d4 /= d6;
                         d5 /= d6;
-                        float f1 = power * radius * (0.7F + worldObj.rand.nextFloat() * 0.6F);
+                        float f1 = explosionSize * (0.7F + worldObj.rand.nextFloat() * 0.6F);
                         d0 = explosionX;
                         d1 = explosionY;
                         d2 = explosionZ;
@@ -133,18 +128,12 @@ public class FlansModExplosion extends Explosion
                             int j1 = MathHelper.floor_double(d2);
                             Block block = worldObj.getBlock(l, i1, j1);
 
-							float f3 = exploder != null ? exploder.func_145772_a(this, worldObj, l, i1, j1, block) : block.getExplosionResistance(exploder, worldObj, l, i1, j1, explosionX, explosionY, explosionZ);
-							double distFactor = Math.sqrt(Math.pow(d0 - explosionX, 2) + Math.pow(d1 - explosionY, 2) + Math.pow(d2 - explosionZ, 2));
-							if (distFactor + 0.5 < radius) {
-								f1 -= ((f3 + 0.3F) * f2);
-							} else {
-								// If we're outside the radius, make it extremely difficult for the explosion to proceed.
-								f1 -= (f3 + 0.3F) * f2 * Math.pow((distFactor - radius + 2), 3) * 20;
-							}
+                            float f3 = exploder != null ? exploder.func_145772_a(this, worldObj, l, i1, j1, block) : block.getExplosionResistance(exploder, worldObj, l, i1, j1, explosionX, explosionY, explosionZ);
+                            f1 -= (f3 + 0.3F) * f2;
 
                             if (f1 > 0.0F && (exploder == null || exploder.func_145774_a(this, worldObj, l, i1, j1, block, f1)))
                             {
-								hashset.add(new ChunkPosition(l, i1, j1));
+                                hashset.add(new ChunkPosition(l, i1, j1));
                             }
 
                             d0 += d3 * f2;
@@ -156,9 +145,7 @@ public class FlansModExplosion extends Explosion
             }
         }
 
-        if(!canceled)
-        	affectedBlockPositions.addAll(hashset);
-        
+        affectedBlockPositions.addAll(hashset);
         explosionSize *= 2.0F;
         int i = MathHelper.floor_double(explosionX - explosionSize - 1.0D);
         int j = MathHelper.floor_double(explosionX + explosionSize + 1.0D);
@@ -166,14 +153,7 @@ public class FlansModExplosion extends Explosion
         int l1 = MathHelper.floor_double(explosionY + explosionSize + 1.0D);
         int i2 = MathHelper.floor_double(explosionZ - explosionSize - 1.0D);
         int j2 = MathHelper.floor_double(explosionZ + explosionSize + 1.0D);
-
-        List list;
-        if (canDamageSelf) {
-        	list = worldObj.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getBoundingBox(i, k, i2, j, l1, j2));
-		} else {
-			list = worldObj.getEntitiesWithinAABBExcludingEntity(exploder, AxisAlignedBB.getBoundingBox(i, k, i2, j, l1, j2));
-		}
-		net.minecraftforge.event.ForgeEventFactory.onExplosionDetonate(this.worldObj, this, list, this.explosionSize);
+        List list = worldObj.getEntitiesWithinAABBExcludingEntity(exploder, AxisAlignedBB.getBoundingBox(i, k, i2, j, l1, j2));
         Vec3 vec3 = Vec3.createVectorHelper(explosionX, explosionY, explosionZ);
 
         for (Object aList : list) {
@@ -195,35 +175,92 @@ public class FlansModExplosion extends Explosion
 
                     EntityDriveable entityDriveable = null;
                     float damage = (float)((d10 * d10 + d10) / 2.0D * 8.0D * explosionSize + 1.0D);
-                    if(entity instanceof EntityPlayer)      damage *= damageVsPlayer;
+                    if(entity instanceof EntityPlayer)
+                    	{
+                    	EntityPlayer Victim = (EntityPlayer)entity;
+                    	//damage *= 0f;
+                    	//this one works! fails inside fo armor checker
+                    	
+                    	
+                    	for(int n = 0; n < 5; n++)
+            			{
+            				
+            			ItemStack stackerino = ((EntityPlayer)entity).getEquipmentInSlot(n);
+            			if(stackerino != null && stackerino.getItem() instanceof ItemTeamArmour)
+            				{
+            				//if (((ItemTeamArmour)stackerino.getItem()).type.hasPouch )
+            				
+            					float helmet = ((ItemTeamArmour)stackerino.getItem()).type.headArmor;
+            					float body = ((ItemTeamArmour)stackerino.getItem()).type.bodyArmor;
+            					float headRatio = 0;
+            					float bodyRatio = 0;
+            			
+            					if (helmet >1 && helmet <= 50)
+            						headRatio = (float)(helmet/50f);
+            					else if (helmet > 50)
+            						headRatio = 1;
+            					
+            					if (body >1 && body <= 50)
+            						bodyRatio = (float)(body/50f);
+            					else if (body > 50)
+            						bodyRatio = 1;		
+            					
+            					
+            					damage *= (damageVsPlayer * (float)(1f - 0.45f*bodyRatio - 0.35*headRatio));
+            				}
+  
+                    	else
+                    		//if no flan armor do the usual
+                    	damage *= damageVsPlayer;
+                    	}
+                    	}
                     else if(entity instanceof EntityLivingBase) damage *= damageVsLiving;
-                    else if(entity instanceof EntityPlane)      damage *= damageVsPlane;
-                    else if(entity instanceof EntityVehicle)    damage *= damageVsVehicle;
+                    else if(entity instanceof EntityPlane)     
+                    	{ //new explosion resistance multiplier for mraps n shit
+                    	EntityDriveable vehicle = (EntityDriveable) entity;
+                    	damage *= damageVsPlane * vehicle.getDriveableType().explosionResistance;
+                    	}
+                    else if(entity instanceof EntityVehicle)    
+                    	{//new explosion resistance multiplier for mraps n shit
+                    	EntityDriveable vehicle = (EntityDriveable) entity;
+                    	damage *= damageVsVehicle * vehicle.getDriveableType().explosionResistance;
+                    	}
                     else if(entity instanceof EntityWheel)
                     {
                     	entityDriveable = ((EntityWheel) entity).vehicle;
-                    	damage *= FlansMod.vehicleWheelSeatExplosionModifier;
                     }
                     else if(entity instanceof EntitySeat)
                     {
                     	entityDriveable = ((EntitySeat) entity).driveable;
-						damage *= FlansMod.vehicleWheelSeatExplosionModifier;
                     }
 
-                    if(entityDriveable instanceof EntityPlane)      damage *= damageVsPlane;
-                    if(entityDriveable instanceof EntityVehicle)    damage *= damageVsVehicle;
+                    if(entityDriveable instanceof EntityPlane)     
+                    	{  	//new explosion resistance multiplier for mraps n shit
+                    	EntityDriveable vehicle = (EntityDriveable) entityDriveable;
+                		damage *= damageVsPlane * vehicle.getDriveableType().explosionResistance;               	
+                		}
+                    if(entityDriveable instanceof EntityVehicle)    
+                    	{//new explosion resistance multiplier for mraps n shit
+                    	EntityDriveable vehicle = (EntityDriveable) entityDriveable;
+                    	damage *= damageVsVehicle * vehicle.getDriveableType().explosionResistance;
+                    	}
 
                     if( damage > 0.5F)
                     {
                     	boolean b = entity.attackEntityFrom(player == null || type == null ? DamageSource.setExplosionSource(this) : new EntityDamageSourceFlans(type.shortName, entity, player, type, false, false), damage);
-                    	if(b && !worldObj.isRemote && player instanceof EntityPlayerMP)
+                    	if(b)
                     	{
-                    		FlansMod.getPacketHandler().sendTo(new PacketHitMarker(false, 1F, true), (EntityPlayerMP) player);
+                    		EntityBullet.hitCrossHair = true;
                     	}
+                    	float multiplier = 0;
+                    	if(entityDriveable != null && entityDriveable.getDriveableType() != null)  //special code to multiply strength of vehicle getting pushed
+                    		multiplier = entityDriveable.getDriveableType().explosionPush;
+                    	if(entity instanceof EntityBullet)
+                    		multiplier = 0; //hopefully prevents carpet bomb bomb party
                         double d11 = EnchantmentProtection.func_92092_a(entity, d10);
-                        entity.motionX += d0 * d11;
-                        entity.motionY += d1 * d11;
-                        entity.motionZ += d2 * d11;
+                        entity.motionX += multiplier * d0 * d11;
+                        entity.motionY += multiplier * d1 * d11;
+                        entity.motionZ += multiplier * d2 * d11;
                     }
 
                     if (entity instanceof EntityPlayer) {
@@ -232,10 +269,8 @@ public class FlansModExplosion extends Explosion
                 }
             }
         }
-		explosionSize = f;
-		if (!breakBlocks) {
-			affectedBlockPositions.clear();
-		}
+        	explosionSize = f;
+          //net.minecraftforge.event.ForgeEventFactory.onExplosionStart(worldObj, this);
     }
 
 	public void spawnParticle(int numSmoke, int numDebris)
@@ -324,68 +359,50 @@ public class FlansModExplosion extends Explosion
 		}
 	}
 
-	// [IMPORTANT] To get cauldron to fire the bukkit explosion events for plugins like worldguard, this cannot be overridden - it will negate
-	// the effects of the patch cauldron uses to add the bukkit events.
-
     /**
      * Does the second part of the explosion (sound, particles, drop spawn)
      */
-    // @Override
-	// public void doExplosionB(boolean par1)
-    // {
-    //     worldObj.playSoundEffect(explosionX, explosionY, explosionZ, "random.explode", 4.0F, (1.0F + (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.2F) * 0.7F);
+    @Override
+	public void doExplosionB(boolean par1)
+    {
+        worldObj.playSoundEffect(explosionX, explosionY, explosionZ, "random.explode", 4.0F, (1.0F + (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.2F) * 0.7F);
 
-    //     Iterator iterator;
-    //     ChunkPosition chunkposition;
-    //     int i;
-    //     int j;
-    //     int k;
-    //     Block block;
+        Iterator iterator;
+        ChunkPosition chunkposition;
+        int i;
+        int j;
+        int k;
+        Block block;
 
-    //     if (!worldObj.isRemote && breakBlocks && !canceled)
-    //     {
-    //         iterator = affectedBlockPositions.iterator();
+        if (!worldObj.isRemote && breakBlocks)
+        {
+          worldObj.createExplosion((Entity) null, explosionX, explosionY, explosionZ, radius, true);
+        }
+        //ok bob
+     else {
+    	 ForgeEventFactory.onExplosionDetonate(this.worldObj, this, new ArrayList<Entity>(), this.radius);
+    }
 
-    //         while (iterator.hasNext())
-    //         {
-    //             chunkposition = (ChunkPosition)iterator.next();
-    //             i = chunkposition.chunkPosX;
-    //             j = chunkposition.chunkPosY;
-    //             k = chunkposition.chunkPosZ;
-    //             block = worldObj.getBlock(i, j, k);
+        if (!worldObj.isRemote && isFlaming)
+        {
+            iterator = affectedBlockPositions.iterator();
 
-    //             if (block.getMaterial() != Material.air)
-    //             {
-    //                 if (block.canDropFromExplosion(this))
-    //                 {
-    //                     block.dropBlockAsItemWithChance(worldObj, i, j, k, worldObj.getBlockMetadata(i, j, k), 1.0F / explosionSize, 0);
-    //                 }
+            while (iterator.hasNext())
+            {
+                chunkposition = (ChunkPosition)iterator.next();
+                i = chunkposition.chunkPosX;
+                j = chunkposition.chunkPosY;
+                k = chunkposition.chunkPosZ;
+                block = worldObj.getBlock(i, j, k);
+                Block blockBelow = worldObj.getBlock(i, j - 1, k);
 
-    //                 block.onBlockExploded(worldObj, i, j, k, this);
-    //             }
-    //         }
-    //     }
-
-    //     if (!worldObj.isRemote && isFlaming)
-    //     {
-    //         iterator = affectedBlockPositions.iterator();
-
-    //         while (iterator.hasNext())
-    //         {
-    //             chunkposition = (ChunkPosition)iterator.next();
-    //             i = chunkposition.chunkPosX;
-    //             j = chunkposition.chunkPosY;
-    //             k = chunkposition.chunkPosZ;
-    //             block = worldObj.getBlock(i, j, k);
-    //             Block blockBelow = worldObj.getBlock(i, j - 1, k);
-
-    //             if (block == null && blockBelow.isOpaqueCube() && explosionRNG.nextInt(3) == 0)
-    //             {
-    //                 worldObj.setBlock(i, j, k, Blocks.fire);
-    //             }
-    //         }
-    //     }
-    // }
+                if (block == null && blockBelow.isOpaqueCube() && explosionRNG.nextInt(3) == 0)
+                {
+                    worldObj.setBlock(i, j, k, Blocks.fire);
+                }
+            }
+        }
+    }
 
     @Override
 	public Map func_77277_b()
@@ -458,7 +475,7 @@ public class FlansModExplosion extends Explosion
 									f1 -= (f3 + 0.3F) * f2;
 								}
 
-								if (f1 > 0.0F && (exploder == null || exploder.func_145774_a(explosion, worldObj, j1, k1, l1, block, f1)))
+								if (f1 > 0.0F)
 								{
 									hashset.add(new ChunkPosition(j1, k1, l1));
 								}
@@ -502,11 +519,12 @@ public class FlansModExplosion extends Explosion
 						d7 /= d9;
 						double d10 = (double)worldObj.getBlockDensity(vec3, entity.boundingBox);
 						double d11 = (1.0D - d4) * d10;
-//						entity.attackEntityFrom(DamageSource.setExplosionSource(explosion), (float)((int)((d11 * d11 + d11) / 2.0D * 8.0D * (double)explosionSize + 1.0D)));
+						entity.attackEntityFrom(DamageSource.setExplosionSource(explosion), (float)((int)((d11 * d11 + d11) / 2.0D * 8.0D * (double)explosionSize + 1.0D)));
 						double d8 = EnchantmentProtection.func_92092_a(entity, d11);
-						entity.motionX += d5 * d8;
+						entity.motionX += d5 * d8;  //these are the shitty ones that dont really work against vehicles
 						entity.motionY += d6 * d8;
 						entity.motionZ += d7 * d8;
+						//System.out.println("is it motioning? motionx added: " + d5 * d8 + "now motion z" + d7 * d8);
 					}
 				}
 			}

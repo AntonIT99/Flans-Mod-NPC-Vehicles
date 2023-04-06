@@ -9,7 +9,8 @@ import com.flansmod.common.guns.ItemBullet;
 import com.flansmod.common.guns.ItemGrenade;
 
 import com.flansmod.common.FlansMod;
-
+import com.flansmod.common.driveables.mechas.ItemMecha;
+//stolen from golden sloth
 public class SlotDriveableAmmunition extends Slot 
 {
 	int slotd = 0;
@@ -25,11 +26,20 @@ public class SlotDriveableAmmunition extends Slot
 	public boolean isItemValid(ItemStack stack) {
 		if (stack == null || stack.getItem() == null)
 			return true;
-		if (!restrictInput)
-			return true;
 
 		Item item = stack.getItem();
+			
+		//labjac attempt to ban vehicle matrioshka
+		if ((item instanceof ItemVehicle) || (item instanceof ItemPlane) || (item instanceof ItemMecha) )
+			return false;
+		
+
+		if (!restrictInput)
+			return true;
+		
+		FlansMod.log("E %b", item instanceof ItemBullet || item instanceof ItemGrenade);
 		return item instanceof ItemBullet || item instanceof ItemGrenade;
+		
 	}
 	
 	@Override

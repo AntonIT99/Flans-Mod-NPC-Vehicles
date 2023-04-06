@@ -25,6 +25,9 @@ public class ItemAttachment extends Item implements IPaintableItem
 {
 	public AttachmentType type;
 	
+	public boolean barisLaser = false;
+	public boolean barisInfrared = false;
+	
 	public IIcon[] icons;
 	
 	public ItemAttachment(AttachmentType t) 
@@ -34,6 +37,9 @@ public class ItemAttachment extends Item implements IPaintableItem
 		maxStackSize = t.maxStackSize;
 		setCreativeTab(FlansMod.tabFlanGuns);
 		GameRegistry.registerItem(this, type.shortName, FlansMod.MODID);
+		
+		barisLaser = t.barisLaser;
+		barisInfrared = t.barisInfrared;
 	}
 	
     @SideOnly(Side.CLIENT)
@@ -56,28 +62,20 @@ public class ItemAttachment extends Item implements IPaintableItem
     	}
     }
 
-	@SideOnly(Side.CLIENT)
-	public IIcon getIconIndex(ItemStack stack)
-	{
-		try {
-			if (stack.getItemDamage() < icons.length) {
-				return icons[stack.getItemDamage()];
-			} else {
-				return icons[0];
-			}
-		} catch (NullPointerException e) {
-			return null;
-		}
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconIndex(ItemStack stack)
+    {
+        return icons[stack.getItemDamage()];
+    }
     
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List lines, boolean b)
 	{
-		String paintName = type.getPaintjob(stack.getItemDamage()).displayName;		
-		if(!paintName.equals("default") && !paintName.isEmpty())
-			lines.add("\u00a7b\u00a7o" + paintName);
+		if( !type.getPaintjob(stack.getItemDamage()).displayName.equals("default") )
+			lines.add("\u00a7b\u00a7o" + type.getPaintjob(stack.getItemDamage()).displayName);
 
-		if(!type.packName.isEmpty() && FlansMod.showPackNameInItemDescriptions)
+		if(!type.packName.isEmpty())
 		{
 			lines.add(type.packName);
 		}
@@ -107,7 +105,8 @@ public class ItemAttachment extends Item implements IPaintableItem
         else addPaintjobToList(item, type, type.defaultPaintjob, list);
     }
     
-    private void addPaintjobToList(Item item, PaintableType type, Paintjob paintjob, List list)
+    @SuppressWarnings("static-method")
+	private void addPaintjobToList(Item item, PaintableType type, Paintjob paintjob, List list)
     {
     	ItemStack paintableStack = new ItemStack(item, 1, paintjob.ID);
     	NBTTagCompound tags = new NBTTagCompound();

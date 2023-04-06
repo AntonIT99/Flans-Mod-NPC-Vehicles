@@ -27,6 +27,7 @@ public class ToolType extends InfoType
 	public boolean healPlayers = false, healDriveables = false;
 	/** The amount to heal per use (one use per click) */
 	public int healAmount = 0;
+	public int healStrength = 0;
 	/** The amount of uses the tool has. 0 means infinite */
 	public int toolLife = 0;
 	/** If true, the tool will destroy itself when finished. Disable this for rechargeable tools */
@@ -42,6 +43,14 @@ public class ToolType extends InfoType
 	/** If > 0, then the player can eat this and recover this much hunger */
 	public int foodness = 0;
 	public boolean key = false;
+
+	//blood system
+	public boolean bandAid = false;
+	public boolean superBandAid = false;
+	public boolean surgery = false;
+	public boolean needle = false;
+	public boolean transfusion = false;
+	public String summonItem = null;
 	
 	public ToolType(TypeFile file) 
 	{
@@ -67,6 +76,21 @@ public class ToolType extends InfoType
 				texture = split[1];
 			else if(split[0].equals("Parachute"))
 				parachute = Boolean.parseBoolean(split[1].toLowerCase());
+			//labjac medical tools
+			else if(split[0].equals("bandAid"))
+				bandAid = Boolean.parseBoolean(split[1].toLowerCase());
+			else if(split[0].equals("superBandAid"))
+				superBandAid = Boolean.parseBoolean(split[1].toLowerCase());
+			else if(split[0].equals("surgery"))
+				surgery = Boolean.parseBoolean(split[1].toLowerCase());
+			else if(split[0].equals("transfusion"))
+				transfusion = Boolean.parseBoolean(split[1].toLowerCase());
+			else if(split[0].equals("needle"))
+				needle = Boolean.parseBoolean(split[1].toLowerCase());
+			else if(split[0].equals("summonItem"))
+				summonItem = split[1];
+			
+			
 			else if(split[0].equals("ExplosiveRemote"))
 				remote = Boolean.parseBoolean(split[1].toLowerCase());
 			else if(split[0].equals("Key"))
@@ -77,6 +101,8 @@ public class ToolType extends InfoType
 				healDriveables = Boolean.parseBoolean(split[1].toLowerCase());
 			else if(split[0].equals("HealAmount") || split[0].equals("RepairAmount"))
 				healAmount = Integer.parseInt(split[1]);
+			else if(split[0].equals("HealStrength"))
+				healStrength = Integer.parseInt(split[1]);
 			else if(split[0].equals("ToolLife") || split[0].equals("ToolUses"))
 				toolLife = Integer.parseInt(split[1]);
 			else if(split[0].equals("EUPerCharge"))

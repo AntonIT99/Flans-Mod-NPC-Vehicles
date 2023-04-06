@@ -3,15 +3,15 @@ package com.flansmod.common.guns;
 import com.flansmod.common.driveables.EntityDriveable;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
 public abstract class EntityShootable extends Entity 
+//public abstract class EntityShootable extends EntityLiving failed attempt to make it living for camera tv view missile
 {
 	public EntityDriveable driveable;
 	public EntityShootable(World w) 
 	{
 		super(w);
 	}
-
-	public abstract ShootableType getType();
 }

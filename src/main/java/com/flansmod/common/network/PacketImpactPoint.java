@@ -71,7 +71,7 @@ public class PacketImpactPoint extends PacketBase
 	{
 		/*if(clientPlayer == null || clientPlayer.worldObj == null)
 			return;
-		//FlansMod.log(clientPlayer);
+		//System.out.println(clientPlayer);
 		for(Object obj : clientPlayer.worldObj.loadedEntityList)
 		{
 			EntityPlayer entP;
@@ -86,7 +86,7 @@ public class PacketImpactPoint extends PacketBase
 						itemGun.impactX = x;
 						itemGun.impactY = y;
 						itemGun.impactZ = z;
-						FlansMod.log("getaaaaaaaaaaaaaaa");
+						System.out.println("getaaaaaaaaaaaaaaa");
 						break;
 					}
 			}

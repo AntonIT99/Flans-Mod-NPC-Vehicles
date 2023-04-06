@@ -17,7 +17,6 @@ import com.flansmod.common.FlansMod;
 import com.flansmod.common.driveables.ItemPlane;
 import com.flansmod.common.driveables.ItemVehicle;
 import com.flansmod.common.guns.ItemAAGun;
-import net.minecraft.util.AxisAlignedBB;
 
 public class TileEntitySpawner extends TileEntity implements ITeamObject
 {
@@ -30,7 +29,6 @@ public class TileEntitySpawner extends TileEntity implements ITeamObject
 	private int baseID = -1;
 	private int dimension;
 	public int currentDelay;
-	public AxisAlignedBB nearbyBB;
 
 	//Chunk loading
 	private Ticket chunkTicket;
@@ -49,8 +47,6 @@ public class TileEntitySpawner extends TileEntity implements ITeamObject
 	@Override
     public Packet getDescriptionPacket()
     {
-		// When the TE is initialised, the xcoord is not know. This would make sense to be in the constructor, but it's not. Eh.
-		nearbyBB = AxisAlignedBB.getBoundingBox(xCoord - 3, yCoord - 3, zCoord - 3, xCoord + 3, yCoord + 3, zCoord + 3);
         NBTTagCompound tags = new NBTTagCompound();
         tags.setByte("TeamID", base == null ? (byte)0 : (byte)base.getOwnerID());
         tags.setString("Map", base == null || base.getMap() == null ? "" : base.getMap().shortName);
@@ -97,31 +93,29 @@ public class TileEntitySpawner extends TileEntity implements ITeamObject
 		{
 			currentDelay--;
 		}
-		if(currentDelay <= 0)
+		if(currentDelay == 0)
 		{
 			currentDelay = spawnDelay > 0?  spawnDelay: 20;
 			for(int i = 0; i < stacksToSpawn.size(); i++)
 			{
 				if(worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == 2)
 				{
-					if (worldObj.getEntitiesWithinAABB(Entity.class, nearbyBB).size() == 0) {
-						if(spawnedEntity != null && !spawnedEntity.isDead)
-						{
-							// continue;
-						}
-						ItemStack stack = stacksToSpawn.get(i);
-						if(stack != null && stack.getItem() instanceof ItemPlane)
-						{
-							spawnedEntity = ((ItemPlane)stack.getItem()).spawnPlane(worldObj, xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, stack);
-						}					
-						if(stack != null && stack.getItem() instanceof ItemVehicle)
-						{
-							spawnedEntity = ((ItemVehicle)stack.getItem()).spawnVehicle(worldObj, xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, stack);
-						}
-						if(stack != null && stack.getItem() instanceof ItemAAGun)
-						{
-							spawnedEntity = ((ItemAAGun)stack.getItem()).spawnAAGun(worldObj, xCoord + 0.5F, yCoord, zCoord + 0.5F, stack);
-						}
+					if(spawnedEntity != null && !spawnedEntity.isDead)
+					{
+						continue;
+					}
+					ItemStack stack = stacksToSpawn.get(i);
+					if(stack != null && stack.getItem() instanceof ItemPlane)
+					{
+						spawnedEntity = ((ItemPlane)stack.getItem()).spawnPlane(worldObj, xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, stack);
+					}					
+					if(stack != null && stack.getItem() instanceof ItemVehicle)
+					{
+						spawnedEntity = ((ItemVehicle)stack.getItem()).spawnVehicle(worldObj, xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, stack);
+					}
+					if(stack != null && stack.getItem() instanceof ItemAAGun)
+					{
+						spawnedEntity = ((ItemAAGun)stack.getItem()).spawnAAGun(worldObj, xCoord + 0.5F, yCoord, zCoord + 0.5F, stack);
 					}
 				}
 				else

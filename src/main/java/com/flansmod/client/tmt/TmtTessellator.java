@@ -24,10 +24,13 @@ public class TmtTessellator extends Tessellator
 {
     private static int nativeBufferSize = 0x200000;
     private static int trivertsInBuffer = (nativeBufferSize / 48) * 6;
-    public static boolean renderingWorldRenderer = false;
-    public boolean defaultTexture = false;
+    @SuppressWarnings("hiding")
+	public static boolean renderingWorldRenderer = false;
+    @SuppressWarnings("hiding")
+	public boolean defaultTexture = false;
     private int rawBufferSize = 0;
-    public int textureID = 0;
+    @SuppressWarnings("hiding")
+	public int textureID = 0;
     /**
      * Boolean used to check whether quads should be drawn as two triangles. Initialized to false and never changed.
      */
@@ -121,7 +124,8 @@ public class TmtTessellator extends Tessellator
     private int normal;
     
     /** The static instance of the Tessellator. */
-    public static TmtTessellator instance = new TmtTessellator(2097152);
+    @SuppressWarnings("hiding")
+	public static TmtTessellator instance = new TmtTessellator(2097152);
     
     /** Whether this tessellator is currently in draw mode. */
     public boolean isDrawing = false;

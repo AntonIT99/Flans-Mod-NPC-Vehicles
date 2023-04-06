@@ -3,7 +3,6 @@ package com.flansmod.common.network;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import com.flansmod.common.FlansMod;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,6 +46,11 @@ public class PacketTeamInfo extends PacketBase
 		public int score;
 		public int kills;
 		public int deaths;
+		public int shekels;
+		//bleeding
+		public float blood;
+		//in case i want to add leader board
+		public int totalScore;
 		public TeamData team;
 		public PlayerClass playerClass;
 		public int zombieScore;
@@ -79,9 +83,7 @@ public class PacketTeamInfo extends PacketBase
     	data.writeBoolean(TeamsManager.canBreakGlass);
     	data.writeBoolean(TeamsManager.vehiclesNeedFuel);
     	data.writeBoolean(TeamsManager.driveablesBreakBlocks);
-    	data.writeBoolean(TeamsManager.allowVehicleZoom);
-    	data.writeBoolean(TeamsManager.survivalCanBreakVehicles);
-    	data.writeBoolean(TeamsManager.survivalCanPlaceVehicles);
+ 
     	
 		if(TeamsManager.getInstance().currentRound == null)
     	{
@@ -135,6 +137,7 @@ public class PacketTeamInfo extends PacketBase
 		        			else
 		        			{
 			        			data.writeInt(playerData.score);
+			        			data.writeInt(playerData.shekels);
 			        			data.writeInt(playerData.zombieScore);
 			        			data.writeInt(playerData.kills);
 			        			data.writeInt(playerData.deaths);
@@ -170,6 +173,7 @@ public class PacketTeamInfo extends PacketBase
 						writeUTF(data, "");
 					} else {
 						data.writeInt(playerData.score);
+	        			data.writeInt(playerData.shekels);
 						data.writeInt(playerData.kills);
 						data.writeInt(playerData.deaths);
 						writeUTF(data, playerData.playerClass.shortName);
@@ -188,9 +192,7 @@ public class PacketTeamInfo extends PacketBase
 		TeamsManager.canBreakGlass = data.readBoolean();
 		TeamsManager.vehiclesNeedFuel = data.readBoolean();
 		TeamsManager.driveablesBreakBlocks = data.readBoolean();
-		TeamsManager.allowVehicleZoom = data.readBoolean();
-		TeamsManager.survivalCanBreakVehicles = data.readBoolean();
-		TeamsManager.survivalCanPlaceVehicles = data.readBoolean();
+	
 		gametype = readUTF(data);
 		if(gametype.equals("No Gametype"))
 		{
@@ -230,6 +232,7 @@ public class PacketTeamInfo extends PacketBase
 						teamData[i].playerData[j].team = teamData[i];
 						teamData[i].playerData[j].username = readUTF(data);
 						teamData[i].playerData[j].score = data.readInt();
+						teamData[i].playerData[j].shekels = data.readInt();
 						teamData[i].playerData[j].zombieScore = data.readInt();
 						teamData[i].playerData[j].kills = data.readInt();
 						teamData[i].playerData[j].deaths = data.readInt();

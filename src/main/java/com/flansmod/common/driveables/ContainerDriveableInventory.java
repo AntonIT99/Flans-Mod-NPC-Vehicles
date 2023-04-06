@@ -16,15 +16,17 @@ public class ContainerDriveableInventory extends Container
 	public int screen;
 	public int maxScroll;
 	public int scroll;
+	//sloth stealing
 	public DriveableType type;
-	
-    public ContainerDriveableInventory(InventoryPlayer inventoryplayer, World world, EntityDriveable entPlane, int i)
+    public ContainerDriveableInventory(InventoryPlayer inventoryplayer, World worldy, EntityDriveable entPlane, int i)
     {
 		inventory = inventoryplayer;
-        this.world = world;
+        world = worldy;
 		plane = entPlane;
+		//sloth stealing
 		type = plane.getDriveableType();
-
+		
+		
 		screen = i;
 		//Find the number of items in the inventory
 		numItems = 0;
@@ -67,6 +69,7 @@ public class ContainerDriveableInventory extends Container
 					int yPos = -1000;
 					if(slotsDone < 3 + scroll && slotsDone >= scroll)
 						yPos = 25 + 19 * slotsDone;
+					//addSlotToContainer(new Slot(plane.driveableData, j, 29, yPos));   stealing item filter from sloth
 					addSlotToContainer(new SlotDriveableAmmunition(plane.driveableData, j, 29, yPos, type.filterAmmunition));
 					slotsDone++;
 				}	
@@ -89,6 +92,8 @@ public class ContainerDriveableInventory extends Container
 						yPos = 25 + 19 * (row - scroll);
 					for(int col = 0; col < ((row + scroll + 1) * 8 <= numItems ? 8 : numItems % 8); col++)
 					{
+					//	addSlotToContainer(new Slot(plane.driveableData, startSlot + row * 8 + col, 10 + 18 * col, yPos));  golden sloth item restriction system
+						
 						addSlotToContainer(new SlotDriveableAmmunition(plane.driveableData, startSlot + row * 8 + col, 10 + 18 * col, yPos, type.filterAmmunition));
 					}
 				}
@@ -157,13 +162,53 @@ public class ContainerDriveableInventory extends Container
     }
 	
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
+    public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
 		ItemStack stack = null;
+     //   Slot currentSlot = (Slot)inventorySlots.get(slotID); golden sloth item restriction
+		
 		Slot currentSlot = (Slot) inventorySlots.get(slotID);
 		if (currentSlot != null && currentSlot.getHasStack()) {
 			ItemStack slotStack = currentSlot.getStack();
 			stack = slotStack.copy();
 
+			
+			/*
+			 before golden sloth
+        if(currentSlot != null && currentSlot.getHasStack())
+        {
+            ItemStack slotStack = currentSlot.getStack();
+            stack = slotStack.copy();
+            
+            if(slotID >= numItems)
+            {
+            	if(!mergeItemStack(slotStack, 0, numItems, false))
+            	{
+            		return null;
+            	}
+            }
+            else {
+            	if(!mergeItemStack(slotStack, numItems, inventorySlots.size(), true))
+            	{
+            		return null;
+            	}
+            }
+            
+            if (slotStack.stackSize == 0)
+            {
+                currentSlot.putStack(null);
+            }
+            else
+            {
+                currentSlot.onSlotChanged();
+            }
+            
+            if (slotStack.stackSize == stack.stackSize) before sloth restrict, sloth insert above
+           // {
+           //     return null;
+           // }
+            
+            */
+			//sloth snip start
 			if (slotID >= numItems) {
 				if (!mergeItemStack(slotStack, 0, numItems, false)) {
 					return null;
@@ -174,35 +219,46 @@ public class ContainerDriveableInventory extends Container
 					return null;
 				}
 			}
+			
 
+			
 			if (slotStack.stackSize == 0) {
 				currentSlot.putStack(null);
 			} else {
 				currentSlot.onSlotChanged();
 			}
+			// sloth snip end
+			
+           
 
+      //      currentSlot.onPickupFromSlot(player, slotStack);
+      //  }
+			
 			if (slotStack.stackSize == stack.stackSize) {
 				return null;
 			}
 
+     //   return stack;
+  //  }
+		//start of sloth snip 2	
 			currentSlot.onPickupFromSlot(player, slotStack);
 		}
 
 		return stack;
-	}	// Code modified from https://www.minecraftforge.net/forum/topic/34525-18-solved-attempt-to-fix-mergeitemstack-isnt-working/
+	}	
 	@Override
 	protected boolean mergeItemStack(ItemStack stack, int startIndex, int endIndex, boolean reverseDirection) {
 		boolean flag = false;
 		int i = startIndex;
 		if (reverseDirection)
 			i = endIndex - 1;
-		
+
 		if (stack.isStackable()) {
 			while (stack.stackSize > 0 && (!reverseDirection && i < endIndex || reverseDirection && i >= startIndex)) {
 				Slot slot = (Slot) this.inventorySlots.get(i);
 				ItemStack itemstack = slot.getStack();
 				int maxLimit = Math.min(stack.getMaxStackSize(), slot.getSlotStackLimit());
-				
+
 				if (itemstack != null && ItemStack.areItemStacksEqual(stack, itemstack)) {
 					int j = itemstack.stackSize + stack.stackSize;
 					if (j <= maxLimit) {
@@ -210,9 +266,9 @@ public class ContainerDriveableInventory extends Container
 						itemstack.stackSize = j;
 						slot.onSlotChanged();
 						flag = true;
-						
+
 					} else if (itemstack.stackSize < maxLimit) {
-						stack.stackSize -= maxLimit -itemstack.stackSize;
+						stack.stackSize = maxLimit;
 						itemstack.stackSize = maxLimit;
 						slot.onSlotChanged();
 						flag = true;
@@ -256,6 +312,5 @@ public class ContainerDriveableInventory extends Container
 		}
 		return flag;
 	}
-	
-	
+	//end of sloth snip 2
 }

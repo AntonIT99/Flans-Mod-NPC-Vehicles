@@ -26,6 +26,7 @@ public class Team extends InfoType
 	public List<String> members = new ArrayList<String>();
 	//public List<ITeamBase> bases = new ArrayList<ITeamBase>();
 	public List<PlayerClass> classes = new ArrayList<PlayerClass>();
+	public List<PlayerClass> classesLocked = new ArrayList<PlayerClass>();
 	
 	public static Team spectators;
 
@@ -33,7 +34,6 @@ public class Team extends InfoType
 	
 	public int teamColour = 0xffffff;
 	public char textColour = 'f';
-	public boolean allowedForRoundsGenerator = false;
 	
 	public ItemStack hat;
 	public ItemStack chest;
@@ -161,12 +161,9 @@ public class Team extends InfoType
 			{
 				classes.add(PlayerClass.getClass(split[1]));
 			}
-			if(split[0].equals("allowedForRoundsGenerator")){
-				this.allowedForRoundsGenerator = Boolean.parseBoolean(split[1]);
-			}
 		} catch (Exception e)
 		{
-			FlansMod.log("Reading team file failed.");
+			System.out.println("Reading team file failed.");
 			e.printStackTrace();
 		}
 	}

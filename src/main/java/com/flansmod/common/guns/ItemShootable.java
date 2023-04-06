@@ -30,14 +30,24 @@ public abstract class ItemShootable extends Item
 	//Can be overriden to allow new types of bullets to be created, vector constructor
 	public abstract EntityShootable getEntity(World worldObj, Vector3f origin, Vector3f direction,
 			EntityLivingBase shooter, float spread, float damage, float speed, int itemDamage, InfoType shotFrom);
+	
+	//for evil robots
+	public abstract EntityShootable getEntity(World worldObj, Vector3f origin, Vector3f direction,
+			EntityLivingBase shooter, float spread, float damage, float speed, int itemDamage, InfoType shotFrom, Boolean ai);
 
 	//Can be overriden to allow new types of bullets to be created, AA/MG constructor
 	public abstract EntityShootable getEntity(World worldObj, Vec3 origin, float yaw,
-			float pitch, EntityLivingBase shooter, float spread, float damage, float speed,
+			float pitch, EntityLivingBase shooter, float spread, float damage,
 			int itemDamage, InfoType shotFrom);
 
-	//Can be overriden to allow new types of bullets to be created, Handheld constructor
+	/* before i fucked with it with origin offset
 	public abstract EntityShootable getEntity(World worldObj, EntityLivingBase player,
 			float bulletSpread, float damage, float bulletSpeed, boolean b,
 			int itemDamage, InfoType shotFrom);
+	*/
+	
+	//Can be overriden to allow new types of bullets to be created, Handheld constructor
+	public abstract EntityShootable getEntity(World worldObj, EntityLivingBase player,
+			float bulletSpread, float damage, float bulletSpeed, boolean b,
+			int itemDamage, InfoType shotFrom, float Xoffset, float Yoffset, float Zoffset);
 }

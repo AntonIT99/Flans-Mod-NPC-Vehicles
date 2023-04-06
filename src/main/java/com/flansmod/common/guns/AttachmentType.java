@@ -15,6 +15,7 @@ import com.flansmod.common.FlansMod;
 import com.flansmod.common.paintjob.PaintableType;
 import com.flansmod.common.types.InfoType;
 import com.flansmod.common.types.TypeFile;
+import com.flansmod.common.vector.Vector3f;
 
 public class AttachmentType extends PaintableType implements IScope
 {
@@ -34,16 +35,15 @@ public class AttachmentType extends PaintableType implements IScope
 	public int flashlightStrength = 12;
 	/** If true, disable the muzzle flash model */
 	public boolean disableMuzzleFlash = false;
+	//for baris mod lasers
+	public boolean barisLaser = false;
+	public boolean barisInfrared = false;
 	
 	//Gun behaviour modifiers
 	/** These stack between attachments and apply themselves to the gun's default spread */
 	public float spreadMultiplier = 1F;
 	/** Likewise these stack and affect recoil */
 	public float recoilMultiplier = 1F;
-	/** The return to center force LOWER = BETTER */
-	public float recoilControlMultiplier = 1F;
-	public float recoilControlMultiplierSneaking = 1F;
-	public float recoilControlMultiplierSprinting = 1F;
 	/** Another stacking variable for damage */
 	public float damageMultiplier = 1F;
 	/** Melee damage modifier */
@@ -71,7 +71,7 @@ public class AttachmentType extends PaintableType implements IScope
 	/** The time (in ticks) it takes to reload this gun */
 	public int secondaryReloadTime = 1;
 	/** The delay between shots in ticks (1/20ths of seconds) */
-	public int secondaryShootDelay = 1;
+	public float secondaryShootDelay = 1;
 	/** The sound played upon shooting */
 	public String secondaryShootSound;
 	/** The sound to play upon reloading */
@@ -101,7 +101,7 @@ public class AttachmentType extends PaintableType implements IScope
 	/** Model. Only applicable when the attachment is added to 3D guns */
 	public ModelAttachment model;
 	/** For making detailed models and scaling down mainly */
-	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("hiding")
 	public float modelScale = 1F;
 	
 	//Some more mundane variables
@@ -111,11 +111,9 @@ public class AttachmentType extends PaintableType implements IScope
 	/** Default spread of the underbarrel. Do not modify. */
 	public float secondaryDefaultSpread = 0F;
 
-	public boolean hasVariableZoom = false;
-	private float minZoom = 1;
-	private float maxZoom = 4;
-	private float zoomAugment = 1;
-
+	//bayonet shit
+	public boolean bayonet = false;
+	public ArrayList<Vector3f> meleePath = new ArrayList<Vector3f>(), meleePathAngles = new ArrayList<Vector3f>();
 	
 	public AttachmentType(TypeFile file)
 	{
@@ -142,6 +140,22 @@ public class AttachmentType extends PaintableType implements IScope
 				silencer = Boolean.parseBoolean(split[1].toLowerCase());
 			else if(split[0].equals("DisableMuzzleFlash") || split[0].equals("DisableFlash"))
 				disableMuzzleFlash = Boolean.parseBoolean(split[1].toLowerCase());
+			
+			//baris
+			else if(split[0].equals("barisLaser"))
+				barisLaser = Boolean.parseBoolean(split[1].toLowerCase());
+			else if(split[0].equals("barisInfrared"))
+				barisInfrared = Boolean.parseBoolean(split[1].toLowerCase());
+			
+			//bayonet shit
+			else if(split[0].equals("bayonet"))
+				bayonet = Boolean.parseBoolean(split[1].toLowerCase());
+			else if(split[0].equals("AddNode"))
+			{
+				meleePath.add(new Vector3f(Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F, Float.parseFloat(split[3]) / 16F));
+				meleePathAngles.add(new Vector3f(Float.parseFloat(split[4]), Float.parseFloat(split[5]), Float.parseFloat(split[6])));
+			}
+			
 			
 			//Flashlight settings
 			else if(split[0].equals("Flashlight"))
@@ -202,33 +216,13 @@ public class AttachmentType extends PaintableType implements IScope
 				spreadMultiplier = Float.parseFloat(split[1]);
 			else if(split[0].equals("RecoilMultiplier"))
 				recoilMultiplier = Float.parseFloat(split[1]);
-			else if(split[0].equals("RecoilControlMultiplier"))
-				recoilControlMultiplier = Float.parseFloat(split[1]);
-			else if(split[0].equals("RecoilControlMultiplierSneaking"))
-				recoilControlMultiplierSneaking = Float.parseFloat(split[1]);
-			else if(split[0].equals("RecoilControlMultiplierSprinting"))
-				recoilControlMultiplierSprinting = Float.parseFloat(split[1]);
 			else if(split[0].equals("BulletSpeedMultiplier"))
 				bulletSpeedMultiplier = Float.parseFloat(split[1]);
 			else if(split[0].equals("ReloadTimeMultiplier"))
 				reloadTimeMultiplier = Float.parseFloat(split[1]);
-			else if(split[0].equals("MovementSpeedMultiplier") || split[0].equals("MoveSpeedModifier"))
+			else if(split[0].equals("MovementSpeedMultiplier"))
 				moveSpeedMultiplier = Float.parseFloat(split[1]);
 			//Scope Variables
-
-			else if (split[0].equals("HasVariableZoom")){
-				hasVariableZoom = Boolean.parseBoolean(split[1]);
-			}
-			else if (split[0].equals("MinZoom")) {
-				minZoom = Float.parseFloat(split[1]);
-			}
-			else if (split[0].equals("MaxZoom")) {
-				maxZoom = Float.parseFloat(split[1]);
-			}
-			else if (split[0].equals("ZoomAugment")) {
-				zoomAugment = Float.parseFloat(split[1]);
-			}
-
 			else if(split[0].equals("ZoomLevel"))
 				zoomLevel = Float.parseFloat(split[1]);
 			else if(split[0].equals("FOVZoomLevel"))
@@ -242,11 +236,10 @@ public class AttachmentType extends PaintableType implements IScope
 			}
 			else if(split[0].equals("HasNightVision"))
 				hasNightVision = Boolean.parseBoolean(split[1].toLowerCase());
-				
 		}
 		catch (Exception e)
 		{
-			FlansMod.log("Reading attachment file failed.");
+			System.out.println("Reading attachment file failed.");
 			if(FlansMod.printStackTrace)
 			{
 				e.printStackTrace();
@@ -313,24 +306,5 @@ public class AttachmentType extends PaintableType implements IScope
 	public ModelBase GetModel() 
 	{
 		return model;
-	}
-
-	/**Variable Zoom*/
-
-	@Override
-	public float getMinZoom(){
-		return hasVariableZoom?minZoom:-1F;
-	}
-	@Override
-	public float getMaxZoom(){
-		return hasVariableZoom?maxZoom:-1F;
-	}
-	@Override
-	public float getZoomAugment(){
-		return hasVariableZoom?zoomAugment:-1F;
-	}
-	@Override
-	public boolean hasVariableZoom() {
-		return hasVariableZoom;
 	}
 }

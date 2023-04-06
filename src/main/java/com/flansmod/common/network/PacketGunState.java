@@ -51,25 +51,17 @@ public class PacketGunState extends PacketBase
 		//player.getHeldItem();
 		if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemGun)
 		{
-			ItemGun itemGun = (ItemGun)player.getCurrentEquippedItem().getItem();
+			ItemGun itemGun;
+			itemGun = (ItemGun)player.getCurrentEquippedItem().getItem();
+			//Apply night vision while scoped if AllowNightVision = True
 			ItemStack itemstack = player.getCurrentEquippedItem();
 			AttachmentType scope = itemGun.type.getScope(itemstack);
-			
-			//Apply night vision while scoped if gun.allowNightVision = True
-			if(itemGun.type.allowNightVision && isScoped)
-			{
-				player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 1200, 0));
-				ServerTickEvent.nightVisionPlayers.add(player);
-			}
-			else if(itemGun.type.allowNightVision && !isScoped)
-			{
-				player.removePotionEffect(Potion.nightVision.id);
-				ServerTickEvent.nightVisionPlayers.remove(player);
-			}
 			//Apply night vision while scoped if attachment.hasNightVision = True
+			//System.out.println("est");
 			if(scope != null && scope.hasNightVision && isScoped)
 			{
-				player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 1200, 0));
+				//System.out.println("sdas");
+				player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 2400, 0));
 				ServerTickEvent.nightVisionPlayers.add(player);
 			}
 			else if(scope != null && scope.hasNightVision && !isScoped)
@@ -77,7 +69,6 @@ public class PacketGunState extends PacketBase
 				player.removePotionEffect(Potion.nightVision.id);
 				ServerTickEvent.nightVisionPlayers.remove(player);
 			}
-			itemGun.isScoped = isScoped;
 		}
 	}
 

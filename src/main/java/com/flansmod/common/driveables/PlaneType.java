@@ -14,31 +14,32 @@ public class PlaneType extends DriveableType
 {
 	/** What type of flying vehicle is this? */
 	public EnumPlaneMode mode = EnumPlaneMode.PLANE;	
-	//Control Modifiers
+	/** Pitch modifiers */
 	public float lookDownModifier = 1F, lookUpModifier = 1F;
+	/** Roll modifiers */
 	public float rollLeftModifier = 1F, rollRightModifier = 1F;
+	/** Yaw modifiers */
 	public float turnLeftModifier = 1F, turnRightModifier = 1F;
-	//vehicle settings
-    public float restingPitch = 0F;
-    public boolean spinWithoutTail = false;
-	public boolean heliThrottlePull = true;
-	//Does this use the new flight controller?
-	public boolean newFlightControl = false;
-	//Physics Modifiers
+	/** Co-efficient of lift which determines how the plane flies */
 	public float lift = 1F;
-	public float takeoffSpeed = 0.5F;
-	public float maxSpeed = 2.0F;
-	public boolean supersonic = false;
-	public float wingArea = 1F;
-	//Max thrust in 10s of kgf
-	public float maxThrust = 50.0F;
-	//mass in kg
-    public float mass = 1000.0F;
-	public float emptyDrag = 1F;
-	//Weapon system variables
+	
+	/** The point at which bomb entities spawn */
+	public Vector3f bombPosition;
+	/** The time in ticks between bullets fired by the nose / wing guns */
 	public int planeShootDelay;
+	/** The time in ticks between bombs dropped */
 	public int planeBombDelay;
-	//Aesthetic features
+	
+	public float ceiling = 800f;
+	
+	//default is high performance jet when afterburner on
+	public float speedLimit = 2f;
+	public float speedLimitHigh = 4f;
+	
+	//default is stuck under mach 1
+	public float speedLimitDry = 1f;
+	public float speedLimitHighDry = 1.5f;
+	
 	//Wing Animations
 	public Vector3f wingPos1 = new Vector3f(0,0,0);
 	public Vector3f wingPos2 = new Vector3f(0,0,0);
@@ -46,6 +47,7 @@ public class PlaneType extends DriveableType
 	public Vector3f wingRot2 = new Vector3f(0,0,0);
 	public Vector3f wingRate = new Vector3f(0,0,0);
 	public Vector3f wingRotRate = new Vector3f(0,0,0);
+	
 	//Wing Wheel Animations
 	public Vector3f wingWheelPos1 = new Vector3f(0,0,0);
 	public Vector3f wingWheelPos2 = new Vector3f(0,0,0);
@@ -53,6 +55,7 @@ public class PlaneType extends DriveableType
 	public Vector3f wingWheelRot2 = new Vector3f(0,0,0);
 	public Vector3f wingWheelRate = new Vector3f(0,0,0);
 	public Vector3f wingWheelRotRate = new Vector3f(0,0,0);
+	
 	//Body Wheel Animations
 	public Vector3f bodyWheelPos1 = new Vector3f(0,0,0);
 	public Vector3f bodyWheelPos2 = new Vector3f(0,0,0);
@@ -60,6 +63,7 @@ public class PlaneType extends DriveableType
 	public Vector3f bodyWheelRot2 = new Vector3f(0,0,0);
 	public Vector3f bodyWheelRate = new Vector3f(0,0,0);
 	public Vector3f bodyWheelRotRate = new Vector3f(0,0,0);
+	
 	//Tail Wheel Animations
 	public Vector3f tailWheelPos1 = new Vector3f(0,0,0);
 	public Vector3f tailWheelPos2 = new Vector3f(0,0,0);
@@ -67,6 +71,7 @@ public class PlaneType extends DriveableType
 	public Vector3f tailWheelRot2 = new Vector3f(0,0,0);
 	public Vector3f tailWheelRate = new Vector3f(0,0,0);
 	public Vector3f tailWheelRotRate = new Vector3f(0,0,0);
+	
 	//Door animations
 	public Vector3f doorPos1 = new Vector3f(0,0,0);
 	public Vector3f doorPos2 = new Vector3f(0,0,0);
@@ -79,20 +84,77 @@ public class PlaneType extends DriveableType
 	public ArrayList<Propeller> propellers = new ArrayList<Propeller>();
 	/** The positions, parent parts and recipe items of the helicopter propellers, used to calculate forces and render the plane correctly */
 	public ArrayList<Propeller> heliPropellers = new ArrayList<Propeller>(), heliTailPropellers = new ArrayList<Propeller>();
-	//Wheter to enable variable gear, doors, or wings 
+				
+	/** Aesthetic features */
     public boolean hasGear = false, hasDoor = false, hasWing = false;
-    //Do wings fold when Gear are deployed?
     public boolean foldWingForLand = false;
-    //Can it fly with oor open?
-	public boolean flyWithOpenDoor = false;
-	//Do these automatically deploy when near ground?
-	public boolean autoOpenDoorsNearGround = true;
-	public boolean autoDeployLandingGearNearGround = true;
-	//Is this a valkyrie? "very specific"
+    public boolean flyWithOpenDoor = false;
+    /** Default pitch for when parked. Will implement better system soon */
+    public float restingPitch = 0F;
+    
+    public boolean spinWithoutTail = false;
+    
     public boolean valkyrie = false;
-    //Can you access the inventory in flight?
-    public boolean invInflight = true;
+    //labjac carrier
+    public boolean carrierLandable = false;
+    public boolean helipadLandable = false;
+    public boolean parasitePlane = false;
+    //labjac energy fighter these are multiplier factors also divefactor was abandoned
+    public float planeDiveFactor = 0.5f;
+    public float deathDiveSpeedLimit = 1.2f;
+    public float stallSpeedLimit = 1.9f;
+    
 
+    
+    /** Whether the player can access the inventory while in the air */
+    public boolean invInflight = true;
+	public float yawBonus = 1.2f;
+	public float pitchBonus = 1.2f;
+	public float rollBonus = 1.2f;
+	public float yawStall = 0.5f;
+	public float pitchStall = 0.5f;
+	public float rollStall = 0.5f;
+	//afterburners use about 3x fuel cringe!
+	public float afterBurnFuelPenalty=3f;
+	//for random maneuvrability recoil while shooting
+	public boolean gunRecoil = true;
+	public boolean swapInitialWing = false;
+	public boolean unpunchable = false;
+	public float noStallAngle = 15;
+	//for misssile model display
+	public boolean missileVisible = false;
+	//for position of missile model(s)
+	public float missileWingSpan = 4;
+	public float missileForward = -1;
+	public float missileElevation = -1;
+	
+	//so dill will stop coping about slugglish 50% throttle
+	public float afterburnOffBonus = 1.5f;
+	
+	//nu flight model
+	public float mass = 4000;
+	public float area = 22;
+	public float cruiseSpeed = 362;
+	public float takeoffSpeed = 100;
+	public float climbRate = 5;
+	public float maxSpeed = 440;
+	public float turnTime = 0;
+	public float accelBonus = 1; //for artifically buffing planes with horrible takeoff
+	public float gravityMultiplier = 1;
+	
+	public boolean carrierWingFlip = false; //for folded wings when parked on carrier flipping if wing modelled backwards
+	public boolean AfterburnWing = false; //so afterburn f-14 wings can behave differently than
+	public boolean AfterburnWingFlipped=false;
+	public boolean needsGear = true;  //set to false for primitive planes with gear always out
+	
+	//in case you want to artificially buff certain aspects of a plane like fw-190 unnaturally good roll
+	public float yawBoost = 1;
+	public float rollBoost = 1;
+	public float pitchBoost = 1;
+
+
+
+	@SuppressWarnings("hiding")
 	public static ArrayList<PlaneType> types = new ArrayList<PlaneType>();
 	
     public PlaneType(TypeFile file)
@@ -116,55 +178,133 @@ public class PlaneType extends DriveableType
 			//Plane Mode
 			if(split[0].equals("Mode"))
 				mode = EnumPlaneMode.getMode(split[1]);
-			//Better flight model?
-			if (split[0].equals("NewFlightControl"))
-				newFlightControl = Boolean.parseBoolean(split[1]);
-			
+			//labjac fine tuning modifiers in case automatic system is too samey for individual planes
+			if(split[0].equals("yawBoost"))
+				yawBoost = Float.parseFloat(split[1]);
+			if(split[0].equals("rollBoost"))
+				rollBoost = Float.parseFloat(split[1]);
+			if(split[0].equals("pitchBoost"))
+				pitchBoost = Float.parseFloat(split[1]);
 			//Yaw modifiers
 			if(split[0].equals("TurnLeftSpeed"))
 				turnLeftModifier = Float.parseFloat(split[1]);
 			if(split[0].equals("TurnRightSpeed"))
 				turnRightModifier = Float.parseFloat(split[1]);
+			if(split[0].equals("yawBonus"))
+				yawBonus = Float.parseFloat(split[1]);
+			if(split[0].equals("yawStall"))
+				yawStall = Float.parseFloat(split[1]);
 			//Pitch modifiers
 			if(split[0].equals("LookUpSpeed"))
 				lookUpModifier = Float.parseFloat(split[1]);
 			if(split[0].equals("LookDownSpeed"))
 				lookDownModifier = Float.parseFloat(split[1]);
+			if(split[0].equals("pitchBonus"))
+				pitchBonus = Float.parseFloat(split[1]);
+			if(split[0].equals("pitchStall"))
+				pitchStall = Float.parseFloat(split[1]);
 			//Roll modifiers
 			if(split[0].equals("RollLeftSpeed"))
 				rollLeftModifier = Float.parseFloat(split[1]);
 			if(split[0].equals("RollRightSpeed"))
 				rollRightModifier = Float.parseFloat(split[1]);
+			if(split[0].equals("rollBonus"))
+				rollBonus = Float.parseFloat(split[1]);
+			if(split[0].equals("rollStall"))
+				rollStall = Float.parseFloat(split[1]);
+			//new bonuses by labjac for extra maneuvrability if high energy
+			
+			//labjac fuel afterburner or wep fuel guzzlign penalty
+			if(split[0].equals("afterBurnFuelPenalty"))
+				afterBurnFuelPenalty = Float.parseFloat(split[1]);
+			
+			//maneuvrability bonus if afterburner is off
+			if(split[0].equals("afterburnOffBonus"))
+				afterburnOffBonus = Float.parseFloat(split[1]);
 			
 			//Lift
 			if(split[0].equals("Lift"))
 				lift = Float.parseFloat(split[1]);
-			//Flight variables
-			if(split[0].equals("TakeoffSpeed"))
-				takeoffSpeed = Float.parseFloat(split[1]);
-			if(split[0].equals("MaxSpeed"))
-				maxSpeed = Float.parseFloat(split[1]);
-			//Is it Supersonic?
-			if (split[0].equals("Supersonic"))
-				supersonic = Boolean.parseBoolean(split[1]);
-			if(split[0].equals("MaxThrust"))
-				maxThrust = Float.parseFloat(split[1]);
-            if (split[0].equals("Mass"))
-                mass = Float.parseFloat(split[1]);
-			if(split[0].equals("WingArea"))
-				wingArea = Float.parseFloat(split[1]);
-
-			if (split[0].equals("HeliThrottlePull"))
-				heliThrottlePull = Boolean.parseBoolean(split[1]);
-			if (split[0].equals("EmptyDrag"))
-				emptyDrag = Float.parseFloat(split[1]);
-							
+				
 			//Propellers and Armaments
 
 			if(split[0].equals("ShootDelay"))
 				planeShootDelay = Integer.parseInt(split[1]);
 			if(split[0].equals("BombDelay"))
 				planeBombDelay = Integer.parseInt(split[1]);
+			
+			//labjac
+			if(split[0].equals("flightCeiling"))
+				ceiling = Float.parseFloat(split[1]);
+			//cringed 1.5 universal buff
+			if(split[0].equals("diveBonus"))
+				deathDiveSpeedLimit = Float.parseFloat(split[1]);
+			if(split[0].equals("stallSuffering"))
+				stallSpeedLimit = Float.parseFloat(split[1]);
+			if(split[0].equals("maxSpeed"))
+				speedLimit = Float.parseFloat(split[1]);
+			if(split[0].equals("accelBonus"))
+				accelBonus = Float.parseFloat(split[1]);
+			if(split[0].equals("gravityMultiplier"))
+				gravityMultiplier = Float.parseFloat(split[1]);
+			if(split[0].equals("highAltMax"))
+				speedLimitHigh = Float.parseFloat(split[1]);
+			if(split[0].equals("maxSpeedDry"))
+				speedLimitDry = Float.parseFloat(split[1]);
+			if(split[0].equals("highAltMaxDry"))
+				speedLimitHighDry = Float.parseFloat(split[1]);
+			if(split[0].equals("planeDiveFactor"))
+				planeDiveFactor = Float.parseFloat(split[1]);
+            if(split[0].equals("carrierLandable"))
+            	carrierLandable = Boolean.parseBoolean(split[1]);
+            if(split[0].equals("helipadLandable"))
+            	helipadLandable = Boolean.parseBoolean(split[1]);
+            if(split[0].equals("gunRecoil"))
+            	gunRecoil = Boolean.parseBoolean(split[1]);
+            if(split[0].equals("unpunchable"))
+            	unpunchable = Boolean.parseBoolean(split[1]);
+            
+            if(split[0].equals("parasitePlane"))
+            	parasitePlane = Boolean.parseBoolean(split[1]);
+            
+            //neo flight model
+            if(split[0].equals("mass"))
+            	mass = Float.parseFloat(split[1]);
+            if(split[0].equals("area"))
+            	area = Float.parseFloat(split[1]);
+            if(split[0].equals("cruiseSpeed"))
+            	cruiseSpeed = Float.parseFloat(split[1]);
+            if(split[0].equals("takeoffSpeed"))
+            	takeoffSpeed = Float.parseFloat(split[1]);
+            if(split[0].equals("climbRate"))
+            	climbRate = 0.17f*Float.parseFloat(split[1]);
+            if(split[0].equals("maximumSpeed"))
+            	maxSpeed = Float.parseFloat(split[1]);
+            if(split[0].equals("turnTime"))
+            	turnTime = 0.5f*Float.parseFloat(split[1]);	//secret buff since my "data" assumes nonstop ring flight, not a true turn
+
+            
+            //to switch wing position once automatically
+            if(split[0].equals("swapInitialWing"))
+            	swapInitialWing = Boolean.parseBoolean(split[1]);
+            
+            //to see underwing model
+            if(split[0].equals("missileVisible"))
+            	missileVisible = Boolean.parseBoolean(split[1]);
+            
+            //positions for the missiles
+			if(split[0].equals("missileWingSpan"))
+				missileWingSpan = Float.parseFloat(split[1]);
+			if(split[0].equals("missileForward"))
+				missileForward = Float.parseFloat(split[1]);
+			if(split[0].equals("missileElevation"))
+				missileElevation = Float.parseFloat(split[1]);
+            
+            
+            //max speed for helis
+			if(split[0].equals("heliSpeedLimit"))
+				speedLimit = Float.parseFloat(split[1]);
+     
 			
 			//Propellers
 			if(split[0].equals("Propeller"))
@@ -186,6 +326,7 @@ public class PlaneType extends DriveableType
 				driveableRecipe.add(new ItemStack(propeller.itemType.item));
 			}
 			
+
 			if(split[0].equals("HasFlare"))
 				hasFlare = split[1].equals("True");
 			if(split[0].equals("FlareDelay"))
@@ -219,6 +360,18 @@ public class PlaneType extends DriveableType
 				shootSoundSecondary = split[1];
 				FlansMod.proxy.loadSound(contentPack, "driveables", split[1]);
 			}
+			
+			if(split[0].equals("StukaSoundLength"))
+				stukaSoundLength = Integer.parseInt(split[1]);
+			if(split[0].equals("StukaSoundRange"))
+				stukaSoundRange = Integer.parseInt(split[1]);
+			if(split[0].equals("StukaSpeed"))
+				stukaSpeed = Integer.parseInt(split[1]);
+			if(split[0].equals("StukaSound"))
+			{
+				stukaSound = split[1];
+				FlansMod.proxy.loadSound(contentPack, "driveables", split[1]);
+			}
 
 			
 			//Aesthetics
@@ -231,11 +384,7 @@ public class PlaneType extends DriveableType
             if(split[0].equals("FoldWingForLand"))
                 foldWingForLand = split[1].equals("True");
             if(split[0].equals("FlyWithOpenDoor"))
-				flyWithOpenDoor = split[1].equals("True");
-			if(split[0].equals("AutoOpenDoorsNearGround"))
-				autoOpenDoorsNearGround = Boolean.parseBoolean(split[1]);
-			if (split[0].equals("AutoDeployLandingGearNearGround"))
-				autoDeployLandingGearNearGround = Boolean.parseBoolean(split[1]);
+                flyWithOpenDoor = split[1].equals("True");
             if(split[0].equals("RestingPitch"))
                 restingPitch = Float.parseFloat(split[1]);
             if(split[0].equals("SpinWithoutTail"))
@@ -243,6 +392,16 @@ public class PlaneType extends DriveableType
             if(split[0].equals("Valkyrie"))
                 valkyrie = Boolean.parseBoolean(split[1]);
             
+            //for wing behaviour when on a carrier and afterburning
+            if(split[0].equals("AfterburnWing"))
+            	AfterburnWing = Boolean.parseBoolean(split[1]);
+            if(split[0].equals("AfterburnWingFlipped"))
+            	AfterburnWingFlipped = Boolean.parseBoolean(split[1]);
+            if(split[0].equals("carrierWingFlip"))
+            	carrierWingFlip = Boolean.parseBoolean(split[1]);
+            
+            if(split[0].equals("needsGear")) //set to false for primitive planes with no retractable gear
+            	needsGear = Boolean.parseBoolean(split[1]);          
             //Animations
             //Wings
             if(split[0].equals("WingPosition1"))
@@ -285,6 +444,23 @@ public class PlaneType extends DriveableType
             	bodyWheelRate = new Vector3f(split[1], shortName);
             if(split[0].equals("BodyWheelRotRate"))
             	bodyWheelRotRate = new Vector3f(split[1], shortName);
+            
+            //overheat but different default numbers for planes
+          //overheat stuff
+		    if(split[0].equals("overheatLimit"))
+                overheatLimit = Integer.parseInt(split[1]);
+		    else
+		    	overheatLimit = 750; //fire default
+		    
+		    if(split[0].equals("overheatPenalty"))
+		    	overheatPenalty = Integer.parseInt(split[1]);
+		    else
+		    	overheatPenalty = 240; //fire default
+		    
+		    if(split[0].equals("coolingBonus"))
+		    	coolingBonus = Integer.parseInt(split[1]);
+		    else
+		    	coolingBonus = 4; //fire default
             
             //Tail Wheels
             if(split[0].equals("TailWheelPosition1"))
@@ -345,18 +521,8 @@ public class PlaneType extends DriveableType
     	{
     		if(propeller.planePart == part.type)
     		{
-				if (propeller.itemType != null) {
-					stacks.add(new ItemStack(propeller.itemType.item));
-
-				} else {
-					FlansMod.log("Couldn't drop propeller!");
-				}
-
-				if (engine.item != null) {
-					stacks.add(new ItemStack(engine.item));
-				} else {
-					FlansMod.log("Couldn't drop engine!");
-				}
+	    		stacks.add(new ItemStack(propeller.itemType.item));
+	    		stacks.add(new ItemStack(engine.item));
     		}
     	}
     	return stacks;

@@ -179,13 +179,12 @@ public class EntityAAGun extends Entity implements IEntityAdditionalSpawnData
 			Entity player = damagesource.getEntity();
 			if (player == riddenByEntity)
 			{
-
+				
 			} else if(riddenByEntity != null)
 			{
 				return riddenByEntity.attackEntityFrom(damagesource, i);
-			} else if(TeamsManager.canBreakGuns && ((damagesource.getEntity() instanceof EntityPlayer && ((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode) || TeamsManager.survivalCanBreakVehicles))
+			} else if(TeamsManager.canBreakGuns)
 			{
-				if (!worldObj.isRemote && damagesource.getEntity() instanceof EntityPlayer) { FlansMod.log("Player %s broke AA Gun %s (%d) at (%f, %f, %f)", ((EntityPlayerMP)damagesource.getEntity()).getDisplayName(), type.shortName, getEntityId(), posX, posY, posZ); }
 				setDead();
 			}
 		} else
@@ -384,8 +383,7 @@ public class EntityAAGun extends Entity implements IEntityAdditionalSpawnData
 							ammo[j].damageItem(1, player);
 						shootDelay = type.shootDelay;
 						barrelRecoil[j] = type.recoil;
-						float shootSpeed = (bullet == null ? 1F : bullet.speedMultiplier) * 3.0F;
-						worldObj.spawnEntityInWorld(((ItemBullet)ammo[j].getItem()).getEntity(worldObj, rotate(type.barrelX[currentBarrel] / 16D - type.barrelZ[currentBarrel] / 16D, type.barrelY[currentBarrel] / 16D, type.barrelX[currentBarrel] / 16D + type.barrelZ[currentBarrel] / 16D).addVector(posX, posY, posZ), gunYaw + 90F, gunPitch, player, type.accuracy, type.damage, shootSpeed, ammo[j].getItemDamage(), type));
+						worldObj.spawnEntityInWorld(((ItemBullet)ammo[j].getItem()).getEntity(worldObj, rotate(type.barrelX[currentBarrel] / 16D - type.barrelZ[currentBarrel] / 16D, type.barrelY[currentBarrel] / 16D, type.barrelX[currentBarrel] / 16D + type.barrelZ[currentBarrel] / 16D).addVector(posX, posY, posZ), gunYaw + 90F, gunPitch, player, type.accuracy, type.damage, ammo[j].getItemDamage(), type));
 						PacketPlaySound.sendSoundPacket(posX, posY, posZ, 50, dimension, type.shootSound, true);
 					}
 				}
@@ -405,8 +403,7 @@ public class EntityAAGun extends Entity implements IEntityAdditionalSpawnData
 						ammo[ammoSlot].setItemDamage(ammo[ammoSlot].getItemDamage() + 1);
 						shootDelay = type.shootDelay;
 						barrelRecoil[ammoSlot] = type.recoil;
-						float shootSpeed = (bullet == null ? 1F : bullet.speedMultiplier) * 3.0F;
-						worldObj.spawnEntityInWorld(((ItemBullet)ammo[ammoSlot].getItem()).getEntity(worldObj, rotate(type.barrelX[currentBarrel] / 16D - type.barrelZ[currentBarrel] / 16D, type.barrelY[currentBarrel] / 16D, type.barrelX[currentBarrel] / 16D + type.barrelZ[currentBarrel] / 16D).addVector(posX, posY + 1.5F, posZ), gunYaw + 90F, gunPitch, placer, type.accuracy, type.damage, shootSpeed, ammo[ammoSlot].getItemDamage(), type));
+						worldObj.spawnEntityInWorld(((ItemBullet)ammo[ammoSlot].getItem()).getEntity(worldObj, rotate(type.barrelX[currentBarrel] / 16D - type.barrelZ[currentBarrel] / 16D, type.barrelY[currentBarrel] / 16D, type.barrelX[currentBarrel] / 16D + type.barrelZ[currentBarrel] / 16D).addVector(posX, posY + 1.5F, posZ), gunYaw + 90F, gunPitch, placer, type.accuracy, type.damage, ammo[ammoSlot].getItemDamage(), type));
 						PacketPlaySound.sendSoundPacket(posX, posY, posZ, 50, dimension, type.shootSound, true);
 
 						if(shootTimeCount >= type.countExplodeAfterShoot -1 && type.countExplodeAfterShoot != -1 && !worldObj.isRemote){
@@ -603,8 +600,7 @@ public class EntityAAGun extends Entity implements IEntityAdditionalSpawnData
 						if(!entityplayer.capabilities.isCreativeMode)
 							entityplayer.inventory.decrStackSize(slot, 1);
 						reloadTimer = type.reloadTime;
-						//PacketPlaySound.sendSoundPacket(this.posX, this.posY, this.posZ, 50, this.dimension, type.reloadSound, true);
-						//worldObj.playSoundAtEntity(this, type.reloadSound, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
+						worldObj.playSoundAtEntity(this, type.reloadSound, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
 					}
 				}
 			}

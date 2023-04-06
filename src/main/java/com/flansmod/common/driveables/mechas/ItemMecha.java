@@ -3,7 +3,6 @@ package com.flansmod.common.driveables.mechas;
 import java.util.Collections;
 import java.util.List;
 
-import com.flansmod.common.teams.TeamsManager;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +28,6 @@ import com.flansmod.common.parts.PartType;
 import com.flansmod.common.types.EnumType;
 import com.flansmod.common.types.IFlanItem;
 import com.flansmod.common.types.InfoType;
-import com.flansmod.common.sync.Sync;
 
 public class ItemMecha extends Item implements IPaintableItem
 {
@@ -49,7 +47,7 @@ public class ItemMecha extends Item implements IPaintableItem
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List lines, boolean b)
 	{
-		if(!type.packName.isEmpty() && FlansMod.showPackNameInItemDescriptions)
+		if(!type.packName.isEmpty())
 		{
 			lines.add(type.packName);
 		}
@@ -85,10 +83,6 @@ public class ItemMecha extends Item implements IPaintableItem
     @Override
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
-		if (!(TeamsManager.survivalCanPlaceVehicles || entityplayer.capabilities.isCreativeMode)) {
-			// player isn't allowed to place vehicles.
-			return itemstack;
-		}
     	//Raytracing
         float cosYaw = MathHelper.cos(-entityplayer.rotationYaw * 0.01745329F - 3.141593F);
         float sinYaw = MathHelper.sin(-entityplayer.rotationYaw * 0.01745329F - 3.141593F);
@@ -111,9 +105,7 @@ public class ItemMecha extends Item implements IPaintableItem
             int k = movingobjectposition.blockZ;
             if(!world.isRemote)
             {
-            	EntityMecha mecha = new EntityMecha(world, (double)i + 0.5F, (double)j + 1.5F + type.yOffset, (double)k + 0.5F, entityplayer, type, getData(itemstack, world), getTagCompound(itemstack, world));
-				FlansMod.log("Player %s placed mecha %s (%d) at (%d, %d, %d)", entityplayer.getDisplayName(), type.shortName, mecha.getEntityId(), i, j, k);
-				world.spawnEntityInWorld(mecha);
+				world.spawnEntityInWorld(new EntityMecha(world, (double)i + 0.5F, (double)j + 1.5F + type.yOffset, (double)k + 0.5F, entityplayer, type, getData(itemstack, world), getTagCompound(itemstack, world)));
             }
 			if(!entityplayer.capabilities.isCreativeMode)
 			{	
@@ -145,7 +137,7 @@ public class ItemMecha extends Item implements IPaintableItem
     		tags.setString("Engine", PartType.defaultEngines.get(EnumType.mecha).shortName);
     	for(EnumDriveablePart part : EnumDriveablePart.values())
     	{
-    		tags.setFloat(part.getShortName() + "_Health", type.health.get(part) == null ? 0 : type.health.get(part).health);
+    		tags.setInteger(part.getShortName() + "_Health", type.health.get(part) == null ? 0 : type.health.get(part).health);
     		tags.setBoolean(part.getShortName() + "_Fire", false);
     	}
     	mechaStack.stackTagCompound = tags;
@@ -165,19 +157,12 @@ public class ItemMecha extends Item implements IPaintableItem
     	}
     }
 
-	@SideOnly(Side.CLIENT)
-	public IIcon getIconIndex(ItemStack stack)
-	{
-		try {
-			if (stack.getItemDamage() < icons.length) {
-				return icons[stack.getItemDamage()];
-			} else {
-				return icons[0];
-			}
-		} catch (NullPointerException e) {
-			return null;
-		}
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconIndex(ItemStack stack)
+    {
+        return icons[stack.getItemDamage()];
+    }
     
 	@Override
 	public InfoType getInfoType() 

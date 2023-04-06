@@ -37,6 +37,15 @@ public class PacketPlaySound extends PacketBase
 			FlansMod.getPacketHandler().sendToAllAround(new PacketPlaySound(x, y, z, s, distort, silenced), x, y, z, (float)range, dimension);
 		}
 	}
+	
+	
+	public static void sendSoundPacketClient(String s, boolean distort, boolean silenced, EntityPlayer clientPlayer)
+	{
+		if(s!=null && !s.isEmpty())
+		{
+			FlansMod.getPacketHandler().sendTo((new PacketPlaySound(1, 1, 1, s, distort, silenced)),  (EntityPlayerMP) clientPlayer);
+		}
+	}
 
 	public PacketPlaySound(double x, double y, double z, String s)
 	{

@@ -5,16 +5,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
-import com.flansmod.common.teams.TeamsManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.BlockPumpkin;
 import net.minecraft.block.BlockSponge;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMapBase;
 import net.minecraft.item.ItemStack;
@@ -34,7 +36,9 @@ import com.flansmod.common.parts.PartType;
 import com.flansmod.common.types.EnumType;
 import com.flansmod.common.types.IFlanItem;
 import com.flansmod.common.types.InfoType;
-import com.flansmod.common.sync.Sync;
+import com.google.common.collect.Multimap;
+import com.hfr.faction.Factions;
+import com.hfr.faction.IFaction;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -43,11 +47,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemVehicle extends ItemMapBase implements IPaintableItem
 {
 	public VehicleType type;
+
 	
 	public IIcon[] icons;
 
-    public ItemVehicle(VehicleType type1)
-    {
+    public ItemVehicle(VehicleType type1){
         maxStackSize = 1;
 		type = type1;
 		type.item = this;
@@ -56,7 +60,7 @@ public class ItemVehicle extends ItemMapBase implements IPaintableItem
     }
 
 	@Override
-	/* Make sure client and server side NBTtags update */
+	/** Make sure client and server side NBTtags update */
 	public boolean getShareTag()
 	{
 		return true;
@@ -78,37 +82,118 @@ public class ItemVehicle extends ItemMapBase implements IPaintableItem
 		return stack.stackTagCompound;
 	}
 
-	private NBTTagCompound getOldTagCompound(ItemStack stack, World world)
-    {
-		try
-		{
-			File file1 = world.getSaveHandler().getMapFileFromName("vehicle_" + stack.getItemDamage());
-	        FileInputStream fileinputstream = new FileInputStream(file1);
+	private NBTTagCompound getOldTagCompound(ItemStack stack, World world){
+		File file1 = world.getSaveHandler().getMapFileFromName("vehicle_" + stack.getItemDamage());
+		try(FileInputStream fileinputstream = new FileInputStream(file1)){
 	        NBTTagCompound tags = CompressedStreamTools.readCompressed(fileinputstream).getCompoundTag("data");
 	    	for(EnumDriveablePart part : EnumDriveablePart.values())
 	    	{
-	    		tags.setFloat(part.getShortName() + "_Health", type.health.get(part) == null ? 0 : type.health.get(part).health);
+	    		tags.setInteger(part.getShortName() + "_Health", type.health.get(part) == null ? 0 : type.health.get(part).health);
+	    		tags.setInteger(part.getShortName() + "_Crew", type.crew.get(part) == null ? 0 : type.crew.get(part).crew);
 	    		tags.setBoolean(part.getShortName() + "_Fire", false);
 	    	}
-	        fileinputstream.close();
 	        return tags;
-		}
-		catch(IOException e)
-		{
+		} catch(IOException e) {
 			FlansMod.log("Failed to read old vehicle file");
 			e.printStackTrace();
 			return null;
 		}
     }
 
+
+
+    @Override
+	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer){
+    	//Raytracing
+        float cosYaw = MathHelper.cos(-entityplayer.rotationYaw * 0.01745329F - 3.141593F);
+        float sinYaw = MathHelper.sin(-entityplayer.rotationYaw * 0.01745329F - 3.141593F);
+        float cosPitch = -MathHelper.cos(-entityplayer.rotationPitch * 0.01745329F);
+        float sinPitch = MathHelper.sin(-entityplayer.rotationPitch * 0.01745329F);
+        double length = 5D;
+        Vec3 posVec = Vec3.createVectorHelper(entityplayer.posX, entityplayer.posY + 1.62D - entityplayer.yOffset, entityplayer.posZ);
+        Vec3 lookVec = posVec.addVector(sinYaw * cosPitch * length, sinPitch * length, cosYaw * cosPitch * length);
+        MovingObjectPosition movingobjectposition = world.rayTraceBlocks(posVec, lookVec, type.placeableOnWater);
+
+        //Result check
+        if(movingobjectposition == null){
+            return itemstack;
+        }
+        if(movingobjectposition.typeOfHit == MovingObjectType.BLOCK){
+            int i = movingobjectposition.blockX;
+            int j = movingobjectposition.blockY;
+            int k = movingobjectposition.blockZ;
+            Block block = world.getBlock(i, j, k);
+            IFaction owner = Factions.getFactionFromPlayer(entityplayer);
+            if(type.placeableOnLand || block instanceof BlockLiquid){
+	            if(!world.isRemote){
+	            	Entity e = new EntityVehicle(world, (double)i + 0.5F, (double)j + 2.5F, (double)k + 0.5F, entityplayer, type, getData(itemstack, world)).setOwner(owner);
+	            	if(owner != null && type.transport)
+	            		owner.addTransportVehicle(e, entityplayer.getDisplayName());
+					world.spawnEntityInWorld(e);
+	            }
+				if(!entityplayer.capabilities.isCreativeMode){
+					itemstack.stackSize--;
+				}
+            }
+            if(!type.placeableOnLand && type.placeableOnSponge && block instanceof BlockSponge){
+            	if(!world.isRemote){
+            		Entity e = new EntityVehicle(world, (double)i + 0.5F, (double)j + 2.5F, (double)k + 0.5F, entityplayer, type, getData(itemstack, world)).setOwner(owner);
+            		if(owner != null && type.transport)
+	            		owner.addTransportVehicle(e, entityplayer.getDisplayName());
+					world.spawnEntityInWorld(e);
+	            }
+				if(!entityplayer.capabilities.isCreativeMode){
+					itemstack.stackSize--;
+				}
+            }
+            if(!type.placeableOnLand && type.placeableOnPumpkin && block instanceof BlockPumpkin){
+            	if(!world.isRemote){
+            		Entity e = new EntityVehicle(world, (double)i + 0.5F, (double)j + 2.5F, (double)k + 0.5F, entityplayer, type, getData(itemstack, world)).setOwner(owner);
+            		if(owner != null && type.transport)
+	            		owner.addTransportVehicle(e, entityplayer.getDisplayName());
+					world.spawnEntityInWorld(e);
+	            }
+				if(!entityplayer.capabilities.isCreativeMode){
+					itemstack.stackSize--;
+				}
+            }
+        }
+        return itemstack;
+    }
+
+    public Entity spawnVehicle(World world, double x, double y, double z, ItemStack stack){
+    	Entity entity = new EntityVehicle(world, x, y, z, type, getData(stack, world));
+    	if(!world.isRemote){
+			world.spawnEntityInWorld(entity);
+        }
+    	return entity;
+    }
+    
+    public Entity spawnVehicleAngled(World world, double x, double y, double z, float yaw, ItemStack stack){
+    	Entity entity = new EntityVehicle(world, x, y, z, yaw, type, getData(stack, world));
+    	if(!world.isRemote){
+			world.spawnEntityInWorld(entity);
+        }
+    	return entity;
+    }
+
+	public DriveableData getData(ItemStack itemstack, World world){
+		return new DriveableData(getTagCompound(itemstack, world), itemstack.getItemDamage());
+    }
+
+    @Override
+	@SideOnly(Side.CLIENT)
+    public int getColorFromItemStack(ItemStack par1ItemStack, int par2){
+    	return type.colour;
+    }
+    
 	@Override
     public void addInformation(ItemStack stack, EntityPlayer player, List lines, boolean advancedTooltips)
 	{
-		String paintName = type.getPaintjob(stack.getItemDamage()).displayName;		
-		if(!paintName.equals("default") && !paintName.isEmpty())
-			lines.add("\u00a7b\u00a7o" + paintName);
+		if( !type.getPaintjob(stack.getItemDamage()).displayName.equals("default") )
+			lines.add("\u00a7b\u00a7o" + type.getPaintjob(stack.getItemDamage()).displayName);
 
-		if(!type.packName.isEmpty() && FlansMod.showPackNameInItemDescriptions)
+		if(!type.packName.isEmpty())
 		{
 			lines.add("\u00a7o" + type.packName);
 		}
@@ -122,74 +207,29 @@ public class ItemVehicle extends ItemMapBase implements IPaintableItem
 		PartType engine = PartType.getPart(tags.getString("Engine"));
 		if(engine != null)
 			lines.add("\u00a79Engine" + "\u00a77: " + engine.name);
-	}
-
-    @Override
-	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
-    {
-    	if (!(TeamsManager.survivalCanPlaceVehicles || entityplayer.capabilities.isCreativeMode)) {
-    		// player isn't allowed to place vehicles.
-    		return itemstack;
+		
+		if(type.transport) //NEW
+		{
+			lines.add("\u00A72Can Disembark Infantry");
+			//lines.add("\u00A76Available Warps: " + getData(stack, player.worldObj).WarpLimit + " / " + type.numPassengers + " seats");
 		}
-    	//Raytracing
-        float cosYaw = MathHelper.cos(-entityplayer.rotationYaw * 0.01745329F - 3.141593F);
-        float sinYaw = MathHelper.sin(-entityplayer.rotationYaw * 0.01745329F - 3.141593F);
-        float cosPitch = -MathHelper.cos(-entityplayer.rotationPitch * 0.01745329F);
-        float sinPitch = MathHelper.sin(-entityplayer.rotationPitch * 0.01745329F);
-        double length = 5D;
-        Vec3 posVec = Vec3.createVectorHelper(entityplayer.posX, entityplayer.posY + 1.62D - entityplayer.yOffset, entityplayer.posZ);
-        Vec3 lookVec = posVec.addVector(sinYaw * cosPitch * length, sinPitch * length, cosYaw * cosPitch * length);
-        MovingObjectPosition movingobjectposition = world.rayTraceBlocks(posVec, lookVec, type.placeableOnWater);
-
-        //Result check
-        if(movingobjectposition == null)
-        {
-            return itemstack;
-        }
-        if(movingobjectposition.typeOfHit == MovingObjectType.BLOCK)
-        {
-            int i = movingobjectposition.blockX;
-            int j = movingobjectposition.blockY;
-            int k = movingobjectposition.blockZ;
-            Block block = world.getBlock(i, j, k);
-            if((type.placeableOnLand || block instanceof BlockLiquid) || (type.placeableOnSponge && block instanceof BlockSponge))
-            {
-	            if(!world.isRemote)
-	            {
-	            	Entity e = new EntityVehicle(world, (double)i + 0.5F, (double)j + 2.5F, (double)k + 0.5F, entityplayer, type, getData(itemstack, world));
-					world.spawnEntityInWorld(e);
-					if (!world.isRemote) { FlansMod.log("Player %s placed vehicle %s (%d) at (%d, %d, %d)", entityplayer.getDisplayName(), type.shortName, e.getEntityId(), i, j, k); }
-	            }
-				if(!entityplayer.capabilities.isCreativeMode)
-				{
-					itemstack.stackSize--;
-				}
-            }
-        }
-        return itemstack;
-    }
-
-    public Entity spawnVehicle(World world, double x, double y, double z, ItemStack stack)
-    {
-    	Entity entity = new EntityVehicle(world, x, y, z, type, getData(stack, world));
-    	if(!world.isRemote)
-        {
-			world.spawnEntityInWorld(entity);
-        }
-    	return entity;
-    }
-
-	public DriveableData getData(ItemStack itemstack, World world)
-    {
-		return new DriveableData(getTagCompound(itemstack, world), itemstack.getItemDamage());
-    }
-
-    @Override
-	@SideOnly(Side.CLIENT)
-    public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
-    {
-    	return type.colour;
-    }
+		
+		if(type.canMountEntity)
+		{
+			//lines.add("\u00A72Can Disembark Infantry");
+			lines.add("\u00A76Can be Warped with Disembarking Infantry ");
+		}
+		
+		if(type.weightLimit != 5000)
+		{
+			lines.add("\u00A76Carrier aircraft weight limit: " + type.weightLimit + "kg");
+		}
+		
+		if(type.epicShip)
+		{
+			lines.add("\u00A72Uses A.dvanced S.hip S.ystem TM");
+		}
+	}
     
     @Override
     @SideOnly(Side.CLIENT)
@@ -208,16 +248,10 @@ public class ItemVehicle extends ItemMapBase implements IPaintableItem
     @SideOnly(Side.CLIENT)
     public IIcon getIconIndex(ItemStack stack)
     {
-    	try {
-			if (stack.getItemDamage() < icons.length) {
-				return icons[stack.getItemDamage()];
-			} else {
-				return icons[0];
-			}
-		} catch (NullPointerException e) {
-    		return null;
-		}
+        return icons[stack.getItemDamage()];
     }
+    
+
 
     /** Make sure that creatively spawned planes have nbt data */
     @Override
@@ -230,7 +264,8 @@ public class ItemVehicle extends ItemMapBase implements IPaintableItem
     		tags.setString("Engine", PartType.defaultEngines.get(EnumType.vehicle).shortName);
     	for(EnumDriveablePart part : EnumDriveablePart.values())
     	{
-    		tags.setFloat(part.getShortName() + "_Health", type.health.get(part) == null ? 0 : type.health.get(part).health);
+    		tags.setInteger(part.getShortName() + "_Health", type.health.get(part) == null ? 0 : type.health.get(part).health);
+    		tags.setInteger(part.getShortName() + "_Crew", type.crew.get(part) == null ? 0 : type.crew.get(part).crew);
     		tags.setBoolean(part.getShortName() + "_Fire", false);
     	}
     	planeStack.stackTagCompound = tags;

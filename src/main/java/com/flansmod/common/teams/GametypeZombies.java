@@ -13,14 +13,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 
-public class GameTypeZombies extends GameType
+public class GametypeZombies extends Gametype 
 {
 	public boolean friendlyFire = false;
 	public int humanPrepTime = 30 * 20;
 	
-	public GameTypeZombies()
+	public GametypeZombies() 
 	{
-		super("Zombies", "ZOM", 2,false);
+		super("Zombies", "ZOM", 2);
 	}
 
 	@Override

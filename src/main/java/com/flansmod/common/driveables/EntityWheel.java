@@ -2,9 +2,16 @@ package com.flansmod.common.driveables;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
+import com.flansmod.common.FlansMod;
+import com.flansmod.common.network.PacketParticle;
+import com.flansmod.common.network.PacketPlaySound;
 import com.flansmod.common.vector.Vector3f;
 
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
@@ -34,7 +41,7 @@ public class EntityWheel extends Entity implements IEntityAdditionalSpawnData
 	{
 		super(world);
 		setSize(1F, 1F);
-		stepHeight = 1.0F;
+		stepHeight = 1.5F;
 		invulnerableUnmountCount = 0;
 	}
 
@@ -96,6 +103,8 @@ public class EntityWheel extends Entity implements IEntityAdditionalSpawnData
 		//prevPosY = posY;
 		//prevPosZ = posZ;
 		
+		//if(this.ticksExisted==5)
+		//stepHeight = vehicle.getDriveableType().wheelStepHeight;
 		if(this.ridingEntity != null)
 		{
 			invulnerableUnmountCount = 20 * 4;
@@ -108,6 +117,7 @@ public class EntityWheel extends Entity implements IEntityAdditionalSpawnData
 		//If on the client and the vehicle parent has yet to be found, search for it
 		if(worldObj.isRemote && !foundVehicle)
 		{
+			if(worldObj.getEntityByID(vehicleID) instanceof EntityDriveable) // prevents EntityChicken cannot be cast to com.flansmod.common.driveables.EntityDriveable
 			vehicle = (EntityDriveable)worldObj.getEntityByID(vehicleID);
 			if(vehicle == null)
 				return;
@@ -120,7 +130,10 @@ public class EntityWheel extends Entity implements IEntityAdditionalSpawnData
 		
 
 		EntityDriveable entD;
+		if(worldObj.getEntityByID(vehicleID) instanceof EntityDriveable) // prevents EntityChicken cannot be cast to com.flansmod.common.driveables.EntityDriveable
 		entD = (EntityDriveable)worldObj.getEntityByID(vehicleID);
+		else
+			entD = null;
 		if(entD == null){
 			this.timeLimitDriveableNull++;
 		}else{
@@ -190,9 +203,52 @@ public class EntityWheel extends Entity implements IEntityAdditionalSpawnData
 		return Math.sqrt(motionX * motionX + motionZ * motionZ);
 	}
 	
+	public double getSpeedXYZ()
+	{
+		return Math.cbrt(motionX * motionX + motionZ * motionZ + motionY * motionY);
+	}
+	
 	@Override
     public void setPositionAndRotation2(double d, double d1, double d2, float f, float f1, int i)
     {
+    }
+	
+	
+	//make the wheels squish people too! Also add gore!
+	@Override
+    public AxisAlignedBB getCollisionBox(Entity entity)
+    {
+		if(vehicle.seats[0] != null)
+		if(vehicle.getDriveableType().collisionDamageEnable && vehicle.seats[0].riddenByEntity != null)
+		{
+			if(vehicle.throttle > vehicle.getDriveableType().collisionDamageThrottle )
+			{
+				if(entity instanceof EntityLiving && !entity.isRiding() && !entity.isDead){
+					entity.attackEntityFrom(DamageSource.cactus, vehicle.throttle*vehicle.throttle*vehicle.getDriveableType().collisionDamageTimes);
+					
+					
+					if(vehicle.throttle*vehicle.throttle*vehicle.getDriveableType().collisionDamageTimes > 23 && ((EntityLiving) entity).getHealth()>0)
+					{
+						FlansMod.proxy.spawnParticle("flansmod.overkill", entity.posX, entity.posY-4, entity.posZ, 0,0.1f,0);
+					PacketPlaySound.sendSoundPacket(entity.posX, entity.posY, entity.posZ, 15, entity.dimension, "goreDeath", true);
+					FlansMod.getPacketHandler().sendToAllAround(new PacketParticle("flansmod.overkill", entity.posX, entity.posY-4, entity.posZ, (float)Math.random()*1, (float)Math.random()*1, -(float)Math.random()*1), entity.posX, entity.posY, entity.posZ, 150, entity.dimension);
+					}
+					
+				//	((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.harm.id, 10, 5));
+				}else if(entity instanceof EntityPlayer && !entity.isRiding() && !entity.isDead){
+					entity.attackEntityFrom(DamageSource.cactus, vehicle.throttle*vehicle.throttle*vehicle.getDriveableType().collisionDamageTimes);
+					
+					if(vehicle.throttle*vehicle.throttle*vehicle.getDriveableType().collisionDamageTimes > 23 && ((EntityPlayer) entity).getHealth()>0)
+					{
+						FlansMod.proxy.spawnParticle("flansmod.overkill", entity.posX, entity.posY-4, entity.posZ, 0,0.1f,0);
+					PacketPlaySound.sendSoundPacket(entity.posX, entity.posY, entity.posZ, 15, entity.dimension, "goreDeath", true);
+					FlansMod.getPacketHandler().sendToAllAround(new PacketParticle("flansmod.overkill", entity.posX, entity.posY-4, entity.posZ, (float)Math.random()*1, (float)Math.random()*1, -(float)Math.random()*1), entity.posX, entity.posY, entity.posZ, 150, entity.dimension);
+					}
+				//	((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.harm.id, 10, 5));
+				}
+			}
+		}
+        return boundingBox;
     }
 	
 	@Override
@@ -207,6 +263,7 @@ public class EntityWheel extends Entity implements IEntityAdditionalSpawnData
 	{
 		vehicleID = data.readInt();
 		ID = data.readInt();
+		if(vehicle instanceof EntityDriveable) //this might be a bad idea
 		vehicle = (EntityDriveable)worldObj.getEntityByID(vehicleID);
 		
 		if(vehicle != null)

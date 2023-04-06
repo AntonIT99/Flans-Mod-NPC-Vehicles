@@ -12,14 +12,14 @@ public class RenderArms {
 		GL11.glTranslatef(-(armPosition.x
 				- Math.abs(anim.lastPumped + (anim.pumped - anim.lastPumped) * smoothing) / model.pumpModifier),
 				armPosition.y, armPosition.z);
-		handleRotate(rotationPoint, model);
+		handleRotate(rotationPoint);
 	}
 	
 	// This moves the right hand if leftHandAmmo & handCharge are true (For left
 	// hand reload with right hand charge)
 	public static void renderArmCharge(ModelGun model, GunAnimations anim, float smoothing, Vector3f rotationPoint, Vector3f armPosition)
 	{
-		handleRotate(rotationPoint, model);
+		handleRotate(rotationPoint);
 		GL11.glTranslatef(
 				-(armPosition.x
 						- Math.abs(anim.lastCharged + (anim.charged - anim.lastCharged) * smoothing)
@@ -36,7 +36,7 @@ public class RenderArms {
 	// reload with right hand bolt action)
 	public static void renderArmBolt(ModelGun model, GunAnimations anim, float smoothing, Vector3f rotationPoint, Vector3f armPosition)
 	{
-		handleRotate(rotationPoint, model);
+		handleRotate(rotationPoint);
 		GL11.glTranslatef(
 				(armPosition.x + Math.abs(anim.lastPumped + (anim.pumped - anim.lastPumped) * smoothing)
 						/ model.chargeModifier.x),
@@ -50,25 +50,21 @@ public class RenderArms {
 	
 	public static void renderArmDefault(ModelGun model, GunAnimations anim, float smoothing, Vector3f rotationPoint, Vector3f armPosition)
 	{
-		handleRotate(rotationPoint, model);
+		handleRotate(rotationPoint);
 		GL11.glTranslatef(armPosition.x, armPosition.y, armPosition.z);
 	}
 	
 	public static void renderArmReload(ModelGun model, GunAnimations anim, float smoothing, Vector3f rotationPoint, Vector3f armPosition)
 	{
-		handleRotate(rotationPoint, model);
+		handleRotate(rotationPoint);
 		GL11.glTranslatef(armPosition.x, armPosition.y, armPosition.z);
 	}
 	
-	private static void handleRotate(Vector3f rotationPoint, ModelGun model)
+	private static void handleRotate(Vector3f rotationPoint)
 	{
-		if (model.easyArms)
-			GL11.glTranslatef(+0.4F * model.armScale.getX(), +0.75F * model.armScale.getY(), -0F * model.armScale.getZ());
 		GL11.glRotatef(rotationPoint.y, 0F, 1F, 0F);
 		GL11.glRotatef(rotationPoint.z, 0F, 0F, 1F);
 		GL11.glRotatef(rotationPoint.x, 1F, 0F, 0F);
-		if (model.easyArms)
-			GL11.glTranslatef(-0.4F * model.armScale.getX(), -0.75F * model.armScale.getY(), +0F * model.armScale.getZ());
 	}
 
 }

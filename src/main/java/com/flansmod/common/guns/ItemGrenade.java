@@ -15,6 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import com.flansmod.common.FlansMod;
 import com.flansmod.common.PlayerData;
 import com.flansmod.common.PlayerHandler;
+import com.flansmod.common.teams.TeamsManager;
 import com.flansmod.common.types.IFlanItem;
 import com.flansmod.common.types.InfoType;
 import com.flansmod.common.vector.Vector3f;
@@ -22,6 +23,7 @@ import com.google.common.collect.Multimap;
 
 public class ItemGrenade extends ItemShootable implements IFlanItem
 {
+	@SuppressWarnings("hiding")
 	public GrenadeType type;
 	
 	public ItemGrenade(GrenadeType t) 
@@ -56,8 +58,8 @@ public class ItemGrenade extends ItemShootable implements IFlanItem
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
 		PlayerData data = PlayerHandler.getPlayerData(player, world.isRemote ? Side.CLIENT : Side.SERVER);
-		//If can throw grenade
-		if(type.canThrow && data != null && data.shootTimeRight <= 0 && data.shootTimeLeft <= 0)
+		//If can throw grenade, which is prevented with universal pacifism command -t labjac
+		if(type.canThrow && data != null && data.shootTimeRight <= 0 && data.shootTimeLeft <= 0 && TeamsManager.violence==false)
 		{
 			//Delay the next throw / weapon fire / whatnot
 			data.shootTimeRight = type.throwDelay;
@@ -128,7 +130,7 @@ public class ItemGrenade extends ItemShootable implements IFlanItem
 
 	@Override
 	public EntityShootable getEntity(World worldObj, Vec3 origin, float yaw,
-			float pitch, EntityLivingBase shooter, float spread, float damage, float speed,
+			float pitch, EntityLivingBase shooter, float spread, float damage,
 			int itemDamage, InfoType shotFrom) {
 		// TODO Auto-generated method stub
 		return null;
@@ -137,7 +139,7 @@ public class ItemGrenade extends ItemShootable implements IFlanItem
 	@Override
 	public EntityShootable getEntity(World worldObj, EntityLivingBase player,
 			float bulletSpread, float damage, float bulletSpeed, boolean b,
-			int itemDamage, InfoType shotFrom) 
+			int itemDamage, InfoType shotFrom, float Xoffset, float Yoffset, float Zoffset) 
 	{
 		return getGrenade(worldObj, player);
 	}
@@ -150,5 +152,12 @@ public class ItemGrenade extends ItemShootable implements IFlanItem
 		if(type.remote && thrower instanceof EntityPlayer)
 			PlayerHandler.getPlayerData((EntityPlayer)thrower).remoteExplosives.add(grenade);
 		return grenade;
+	}
+
+	@Override //from evil ai bullet system
+	public EntityShootable getEntity(World worldObj, Vector3f origin, Vector3f direction, EntityLivingBase shooter,
+			float spread, float damage, float speed, int itemDamage, InfoType shotFrom, Boolean ai) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

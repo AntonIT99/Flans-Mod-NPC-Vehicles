@@ -1,18 +1,26 @@
 package com.flansmod.client.model;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 
+import com.flansmod.client.ClientProxy;
 import com.flansmod.client.FlansModResourceHandler;
 import com.flansmod.client.model.animation.AnimationController;
 import com.flansmod.client.model.animation.AnimationPart;
@@ -22,8 +30,18 @@ import com.flansmod.common.driveables.DriveablePosition;
 import com.flansmod.common.driveables.DriveableType;
 import com.flansmod.common.driveables.EntityDriveable;
 import com.flansmod.common.driveables.EntitySeat;
+import com.flansmod.common.driveables.EnumDriveablePart;
 import com.flansmod.common.driveables.ShootPoint;
+import com.flansmod.common.driveables.mechas.EntityMecha;
+import com.flansmod.common.driveables.mechas.ItemMechaAddon;
+import com.flansmod.common.driveables.mechas.MechaItemType;
+import com.flansmod.common.guns.BulletType;
+import com.flansmod.common.guns.EntityBullet;
+import com.flansmod.common.guns.GunType;
+import com.flansmod.common.guns.ItemBullet;
+import com.flansmod.common.guns.ItemGun;
 import com.flansmod.common.paintjob.Paintjob;
+import com.flansmod.common.teams.TeamsManager;
 import com.flansmod.common.driveables.EntityPlane;
 import com.flansmod.common.driveables.ItemPlane;
 import com.flansmod.common.driveables.PlaneType;
@@ -71,10 +89,20 @@ public class RenderPlane extends Render implements IItemRenderer
 		if(model != null)
 		{
 	        GL11.glPushMatrix();
+	        /*
+			if(entityPlane.getDriveableData().emergencyMode)	//invisible in emergency mode
+				GL11.glScalef(0.01f, 0.01f, 0.01f);
+			else
+			*/
+			{
 			GL11.glScalef(type.modelScale, type.modelScale, type.modelScale);
+			}
+			
 			model.render(entityPlane, f1);
 			float dRotorAngle = entityPlane.rotorAngle - entityPlane.prevRotorAngle;
 			float rotorAngle = entityPlane.prevRotorAngle + dRotorAngle*f1;
+			
+			
 			//Render heli main rotors
 			for(int i = 0; i < model.heliMainRotorModels.length; i++)
 			{
@@ -175,22 +203,39 @@ public class RenderPlane extends Render implements IItemRenderer
 			GL11.glPopMatrix();
 		}
 		
-		if(FlansMod.DEBUG)
+		//also enable hitboxes if thermal mode
+		//if(FlansMod.DEBUG || entityPlane.seats[0].riddenByEntity!=Minecraft.getMinecraft().thePlayer && Minecraft.getMinecraft().entityRenderer.isShaderActive()  )
+		if(FlansMod.DEBUG )
 		{
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glDisable(GL11.GL_DEPTH_TEST);
-			GL11.glColor4f(1F, 0F, 0F, 0.3F);
+			GL11.glColor4f(1F, 0F, 0F, 0.03F);
 			GL11.glScalef(-1F, 1F, -1F);
 			for(DriveablePart part : entityPlane.getDriveableData().parts.values())
 			{
 				if(part.box == null)
 					continue;
+				//weakspots red
+				if(part.type == EnumDriveablePart.core || part.type == EnumDriveablePart.engine || part.type == EnumDriveablePart.engine2 || part.type == EnumDriveablePart.engine3 || part.type == EnumDriveablePart.engine4 || part.type == EnumDriveablePart.engine5 || part.type == EnumDriveablePart.engine6)
+				GL11.glColor4f(3F, 0F, 0F, 0.5F);
 				
-				GL11.glColor4f(1F, entityPlane.isPartIntact(part.type) ? 1F : 0F, 0F, 0.3F);
+				//airframe green
+				else if(part.type == EnumDriveablePart.airframe )
+					GL11.glColor4f(0F, 2F, 2F, 0.3F);
+				
+				//wings n shit blue
+				else 	if(part.type == EnumDriveablePart.leftWing || part.type == EnumDriveablePart.rightWing || part.type == EnumDriveablePart.tail || part.type == EnumDriveablePart.nose || part.type == EnumDriveablePart.blades)	
+				GL11.glColor4f(0F, 0F, 2F, 0.3F);
+				
+				//everything else yellow
+				else
+					GL11.glColor4f(1.5F, 1.5F, 0F, 0.2F);
+				//GL11.glColor4f(1F, entityPlane.isPartIntact(part.type) ? 1F : 0F, 0F, 0.3F);
 				
 				renderAABB(AxisAlignedBB.getBoundingBox(part.box.x, part.box.y, part.box.z, (part.box.x + part.box.w), (part.box.y + part.box.h), (part.box.z + part.box.d)));
 			}
+			//part that makes plane hitbox yellow allah bookmark
 			GL11.glColor4f(1F, 1F, 0F, 0.3F);
 			for(Propeller prop : type.propellers)
 			{				
@@ -215,6 +260,123 @@ public class RenderPlane extends Render implements IItemRenderer
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glColor4f(1F, 1F, 1F, 1F);
 		}
+		
+		
+
+		
+		
+		
+//missile render attempt
+		        if(TeamsManager.shellsEnabled)
+				{
+					int slot = -1;
+					for(int i = entityPlane.getDriveableData().getMissileInventoryStart(); i < entityPlane.getDriveableData().getMissileInventoryStart() + type.numMissileSlots; i++)
+					{
+						ItemStack shell = entityPlane.getDriveableData().getStackInSlot(i);
+						if(shell != null && shell.getItem() instanceof ItemBullet )
+						{
+							slot = i;
+						}
+					}
+					
+					if(slot != -1)
+					{
+					
+					ItemStack bulletStack = entityPlane.driveableData.getStackInSlot(slot);
+					ItemBullet item = (ItemBullet)bulletStack.getItem();
+			
+				
+				
+				 if(item instanceof ItemBullet && ((ItemBullet)item).type.model != null && item.type.wingVisible && type.missileVisible)
+				{
+					BulletType gunType = ((ItemBullet)item).type;
+					ModelBase modelo = item.type.model;
+
+					TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
+					
+					// System.out.println("pee pee");
+					
+					
+					//so bullet can have a rocket pod model while on wing, but still have rocket model when fired
+					
+					ModelBase modelLauncher = item.type.launcherMesh;
+					if (item.type.hasLauncherModel)
+					{	
+						
+						texturemanager.bindTexture(FlansModResourceHandler.getAlternateTexture(gunType));
+						GL11.glRotatef(-90F, 0F, 1F, 0F);
+		
+						
+						if (entityPlane.isPartIntact(EnumDriveablePart.leftWing))
+						{
+						ItemRenderType typerino = ItemRenderType.ENTITY;
+						GL11.glRotatef(90F, 1F, 0F, 0F);
+						//GL11.glRotatef(0F, 0F, 0F, 1F);
+						GL11.glTranslatef(type.missileWingSpan, type.missileForward, -1F*type.missileElevation);
+						
+						modelLauncher.render(null, 0F, 0F, 0F, 0F, 0F, 1F / 16F);
+						}
+						
+						//position and render the other wing one
+						if (entityPlane.isPartIntact(EnumDriveablePart.rightWing))
+						{
+						GL11.glTranslatef(type.missileWingSpan*(-2F), 0, 0);
+						modelLauncher.render(null, 0F, 0F, 0F, 0F, 0F, 1F / 16F);
+						}
+					}
+					
+					
+					
+					if (!item.type.hasLauncherModel)
+					{
+						texturemanager.bindTexture(FlansModResourceHandler.getTexture(gunType));
+						GL11.glRotatef(-90F, 0F, 1F, 0F);
+					ItemRenderType typerino = ItemRenderType.ENTITY;
+					
+					if (entityPlane.isPartIntact(EnumDriveablePart.leftWing))
+					{
+					GL11.glRotatef(90F, 1F, 0F, 0F);
+					//GL11.glRotatef(0F, 0F, 0F, 1F);
+					GL11.glTranslatef(type.missileWingSpan, type.missileForward, -1F*type.missileElevation);
+					//GL11.glTranslatef(0F, 0F, 0F);
+					// (a b c) positive a is towards pilot's left, positive b is forwards in front of plane, positive c is y down			
+					modelo.render(null, 0F, 0F, 0F, 0F, 0F, 1F / 16F);
+					}
+					
+					//position and render the other wing one
+					if (entityPlane.isPartIntact(EnumDriveablePart.rightWing))
+					{
+					GL11.glTranslatef(type.missileWingSpan*(-2F), 0, 0);
+					modelo.render(null, 0F, 0F, 0F, 0F, 0F, 1F / 16F);
+					}
+					
+					// System.out.println("poo poo pee pee");
+					}
+					
+					/*
+					  	GL11.glRotatef(90F, 0F, 0F, 1F);
+					texturemanager.bindTexture(FlansModResourceHandler.getTexture(gunType));
+					ItemRenderType typerino = ItemRenderType.ENTITY;
+						GL11.glRotatef(270, 0F, 1F, 0F);
+						GL11.glRotatef(0F, 0F, 0F, 0F);
+						GL11.glTranslatef(0F, 0F, 0F);
+						GL11.glTranslatef(0F, 0F, 0F);
+
+					
+
+					
+					Minecraft.getMinecraft().renderEngine.bindTexture(FlansModResourceHandler.getTexture(gunType));
+					modelo.render(null, 0F, 0F, 0F, 0F, 0F, 1F / 16F);
+					
+					 */
+					
+				}
+	 
+					}
+				}
+		
+		 //end of missile render attempt
+				 
         GL11.glPopMatrix();
     }
     
@@ -240,6 +402,10 @@ public class RenderPlane extends Render implements IItemRenderer
 		Paintjob paintjob = type.getPaintjob(((EntityDriveable)entity).getDriveableData().paintjobID);
 		return FlansModResourceHandler.getPaintjobTexture(paintjob);
 	}
+	
+	
+
+	
 
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) 

@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemOpStick extends Item
 {
 	public static final String[] teamNames = new String[] {"No Team", "Spectators", "Team 1", "Team 2"};	
-	public static final String[] stickNames = new String[] {"opStick_ownership", "opStick_connecting", "opStick_mapping", "opStick_destruction"};
+	public static final String[] stickNames = new String[] {"opStick_ownership", "opStick_connecting", "opStick_mapping", "opStick_destruction", "Shekel", "GunIcon"};
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
     
@@ -134,6 +134,16 @@ public class ItemOpStick extends Item
 	    		base.destroy();
 	    		break;
 	    	}
+	    	case 4 : //Stick of Destruction
+	    	{
+
+	    		break;
+	    	}
+	    	case 5 : //gun icon
+	    	{
+
+	    		break;
+	    	}
     	}
 	}
 	
@@ -185,6 +195,18 @@ public class ItemOpStick extends Item
 	    	case 3 : //Stick of Destruction
 	    	{
 	    		object.destroy();
+	    		break;
+	    	}
+	    	
+	    	case 4 : //Stick of Destruction
+	    	{
+
+	    		break;
+	    	}
+	    	
+	    	case 5 : //gun icon
+	    	{
+
 	    		break;
 	    	}
     	}

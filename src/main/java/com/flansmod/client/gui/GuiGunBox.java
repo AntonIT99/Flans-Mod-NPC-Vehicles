@@ -1,37 +1,33 @@
 package com.flansmod.client.gui;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+import com.flansmod.common.guns.boxes.ContainerGunBox;
+import com.flansmod.common.guns.boxes.GunBoxEntry;
+import com.flansmod.common.guns.boxes.GunPage;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.StringUtils;
+import net.minecraft.world.World;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import com.flansmod.common.FlansMod;
-import com.flansmod.common.guns.GunType;
-import com.flansmod.common.guns.boxes.ContainerGunBox;
-import com.flansmod.common.guns.boxes.GunBoxEntry;
-import com.flansmod.common.guns.boxes.GunBoxType;
-import com.flansmod.common.guns.boxes.GunPage;
-
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import cpw.mods.fml.client.FMLClientHandler;
+
+import com.flansmod.common.guns.boxes.GunBoxType;
+
+import java.util.Collections;
+import java.util.List;
 
 public class GuiGunBox extends GuiContainer
 {
 	private ResourceLocation texture = new ResourceLocation("flansmod", "gui/weaponBoxDefault.png");
 	private static RenderItem itemRenderer = new RenderItem();
 	private InventoryPlayer inventory;
-	private Minecraft mc;
 	private GunPage currentPage;
 	private GunBoxType type;
 	private String recipeTooltip = null;
@@ -46,7 +42,6 @@ public class GuiGunBox extends GuiContainer
 	private boolean craftHighlight = false;
 	private boolean nextHighlight = false;
 	private boolean backHighlight = false;
-	private List<String> gunStats;
 
 
 	public GuiGunBox(InventoryPlayer playerinventory, GunBoxType type, World w)
@@ -75,11 +70,11 @@ public class GuiGunBox extends GuiContainer
 		//List gun item entries
 		for(int i = 0; i < entries.length && i < 8; i++)
 		{
-			if(entries[i] != null && entries[i].type != null && entries[i].type.name != null)
+			if(entries[i] != null)
 			{
 				String label = entries[i].type.name;
 
-				//Truncate if name is greater than the boundary
+				//Truncate is name is greater than the boundary
 				if(fontRendererObj.getStringWidth(label) > 97)
 					label = label.substring(0, Math.min(label.length(), 15)) + "...";
 
@@ -91,6 +86,7 @@ public class GuiGunBox extends GuiContainer
 		if(selectedItem != -1)
 		{
 			GunBoxEntry entry = entries[selectedItem];
+
 			//Draw gun and ammo items
 			drawSlotInventory(new ItemStack(entry.type.getItem()), 127, 26);
 			if(!entry.isAmmoNullOrEmpty())
@@ -129,12 +125,10 @@ public class GuiGunBox extends GuiContainer
 		else
 			fontRendererObj.drawStringWithShadow("<", (7 + 10) - (fontRendererObj.getStringWidth("<") / 2), 26, hexColor(type.buttonTextColor));
 
+
 		//Draw tooltips
 		if(recipeTooltip != null)
 			drawHoveringText(Collections.singletonList(recipeTooltip), mouseX - guiLeft, mouseY - guiTop, fontRendererObj);
-		//Draw Stats
-		if(gunStats != null)
-			drawHoveringText(gunStats, mouseX - guiLeft, mouseY - guiTop, fontRendererObj);
 	}
 
 	@Override
@@ -246,7 +240,6 @@ public class GuiGunBox extends GuiContainer
 
 		//Hover for recipe tooltips
 		recipeTooltip = null;
-		gunStats = null;
 		if(selectedItem != -1)
 		{
 			GunBoxEntry entry = currentPage.gunList[selectedItem];
@@ -258,46 +251,12 @@ public class GuiGunBox extends GuiContainer
 				int itemY = 68;
 				if (i >= 4)
 				{
-					itemX = 127 + ((i-4) * 19);
+					itemX = 127;
 					itemY = 87;
 				}
-				if(mouseXInGUI >= itemX && mouseXInGUI < itemX + 16 && mouseYInGUI >= itemY && mouseYInGUI < itemY + 16) {
-					try {
-						recipeTooltip = (!tabToAmmo) ? entry.requiredParts.get(i).getDisplayName()
-								: entry.ammoEntryList.get(selectedAmmoitem).requiredParts.get(i).getDisplayName();
 
-					} catch (Exception e) {
-						recipeTooltip = null;
-						if (entry.type.shortName != null) {
-							FlansMod.log("Require part(s) null! Contact content pack author. " + entry.type.shortName);
-						} else {
-							FlansMod.log("Entry is null!");
-						}
-					}
-				}
-			}
-
-
-			if(mouseXInGUI >= 127 && mouseXInGUI < 127 + 16 && mouseYInGUI >= 26 && mouseYInGUI < 26 + 16)
-			{
-				if(entry.type instanceof GunType)
-				{
-					List<String> lines = new ArrayList<String>();
-					GunType gunType = (GunType) entry.type;
-					lines.add(gunType.name);
-					lines.add("\u00a79Damage" + "\u00a77: " + gunType.damage);
-					lines.add("\u00a79Recoil" + "\u00a77: " + gunType.recoilPitch);
-					lines.add("\u00a79Spread" + "\u00a77: " + gunType.bulletSpread);
-					lines.add("\u00a79Reload" + "\u00a77: " + (gunType.reloadTime / 20) + "s");
-					if(gunType.shootDelay != 0)
-					{
-						lines.add("\u00a79RPM" + "\u00a77: " + (1200 / gunType.shootDelay) + "rpm");
-					}
-					else
-						lines.add("\u00a79RPM" + "\u00a77: " + (gunType.roundsPerMin) + "rpm");
-					lines.add("\u00a79Mode(s)" + "\u00a77: " + gunType.mode);
-					gunStats = lines;
-				}
+				if(mouseXInGUI >= itemX && mouseXInGUI < itemX + 16 && mouseYInGUI >= itemY && mouseYInGUI < itemY + 16)
+					recipeTooltip = (!tabToAmmo) ? entry.requiredParts.get(i).getDisplayName() : entry.ammoEntryList.get(selectedAmmoitem).requiredParts.get(i).getDisplayName();
 			}
 		}
 	}
@@ -370,6 +329,9 @@ public class GuiGunBox extends GuiContainer
 					type.block.buyGun(currentPage.gunList[selectedItem].ammoEntryList.get(selectedAmmoitem).type, inventory, type);
 			}
 		}
+
+		if(button != 0)
+			return;
 	}
 
 	private void resetAndSwapPages()
@@ -405,7 +367,7 @@ public class GuiGunBox extends GuiContainer
 	}
 
 	//Format hex string to int
-	private int hexColor(String color)
+	private static int hexColor(String color)
 	{
 		return Integer.parseInt(color, 16);
 	}
@@ -416,8 +378,6 @@ public class GuiGunBox extends GuiContainer
 		if (i == 1 || i == mc.gameSettings.keyBindInventory.getKeyCode())
 		{
 			mc.thePlayer.closeScreen();
-		} else {
-			super.keyTyped(c, i);
 		}
 	}
 

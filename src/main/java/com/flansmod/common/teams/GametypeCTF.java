@@ -10,16 +10,17 @@ import net.minecraft.util.Vec3;
 
 import com.flansmod.common.PlayerData;
 
-public class GameTypeCTF extends GameType
+public class GametypeCTF extends Gametype 
 {
 	public boolean friendlyFire = false;
 	public boolean autoBalance = true;
 	public int time;
+	public int autoBalanceInterval = 1200;
 	public int flagReturnTime = 60;
 
-	public GameTypeCTF()
+	public GametypeCTF() 
 	{
-		super("Capture the Flag", "CTF", 2,true);
+		super("Capture the Flag", "CTF", 2);
 	}
 	
 	@Override
@@ -30,58 +31,6 @@ public class GameTypeCTF extends GameType
 	@Override
 	public void roundEnd() 
 	{
-		if(teamsManager.currentRound.teams!=null && teamsManager.currentRound.teams[0]!=null && teamsManager.currentRound.teams[1]!=null){
-			Team teamA = teamsManager.currentRound.teams[0];
-			Team teamB = teamsManager.currentRound.teams[1];
-			teamA.sortPlayers();
-			teamB.sortPlayers();
-			EntityPlayerMP bestPlayerA = null;
-			EntityPlayerMP bestPlayerB = null;
-			if(teamA.members!=null) {
-				for (String name : teamA.members) {
-					getPlayerInfo(getPlayer(name)).playedRounds++;
-					getPlayerInfo(getPlayer(name)).updateAVG();
-					getPlayerInfo(getPlayer(name)).savePlayerStats();
-				}
-			}
-			if(teamB.members!=null) {
-				for (String name : teamB.members) {
-					getPlayerInfo(getPlayer(name)).playedRounds++;
-					getPlayerInfo(getPlayer(name)).updateAVG();
-					getPlayerInfo(getPlayer(name)).savePlayerStats();
-				}
-			}
-			if(teamA.members!=null) {
-				for (String name : teamA.members) {
-					PlayerData data = getPlayerData(getPlayer(name));
-					int bestScore = 0;
-					if (data.score > bestScore) {
-						bestPlayerA = getPlayer(name);
-						bestScore = data.score;
-					}
-				}
-			}
-			if(teamB.members!=null) {
-				for (String name : teamB.members) {
-					PlayerData data = getPlayerData(getPlayer(name));
-					int bestScore = 0;
-					if (data.score > bestScore) {
-						bestPlayerB = getPlayer(name);
-						bestScore = data.score;
-					}
-				}
-			}
-			if(bestPlayerA!=null){
-				getPlayerInfo(bestPlayerA).addExp(250);
-				getPlayerInfo(bestPlayerA).MVPCount++;
-				getPlayerInfo(bestPlayerA).savePlayerStats();
-			}
-			if(bestPlayerB!=null){
-				getPlayerInfo(bestPlayerB).addExp(250);
-				getPlayerInfo(bestPlayerB).MVPCount++;
-				getPlayerInfo(bestPlayerB).savePlayerStats();
-			}
-		}
 	}
 
 	@Override
@@ -180,13 +129,6 @@ public class GameTypeCTF extends GameType
 			{	
 				getPlayerData(attacker).score++;
 				getPlayerData(attacker).kills++;
-				getPlayerInfo(attacker).kills++;
-				getPlayerInfo(attacker).addExp(getPlayerInfo(player).rank*2);
-				getPlayerInfo(attacker).updateLongestKill(attacker.getDistanceToEntity(player));
-				if(player.riddenByEntity instanceof EntityFlag){
-					getPlayerInfo(attacker).addExp(10);
-				}
-				getPlayerInfo(attacker).savePlayerStats();
 			}
 		}
 		else
@@ -194,8 +136,7 @@ public class GameTypeCTF extends GameType
 			getPlayerData(player).score--;
 		}
 		getPlayerData(player).deaths++;
-		getPlayerInfo(player).deaths++;
-		getPlayerInfo(player).savePlayerStats();
+		
 		if(player.riddenByEntity instanceof EntityFlag)
 		{
 			Team flagTeam = teamsManager.getTeam(((EntityFlag)player.riddenByEntity).getBase().getOwnerID());
@@ -250,9 +191,8 @@ public class GameTypeCTF extends GameType
 						{
 							flag.reset();
 							playerData.score += 2;
-							getPlayerInfo(player).savedFlags++;
-							getPlayerInfo(player).addExp(10);
-							getPlayerInfo(player).savePlayerStats();
+							getPlayerData(player).shekels++;
+							getPlayerData(player).shekels++;
 							TeamsManager.messageAll("\u00a7f" + player.getCommandSenderName() + " returned the \u00a7" + flagTeam.textColour + flagTeam.name + "\u00a7f flag");		
 						}
 						
@@ -268,9 +208,12 @@ public class GameTypeCTF extends GameType
 							{
 								playerTeam.score++;
 								playerData.score += 10;
-								getPlayerInfo(player).capturedFlags++;
-								getPlayerInfo(player).savePlayerStats();
-								getPlayerInfo(player).addExp(20);
+								getPlayerData(player).shekels++;
+								getPlayerData(player).shekels++;
+								getPlayerData(player).shekels++;
+								getPlayerData(player).shekels++;
+								getPlayerData(player).shekels++;
+								getPlayerData(player).shekels++;
 								otherFlag.reset();
 								TeamsManager.messageAll("\u00a7f" + player.getCommandSenderName() + " captured the \u00a7" + otherFlagTeam.textColour + otherFlagTeam.name + "\u00a7f flag");
 							}
@@ -288,6 +231,8 @@ public class GameTypeCTF extends GameType
 						{
 							if(flag.isHome)
 								playerData.score += 3;
+							getPlayerData(player).shekels++;
+							getPlayerData(player).shekels++;
 							flag.mountEntity(player);
 							TeamsManager.messageAll("\u00a7f" + player.getCommandSenderName() + " picked up the \u00a7" + flagTeam.textColour + flagTeam.name + "\u00a7f flag");
 							flag.isHome = false;
@@ -302,22 +247,20 @@ public class GameTypeCTF extends GameType
 	@Override
 	public Vec3 getSpawnPoint(EntityPlayerMP player) 
 	{
-		if(teamsManager.currentRound == null) {
+		if(teamsManager.currentRound == null)
 			return null;
-		}
 		PlayerData data = getPlayerData(player);
 		List<ITeamObject> validSpawnPoints = new ArrayList<ITeamObject>();
-		if(data.newTeam == null){
+		if(data.newTeam == null)
 			return null;
-		}
 		
 		ArrayList<ITeamBase> bases = teamsManager.currentRound.map.getBasesPerTeam(teamsManager.currentRound.getTeamID(data.newTeam));
 		for (ITeamBase base : bases) {
-			if (base.getMap().equals(teamsManager.currentRound.map)) {
-				for (int i = 0; i < base.getObjects().size(); i++) {
-					if (base.getObjects().get(i).isSpawnPoint())
-						validSpawnPoints.add(base.getObjects().get(i));
-				}
+			if (base.getMap() != teamsManager.currentRound.map)
+				continue;
+			for (int i = 0; i < base.getObjects().size(); i++) {
+				if (base.getObjects().get(i).isSpawnPoint())
+					validSpawnPoints.add(base.getObjects().get(i));
 			}
 		}
 		
@@ -326,6 +269,7 @@ public class GameTypeCTF extends GameType
 			ITeamObject spawnPoint = validSpawnPoints.get(rand.nextInt(validSpawnPoints.size()));
 			return Vec3.createVectorHelper(spawnPoint.getPosX(), spawnPoint.getPosY(), spawnPoint.getPosZ());
 		}
+		
 		return null;
 	}
 

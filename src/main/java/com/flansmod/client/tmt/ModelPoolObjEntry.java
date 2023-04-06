@@ -14,40 +14,32 @@ public class ModelPoolObjEntry extends ModelPoolEntry
 	{
 		fileExtensions = new String[] {"obj"};
 	}
-	
+
 	@Override
-	public void getModel(File file)
-	{
-		try
-		{
-			BufferedReader in = new BufferedReader(new FileReader(file));
-			
+	public void getModel(File file){
+		try(BufferedReader in = new BufferedReader(new FileReader(file))){
 			String s;
-			
+
 			ArrayList<PositionTransformVertex> verts = new ArrayList<PositionTransformVertex>();
 			ArrayList<float[]> uvs = new ArrayList<float[]>();
 			ArrayList<float[]> normals = new ArrayList<float[]>();
 			ArrayList<TexturedPolygon> face = new ArrayList<TexturedPolygon>();
-			
-			while((s = in.readLine()) != null)
-			{
-				if(s.contains("#"))
-				{
+
+			while((s = in.readLine()) != null){
+				if(s.contains("#")){
 					s = s.substring(0, s.indexOf("#"));
 				}
-				
+
 				s = s.trim();
-				
+
 				if(s.equals(""))
 					continue;
 
-				if(s.startsWith("g "))
-				{
+				if(s.startsWith("g ")){
 					setTextureGroup(s.substring(s.indexOf(" ") + 1).trim());
 					continue;
 				}
-				if(s.startsWith("v "))
-				{
+				if(s.startsWith("v ")){
 					s = s.substring(s.indexOf(" ") + 1).trim();
 					float[] v = new float[3];
 					for(int i = 0; i < 3; i++)
@@ -59,11 +51,11 @@ public class ModelPoolObjEntry extends ModelPoolEntry
 							v[i] = Float.parseFloat(s.substring(0));
 						s = s.substring(s.indexOf(" ") + 1).trim();
 					}
-					
+
 					float flt = v[2];
 					v[2] = -v[1];
 					v[1] = flt;
-					
+
 					verts.add(new PositionTransformVertex(v[0], v[1], v[2], 0, 0));
 					continue;
 				}
@@ -80,7 +72,7 @@ public class ModelPoolObjEntry extends ModelPoolEntry
 							v[i] = Float.parseFloat(s.substring(0));
 						s = s.substring(s.indexOf(" ") + 1).trim();
 					}
-					
+
 					uvs.add(new float[] {v[0], 1F - v[1]});
 					continue;
 				}
@@ -97,7 +89,7 @@ public class ModelPoolObjEntry extends ModelPoolEntry
 							v[i] = Float.parseFloat(s.substring(0));
 						s = s.substring(s.indexOf(" ") + 1).trim();
 					}
-					
+
 					float flt = v[2];
 					v[2] = v[1];
 					v[1] = flt;
@@ -159,13 +151,13 @@ public class ModelPoolObjEntry extends ModelPoolEntry
 							else
 								curNormals = new float[] {0, 0, 0};
 						}
-						
+
 						iNormal.add(Vec3.createVectorHelper(curNormals[0], curNormals[1], curNormals[2]));
 
 						normal[0]+= curNormals[0];
 						normal[1]+= curNormals[1];
 						normal[2]+= curNormals[2];
-						
+
 						if(vInt < verts.size())
 						{
 							v.add(verts.get(vInt).setTexturePosition(curUV[0], curUV[1]));
@@ -179,29 +171,29 @@ public class ModelPoolObjEntry extends ModelPoolEntry
 						else
 							finalPhase++;
 					} while(finalPhase < 1);
-					
+
 					float d = MathHelper.sqrt_double(normal[0] * normal[0] + normal[1] * normal[1] + normal[2] * normal[2]);
-					
+
 					normal[0]/= d;
 					normal[1]/= d;
 					normal[2]/= d;
-					
+
 					PositionTextureVertex[] vToArr = new PositionTextureVertex[v.size()];
-					
+
 					for(int i = 0; i < v.size(); i++)
 					{
 						vToArr[i] = v.get(i);
 					}
-					
+
 					TexturedPolygon poly = new TexturedPolygon(vToArr);
 					poly.setNormals(normal[0], normal[1], normal[2]);
 					poly.setNormals(iNormal);
 
 					face.add(poly);
 					texture.addPoly(poly);
-                }
+				}
 			}
-			
+
 			vertices = new PositionTransformVertex[verts.size()];
 			for(int i = 0; i < verts.size(); i++)
 			{
@@ -216,7 +208,7 @@ public class ModelPoolObjEntry extends ModelPoolEntry
 		}
 		catch(Throwable ignored)
 		{
-			
+
 		}
 	}
 }

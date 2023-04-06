@@ -2,8 +2,9 @@ package com.flansmod.common.guns;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+
+import javax.vecmath.Vector3f;
 
 import io.netty.buffer.ByteBuf;
 
@@ -42,8 +43,8 @@ public class EntityMG extends Entity implements IEntityAdditionalSpawnData
 	public ItemStack ammo;
 	public int reloadTimer;
 	public int soundDelay;
-	public float shootDelay;
-	public static List<EntityMG> mgs = new ArrayList<>();
+	public int shootDelay;
+	public static List<EntityMG> mgs = new ArrayList<EntityMG>();
 	public EntityPlayer gunner;
 	//Server side
 	public boolean isShooting;
@@ -114,8 +115,12 @@ public class EntityMG extends Entity implements IEntityAdditionalSpawnData
 		{
 			ticksSinceUsed = 0;
 			rotationYaw = gunner.rotationYaw - direction * 90;
-			while (rotationYaw < -180) { rotationYaw += 360; }
-			while (rotationYaw > 180) { rotationYaw -= 360; }
+			for (; rotationYaw < -180; rotationYaw += 360)
+			{
+			}
+			for (; rotationYaw > 180; rotationYaw -= 360)
+			{
+			}
 			rotationPitch = gunner.rotationPitch;
 			// Keep it within reasonable angles
 			if (rotationYaw > type.sideViewLimit)
@@ -183,17 +188,12 @@ public class EntityMG extends Entity implements IEntityAdditionalSpawnData
 			BulletType bullet = BulletType.getBullet(ammo.getItem());
 			if (gunner != null && !gunner.capabilities.isCreativeMode)
 				ammo.damageItem(1, gunner);
-			shootDelay = type.shootDelay;
-			float bulletSpeed = type.bulletSpeed * (bullet == null ? 1F : bullet.speedMultiplier);
-			worldObj.spawnEntityInWorld(((ItemBullet)ammo.getItem()).getEntity(worldObj, Vec3.createVectorHelper(blockX + 0.5D, blockY + type.pivotHeight, blockZ + 0.5D), (direction * 90F + rotationYaw), rotationPitch, gunner, type.bulletSpread, type.damage, bulletSpeed, ammo.getItemDamage(), type));
+			shootDelay = (int)type.shootDelay;
+			worldObj.spawnEntityInWorld(((ItemBullet)ammo.getItem()).getEntity(worldObj, Vec3.createVectorHelper(blockX + 0.5D, blockY + type.pivotHeight, blockZ + 0.5D), (direction * 90F + rotationYaw), rotationPitch, gunner, type.bulletSpread, type.damage, ammo.getItemDamage(), type));
 			if (soundDelay <= 0)
 			{
 				soundDelay = type.shootSoundLength;
-				PacketPlaySound.sendSoundPacket(posX, posY, posZ, type.gunSoundRange, dimension, type.shootSound, type.distortSound);
-				if (type.distantShootSound != null) {
-					FlansMod.packetHandler.sendToDonut(new PacketPlaySound(posX, posY, posZ, type.distantShootSound),
-							posX, posY, posZ, type.gunSoundRange, type.distantSoundRange, dimension);
-				}
+				PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, type.shootSound, type.distortSound);
 			}
 		}
 		if (soundDelay > 0)
@@ -240,22 +240,19 @@ public class EntityMG extends Entity implements IEntityAdditionalSpawnData
 				// Fire
 				BulletType bullet = BulletType.getBullet(ammo.getItem());
 				if (gunner != null && !gunner.capabilities.isCreativeMode)
-					ammo.damageItem(1, (EntityLivingBase) player);
-				shootDelay = type.shootDelay;
-				float bulletSpeed = type.bulletSpeed * (bullet == null ? 1F : bullet.speedMultiplier);
+					ammo.damageItem(1, (EntityLiving) player);
+				shootDelay = (int)type.shootDelay;
 				if (!worldObj.isRemote)
 				{
-					worldObj.spawnEntityInWorld(((ItemBullet)ammo.getItem()).getEntity(worldObj, (EntityLivingBase) player, type.bulletSpread, type.damage, bulletSpeed, false, ammo.getItemDamage(), type));
+					//this is officially broken now but worth it for infantry gun origin offset
+					worldObj.spawnEntityInWorld(((ItemBullet)ammo.getItem()).getEntity(worldObj, (EntityLivingBase) player, type.bulletSpread, type.damage, type.bulletSpeed, false, ammo.getItemDamage(), type, new Vector3f(0,0,0)));
 				}
 				if (soundDelay <= 0)
 				{
 					float distortion = type.distortSound ? 1.0F / (rand.nextFloat() * 0.4F + 0.8F) : 1F;
 					//worldObj.playSoundAtEntity(this, type.shootSound, 1.0F, distortion);
-					PacketPlaySound.sendSoundPacket(posX, posY, posZ, type.gunSoundRange, dimension, type.shootSound, type.distortSound);
-					if (type.distantShootSound != null) {
-						FlansMod.packetHandler.sendToDonut(new PacketPlaySound(posX, posY, posZ, type.distantShootSound),
-								posX, posY, posZ, type.gunSoundRange, type.distantSoundRange, dimension);
-					}
+					PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, type.shootSound, type.distortSound);
+
 					soundDelay = type.shootSoundLength;
 				}
 			} else if(gunner != null)
@@ -274,7 +271,7 @@ public class EntityMG extends Entity implements IEntityAdditionalSpawnData
 	{
 		// Player right clicked on gun
 		// Mount gun
-		if (gunner != null && gunner != player)
+		if (gunner != null && (gunner instanceof EntityPlayer) && gunner != player)
 		{
 			return true;
 		}
@@ -360,7 +357,7 @@ public class EntityMG extends Entity implements IEntityAdditionalSpawnData
 			{
 				if(TeamsManager.weaponDrops == 2)
 				{
-					EntityGunItem gunEntity = new EntityGunItem(worldObj, posX, posY, posZ, new ItemStack(type.getItem()), Collections.singletonList(ammo));
+					EntityGunItem gunEntity = new EntityGunItem(worldObj, posX, posY, posZ, new ItemStack(type.getItem()), Arrays.asList(ammo));
 					worldObj.spawnEntityInWorld(gunEntity);
 				}
 				else if(TeamsManager.weaponDrops == 1)
@@ -464,6 +461,7 @@ public class EntityMG extends Entity implements IEntityAdditionalSpawnData
 	@Override
     public ItemStack getPickedResult(MovingObjectPosition target)
     {
-		return new ItemStack(type.item, 1, 0);
+		ItemStack stack = new ItemStack(type.item, 1, 0);
+		return stack;
     }
 }

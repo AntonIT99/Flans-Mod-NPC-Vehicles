@@ -9,8 +9,11 @@ public enum EnumFireMode
 		s = s.toLowerCase();
 		if(s.equals("fullauto"))
 			return FULLAUTO;
+		//if(s.equals("minigun"))
+		//	return MINIGUN;
 		if(s.equals("minigun"))
-			return MINIGUN;
+			return FULLAUTO;
+
 		if(s.equals("burst"))
 			return BURST;
 		return SEMIAUTO;

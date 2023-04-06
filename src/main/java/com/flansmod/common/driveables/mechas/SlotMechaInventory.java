@@ -12,27 +12,25 @@ import com.flansmod.common.parts.ItemPart;
 public class SlotMechaInventory extends Slot 
 {
 	int slotd = 0;
-	MechaType mechatype;
-	public SlotMechaInventory(IInventory inv, int e, int x, int y, MechaType type) 
+	boolean restrictInput = false;
+	public SlotMechaInventory(IInventory inv, int e, int x, int y, boolean filterInput) 
 	{
 		super(inv, e, x, y);
 		slotd = e;
-		mechatype = type;
+		restrictInput = filterInput;
 	}
-	
+
 	@Override
 	public boolean isItemValid(ItemStack stack) {
 		if (stack == null || stack.getItem() == null)
 			return true;
-		if (!mechatype.restrictInventoryInput)
+		if (!restrictInput)
 			return true;
 
 		Item item = stack.getItem();
-		return ((item instanceof ItemPart) && ((ItemPart) item).type.fuel > 0) || 
-		item instanceof ItemBullet || item instanceof ItemGrenade || 
-		(item instanceof ItemMechaAddon && mechatype.allowMechaToolsInRestrictedInv);
+		return ((item instanceof ItemPart) && ((ItemPart) item).type.fuel > 0) || item instanceof ItemBullet || item instanceof ItemGrenade;
 	}
-	
+
 	@Override
     public void putStack(ItemStack stack)
     {
@@ -40,5 +38,5 @@ public class SlotMechaInventory extends Slot
         inventory.setInventorySlotContents(slotd, stack);
         onSlotChanged();
 	}
-
+//all stolen from gold sloth
 }

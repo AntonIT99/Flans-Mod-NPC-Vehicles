@@ -18,25 +18,29 @@ import com.flansmod.common.driveables.EnumDriveablePart;
 public class PacketDriveableDamage extends PacketBase
 {
 	public int entityId;
-	public float[] health;
+	public short[] health;
+	public short[] crew;
 	public boolean[] onFire;
 	
 	public PacketDriveableDamage() 
 	{
-    	health = new float[EnumDriveablePart.values().length];
+    	health = new short[EnumDriveablePart.values().length];
+    	crew = new short[EnumDriveablePart.values().length];
     	onFire = new boolean[EnumDriveablePart.values().length];
 	}
 	
 	public PacketDriveableDamage(EntityDriveable driveable)
 	{
     	entityId = driveable.getEntityId();
-    	health = new float[EnumDriveablePart.values().length];
+    	health = new short[EnumDriveablePart.values().length];
+    	crew = new short[EnumDriveablePart.values().length];
     	onFire = new boolean[EnumDriveablePart.values().length];
     	for(int i = 0; i < EnumDriveablePart.values().length; i++)
     	{
     		EnumDriveablePart ep = EnumDriveablePart.values()[i];
     		DriveablePart part = driveable.getDriveableData().parts.get(ep);
-    		health[i] = part.health;
+    		health[i] = (short)part.health;
+    		crew[i] = (short)part.crew;
     		onFire[i] = part.onFire;
     	}
 	}
@@ -47,7 +51,8 @@ public class PacketDriveableDamage extends PacketBase
     	data.writeInt(entityId);
     	for(int i = 0; i < EnumDriveablePart.values().length; i++)
     	{
-    		data.writeFloat(health[i]);
+    		data.writeShort(health[i]);
+    		data.writeShort(crew[i]);
     		data.writeBoolean(onFire[i]);
     	}
 	}
@@ -58,7 +63,8 @@ public class PacketDriveableDamage extends PacketBase
 		entityId = data.readInt();
     	for(int i = 0; i < EnumDriveablePart.values().length; i++)
     	{
-    		health[i] = data.readFloat();
+    		health[i] = data.readShort();
+    		crew[i] = data.readShort();
     		onFire[i] = data.readBoolean();
     	}
 	}
@@ -74,15 +80,14 @@ public class PacketDriveableDamage extends PacketBase
 	public void handleClientSide(EntityPlayer clientPlayer) 
 	{
 		EntityDriveable driveable = null;
-		if (clientPlayer != null && clientPlayer.worldObj != null && clientPlayer.worldObj.loadedEntityList != null) {
-			for (Object obj : clientPlayer.worldObj.loadedEntityList) {
-				if (obj instanceof EntityDriveable && ((Entity) obj).getEntityId() == entityId) {
-					driveable = (EntityDriveable) obj;
-					break;
-				}
+		for(Object obj : clientPlayer.worldObj.loadedEntityList)
+		{
+			if(obj instanceof EntityDriveable && ((Entity)obj).getEntityId() == entityId)
+			{
+				driveable = (EntityDriveable)obj;
+				break;
 			}
 		}
-		
 		if(driveable != null)
 		{
         	for(int i = 0; i < EnumDriveablePart.values().length; i++)
@@ -90,6 +95,7 @@ public class PacketDriveableDamage extends PacketBase
         		EnumDriveablePart ep = EnumDriveablePart.values()[i];
         		DriveablePart part = driveable.getDriveableData().parts.get(ep);
         		part.health = health[i];
+        		part.crew = crew[i];
         		part.onFire = onFire[i];
         	}
 		}

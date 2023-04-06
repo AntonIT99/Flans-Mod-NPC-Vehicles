@@ -2,5 +2,5 @@ package com.flansmod.common.guns.raytracing;
 
 public enum EnumHitboxType
 {
-	LEGS, BODY, HEAD, LEFTARM, RIGHTARM, LEFTITEM, RIGHTITEM
+	BODY, NAPE, LEFTARM, RIGHTARM, LEFTITEM, RIGHTITEM, LEGS, FACE, BACK, CRANIUM, NEARBY
 }

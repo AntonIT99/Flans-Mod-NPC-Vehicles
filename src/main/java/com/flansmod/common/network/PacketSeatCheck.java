@@ -84,20 +84,20 @@ public class PacketSeatCheck extends PacketBase
 		}
 	}
 
-	private void log(String s, EntityPlayer player)
+	private static void log(String s, EntityPlayer player)
 	{
 		Entity re = player.ridingEntity;
-		FlansMod.log(s +" :"+player.getDisplayName()+
-				" : rideEntity="+(re!=null? re.getClass().getName(): re)+
-				" : seatEntityId="+entityId+
-				" : check="+checkCount);
+		//System.out.println(s +" :"+player.getDisplayName()+
+		//		" : rideEntity="+(re!=null? re.getClass().getName(): re)+
+		//		" : seatEntityId="+entityId+
+		//		" : check="+checkCount);
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void handleClientSide(EntityPlayer clientPlayer) 
 	{
-		//log("handleClientSide", clientPlayer);
+		log("handleClientSide", clientPlayer);
 		
 		if(clientPlayer.ridingEntity==null && entityId != -1)
 		{
@@ -111,9 +111,9 @@ public class PacketSeatCheck extends PacketBase
 				Entity entity = clientPlayer.worldObj.getEntityByID(entityId);
 				if(entity instanceof EntitySeat)
 				{
-					//FlansMod.log("mount seat :"+clientPlayer.getDisplayName()+
-							//" : seatEntityId="+entityId+
-							//" : check="+checkCount);
+					System.out.println("mount seat :"+clientPlayer.getDisplayName()+
+							" : seatEntityId="+entityId+
+							" : check="+checkCount);
 
 					clientPlayer.mountEntity(entity);
 				}

@@ -1,0 +1,37 @@
+//Small countries
+Malta,3FBE33
+San Marino,3F183A
+Vatican City,3F1CE4
+//Italy
+Northern Sardinia,3FFF33
+Southern Sardinia,3FC99F
+Western Sicily,3F5D2F
+Eastern Sicily,3FE100
+Calabria,3FDDEC
+Basilicata,3FB62F
+Northern Apulia,3FBEDD
+Southern Apulia,3F2310
+Campania,3FF010
+Molise,3F1C18
+Abruzzo,3FA378
+Marche,3FE142
+Umbria,3F2FD9
+Rome,3FD133
+Lazio,3F1F59
+Emilia,3F80E1
+Romagna,3FE48F
+Northern Tuscany,3FDD42
+Southern Tuscany,3F2708
+Liguria,3F9727
+Southern Veneto,3F3E5D
+Northern Veneto,3F4A18
+Eastern Lombardy,3F68D8
+Western Lombardy,3FD980
+Trentino-South Tyrol,35D653
+Venezia,3ED6BC
+Northern Piedmont,085AD6
+Southern Piedmont,33D64B
+//France
+Corsica,3F8080
+//Spain
+Balearic Islands,3F744A

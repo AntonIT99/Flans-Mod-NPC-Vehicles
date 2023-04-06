@@ -1,16 +1,19 @@
 package com.flansmod.common.driveables.mechas;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.flansmod.client.model.ModelMecha;
 import com.flansmod.common.FlansMod;
 import com.flansmod.common.driveables.DriveablePosition;
 import com.flansmod.common.driveables.DriveableType;
 import com.flansmod.common.driveables.EnumDriveablePart;
+import com.flansmod.common.driveables.EnumWeaponType;
 import com.flansmod.common.driveables.PilotGun;
 import com.flansmod.common.driveables.DriveableType.ParticleEmitter;
 import com.flansmod.common.guns.BulletType;
 import com.flansmod.common.guns.EnumFireMode;
+import com.flansmod.common.guns.GunType;
 import com.flansmod.common.types.TypeFile;
 import com.flansmod.common.vector.Vector3f;
 
@@ -37,6 +40,22 @@ public class MechaType extends DriveableType
 	public float height = 3F, width = 2F;
 	/** The height of chassis above the ground; for use when legs are gone */
 	public float chassisHeight = 1F;
+	
+	
+	//labjac
+	 public boolean isValidGun(GunType gunType)
+	    {
+	    	return (acceptAllGuns || allowedGuns.contains(gunType));
+	    }
+	 //noises can be configged for other animals
+		public String panicSound = "";
+		public String runAmokSound = "";
+		//equivalent to vehicle core health
+		public float morale = 1;
+		//in 1 second cycles not ticks
+		public int panicTime = 40;
+	
+
 	
 	/** The default reach of tools. Tools can multiply this base reach as they wish */
 	public float reach = 10F;
@@ -73,19 +92,17 @@ public class MechaType extends DriveableType
 	public float rightHandModifierX = 0;
 	public float rightHandModifierY = 0;
 	public float rightHandModifierZ = 0;
-
+	
 	public ArrayList<LegNode> legNodes = new ArrayList<LegNode>();
-		
+	
 	public float legAnimSpeed = 0;
-
-	public String stompSound = "";	
+	
+	public String stompSound = "";
 	public int stompSoundLength = 0;
 	public float stompRangeLower = 0F;
 	public float stompRangeUpper = 0F;
 
-	public boolean restrictInventoryInput = false;
-	public boolean allowMechaToolsInRestrictedInv = true;
-
+	@SuppressWarnings("hiding")
 	public static ArrayList<MechaType> types = new ArrayList<MechaType>();
 
 	public MechaType(TypeFile file)
@@ -93,6 +110,13 @@ public class MechaType extends DriveableType
 		super(file);
 		types.add(this);
 	}
+	//labjac
+	public boolean acceptAllGuns = true;
+	/** The list of bullet types that can be used in this driveable for the main gun (tank shells, plane bombs etc) */
+	public List<GunType> allowedGuns = new ArrayList<GunType>();
+	public boolean unpunchable = false;
+	//from gold sloth
+	public boolean restrictInventoryInput;
 	
     @Override
 	protected void read(String[] split, TypeFile file)
@@ -100,6 +124,12 @@ public class MechaType extends DriveableType
 		super.read(split, file);
 		try
 		{
+			
+
+			
+			
+			
+			
 			//Movement modifiers
 			if(split[0].equals("TurnLeftSpeed"))
 				turnLeftModifier = Float.parseFloat(split[1]);
@@ -130,6 +160,33 @@ public class MechaType extends DriveableType
 				stompRangeLower = Float.parseFloat(split[1]);
 			else if(split[0].equals("StompRangeUpper"))
 				stompRangeUpper = Float.parseFloat(split[1]);
+			
+			//from gold sloth
+			else if(split[0].equals("RestrictInventoryInput"))
+				restrictInventoryInput = Boolean.parseBoolean(split[1]);
+			
+			//labjac elephants and limited guns
+			else if(split[0].equals("AddGun"))
+				allowedGuns.add(GunType.getGunForMech(split[1]));
+			else if(split[0].equals("AllowAllGuns") || split[0].equals("AcceptAllGuns"))
+				acceptAllGuns = Boolean.parseBoolean(split[1]);
+			else if(split[0].equals("panicSound"))
+			{
+				panicSound = split[1];
+				FlansMod.proxy.loadSound(contentPack, "driveables", split[1]);
+			}
+			else if(split[0].equals("runAmokSound"))
+			{
+				runAmokSound = split[1];
+				FlansMod.proxy.loadSound(contentPack, "driveables", split[1]);
+			}
+			else if(split[0].equals("morale"))
+				morale = Float.parseFloat(split[1]);
+			else if(split[0].equals("panicTime"))
+				panicTime = Integer.parseInt(split[1]);
+			if(split[0].equals("unpunchable"))
+				unpunchable = Boolean.parseBoolean(split[1].toLowerCase());
+			
 			
 			if(split[0].equals("LeftArmOrigin"))
 				leftArmOrigin = new Vector3f(Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F, Float.parseFloat(split[3]) / 16F);
@@ -194,10 +251,6 @@ public class MechaType extends DriveableType
 			}
 			else if(split[0].equals("LegAnimSpeed"))
 				legAnimSpeed = Float.parseFloat(split[1]);
-			else if(split[0].equals("RestrictInventoryInput"))
-				restrictInventoryInput = Boolean.parseBoolean(split[1]);
-			else if(split[0].equals("AllowMechaToolsInRestrictedInv"))
-				allowMechaToolsInRestrictedInv = Boolean.parseBoolean(split[1]);
 		}
 		catch (Exception ignored)
 		{
@@ -209,8 +262,8 @@ public class MechaType extends DriveableType
 	{
 		model = FlansMod.proxy.loadModel(modelString, shortName, ModelMecha.class);
 	}
-    
-    private DriveablePosition getShootPoint(String[] split)
+
+    private static DriveablePosition getShootPoint(String[] split)
     {
     	//No need to look for a specific gun.
     	if(split.length == 5)

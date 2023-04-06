@@ -15,6 +15,7 @@ public class PacketKillMessage extends PacketBase
 	public String killerName;
 	public String killedName;
 	public boolean headshot;
+	public boolean dumbMessage = false;
 	public float distance;
 	
 	public PacketKillMessage()
@@ -32,26 +33,43 @@ public class PacketKillMessage extends PacketBase
 		distance = dist;
 	}
 	
+	public PacketKillMessage(String murderer, String victim)
+	{
+		dumbMessage = true;
+		killerName = murderer;
+		killedName = victim;
+	}
+	
 	@Override
 	public void encodeInto(ChannelHandlerContext ctx, ByteBuf data) 
 	{
+		if(!dumbMessage)
+		{
 		data.writeBoolean(headshot);
 		writeUTF(data, killedBy.shortName);
 		data.writeInt(itemDamage);
+		data.writeFloat(distance);
+		}
+		
+		data.writeBoolean(dumbMessage);
 		writeUTF(data, killerName);
 		writeUTF(data, killedName);
-		data.writeFloat(distance);
 	}
 
 	@Override
 	public void decodeInto(ChannelHandlerContext ctx, ByteBuf data) 
 	{
+		if(!dumbMessage)
+		{
 		headshot = data.readBoolean();
 		killedBy = InfoType.getType(readUTF(data));
 		itemDamage = data.readInt();
+		distance = data.readFloat();
+		}
+		
+		dumbMessage = data.readBoolean();
 		killerName = readUTF(data);
 		killedName = readUTF(data);
-		distance = data.readFloat();
 	}
 
 	@Override
@@ -64,6 +82,9 @@ public class PacketKillMessage extends PacketBase
 	@Override
 	public void handleClientSide(EntityPlayer clientPlayer) 
 	{
+		if (!dumbMessage)
 		TickHandlerClient.addKillMessage(headshot, killedBy,itemDamage, killerName, killedName);
+		else
+			TickHandlerClient.addKillMessageDumb(killerName, killedName);
 	}
 }

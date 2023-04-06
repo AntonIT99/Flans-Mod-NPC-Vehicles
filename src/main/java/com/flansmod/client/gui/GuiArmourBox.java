@@ -22,7 +22,6 @@ public class GuiArmourBox extends GuiScreen
 {
 	private static final ResourceLocation texture = new ResourceLocation("flansmod", "gui/armourBox.png");
 	private InventoryPlayer inventory;
-	private Minecraft mc;
 	private static RenderItem itemRenderer = new RenderItem();
 	private ArmourBoxType type;
 	private int page;

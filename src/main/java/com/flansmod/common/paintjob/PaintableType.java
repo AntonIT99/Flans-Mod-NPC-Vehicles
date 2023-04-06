@@ -1,6 +1,7 @@
 package com.flansmod.common.paintjob;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.flansmod.common.FlansMod;
 import com.flansmod.common.types.InfoType;
@@ -8,6 +9,7 @@ import com.flansmod.common.types.TypeFile;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class PaintableType extends InfoType
 {
@@ -15,15 +17,12 @@ public abstract class PaintableType extends InfoType
 	/** The list of all available paintjobs for this gun */
 	public ArrayList<Paintjob> paintjobs = new ArrayList<Paintjob>();
 	/** The default paintjob for this gun. This is created automatically in the load process from existing info */
-	public Paintjob defaultPaintjob;
-	/** Whether to add this paintjob to the paintjob table, gunmode table e.t.c. */
-	public Boolean addAnyPaintjobToTables = true;
+	public Paintjob defaultPaintjob;	
 	/** Assigns IDs to paintjobs */
 	private int nextPaintjobID = 1;
 	/** Add a friendly paintjob name */
 	private String paintjobName;
-
-
+	
 	public PaintableType(TypeFile file)
 	{
 		super(file);
@@ -39,8 +38,8 @@ public abstract class PaintableType extends InfoType
 	public void postRead(TypeFile file)
 	{		
 		//After all lines have been read, set up the default paintjob
-		defaultPaintjob = new Paintjob(0, iconPath, texture, new ItemStack[0], true);
-		defaultPaintjob = new Paintjob(0, "default", iconPath, texture, new ItemStack[0], true);
+		defaultPaintjob = new Paintjob(0, iconPath, texture, new ItemStack[0]);
+		defaultPaintjob = new Paintjob(0, "default", iconPath, texture, new ItemStack[0]);
 		//Move to a new list to ensure that the default paintjob is always first
 		ArrayList<Paintjob> newPaintjobList = new ArrayList<Paintjob>();
 		newPaintjobList.add(defaultPaintjob);
@@ -67,7 +66,7 @@ public abstract class PaintableType extends InfoType
 				//	if(splat[0].equals(iconPath))
 				//		split[1] = splat[1];
 				//}
-				paintjobs.add(new Paintjob(nextPaintjobID++, split[1], split[2], dyeStacks, true));
+				paintjobs.add(new Paintjob(nextPaintjobID++, split[1], split[2], dyeStacks));
 			}
 
 		} 
@@ -86,38 +85,9 @@ public abstract class PaintableType extends InfoType
 				ItemStack[] dyeStacks = new ItemStack[(split.length - 4) / 2];
 				for(int i = 0; i < (split.length - 4) / 2; i++)
 					dyeStacks[i] = new ItemStack(Items.dye, Integer.parseInt(split[i * 2 + 5]), getDyeDamageValue(split[i * 2 + 4]));
-				paintjobs.add(new Paintjob(nextPaintjobID++, split[1], split[2], split[3], dyeStacks, true));
+				paintjobs.add(new Paintjob(nextPaintjobID++, split[1], split[2], split[3], dyeStacks));
 			}
 		} 
-		catch (Exception e)
-		{
-			FlansMod.log("Reading file failed : " + shortName);
-			e.printStackTrace();
-		}
-
-		try
-		{
-			// Other configs..
-			if (split[0].equalsIgnoreCase("AddPaintableToTables"))
-			{
-				if (split.length == 2)
-				{
-					addAnyPaintjobToTables = Boolean.parseBoolean(split[1]);
-				}
-				else if (split.length == 3)
-				{
-					String paintjobId = split[1];
-
-					for (Paintjob paintjob : paintjobs)
-					{
-						if (paintjob.textureName.equals(paintjobId))
-						{
-							paintjob.addToTables = Boolean.parseBoolean(split[2]);
-						}
-					}
-				}
-			}
-		}
 		catch (Exception e)
 		{
 			FlansMod.log("Reading file failed : " + shortName);

@@ -23,7 +23,8 @@ public class CollisionTest {
 	
 	
 	//Collision information
-	public boolean didCollide;
+	public boolean didCollide=false;
+	public boolean evil = false;
 	public double nearestDistance;
 	public Vector3f intersectionPoint;
 	
@@ -38,8 +39,11 @@ public class CollisionTest {
 	//Initial constructor, check triangles based on this.
 	public CollisionTest(Vector3f ellipsoid, Vector3f origin, Vector3f motion)
 	{
+		//the thing labjac manually set size to since size thing was borked
 		this.eRad = ellipsoid;
+		//bullet motion?
 		this.R3Velocity = motion;
+		//bullet hit location?
 		this.R3Position = origin;
 		
 		this.velocity = ConvertR3ToESpace(motion);
@@ -118,7 +122,7 @@ public class CollisionTest {
 			boolean foundCollision = false;
 			float t = 1.0F;
 			
-			//First check for collision inside the triangle. This must happen at t0 and only when the sphere is not embedded
+			//First check for collision inside the triangle. This must happen at t0 and only when the sphere is not embedded    important checker, smart from side shots
 			if(!embeddedInPlane)
 			{
 				Vector3f baseSubNormal = Vector3f.sub(this.basePoint, trianglePlane.normal, null);
@@ -153,7 +157,7 @@ public class CollisionTest {
 				if(getLowestRoot(a,b,c,t) != 123456789)
 				{
 					t = getLowestRoot(a,b,c,t);
-					foundCollision = true;
+				foundCollision = true;;
 					collisionPoint = p1;
 				}
 				
@@ -164,7 +168,7 @@ public class CollisionTest {
 				if(getLowestRoot(a,b,c,t) != 123456789)
 				{
 					t = getLowestRoot(a,b,c,t);
-					foundCollision = true;
+				foundCollision = true;
 					collisionPoint = p2;
 				}
 				
@@ -175,7 +179,7 @@ public class CollisionTest {
 				if(getLowestRoot(a,b,c,t) != 123456789)
 				{
 					t = getLowestRoot(a,b,c,t);
-					foundCollision = true;
+				foundCollision = true;
 					collisionPoint = p3;
 				}
 				
@@ -205,7 +209,7 @@ public class CollisionTest {
 					{
 						//Intersection took place within segment
 						t = newT;
-						foundCollision = true;
+					foundCollision = true;
 						collisionPoint = Vector3f.add(p1, new Vector3f(f*edge.x, f*edge.y, f*edge.z), null);
 					}
 				}
@@ -273,6 +277,7 @@ public class CollisionTest {
 				
 				if(!test.didCollide || distToCollision < test.nearestDistance)
 				{
+				//	test.nearestDistance = distToCollision;
 					test.nearestDistance = distToCollision;
 					test.intersectionPoint = collisionPoint;
 					test.didCollide = true;

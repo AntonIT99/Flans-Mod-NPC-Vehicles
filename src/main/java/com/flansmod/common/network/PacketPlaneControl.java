@@ -13,7 +13,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class PacketPlaneControl extends PacketDriveableControl 
 {
-	public boolean gear, doors, wings, flare; 
+	@SuppressWarnings("hiding")
+	public boolean gear, doors, wings, flare, flaps; 
 	public int state;
 
 	public PacketPlaneControl() {}
@@ -26,6 +27,7 @@ public class PacketPlaneControl extends PacketDriveableControl
 		doors = plane.varDoor;
 		wings = plane.varWing;
 		state = plane.anim.state;
+		flaps = plane.varFlap;
 		
 	}
 	
@@ -36,6 +38,7 @@ public class PacketPlaneControl extends PacketDriveableControl
     	data.writeBoolean(gear);
     	data.writeBoolean(doors);
     	data.writeBoolean(wings);
+    	data.writeBoolean(flaps);
     	data.writeInt(state);
 	}
 
@@ -46,6 +49,7 @@ public class PacketPlaneControl extends PacketDriveableControl
 		gear = data.readBoolean();
 		doors = data.readBoolean();
 		wings = data.readBoolean();
+		flaps = data.readBoolean();
 		state = data.readInt();
 	}
 	
@@ -57,6 +61,7 @@ public class PacketPlaneControl extends PacketDriveableControl
 		plane.varDoor = doors;
 		plane.varGear = gear;
 		plane.varWing = wings;
+		plane.varFlap = flaps;
 		plane.anim.state = state;
 	}
 }

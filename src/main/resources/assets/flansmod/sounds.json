@@ -1,10 +1,76 @@
 {
-  "emptyclick": {
-    "category": "player",
-    "sounds": ["flansmod:emptyclick"]
-  },
-  "defaultshellinsert": {
-    "category": "player",
-    "sounds": ["flansmod:defaultshellinsert"]
-  }
+	"emptyclick": {
+		"category" : "player",
+		"sounds" : [ "flansmod:emptyclick" ]
+		
+	},
+	"elephantDying": {
+		"category" : "player",
+		"sounds" : [ "flansmod:elephantDying" ]
+		
+	},
+	"elephant": {
+		"category" : "player",
+		"sounds" : [ "flansmod:elephant" ]
+		
+	},
+	"overheatSound": {
+		"category" : "player",
+		"sounds" : [ "flansmod:overheatSound" ]
+		
+	},
+	"elephant2": {
+		"category" : "player",
+		"sounds" : [ "flansmod:elephant2" ]
+		
+	},
+	"woodHit": {
+		"category" : "player",
+		"sounds" : [ "flansmod:woodHit" ]
+		
+	},
+	"woodBreak": {
+		"category" : "player",
+		"sounds" : [ "flansmod:woodBreak" ]
+	},
+	"Crash": {
+		"category" : "player",
+		"sounds" : [ "flansmod:Crash" ]
+		
+	},
+		"elephantAttack": {
+		"category" : "player",
+		"sounds" : [ "flansmod:elephantAttack" ]
+		
+	},
+	"Repair": {
+		"category" : "player",
+		"sounds" : [ "flansmod:Repair" ]
+		
+	},
+	"AnalogComputerSound": {
+		"category" : "player",
+		"sounds" : [ "flansmod:AnalogComputerSound" ]
+		
+	},
+	"sonicBoom": {
+		"category" : "player",
+		"sounds" : [ "flansmod:sonicBoom" ]
+		
+	},
+		"tankSight": {
+		"category" : "player",
+		"sounds" : [ "flansmod:tankSight" ]
+		
+	},
+	"elephantHurt": {
+		"category" : "player",
+		"sounds" : [ "flansmod:elephantHurt" ]
+		
+	},
+	"elephantRage": {
+		"category" : "player",
+		"sounds" : [ "flansmod:elephantRage" ]
+		
+	}
 }

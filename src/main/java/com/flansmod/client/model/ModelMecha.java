@@ -2,9 +2,7 @@ package com.flansmod.client.model;
 
 import org.lwjgl.opengl.GL11;
 
-import com.flansmod.client.FlansCrash;
 import com.flansmod.client.tmt.ModelRendererTurbo;
-import com.flansmod.common.FlansMod;
 import com.flansmod.common.driveables.DriveableType;
 import com.flansmod.common.driveables.EntityDriveable;
 import com.flansmod.common.driveables.EnumDriveablePart;
@@ -105,12 +103,18 @@ public class ModelMecha extends ModelDriveable
         		model.render(f5);
 
 		float pitch = 0;
-		// Null checks - there may be frames rendered before seat data is actually setup.
-		if(mecha.seats[0] != null && mecha.seats[0].looking != null){ pitch = mecha.seats[0].looking.getPitch();}
-		// Below angles seem to be unused
-		// float dPitch = (mecha.seats[0].looking.getPitch() - mecha.seats[0].prevLooking.getPitch());
-		// float aPitch = mecha.seats[0].prevLooking.getPitch() + dPitch * f;
+		//labjac anti seat glitch vaccine
+		if(mecha.seats[0] != null)
+		{
+		if(mecha.seats[0].looking != null)
+		{ pitch = mecha.seats[0].looking.getPitch();
+		float dPitch = (mecha.seats[0].looking.getPitch() - mecha.seats[0].prevLooking.getPitch());
+		float aPitch = mecha.seats[0].prevLooking.getPitch() + dPitch * f;}
 		
+		else if(mecha.seats[0].looking == null){ pitch = 0;}
+		}
+		
+        
         if(mecha.isPartIntact(EnumDriveablePart.barrel))
         {
 			for (ModelRendererTurbo aBarrelModel : barrelModel) {

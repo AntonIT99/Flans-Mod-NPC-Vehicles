@@ -28,7 +28,6 @@ public class BlockFlansWorkbench extends Block
         setCreativeTab(FlansMod.tabFlanDriveables);
     }
     
-    @SuppressWarnings("unchecked")
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List par3List)
     {
@@ -43,14 +42,9 @@ public class BlockFlansWorkbench extends Block
     @Override
     public IIcon getIcon(int i, int j)
     {
-        if(i == 1)
+        if(i == 1 && j < top.length) //the && statement is weeder extra defense against code chickens
         {
-            if (j <= 2 && j >= 0) {
-                return top[j];
-            } else {
-                return side;
-            }
-            
+            return top[j];
         } else
         {
             return side;

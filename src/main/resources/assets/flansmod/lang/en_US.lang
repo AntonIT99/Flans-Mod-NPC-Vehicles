@@ -10,6 +10,7 @@ item.opStick.0.name=Stick of Ownership
 item.opStick.1.name=Stick of Connecting
 item.opStick.2.name=Stick of Mapping
 item.opStick.3.name=Stick of Destruction
+item.opStick.4.name=Ten Shekel Coin
 item.flagpole.name=Flagpole
 tile.teamsSpawner.0.name=Item Spawner
 tile.teamsSpawner.1.name=Player Spawner

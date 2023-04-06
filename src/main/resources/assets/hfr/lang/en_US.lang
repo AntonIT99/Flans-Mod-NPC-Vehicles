@@ -1,0 +1,359 @@
+itemGroup.tabHFR=xRadar
+
+potion.hfr_emp=EMP
+
+death.attack.blast=%1$s was obliterated.
+death.attack.zyklon=%1$s died from natural causes.
+death.attack.wire=%1$s got tangled in barbed wire.
+
+hfr_steam.name=Steam
+tile.steam.name=Steam
+tile.oil.name=Crude Oil
+hfr_oil.name=Crude Oil
+tile.gas.name=Natural Gas
+hfr_gas.name=Natural Gas
+tile.petroil.name=Bunker Fuel
+hfr_petroil.name=Bunker Fuel
+tile.diesel.name=Diesel
+hfr_diesel.name=Diesel
+tile.kerosene.name=Kerosene
+hfr_kerosene.name=Kerosene
+tile.petroleum.name=Petroleum
+hfr_petroleum.name=Petroleum
+
+tile.machine_siren.name=Siren
+container.siren=Siren
+tile.machine_radar.name=Radar
+container.radar=Radar
+tile.machine_forcefield.name=Forcefield Generator
+container.forceField=Forcefield Generator
+tile.machine_derrick.name=Oil Derrick
+container.oilWell=Oil Derrick
+tile.oil_pipe.name=Oil Drill Pipe
+tile.machine_refinery.name=Crude Oil Refinery
+container.machineRefinery=Crude Oil Refinery
+tile.railgun_plasma.name=Railgun
+container.railgun=Railgun
+tile.machine_tank.name=Oil Tank
+container.tank=Oil Tank
+tile.cannon_naval.name=16" Naval Gun
+container.naval=16" Naval Gun
+tile.hydro_core.name=Hydroelectric Dam Core Component
+container.hydro=Hydroelectric Dam
+tile.machine_net.name=Fishing Net
+container.machineNet=Fishing Net
+tile.machine_market.name=BobShop
+tile.builder.name=Schematic Printer
+container.builder=Schematic Printer
+tile.machine_uni.name=University
+container.machineUni=University
+tile.machine_emp.name=EM-Jammer
+container.machineEMP=EM-Jammer
+tile.machine_grainmill.name=Grain Mill
+container.grainmill=Grain Mill
+tile.machine_blastfurnace.name=Blast Furnace
+container.blastFurnace=Blast Furnace
+tile.box.name=Moldy Cardboard Box
+container.box=Moldy Cardboard Box
+tile.machine_coalmine.name=Coal Mine
+container.coalMine=Coal Mine
+tile.machine_coalgen.name=Stirling Engine
+container.coalGen=Stirling Engine
+tile.machine_factory.name=Production Line
+container.machineFactory=Production Line
+tile.machine_battery.name=Battery Block
+container.battery=Battery Block
+tile.machine_windmill.name=Large Wind Turbine
+tile.machine_waterwheel.name=Water Mill
+tile.machine_diesel.name=Diesel Generator
+container.dieselGen=Diesel Generator
+tile.machine_turbine.name=Industrial Steam Turbine
+container.machineTurbine=Industrial Steam Turbine
+tile.machine_temple.name=Temple
+container.temple=Temple
+tile.machine_foundry.name=Steel Foundry
+container.foundry=Steel Foundry
+tile.machine_sawmill.name=Sawmill
+container.machineSawmill=Sawmill
+tile.machine_efurnace.name=Electric Furnace
+container.machineEFurnace=Electric Furnace
+
+tile.officer_chest.name=Officer Chest
+
+tile.teleporter.name=Teleporter
+
+tile.clowder_flag.name=Clowder Flag
+container.flagPole=Clowder Flag
+tile.clowder_flag_big.name=Clowder Territory Flag
+tile.clowder_cap.name=Clowder Cap Point (ALSO DON'T USE THIS ONE AS WELL)
+tile.clowder_conquerer.name=Clowder Conquest Flag
+
+tile.rbmk_element.name=RBMK Fuel Rod
+tile.rbmk_rods.name=RBMK Control Rods
+tile.block_graphite.name=Block of Graphite
+tile.block_boron.name=Block of Boron
+
+tile.barbed_wire.name=Barbed Wire
+
+tile.display.name=Stock Market Display
+
+tile.oil_duct.name=Oil Pipe
+tile.gas_duct.name=Gas Pipe
+
+tile.concrete.name=Early Concrete
+tile.concrete_bricks.name=Cinder Blocks
+tile.concrete_flat.name=Modern Concrete
+tile.concrete_bolted.name=Ferro-Concrete
+tile.hard_stone.name=Hardened Rock
+tile.hard_mesh.name=Reinforced Mesh
+tile.concrete_hazard.name=Hazard Concrete
+tile.concrete_rocks.name=Broken Concrete
+tile.barricade.name=Sand Bags
+
+tile.temp.name=Temporary Block
+tile.ore_oil.name=Oil Deposit
+tile.soil_moon.name=Moon Soil
+tile.ore_oil_empty.name=Empty Oil Deposit
+tile.rice.name=Rice Plant
+tile.soil_mud.name=Watery Mud
+
+tile.ore_uranium.name=Uranium Ore
+tile.ore_boron.name=Boron Ore
+
+tile.uni_foundation.name=Foundation Block
+tile.asphalt.name=Asphalt Road
+
+tile.seal_controller.name=Silo Hatch Controller
+tile.seal_frame.name=Silo Hatch Frame
+tile.seal_hatch.name=Silo Hatch
+
+tile.vault_door.name=Vault-Tec Blast Door
+tile.vault_door_dummy.name=Blast Door Dummy Block
+
+tile.vent_chlorine_seal.name=Mustard Gas Vent
+tile.chlorine_gas.name=Mustard Gas
+
+tile.hydro_wall.name=Hydroelectric Dam Wall
+tile.hydro_turbine.name=Hydroelectric Dam Turbine
+
+tile.hesco_block.name=HESCO Terrablock
+tile.palisade.name=Palisade
+tile.stone_wall.name=Stone Wall
+tile.brick_wall.name=Brick Wall
+tile.great_wall.name=Great Wall
+tile.berlin_wall.name=Berlin Wall
+tile.med_tent.name=Medical Tent
+tile.tp_tent.name=Warp Tent
+tile.statue.name=Statue
+
+tile.launch_pad.name=Missile Launch Pad
+container.launchPad=Launch Pad
+
+tile.rope.name=Rope
+item.hook.name=Grappling Hook
+
+item.hammer.name=Maul of Bench Appearo
+item.wand.name=ThotBeGone Anti Mob Wand
+item.wand_iron.name=Iron Wand
+item.wand_coal.name=Coal Wand
+item.battery.name=HFR Infinite Battery
+item.oil_detector.name=Oil Detector
+item.gas_mask.name=Dräger M65 Gas Mask
+item.gas_mask_grey.name=Dräger M65 Gas Mask Grey Edition
+item.gas_mask_black.name=Dräger M65 Gas Mask Black Edition
+item.graphene_vest.name=Graphene Vest
+item.clowder_banner.name=Wearable Clowder Banner
+item.lead_boots.name=Lead Boots
+item.scanner.name=Block Damage Scanner
+item.repair_1.name=Duct Tape
+item.repair_2.name=Trowel and Mortar
+item.repair_3.name=Replacement Wall
+
+item.farmer.name=Farming Contract
+item.miner.name=Mining Contract
+item.miner_supplies.name=Mining Supplies
+item.canary.name=Canary
+
+item.grenade_gas.name=Gas Grenade
+item.grenade_nuclear.name=Atomic Grenade
+item.grenade_boxcar.name=Giant Rotating Boxcar
+
+item.hatter.name=Hat Tool
+
+item.cassette.name=Siren Track
+item.coil.name=Golden Coil
+item.circuit.name=Circuit
+item.magnetron.name=Magnetron
+item.uranium.name=Uranium 235 Pellet
+item.uranium_fuel.name=Enriched Uranium Fuel
+item.uranium_depleted.name=Depleted Uranium Fuel
+item.plutonium.name=Plutonium 239 Pellet
+item.americium.name=Americium 242 Pellet
+item.upgrade_radius.name=Forcefield Radius Upgrade
+item.upgrade_health.name=Forcefield Shield Upgrade
+item.upgrade_bedrock.name=Forcefield Invincibility Upgrade
+
+item.canister_empty.name=Empty Canister
+item.canister_oil.name=Crude Oil Canister
+item.canister_petroil.name=Bunker Fuel Canister
+item.canister_diesel.name=Diesel Canister
+item.canister_kerosene.name=Kerosene Canister
+item.gas_empty.name=Empty Gas Tank
+item.gas_natural.name=Natural Gas Tank
+item.gas_petroleum.name=Petroleum Gas Tank
+
+item.components_wood.name=Wooden Beams
+item.components_scaffold.name=Sturdy Scaffolding
+item.components_steel.name=Steel Scaffolding
+item.components_mechanical.name=Mechanical Components
+item.components_electronics.name=Circuitry
+item.components_plating.name=Reinforced Plating
+
+item.part_rifled_barrel.name=Rifled Barrel
+item.part_smoothbore_barrel.name=Smoothbore Barrel
+item.part_plate.name=Plating
+item.part_gear.name=Gear
+item.part_rod.name=Metal Rod
+item.part_frame.name=Metal Frame
+item.part_spring.name=Spring
+
+item.part_grate.name=Grate
+item.part_suspension.name=Large Spring
+item.part_plating_1.name=Light Armor Plate
+item.part_plating_2.name=Medium Armor Plate
+item.part_plating_3.name=Heavy Armor Plate
+item.part_hull_1.name=Light Ship Hull
+item.part_hull_2.name=Medium Ship Hull
+item.part_hull_3.name=Heavy Ship Hull
+item.part_mechanism_1.name=Basic Mechanic Parts
+item.part_mechanism_2.name=Advanced Mechanic Parts
+item.part_mechanism_3.name=Complex Mechanic Parts
+item.part_steel_wheel.name=Steel Rims
+item.part_wheel.name=Wheel
+item.part_sawblade.name=Sawblade
+item.part_track.name=Tank Track Piece
+item.part_treads.name=Tank Tracks
+item.part_rubber_drop.name=Rubber Droplet
+item.part_raw_rubber.name=Raw Rubber Bar
+item.part_rubber.name=Vulcanized Rubber
+item.part_sawdust.name=Sawdust
+item.part_cannon_1.name=Small Calibre Cannon
+item.part_cannon_2.name=Medium Calibre Cannon
+item.part_cannon_3.name=Large Calibre Cannon
+item.part_chassis_1.name=Light Chassis
+item.part_chassis_2.name=Medium Chassis
+item.part_chassis_3.name=Heavy Chassis
+item.part_engine_1.name=Light Engine
+item.part_engine_2.name=Medium Engine
+item.part_engine_3.name=Heavy Engine
+item.part_ship_1.name=Small Ship Body
+item.part_ship_2.name=Medium Ship Body
+item.part_ship_3.name=Large Ship Body
+
+item.kit_singleshot.name=Single-Shot Rifle Kit
+item.kit_repeating.name=Repeating Rifle Kit
+item.kit_auto.name=Self-Loading Rifle Kit
+item.kit_shotgun.name=Smoothbore Kit
+item.kit_revolver.name=Handgun Kit
+item.kit_smg.name=SMG Kit
+item.kit_hmg.name=HMG Kit
+
+item.ingot_boron.name=Boron Ingot
+item.ingot_graphite.name=Graphite Brick
+item.ingot_graphene.name=Graphene Brick
+
+item.rice.name=Raw Rice
+item.rice_seeds.name=Rice Seeds
+item.rice_bag.name=Sack of Rice
+item.rice_sticky.name=Sticky Rice
+item.mutton_raw.name=Raw Mutton
+item.mutton_cooked.name=Cooked Mutton
+item.squid_raw.name=Raw Squid
+item.squid_cooked.name=Cooked Squid
+item.scroll.name=Scroll
+
+item.tidal_energy.name=Tidal Energy
+item.whale_meat.name=Whale Meat
+item.science.name=Research Point
+item.science_2.name=Research Point Mk.II
+item.science_3.name=Research Point Mk.III
+item.science_4.name=Research Point Mk.IV
+item.science_5.name=Research Point Mk.V
+item.science_6.name=Research Point Mk.VI
+item.cog.name=Production Materials
+item.cog_2.name=Production Materials Mk.II
+item.cog_3.name=Production Materials Mk.III
+item.cog_4.name=Production Materials Mk.IV
+item.cog_5.name=Production Materials Mk.V
+item.hfr_coin.name=Stock Market Coin
+item.hfr_wrench.name=Construction Materials
+item.province_point.name=Prestige Point
+item.flour.name=Flour
+item.ingot_steel.name=Steel Ingot
+item.crate.name=Shipping Crate
+
+item.battery_rc.name=RC Battery
+item.battery_rc_2.name=HiCap RC Battery
+
+item.designator.name=GPS Rangefinder
+item.designator_range.name=Laser Rangefinder
+item.designator_manual.name=Manual Rangefinder
+item.detonator.name=Detonator
+item.remote.name=Coordinate Remote
+
+item.mace.name=Hammer of Raiding
+item.hatchet.name=Hatchet of Province Creation
+item.clowder_map.name=Clowder Map
+item.flaregun.name=Flare Gun
+item.flare.name=Flare Cartridge
+item.pakker.name=Debug Launcher
+item.pak_rocket.name=Debug Cartridge
+
+item.mult_stoneage.name=Stone Multitool
+item.mult_roman.name=Bronze Multitool
+item.mult_steel.name=Steel Multitool
+item.mult_alloy.name=Alloy Multitool
+
+item.missile_at_1.name=Tier 1 AT Missile
+item.missile_he_1.name=Tier 1 HE Missile
+item.missile_he_2.name=Tier 2 HE Missile
+item.missile_he_3.name=Tier 3 HE Missile
+item.missile_incendiary_1.name=Tier 1 Incendiary Missile
+item.missile_incendiary_2.name=Tier 2 Incendiary Missile
+item.missile_incendiary_3.name=Tier 3 Incendiary Missile
+item.missile_ab.name=Anti-Ballistic Missile
+item.missile_emp.name=EMP Missile
+item.missile_decoy.name=Decoy Missile
+item.missile_nuclear.name=Nuclear Missile
+
+item.missile_devon_1.name=DC-LACM (Tier 1)
+item.missile_devon_2.name=DC-LACM (Tier 2)
+item.missile_devon_3.name=DC-LACM (Tier 3)
+item.missile_cruise_at_1.name=Tier 1 AT Cruise Missile
+
+item.slbm_martin_1.name=SLBM Martin-2 M1
+item.slbm_martin_2.name=SLBM Martin-2 M2
+item.slbm_martin_3.name=SLBM Martin-2 M3
+item.slbm_pegasus_1.name=SLBM Tempest M1
+item.slbm_pegasus_2.name=SLBM Tempest M2
+item.slbm_pegasus_3.name=SLBM Tempest M3
+item.slbm_spear_1.name=SLCM Spear M1
+item.slbm_spear_2.name=SLCM Spear M2
+item.slbm_spear_3.name=SLCM Spear M3
+item.slbm_pepper_1.name=Naval Artillery Shell M1
+item.slbm_pepper_2.name=Naval Artillery Shell M2
+item.slbm_pepper_3.name=Naval Artillery Shell M3
+
+item.drum.name=Powder Drum
+item.charge_naval.name=16" HE Shell
+item.charge_at.name=16" AT Shell
+item.charge_railgun.name=Deuterium Plasma Capsule
+item.charge_bfg.name=Argent Plasma Capsule
+
+item.sexlol.name=the sex
+item.can.name=Tin Can
+item.canned_jizz.name=Canned Horse Milk
+item.canned_spam.name=Canned Coochie
+
+item.debug.name=Metal Junk of Debugging
+item.capsule.name=Explosive Capsule

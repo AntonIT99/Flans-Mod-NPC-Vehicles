@@ -1,6 +1,5 @@
 package com.flansmod.client.model;
 
-import com.flansmod.client.tmt.PositionTextureVertex;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.model.ModelBase;
@@ -54,16 +53,12 @@ public class ModelGun extends ModelBase
 	public Vector3f accessoryAttachPoint = new Vector3f();
 
 	//Muzzle flash models
-	public Vector3f defaultBarrelFlashPoint = null;
-	public Vector3f muzzleFlashPoint = null;
+	public Vector3f defaultBarrelFlashPoint = new Vector3f(0,0,0);
+	public Vector3f muzzleFlashPoint = new Vector3f(0,0,0);
 	public boolean hasFlash = false;
 
 	//Arms rendering
 	public boolean hasArms = false;
-	//Changes the rotation point to be the hand for easier animation setup
-	public boolean easyArms = false;
-	public Vector3f armScale = new Vector3f(0.8F,0.8F,0.8F);
-
 	public Vector3f leftArmPos = new Vector3f(0,0,0);
 	public Vector3f leftArmRot = new Vector3f(0,0,0);
 	public Vector3f leftArmScale = new Vector3f(1,1,1);
@@ -108,7 +103,7 @@ public class ModelGun extends ModelBase
     public int casingAnimTime = 20;
     //  Rotation of the casing, 180 is the total rotation. If you do not understand rotation vectors, like me, just use the standard value here.
     public Vector3f casingRotateVector = new Vector3f(0.1F, 1F, 0.1F);
-	public Vector3f casingAttachPoint = new Vector3f(0F, 0F, 0F);
+	public Vector3f casingAttachPoint = new Vector3f();
 	// Time before the casing is ejected from gun
 	public int casingDelay = 0;
 	// Scale the bullet casing separately from gun
@@ -218,11 +213,7 @@ public class ModelGun extends ModelBase
 	public Vector3f translateClip = new Vector3f(0F, 0F, 0F);
 	public Vector3f stagedtranslateClip = new Vector3f(0F, 0F, 0F);
 	public boolean stagedReload = false;
-
-	// Disables moving gun back when ADS.
-	public boolean stillRenderGunWhenScopedOverlay = false;
-	// Multiplier for ADS effect (moving gun to middle, e.t.c.)
-	public float adsEffectMultiplier = 1;
+	
 
 	/** This offsets the render position for third person */
 	public Vector3f thirdPersonOffset = new Vector3f();

@@ -27,6 +27,8 @@ public class GrenadeType extends ShootableType
 	public boolean canThrow = true;
 
 	//Physics
+	/** Upon hitting a block or entity, the grenade will be deflected and its motion will be multiplied by this constant */
+	public float bounciness = 0.9F;
 	/** Whether this grenade may pass through entities or blocks */
 	public boolean penetratesEntities = false, penetratesBlocks = false;
 	/** The sound to play upon bouncing off a surface */
@@ -44,6 +46,7 @@ public class GrenadeType extends ShootableType
 	public String stickSound;
 
 	public boolean flashBang = false;
+	public boolean pumpkinRaid = false;
 	public int flashTime = 200;
 	public int flashRange = 8;
 
@@ -116,6 +119,15 @@ public class GrenadeType extends ShootableType
 	 * TODO : Give guns a "can get ammo from bag" variable. Stops miniguns and such getting ammo */
 	public int numClips = 0;
 
+	public boolean smokerino = false;
+
+	//angel port
+	public boolean angel = false;
+
+	public float angelDamage;
+
+	public float angelSpeed;
+
 	public GrenadeType(TypeFile file)
 	{
 		super(file);
@@ -136,6 +148,11 @@ public class GrenadeType extends ShootableType
 		{
 			if(split[0].equals("MeleeDamage"))
 				meleeDamage = Integer.parseInt(split[1]);
+			
+			
+			//stfu dill heres your fucking smoke
+			else if(split[0].equals("smokerino"))
+				smokerino = Boolean.parseBoolean(split[1]);
 
 			//Grenade Throwing
 			else if(split[0].equals("ThrowDelay"))
@@ -148,10 +165,16 @@ public class GrenadeType extends ShootableType
 				canThrow = Boolean.parseBoolean(split[1]);
 
 			//Grenade Physics
+			else if(split[0].equals("Bounciness"))
+				bounciness = Float.parseFloat(split[1]);
 			else if(split[0].equals("PenetratesEntities"))
 				penetratesEntities = Boolean.parseBoolean(split[1].toLowerCase());
 			else if(split[0].equals("PenetratesBlocks"))
 				penetratesBlocks = Boolean.parseBoolean(split[1].toLowerCase());
+			
+			//labjac raid final solution
+			else if(split[0].equals("PumpkinRaid"))
+				pumpkinRaid = Boolean.parseBoolean(split[1].toLowerCase());
 
 			else if(split[0].equals("BounceSound"))
 				bounceSound = split[1];
@@ -265,7 +288,7 @@ public class GrenadeType extends ShootableType
 		}
 		catch (Exception e)
 		{
-			FlansMod.log("Reading grenade file failed.");
+			System.out.println("Reading grenade file failed.");
 			e.printStackTrace();
 		}
 	}

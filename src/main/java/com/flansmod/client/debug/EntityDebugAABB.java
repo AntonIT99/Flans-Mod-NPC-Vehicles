@@ -13,10 +13,11 @@ public class EntityDebugAABB extends Entity
 	public int life;
 	public float red = 1F, green = 1F, blue = 1F;
 	public float rotationRoll;
+	public float opacity = 0;
 	/** This is the offset after rotation */
 	public Vector3f offset;
 	
-	public EntityDebugAABB(World w, Vector3f u, Vector3f v, int i, float r, float g, float b, float yaw, float pitch, float roll, Vector3f offset) 
+	public EntityDebugAABB(World w, Vector3f u, Vector3f v, int i, float r, float g, float b, float yaw, float pitch, float roll, Vector3f offset, int timer)  //i added final int to this for visible force field
 	{
 		super(w);
 		setPosition(u.x, u.y, u.z);
@@ -29,11 +30,13 @@ public class EntityDebugAABB extends Entity
 		green = g;
 		blue = b;
 		this.offset = offset;
+		opacity = (float)timer;
+		// System.out.println("from entitydebugaab" + this.opacity);
 	}
 	
 	public EntityDebugAABB(World w, Vector3f u, Vector3f v, int i, float r, float g, float b, float yaw, float pitch, float roll) 
 	{
-		this(w, u, v, i, r, g, b, yaw, pitch, roll, new Vector3f());
+		this(w, u, v, i, r, g, b, yaw, pitch, roll, new Vector3f(), 0); //meddled by me with the 0
 	}
 	
 	public EntityDebugAABB(World w, Vector3f u, Vector3f v, int i, float r, float g, float b) 

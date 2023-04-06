@@ -380,11 +380,4 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
 	public float getZ() {
 		return z;
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return (obj instanceof Vector3f) && ((Vector3f) obj).x == this.x && ((Vector3f) obj).y == this.y && ((Vector3f) obj).z == this.z;
-	}
-
-	public static Vector3f Zero = new Vector3f(0, 0, 0);
 }

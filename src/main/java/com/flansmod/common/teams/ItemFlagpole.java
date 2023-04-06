@@ -68,7 +68,7 @@ public class ItemFlagpole extends Item {
 		return itemstack;
 	}
 	
-	private boolean isSolid(World world, int i, int j, int k) {
+	private static boolean isSolid(World world, int i, int j, int k) {
         Block block = world.getBlock(i, j, k);
         return block != null && block.getMaterial().isSolid() && block.isOpaqueCube();
     }

@@ -8,93 +8,54 @@ public enum EnumDriveablePart
 	tailWheel(new EnumDriveablePart[] { }, "tailWheel", "Wheel (Tail)"),
 	tail(new EnumDriveablePart[] { tailWheel }, "tail", "Tail"),
 	bay(new EnumDriveablePart[] { tail }, "bay", "Bay"),
-	topWing(new EnumDriveablePart[] {}, "topWing", "Wing (Top)"),
+	topWing(new EnumDriveablePart[] {}, "topWing", "Top Wing"),
 	leftWingWheel(new EnumDriveablePart[] { }, "leftWingWheel", "Wheel (Left Wing)"),
-	leftWing(new EnumDriveablePart[] { topWing, leftWingWheel }, "leftWing", "Wing (Left)"),
+	leftWing(new EnumDriveablePart[] { topWing, leftWingWheel }, "leftWing", "Left Wing"),
 	rightWingWheel(new EnumDriveablePart[] { }, "rightWingWheel", "Wheel (Right Wing)"),
-	rightWing(new EnumDriveablePart[] { topWing, rightWingWheel }, "rightWing", "Wing (Right)"),
+	rightWing(new EnumDriveablePart[] { topWing, rightWingWheel }, "rightWing", "Right Wing"),
 	nose(new EnumDriveablePart[] { }, "nose", "Nose"),
 	coreWheel(new EnumDriveablePart[] { }, "coreWheel", "Wheel (Core)"),
-	airframe(new EnumDriveablePart[] { },"airframe", "Airframe"),
-	floatsRight(new EnumDriveablePart[] { }, "floatsRight", "Floats (Right)"),
-	floatsLeft(new EnumDriveablePart[] { }, "floatsLeft", "Floats (Left)"),
-	floats(new EnumDriveablePart[] { }, "floats", "Floats"),
-
+	
 	//Helicopter parts
 	skids(new EnumDriveablePart[] { }, "skids", "Skids"),
 	blades(new EnumDriveablePart[] { }, "blades", "Blades"),
 	
 	//Vehicle parts
 	turret(new EnumDriveablePart[] { }, "turret", "Turret"),
-	backWheel(new EnumDriveablePart[] { }, "backWheel", "Wheel (Back)"),
-	frontWheel(new EnumDriveablePart[] { }, "frontWheel", "Wheel (Front)"),
-	backLeftWheel(new EnumDriveablePart[] { }, "backLeftWheel", "Wheel (Back Left)"),
-	frontLeftWheel(new EnumDriveablePart[] { }, "frontLeftWheel", "Wheel (Front Left)"),
-	backRightWheel(new EnumDriveablePart[] { }, "backRightWheel", "Wheel (Back Right)"),
-	frontRightWheel(new EnumDriveablePart[] { }, "frontRightWheel", "Wheel (Front Right)"),
-	leftTrack(new EnumDriveablePart[] { }, "leftTrack", "Track (Left)"),
-	rightTrack(new EnumDriveablePart[] { }, "rightTrack", "Track (Right)"),
-	trailer(new EnumDriveablePart[] { }, "trailer", "Trailer"),
+	backWheel(new EnumDriveablePart[] { }, "backWheel", "Back Wheel"),
+	frontWheel(new EnumDriveablePart[] { }, "frontWheel", "Front Wheel"),
+	backLeftWheel(new EnumDriveablePart[] { }, "backLeftWheel", "Back Left Wheel"),	
+	frontLeftWheel(new EnumDriveablePart[] { }, "frontLeftWheel", "Front Left Wheel"),
+	backRightWheel(new EnumDriveablePart[] { }, "backRightWheel", "Back Right Wheel"),
+	frontRightWheel(new EnumDriveablePart[] { }, "frontRightWheel", "Front Right Wheel"),
+	leftTrack(new EnumDriveablePart[] { }, "leftTrack", "Left Track"),
+	rightTrack(new EnumDriveablePart[] { }, "rightTrack", "Right Track"),
+	trailer(new EnumDriveablePart[] { }, "trailer", "AdditionArmor"),	
 	harvester(new EnumDriveablePart[] { }, "harvester", "Harvester"),	//This is the drill bit, combine blades or excavator for utility vehicles
 	//New parts
-	frontalArmor(new EnumDriveablePart[] { }, "frontalArmor", "Armor (Frontal)"),
-	leftsideArmor(new EnumDriveablePart[] { }, "leftsideArmor", "Armor (Left Side)"),
-	rightsideArmor(new EnumDriveablePart[] { }, "rightsideArmor", "Armor (Right Side)"),
-	additionalArmor(new EnumDriveablePart[] { }, "additionalArmor", "Armor (Additional)"),
-	ERA(new EnumDriveablePart[] { }, "ERA", "Armour (ERA)"),
-	APS(new EnumDriveablePart[] { }, "APS", "Armour (APS)"),
-	ADS(new EnumDriveablePart[] { }, "ADS", "Armour (ADS)"),
-
-	bow(new EnumDriveablePart[] { }, "bow", "Bow"),
-	stern(new EnumDriveablePart[] { }, "stern", "Stern"),
-	conningTower(new EnumDriveablePart[] { }, "conningTower", "Conning Tower"),
-	conningTowerAft(new EnumDriveablePart[] { }, "aftTower", "Conning Tower (Aft)"),
-	bridge(new EnumDriveablePart[] { }, "bridge", "Bridge"),
-	radar1(new EnumDriveablePart[] { }, "radar1", "Radar 1"),
-	radar2(new EnumDriveablePart[] { }, "radar2", "Radar 2"),
-	radar3(new EnumDriveablePart[] { }, "radar3", "Radar 3"),
-	radar4(new EnumDriveablePart[] { }, "radar4", "Radar 4"),
-	director1(new EnumDriveablePart[] { }, "director1", "Director 1"),
-	director2(new EnumDriveablePart[] { }, "director2", "Director 2"),
-	director3(new EnumDriveablePart[] { }, "director3", "Director 3"),
-	director4(new EnumDriveablePart[] { }, "director4", "Director 4"),
-	director5(new EnumDriveablePart[] { }, "director5", "Director 5"),
-	director6(new EnumDriveablePart[] { }, "director6", "Director 6"),
-	director7(new EnumDriveablePart[] { }, "director7", "Director 7"),
-	director8(new EnumDriveablePart[] { }, "director8", "Director 8"),
-	superstructure(new EnumDriveablePart[] { }, "superstructure", "Superstructure"),
-	hangar(new EnumDriveablePart[] { }, "hangar", "Hangar"),
-	hangarDeck(new EnumDriveablePart[] { }, "hangarDeck", "Hangar Deck"),
-	hangarDeck2(new EnumDriveablePart[] { }, "hangarDeck2", "Hangar Deck 2"),
-	hangarDeck3(new EnumDriveablePart[] { }, "hangarDeck3", "Hangar Deck 3"),
-	flightDeck(new EnumDriveablePart[] { }, "flightDeck", "Flight Deck"),
-	flightDeck2(new EnumDriveablePart[] { }, "flightDeck2", "Flight Deck 2"),
-	engineRoom1(new EnumDriveablePart[] { }, "engineRoom1", "Engine Room 1"),
-	engineRoom2(new EnumDriveablePart[] { }, "engineRoom2", "Engine Room 2"),
-	engineRoom3(new EnumDriveablePart[] { }, "engineRoom3", "Engine Room 3"),
-	engineRoom4(new EnumDriveablePart[] { }, "engineRoom4", "Engine Room 4"),
-	engineRoom5(new EnumDriveablePart[] { }, "engineRoom5", "Engine Room 5"),
-	engineRoom6(new EnumDriveablePart[] { }, "engineRoom6", "Engine Room 6"),
-	engineRoom7(new EnumDriveablePart[] { }, "engineRoom7", "Engine Room 7"),
-	engineRoom8(new EnumDriveablePart[] { }, "engineRoom8", "Engine Room 8"),
-	boilerRoom1(new EnumDriveablePart[] { }, "boilerRoom1", "Boiler Room 1"),
-	boilerRoom2(new EnumDriveablePart[] { }, "boilerRoom2", "Boiler Room 2"),
-	boilerRoom3(new EnumDriveablePart[] { }, "boilerRoom3", "Boiler Room 3"),
-	boilerRoom4(new EnumDriveablePart[] { }, "boilerRoom4", "Boiler Room 4"),
-	boilerRoom5(new EnumDriveablePart[] { }, "boilerRoom5", "Boiler Room 5"),
-	boilerRoom6(new EnumDriveablePart[] { }, "boilerRoom6", "Boiler Room 6"),
-	boilerRoom7(new EnumDriveablePart[] { }, "boilerRoom7", "Boiler Room 7"),
-	boilerRoom8(new EnumDriveablePart[] { }, "boilerRoom8", "Boiler Room 8"),
-	steering(new EnumDriveablePart[] { }, "steering", "Steering Room"),
-	deck(new EnumDriveablePart[] { }, "deck", "First Deck"),
-	deck2(new EnumDriveablePart[] { }, "deck2", "Second Deck"),
-	deck3(new EnumDriveablePart[] { }, "deck3", "Third Deck"),
-	citadel(new EnumDriveablePart[] { }, "citadel", "Citadel"),
-	belt(new EnumDriveablePart[] { }, "belt", "Armor Belt"),
-	torpedoBulge(new EnumDriveablePart[] { }, "torpedoBulge", "Torpedo Bulge"),
-	torpedoBulge2(new EnumDriveablePart[] { }, "torpedoBulge2", "Torpedo Bulge 2"),
-	torpedoBulge3(new EnumDriveablePart[] { }, "torpedoBulge3", "Torpedo Bulge 3"),
-	torpedoBulge4(new EnumDriveablePart[] { }, "torpedoBulge4", "Torpedo Bulge 4"),
+	frontalArmor(new EnumDriveablePart[] { }, "frontalArmor", "Frontal Armor"),
+	leftsideArmor(new EnumDriveablePart[] { }, "leftsideArmor", "Left Side Armor"),
+	rightsideArmor(new EnumDriveablePart[] { }, "rightsideArmor", "Right Side Armor"),
+	additionalArmor(new EnumDriveablePart[] { }, "additionalArmor", "Additional Armor"),
+	ERA(new EnumDriveablePart[] { }, "ERA", "ERA"),
+	APS(new EnumDriveablePart[] { }, "APS", "APS"),
+	ADS(new EnumDriveablePart[] { }, "ADS", "ADS"),
+	//LabJac parts
+	composite(new EnumDriveablePart[] { }, "composite", "Composite Armor"),
+	composite2(new EnumDriveablePart[] { }, "composite2", "More Comp Armor"),
+	spaced(new EnumDriveablePart[] { }, "spaced", "Spaced Armor"),
+	compositeL(new EnumDriveablePart[] { }, "compositeL", "Left Comp Armor"),
+	compositeR(new EnumDriveablePart[] { }, "compositeR", "Right Comp Armor"),
+	generic0(new EnumDriveablePart[] { }, "generic0", "Extra Armor"),
+	generic1(new EnumDriveablePart[] { }, "generic1", "Extra Armor 1"),
+	generic2(new EnumDriveablePart[] { }, "generic2", "Extra Armor 2"),
+	generic3(new EnumDriveablePart[] { }, "generic3", "Extra Armor 3"),
+	generic4(new EnumDriveablePart[] { }, "generic4", "Extra Armor 4"),
+	generic5(new EnumDriveablePart[] { }, "generic5", "Extra Armor 5"),
+	generic6(new EnumDriveablePart[] { }, "generic6", "Extra Armor 6"),
+	generic7(new EnumDriveablePart[] { }, "generic7", "Extra Armor 7"),
+	generic8(new EnumDriveablePart[] { }, "generic8", "Extra Armor 8"),
+	generic9(new EnumDriveablePart[] { }, "generic9", "Extra Armor 9"),
 	turret1(new EnumDriveablePart[] { }, "turret1", "Turret 1"),
 	turret2(new EnumDriveablePart[] { }, "turret2", "Turret 2"),
 	turret3(new EnumDriveablePart[] { }, "turret3", "Turret 3"),
@@ -104,76 +65,55 @@ public enum EnumDriveablePart
 	turret7(new EnumDriveablePart[] { }, "turret7", "Turret 7"),
 	turret8(new EnumDriveablePart[] { }, "turret8", "Turret 8"),
 	turret9(new EnumDriveablePart[] { }, "turret9", "Turret 9"),
-	turret10(new EnumDriveablePart[] { }, "turret10", "Turret 10"),
-	turret11(new EnumDriveablePart[] { }, "turret11", "Turret 11"),
-	turret12(new EnumDriveablePart[] { }, "turret12", "Turret 12"),
-	turret13(new EnumDriveablePart[] { }, "turret13", "Turret 13"),
-	turret14(new EnumDriveablePart[] { }, "turret14", "Turret 14"),
-	turret15(new EnumDriveablePart[] { }, "turret15", "Turret 15"),
-	turret16(new EnumDriveablePart[] { }, "turret16", "Turret 16"),
-	bulkhead(new EnumDriveablePart[] { }, "bulkhead", "Bulkhead"),
-	bulkhead2(new EnumDriveablePart[] { }, "bulkhead2", "Bulkhead 2"),
-	port(new EnumDriveablePart[] { }, "port", "Portside (Left)"),
-	starboard(new EnumDriveablePart[] { }, "starboard", "Starboard (Right)"),
-
-
+	bias(new EnumDriveablePart[] { }, "russianBias", "Stalinium"),
+	bulge(new EnumDriveablePart[] { }, "bulge", "Torpedo Bulge"),
+	bulgel(new EnumDriveablePart[] { }, "bulgel", "Left Torpedo Bulge"),
+	bulger(new EnumDriveablePart[] { }, "bulger", "Right Torpedo Bulge"),
+	superstructure(new EnumDriveablePart[] { }, "superstructure", "Super Structure"),
+	bow(new EnumDriveablePart[] { }, "bow", "Bow"),
+	stern(new EnumDriveablePart[] { }, "stern", "Stern"),
+	midsection(new EnumDriveablePart[] { }, "midsection", "Midsection"),
+	left(new EnumDriveablePart[] { }, "left", "Center Port"),
+	right(new EnumDriveablePart[] { }, "right", "Center Starboard"),
+	citadel(new EnumDriveablePart[] { }, "citadel", "Citadel"),
+	belt(new EnumDriveablePart[] { }, "belt", "Armor Belt"),
+	beltl(new EnumDriveablePart[] { }, "beltl", "Left Armor Belt"),
+	beltr(new EnumDriveablePart[] { }, "beltr", "Right Armor Belt"),
+	deck(new EnumDriveablePart[] { }, "deck", "Deck"),
+	steering(new EnumDriveablePart[] { }, "steering", "Steering System"),
+	ERA2(new EnumDriveablePart[] { }, "ERA2", "More ERA"),
+	ERA3(new EnumDriveablePart[] { }, "ERA3", "Even More ERA"),
+	infantry(new EnumDriveablePart[] { }, "infantry", "Meat Shield"),
+	turretarmor(new EnumDriveablePart[] { }, "turretarmor", "Turret Armor"),
+	moreturretarmor(new EnumDriveablePart[] { }, "moreturretarmor", "Turret Comp Armor"),
+	turretside(new EnumDriveablePart[] { }, "turretside", "Turret Side Armor"),
+	airframe(new EnumDriveablePart[] { }, "airframe", "Air Frame"),
+	gasbag(new EnumDriveablePart[] { }, "gasbag", "Gas Bag"),
+	buoyancy(new EnumDriveablePart[] { }, "buoyancy", "Buoyancy"),
+	shield(new EnumDriveablePart[] { }, "shield", "Energy Shield"),
+	
+	//new weak spots
+	turretWeak(new EnumDriveablePart[] { }, "weakTrt", "Turret Weak Spot"),
+	turretWeak2(new EnumDriveablePart[] { }, "weakTrt2", "Turret Weak Spot"),
+	engine(new EnumDriveablePart[] { }, "engine", "Engine"),
+	engine2(new EnumDriveablePart[] { }, "engine2", "Engine 2"),
+	engine3(new EnumDriveablePart[] { }, "engine3", "Engine 3"),
+	engine4(new EnumDriveablePart[] { }, "engine4", "Engine 4"),
+	engine5(new EnumDriveablePart[] { }, "engine5", "Engine 5"),
+	engine6(new EnumDriveablePart[] { }, "engine6", "Engine 6"),
+	weakSpot(new EnumDriveablePart[] { }, "weakSpot", "Weak Spot"),
+	weakSpot2(new EnumDriveablePart[] { }, "weakSpot2", "Weak Spot"),
+	weakSpot3(new EnumDriveablePart[] { }, "weakSpot3", "Weak Spot"),
+	
 	//Mecha parts
-	leftArm(new EnumDriveablePart[] { }, "leftArm", "Arm (Left)"),
-	rightArm(new EnumDriveablePart[] { }, "rightArm", "Arm (Right)"),
+	leftArm(new EnumDriveablePart[] { }, "leftArm", "Left Arm"),
+	rightArm(new EnumDriveablePart[] { }, "rightArm", "Right Arm"),
 	head(new EnumDriveablePart[] { }, "head", "Head"),
 	hips(new EnumDriveablePart[] { }, "hips", "Hips"),
 	barrel(new EnumDriveablePart[] { }, "barrel", "Barrel"),
 
 	//Shared part
-	core(new EnumDriveablePart[]
-	{
-			bay,
-			leftWing,
-			rightWing,
-			nose,
-			turret,
-			coreWheel,
-			leftArm,
-			rightArm,
-			head,
-			hips,
-			blades,
-			skids,
-			backWheel,
-			frontWheel,
-			backLeftWheel,
-			frontLeftWheel,
-			backRightWheel,
-			frontRightWheel,
-			leftTrack,
-			rightTrack,
-			trailer,
-			harvester,
-			airframe,
-
-			bow,
-			stern,
-			conningTower,
-			conningTowerAft,
-			bridge,
-			radar1, radar2, radar3, radar4,
-			director1, director2, director3, director4, director5, director6, director7, director8,
-			superstructure,
-			hangar,
-			hangarDeck, hangarDeck2, hangarDeck3,
-			flightDeck, flightDeck2,
-			engineRoom1, engineRoom2, engineRoom3, engineRoom4, engineRoom5, engineRoom6, engineRoom7, engineRoom8,
-			boilerRoom1, boilerRoom2, boilerRoom3, boilerRoom4, boilerRoom5, boilerRoom6, boilerRoom7, boilerRoom8,
-			steering,
-			deck, deck2, deck3,
-			citadel,
-			belt,
-			torpedoBulge, torpedoBulge2, torpedoBulge3, torpedoBulge4,
-			turret1, turret2, turret3, turret4, turret5, turret6, turret7, turret8, turret9, turret10, turret11, turret12, turret13, turret14, turret15, turret16,
-			bulkhead,  bulkhead2,
-			port,
-			starboard
-	}, "core", "Core");
+	core(new EnumDriveablePart[] { bay, leftWing, rightWing, nose, turret, coreWheel, leftArm, rightArm, head, hips, blades, skids, backWheel, frontWheel, backLeftWheel, frontLeftWheel, backRightWheel, frontRightWheel, leftTrack, rightTrack, trailer, harvester, infantry }, "core", "Core");
 	
 	private String shortName;
 	private String name;
@@ -225,37 +165,7 @@ public enum EnumDriveablePart
 				return part;
 		return null;
 	}
-
-	public static ArrayList<EnumDriveablePart> getEngineRooms() {
-		ArrayList<EnumDriveablePart> engineRooms = new ArrayList<EnumDriveablePart>();
-
-		engineRooms.add(engineRoom1);
-		engineRooms.add(engineRoom2);
-		engineRooms.add(engineRoom3);
-		engineRooms.add(engineRoom4);
-		engineRooms.add(engineRoom5);
-		engineRooms.add(engineRoom6);
-		engineRooms.add(engineRoom7);
-		engineRooms.add(engineRoom8);
-
-		return engineRooms;
-	}
-
-	public static ArrayList<EnumDriveablePart> getBoilerRooms() {
-		ArrayList<EnumDriveablePart> boilerRooms = new ArrayList<EnumDriveablePart>();
-
-		boilerRooms.add(boilerRoom1);
-		boilerRooms.add(boilerRoom2);
-		boilerRooms.add(boilerRoom3);
-		boilerRooms.add(boilerRoom4);
-		boilerRooms.add(boilerRoom5);
-		boilerRooms.add(boilerRoom6);
-		boilerRooms.add(boilerRoom7);
-		boilerRooms.add(boilerRoom8);
-
-		return boilerRooms;
-	}
-
+	
 	public static boolean isWheel(EnumDriveablePart part)
 	{
 		return part == coreWheel || part == tailWheel || part == leftWingWheel || part == rightWingWheel;

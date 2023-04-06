@@ -1,7 +1,5 @@
 package com.flansmod.common.tools;
 
-import com.flansmod.common.FlansMod;
-
 import java.util.List;
 
 import io.netty.buffer.ByteBuf;
@@ -28,7 +26,7 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
 	{
 		super(w);
 		ignoreFrustumCheck = true;
-		//FlansMod.log(w.isRemote ? "Client paraspawn" : "Server paraspawn");
+		System.out.println(w.isRemote ? "Client paraspawn" : "Server paraspawn");
 	}
 	
 	public EntityParachute(World w, ToolType t, EntityPlayer player)
@@ -75,15 +73,17 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
 			double moveStrafing = ((EntityLivingBase)this.riddenByEntity).moveStrafing;
 			double sinYaw = -Math.sin((riddenByEntity.rotationYaw * (float)Math.PI / 180.0F));
 			double cosYaw = Math.cos((this.riddenByEntity.rotationYaw * (float)Math.PI / 180.0F));
-			motionX += (moveForwards * sinYaw + moveStrafing * cosYaw) * speedMultiplier;
-			motionZ += (moveForwards * cosYaw - moveStrafing * sinYaw) * speedMultiplier;
+			//motionX += (moveForwards * sinYaw + moveStrafing * cosYaw) * speedMultiplier;
+			//motionZ += (moveForwards * cosYaw - moveStrafing * sinYaw) * speedMultiplier;
+			motionX += (moveForwards * sinYaw + moveStrafing * cosYaw) * speedMultiplier * 0;
+			motionZ += (moveForwards * cosYaw - moveStrafing * sinYaw) * speedMultiplier * 0;
 			
 			prevRotationYaw = rotationYaw;
 			rotationYaw = riddenByEntity.rotationYaw;
 		}		
 		
-		motionX *= 0.93F;
-		motionZ *= 0.93F;
+		motionX *= 0.0F;
+		motionZ *= 0.0F;
 		
 		moveEntity(motionX, motionY, motionZ);
 		

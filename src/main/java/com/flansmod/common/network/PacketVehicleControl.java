@@ -10,6 +10,8 @@ public class PacketVehicleControl extends PacketDriveableControl
 {
 	public boolean doors;
 	
+	public String seatBelt;
+	
 	public PacketVehicleControl() {}
 
 	public PacketVehicleControl(EntityDriveable driveable) 

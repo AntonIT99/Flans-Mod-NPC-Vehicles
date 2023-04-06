@@ -44,8 +44,6 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 public class EntityGrenade extends EntityShootable implements IEntityAdditionalSpawnData
 {
 	public GrenadeType type;
-	
-	public ShootableType getType() { return type; }
 	/** The entity that threw them */
 	public EntityLivingBase thrower;
 	/** This is to avoid players grenades teamkilling after they switch team */
@@ -242,7 +240,7 @@ public class EntityGrenade extends EntityShootable implements IEntityAdditionalS
 			//Raytrace the motion of this grenade
 			MovingObjectPosition hit = worldObj.rayTraceBlocks(posVec.toVec3(), nextPosVec.toVec3());
 			//If we hit block
-			if(hit != null && hit.typeOfHit == MovingObjectType.BLOCK && worldObj.getBlock(hit.blockX, hit.blockY, hit.blockZ).getMaterial().blocksMovement())
+			if(hit != null && hit.typeOfHit == MovingObjectType.BLOCK)
 			{
 				//Get the blockID and block material
 				Block block = worldObj.getBlock(hit.blockX, hit.blockY, hit.blockZ);
@@ -514,13 +512,13 @@ public class EntityGrenade extends EntityShootable implements IEntityAdditionalS
 		PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, type.detonateSound, true);
 
 		//Explode
-		if(!worldObj.isRemote && type.explosionRadius > 0.1F)
+		if(!worldObj.isRemote && type.explosionRadius > 0.1F && type.pumpkinRaid == false)
 		{
 	        if((thrower instanceof EntityPlayer))
 	        {
 	        new FlansModExplosion(worldObj, this, (EntityPlayer)thrower, type, posX, posY, posZ,
-		        	type.explosionRadius, type.explosionPower, TeamsManager.explosions && type.explosionBreaksBlocks,
-		        	type.explosionDamageVsLiving, type.explosionDamageVsPlayer, type.explosionDamageVsPlane, type.explosionDamageVsVehicle, type.smokeParticleCount, type.debrisParticleCount, false);
+		        	type.explosionRadius, TeamsManager.explosions && type.explosionBreaksBlocks,
+		        	type.explosionDamageVsLiving, type.explosionDamageVsPlayer, type.explosionDamageVsPlane, type.explosionDamageVsVehicle, type.smokeParticleCount, type.debrisParticleCount);
 	
 	        }
 	        else
@@ -528,6 +526,15 @@ public class EntityGrenade extends EntityShootable implements IEntityAdditionalS
 	        	worldObj.createExplosion(this, posX, posY, posZ, type.explosionRadius, TeamsManager.explosions && type.explosionBreaksBlocks);
 	        }
 		}
+		
+		
+		//labjac classic explosions
+		if(!worldObj.isRemote && type.explosionRadius > 0.1F && type.pumpkinRaid == true)
+		
+	        {
+	        	worldObj.createExplosion(this, posX, posY, posZ, type.explosionRadius, true);
+	        }
+		
 
 		//Make fire
 		if(!worldObj.isRemote && type.fireRadius > 0.1F)
@@ -580,6 +587,9 @@ public class EntityGrenade extends EntityShootable implements IEntityAdditionalS
 		{
 			setDead();
 		}
+		
+		if(type.smokerino)
+			FlansMod.getPacketHandler().sendToAllAround(new PacketFlak(posX, posY, posZ, 5, "smokeShell"), posX, posY, posZ, 200, dimension);
 
 		if(type.flashBang && !this.worldObj.isRemote)
 		{
@@ -673,18 +683,7 @@ public class EntityGrenade extends EntityShootable implements IEntityAdditionalS
 	public void readSpawnData(ByteBuf data)
 	{
 		type = GrenadeType.getGrenade(ByteBufUtils.readUTF8String(data));
-		int entityID = data.readInt();
-		Entity ent = worldObj.getEntityByID(entityID);
-		if (ent instanceof EntityLivingBase) {
-			thrower = (EntityLivingBase) ent;
-		} else {
-			FlansMod.log("Thrower is not an EntityLivingBase!");
-			if (FlansMod.DEBUG) {
-				FlansMod.log("Entity ID " + entityID);
-			}
-			thrower = null;
-		}
-
+		thrower = (EntityLivingBase)worldObj.getEntityByID(data.readInt());
 		setRotation(data.readFloat(), data.readFloat());
 		prevRotationYaw = rotationYaw;
 		prevRotationPitch = rotationPitch;
@@ -730,7 +729,7 @@ public class EntityGrenade extends EntityShootable implements IEntityAdditionalS
 			if(type.numClips > 0 && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemGun)
 			{
 				GunType gun = ((ItemGun)player.getCurrentEquippedItem().getItem()).type;
-				if(gun.ammo.size() > 0 && gun.allowRearm)
+				if(gun.ammo.size() > 0)
 				{
 					ShootableType bulletToGive = gun.ammo.get(0);
 					int numToGive = Math.min(bulletToGive.maxStackSize, type.numClips * gun.getNumAmmoItemsInGun(player.getCurrentEquippedItem()));

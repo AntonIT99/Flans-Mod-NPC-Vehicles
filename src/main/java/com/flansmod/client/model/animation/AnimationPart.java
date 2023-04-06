@@ -35,7 +35,7 @@ public class AnimationPart
 		return rot;
 	}
 	
-	 public final RotatedAxes rotate(double heading, double attitude, double bank, RotatedAxes rot) {
+	 public final static RotatedAxes rotate(double heading, double attitude, double bank, RotatedAxes rot) {
 			// Assuming the angles are in radians.
 			double c1 = Math.cos(heading/2);
 			double s1 = Math.sin(heading/2);

@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import net.minecraft.util.ResourceLocation;
 
+import com.flansmod.common.guns.BulletType;
 import com.flansmod.common.guns.GunType;
 import com.flansmod.common.paintjob.PaintableType;
 import com.flansmod.common.paintjob.Paintjob;
@@ -56,6 +57,23 @@ public class FlansModResourceHandler
 		}
 		else return null;
 	}
+	
+	//v in case "bullet" has a rocket pod model or something
+	public static ResourceLocation getAlternateTexture(BulletType gunType)
+	{
+		if(textureMap.containsKey(gunType))
+		{
+			return textureMap.get(gunType);
+		}
+		ResourceLocation resLoc = new ResourceLocation("flansmod", "skins/" + gunType.LauncherSkin + ".png");
+		if(gunType.LauncherSkin != null)
+		{
+			textureMap.put(gunType, resLoc);
+			return resLoc;
+		}
+		else return null;
+	}
+	//^ in case "bullet" has a rocket pod model or something
 	
 	public static ResourceLocation getDeployableTexture(GunType gunType)
 	{
