@@ -23,10 +23,10 @@ public class EntityNPCFlanBullet extends EntityBullet
         super(world);
     }
 
-    public EntityNPCFlanBullet(World world, EntityLivingBase shooter, float spread, float gunDamage, BulletType type1, float speed, boolean shot, InfoType shotFrom)
+    /*public EntityNPCFlanBullet(World world, EntityLivingBase shooter, float spread, float gunDamage, BulletType type1, float speed, boolean shot, InfoType shotFrom)
     {
         super(world, shooter, spread, gunDamage, type1, speed, shot, shotFrom);
-    }
+    }*/
 
     public EntityNPCFlanBullet(World world, Vec3 origin, float yaw, float pitch, EntityLivingBase shooter, float spread, float gunDamage, BulletType type1, InfoType shotFrom)
     {

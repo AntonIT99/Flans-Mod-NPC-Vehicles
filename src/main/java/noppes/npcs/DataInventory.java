@@ -181,7 +181,7 @@ public class DataInventory implements IInventory{
 				if (item instanceof ItemTeamArmour)
 				{
 					meleeResistance += ((ItemTeamArmour)item).type.defence;
-					projectileResistance += ((ItemTeamArmour)item).type.bulletDefence;
+					projectileResistance += ((ItemTeamArmour)item).type.defence;
 					explosionResistance += ((ItemTeamArmour)item).type.defence;
 
 					if (((ItemTeamArmour)item).type.negateFallDamage)
@@ -314,7 +314,7 @@ public class DataInventory implements IInventory{
 
 				if (projectile != null)
 				{
-					bulletSpeed = Math.min(bulletSpeed, gun.getBulletSpeed(gunItemStack, projectile));
+					bulletSpeed = Math.min(bulletSpeed, NPCInterfaceUtil.getBulletSpeed(gun, gunItemStack, projectile));
 				}
 				else
 				{

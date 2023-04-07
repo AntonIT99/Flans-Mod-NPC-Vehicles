@@ -3,6 +3,7 @@ package noppes.npcs.util;
 import com.flansmod.common.FlansMod;
 import com.flansmod.common.guns.AttachmentType;
 import com.flansmod.common.guns.GunType;
+import com.flansmod.common.guns.ItemBullet;
 import com.flansmod.common.guns.ItemGun;
 import com.flansmod.common.network.PacketPlaySound;
 import noppes.npcs.Server;
@@ -138,5 +139,22 @@ public class NPCInterfaceUtil
     public static int bulletSpreadToAccuracy(float spread)
     {
         return Math.max((int) Math.round(100D - (((5D * 0.005D)/(2D * 0.007499999832361937D)) * spread)), 0);
+    }
+
+    public static float getBulletSpeed(GunType guntype, ItemStack stack, ItemStack bulletStack) {
+        float stackBulletSpeed;
+        if (bulletStack != null && bulletStack.getItem() != null && bulletStack.getItem() instanceof ItemBullet) {
+            stackBulletSpeed = guntype.bulletSpeed * ((ItemBullet) bulletStack.getItem()).type.speedMultiplier;
+        } else {
+            stackBulletSpeed = guntype.bulletSpeed;
+        }
+
+        if (guntype.getGrip(stack) != null && guntype.getSecondaryFire(stack))
+            stackBulletSpeed = guntype.getGrip(stack).secondarySpeed;
+
+        for (AttachmentType attachment : guntype.getCurrentAttachments(stack)) {
+            stackBulletSpeed *= attachment.bulletSpeedMultiplier;
+        }
+        return stackBulletSpeed;
     }
 }

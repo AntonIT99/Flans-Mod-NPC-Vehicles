@@ -714,7 +714,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			int chargeDelay = gunType.model == null ? 0 : gunType.model.chargeDelayAfterReload;
 			int chargeTime = gunType.model == null ? 1 : gunType.model.chargeTime;
 
-			animations.doReload(stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime, 1, false);
+			animations.doReload(stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime);
 		}
 		if (offHandItem != null && offHandItem.getItem() instanceof ItemGun)
 		{
@@ -726,7 +726,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			int chargeDelay = gunType.model == null ? 0 : gunType.model.chargeDelayAfterReload;
 			int chargeTime = gunType.model == null ? 1 : gunType.model.chargeTime;
 
-			animations.doReload(this.stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime, 1, false);
+			animations.doReload(this.stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime);
 		}
 	}
 
@@ -784,7 +784,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			{
 				GunType gunType = ((ItemGun)itemStackGun.getItem()).type;
 				damage = ((ItemGun)itemStackGun.getItem()).type.getDamage(itemStackGun);
-				speed = Math.round(Math.max(((ItemGun)itemStackGun.getItem()).type.getBulletSpeed(itemStackGun, itemStackShootable), 1F));
+				speed = Math.round(Math.max(NPCInterfaceUtil.getBulletSpeed(((ItemGun)itemStackGun.getItem()).type, itemStackGun, itemStackShootable), 1F));
 				spread = gunType.getSpread(itemStackGun, isSneaking(), isSprinting());
 				shotgun = (gunType.getNumBullets(itemStackGun) > 1);
 			}
@@ -820,7 +820,6 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 						this,
 						spread,
 						damage,
-						speed,
 						0,
 						itemShootable.type);
 			}
