@@ -1,6 +1,5 @@
 package com.flansmod.common.guns;
 
-import com.flansmod.common.eventhandlers.GrenadeProximityEvent;
 import io.netty.buffer.ByteBuf;
 
 import java.util.List;
@@ -23,15 +22,12 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 
 import com.flansmod.client.FlansModClient;
 import com.flansmod.common.FlansMod;
 import com.flansmod.common.PlayerHandler;
 import com.flansmod.common.RotatedAxes;
 import com.flansmod.common.driveables.EntityDriveable;
-import com.flansmod.common.eventhandlers.BulletHitEvent;
-import com.flansmod.common.eventhandlers.GrenadeProximityEvent;
 import com.flansmod.common.network.PacketFlak;
 import com.flansmod.common.network.PacketFlashBang;
 import com.flansmod.common.network.PacketPlaySound;
@@ -44,7 +40,6 @@ import com.flansmod.common.vector.Vector3f;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
-import net.minecraftforge.common.MinecraftForge;
 
 public class EntityGrenade extends EntityShootable implements IEntityAdditionalSpawnData
 {
@@ -209,11 +204,6 @@ public class EntityGrenade extends EntityShootable implements IEntityAdditionalS
 							if(!TeamsManager.getInstance().currentRound.gametype.playerAttacked((EntityPlayerMP)obj, new EntityDamageSourceFlans(type.shortName, this, (EntityPlayer)thrower, type, false, false)))
 								continue;
 						}
-						
-						GrenadeProximityEvent grenadeProximityEvent = new GrenadeProximityEvent(this, (EntityLivingBase)obj);
-		            	MinecraftForge.EVENT_BUS.post(grenadeProximityEvent);
-		            	if(grenadeProximityEvent.isCanceled()) continue;
-						
 						if(type.damageToTriggerer > 0)
 							((EntityLivingBase)obj).attackEntityFrom(getGrenadeDamage(), type.damageToTriggerer);
 						detonate();
@@ -221,10 +211,6 @@ public class EntityGrenade extends EntityShootable implements IEntityAdditionalS
 					}
 					if(obj instanceof EntityDriveable && getDistanceToEntity((Entity)obj) < type.driveableProximityTrigger)
 					{
-						GrenadeProximityEvent grenadeProximityEvent = new GrenadeProximityEvent(this, (EntityDriveable)obj);
-		            	MinecraftForge.EVENT_BUS.post(grenadeProximityEvent);
-		            	if(grenadeProximityEvent.isCanceled()) continue;
-						
 						if(type.damageToTriggerer > 0)
 							((EntityDriveable)obj).attackEntityFrom(getGrenadeDamage(), type.damageToTriggerer);
 						detonate();

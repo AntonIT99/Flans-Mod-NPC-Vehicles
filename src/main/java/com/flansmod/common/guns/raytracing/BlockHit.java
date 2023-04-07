@@ -1,9 +1,6 @@
 package com.flansmod.common.guns.raytracing;
 
-import net.minecraft.block.Block;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
 
 public class BlockHit extends BulletHit 
 {
@@ -14,5 +11,5 @@ public class BlockHit extends BulletHit
 		super(f);
 		raytraceResult = mop;
 	}
-	
+
 }
