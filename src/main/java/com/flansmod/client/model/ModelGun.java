@@ -35,6 +35,7 @@ public class ModelGun extends ModelBase
     public ModelRendererTurbo[] pumpModel = new ModelRendererTurbo[0];
     public ModelRendererTurbo[] chargeModel = new ModelRendererTurbo[0];
     public ModelRendererTurbo[] altpumpModel = new ModelRendererTurbo[0];
+	public ModelRendererTurbo[] boltActionModel = new ModelRendererTurbo[0];
 	public ModelRendererTurbo[] minigunBarrelModel = new ModelRendererTurbo[0];
 	public ModelRendererTurbo[] leverActionModel = new ModelRendererTurbo[0];
 	public ModelRendererTurbo[] hammerModel = new ModelRendererTurbo[0];
@@ -188,15 +189,28 @@ public class ModelGun extends ModelBase
 	/** If true, move the hands with the bolt action */
 	public boolean rightHandBolt = false;
 	public boolean leftHandBolt = false;
+	/** How far to rotate the bolt */
+	public float boltRotationAngle = 0F;
+	/** How far to translate the bolt */
+	public float boltCycleDistance = 1F;
+	/** Offsets the bolt rotation point to help align it properly */
+	public Vector3f boltRotationOffset = new Vector3f(0F, 0F, 0F);
 	public float pumpModifier = 4F;
+	/** Hand offset when gun is charging */
 	public Vector3f chargeModifier = new Vector3f(8F, 4F, 4F);
 	/**If true, gun will translate when equipped with a sight attachment */
 	public float gunOffset = 0F;
 	public float crouchZoom = 0F;
-	public boolean fancyStance = false;
+	public boolean fancyStance = true;
+	/** deprecated, do not use, use sprintStanceTranslate */
+	@Deprecated
 	public Vector3f stanceTranslate = new Vector3f();
+	/** deprecated, do not use, use sprintStanceRotate */
+	@Deprecated
 	public Vector3f stanceRotate = new Vector3f();
 
+	public Vector3f sprintStanceTranslate = new Vector3f();
+	public Vector3f sprintStanceRotate = new Vector3f();
 
 	/** Custom reload Parameters. If Enum.CUSTOM is set, these parameters can build an animation within the gun model classes */
 	public float rotateGunVertical = 0F;
@@ -220,6 +234,9 @@ public class ModelGun extends ModelBase
 
 	/** This offsets the render position for item frames */
 	public Vector3f itemFrameOffset = new Vector3f();
+
+	/** Allows you to move the rotation helper to determine the required offsets for moving parts */
+	public Vector3f rotationToolOffset = new Vector3f(0F, 0F, 0F);
 
 	//lighting stuff
 	private static float lightmapLastX;
@@ -288,12 +305,17 @@ public class ModelGun extends ModelBase
 	{
 		render(pumpModel, f);
 	}
-	
+
 	public void renderaltPump(float f)
 	{
 		render(altpumpModel, f);
 	}
-	
+
+	public void renderBoltAction(float f) {
+		render(boltActionModel, f);
+	}
+
+
 	public void renderCharge(float f)
 	{
 		render(chargeModel, f);
@@ -413,16 +435,14 @@ public class ModelGun extends ModelBase
 
 
 	/** For renderering models simply */
-	protected void render(ModelRendererTurbo[] models, float f)
-	{
+	protected void render(ModelRendererTurbo[] models, float f) {
 		for(ModelRendererTurbo model : models)
 			if(model != null)
 				model.render(f);
 	}
 
 	/** Flips the model. Generally only for backwards compatibility */
-	public void flipAll()
-	{
+	public void flipAll() {
 		flip(gunModel);
 		flip(defaultBarrelModel);
 		flip(defaultScopeModel);
@@ -435,6 +455,7 @@ public class ModelGun extends ModelBase
 		flip(altslideModel);
 		flip(pumpModel);
 		flip(altpumpModel);
+		flip(boltActionModel);
 		flip(chargeModel);
 		flip(minigunBarrelModel);
 		flip(revolverBarrelModel);
@@ -444,56 +465,52 @@ public class ModelGun extends ModelBase
 		flip(hammerModel);
 		flip(althammerModel);
 		flip(bulletCounterModel);
+
 		for(ModelRendererTurbo[] mod : advBulletCounterModel)
 			flip(mod);
 	}
 
-	protected void flip(ModelRendererTurbo[] model)
-	{
-		for(ModelRendererTurbo part : model)
-		{
+	protected void flip(ModelRendererTurbo[] model) {
+		for(ModelRendererTurbo part : model) {
 			part.doMirror(false, true, true);
 			part.setRotationPoint(part.rotationPointX, - part.rotationPointY, - part.rotationPointZ);
 		}
 	}
 
 	/** Translates the model */
-	public void translateAll(float x, float y, float z)
-	{
-    	{
-    		translate(gunModel, x, y, z);
-    		translate(defaultBarrelModel, x, y, z);
-    		translate(defaultScopeModel, x, y, z);
-    		translate(defaultStockModel, x, y, z);
-    		translate(defaultGripModel, x, y, z);
-    		translate(defaultGadgetModel, x, y, z);
-    		translate(ammoModel, x, y, z);
-    		translate(fullammoModel, x, y, z);
-    		translate(slideModel, x, y, z);
-    		translate(altslideModel, x, y, z);
-    		translate(pumpModel, x, y, z);
-    		translate(altpumpModel, x, y, z);
-    		translate(chargeModel, x, y, z);
-    		translate(minigunBarrelModel, x, y, z);
-    		translate(revolverBarrelModel, x, y, z);
-    		translate(revolver2BarrelModel, x, y, z);
-    		translate(breakActionModel, x, y, z);
-    		translate(altbreakActionModel, x, y, z);
-    		translate(hammerModel, x, y, z);
-    		translate(althammerModel, x, y, z);
-			translate(bulletCounterModel, x, y, z);
-			for(ModelRendererTurbo[] mod : advBulletCounterModel)
-				translate(mod, x, y, z);
-    	}
+	public void translateAll(float x, float y, float z) {
+		translate(gunModel, x, y, z);
+		translate(defaultBarrelModel, x, y, z);
+		translate(defaultScopeModel, x, y, z);
+		translate(defaultStockModel, x, y, z);
+		translate(defaultGripModel, x, y, z);
+		translate(defaultGadgetModel, x, y, z);
+		translate(ammoModel, x, y, z);
+		translate(fullammoModel, x, y, z);
+		translate(slideModel, x, y, z);
+		translate(altslideModel, x, y, z);
+		translate(pumpModel, x, y, z);
+		translate(altpumpModel, x, y, z);
+		translate(boltActionModel, x, y, z);
+		translate(chargeModel, x, y, z);
+		translate(minigunBarrelModel, x, y, z);
+		translate(revolverBarrelModel, x, y, z);
+		translate(revolver2BarrelModel, x, y, z);
+		translate(breakActionModel, x, y, z);
+		translate(altbreakActionModel, x, y, z);
+		translate(hammerModel, x, y, z);
+		translate(althammerModel, x, y, z);
+		translate(bulletCounterModel, x, y, z);
+
+		for(ModelRendererTurbo[] modelPart : advBulletCounterModel)
+			translate(modelPart, x, y, z);
 	}
 
-	protected void translate(ModelRendererTurbo[] model, float x, float y, float z)
-	{
-		for(ModelRendererTurbo mod : model)
-		{
-			mod.rotationPointX += x;
-			mod.rotationPointY += y;
-			mod.rotationPointZ += z;
+	protected void translate(ModelRendererTurbo[] model, float x, float y, float z) {
+		for(ModelRendererTurbo modelPart : model) {
+			modelPart.rotationPointX += x;
+			modelPart.rotationPointY += y;
+			modelPart.rotationPointZ += z;
 		}
 	}
 }
