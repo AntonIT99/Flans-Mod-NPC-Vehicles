@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 public abstract class EntityFlanVehicle extends EntityCreature
 {
-    protected EntityFlanVehicle(World w)
+    public EntityFlanVehicle(World w)
     {
         super(w);
         ignoreFrustumCheck = true;

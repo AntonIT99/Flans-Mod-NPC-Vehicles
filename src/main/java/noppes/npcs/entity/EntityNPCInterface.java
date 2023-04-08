@@ -472,6 +472,18 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		if(damagesource.damageType != null && damagesource.damageType.equals("outOfWorld") && isKilled()){
 			reset();
 		}
+
+		if (isFlanDriveable())
+		{
+			Entity sourceOfDamage = damagesource.getSourceOfDamage();
+			if (sourceOfDamage instanceof EntityShootable)
+			{
+				ShootableType type = ((EntityShootable)sourceOfDamage).getType();
+				float baseDamage = i / type.damageVsLiving;
+				i = isFlanPlane() ? baseDamage * type.damageVsPlanes : baseDamage * type.damageVsVehicles;
+			}
+		}
+
 		i = stats.resistances.applyResistance(damagesource, i);
 		if((float)this.hurtResistantTime > (float)this.maxHurtResistantTime / 2.0F && i <= this.lastDamage)
 			return false;
@@ -538,6 +550,19 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			}
 		}
 	}
+
+	public boolean isFlanDriveable()
+	{
+
+		return false;
+	}
+
+	public boolean isFlanPlane()
+	{
+		return false;
+	}
+
+
 	public void onAttack(EntityLivingBase entity) {
 		if (entity == null || entity == this || isAttacking() || ai.onAttack == 3 || entity == getOwner())
 			return;

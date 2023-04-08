@@ -2,7 +2,7 @@ package com.wolffsmod.entity;
 
 import net.minecraft.world.World;
 
-public class EntityHigginsBoat extends EntityFlanVehicle {
+public class EntityHigginsBoat extends EntityFlanShip {
 
 	public EntityHigginsBoat(World p_i1602_1_) {
 		super(p_i1602_1_);

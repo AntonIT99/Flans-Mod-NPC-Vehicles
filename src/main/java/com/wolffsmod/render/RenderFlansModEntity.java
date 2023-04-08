@@ -2,11 +2,15 @@ package com.wolffsmod.render;
 
 import org.lwjgl.opengl.GL11;
 
+import com.flansmod.common.driveables.EntityVehicle;
 import com.wolffsmod.Strings;
+import com.wolffsmod.model.ModelFlanVehicle;
+import noppes.npcs.entity.EntityNPCInterface;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;

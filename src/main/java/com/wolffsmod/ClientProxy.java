@@ -1,7 +1,9 @@
 package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
+import com.wolffsmod.entity.w44.*;
 import com.wolffsmod.model.*;
+import com.wolffsmod.model.w44.*;
 import com.wolffsmod.render.*;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
@@ -178,7 +180,9 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntityLeopardIIA6.class, new RenderFlansModEntity(new ModelLeopardIIA6()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityLeopard2A7.class, new RenderFlansModEntity(new ModelLeopard2A7()));
 
+		RenderingRegistry.registerEntityRenderingHandler(EntityPanzerIVF1.class, new RenderFlansModEntity(new ModelPanzerIVF1(), "PanzerIVF/PanzerIVF.png"));
+
 		//WIP
-		RenderingRegistry.registerEntityRenderingHandler(EntityMark3.class, new RenderMark3(new ModelMark3(), 0));
+		//RenderingRegistry.registerEntityRenderingHandler(EntityMark3.class, new RenderMark3(new ModelMark3(), 0));
 	}
 }

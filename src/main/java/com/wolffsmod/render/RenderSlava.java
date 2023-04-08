@@ -18,33 +18,24 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderSlava extends RenderLiving
 {
     private static final ResourceLocation Texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/Slava/Slava.png");
-    private static final String __OBFID3 = "CL_00000986";
 
     public RenderSlava(ModelBase par1ModelBase, float par2)
     {
         super(par1ModelBase, par2);
     }
-    
-    protected void preRenderCallback(EntityLivingBase entity, float f){
-    	GL11.glTranslatef(0F, -2.2F, 0F);
-    	GL11.glRotatef(180, 1, 0, 0);
-    	GL11.glRotatef(270, 0, 1, 0);
-    	GL11.glScalef(1.1f, 1.1f, 1.1f);
-    }
 
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
-    protected ResourceLocation getEntityTexture(EntitySlava par1Entity)
+    protected void preRenderCallback(EntityLivingBase entity, float f)
     {
-        return Texture;
+        float scale = 3.0F;
+        GL11.glTranslatef(0F, -2.1F * scale, 0F);
+        GL11.glRotatef(180, 1, 0, 0);
+        GL11.glRotatef(270, 0, 1, 0);
+        GL11.glScalef(scale, scale, scale);
     }
 
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
+    @Override
     protected ResourceLocation getEntityTexture(Entity par1Entity)
     {
-        return this.getEntityTexture((EntitySlava)par1Entity);
+        return Texture;
     }
 }

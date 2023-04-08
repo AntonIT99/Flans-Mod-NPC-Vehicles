@@ -1,10 +1,13 @@
 package noppes.npcs.entity;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import com.wolffsmod.WolffNPCMod;
+import com.wolffsmod.entity.EntityFlanPlane;
+import com.wolffsmod.entity.EntityFlanVehicle;
 import noppes.npcs.CustomNpcs;
 import noppes.npcs.ModelData;
 import noppes.npcs.ModelPartData;
@@ -81,12 +84,23 @@ public class EntityCustomNpc extends EntityNPCFlying {
 			this.setPosition(posX, posY, posZ);
 		}
 
-		//Rendering fix for large entities
-		if (height >= 3.0F || width >= 3.0F)
+		//Rendering fix for large entities and Flan Vehicles
+		if (((height >= WolffNPCMod.largeEntitySize || width >= WolffNPCMod.largeEntitySize) && WolffNPCMod.ignoreFrustumCheckForLargeEntities) || (isFlanDriveable() && WolffNPCMod.ignoreFrustumCheckForNpcVehicles))
 		{
 			ignoreFrustumCheck = true;
 		}
 	}
 
+	@Override
+	public boolean isFlanDriveable()
+	{
+		return modelData.getEntity(this) instanceof EntityFlanVehicle;
+	}
+
+	@Override
+	public boolean isFlanPlane()
+	{
+		return modelData.getEntity(this) instanceof EntityFlanPlane;
+	}
 }
 	

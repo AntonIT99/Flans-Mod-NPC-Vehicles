@@ -32,12 +32,12 @@ public class GuiBaseEditor extends GuiScreen {
     public PacketBaseEdit packet;
 
     public GuiBaseEditor(PacketBaseEdit packet) {
-        this.packet = packet;
+        packet = packet;
     }
 
     public void initGui() {
         super.initGui();
-        this.buttonList.clear();
+        buttonList.clear();
         //Setup the text entry field
         Keyboard.enableRepeatEvents(true);
         nameEntryField = new GuiTextField(this.fontRendererObj, width / 2 - 128 + 70, height / 2 - 94 + 24, 179, fontRendererObj.FONT_HEIGHT);

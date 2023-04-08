@@ -48,9 +48,9 @@ public class DataInventory implements IInventory{
 
 	private EntityNPCInterface npc;
 
-	public boolean useWeaponMeleeStats;
-	public boolean useWeaponRangedStats;
-	public boolean useArmorStats;
+	public boolean useWeaponMeleeStats = true;
+	public boolean useWeaponRangedStats = true;
+	public boolean useArmorStats = true;
 	
 	public DataInventory(EntityNPCInterface npc){
 		this.npc = npc;

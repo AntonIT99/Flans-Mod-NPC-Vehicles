@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.wolffsmod.Strings;
-import com.wolffsmod.entity.EntityStuG3G;
+import com.wolffsmod.entity.w44.EntityStuG3G;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

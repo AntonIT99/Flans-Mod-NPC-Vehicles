@@ -21,24 +21,18 @@ public class RenderRomeoClassSub extends RenderLiving
         super(par1ModelBase, par2);
     }
 
-    protected void preRenderCallback(EntityLivingBase entity, float f){
-        // real-life scale is 8, scale in the original content pack is 3
-        float scale = 8.0F;
+    protected void preRenderCallback(EntityLivingBase entity, float f)
+    {
+        float scale = 3.0F;
     	GL11.glTranslatef(0F, -2.1F * scale, 0F);
     	GL11.glRotatef(180, 1, 0, 0);
     	GL11.glRotatef(270, 0, 1, 0);
         GL11.glScalef(scale, scale, scale);
     }
 
-    protected ResourceLocation getEntityTexture(EntityRomeoClassSub par1Entity)
+    @Override
+    protected ResourceLocation getEntityTexture(Entity par1Entity)
     {
         return Texture;
     }
-
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
-    {
-        return this.getEntityTexture((EntityRomeoClassSub)par1Entity);
-    }
-
-
 }

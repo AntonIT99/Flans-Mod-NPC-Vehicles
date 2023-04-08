@@ -1243,7 +1243,7 @@ public class EntityBullet extends EntityShootable implements IEntityAdditionalSp
 
     }
 
-    public DamageSource getBulletDamage(boolean headshot) {
+    public DamageSource  getBulletDamage(boolean headshot) {
         if (owner instanceof EntityPlayer)
             return (new EntityDamageSourceFlans(type.shortName, this, (EntityPlayer) owner, firedFrom, headshot, false)).setProjectile();
         else return (new EntityDamageSourceIndirect(type.shortName, this, owner)).setProjectile();

@@ -1,7 +1,7 @@
 package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
-
+import com.wolffsmod.entity.w44.*;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 import net.minecraft.entity.Entity;
@@ -160,6 +160,8 @@ public class ModEntityRegistry {
 		createEntity(EntityHMMWV4.class, "M998 HMMWV with M134(Manus Pack)");
 		createEntity(EntityLeopardIIA6.class, "Leopard 2 A6 (Manus Pack)");
 		createEntity(EntityLeopard2A7.class, "Leopard 2 A7+ PSO (Manus Pack)");
+
+		createEntity(EntityPanzerIVF1.class, "Panzer IV Ausf. F1 (Warfare 44)");
 
 		// WIP
 		//createEntity(EntityMark3.class, "Mark 3");
