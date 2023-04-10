@@ -7,10 +7,13 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 public abstract class EntityFlanVehicle extends EntityCreature
 {
+    public boolean doorsOpen = false;
+
     public EntityFlanVehicle(World w)
     {
         super(w);
@@ -34,5 +37,17 @@ public abstract class EntityFlanVehicle extends EntityCreature
             worldObj.spawnEntityInWorld(npc);
         }
         super.onUpdate();
+    }
+
+    public void readEntityFromNBT(NBTTagCompound tag)
+    {
+        super.readEntityFromNBT(tag);
+        doorsOpen = tag.getBoolean("DoorsOpen");
+    }
+
+    public void writeEntityToNBT(NBTTagCompound tag)
+    {
+        super.writeEntityToNBT(tag);
+        tag.setBoolean("DoorsOpen", doorsOpen);
     }
 }

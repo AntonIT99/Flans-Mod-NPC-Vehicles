@@ -77,8 +77,6 @@ public class ModEntityRegistry {
 		createEntity(EntityT34_76.class, "T-34/76 (Manus Pack)");
 		createEntity(EntityT34_85.class, "T-34/85 (Manus Pack)");
 
-		createEntity(EntityStuG3G.class, "StuG III Ausf. G (Warfare 44)");
-
 		createEntity(Entity38t.class, "Panzer 38(t) (Extra Zero 8)");
 		createEntity(EntityA39.class, "A39 Tortoise (Extra Zero 8)");
 		createEntity(EntityHetzer.class, "Jagdpanzer 38(t) Hetzer (Extra Zero 8)");
@@ -157,11 +155,13 @@ public class ModEntityRegistry {
 		createEntity(EntityHMMWV1.class, "M998 HMMWV (Manus Pack)");
 		createEntity(EntityHMMWV2.class, "M998 HMMWV with open load area (Manus Pack)");
 		createEntity(EntityHMMWV3.class, "M998 HMMWV with Cal. 50 Gun (Manus Pack)");
-		createEntity(EntityHMMWV4.class, "M998 HMMWV with M134(Manus Pack)");
+		createEntity(EntityHMMWV4.class, "M998 HMMWV with M134 (Manus Pack)");
 		createEntity(EntityLeopardIIA6.class, "Leopard 2 A6 (Manus Pack)");
 		createEntity(EntityLeopard2A7.class, "Leopard 2 A7+ PSO (Manus Pack)");
 
 		createEntity(EntityPanzerIVF1.class, "Panzer IV Ausf. F1 (Warfare 44)");
+		createEntity(EntityStuG3G.class, "StuG III Ausf. G (Warfare 44)");
+		createEntity(EntityJu87D3.class, "Junker Ju 87 D-3 (Warfare 44)");
 
 		// WIP
 		//createEntity(EntityMark3.class, "Mark 3");

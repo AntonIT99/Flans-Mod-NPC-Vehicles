@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.flansmod.common.driveables.EntityVehicle;
 import com.wolffsmod.Strings;
+import com.wolffsmod.entity.EntityFlanPlane;
 import com.wolffsmod.model.ModelFlanVehicle;
 import noppes.npcs.entity.EntityNPCInterface;
 
@@ -17,7 +18,7 @@ import net.minecraft.util.Vec3;
 
 public class RenderFlansModEntity extends RenderLiving
 {
-    public static final float DEFAULT_Y_TRANSLATION = -2.1F;
+    public static final float DEFAULT_Y_TRANSLATION = -2.133F;
     private final ResourceLocation texture;
     private float scaleFactor = 1F;
 
@@ -57,12 +58,16 @@ public class RenderFlansModEntity extends RenderLiving
     protected void preRenderCallback(EntityLivingBase entity, float f)
     {
         if (translation != null)
-            GL11.glTranslatef((float)translation.xCoord, (float)translation.yCoord, (float)translation.zCoord);
+            GL11.glTranslatef((float)translation.xCoord, (float)translation.yCoord * scaleFactor, (float)translation.zCoord);
         else
             GL11.glTranslatef(0F, DEFAULT_Y_TRANSLATION * scaleFactor, 0F);
 
         GL11.glRotatef(180, 1, 0, 0);
-        GL11.glRotatef(270, 0, 1, 0);
+
+        if (entity instanceof EntityFlanPlane)
+            GL11.glRotatef(90, 0, 1, 0);
+        else
+            GL11.glRotatef(270, 0, 1, 0);
 
         if (scale != null)
             GL11.glScalef((float)scale.xCoord, (float)scale.yCoord, (float)scale.zCoord);

@@ -11,10 +11,12 @@ public class ModelPanzerIVF1 extends ModelFlanVehicle
     int textureX;
     int textureY;
 
-    public ModelPanzerIVF1() {
+    public ModelPanzerIVF1()
+    {
+        super(true);
         textureX = 512;
         textureY = 512;
-        ModelRendererTurbo[][] gun_1_Model = {new ModelRendererTurbo[0], new ModelRendererTurbo[83]};
+        ModelRendererTurbo[][] gun_1_Model = {new ModelRendererTurbo[0], new ModelRendererTurbo[83], new ModelRendererTurbo[0]};
         gun_1_Model[1][0] = new ModelRendererTurbo(this, 51, 463, textureX, textureY);
         gun_1_Model[1][1] = new ModelRendererTurbo(this, 75, 463, textureX, textureY);
         gun_1_Model[1][2] = new ModelRendererTurbo(this, 99, 463, textureX, textureY);
@@ -204,34 +206,6 @@ public class ModelPanzerIVF1 extends ModelFlanVehicle
         initGuns();
         translateAll(0.0f, 0.0f, 0.0f);
         flipAll();
-
-        setDriverYawAndPitch(-360F, 360F, -10F, 20F);
-        setTrackLinkLength(3F);
-
-        addRightLinkPoint("[48,12,-23.2]");
-        addRightLinkPoint("[50.3,10,-23.2]");
-        addRightLinkPoint("[50.3,3,-23.2]");
-        addRightLinkPoint("[45,-5,-23.2]");
-        addRightLinkPoint("[39,-9,-23.2]");
-        addRightLinkPoint("[-30,-9,-23.2]");
-        addRightLinkPoint("[-47.5,1,-23.2]");
-        addRightLinkPoint("[-47.5,6,-23.2]");
-        addRightLinkPoint("[-43,10,-23.2]");
-        addRightLinkPoint("[-40,11,-23.2]");
-        addRightLinkPoint("[30,13,-23.2]");
-        addRightLinkPoint("[45,12,-23.2]");
-
-        addLeftLinkPoint("[48,12,23.2]");
-        addLeftLinkPoint("[50.3,10,23.2]");
-        addLeftLinkPoint("[50.3,3,23.2]");
-        addLeftLinkPoint("[39,-9,23.2]");
-        addLeftLinkPoint("[-30,-9,23.2]");
-        addLeftLinkPoint("[-47.5,1,23.2]");
-        addLeftLinkPoint("[-47.5,6,23.2]");
-        addLeftLinkPoint("[-43,10,23.2]");
-        addLeftLinkPoint("[-40,11,23.2]");
-        addLeftLinkPoint("[30,13,23.2]");
-        addLeftLinkPoint("[45,12,23.2]");
     }
 
     private void initbodyModel_1() {
@@ -3003,5 +2977,40 @@ public class ModelPanzerIVF1 extends ModelFlanVehicle
     }
 
     private void initGuns() {
+    }
+
+    @Override
+    public void setupConfig()
+    {
+        setDriver(-360F, 360F, -10F, 20F);
+        setDriverAimSpeed(0.65F, 0.55F);
+        setPassenger(1, -10F, 10F, -10F, 10F);
+
+        setTrackLinkLength(3F);
+
+        addRightLinkPoint("[48,12,-23.2]");
+        addRightLinkPoint("[50.3,10,-23.2]");
+        addRightLinkPoint("[50.3,3,-23.2]");
+        addRightLinkPoint("[45,-5,-23.2]");
+        addRightLinkPoint("[39,-9,-23.2]");
+        addRightLinkPoint("[-30,-9,-23.2]");
+        addRightLinkPoint("[-47.5,1,-23.2]");
+        addRightLinkPoint("[-47.5,6,-23.2]");
+        addRightLinkPoint("[-43,10,-23.2]");
+        addRightLinkPoint("[-40,11,-23.2]");
+        addRightLinkPoint("[30,13,-23.2]");
+        addRightLinkPoint("[45,12,-23.2]");
+
+        addLeftLinkPoint("[48,12,23.2]");
+        addLeftLinkPoint("[50.3,10,23.2]");
+        addLeftLinkPoint("[50.3,3,23.2]");
+        addLeftLinkPoint("[39,-9,23.2]");
+        addLeftLinkPoint("[-30,-9,23.2]");
+        addLeftLinkPoint("[-47.5,1,23.2]");
+        addLeftLinkPoint("[-47.5,6,23.2]");
+        addLeftLinkPoint("[-43,10,23.2]");
+        addLeftLinkPoint("[-40,11,23.2]");
+        addLeftLinkPoint("[30,13,23.2]");
+        addLeftLinkPoint("[45,12,23.2]");
     }
 }

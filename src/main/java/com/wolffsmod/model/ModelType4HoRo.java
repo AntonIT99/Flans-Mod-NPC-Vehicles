@@ -81,11 +81,11 @@ public class ModelType4HoRo extends ModelVehicle
 		bodyModel[3].setRotationPoint(26F, -7F, -15F);
 		bodyModel[3].rotateAngleZ = -2.879793F;
 		
-		bodyModel[4].addBox(0F, 0F, 0F, 0, 24, 7, 0F); // CR.FrontArmorPlateRight
+		bodyModel[4].addBox(0F, 0F, 0F, 1, 24, 7, 0F); // CR.FrontArmorPlateRight
 		bodyModel[4].setRotationPoint(26F, -7F, 8F);
 		bodyModel[4].rotateAngleZ = -2.879793F;
 		
-		bodyModel[5].addBox(0F, 0F, 0F, 0, 24, 16, 0F); // CR.FrontArmorPlateLeft
+		bodyModel[5].addBox(0F, 0F, 0F, 1, 24, 16, 0F); // CR.FrontArmorPlateLeft
 		bodyModel[5].setRotationPoint(26F, -7F, -15F);
 		bodyModel[5].rotateAngleZ = -2.879793F;
 		
