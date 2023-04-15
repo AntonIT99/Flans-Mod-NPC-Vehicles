@@ -1,6 +1,7 @@
 package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
+import com.wolffsmod.entity.official.ww2.EntityTiger;
 import com.wolffsmod.entity.w44.*;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
@@ -160,8 +161,10 @@ public class ModEntityRegistry {
 		createEntity(EntityLeopard2A7.class, "Leopard 2 A7+ PSO (Manus Pack)");
 
 		createEntity(EntityPanzerIVF1.class, "Panzer IV Ausf. F1 (Warfare 44)");
-		createEntity(EntityStuG3G.class, "StuG III Ausf. G (Warfare 44)");
 		createEntity(EntityJu87D3.class, "Junker Ju 87 D-3 (Warfare 44)");
+		createEntity(EntityStuG3G.class, "StuG III Ausf. G (Warfare 44)");
+		createEntity(EntityTiger1H.class, "Panzer VI Tiger Ausf. H (Warfare 44)");
+
 
 		// WIP
 		//createEntity(EntityMark3.class, "Mark 3");

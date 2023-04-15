@@ -2,16 +2,12 @@ package com.wolffsmod.render;
 
 import org.lwjgl.opengl.GL11;
 
-import com.flansmod.common.driveables.EntityVehicle;
 import com.wolffsmod.Strings;
-import com.wolffsmod.entity.EntityFlanPlane;
-import com.wolffsmod.model.ModelFlanVehicle;
-import noppes.npcs.entity.EntityNPCInterface;
+import com.wolffsmod.entity.EntityFlanPlaneNPC;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
@@ -64,7 +60,7 @@ public class RenderFlansModEntity extends RenderLiving
 
         GL11.glRotatef(180, 1, 0, 0);
 
-        if (entity instanceof EntityFlanPlane)
+        if (entity instanceof EntityFlanPlaneNPC)
             GL11.glRotatef(90, 0, 1, 0);
         else
             GL11.glRotatef(270, 0, 1, 0);

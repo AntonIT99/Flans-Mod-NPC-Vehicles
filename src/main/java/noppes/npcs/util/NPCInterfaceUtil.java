@@ -1,10 +1,15 @@
 package noppes.npcs.util;
 
 import com.flansmod.common.FlansMod;
+import com.flansmod.common.RotatedAxes;
+import com.flansmod.common.driveables.EnumDriveablePart;
+import com.flansmod.common.driveables.ShootPoint;
 import com.flansmod.common.guns.AttachmentType;
 import com.flansmod.common.guns.GunType;
 import com.flansmod.common.guns.ItemGun;
+import com.flansmod.common.network.PacketParticle;
 import com.flansmod.common.network.PacketPlaySound;
+import com.flansmod.common.vector.Vector3f;
 import noppes.npcs.Server;
 import noppes.npcs.constants.EnumPacketClient;
 
@@ -16,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MathHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -138,5 +144,101 @@ public class NPCInterfaceUtil
     public static int bulletSpreadToAccuracy(float spread)
     {
         return Math.max((int) Math.round(100D - (((5D * 0.005D)/(2D * 0.007499999832361937D)) * spread)), 0);
+    }
+
+    public static Vector3f getFiringPosition(ShootPoint dp, Vector3f turretOrigin, float driverYaw, float driverPitch, float entityYaw)
+    {
+        Vector3f rootVector = new Vector3f(dp.rootPos.position);
+        Vector3f offsetVector = new Vector3f(dp.offPos);
+        Vector3f localGunVec = new Vector3f(dp.rootPos.position);
+
+        RotatedAxes looking = new RotatedAxes(driverYaw, driverPitch, 0F);
+        RotatedAxes axes = new RotatedAxes(entityYaw, 0F, 0F);
+        axes.rotateLocalYaw(90F);
+
+        if (dp.rootPos.part == EnumDriveablePart.turret)
+        {
+            if (offsetVector.x == 0 && offsetVector.y == 0 && offsetVector.z == 0)
+            {
+                //Untranslate by the turret origin, to get the rotation about the right point
+                Vector3f.sub(localGunVec, turretOrigin, localGunVec);
+                //Rotate by the turret angles
+                localGunVec =  looking.findLocalVectorGlobally(localGunVec);
+                //Translate by the turret origin
+                Vector3f.add(localGunVec, turretOrigin, localGunVec);
+            }
+            else
+            {
+                RotatedAxes yawOnlyLooking = new RotatedAxes(driverYaw, 0F, 0F);
+
+                //Calculate the root of the gun
+                //Untranslate by the turret origin, to get the rotation about the right point
+                Vector3f.sub(rootVector, turretOrigin, rootVector);
+                //Rotate by the turret angles
+                rootVector = yawOnlyLooking.findLocalVectorGlobally(rootVector);
+                //Translate by the turret origin
+                Vector3f.add(rootVector, turretOrigin, rootVector);
+
+                //Calculate the tip of the gun
+                //Untranslate by the turret origin, to get the rotation about the right point
+                Vector3f.sub(offsetVector, turretOrigin, offsetVector);
+                //Rotate by the turret angles
+                offsetVector = looking.findLocalVectorGlobally(offsetVector);
+                //Translate by the turret origin
+
+                Vector3f.add(rootVector, offsetVector, localGunVec);
+            }
+        }
+        return axes.findLocalVectorGlobally(localGunVec);
+    }
+
+    public static float degToRad(float angle)
+    {
+        return (float)(angle * Math.PI / 180F);
+    }
+
+    public static class ShootParticle
+    {
+        public ShootParticle(String s, float x1, float y1, float z1)
+        {
+            x = x1;
+            y = y1;
+            z = z1;
+            name = s;
+        }
+        public float x, y, z;
+        public String name;
+    }
+
+    public static void spawnParticle(ArrayList<ShootParticle> list, ShootPoint shootPoint, Vector3f gunVector, float driverYaw, float driverPitch, float entityYaw, double posX, double posY, double posZ, int dimension)
+    {
+        RotatedAxes looking = new RotatedAxes(driverYaw, driverPitch, 0F);
+        RotatedAxes axes = new RotatedAxes(entityYaw, 0F, 0F);
+        axes.rotateLocalYaw(90F);
+
+        for (ShootParticle s : list)
+        {
+            float bkx = shootPoint.rootPos.position.x;
+            float bky = shootPoint.rootPos.position.y;
+            float bkz = shootPoint.rootPos.position.z;
+
+            Vector3f velocity = new Vector3f(s.x, s.y, s.z);
+            velocity = axes.findLocalVectorGlobally(looking.findLocalVectorGlobally(velocity));
+
+            if (shootPoint.rootPos.part == EnumDriveablePart.core)
+            {
+                Vector3f v2 = axes.findLocalVectorGlobally(shootPoint.rootPos.position);
+                Vector3f v3 = axes.findLocalVectorGlobally(looking.findLocalVectorGlobally(shootPoint.offPos));
+                Vector3f.add(v2, v3, gunVector);
+            }
+
+            FlansMod.getPacketHandler().sendToAllAround(
+                    new PacketParticle(s.name, posX + gunVector.x, posY + gunVector.y, posZ + gunVector.z, velocity.x, velocity.y, velocity.z),
+                    posX + gunVector.x, posY + gunVector.y, posZ + gunVector.z, FlansMod.driveableUpdateRange, dimension);
+
+            shootPoint.rootPos.position.x = bkx;
+            shootPoint.rootPos.position.y = bky;
+            shootPoint.rootPos.position.z = bkz;
+        }
     }
 }

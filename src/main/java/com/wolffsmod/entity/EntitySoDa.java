@@ -2,7 +2,8 @@ package com.wolffsmod.entity;
 
 import net.minecraft.world.World;
 
-public class EntitySoDa extends EntityFlanVehicle {
+public class EntitySoDa extends EntityFlanVehicleNPC
+{
 
 	public EntitySoDa(World p_i1602_1_) {
 		super(p_i1602_1_);

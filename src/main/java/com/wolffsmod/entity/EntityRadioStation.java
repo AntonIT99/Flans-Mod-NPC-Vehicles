@@ -2,7 +2,8 @@ package com.wolffsmod.entity;
 
 import net.minecraft.world.World;
 
-public class EntityRadioStation extends EntityFlanVehicle {
+public class EntityRadioStation extends EntityFlanVehicleNPC
+{
 
 	public EntityRadioStation(World p_i1602_1_) {
 		super(p_i1602_1_);

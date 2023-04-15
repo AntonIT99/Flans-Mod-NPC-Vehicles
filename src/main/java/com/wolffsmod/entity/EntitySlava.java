@@ -2,7 +2,8 @@ package com.wolffsmod.entity;
 
 import net.minecraft.world.World;
 
-public class EntitySlava extends EntityFlanShip {
+public class EntitySlava extends EntityFlanShipNPC
+{
 
 	public EntitySlava(World p_i1602_1_) {
 		super(p_i1602_1_);

@@ -2,7 +2,8 @@ package com.wolffsmod.entity;
 
 import net.minecraft.world.World;
 
-public class EntityType4HoRo extends EntityFlanVehicle {
+public class EntityType4HoRo extends EntityFlanVehicleNPC
+{
 
 	public EntityType4HoRo(World p_i1602_1_) {
 		super(p_i1602_1_);

@@ -2,7 +2,11 @@ package noppes.npcs.entity;
 
 import com.flansmod.client.FlansModClient;
 import com.flansmod.client.model.GunAnimations;
+import com.flansmod.common.driveables.ShootPoint;
 import com.flansmod.common.guns.*;
+import com.flansmod.common.vector.Vector3f;
+import com.wolffsmod.entity.EntityFlanDriveableNPC;
+import com.wolffsmod.entity.Seat;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.common.MinecraftForge;
@@ -54,7 +58,10 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.projectile.*;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityEgg;
+import net.minecraft.entity.projectile.EntityPotion;
+import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
@@ -69,6 +76,8 @@ import java.io.IOException;
 import java.util.*;
 
 public abstract class EntityNPCInterface extends EntityCreature implements IEntityAdditionalSpawnData, ICommandSender, IRangedAttackMob, IBossDisplayData{
+	public Seat driver = new Seat();
+	public Map<Integer, Seat> passengers = new HashMap<>();
 	public ICustomNpc wrappedNPC;
 
 	public static final GameProfileAlt chateventProfile = new GameProfileAlt();
@@ -182,6 +191,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		this.dataWatcher.addObject(15, Integer.valueOf(0)); // isWalking
 		this.dataWatcher.addObject(16, String.valueOf("")); // Role
 	}
+
 	protected boolean isAIEnabled(){
 		return true;
 	}
@@ -542,8 +552,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 				setAttackTarget(attackingEntity);
 			}
 			return super.attackEntityFrom(damagesource, i);
-		}
-		finally{
+		} finally{
 			if(event.getClearTarget()){
 				setAttackTarget(null);
 				setRevengeTarget(null);
@@ -553,8 +562,12 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 
 	public boolean isFlanDriveable()
 	{
-
 		return false;
+	}
+
+	public Optional<EntityFlanDriveableNPC> getFlanDriveableEntity()
+	{
+		return Optional.empty();
 	}
 
 	public boolean isFlanPlane()
@@ -703,7 +716,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		{
 			guns.add(offHand);
 		}
- 		return guns;
+		return guns;
 	}
 
 	public void animateFlanGunMelee()
@@ -821,13 +834,31 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 				shotgun = (stats.shotCount > 1);
 			}
 
+			float yaw = rotationYawHead;
+			float pitch = rotationPitch;
+			Vec3 origin = Vec3.createVectorHelper(posX, posY + getEyeHeight(), posZ);
+
+			if (getFlanDriveableEntity().isPresent() && (getFlanDriveableEntity().get().shootPointsPrimary.size() > 0))
+			{
+				EntityFlanDriveableNPC driveable = getFlanDriveableEntity().get();
+
+				yaw = driver.getYaw();
+				pitch = driver.getPitch();
+				spread = 0F; //TODO: remove
+
+				ShootPoint shootPoint = driveable.shootPointsPrimary.get(0);
+				Vector3f gunVector = NPCInterfaceUtil.getFiringPosition(shootPoint, driveable.turretOrigin, driver.getLocalYaw(), driver.getPitch(), renderYawOffset);
+				origin = (Vector3f.add(new Vector3f(posX, posY, posZ), gunVector, null)).toVec3();
+				NPCInterfaceUtil.spawnParticle(driveable.shootParticlesPrimary, shootPoint, gunVector, driver.getLocalYaw(), driver.getPitch(), renderYawOffset, posX, posY, posZ, dimension);
+			}
+
 			if (itemShootable instanceof ItemBullet)
 			{
 				shot = new EntityNPCFlanBullet(
 						worldObj,
-						Vec3.createVectorHelper(posX, posY + getEyeHeight(), posZ),
-						rotationYawHead,
-						rotationPitch,
+						origin,
+						yaw,
+						pitch,
 						this,
 						spread,
 						damage,
@@ -839,9 +870,9 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			{
 				shot = itemShootable.getEntity(
 						worldObj,
-						Vec3.createVectorHelper(posX, posY + getEyeHeight(), posZ),
-						rotationYawHead,
-						rotationPitch,
+						origin,
+						yaw,
+						pitch,
 						this,
 						spread,
 						damage,
@@ -884,6 +915,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		}
 		tasks.taskEntries = new ArrayList<EntityAITaskEntry>();
 	}
+
 	public void updateTasks() {
 		if (worldObj == null || worldObj.isRemote)
 			return;
@@ -987,6 +1019,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			this.tasks.addTask(this.taskCount++, new EntityAIMovingPath(this));
 		}
 	}
+
 	/*
 	 * Branch task function for adjusting NPC door interactivity
 	 */
@@ -1125,6 +1158,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	public int getTalkInterval(){
 		return 160;
 	}
+
 	/**
 	 * Returns the sound this mob makes when it is hurt.
 	 */
@@ -1203,6 +1237,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		}
 		Server.sendData((EntityPlayerMP)player, EnumPacketClient.CHATBUBBLE, this.getEntityId(), line.text, !line.hideText);
 	}
+
 	public boolean getAlwaysRenderNameTagForRender(){
 		return true;
 	}
@@ -1244,7 +1279,6 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 
 		this.updateTasks();
 	}
-
 
 
 	@Override
@@ -1380,7 +1414,6 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	}
 
 
-
 	@Override
 	public void setInPortal(){
 		//prevent npcs from walking into portals
@@ -1461,7 +1494,9 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			inventory.armor.put(4 - slot, item);
 		}
 	}
+
 	private static final ItemStack[] lastActive = new ItemStack[5];
+
 	@Override
 	public ItemStack[] getLastActiveItems(){
 		return lastActive;
@@ -1697,6 +1732,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	public boolean isSneaking() {
 		return currentAnimation == EnumAnimation.SNEAKING;
 	}
+
 	@Override
 	public void knockBack(Entity par1Entity, float par2, double par3, double par5)
 	{
@@ -1717,6 +1753,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			this.motionY = 0.4000000059604645D;
 		}
 	}
+
 	@Override
 	public void addVelocity(double p_70024_1_, double p_70024_3_, double p_70024_5_) {
 		if (this.attackingPlayer != null) {
@@ -1750,9 +1787,11 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			return fac;
 		}
 	}
+
 	public boolean isRemote(){
 		return worldObj == null || worldObj.isRemote;
 	}
+
 	public void setFaction(int integer) {
 		if(integer < 0|| isRemote())
 			return;
@@ -1825,6 +1864,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		}
 		return compound;
 	}
+
 	@Override
 	public void readSpawnData(ByteBuf buf) {
 		try {
@@ -1832,6 +1872,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		} catch (IOException e) {
 		}
 	}
+
 	public void readSpawnData(NBTTagCompound compound) {
 		stats.maxHealth = compound.getDouble("MaxHealth");
 		ai.setWalkingSpeed(compound.getInteger("Speed"));
@@ -1896,6 +1937,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	{
 		return EntityBat.class != par1Class;
 	}
+
 	public void setImmuneToFire(boolean immuneToFire) {
 		this.isImmuneToFire = immuneToFire;
 		stats.immuneToFire = immuneToFire;
@@ -1931,11 +1973,13 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		this.getNavigator().setAvoidsWater(avoidWater);
 		ai.avoidsWater = avoidWater;
 	}
+
 	@Override
 	protected void fall(float par1) {
 		if (!this.stats.noFallDamage)
 			super.fall(par1);
 	}
+
 	@Override
 	public void setInWeb(){
 		if(!ai.ignoreCobweb)

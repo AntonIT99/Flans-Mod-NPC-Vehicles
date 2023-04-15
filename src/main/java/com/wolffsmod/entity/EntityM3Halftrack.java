@@ -1,7 +1,8 @@
 package com.wolffsmod.entity;
 
 import net.minecraft.world.World;
-public class EntityM3Halftrack extends EntityFlanVehicle {
+public class EntityM3Halftrack extends EntityFlanVehicleNPC
+{
 	public EntityM3Halftrack(World w) {
 		super(w);
 		this.setSize(3.0F, 2.5F);

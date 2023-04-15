@@ -2,7 +2,8 @@ package com.wolffsmod.entity;
 
 import net.minecraft.world.World;
 
-public class EntityM1Abrams extends EntityFlanVehicle {
+public class EntityM1Abrams extends EntityFlanVehicleNPC
+{
 
 	public float wheelsAngle;
 

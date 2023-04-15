@@ -1,8 +1,26 @@
 package com.wolffsmod;
 
+import com.wolffsmod.model.official.ww2.ModelCromwell;
 import com.wolffsmod.entity.*;
+import com.wolffsmod.entity.official.ww2.EntityTiger;
 import com.wolffsmod.entity.w44.*;
 import com.wolffsmod.model.*;
+import com.wolffsmod.model.ModelBF109G10;
+import com.wolffsmod.model.ModelChiHa;
+import com.wolffsmod.model.ModelChiNu;
+import com.wolffsmod.model.ModelFlak88;
+import com.wolffsmod.model.ModelIS2;
+import com.wolffsmod.model.ModelM3Halftrack;
+import com.wolffsmod.model.ModelPak40;
+import com.wolffsmod.model.ModelPantherG;
+import com.wolffsmod.model.ModelPanzerIVH;
+import com.wolffsmod.model.ModelSU100;
+import com.wolffsmod.model.ModelSU85;
+import com.wolffsmod.model.ModelStuGIV;
+import com.wolffsmod.model.ModelT3476;
+import com.wolffsmod.model.ModelT3485;
+import com.wolffsmod.model.ModelType4HoRo;
+import com.wolffsmod.model.official.ww2.ModelTiger;
 import com.wolffsmod.model.w44.*;
 import com.wolffsmod.render.*;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -133,7 +151,7 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntityTeKe.class, new RenderTeKe(new ModelTeKe(), 0));	
 		RenderingRegistry.registerEntityRenderingHandler(EntityTKlate.class, new RenderTKlate(new ModelTKlate(), 0));	
 		RenderingRegistry.registerEntityRenderingHandler(EntityBF109E3.class, new RenderBF109E3(new ModelBF109E3(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityBF109G10.class, new RenderBF109G10(new ModelBF109G10(), 0));	
+		RenderingRegistry.registerEntityRenderingHandler(EntityBF109G10.class, new RenderBF109G10(new ModelBF109G10(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityHawkerHurricane.class, new RenderHawkerHurricane(new ModelHawkerHurricane(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityMilitaryCrate.class, new RenderMilitaryCrate(new ModelMilitaryCrate(), 0));	
 		RenderingRegistry.registerEntityRenderingHandler(EntityOccupier.class, new RenderOccupier(new ModelOccupier(), 0));	
@@ -147,7 +165,7 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntityBMWR75.class, new RenderBMWR75(new ModelBMWR75(), 0));	
 		RenderingRegistry.registerEntityRenderingHandler(EntityBofors.class, new RenderBofors(new ModelBofors(), 0));	
 		RenderingRegistry.registerEntityRenderingHandler(EntityBwTruck.class, new RenderBwTruck(new ModelBwTruck(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityFlak88.class, new RenderFlak88(new ModelFlak88(), 0));	
+		RenderingRegistry.registerEntityRenderingHandler(EntityFlak88.class, new RenderFlak88(new ModelFlak88(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFlakvierling.class, new RenderFlakvierling(new ModelFlakvierling(), 0));	
 		RenderingRegistry.registerEntityRenderingHandler(EntityGreyhound.class, new RenderGreyhound(new ModelGreyhound(), 0));	
 		RenderingRegistry.registerEntityRenderingHandler(EntityHellcat.class, new RenderHellcat(new ModelHellcat(), 0));	
@@ -161,7 +179,7 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntitySASJeep.class, new RenderSASJeep(new ModelSASJeep(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySU112.class, new RenderSU112(new ModelSU112(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityUC2Pdr.class, new RenderUC2Pdr(new ModelUC2Pdr(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySentryGun.class, new RenderSentryGun(new ModelSentryGun(), 0));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySentryGun.class, new RenderFlansModEntity(new ModelSentryGun()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntitySdkFz2.class, new RenderFlansModEntity(new ModelSdkFz2()).scale(0.9F));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySdkFz222.class, new RenderFlansModEntity(new ModelSdkFz222()).setTranslation(0F, -2.5F, 0F).setScale(1.3F, 1.3F, 1.3F));
@@ -180,8 +198,9 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntityLeopard2A7.class, new RenderFlansModEntity(new ModelLeopard2A7()));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityPanzerIVF1.class, new RenderFlansModEntity(new ModelPanzerIVF1(), "PanzerIVF/PanzerIVF.png").setTranslation(0F, -2.133F, 0F));
-		RenderingRegistry.registerEntityRenderingHandler(EntityStuG3G.class, new RenderFlansModEntity(new ModelStuG3G()).setTranslation(0F, -2.133F, 0F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityJu87D3.class, new RenderFlansModEntity(new ModelJu87D3()).setTranslation(0F, -2.133F, 0F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityStuG3G.class, new RenderFlansModEntity(new ModelStuG3G()).setTranslation(0F, -2.133F, 0F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTiger1H.class, new RenderFlansModEntity(new ModelTiger1H()).setTranslation(0F, -2.133F, 0F).scale(1.2F));
 
 		//WIP
 		//RenderingRegistry.registerEntityRenderingHandler(EntityMark3.class, new RenderMark3(new ModelMark3(), 0));

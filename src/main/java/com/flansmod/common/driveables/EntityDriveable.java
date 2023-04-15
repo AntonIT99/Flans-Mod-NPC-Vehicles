@@ -1200,7 +1200,7 @@ public abstract class EntityDriveable extends Entity implements IControllable, I
             }
         }
 
-		/*if(this.isLockedOn && soundTime <= 0 && !this.worldObj.isRemote)
+        /*if(this.isLockedOn && soundTime <= 0 && !this.worldObj.isRemote)
 		{
 			PacketPlaySound.sendSoundPacket(posX,posY,posZ, 5, dimension, type.lockedOnSound, false);
 			soundTime = type.soundTime;

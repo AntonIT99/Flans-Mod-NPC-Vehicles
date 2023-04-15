@@ -1,7 +1,7 @@
 package com.wolffsmod.entity;
 
 import net.minecraft.world.World;
-public class EntitySentryGun extends EntityFlanVehicle
+public class EntitySentryGun extends EntityFlanVehicleNPC
 {
 	public EntitySentryGun(World w)
 	{

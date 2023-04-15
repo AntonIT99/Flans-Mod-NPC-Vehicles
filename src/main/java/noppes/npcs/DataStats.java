@@ -36,7 +36,7 @@ public class DataStats {
 	public float healthRegen = 1;
 	public float combatRegen = 0;
 
-	public float pDamage = 4;
+	public float pDamage = 1;
 	public int pImpact = 0, pSize = 5, pSpeed = 10, pArea = 0, pDur = 5;
     public boolean pPhysics = true, pXlr8 = false, pGlows = false, pExplode = false;
     public boolean pRender3D = false, pSpin = false, pStick = false;

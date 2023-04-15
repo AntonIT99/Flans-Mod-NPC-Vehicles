@@ -2,7 +2,8 @@ package com.wolffsmod.entity;
 
 import net.minecraft.world.World;
 
-public class EntityChurchill extends EntityFlanVehicle {
+public class EntityChurchill extends EntityFlanVehicleNPC
+{
 
 	public EntityChurchill(World p_i1602_1_) {
 		super(p_i1602_1_);

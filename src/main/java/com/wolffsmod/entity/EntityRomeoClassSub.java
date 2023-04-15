@@ -2,7 +2,8 @@ package com.wolffsmod.entity;
 
 import net.minecraft.world.World;
 
-public class EntityRomeoClassSub extends EntityFlanShip {
+public class EntityRomeoClassSub extends EntityFlanShipNPC
+{
 
 	public EntityRomeoClassSub(World w) {
 		super(w);
