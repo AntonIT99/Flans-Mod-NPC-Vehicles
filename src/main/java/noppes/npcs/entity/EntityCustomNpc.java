@@ -115,7 +115,7 @@ public class EntityCustomNpc extends EntityNPCFlying
 	{
 		if (getFlanDriveableEntity().isPresent() && getFlanDriveableEntity().get().shootPointsPrimary.size() > 0)
 		{
-			return getFlanDriveableEntity().get().shootPointsPrimary.get(0).rootPos.position.getY() / 16F + getFlanDriveableEntity().get().yDriveableOffset;
+			return getFlanDriveableEntity().get().shootPointsPrimary.get(0).rootPos.position.getY() + getFlanDriveableEntity().get().yDriveableOffset;
 		}
 		return super.getEyeHeight();
 	}

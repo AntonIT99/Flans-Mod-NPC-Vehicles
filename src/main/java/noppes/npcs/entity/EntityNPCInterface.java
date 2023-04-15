@@ -847,9 +847,9 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 				spread = 0F; //TODO: remove
 
 				ShootPoint shootPoint = driveable.shootPointsPrimary.get(0);
-				Vector3f gunVector = NPCInterfaceUtil.getFiringPosition(shootPoint, driveable.turretOrigin, driver.getLocalYaw(), driver.getPitch(), renderYawOffset);
-				origin = (Vector3f.add(new Vector3f(posX, posY, posZ), gunVector, null)).toVec3();
-				NPCInterfaceUtil.spawnParticle(driveable.shootParticlesPrimary, shootPoint, gunVector, driver.getLocalYaw(), driver.getPitch(), renderYawOffset, posX, posY, posZ, dimension);
+				Vector3f gunVector = NPCInterfaceUtil.getFiringPosition(shootPoint, driveable.turretOrigin, yaw, pitch, renderYawOffset);
+				origin = (Vector3f.add(new Vector3f(posX, posY + driveable.yDriveableOffset, posZ), gunVector, null)).toVec3();
+				NPCInterfaceUtil.spawnParticle(driveable.shootParticlesPrimary, shootPoint, gunVector, yaw, pitch, renderYawOffset, posX, posY + driveable.yDriveableOffset, posZ, dimension);
 			}
 
 			if (itemShootable instanceof ItemBullet)

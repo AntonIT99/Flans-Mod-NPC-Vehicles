@@ -7,8 +7,8 @@ import net.minecraft.util.MathHelper;
 public class Seat
 {
     public Vector3f gunOrigin = new Vector3f();
-    public float yawSpeed = 1F;
-    public float pitchSpeed = 1F;
+    public float yawSpeed = 2F;
+    public float pitchSpeed = 2F;
     public float baseYawAngle;
     public Vector3f position = new Vector3f();
 
@@ -19,13 +19,13 @@ public class Seat
 
     private float globalYaw;
     private float pitch;
-    private float localYaw;
+    private float yaw;
 
     public Seat() {}
 
     public void copyYawAndPitch(Seat other)
     {
-        localYaw = other.localYaw;
+        yaw = other.yaw;
         globalYaw = other.globalYaw;
         pitch = other.pitch;
     }
@@ -75,30 +75,28 @@ public class Seat
         float targetYaw = Math.min(Math.max(seatYaw - entityYaw, minYaw), maxYaw);
         float targetPitch = Math.min(Math.max(seatPitch, -maxPitch), -minPitch);
 
-        if (localYaw > 0 && targetYaw < 0 && (targetYaw + 360F - localYaw) < (localYaw - targetYaw))
+        if (yaw > 0 && targetYaw < 0 && (targetYaw + 360F - yaw) < (yaw - targetYaw))
             targetYaw += 360F;
-        if (localYaw < 0 && targetYaw > 0 && (localYaw + 360F - targetYaw) < (targetYaw - localYaw))
+        if (yaw < 0 && targetYaw > 0 && (yaw + 360F - targetYaw) < (targetYaw - yaw))
             targetYaw -= 360F;
         if (pitch > 0 && targetPitch < 0 && (targetPitch + 360F - pitch) < (pitch - targetPitch))
             targetPitch += 360F;
         if (pitch < 0 && targetPitch > 0 && (pitch + 360F - targetPitch) < (targetPitch - pitch))
             targetPitch -= 360F;
 
-        if (localYaw < targetYaw)
-            localYaw += Math.min(yawSpeed, targetYaw - localYaw);
-        if (localYaw > targetYaw)
-            localYaw -= Math.min(yawSpeed, localYaw - targetYaw);
+        if (yaw < targetYaw)
+            yaw += Math.min(yawSpeed, targetYaw - yaw);
+        if (yaw > targetYaw)
+            yaw -= Math.min(yawSpeed, yaw - targetYaw);
         if (pitch < targetPitch)
             pitch += Math.min(pitchSpeed, targetPitch - pitch);
         if (pitch > targetPitch)
             pitch -= Math.min(pitchSpeed, pitch - targetPitch);
 
-        globalYaw = localYaw + entityYaw;
-    }
+        yaw = Math.min(Math.max(yaw, minYaw), maxYaw);
+        pitch = Math.min(Math.max(pitch, -maxPitch), -minPitch);
 
-    public float getGlobalYaw()
-    {
-        return globalYaw;
+        globalYaw = yaw + entityYaw;
     }
 
     public float getPitch()
@@ -106,8 +104,15 @@ public class Seat
         return pitch;
     }
 
+    /** Absolute yaw not depending on the entity rotation **/
+    public float getGlobalYaw()
+    {
+        return globalYaw;
+    }
+
+    /** Yaw relative to the entity rotation **/
     public float getLocalYaw()
     {
-        return localYaw;
+        return yaw;
     }
 }

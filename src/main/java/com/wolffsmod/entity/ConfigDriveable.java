@@ -13,7 +13,7 @@ public interface ConfigDriveable
 
     /**
      * Somehow influenced by WheelPosition
-     * Default: 0.625
+     * Default: 0.625 (usually corresponds to having a wheel y position of -8)
      **/
     void setYOffset(float y);
 
@@ -58,7 +58,10 @@ public interface ConfigDriveable
     /** DriverGunOrigin [x] [y] [z] **/
     void addDriverGunOrigin(float x, float y, float z);
 
-    /** GunOrigin [id] [x] [y] [z] **/
+    /** GunOrigin [id] [x] [y] [z]
+     * Currently no usage.
+     * Will be used to implement secondary gun firing.
+     * **/
     void addGunOrigin(int id, float x, float y, float z);
 
     /** ShootParticlesPrimary [...] **/

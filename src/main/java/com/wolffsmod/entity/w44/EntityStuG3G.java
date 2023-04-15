@@ -15,11 +15,66 @@ public class EntityStuG3G extends EntityFlanVehicleNPC
 	@Override
 	public void setupConfig()
 	{
+		setTurnSpeed(0.35F);
 		setDriver("-13 24 -15 -6 6 -6 17");
 		setDriverAimSpeed(0.7F, 0.6F);
 		setPassenger("1 -15 23 6 core -25 25 -15 20 44_Mg34 PassengerGun1");
+		addGunOrigin(1, 0F, 15F, 5F);
 
+		addBarrelPosition(65F, 21F, 0F);
 		setTrackLinkLength(3F);
+		setFixTrackLink(4);
+
+		addShootParticlesPrimary("largeexplode 0 0 0");
+		addShootParticlesPrimary("explode 1.5 0 0");
+		addShootParticlesPrimary("largesmoke 0.5 0 0.1");
+		addShootParticlesPrimary("largesmoke 0.5 0 -0.1");
+		addShootParticlesPrimary("largesmoke 0.5 0.06 0.06");
+		addShootParticlesPrimary("largesmoke 0.5 0.06 -0.06");
+		addShootParticlesPrimary("largesmoke 0.5 -0.06 0.06");
+		addShootParticlesPrimary("largesmoke 0.5 -0.06 -0.06");
+		addShootParticlesPrimary("largesmoke 0.5 -0.1 0");
+		addShootParticlesPrimary("largesmoke 0.5 0.1 0");
+		addShootParticlesPrimary("cloud 0.05 0 0.2");
+		addShootParticlesPrimary("cloud 0.05 0 -0.2");
+		addShootParticlesPrimary("cloud 0.05 0.13 0.13");
+		addShootParticlesPrimary("cloud 0.05 0.13 -0.13");
+		addShootParticlesPrimary("cloud 0.05 -0.13 0.13");
+		addShootParticlesPrimary("cloud 0.05 -0.13 -0.13");
+		addShootParticlesPrimary("cloud 0.05 -0.2 0");
+		addShootParticlesPrimary("cloud 0.05 0.2 0");
+		addShootParticlesPrimary("flansmod.fmflame 1 0 0");
+		addShootParticlesPrimary("flansmod.fmflame 1.75 0 0");
+		addShootParticlesPrimary("flansmod.fmflame 1.5 0 0");
+		addShootParticlesPrimary("flansmod.fmflame 1.25 0 0");
+		addShootParticlesPrimary("flansmod.fmflame 0.75 0 0");
+		addShootParticlesPrimary("flansmod.fmflame 0.5 0 0");
+		addShootParticlesPrimary("flansmod.fmflame 0.25 0 0");
+		addShootParticlesPrimary("flansmod.fmflame 1.5 0 0");
+		addShootParticlesPrimary("flansmod.fmflame 0.5 0 0.1");
+		addShootParticlesPrimary("flansmod.fmflame 0.5 0 -0.1");
+		addShootParticlesPrimary("flansmod.fmflame 0.5 0.06 0.06");
+		addShootParticlesPrimary("flansmod.fmflame 0.5 0.06 -0.06");
+		addShootParticlesPrimary("flansmod.fmflame 0.5 -0.06 0.06");
+		addShootParticlesPrimary("flansmod.fmflame 0.5 -0.06 -0.06");
+		addShootParticlesPrimary("flansmod.fmflame 0.5 -0.1 0");
+		addShootParticlesPrimary("flansmod.fmflame 0.5 0.1 0");
+		addShootParticlesPrimary("flansmod.fmflame 0.05 0 0.2");
+		addShootParticlesPrimary("flansmod.fmflame 0.05 0 -0.2");
+		addShootParticlesPrimary("flansmod.fmflame 0.05 0.13 0.13");
+		addShootParticlesPrimary("flansmod.fmflame 0.05 0.13 -0.13");
+		addShootParticlesPrimary("flansmod.fmflame 0.05 -0.13 0.13");
+		addShootParticlesPrimary("flansmod.fmflame 0.05 -0.13 -0.13");
+		addShootParticlesPrimary("flansmod.fmflame 0.05 -0.2 0");
+		addShootParticlesPrimary("flansmod.fmflame 0.05 0.2 0");
+		addShootParticlesPrimary("flansmod.fmflame 0.1 0 0.4");
+		addShootParticlesPrimary("flansmod.fmflame 0.1 0 -0.4");
+		addShootParticlesPrimary("flansmod.fmflame 0.1 0.26 0.26");
+		addShootParticlesPrimary("flansmod.fmflame 0.1 0.26 -0.26");
+		addShootParticlesPrimary("flansmod.fmflame 0.1 -0.26 0.26");
+		addShootParticlesPrimary("flansmod.fmflame 0.1 -0.26 -0.26");
+		addShootParticlesPrimary("flansmod.fmflame 0.1 -0.4 0");
+		addShootParticlesPrimary("flansmod.fmflame 0.1 0.4 0");
 
 		addRightLinkPoint("[47.5,11,-26.1]");
 		addRightLinkPoint("[50.5,9,-26.1]");

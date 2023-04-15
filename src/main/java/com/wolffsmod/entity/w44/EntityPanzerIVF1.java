@@ -15,12 +15,15 @@ public class EntityPanzerIVF1 extends EntityFlanVehicleNPC
     @Override
     public void setupConfig()
     {
+        setTurnSpeed(0.425F);
         setDriver("0 30 0 -360 360 -10 20");
         setDriverAimSpeed(0.65F, 0.55F);
         setPassenger("1 26 6 13 core -10 10 -10 10 44_Mg34 PassengerGun1");
+        addGunOrigin(1, 36F, -7F, 11F);
 
         addBarrelPosition(45F, 29F, 0F);
         setTrackLinkLength(3F);
+        setFixTrackLink(4);
 
         addRightLinkPoint("[48,12,-23.2]");
         addRightLinkPoint("[50.3,10,-23.2]");

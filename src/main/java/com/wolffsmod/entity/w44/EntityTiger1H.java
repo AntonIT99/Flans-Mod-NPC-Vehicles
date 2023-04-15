@@ -19,9 +19,11 @@ public class EntityTiger1H extends EntityFlanVehicleNPC
         setDriver("0 38 0 -360 360 -8 15");
         setDriverAimSpeed(0.57F, 0.47F);
         setPassenger("1 35 12 15 core -510 10 -10 10 44_Mg34 PassengerGun1");
+        addGunOrigin(1, 41F, -2F, 10F);
 
         addBarrelPosition(100F, 33F, 0F);
         setTrackLinkLength(3F);
+        setFixTrackLink(6);
 
         addShootParticlesPrimary("largeexplode 0 0 0");
         addShootParticlesPrimary("explode 1.5 0 0");
