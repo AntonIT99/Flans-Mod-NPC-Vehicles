@@ -76,7 +76,7 @@ public abstract class ModelFlanVehicle extends ModelVehicle
                 //Yaw, pitch and render
                 if (passengers.get(1) != null)
                 {
-                    gunModelPart.rotateAngleY = passengers.get(1).baseYawAngle -passengers.get(1).getYaw() * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleY = passengers.get(1).baseYawAngle -passengers.get(1).getLocalYaw() * (float) Math.PI / 180F;
                     gunModelPart.rotateAngleZ = -passengers.get(1).getPitch() * (float) Math.PI / 180F;
                 }
                 gunModelPart.render(f5);

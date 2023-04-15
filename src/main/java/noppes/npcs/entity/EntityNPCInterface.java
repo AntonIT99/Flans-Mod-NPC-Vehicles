@@ -842,7 +842,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			{
 				EntityFlanDriveableNPC driveable = getFlanDriveableEntity().get();
 
-				yaw = driver.getYaw();
+				yaw = driver.getLocalYaw();
 				pitch = driver.getPitch();
 				spread = 0F; //TODO: remove
 
