@@ -51,10 +51,6 @@ public class Seat
 
     public void set(float minYaw, float maxYaw, float minPitch, float maxPitch)
     {
-        minYaw = (Math.abs(minYaw) < 360F) ? MathHelper.wrapAngleTo180_float(minYaw) : minYaw;
-        maxYaw = (Math.abs(maxYaw) < 360F) ? MathHelper.wrapAngleTo180_float(maxYaw) : maxYaw;
-        minPitch = (Math.abs(minPitch) < 360F) ? MathHelper.wrapAngleTo180_float(minPitch) : minPitch;
-        maxPitch = (Math.abs(maxPitch) < 360F) ? MathHelper.wrapAngleTo180_float(maxPitch) : maxPitch;
         this.minYaw = Math.min(minYaw, maxYaw);
         this.maxYaw = Math.max(minYaw, maxYaw);
         this.minPitch = Math.min(minPitch, maxPitch);
