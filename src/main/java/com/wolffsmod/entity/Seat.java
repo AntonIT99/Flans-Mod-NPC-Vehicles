@@ -9,7 +9,7 @@ public class Seat
     public Vector3f gunOrigin = new Vector3f();
     public float yawSpeed = 2F;
     public float pitchSpeed = 2F;
-    public float baseYawAngle;
+    public float offsetYawAngle;
     public Vector3f position = new Vector3f();
 
     private float minYaw;
@@ -39,7 +39,7 @@ public class Seat
         maxPitch = other.maxPitch;
         yawSpeed = other.yawSpeed;
         pitchSpeed = other.pitchSpeed;
-        baseYawAngle = other.baseYawAngle;
+        offsetYawAngle = other.offsetYawAngle;
         gunOrigin.set(other.gunOrigin);
     }
 
@@ -61,9 +61,9 @@ public class Seat
         this.maxPitch = Math.max(minPitch, maxPitch);
     }
 
-    public void setBaseYawAngle(float baseYawAngle)
+    public void setOffsetYawAngle(float offsetYawAngle)
     {
-        this.baseYawAngle = MathHelper.wrapAngleTo180_float(baseYawAngle);
+        this.offsetYawAngle = MathHelper.wrapAngleTo180_float(offsetYawAngle);
     }
 
     public void setYawAndPitch(float seatYaw, float seatPitch, float entityYaw)

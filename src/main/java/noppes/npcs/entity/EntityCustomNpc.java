@@ -97,16 +97,33 @@ public class EntityCustomNpc extends EntityNPCFlying
 		if (getFlanDriveableEntity().isPresent())
 		{
 			EntityFlanDriveableNPC entityDriveable = getFlanDriveableEntity().get();
-			driver.copyProperties(entityDriveable.driver);
+			getSeatsPropertiesFromDriveable(entityDriveable);
 			updateDriverAndPassengers();
-			entityDriveable.driver.copyYawAndPitch(driver);
-			for (Integer id : passengers.keySet())
-			{
-				if (entityDriveable.passengers.containsKey(id))
-					entityDriveable.passengers.get(id).copyYawAndPitch(passengers.get(id));
-				else
-					entityDriveable.passengers.put(id, passengers.get(id));
-			}
+			setSeatsRotationForDriveable(entityDriveable);
+		}
+	}
+
+	protected void getSeatsPropertiesFromDriveable(EntityFlanDriveableNPC source)
+	{
+		driver.copyProperties(source.driver);
+		for (Integer id : source.passengers.keySet())
+		{
+			if (passengers.containsKey(id))
+				passengers.get(id).copyProperties(source.passengers.get(id));
+			else
+				passengers.put(id, source.passengers.get(id));
+		}
+	}
+
+	protected void setSeatsRotationForDriveable(EntityFlanDriveableNPC destination)
+	{
+		destination.driver.copyYawAndPitch(driver);
+		for (Integer id : passengers.keySet())
+		{
+			if (destination.passengers.containsKey(id))
+				destination.passengers.get(id).copyYawAndPitch(passengers.get(id));
+			else
+				destination.passengers.put(id, passengers.get(id));
 		}
 	}
 

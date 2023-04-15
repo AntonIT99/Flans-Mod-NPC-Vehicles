@@ -1,10 +1,6 @@
 package com.wolffsmod.entity;
 
-import com.flansmod.common.RotatedAxes;
-import com.flansmod.common.driveables.DriveablePosition;
-import com.flansmod.common.driveables.DriveableType;
-import com.flansmod.common.driveables.EnumDriveablePart;
-import com.flansmod.common.driveables.ShootPoint;
+import com.flansmod.common.driveables.*;
 import com.flansmod.common.vector.Vector3f;
 import noppes.npcs.entity.EntityCustomNpc;
 import noppes.npcs.util.NPCInterfaceUtil;
@@ -26,8 +22,11 @@ public abstract class EntityFlanDriveableNPC extends EntityCreature implements C
 {
     public final Vector3f turretOrigin = new Vector3f();
     public ArrayList<NPCInterfaceUtil.ShootParticle> shootParticlesPrimary = new ArrayList<>();
+    public ArrayList<NPCInterfaceUtil.ShootParticle> shootParticlesSecondary = new ArrayList<>();
     public ArrayList<ShootPoint> shootPointsPrimary = new ArrayList<>();
     public ArrayList<ShootPoint> shootPointsSecondary = new ArrayList<>();
+    public EnumWeaponType primary = EnumWeaponType.NONE;
+    public EnumWeaponType secondary = EnumWeaponType.NONE;
     public float vehicleGunModelScale = 1F;
     public Seat driver = new Seat();
     public Map<Integer, Seat> passengers = new HashMap<>();
@@ -122,10 +121,11 @@ public abstract class EntityFlanDriveableNPC extends EntityCreature implements C
     }
 
     @Override
-    public void setDriverAimSpeed(float yawSpeed, float pitchSpeed)
+    public void setDriverAimSpeed(String data)
     {
-        driver.yawSpeed = yawSpeed;
-        driver.pitchSpeed = pitchSpeed;
+        String[] split = data.split(" ");
+        driver.yawSpeed = Float.parseFloat(split[0]);
+        driver.pitchSpeed = Float.parseFloat(split[1]);;
     }
 
     @Override
@@ -155,21 +155,23 @@ public abstract class EntityFlanDriveableNPC extends EntityCreature implements C
     }
 
     @Override
-    public void setPassengerBaseYaw(int id, float angle)
+    public void setPassengerOffsetYaw(int id, float angle)
     {
         if (passengers.get(id) != null)
         {
-            passengers.get(id).baseYawAngle = angle;
+            passengers.get(id).offsetYawAngle = angle;
         }
     }
 
     @Override
-    public void setPassengerAimSpeed(int id, float yawSpeed, float pitchSpeed)
+    public void setPassengerAimSpeed(String data)
     {
+        String[] split = data.split(" ");
+        Integer id = Integer.parseInt(split[0]);
         if (passengers.get(id) != null)
         {
-            passengers.get(id).yawSpeed = yawSpeed;
-            passengers.get(id).pitchSpeed = pitchSpeed;
+            passengers.get(id).yawSpeed = Float.parseFloat(split[1]);
+            passengers.get(id).pitchSpeed = Float.parseFloat(split[2]);
         }
     }
 
@@ -180,39 +182,126 @@ public abstract class EntityFlanDriveableNPC extends EntityCreature implements C
     }
 
     @Override
-    public void addBombPosition(float x, float y, float z)
+    public void addShootPointPrimary(String data)
     {
-        shootPointsPrimary.add(new ShootPoint(new DriveablePosition(new Vector3f(x/16F, y/16F, z/16F), EnumDriveablePart.core), new Vector3f(0, 0, 0)));
+        String[] split = data.split(" ");
+        DriveablePosition rootPos;
+        Vector3f offPos;
+        String[] gun = new String[0];
+
+        if (split.length == 5 || split.length == 8)
+            gun = new String[]{"ShootPointPrimary", split[0], split[1], split[2], split[3], split[4]};
+        if (split.length == 4 || split.length == 7)
+            gun = new String[]{"ShootPointPrimary", split[0], split[1], split[2], split[3]};
+
+        if (split.length == 8)
+            offPos = new Vector3f(Float.parseFloat(split[5]) / 16F, Float.parseFloat(split[6]) / 16F, Float.parseFloat(split[7]) / 16F);
+        else if (split.length == 7)
+            offPos = new Vector3f(Float.parseFloat(split[4]) / 16F, Float.parseFloat(split[5]) / 16F, Float.parseFloat(split[6]) / 16F);
+        else
+            offPos = new Vector3f(0F, 0F, 0F);
+
+        rootPos = getShootPoint(gun);
+        ShootPoint sPoint = new ShootPoint(rootPos, offPos);
+        shootPointsPrimary.add(sPoint);
     }
 
     @Override
-    public void addBombPosition(float x, float y, float z, float xOffset, float yOffset, float zOffset)
+    public void addShootPointSecondary(String data)
     {
-        shootPointsPrimary.add(new ShootPoint(new DriveablePosition(new Vector3f(x/16F, y/16F, z/16F), EnumDriveablePart.core), new Vector3f(xOffset/16F, yOffset/16F, zOffset/16F)));
+        String[] split = data.split(" ");
+        DriveablePosition rootPos;
+        Vector3f offPos;
+        String[] gun;
+        if (split.length == 8)
+        {
+            gun = new String[]{"ShootPointPrimary", split[0], split[1], split[2], split[3], split[4]};
+            offPos = new Vector3f(Float.parseFloat(split[5]) / 16F, Float.parseFloat(split[6]) / 16F, Float.parseFloat(split[7]) / 16F);
+        }
+        else if (split.length == 7)
+        {
+            gun = new String[]{"ShootPointPrimary", split[0], split[1], split[2], split[3]};
+            offPos = new Vector3f(Float.parseFloat(split[4]) / 16F, Float.parseFloat(split[5]) / 16F, Float.parseFloat(split[6]) / 16F);
+        }
+        else
+        {
+            gun = split;
+            offPos = new Vector3f(0F, 0F, 0F);
+        }
+        rootPos = getShootPoint(gun);
+        ShootPoint sPoint = new ShootPoint(rootPos, offPos);
+        shootPointsSecondary.add(sPoint);
+    }
+
+    private DriveablePosition getShootPoint(String[] split)
+    {
+        if (split.length == 6)
+        {
+            return new PilotGun(split);
+        }
+        else if (split.length == 5)
+        {
+            return new DriveablePosition(split);
+        }
+        return new DriveablePosition(new Vector3f(), EnumDriveablePart.core);
     }
 
     @Override
-    public void addBarrelPosition(float x, float y, float z)
+    public void addBombPosition(String data)
     {
-        shootPointsPrimary.add(new ShootPoint(new DriveablePosition(new Vector3f(x/16F, y/16F, z/16F), EnumDriveablePart.turret), new Vector3f(0, 0, 0)));
+        String[] split = data.split(" ");
+        primary = EnumWeaponType.BOMB;
+        if (split.length == 3)
+            shootPointsPrimary.add(new ShootPoint(new DriveablePosition(new Vector3f(Float.parseFloat(split[0]) / 16F, Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F), EnumDriveablePart.core), new Vector3f(0, 0, 0)));
+        else if (split.length == 6)
+            shootPointsPrimary.add(new ShootPoint(new DriveablePosition(new Vector3f(Float.parseFloat(split[0]) / 16F, Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F), EnumDriveablePart.core), new Vector3f(Float.parseFloat(split[3]) / 16F, Float.parseFloat(split[4]) / 16F, Float.parseFloat(split[5]) / 16F)));
     }
 
     @Override
-    public void addBarrelPosition(float x, float y, float z, float xOffset, float yOffset, float zOffset)
+    public void addBarrelPosition(String data)
     {
-        shootPointsPrimary.add(new ShootPoint(new DriveablePosition(new Vector3f(x/16F, y/16F, z/16F), EnumDriveablePart.turret), new Vector3f(xOffset/16F, yOffset/16F, zOffset/16F)));
+        String[] split = data.split(" ");
+        primary = EnumWeaponType.SHELL;
+        if (split.length == 3)
+            shootPointsPrimary.add(new ShootPoint(new DriveablePosition(new Vector3f(Float.parseFloat(split[0]) / 16F, Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F), EnumDriveablePart.turret), new Vector3f(0, 0, 0)));
+        else if (split.length == 6)
+            shootPointsPrimary.add(new ShootPoint(new DriveablePosition(new Vector3f(Float.parseFloat(split[0]) / 16F, Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F), EnumDriveablePart.turret), new Vector3f(Float.parseFloat(split[3]) / 16F, Float.parseFloat(split[4]) / 16F, Float.parseFloat(split[5]) / 16F)));
     }
 
     @Override
-    public void addDriverGunOrigin(float x, float y, float z)
+    public void addGun(String data)
     {
-        driver.gunOrigin = new Vector3f(x/16F, y/16F, z/16F);
+        String[] split = data.split(" ");
+        DriveablePosition rootPos;
+        Vector3f offPos;
+        secondary = EnumWeaponType.GUN;
+        String[] gun = new String[]{"AddGun", split[0], split[1], split[2], split[3], split[4]};
+        if (split.length == 5)
+        {
+            rootPos = getShootPoint(gun);
+            offPos = new Vector3f(0, 0, 0);
+        }
+        else
+        {
+            rootPos = getShootPoint(gun);
+            offPos = new Vector3f(Float.parseFloat(split[5]) / 16F, Float.parseFloat(split[6]) / 16F, Float.parseFloat(split[7]) / 16F);
+        }
+        ShootPoint sPoint = new ShootPoint(rootPos, offPos);
+        shootPointsSecondary.add(sPoint);
     }
 
     @Override
-    public void addGunOrigin(int id, float x, float y, float z)
+    public void addDriverGunOrigin(String data)
     {
-        passengers.get(id).gunOrigin = new Vector3f(x/16F, y/16F, z/16F);
+        String[] split = data.split(" ");
+        driver.gunOrigin = new Vector3f(Float.parseFloat(split[0])/16F, Float.parseFloat(split[1])/16F, Float.parseFloat(split[2])/16F);
+    }
+
+    @Override
+    public void addGunOrigin(String data)
+    {
+        String[] split = data.split(" ");
+        passengers.get(Integer.parseInt(split[0])).gunOrigin = new Vector3f(Float.parseFloat(split[1])/16F, Float.parseFloat(split[2])/16F, Float.parseFloat(split[3])/16F);
     }
 
     @Override
@@ -225,6 +314,18 @@ public abstract class EntityFlanDriveableNPC extends EntityCreature implements C
                 Float.parseFloat(split[1]),
                 Float.parseFloat(split[2]),
                 Float.parseFloat(split[3])));
+    }
+
+    @Override
+    public void addShootParticlesSecondary(String data)
+    {
+        String[] split = data.split(" ");
+        if (split.length > 3)
+            shootParticlesSecondary.add(new NPCInterfaceUtil.ShootParticle(
+                    split[0],
+                    Float.parseFloat(split[1]),
+                    Float.parseFloat(split[2]),
+                    Float.parseFloat(split[3])));
     }
 
     @Override

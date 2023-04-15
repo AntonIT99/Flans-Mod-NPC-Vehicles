@@ -17,9 +17,10 @@ public class EntityTiger extends EntityFlanVehicleNPC
 	{
 		setTurnSpeed(0.3F);
 		setDriver("0 39 0 -360 360 -8 15");
-		setDriverAimSpeed(0.57F, 0.47F);
+		setDriverAimSpeed("0.57 0.47");
+		addGun("10 32 10 turret mg42");
 
-		addBarrelPosition(100F, 34F, 0F);
+		addBarrelPosition("100 34 0");
 
 		addShootParticlesPrimary("largeexplode 0 0 0");
 		addShootParticlesPrimary("explode 1.5 0 0");

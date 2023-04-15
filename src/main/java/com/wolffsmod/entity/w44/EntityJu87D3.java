@@ -9,7 +9,7 @@ public class EntityJu87D3 extends EntityFlanPlaneNPC
     public EntityJu87D3(World w)
     {
         super(w);
-        this.setSize(3.5F, 2.5F);
+        this.setSize(3.0F, 5.0F);
     }
 
     @Override
@@ -18,8 +18,12 @@ public class EntityJu87D3 extends EntityFlanPlaneNPC
         setTurnSpeed(1F);
         setDriver("-23 33 0");
         setPassenger("1 -41 31 0 core 140 220 -5 45 44_Mg15 PassengerGun1");
-        setPassengerBaseYaw(1, 180F);
-        addGunOrigin(1, -51F, 26F, 0F);
+        addGunOrigin("1 -51 26 0");
+
+        addShootPointPrimary("5 26 43 core 44_Mg17");
+        addShootPointPrimary("5 26 -43 core 44_Mg17");
+
+        addShootPointSecondary("25 -5 0 core");
 
         addShootParticlesPrimary("flansmod.fmflame 0 0 0");
         addShootParticlesPrimary("flansmod.fmflame 0 0 0");

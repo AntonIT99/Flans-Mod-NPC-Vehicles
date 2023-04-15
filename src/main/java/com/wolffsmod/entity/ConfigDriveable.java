@@ -8,62 +8,65 @@ public interface ConfigDriveable
     /**
      * TurnLeftSpeed [speed] or TurnRightSpeed [speed]
      * Default: 1
-     * **/
+     */
     void setTurnSpeed(float speed);
 
     /**
      * Somehow influenced by WheelPosition
      * Default: 0.625 (usually corresponds to having a wheel y position of -8)
-     **/
+     */
     void setYOffset(float y);
 
     /** Driver/Pilot [...] **/
     void setDriver(String data);
 
-    /** DriverAimSpeed [yawSpeed] [pitchSpeed] [-] **/
-    void setDriverAimSpeed(float yawSpeed, float pitchSpeed);
+    /** DriverAimSpeed [...] **/
+    void setDriverAimSpeed(String data);
 
     /** Passenger [...] **/
     void setPassenger(String data);
 
     /**
-     * (Not in Flan's files) set the base yaw of the passenger seat
-     * 0 is default = looking forward,
-     * -90/90 = looking sidewards
-     * 180 = looking backward,
-     * **/
-    void setPassengerBaseYaw(int id, float angle);
+     * (Not in Flan's files) set the offset yaw of the passenger seat
+     * 0 is default = looking forward when the "head" looks forward,
+     * -90/90 = looking sidewards when the "head" looks forward
+     * 180 = looking backward when the "head" looks forward,
+     */
+    void setPassengerOffsetYaw(int id, float angle);
 
     /** PassengerAimSpeed [id] [passengerYawSpeed] [passengerPitchSpeed] [-] **/
-    void setPassengerAimSpeed(int id, float yawSpeed, float pitchSpeed);
+    void setPassengerAimSpeed(String data);
 
     /**
      * VehicleGunModelScale [vehicleGunModelScale]
      * Default: 1
-     * **/
+     */
     void setVehicleGunModelScale(float scale);
 
-    /** BombPosition [x] [y] [z] **/
-    void addBombPosition(float x, float y, float z);
+    /** ShootPointPrimary [...] **/
+    void addShootPointPrimary(String data);
 
-    /** BombPosition [x] [y] [z] [xOffset] [yOffset] [zOffset] **/
-    void addBombPosition(float x, float y, float z, float xOffset, float yOffset, float zOffset);
+    /** ShootPointSecondary [...] **/
+    void addShootPointSecondary(String data);
 
-    /** BarrelPosition [x] [y] [z] **/
-    void addBarrelPosition(float x, float y, float z);
+    /** BombPosition [...] **/
+    void addBombPosition(String data);
 
-    /** BarrelPosition [x] [y] [z] [xOffset] [yOffset] [zOffset] **/
-    void addBarrelPosition(float x, float y, float z, float xOffset, float yOffset, float zOffset);
+    /** BarrelPosition [...] **/
+    void addBarrelPosition(String data);
 
-    /** DriverGunOrigin [x] [y] [z] **/
-    void addDriverGunOrigin(float x, float y, float z);
+    /** DriverGunOrigin [...] **/
+    void addDriverGunOrigin(String data);
 
-    /** GunOrigin [id] [x] [y] [z]
-     * Currently no usage.
-     * Will be used to implement secondary gun firing.
-     * **/
-    void addGunOrigin(int id, float x, float y, float z);
+    /** AddGun [...] **/
+    void addGun(String data);
+
+    /** GunOrigin [...] **/
+    void addGunOrigin(String data);
 
     /** ShootParticlesPrimary [...] **/
     void addShootParticlesPrimary(String data);
+
+    /** ShootParticlesSecondary [...] **/
+    void addShootParticlesSecondary(String data);
 }

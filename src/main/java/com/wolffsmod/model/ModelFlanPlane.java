@@ -69,7 +69,7 @@ public abstract class ModelFlanPlane extends ModelPlane
                 GL11.glScalef(vehicleGunModelScale, vehicleGunModelScale, vehicleGunModelScale);
                 if (passengers.get(0) != null)
                 {
-                    gunModelPart.rotateAngleY = (passengers.get(0).baseYawAngle + 180F - passengers.get(0).getLocalYaw()) * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleY = (passengers.get(0).offsetYawAngle + 180F - passengers.get(0).getLocalYaw()) * (float) Math.PI / 180F;
                 }
                 gunModelPart.render(f5);
                 GL11.glPopMatrix();
@@ -86,7 +86,7 @@ public abstract class ModelFlanPlane extends ModelPlane
                 if (passengers.get(1) != null)
                 {
                     //Yaw, pitch and render
-                    gunModelPart.rotateAngleY = (passengers.get(1).baseYawAngle + 180F - passengers.get(1).getLocalYaw()) * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleY = (passengers.get(1).offsetYawAngle + 180F - passengers.get(1).getLocalYaw()) * (float) Math.PI / 180F;
                     gunModelPart.rotateAngleZ = -passengers.get(1).getPitch() * (float) Math.PI / 180F;
                 }
                 gunModelPart.render(f5);
@@ -104,7 +104,7 @@ public abstract class ModelFlanPlane extends ModelPlane
                 if (passengers.get(2) != null)
                 {
                     //Yaw, pitch, recoil and render
-                    gunModelPart.rotateAngleY = (passengers.get(2).baseYawAngle + 180F - passengers.get(2).getLocalYaw()) * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleY = (passengers.get(2).offsetYawAngle + 180F - passengers.get(2).getLocalYaw()) * (float) Math.PI / 180F;
                     gunModelPart.rotateAngleZ = -passengers.get(2).getPitch() * (float) Math.PI / 180F;
                 }
                 gunModelPart.render(f5);
@@ -121,7 +121,7 @@ public abstract class ModelFlanPlane extends ModelPlane
                 if (passengers.get(3) != null)
                 {
                     //Yaw, pitch, recoil and render
-                    gunModelPart.rotateAngleY = (passengers.get(3).baseYawAngle + 180F - passengers.get(3).getLocalYaw()) * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleY = (passengers.get(3).offsetYawAngle + 180F - passengers.get(3).getLocalYaw()) * (float) Math.PI / 180F;
                     gunModelPart.rotateAngleZ = -passengers.get(3).getPitch() * (float) Math.PI / 180F;
                 }
                 gunModelPart.render(f5);
@@ -135,7 +135,7 @@ public abstract class ModelFlanPlane extends ModelPlane
                 if (passengers.get(i) != null)
                 {
                     for (ModelRendererTurbo gunModelPart : gunModel[i])
-                        gunModelPart.rotateAngleY = passengers.get(i).baseYawAngle * (float) Math.PI / 180F;
+                        gunModelPart.rotateAngleY = passengers.get(i).offsetYawAngle * (float) Math.PI / 180F;
                 }
                 renderPart(gunModel[i]);
                 GL11.glPopMatrix();

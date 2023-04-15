@@ -17,13 +17,16 @@ public class EntityStuG3G extends EntityFlanVehicleNPC
 	{
 		setTurnSpeed(0.35F);
 		setDriver("-13 24 -15 -6 6 -6 17");
-		setDriverAimSpeed(0.7F, 0.6F);
+		setDriverAimSpeed("0.7 0.6");
 		setPassenger("1 -15 23 6 core -25 25 -15 20 44_Mg34 PassengerGun1");
-		addGunOrigin(1, 0F, 15F, 5F);
+		addGun("25 29 6 turret 44_Mg34");
+		addGunOrigin("1 0 15 5");
 
-		addBarrelPosition(65F, 21F, 0F);
+		addBarrelPosition("65 21 0");
 		setTrackLinkLength(3F);
 		setFixTrackLink(4);
+
+		addShootParticlesSecondary("crit 0.5 0 0");
 
 		addShootParticlesPrimary("largeexplode 0 0 0");
 		addShootParticlesPrimary("explode 1.5 0 0");

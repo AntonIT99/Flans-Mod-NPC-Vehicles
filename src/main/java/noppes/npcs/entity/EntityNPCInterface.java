@@ -804,55 +804,61 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 
 	public void shootFlanProjectile(ItemStack itemStackGun, ItemStack itemStackShootable)
 	{
-		ItemShootable itemShootable = (ItemShootable) itemStackShootable.getItem();
-		EntityShootable shot;
+		boolean shotgun;
+		float spread;
+		float damage;
+		float speed;
+		float yaw = rotationYawHead;
+		float pitch = rotationPitch;
+		Vec3 origin = Vec3.createVectorHelper(posX, posY + getEyeHeight(), posZ);
 
-		if (itemShootable instanceof ItemGrenade)
+		if(itemStackGun != null && inventory.useWeaponRangedStats)
 		{
-			shot = ((ItemGrenade) itemShootable).getGrenade(worldObj, this);
+			GunType gunType = ((ItemGun)itemStackGun.getItem()).type;
+			damage = ((ItemGun)itemStackGun.getItem()).type.getDamage(itemStackGun);
+			speed = Math.round(Math.max(((ItemGun)itemStackGun.getItem()).type.getBulletSpeed(itemStackGun, itemStackShootable), 1F));
+			spread = gunType.getSpread(itemStackGun, isSneaking(), isSprinting());
+			shotgun = (gunType.getNumBullets(itemStackGun) > 1);
 		}
 		else
 		{
-			float spread;
-			float damage;
-			int speed;
-			boolean shotgun;
+			damage = stats.pDamage;
+			speed = (float) stats.pSpeed;
+			spread =  NPCInterfaceUtil.accuracyToBulletSpread(stats.accuracy);
+			shotgun = (stats.shotCount > 1);
+		}
 
-			if(itemStackGun != null && inventory.useWeaponRangedStats)
+		if (getFlanDriveableEntity().isPresent() && (getFlanDriveableEntity().get().shootPointsPrimary.size() > 0))
+		{
+			EntityFlanDriveableNPC driveable = getFlanDriveableEntity().get();
+
+			yaw = driver.getLocalYaw();
+			pitch = driver.getPitch();
+
+			for (ShootPoint shootPoint: driveable.shootPointsPrimary)
 			{
-				GunType gunType = ((ItemGun)itemStackGun.getItem()).type;
-				damage = ((ItemGun)itemStackGun.getItem()).type.getDamage(itemStackGun);
-				speed = Math.round(Math.max(((ItemGun)itemStackGun.getItem()).type.getBulletSpeed(itemStackGun, itemStackShootable), 1F));
-				spread = gunType.getSpread(itemStackGun, isSneaking(), isSprinting());
-				shotgun = (gunType.getNumBullets(itemStackGun) > 1);
-			}
-			else
-			{
-				damage = stats.pDamage;
-				speed = stats.pSpeed;
-				spread =  NPCInterfaceUtil.accuracyToBulletSpread(stats.accuracy);
-				shotgun = (stats.shotCount > 1);
-			}
-
-			float yaw = rotationYawHead;
-			float pitch = rotationPitch;
-			Vec3 origin = Vec3.createVectorHelper(posX, posY + getEyeHeight(), posZ);
-
-			if (getFlanDriveableEntity().isPresent() && (getFlanDriveableEntity().get().shootPointsPrimary.size() > 0))
-			{
-				EntityFlanDriveableNPC driveable = getFlanDriveableEntity().get();
-
-				yaw = driver.getLocalYaw();
-				pitch = driver.getPitch();
-				spread = 0F; //TODO: remove
-
-				ShootPoint shootPoint = driveable.shootPointsPrimary.get(0);
 				Vector3f gunVector = NPCInterfaceUtil.getFiringPosition(shootPoint, driveable.turretOrigin, yaw, pitch, renderYawOffset);
 				origin = (Vector3f.add(new Vector3f(posX, posY + driveable.yDriveableOffset, posZ), gunVector, null)).toVec3();
 				NPCInterfaceUtil.spawnParticle(driveable.shootParticlesPrimary, shootPoint, gunVector, yaw, pitch, renderYawOffset, posX, posY + driveable.yDriveableOffset, posZ, dimension);
+				spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
 			}
+		}
+		else
+		{
+			spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
+		}
+	}
 
-			if (itemShootable instanceof ItemBullet)
+	public void spawnFlanShootable(ItemShootable item, Vec3 origin, float yaw, float pitch, float spread, float damage, float speed, boolean shotgun)
+	{
+		EntityShootable shot;
+		if (item instanceof ItemGrenade)
+		{
+			shot = ((ItemGrenade) item).getGrenade(worldObj, this);
+		}
+		else
+		{
+			if (item instanceof ItemBullet)
 			{
 				shot = new EntityNPCFlanBullet(
 						worldObj,
@@ -862,13 +868,13 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 						this,
 						spread,
 						damage,
-						((ItemBullet)itemShootable).type,
+						((ItemBullet)item).type,
 						speed,
-						itemShootable.type);
+						item.type);
 			}
 			else
 			{
-				shot = itemShootable.getEntity(
+				shot = item.getEntity(
 						worldObj,
 						origin,
 						yaw,
@@ -878,13 +884,11 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 						damage,
 						speed,
 						0,
-						itemShootable.type);
+						item.type);
 			}
-
 			if (shot instanceof EntityBullet)
 				((EntityBullet) shot).shotgun = shotgun;
 		}
-
 		worldObj.spawnEntityInWorld(shot);
 	}
 
