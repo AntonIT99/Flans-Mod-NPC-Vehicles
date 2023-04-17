@@ -192,11 +192,6 @@ public class NPCInterfaceUtil
         return axes.findLocalVectorGlobally(localGunVec);
     }
 
-    public static float degToRad(float angle)
-    {
-        return (float)(angle * Math.PI / 180F);
-    }
-
     public static class ShootParticle
     {
         public ShootParticle(String s, float x1, float y1, float z1)

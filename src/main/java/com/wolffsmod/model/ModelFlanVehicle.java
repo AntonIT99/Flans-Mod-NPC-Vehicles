@@ -10,6 +10,7 @@ import com.wolffsmod.entity.EntityFlanVehicleNPC;
 import com.wolffsmod.entity.Seat;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public abstract class ModelFlanVehicle extends ModelVehicle
         renderTracks();
         renderFancyTrack(vehicle.trackLinksLeft, vehicle.trackLinksRight);
         renderGuns(vehicle.passengers, vehicle.vehicleGunModelScale);
-        renderTurretAndBarrel(vehicle.turretOrigin, vehicle.driver, vehicle.recoilPos);
+        renderTurretAndBarrel(vehicle.turretOrigin, vehicle.driver, vehicle.driver.getLocalYaw(), vehicle.recoilPos);
         renderDrillHead(vehicle.harvesterAngle);
         renderAnimDoors();
     }
@@ -116,12 +117,12 @@ public abstract class ModelFlanVehicle extends ModelVehicle
         }
     }
 
-    protected void renderTurretAndBarrel(Vector3f turretOrigin, Seat driver, float recoilPos)
+    protected void renderTurretAndBarrel(Vector3f turretOrigin, Seat driver, float yaw, float recoilPos)
     {
         GL11.glPushMatrix();
         {
             GL11.glTranslatef(turretOrigin.x, turretOrigin.y, turretOrigin.z);
-            GL11.glRotatef(-driver.getLocalYaw(), 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef(-yaw, 0.0F, 1.0F, 0.0F);
             GL11.glTranslatef(-turretOrigin.x, -turretOrigin.y, -turretOrigin.z);
 
             GL11.glPushMatrix();

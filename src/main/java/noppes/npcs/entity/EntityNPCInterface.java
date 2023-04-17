@@ -828,18 +828,23 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			shotgun = (stats.shotCount > 1);
 		}
 
+		if (getFlanDriveableEntity().isPresent())
+		{
+			getFlanDriveableEntity().get().syncRotationWithClient();
+			yaw = driver.getGlobalYaw(renderYawOffset);
+			pitch = driver.getPitch();
+		}
+
 		if (getFlanDriveableEntity().isPresent() && (getFlanDriveableEntity().get().shootPointsPrimary.size() > 0))
 		{
 			EntityFlanDriveableNPC driveable = getFlanDriveableEntity().get();
-
-			yaw = driver.getLocalYaw();
-			pitch = driver.getPitch();
+			float driverYaw = driveable.driver.getLocalYaw();
 
 			for (ShootPoint shootPoint: driveable.shootPointsPrimary)
 			{
-				Vector3f gunVector = NPCInterfaceUtil.getFiringPosition(shootPoint, driveable.turretOrigin, yaw, pitch, renderYawOffset);
+				Vector3f gunVector = NPCInterfaceUtil.getFiringPosition(shootPoint, driveable.turretOrigin, driverYaw, pitch, renderYawOffset);
 				origin = (Vector3f.add(new Vector3f(posX, posY + driveable.yDriveableOffset, posZ), gunVector, null)).toVec3();
-				NPCInterfaceUtil.spawnParticle(driveable.shootParticlesPrimary, shootPoint, gunVector, yaw, pitch, renderYawOffset, posX, posY + driveable.yDriveableOffset, posZ, dimension);
+				NPCInterfaceUtil.spawnParticle(driveable.shootParticlesPrimary, shootPoint, gunVector, driverYaw, pitch, renderYawOffset, posX, posY + driveable.yDriveableOffset, posZ, dimension);
 				spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
 			}
 		}

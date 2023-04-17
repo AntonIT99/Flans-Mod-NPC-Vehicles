@@ -1,4 +1,4 @@
-package com.wolffsmod.entity;
+package com.wolffsmod.entity.config;
 
 public interface ConfigVehicle extends ConfigDriveable
 {

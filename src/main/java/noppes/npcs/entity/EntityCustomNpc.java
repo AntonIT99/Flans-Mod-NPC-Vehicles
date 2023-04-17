@@ -1,21 +1,18 @@
 package noppes.npcs.entity;
 
-import com.flansmod.common.driveables.ShootPoint;
 import com.wolffsmod.WolffNPCMod;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.EntityFlanPlaneNPC;
-import com.wolffsmod.entity.EntityNPCBodyHelper;
+import com.wolffsmod.entity.helper.EntityNPCBodyHelper;
 import noppes.npcs.CustomNpcs;
 import noppes.npcs.ModelData;
 import noppes.npcs.ModelPartData;
 import noppes.npcs.VersionCompatibility;
 import noppes.npcs.client.EntityUtil;
-import noppes.npcs.util.NPCInterfaceUtil;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.Optional;
@@ -67,12 +64,11 @@ public class EntityCustomNpc extends EntityNPCFlying
 	@Override
 	public void onUpdate()
 	{
-		/*System.out.println("rotationPitch " + Math.round(MathHelper.wrapAngleTo180_float(rotationPitch)));
-        System.out.println("rotationYaw " + Math.round(MathHelper.wrapAngleTo180_float(rotationYaw)));
-		System.out.println("rotationYawHead " + Math.round(MathHelper.wrapAngleTo180_float(rotationYawHead)));
-		System.out.println("renderYawOffset " + Math.round(MathHelper.wrapAngleTo180_float(renderYawOffset)));
-		System.out.println("driver " + Math.round(driver.yaw) + " " + Math.round(driver.pitch));*/
 		super.onUpdate();
+		if (getFlanDriveableEntity().isPresent())
+		{
+			getFlanDriveableEntity().get().updateNpc(this);
+		}
 		if (isRemote())
 		{
 			ModelPartData particles = modelData.getPartData("particles");
@@ -94,37 +90,6 @@ public class EntityCustomNpc extends EntityNPCFlying
 				EntityUtil.Copy(this, entity);
 			}
 		}
-		if (getFlanDriveableEntity().isPresent())
-		{
-			EntityFlanDriveableNPC entityDriveable = getFlanDriveableEntity().get();
-			getSeatsPropertiesFromDriveable(entityDriveable);
-			updateDriverAndPassengers();
-			setSeatsRotationForDriveable(entityDriveable);
-		}
-	}
-
-	protected void getSeatsPropertiesFromDriveable(EntityFlanDriveableNPC source)
-	{
-		driver.copyProperties(source.driver);
-		for (Integer id : source.passengers.keySet())
-		{
-			if (passengers.containsKey(id))
-				passengers.get(id).copyProperties(source.passengers.get(id));
-			else
-				passengers.put(id, source.passengers.get(id));
-		}
-	}
-
-	protected void setSeatsRotationForDriveable(EntityFlanDriveableNPC destination)
-	{
-		destination.driver.copyYawAndPitch(driver);
-		for (Integer id : passengers.keySet())
-		{
-			if (destination.passengers.containsKey(id))
-				destination.passengers.get(id).copyYawAndPitch(passengers.get(id));
-			else
-				destination.passengers.put(id, passengers.get(id));
-		}
 	}
 
 	@Override
@@ -135,21 +100,6 @@ public class EntityCustomNpc extends EntityNPCFlying
 			return getFlanDriveableEntity().get().shootPointsPrimary.get(0).rootPos.position.getY() + getFlanDriveableEntity().get().yDriveableOffset;
 		}
 		return super.getEyeHeight();
-	}
-
-	public void updateDriverAndPassengers()
-	{
-		float headYaw = prevRotationYawHead + (rotationYawHead - prevRotationYawHead) * 0.5F;
-		float headPitch = prevRotationPitch + (rotationPitch - prevRotationPitch) * 0.5F;
-
-		driver.setYawAndPitch(headYaw, headPitch, renderYawOffset);
-		for (Integer id : passengers.keySet())
-		{
-			passengers.get(id).setYawAndPitch(headYaw, headPitch, renderYawOffset);
-		}
-
-		//System.out.println(headYaw + " " + headPitch);
-		//System.out.println(driver.getYaw() + " " + driver.getPitch());
 	}
 
 	@Override

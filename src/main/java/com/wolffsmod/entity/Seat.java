@@ -2,6 +2,7 @@ package com.wolffsmod.entity;
 
 import com.flansmod.common.vector.Vector3f;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 
 public class Seat
@@ -17,7 +18,6 @@ public class Seat
     private float minPitch;
     private float maxPitch;
 
-    private float globalYaw;
     private float pitch;
     private float yaw;
 
@@ -26,12 +26,26 @@ public class Seat
     public void copyYawAndPitch(Seat other)
     {
         yaw = other.yaw;
-        globalYaw = other.globalYaw;
         pitch = other.pitch;
     }
 
     public void copyProperties(Seat other)
     {
+        position.set(other.position);
+        minYaw = other.minYaw;
+        maxYaw = other.maxYaw;
+        minPitch = other.minPitch;
+        maxPitch = other.maxPitch;
+        yawSpeed = other.yawSpeed;
+        pitchSpeed = other.pitchSpeed;
+        offsetYawAngle = other.offsetYawAngle;
+        gunOrigin.set(other.gunOrigin);
+    }
+
+    public void copy(Seat other)
+    {
+        yaw = other.yaw;
+        pitch = other.pitch;
         position.set(other.position);
         minYaw = other.minYaw;
         maxYaw = other.maxYaw;
@@ -62,14 +76,17 @@ public class Seat
         this.offsetYawAngle = MathHelper.wrapAngleTo180_float(offsetYawAngle);
     }
 
-    public void setYawAndPitch(float seatYaw, float seatPitch, float entityYaw)
+    public void setYawAndPitch(EntityLivingBase entity)
     {
-        seatYaw = MathHelper.wrapAngleTo180_float(seatYaw);
-        seatPitch = MathHelper.wrapAngleTo180_float(seatPitch);
-        entityYaw = MathHelper.wrapAngleTo180_float(entityYaw);
+        float seatYaw = MathHelper.wrapAngleTo180_float(entity.prevRotationYawHead + (entity.rotationYawHead - entity.prevRotationYawHead) * 0.5F);
+        float seatPitch = MathHelper.wrapAngleTo180_float(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * 0.5F);
+        float entityYaw = MathHelper.wrapAngleTo180_float(entity.renderYawOffset);
 
         float targetYaw = Math.min(Math.max(seatYaw - entityYaw, minYaw), maxYaw);
         float targetPitch = Math.min(Math.max(seatPitch, -maxPitch), -minPitch);
+
+        float newYaw = yaw;
+        float newPitch = pitch;
 
         if (yaw > 0 && targetYaw < 0 && (targetYaw + 360F - yaw) < (yaw - targetYaw))
             targetYaw += 360F;
@@ -80,19 +97,27 @@ public class Seat
         if (pitch < 0 && targetPitch > 0 && (pitch + 360F - targetPitch) < (targetPitch - pitch))
             targetPitch -= 360F;
 
-        if (yaw < targetYaw)
-            yaw += Math.min(yawSpeed, targetYaw - yaw);
-        if (yaw > targetYaw)
-            yaw -= Math.min(yawSpeed, yaw - targetYaw);
-        if (pitch < targetPitch)
-            pitch += Math.min(pitchSpeed, targetPitch - pitch);
-        if (pitch > targetPitch)
-            pitch -= Math.min(pitchSpeed, pitch - targetPitch);
+        if (newYaw < targetYaw)
+            newYaw += Math.min(yawSpeed, targetYaw - newYaw);
+        if (newYaw > targetYaw)
+            newYaw -= Math.min(yawSpeed, newYaw - targetYaw);
+        if (newPitch < targetPitch)
+            newPitch += Math.min(pitchSpeed, targetPitch - newPitch);
+        if (newPitch > targetPitch)
+            newPitch -= Math.min(pitchSpeed, newPitch - targetPitch);
 
-        yaw = Math.min(Math.max(yaw, minYaw), maxYaw);
-        pitch = Math.min(Math.max(pitch, -maxPitch), -minPitch);
+        yaw = Math.min(Math.max(newYaw, minYaw), maxYaw);
+        pitch = Math.min(Math.max(newPitch, -maxPitch), -minPitch);
+    }
 
-        globalYaw = yaw + entityYaw;
+    public void setPitch(float pitch)
+    {
+        this.pitch = pitch;
+    }
+
+    public void setLocalYaw(float yaw)
+    {
+        this.yaw = yaw;
     }
 
     public float getPitch()
@@ -101,10 +126,11 @@ public class Seat
     }
 
     /** Absolute yaw not depending on the entity rotation **/
-    public float getGlobalYaw()
+    public float getGlobalYaw(float renderYawOffset)
     {
-        return globalYaw;
+        return yaw + renderYawOffset;
     }
+
 
     /** Yaw relative to the entity rotation **/
     public float getLocalYaw()

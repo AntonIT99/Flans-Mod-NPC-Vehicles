@@ -2,12 +2,11 @@ package com.wolffsmod.entity;
 
 import com.flansmod.client.model.AnimTankTrack;
 import com.flansmod.client.model.AnimTrackLink;
-import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.flansmod.common.RotatedAxes;
 import com.flansmod.common.vector.Vector3f;
+import com.wolffsmod.entity.config.ConfigVehicle;
+import noppes.npcs.entity.EntityCustomNpc;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -39,16 +38,15 @@ public abstract class EntityFlanVehicleNPC extends EntityFlanDriveableNPC implem
     }
 
     @Override
-    public void onUpdate()
+    public void updateNpc(EntityCustomNpc npc)
     {
-        wheelYaw = Math.min(Math.max(getYawVelocity(), -20F), 20F);
+        super.updateNpc(npc);
+        wheelYaw = getYawVelocity() * 10F;
         wheelsAngle += throttle / 3.25F;
         harvesterAngle += throttle / 5F;
 
         if (fancyTracks)
             animateFancyTracks(throttle, wheelYaw);
-
-        super.onUpdate();
     }
 
     @Override

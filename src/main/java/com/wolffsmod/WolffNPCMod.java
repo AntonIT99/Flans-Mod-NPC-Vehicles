@@ -1,5 +1,6 @@
 package com.wolffsmod;
 
+import com.wolffsmod.network.FlanEntitySyncPacket;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -7,6 +8,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.MOD_VERSION, dependencies="after: customnpcs; required-after: flansmod")
@@ -20,14 +24,24 @@ public class WolffNPCMod
 	public static WolffNPCMod INSTANCE;
 
 	public static Configuration config;
+
+	public static SimpleNetworkWrapper network;
 	public static boolean ignoreFrustumCheckForNpcVehicles = true;
 	public static boolean ignoreFrustumCheckForLargeEntities = true;
+	public static float entityUpdateRange = 512F;
 	public static float largeEntitySize = 5F;
 
 	@EventHandler
 	public static void preInit(FMLPreInitializationEvent event)
 	{
 		config = new Configuration(event.getSuggestedConfigurationFile());
+		entityUpdateRange = config.getFloat(
+				"Entity update range",
+				"General Settings",
+				entityUpdateRange,
+				0F,
+				1024F,
+				"Range in blocks for NPC vehicles to be updated.");
 		ignoreFrustumCheckForNpcVehicles = config.getBoolean(
 				"Ignore frustum check for NPC vehicles",
 				"Client Side Settings",
@@ -47,6 +61,9 @@ public class WolffNPCMod
 				"Ignore frustum check for entities with a hit box width or height greater than this value");
 		if (config.hasChanged())
 			config.save();
+
+		network = NetworkRegistry.INSTANCE.newSimpleChannel("EntitySyncChannel");
+		network.registerMessage(FlanEntitySyncPacket.Handler.class, FlanEntitySyncPacket.class, 0, Side.CLIENT);
 	}
 
 	@EventHandler

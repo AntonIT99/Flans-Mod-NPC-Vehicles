@@ -2,13 +2,18 @@ package com.wolffsmod.entity;
 
 import com.flansmod.common.driveables.*;
 import com.flansmod.common.vector.Vector3f;
+import com.wolffsmod.WolffNPCMod;
+import com.wolffsmod.entity.config.ConfigDriveable;
+import com.wolffsmod.network.FlanEntitySyncPacket;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import noppes.npcs.client.EntityUtil;
 import noppes.npcs.entity.EntityCustomNpc;
 import noppes.npcs.util.NPCInterfaceUtil;
 
 import net.minecraft.client.renderer.entity.NPCRendererHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
-import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Vec3;
@@ -18,7 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class EntityFlanDriveableNPC extends EntityCreature implements ConfigDriveable
+public abstract class EntityFlanDriveableNPC extends EntityLiving implements ConfigDriveable
 {
     public final Vector3f turretOrigin = new Vector3f();
     public ArrayList<NPCInterfaceUtil.ShootParticle> shootParticlesPrimary = new ArrayList<>();
@@ -34,6 +39,8 @@ public abstract class EntityFlanDriveableNPC extends EntityCreature implements C
     public float throttle;
     public float turnSpeed = 1F;
     public float yDriveableOffset = 0.625F;
+
+    public EntityCustomNpc npc;
 
     public EntityFlanDriveableNPC(World w)
     {
@@ -54,8 +61,6 @@ public abstract class EntityFlanDriveableNPC extends EntityCreature implements C
     @Override
     public void onUpdate()
     {
-        throttle = (float) (getMovementVelocity() / getEntityAttribute(SharedMonsterAttributes.movementSpeed).getBaseValue());
-
         isDead = true;
 
         if(!worldObj.isRemote)
@@ -70,6 +75,42 @@ public abstract class EntityFlanDriveableNPC extends EntityCreature implements C
             worldObj.spawnEntityInWorld(npc);
         }
         super.onUpdate();
+    }
+
+    public void updateNpc(EntityCustomNpc npc)
+    {
+        this.npc = npc;
+        EntityUtil.Copy(npc, this);
+        updateDriverAndPassengers();
+
+        throttle = (float) (getMovementVelocity() / npc.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getBaseValue());
+    }
+
+    protected void updateDriverAndPassengers()
+    {
+        npc.driver.copyProperties(driver);
+        for (Integer id : npc.passengers.keySet())
+        {
+            if (passengers.containsKey(id))
+                npc.passengers.get(id).copyProperties(passengers.get(id));
+        }
+
+        npc.driver.setYawAndPitch(this);
+        for (Integer id : npc.passengers.keySet())
+        {
+            npc.passengers.get(id).setYawAndPitch(this);
+        }
+
+        driver = npc.driver;
+        passengers = npc.passengers;
+    }
+
+    public void syncRotationWithClient()
+    {
+        if (!worldObj.isRemote && npc != null)
+            WolffNPCMod.network.sendToAllAround(
+                    new FlanEntitySyncPacket(),
+                    new NetworkRegistry.TargetPoint(dimension, posX, posY, posZ, WolffNPCMod.entityUpdateRange));
     }
 
     @Override
