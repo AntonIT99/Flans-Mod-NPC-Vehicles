@@ -83,7 +83,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         EntityUtil.Copy(npc, this);
         updateDriverAndPassengers();
 
-        throttle = (float) (getMovementVelocity() / npc.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getBaseValue());
+        throttle = (float) (getMovementVelocity() / npc.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
     }
 
     protected void updateDriverAndPassengers()
@@ -166,7 +166,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
     {
         String[] split = data.split(" ");
         driver.yawSpeed = Float.parseFloat(split[0]);
-        driver.pitchSpeed = Float.parseFloat(split[1]);;
+        driver.pitchSpeed = Float.parseFloat(split[1]);
     }
 
     @Override
