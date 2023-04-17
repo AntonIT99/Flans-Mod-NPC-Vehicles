@@ -109,7 +109,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
     {
         if (!worldObj.isRemote && npc != null)
             WolffNPCMod.network.sendToAllAround(
-                    new FlanEntitySyncPacket(),
+                    new FlanEntitySyncPacket(this),
                     new NetworkRegistry.TargetPoint(dimension, posX, posY, posZ, WolffNPCMod.entityUpdateRange));
     }
 

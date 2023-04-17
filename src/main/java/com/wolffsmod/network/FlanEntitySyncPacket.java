@@ -1,7 +1,7 @@
 package com.wolffsmod.network;
 
+import com.wolffsmod.WolffNPCMod;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
-import com.wolffsmod.entity.EntityFlanVehicleNPC;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -75,6 +75,10 @@ public class FlanEntitySyncPacket implements IMessage
                 driveable.rotationYaw = npc.rotationYaw = message.rotationYaw;
                 driveable.rotationYawHead = npc.rotationYawHead = message.rotationYawHead;
                 driveable.rotationPitch = npc.rotationPitch = message.rotationPitch;
+            }
+            else
+            {
+                WolffNPCMod.logger.error("Sync Packet got wrong Entity ID");
             }
             return null;
         }

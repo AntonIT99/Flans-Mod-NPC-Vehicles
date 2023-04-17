@@ -21,6 +21,9 @@ public class Seat
     private float pitch;
     private float yaw;
 
+    private float targetYaw;
+    private float targetPitch;
+
     public Seat() {}
 
     public void copyYawAndPitch(Seat other)
@@ -78,12 +81,12 @@ public class Seat
 
     public void setYawAndPitch(EntityLivingBase entity)
     {
-        float seatYaw = MathHelper.wrapAngleTo180_float(entity.prevRotationYawHead + (entity.rotationYawHead - entity.prevRotationYawHead) * 0.5F);
-        float seatPitch = MathHelper.wrapAngleTo180_float(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * 0.5F);
+        float seatYaw = MathHelper.wrapAngleTo180_float(entity.rotationYawHead);
+        float seatPitch = MathHelper.wrapAngleTo180_float(entity.rotationPitch);
         float entityYaw = MathHelper.wrapAngleTo180_float(entity.renderYawOffset);
 
-        float targetYaw = Math.min(Math.max(seatYaw - entityYaw, minYaw), maxYaw);
-        float targetPitch = Math.min(Math.max(seatPitch, -maxPitch), -minPitch);
+        targetYaw = Math.min(Math.max(seatYaw - entityYaw, minYaw), maxYaw);
+        targetPitch = Math.min(Math.max(seatPitch, -maxPitch), -minPitch);
 
         float newYaw = yaw;
         float newPitch = pitch;
@@ -136,5 +139,10 @@ public class Seat
     public float getLocalYaw()
     {
         return yaw;
+    }
+
+    public boolean isRotating()
+    {
+        return (Math.abs(targetYaw - yaw) >= 1F) || (Math.abs(targetPitch - pitch) >= 1F);
     }
 }
