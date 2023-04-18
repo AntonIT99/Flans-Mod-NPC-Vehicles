@@ -165,6 +165,7 @@ public class DataInventory implements IInventory{
 				npc.stats.fireSound = "flansmod:" + type.shootSound(false);
 			if (type.engineSound != null && !type.engineSound.isEmpty())
 				npc.advanced.stepSound = "flansmod:" + type.engineSound;
+			npc.stats.resistances.knockback = 2F;
 		}
 	}
 
