@@ -1,7 +1,20 @@
 package noppes.npcs;
 
-import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
+import com.flansmod.common.driveables.DriveableType;
+import com.flansmod.common.driveables.ItemPlane;
+import com.flansmod.common.driveables.ItemVehicle;
+import com.flansmod.common.guns.GunType;
+import com.flansmod.common.guns.ItemGun;
+import com.flansmod.common.guns.ItemShootable;
+import com.flansmod.common.guns.ShootableType;
+import com.flansmod.common.teams.ItemTeamArmour;
+import noppes.npcs.constants.EnumNpcToolMaterial;
+import noppes.npcs.constants.EnumParticleType;
+import noppes.npcs.constants.EnumPotionType;
+import noppes.npcs.enchants.EnchantInterface;
+import noppes.npcs.entity.EntityNPCInterface;
+import noppes.npcs.items.*;
+import noppes.npcs.util.NPCInterfaceUtil;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -22,18 +35,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 
-import com.flansmod.common.guns.*;
-import com.flansmod.common.guns.ItemGun;
-import com.flansmod.common.teams.ItemTeamArmour;
-import noppes.npcs.constants.EnumNpcToolMaterial;
-import noppes.npcs.constants.EnumParticleType;
-import noppes.npcs.constants.EnumPotionType;
-import noppes.npcs.enchants.EnchantInterface;
-import noppes.npcs.entity.EntityMagicProjectile;
-import noppes.npcs.entity.EntityNPCInterface;
-import noppes.npcs.entity.EntityProjectile;
-import noppes.npcs.items.*;
-import noppes.npcs.util.NPCInterfaceUtil;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class DataInventory implements IInventory{
 	public HashMap<Integer,ItemStack> items = new HashMap<>();
@@ -51,6 +54,7 @@ public class DataInventory implements IInventory{
 	public boolean useWeaponMeleeStats = false;
 	public boolean useWeaponRangedStats = false;
 	public boolean useArmorStats = false;
+	public boolean useDriveableStats = false;
 	
 	public DataInventory(EntityNPCInterface npc){
 		this.npc = npc;
@@ -66,6 +70,7 @@ public class DataInventory implements IInventory{
 		nbttagcompound.setBoolean("UseWeaponMeleeStats", useWeaponMeleeStats);
 		nbttagcompound.setBoolean("UseWeaponRangedStats", useWeaponRangedStats);
 		nbttagcompound.setBoolean("UseArmorStats", useArmorStats);
+		nbttagcompound.setBoolean("UseDriveableStats", useDriveableStats);
 		return nbttagcompound;
 	}
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound){
@@ -89,6 +94,7 @@ public class DataInventory implements IInventory{
 		useWeaponMeleeStats = nbttagcompound.getBoolean("UseWeaponMeleeStats");
 		useWeaponRangedStats = nbttagcompound.getBoolean("UseWeaponRangedStats");
 		useArmorStats = nbttagcompound.getBoolean("UseArmorStats");
+		useDriveableStats = nbttagcompound.getBoolean("UseDriveableStats");
 	}
 	public HashMap<Integer, ItemStack> getWeapons() {
 		return weapons;
@@ -97,6 +103,7 @@ public class DataInventory implements IInventory{
 		weapons = list;
 		setWeaponStats();
 		setKnockbackResistance(weapons, armor);
+		setDriveableStats();
 	}
 	public HashMap<Integer, ItemStack> getArmor() {
 		return armor;
@@ -113,6 +120,7 @@ public class DataInventory implements IInventory{
 		weapons.put(0, item);
 		setWeaponStats();
 		setKnockbackResistance(weapons, armor);
+		setDriveableStats();
 	}
 	public ItemStack getProjectile(){
 		return weapons.get(1);
@@ -129,6 +137,35 @@ public class DataInventory implements IInventory{
 		weapons.put(2, item);
 		setWeaponStats();
 		setKnockbackResistance(weapons, armor);
+	}
+
+	private void setDriveableStats()
+	{
+		ItemStack item = weapons.get(0);
+		if (!useDriveableStats || item == null)
+			return;
+
+		DriveableType type = null;
+		if (item.getItem() instanceof ItemVehicle)
+			type = ((ItemVehicle)item.getItem()).type;
+		else if (item.getItem() instanceof ItemPlane)
+			type = ((ItemPlane)item.getItem()).type;
+
+		if (type != null)
+		{
+			type.health.values().stream().map(box -> box.health).max(Comparator.naturalOrder()).ifPresent(health -> npc.stats.maxHealth = health);
+			npc.stats.pDamage = type.damageMultiplierPrimary;
+			npc.stats.pSpeed = (int) type.bulletSpeed;
+			npc.stats.accuracy = NPCInterfaceUtil.bulletSpreadToAccuracy(type.bulletSpread);
+			npc.stats.minDelay = (int) Math.floor(type.shootDelay(false));
+			npc.stats.maxDelay = (int) Math.ceil(type.shootDelay(false));
+			npc.stats.fireRate = 0;
+			npc.stats.shotCount = 1;
+			if (!type.shootSound(false).isEmpty())
+				npc.stats.fireSound = "flansmod:" + type.shootSound(false);
+			if (!type.engineSound.isEmpty())
+				npc.advanced.stepSound = "flansmod:" + type.engineSound;
+		}
 	}
 
 	private void setKnockbackResistance(Map<Integer, ItemStack> weapons, Map<Integer, ItemStack> armor)
@@ -289,7 +326,6 @@ public class DataInventory implements IInventory{
 
 	private void setRangedStats(List<ItemStack> guns, ItemStack mainWeapon, ItemStack projectile)
 	{
-
 		if (!guns.isEmpty())
 		{
 			int shotCount = 0;
@@ -330,7 +366,7 @@ public class DataInventory implements IInventory{
 			npc.stats.fireRate = Math.round(fireRate);
 			npc.stats.shotCount = shotCount;
 
-			if (fireSound != null)
+			if (fireSound != null && !fireSound.isEmpty())
 				npc.stats.fireSound = "flansmod:" + fireSound;
 		}
 

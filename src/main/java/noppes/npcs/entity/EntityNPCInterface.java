@@ -2,8 +2,10 @@ package noppes.npcs.entity;
 
 import com.flansmod.client.FlansModClient;
 import com.flansmod.client.model.GunAnimations;
-import com.flansmod.common.driveables.ShootPoint;
+import com.flansmod.common.FlansMod;
+import com.flansmod.common.driveables.*;
 import com.flansmod.common.guns.*;
+import com.flansmod.common.network.PacketPlaySound;
 import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.Seat;
@@ -699,6 +701,12 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	{
 		for(ItemStack gun: getGuns())
 			NPCInterfaceUtil.playGunReloadSound(gun, posX, posY, posZ, dimension);
+		if (inventory.useDriveableStats && getHeldDriveable().isPresent())
+		{
+			String reloadSound = getHeldDriveable().get().shootReloadSound;
+			if (!reloadSound.isEmpty())
+				PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, reloadSound, false);
+		}
 		NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumPacketClient.ANIMATE_FLAN_RELOAD);
 	}
 
@@ -717,6 +725,19 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			guns.add(offHand);
 		}
 		return guns;
+	}
+
+	public Optional<DriveableType> getHeldDriveable()
+	{
+		ItemStack item = getHeldItem();
+		if (item != null)
+		{
+			if (item.getItem() instanceof ItemVehicle)
+				return Optional.of(((ItemVehicle)item.getItem()).type);
+			else if (item.getItem() instanceof ItemPlane)
+				return Optional.of(((ItemPlane)item.getItem()).type);
+		}
+		return Optional.empty();
 	}
 
 	public void animateFlanGunMelee()
@@ -826,6 +847,14 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			speed = (float) stats.pSpeed;
 			spread =  NPCInterfaceUtil.accuracyToBulletSpread(stats.accuracy);
 			shotgun = (stats.shotCount > 1);
+
+			if (getHeldDriveable().isPresent())
+			{
+				DriveableType type = getHeldDriveable().get();
+				damage = type.damageMultiplierPrimary;
+				speed = (int) type.bulletSpeed;
+				spread = type.bulletSpread;
+			}
 		}
 
 		if (getFlanDriveableEntity().isPresent())

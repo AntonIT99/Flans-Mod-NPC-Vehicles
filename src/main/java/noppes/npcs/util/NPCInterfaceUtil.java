@@ -74,7 +74,7 @@ public class NPCInterfaceUtil
         else if (gunType.reloadSound != null)
             soundToPlay = gunType.reloadSound;
 
-        if (soundToPlay != null)
+        if (soundToPlay != null && !soundToPlay.isEmpty())
             PacketPlaySound.sendSoundPacket(posX, posY, posZ, gunType.reloadSoundRange, dimension, soundToPlay, true);
     }
 

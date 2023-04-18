@@ -59,16 +59,16 @@ public class GuiNPCInv extends GuiContainerNPCInterface2 implements IGuiData, IT
         addButton(new GuiNpcButton(12, guiLeft + 375, guiTop + 34, 30, 20, "2"));
 
         addLabel(new GuiNpcLabel(70,"Melee", guiLeft + 371, guiTop + 60));
-        addLabel(new GuiNpcLabel(71,"Stats", guiLeft + 371, guiTop + 70));
-        addButton(new GuiNpcButton(72,guiLeft + 375, guiTop + 80, 30, 20, new String[]{"gui.no", "gui.yes"}, npc.inventory.useWeaponMeleeStats ? 1:0));
+        addButton(new GuiNpcButton(71,guiLeft + 375, guiTop + 70, 30, 20, new String[]{"gui.no", "gui.yes"}, npc.inventory.useWeaponMeleeStats ? 1:0));
 
-        addLabel(new GuiNpcLabel(73,"Ranged", guiLeft + 371, guiTop + 110));
-        addLabel(new GuiNpcLabel(74,"Stats", guiLeft + 371, guiTop + 120));
-        addButton(new GuiNpcButton(75,guiLeft + 375, guiTop + 130, 30, 20, new String[]{"gui.no", "gui.yes"}, npc.inventory.useWeaponRangedStats ? 1:0));
+        addLabel(new GuiNpcLabel(72,"Ranged", guiLeft + 371, guiTop + 100));
+        addButton(new GuiNpcButton(73,guiLeft + 375, guiTop + 110, 30, 20, new String[]{"gui.no", "gui.yes"}, npc.inventory.useWeaponRangedStats ? 1:0));
 
-        addLabel(new GuiNpcLabel(76,"Armor", guiLeft + 371, guiTop + 160));
-        addLabel(new GuiNpcLabel(77,"Stats", guiLeft + 371, guiTop + 170));
-        addButton(new GuiNpcButton(78,guiLeft + 375, guiTop + 180, 30, 20, new String[]{"gui.no", "gui.yes"}, npc.inventory.useArmorStats ? 1:0));
+        addLabel(new GuiNpcLabel(74,"Armor", guiLeft + 371, guiTop + 140));
+        addButton(new GuiNpcButton(75,guiLeft + 375, guiTop + 150, 30, 20, new String[]{"gui.no", "gui.yes"}, npc.inventory.useArmorStats ? 1:0));
+
+        addLabel(new GuiNpcLabel(76,"Vehicle", guiLeft + 371, guiTop + 180));
+        addButton(new GuiNpcButton(77,guiLeft + 375, guiTop + 190, 30, 20, new String[]{"gui.no", "gui.yes"}, npc.inventory.useDriveableStats ? 1:0));
 
         for(int c = 0; c < 4; c++) {
             for (int r = 0; r < 9; r++) {
@@ -216,6 +216,7 @@ public class GuiNPCInv extends GuiContainerNPCInterface2 implements IGuiData, IT
     	npc.inventory.maxExp = getTextField(1).getInteger();
     	Client.sendData(EnumPacketServer.MainmenuInvSave, npc.inventory.writeEntityToNBT(new NBTTagCompound()));
         Client.sendData(EnumPacketServer.MainmenuStatsSave, npc.stats.writeToNBT(new NBTTagCompound()));
+        Client.sendData(EnumPacketServer.MainmenuAdvancedSave, npc.advanced.writeToNBT(new NBTTagCompound()));
 	}
 	
 	@Override
