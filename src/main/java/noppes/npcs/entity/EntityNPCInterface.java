@@ -131,6 +131,8 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 
 	public boolean lastBurst = false;
 
+	public int soundPosition;
+
 	public FlyingMoveHelper flyMoveHelper = new FlyingMoveHelper(this);
 	public PathNavigate flyNavigator = new PathNavigateFlying(this, worldObj);
 
@@ -217,6 +219,8 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			}
 			this.timers.update();
 		}
+		if (soundPosition > 0)
+			soundPosition--;
 	}
 
 	public void setWorld(World world){
@@ -247,7 +251,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumPacketClient.ANIMATE_FLAN_MELEE);
 
 		if (var4){
-			if(getOwner() instanceof EntityPlayer)
+			if(getOwner() instanceof EntityPlayer && par1Entity instanceof EntityLivingBase)
 				NPCEntityHelper.setRecentlyHit((EntityLivingBase)par1Entity);
 			if (stats.knockback > 0){
 				par1Entity.addVelocity((double)(-MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F) * (float)stats.knockback * 0.5F), 0.1D, (double)(MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F) * (float)stats.knockback * 0.5F));
@@ -260,7 +264,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		}
 
 		if (stats.potionType != EnumPotionType.None){
-			if (stats.potionType != EnumPotionType.Fire)
+			if (stats.potionType != EnumPotionType.Fire && par1Entity instanceof EntityLivingBase)
 				((EntityLivingBase)par1Entity).addPotionEffect(new PotionEffect(this.getPotionEffect(stats.potionType), stats.potionDuration * 20, stats.potionAmp));
 			else
 				par1Entity.setFire(stats.potionDuration);
@@ -1232,6 +1236,16 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	@Override
 	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
 	{
+		if (inventory.useDriveableStats)
+		{
+			Optional<DriveableType> driveableType = getHeldDriveable();
+			if (driveableType.isPresent() && driveableType.get().engineSound != null && !driveableType.get().engineSound.isEmpty())
+			{
+				PacketPlaySound.sendSoundPacket(posX, posY, posZ, driveableType.get().engineSoundRange, dimension, driveableType.get().engineSound, false);
+				return;
+			}
+		}
+
 		if (!this.advanced.stepSound.equals(""))
 		{
 			this.playSound(this.advanced.stepSound, 0.15F, 1.0F);
