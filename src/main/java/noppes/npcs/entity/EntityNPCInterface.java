@@ -701,10 +701,11 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	{
 		for(ItemStack gun: getGuns())
 			NPCInterfaceUtil.playGunReloadSound(gun, posX, posY, posZ, dimension);
-		if (inventory.useDriveableStats && getHeldDriveable().isPresent())
+		Optional<DriveableType> driveableType = getHeldDriveable();
+		if (inventory.useDriveableStats && driveableType.isPresent())
 		{
-			String reloadSound = getHeldDriveable().get().shootReloadSound;
-			if (!reloadSound.isEmpty())
+			String reloadSound = driveableType.get().shootReloadSound;
+			if (reloadSound != null && !reloadSound.isEmpty())
 				PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, reloadSound, false);
 		}
 		NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumPacketClient.ANIMATE_FLAN_RELOAD);
@@ -848,9 +849,10 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			spread =  NPCInterfaceUtil.accuracyToBulletSpread(stats.accuracy);
 			shotgun = (stats.shotCount > 1);
 
-			if (getHeldDriveable().isPresent())
+			Optional<DriveableType> driveableType = getHeldDriveable();
+			if (driveableType.isPresent())
 			{
-				DriveableType type = getHeldDriveable().get();
+				DriveableType type = driveableType.get();
 				damage = type.damageMultiplierPrimary;
 				speed = (int) type.bulletSpeed;
 				spread = type.bulletSpread;

@@ -120,28 +120,34 @@ public class GuiNPCInv extends GuiContainerNPCInterface2 implements IGuiData, IT
             this.inventoryTab = Integer.parseInt(guibutton.displayString)-1;
             initGui();
         }
-        if(guibutton.id == 72)
+        if(guibutton.id == 71)
         {
            npc.inventory.useWeaponMeleeStats = ((GuiNpcButton)guibutton).getValue() == 1;
            if (npc.inventory.useWeaponMeleeStats)
                npc.inventory.setWeapons(npc.inventory.getWeapons());
            save();
         }
-        if(guibutton.id == 75)
+        if(guibutton.id == 73)
         {
             npc.inventory.useWeaponRangedStats = ((GuiNpcButton)guibutton).getValue() == 1;
             if (npc.inventory.useWeaponRangedStats)
                 npc.inventory.setWeapons(npc.inventory.getWeapons());
             save();
         }
-        if(guibutton.id == 78)
+        if(guibutton.id == 75)
         {
             npc.inventory.useArmorStats = ((GuiNpcButton)guibutton).getValue() == 1;
             if (npc.inventory.useArmorStats)
                 npc.inventory.setArmor(npc.inventory.getArmor());
             save();
         }
-
+        if(guibutton.id == 77)
+        {
+            npc.inventory.useDriveableStats = ((GuiNpcButton)guibutton).getValue() == 1;
+            if (npc.inventory.useDriveableStats)
+                npc.inventory.setWeapons(npc.inventory.getWeapons());
+            save();
+        }
     }
 
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j)

@@ -161,9 +161,9 @@ public class DataInventory implements IInventory{
 			npc.stats.maxDelay = (int) Math.ceil(type.shootDelay(false));
 			npc.stats.fireRate = 0;
 			npc.stats.shotCount = 1;
-			if (!type.shootSound(false).isEmpty())
+			if (type.shootSound(false) != null && !type.shootSound(false).isEmpty())
 				npc.stats.fireSound = "flansmod:" + type.shootSound(false);
-			if (!type.engineSound.isEmpty())
+			if (type.engineSound != null && !type.engineSound.isEmpty())
 				npc.advanced.stepSound = "flansmod:" + type.engineSound;
 		}
 	}
