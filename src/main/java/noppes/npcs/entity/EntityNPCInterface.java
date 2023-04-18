@@ -1241,7 +1241,11 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			Optional<DriveableType> driveableType = getHeldDriveable();
 			if (driveableType.isPresent() && driveableType.get().engineSound != null && !driveableType.get().engineSound.isEmpty())
 			{
-				PacketPlaySound.sendSoundPacket(posX, posY, posZ, driveableType.get().engineSoundRange, dimension, driveableType.get().engineSound, false);
+				if (soundPosition == 0)
+				{
+					PacketPlaySound.sendSoundPacket(posX, posY, posZ, driveableType.get().engineSoundRange, dimension, driveableType.get().engineSound, false);
+					soundPosition = driveableType.get().startSoundLength;
+				}
 				return;
 			}
 		}
