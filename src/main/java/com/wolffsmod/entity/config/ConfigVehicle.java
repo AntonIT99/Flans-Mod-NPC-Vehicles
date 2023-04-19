@@ -24,6 +24,6 @@ public interface ConfigVehicle extends ConfigDriveable
      * **/
     void setFixTrackLink(int trackLinkFix);
 
-    /** TurretOrigin [x] [y] [z] **/
-    void setTurretOrigin(float x, float y, float z);
+    /** TurretOrigin [...] **/
+    void setTurretOrigin(String data);
 }

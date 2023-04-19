@@ -80,9 +80,10 @@ public abstract class EntityFlanVehicleNPC extends EntityFlanDriveableNPC implem
     }
 
     @Override
-    public void setTurretOrigin(float x, float y, float z)
+    public void setTurretOrigin(String data)
     {
-        turretOrigin.set(x/16F, y/16F, z/16F);
+        String[] split = data.split(" ");
+        turretOrigin.set(Float.parseFloat(split[0])/16F, Float.parseFloat(split[1])/16F, Float.parseFloat(split[2])/16F);
     }
 
     protected void setupFancyTracks()

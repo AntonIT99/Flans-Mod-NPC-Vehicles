@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.wolffsmod.Strings;
-import com.wolffsmod.entity.EntitySupplies;
+import com.wolffsmod.entity.price.EntitySupplies;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

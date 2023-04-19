@@ -23,6 +23,9 @@ public interface ConfigDriveable
     /** DriverAimSpeed [...] **/
     void setDriverAimSpeed(String data);
 
+    /** DriverGunOrigin [...] **/
+    void addDriverGunOrigin(String data);
+
     /** Passenger [...] **/
     void setPassenger(String data);
 
@@ -34,7 +37,7 @@ public interface ConfigDriveable
      */
     void setPassengerOffsetYaw(int id, float angle);
 
-    /** PassengerAimSpeed [id] [passengerYawSpeed] [passengerPitchSpeed] [-] **/
+    /** PassengerAimSpeed [...] **/
     void setPassengerAimSpeed(String data);
 
     /**
@@ -54,9 +57,6 @@ public interface ConfigDriveable
 
     /** BarrelPosition [...] **/
     void addBarrelPosition(String data);
-
-    /** DriverGunOrigin [...] **/
-    void addDriverGunOrigin(String data);
 
     /** AddGun [...] **/
     void addGun(String data);

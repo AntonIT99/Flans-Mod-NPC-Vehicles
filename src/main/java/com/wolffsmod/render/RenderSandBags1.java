@@ -7,7 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import com.wolffsmod.Strings;
-import com.wolffsmod.entity.EntitySandBags1;
+import com.wolffsmod.entity.price.EntitySandBags1;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

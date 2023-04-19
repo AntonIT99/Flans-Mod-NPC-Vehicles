@@ -1,7 +1,7 @@
 package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
-import com.wolffsmod.entity.official.ww2.EntityTiger;
+import com.wolffsmod.entity.price.*;
 import com.wolffsmod.entity.w44.*;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
@@ -15,48 +15,74 @@ public class ModEntityRegistry {
 
 	public static void registerEntities()
 	{
+		//WW2 Official Pack
+		createEntity(com.wolffsmod.entity.official.ww2.Entity105leFH18B2.class, "105mm leFH 18 B2 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityB1.class, "Renault Char B1 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityBF109.class, "Messerschmitt Bf 109 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityBMWR75.class, "BMW R 75 Gespann (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityBofors.class, "40mm Bofors (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityCamel.class, "Sopwith Camel (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityChaffee.class, "M24 Chaffee (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityChiHa.class, "Type 97 Chi-Ha (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityChiNu.class, "Type 3 Chi-Nu (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityChurchill.class, "Churchill Mk VII (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityCromwell.class, "Cromwell (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityCrusader.class, "Cruiser Mk. VI Crusader (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityFlak88.class, "88mm Flak 36 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityFlakvierling.class, "20mm Flakvierling 38 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityFokker.class, "Fokker Dr.1 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityFury.class, "M4A3E8 Sherman Fury (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityGreyhound.class, "M8 Greyhound (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityHellcat.class, "M18 Hellcat (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityIS2.class, "IS-2 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityJeep.class, "Jeep (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityKubel.class, "Kuebelwagen (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityKV1.class, "KV-1 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityLancaster.class, "Avro Lancaster (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityLuchs.class, "Panzer II Ausf. L Luchs (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityM3Halftrack.class, "M3 Halftrack (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityM10.class, "M10 Wolverine (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityM45QuadMount.class, "M45 Quadmount (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityM157mm.class, "57mm M1 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityMustang.class, "North American P-51 Mustang (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityPak40.class, "75mm PaK 40 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityPanzerIV.class, "Panzer IV Ausf. H (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityS100.class, "S-100 Schnellboot (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntitySASJeep.class, "SAS Jeep (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntitySdkFz2.class, "SdKfz 2 Kettenkrad (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntitySdkFz222.class, "SdKfz 222 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntitySdkFz251.class, "SdKfz 251 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntitySherman.class, "M4A3E8 Sherman Easy Eight (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntitySpitfire.class, "Supermarine Spitfire (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityStuG.class, "StuG IV (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntitySU112.class, "SU-1-12 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityT3476.class, "T-34/76 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityT3485.class, "T-34/85 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityTiger.class, "Panzer VI Tiger (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityTiger131.class, "Panzer VI Tiger 131 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityTigerII.class, "Panzer VI Tiger II (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityType4HoRo.class, "Type 4 Ho-Ro (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityUC2Pdr.class, "Universal Carrier 2Pdr (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityYak9.class, "Yakovlev Yak-9 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityUC2Pdr.class, "Mitsubishi A6M Zero (Official Pack)");
+
+		//Modern Official Pack
+		createEntity(EntitySentryGun.class, "Sentry Gun (Official Pack)");
+
+		//Wolff's Pack
+		createEntity(EntityPanzerIVJ.class, "Panzer IV Ausf. J (Wolff's Pack)");
 		createEntity(EntitySdKfz251D.class, "SdKfz251 Ausf. D (Wolff's Pack)");
 
-		createEntity(EntityTiger.class, "Panzer VI Tiger (Official Pack)");
-		createEntity(EntitySherman.class, "M4A3E8 Sherman Easy Eight (Official Pack)");
-		createEntity(EntityChaffee.class, "M24 Chaffee (Official Pack)");
-		createEntity(Entity105leFH18B2.class, "105 mm leFH 18 B2 (Official Pack)");
-		createEntity(EntityCromwell.class, "Cromwell (Official Pack)");
-		createEntity(EntityChiHa.class, "Type 97 Chi-Ha (Official Pack)");
-		createEntity(EntityChiNu.class, "Type 3 Chi-Nu (Official Pack)");
-		createEntity(EntityChurchill.class, "Churchill Mk VII (Official Pack)");
-		createEntity(EntityCrusader.class, "Cruiser Mk. VI Crusader (Official Pack)");
-		createEntity(EntityIS2.class, "IS-2 (Official Pack)");
-		createEntity(EntityKV1.class, "KV-1 (Official Pack)");
-		createEntity(EntityLuchs.class, "Panzer II Ausf.L Luchs (Official Pack)");
-		createEntity(EntityPanzerIV.class, "Panzer IV Ausf. H (Official Pack)");
-		createEntity(EntityShermanFury.class, "M4A3E8 Sherman Fury (Official Pack)");
-		createEntity(EntityStuGIV.class, "StuG IV (Official Pack)");
-		createEntity(EntityT3476.class, "T-34/76 (Official Pack)");
-		createEntity(EntityT3485.class, "T-34/85 (Official Pack)");
-		createEntity(EntityTiger131.class, "Panzer VI Tiger 131 (Official Pack)");
-		createEntity(EntityTigerII.class, "Panzer VI Tiger II (Official Pack)");
-		createEntity(EntityType4HoRo.class, "Type 4 Ho-Ro (Official Pack)");
-		createEntity(EntityB1.class, "B1 (Official Pack)");
-		
-		createEntity(EntityM113A1.class, "M113A1 APC");
-		createEntity(EntityT72A1979.class, "T-72A 1979");
-		createEntity(EntityT55A.class, "T-55A (Lizard)");
-		createEntity(EntityType90KyuMaru.class, "Type 90 Kyu-maru (Monolith Pack)");
-		createEntity(EntityT14Armata.class, "T-14 Armata");
-		createEntity(EntityK2.class, "K2 Black Panther (Monolith Pack)");
-		createEntity(EntityM60A1.class, "M60A1 Patton");
-		createEntity(EntityM1Abrams.class, "M1 Abrams");
-		createEntity(EntityLeopard2A6.class, "Leopard 2 A6");
-		createEntity(EntityT90.class, "T-90");
-		
-		createEntity(EntityPanzerIVJ.class, "Panzer IV Ausf. J (Wolff's Pack)");
-		createEntity(EntityPanzer.class, "Panzer IV");
-		createEntity(EntityM4.class, "M4 Sherman");
-		createEntity(EntityT34.class, "T-34");
+		//Kikkoceccato
 		createEntity(EntityPanzerI.class, "Panzer I Ausf. A (Kikkoceccato)");
 		createEntity(EntitySkwI.class, "Sanitaetskraftwagen I Ausf. A (Kikkoceccato)");
 
+		//World at War Pack
+		createEntity(EntityPanzer.class, "Panzer IV");
+		createEntity(EntityM4.class, "M4 Sherman");
+		createEntity(EntityT34.class, "T-34");
+
+		//Manus WW2 Pack
 		createEntity(EntityJagdpanther.class, "Jagdpanzer V Jagdpanther (Manus Pack)");
 		createEntity(EntityJagdpanzerIV.class, "Jagdpanzer IV/70 Guderian Ente (Manus Pack)");
 		createEntity(EntityJagdtiger.class, "Jagdpanzer VI Jagdtiger (Manus Pack)");
@@ -65,7 +91,6 @@ public class ModEntityRegistry {
 		createEntity(EntityPanzerIVH.class, "Panzer IV Ausf. H (Manus Pack)");
 		createEntity(EntityTigerIE.class, "Panzer VI Tiger Ausf. E (Manus Pack)");
 		createEntity(EntityTigerIIB.class, "Panzer VI Tiger II Ausf. B (Manus Pack)");
-
 		createEntity(EntityFlakpanzerIV.class, "Flakpanzer IV Wirbelwind (Manus Pack)");
 		createEntity(EntityHummel.class, "Panzerhaubitze Hummel (Manus Pack)");
 		createEntity(EntityM4A1.class, "M4A1 Sherman (Manus Pack)");
@@ -78,6 +103,21 @@ public class ModEntityRegistry {
 		createEntity(EntityT34_76.class, "T-34/76 (Manus Pack)");
 		createEntity(EntityT34_85.class, "T-34/85 (Manus Pack)");
 
+		//Manus Modern Warfare Pack
+		createEntity(EntityBoxer1.class, "GTK Boxer (Manus Pack)");
+		createEntity(EntityBoxer2.class, "GTK Boxer with HK Grenade Machine Gun (Manus Pack)");
+		createEntity(EntityBoxer3.class, "GTK Boxer with Cal. 50 Gun (Manus Pack)");
+		createEntity(EntityBoxer4.class, "GTK Boxer with with 20mm Cannon (Manus Pack)");
+		createEntity(EntityBoxer5.class, "GTK Boxer with Skyranger AD (Manus Pack)");
+		createEntity(EntityBwTruck.class, "German Bundeswehr Truck (Manus Pack)");
+		createEntity(EntityHMMWV1.class, "M998 HMMWV (Manus Pack)");
+		createEntity(EntityHMMWV2.class, "M998 HMMWV with open load area (Manus Pack)");
+		createEntity(EntityHMMWV3.class, "M998 HMMWV with Cal. 50 Gun (Manus Pack)");
+		createEntity(EntityHMMWV4.class, "M998 HMMWV with M134 (Manus Pack)");
+		createEntity(EntityLeopardIIA6.class, "Leopard 2 A6 (Manus Pack)");
+		createEntity(EntityLeopard2A7.class, "Leopard 2 A7+ PSO (Manus Pack)");
+
+		//Extra Zero 8
 		createEntity(Entity38t.class, "Panzer 38(t) (Extra Zero 8)");
 		createEntity(EntityA39.class, "A39 Tortoise (Extra Zero 8)");
 		createEntity(EntityHetzer.class, "Jagdpanzer 38(t) Hetzer (Extra Zero 8)");
@@ -96,20 +136,36 @@ public class ModEntityRegistry {
 		createEntity(EntityType95.class, "Type 95 Ha-Go (Extra Zero 8)");
 		createEntity(EntityType97.class, "Type 97 Chi-Ha (Extra Zero 8)");
 		createEntity(EntityZis3.class, "76.2mm ZiS-3 (Extra Zero 8)");
+
+		//TaP
+		createEntity(EntityM113A1.class, "M113A1 APC");
+		createEntity(EntityT72A1979.class, "T-72A 1979");
+		createEntity(EntityT55A.class, "T-55A (Lizard)");
+		createEntity(EntityType90KyuMaru.class, "Type 90 Kyu-maru (Monolith Pack)");
+		createEntity(EntityT14Armata.class, "T-14 Armata");
+		createEntity(EntityK2.class, "K2 Black Panther (Monolith Pack)");
+		createEntity(EntityM60A1.class, "M60A1 Patton");
+		createEntity(EntityM1Abrams.class, "M1 Abrams");
+		createEntity(EntityLeopard2A6.class, "Leopard 2 A6");
+		createEntity(EntityT90.class, "T-90");
 	
 		//Price additions
+		createEntity(EntityMCOMStation.class, "MCOM Station (Price)");
+		createEntity(EntityRadioStation.class, "Radio Station (Price)");
+		createEntity(EntityRadioStationSmall.class, "Radio Station Small (Price)");
+		createEntity(EntitySandBags1.class, "SandBags (low res) (Price)");
+		createEntity(EntitySandBags2.class, "SandBags (high res) (Price)");
+		createEntity(EntitySupplies.class, "Supplies (Price)");
+
 		createEntity(EntityM41.class, "M41");
 		createEntity(EntityA6M1.class, "A6M1");
 		createEntity(EntityRomeoClassSub.class, "Romeo Class Sub (Monolith Pack)");
 		createEntity(EntityMirageF1.class, "Mirage F1");
-		createEntity(EntitySupplies.class, "Supplies (Price)");
-		createEntity(EntityHigginsBoat.class, "HigginsBoat ");
+		createEntity(EntityHigginsBoat.class, "HigginsBoat");
 		createEntity(EntitySlava.class, "Slava");
 		createEntity(EntityA7V.class, "A7V"); // Monolith Pack ?
 		createEntity(EntityEurocopterTigerHAP.class, "EurocopterTigerHAP");
 		createEntity(EntityT26.class, "T-26"); // Monolith Pack ?
-		createEntity(EntitySandBags1.class, "SandBags (low res) (Price)");
-		createEntity(EntitySandBags2.class, "SandBags (high res) (Price)");
 		createEntity(EntityPak43.class, "Pak-43");
 		createEntity(EntitySoDa.class, "So-Da");
 		createEntity(EntityTeKe.class, "Te-Ke");
@@ -121,53 +177,13 @@ public class ModEntityRegistry {
 		createEntity(EntityOccupier.class, "Occupier");
 		createEntity(EntityP51D.class, "P-51D");
 		createEntity(EntityJihadBMP1.class, "Jihad BMP-1D");
-		createEntity(EntityMCOMStation.class, "MCOM Station (Price)");
-		createEntity(EntityRadioStation.class, "Radio Station (Price)");
-		createEntity(EntityRadioStationSmall.class, "Radio Station Small (Price)");
 
-		// 2.2
-		createEntity(EntityBMWR75.class, "BMW R 75 Gespann (Official Pack)");
-		createEntity(EntityBofors.class, "40mm Bofors (Official Pack)");
-		createEntity(EntityFlak88.class, "88mm Flak 36 (Official Pack)");
-		createEntity(EntityFlakvierling.class, "20mm Flakvierling 38 (Official Pack)");
-		createEntity(EntityGreyhound.class, "M8 Greyhound (Official Pack)");
-		createEntity(EntityHellcat.class, "M18 Hellcat (Official Pack)");
-		createEntity(EntityJeep.class, "Jeep (Official Pack)");
-		createEntity(EntityKubel.class, "Kuebelwagen (Official Pack)");
-		createEntity(EntityM3Halftrack.class, "M3 Halftrack (Official Pack)");
-		createEntity(EntityM10.class, "M10 Wolverine (Official Pack)");
-		createEntity(EntityM45Quad.class, "M45 Quadmount (Official Pack)");
-		createEntity(EntityM157MM.class, "57mm M1 (Official Pack)");
-		createEntity(EntityPak40.class, "75mm PaK 40 (Official Pack)");
-		createEntity(EntitySASJeep.class, "SAS Jeep (Official Pack)");
-		createEntity(EntitySU112.class, "SU-1-12 (Official Pack)");
-		createEntity(EntityUC2Pdr.class, "Universal Carrier 2Pdr (Official Pack)");
-		createEntity(EntitySentryGun.class, "Sentry Gun (Official Pack)");
-
-		createEntity(EntitySdkFz2.class, "SdKfz 2 Kettenkrad (Official Pack)");
-		createEntity(EntitySdkFz222.class, "SdKfz 222 (Official Pack)");
-		createEntity(EntitySdkFz251.class, "SdKfz 251 (Official Pack)");
-		createEntity(EntityBoxer1.class, "GTK Boxer (Manus Pack)");
-		createEntity(EntityBoxer2.class, "GTK Boxer with HK Grenade Machine Gun (Manus Pack)");
-		createEntity(EntityBoxer3.class, "GTK Boxer with Cal. 50 Gun (Manus Pack)");
-		createEntity(EntityBoxer4.class, "GTK Boxer with with 20mm Cannon (Manus Pack)");
-		createEntity(EntityBoxer5.class, "GTK Boxer with Skyranger AD (Manus Pack)");
-		createEntity(EntityBwTruck.class, "German Bundeswehr Truck (Manus Pack)");
-		createEntity(EntityHMMWV1.class, "M998 HMMWV (Manus Pack)");
-		createEntity(EntityHMMWV2.class, "M998 HMMWV with open load area (Manus Pack)");
-		createEntity(EntityHMMWV3.class, "M998 HMMWV with Cal. 50 Gun (Manus Pack)");
-		createEntity(EntityHMMWV4.class, "M998 HMMWV with M134 (Manus Pack)");
-		createEntity(EntityLeopardIIA6.class, "Leopard 2 A6 (Manus Pack)");
-		createEntity(EntityLeopard2A7.class, "Leopard 2 A7+ PSO (Manus Pack)");
-
+		//Warfare 44
 		createEntity(EntityPanzerIVF1.class, "Panzer IV Ausf. F1 (Warfare 44)");
 		createEntity(EntityJu87D3.class, "Junker Ju 87 D-3 (Warfare 44)");
 		createEntity(EntityStuG3G.class, "StuG III Ausf. G (Warfare 44)");
 		createEntity(EntityTiger1H.class, "Panzer VI Tiger Ausf. H (Warfare 44)");
 
-
-		// WIP
-		//createEntity(EntityMark3.class, "Mark 3");
 	}
 	public static void createEntity(Class<? extends Entity> entityClass, String entityName)
 	{
