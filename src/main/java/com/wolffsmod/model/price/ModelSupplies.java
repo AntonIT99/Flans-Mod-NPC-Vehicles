@@ -1,4 +1,4 @@
-package com.wolffsmod.model; //Path where the model is located
+package com.wolffsmod.model.price; //Path where the model is located
 
 import com.flansmod.client.model.ModelVehicle;
 import com.flansmod.client.tmt.Coord2D;

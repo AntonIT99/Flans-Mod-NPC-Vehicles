@@ -21,7 +21,7 @@ public class EntityLancaster extends EntityFlanPlaneNPC
         setPassenger("3 70 10 0 core");
         setPassenger("4 -48 36 0 tail -360 360 0 45 browning30Cal Dorsal");
         setPassenger("5 -128 20 0 tail 135 225 -30 30 browning30Cal Tail");
-        addShootPointSecondary("0 -32 0");
+        addShootPointPrimary("0 -32 0");
         addGunOrigin("1 148 -2 0");
         addGunOrigin("4 -48 32 0");
         addGunOrigin("5 -128 16 0");

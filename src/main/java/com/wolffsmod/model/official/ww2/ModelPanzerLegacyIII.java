@@ -3,6 +3,8 @@ package com.wolffsmod.model.official.ww2;
 import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.wolffsmod.model.ModelFlanVehicle;
 
+import net.minecraft.entity.Entity;
+
 public class ModelPanzerLegacyIII extends ModelFlanVehicle
 {
     public ModelPanzerLegacyIII()
@@ -348,7 +350,7 @@ public class ModelPanzerLegacyIII extends ModelFlanVehicle
 		barrelModel[1].setRotationPoint(-4.5F, -5.5F, -6F);
 
 		//Gun model stolen from the browning
-		ModelRendererTurbo[][] mg42Model = new ModelRendererTurbo[3][];
+		/*ModelRendererTurbo[][] mg42Model = new ModelRendererTurbo[3][];
 
 		//Yaw only part
 		mg42Model[0] = new ModelRendererTurbo[0];
@@ -372,6 +374,6 @@ public class ModelPanzerLegacyIII extends ModelFlanVehicle
 		//No recoil part
         mg42Model[2] = new ModelRendererTurbo[0];
 
-		registerGunModel("MG42", mg42Model);
+		registerGunModel("MG42", mg42Model);*/
     }
 }

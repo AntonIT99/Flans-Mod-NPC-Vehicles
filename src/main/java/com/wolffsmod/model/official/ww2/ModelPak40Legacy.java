@@ -10,10 +10,10 @@
 
 package com.wolffsmod.model.official.ww2;
 
-import com.flansmod.client.model.ModelVehicle;
 import com.flansmod.client.tmt.ModelRendererTurbo;
+import com.wolffsmod.model.ModelFlanVehicle;
 
-public class ModelPak40Legacy extends ModelVehicle
+public class ModelPak40Legacy extends ModelFlanVehicle
 {
     int textureX = 1024;
     int textureY = 1024;

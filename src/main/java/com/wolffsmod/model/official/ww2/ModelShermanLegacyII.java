@@ -22,11 +22,11 @@ public class ModelShermanLegacyII extends ModelFlanVehicle
         turretModel[1] = new ModelRendererTurbo(this, 128, 132, textureX, textureY);
 
         turretModel[0].addTrapezoid(-16F, -6F, -16F, 32, 12, 32, 0.0F, -2.0F, ModelRendererTurbo.MR_TOP);
-        turretModel[1].flip = true;
-        turretModel[1].addTrapezoid(-15.5F, -6F, -15.5F, 31, 9, 31, 0.0F, -1.5F, ModelRendererTurbo.MR_TOP);
+        //turretModel[1].flip = true;
+        //turretModel[1].addTrapezoid(-15.5F, -6F, -15.5F, 31, 9, 31, 0.0F, -1.5F, ModelRendererTurbo.MR_TOP);
 
         turretModel[0].setRotationPoint(0F, -38F, 0F);
-        turretModel[1].setRotationPoint(0F, -38F, 0F);
+        //turretModel[1].setRotationPoint(0F, -38F, 0F);
 
         barrelModel = new ModelRendererTurbo[1];
         barrelModel[0] = new ModelRendererTurbo(this, 0, 176, textureX, textureY);

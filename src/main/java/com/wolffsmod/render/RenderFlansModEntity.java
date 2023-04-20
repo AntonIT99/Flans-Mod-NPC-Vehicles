@@ -17,9 +17,9 @@ public class RenderFlansModEntity extends RenderLiving
     public static final float DEFAULT_Y_TRANSLATION = -2.133F;
     private final ResourceLocation texture;
     private float scaleFactor = 1F;
-
     private Vec3 scale = null;
     private Vec3 translation = null;
+    private Vec3 rotation = null;
 
     public RenderFlansModEntity(ModelBase model, String texturePath)
     {
@@ -50,6 +50,12 @@ public class RenderFlansModEntity extends RenderLiving
         return this;
     }
 
+    public RenderFlansModEntity setRotation(float rotationX, float rotationY, float rotationZ)
+    {
+        rotation = Vec3.createVectorHelper(rotationX, rotationY, rotationZ);
+        return this;
+    }
+
     @Override
     protected void preRenderCallback(EntityLivingBase entity, float f)
     {
@@ -58,12 +64,21 @@ public class RenderFlansModEntity extends RenderLiving
         else
             GL11.glTranslatef(0F, DEFAULT_Y_TRANSLATION * scaleFactor, 0F);
 
-        GL11.glRotatef(180, 1, 0, 0);
-
-        if (entity instanceof EntityFlanPlaneNPC)
-            GL11.glRotatef(90, 0, 1, 0);
+        if (rotation != null)
+        {
+            GL11.glRotatef((float) rotation.xCoord, 1, 0, 0);
+            GL11.glRotatef((float) rotation.yCoord, 0, 1, 0);
+            GL11.glRotatef((float) rotation.zCoord, 0, 0, 1);
+        }
         else
-            GL11.glRotatef(270, 0, 1, 0);
+        {
+            GL11.glRotatef(180, 1, 0, 0);
+
+            if (entity instanceof EntityFlanPlaneNPC)
+                GL11.glRotatef(90, 0, 1, 0);
+            else
+                GL11.glRotatef(270, 0, 1, 0);
+        }
 
         if (scale != null)
             GL11.glScalef((float)scale.xCoord, (float)scale.yCoord, (float)scale.zCoord);

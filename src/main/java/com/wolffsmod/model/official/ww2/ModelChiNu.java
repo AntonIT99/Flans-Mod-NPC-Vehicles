@@ -10,7 +10,7 @@ import com.flansmod.client.tmt.ModelRendererTurbo;
 public class ModelChiNu extends ModelFlanVehicle
 {
 	int textureX = 512;
-	int textureY = 256;
+	int textureY = 512;
 
 	public ModelChiNu()
 	{

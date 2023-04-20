@@ -1,4 +1,4 @@
-package com.wolffsmod.model;
+package com.wolffsmod.model.price;
 
 import com.flansmod.client.model.ModelVehicle;
 import com.flansmod.client.tmt.Coord2D;
