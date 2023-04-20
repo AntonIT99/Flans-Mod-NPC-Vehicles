@@ -1,4 +1,4 @@
-package com.wolffsmod.entity.official.ww2;
+package com.wolffsmod.entity.official.ww2.legacy;
 
 import com.wolffsmod.entity.EntityFlanPlaneNPC;
 
@@ -15,11 +15,11 @@ public class EntityZero extends EntityFlanPlaneNPC
     @Override
     public void setupConfig()
     {
-        setTurnSpeed(2.0F);
-        setDriver("10 2 0");
-        addShootPointPrimary("80 11 6 nose type99");
-        addShootPointPrimary("80 11 -6 nose type99");
-        addShootPointSecondary("-30 -22 0");
+        setTurnSpeed(1.8F);
+        setDriver("-4 -4 0");
+        addShootPointSecondary("-30 -12 0");
+        addShootPointPrimary("60 3 -5 nose type99");
+        addShootPointPrimary("60 3 5 nose type99");
         
     }
 }

@@ -21,7 +21,7 @@ public class ModelType4HoRo extends ModelFlanVehicle
 	public ModelType4HoRo()
 	{
 
-// Body
+		// Body
 		bodyModel = new ModelRendererTurbo[40];
 		bodyModel[0] = new ModelRendererTurbo(this, 50, 300, textureX, textureY); // CR.MainBody
 		bodyModel[1] = new ModelRendererTurbo(this, 50, 350, textureX, textureY); // CR.Beak
@@ -79,11 +79,11 @@ public class ModelType4HoRo extends ModelFlanVehicle
 		bodyModel[3].setRotationPoint(26F, -7F, -15F);
 		bodyModel[3].rotateAngleZ = -2.879793F;
 		
-		bodyModel[4].addBox(0F, 0F, 0F, 0, 24, 7, 0F); // CR.FrontArmorPlateRight
+		bodyModel[4].addBox(0F, 0F, 0F, 1, 24, 7, 0F); // CR.FrontArmorPlateRight
 		bodyModel[4].setRotationPoint(26F, -7F, 8F);
 		bodyModel[4].rotateAngleZ = -2.879793F;
 		
-		bodyModel[5].addBox(0F, 0F, 0F, 0, 24, 16, 0F); // CR.FrontArmorPlateLeft
+		bodyModel[5].addBox(0F, 0F, 0F, 1, 24, 16, 0F); // CR.FrontArmorPlateLeft
 		bodyModel[5].setRotationPoint(26F, -7F, -15F);
 		bodyModel[5].rotateAngleZ = -2.879793F;
 		
@@ -195,7 +195,7 @@ public class ModelType4HoRo extends ModelFlanVehicle
 		bodyModel[39].setRotationPoint(-11F, -18F, -20F);
 
 
-// Barrel
+		// Barrel
 		barrelModel = new ModelRendererTurbo[3];
 		barrelModel[0] = new ModelRendererTurbo(this, 250, 400, textureX, textureY); // BL.MainCannon
 		barrelModel[1] = new ModelRendererTurbo(this, 250, 430, textureX, textureY); // BL.BottomThing
@@ -211,7 +211,7 @@ public class ModelType4HoRo extends ModelFlanVehicle
 		barrelModel[2].setRotationPoint(10.5F, -19.5F, 5F);
 
 
-// Left Track
+		// Left Track
 		leftTrackModel = new ModelRendererTurbo[12];
 		leftTrackModel[0] = new ModelRendererTurbo(this, 500, 500, textureX, textureY); // LT.Wheel1
 		leftTrackModel[1] = new ModelRendererTurbo(this, 500, 500, textureX, textureY); // LT.Wheel2
@@ -265,7 +265,7 @@ public class ModelType4HoRo extends ModelFlanVehicle
 		leftTrackModel[11].rotateAngleZ = 0.6632251F;
 
 
-// Right Track
+		// Right Track
 		rightTrackModel = new ModelRendererTurbo[12];
 		rightTrackModel[0] = new ModelRendererTurbo(this, 500, 500, textureX, textureY); // RT.Wheel1
 		rightTrackModel[1] = new ModelRendererTurbo(this, 500, 500, textureX, textureY); // RT.Wheel2

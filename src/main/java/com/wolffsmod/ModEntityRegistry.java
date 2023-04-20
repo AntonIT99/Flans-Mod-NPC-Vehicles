@@ -64,7 +64,23 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.official.ww2.EntityType4HoRo.class, "Type 4 Ho-Ro (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.ww2.EntityUC2Pdr.class, "Universal Carrier 2Pdr (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.ww2.EntityYak9.class, "Yakovlev Yak-9 (Official Pack)");
-		createEntity(com.wolffsmod.entity.official.ww2.EntityUC2Pdr.class, "Mitsubishi A6M Zero (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityZero.class, "Mitsubishi A6M Zero (Official Pack)");
+
+		//WW2 Official Pack Legacy
+		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityBF109.class, "Messerschmitt Bf 109 (Official Pack Legacy)");
+		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityBofors.class, "40mm Bofors (Official Pack Legacy)");
+		//TODO: add Flakvierling (AAGun)
+		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityJeep.class, "Jeep (Official Pack Legacy)");
+		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityM157mm.class, "57mm M1 (Official Pack Legacy)");
+		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityMustang.class, "North American P-51 Mustang (Official Pack Legacy)");
+		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityPak40.class, "75mm PaK 40 (Official Pack Legacy)");
+		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityYak9.class, "Yakovlev Yak-9 (Official Pack Legacy)");
+		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityZero.class, "Mitsubishi A6M Zero (Official Pack Legacy)");
+
+		//World at War Pack
+		createEntity(EntityPanzer.class, "Panzer IV (World at War Pack)");
+		createEntity(EntityM4.class, "M4 Sherman (World at War Pack)");
+		createEntity(EntityT34.class, "T-34/85 (World at War Pack)");
 
 		//Modern Official Pack
 		createEntity(EntitySentryGun.class, "Sentry Gun (Official Pack)");
@@ -76,11 +92,6 @@ public class ModEntityRegistry {
 		//Kikkoceccato
 		createEntity(EntityPanzerI.class, "Panzer I Ausf. A (Kikkoceccato)");
 		createEntity(EntitySkwI.class, "Sanitaetskraftwagen I Ausf. A (Kikkoceccato)");
-
-		//World at War Pack
-		createEntity(EntityPanzer.class, "Panzer IV");
-		createEntity(EntityM4.class, "M4 Sherman");
-		createEntity(EntityT34.class, "T-34");
 
 		//Manus WW2 Pack
 		createEntity(EntityJagdpanther.class, "Jagdpanzer V Jagdpanther (Manus Pack)");
