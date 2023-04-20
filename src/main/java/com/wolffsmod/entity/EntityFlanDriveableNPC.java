@@ -89,10 +89,18 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
     protected void updateDriverAndPassengers()
     {
         npc.driver.copyProperties(driver);
-        for (Integer id : npc.passengers.keySet())
+        for (Integer id : passengers.keySet())
         {
-            if (passengers.containsKey(id))
+            if (npc.passengers.containsKey(id))
+            {
                 npc.passengers.get(id).copyProperties(passengers.get(id));
+            }
+            else
+            {
+                Seat passenger = new Seat();
+                passenger.copy(passengers.get(id));
+                npc.passengers.put(id, passenger);
+            }
         }
 
         npc.driver.setYawAndPitch(this);
