@@ -24,7 +24,13 @@ public class Seat
     private float targetYaw;
     private float targetPitch;
 
-    public Seat() {}
+    public Seat()
+    {
+        minYaw = -360F;
+        maxYaw = 360F;
+        minPitch = -90F;
+        maxPitch = 90F;
+    }
 
     public void copyYawAndPitch(Seat other)
     {
@@ -72,20 +78,21 @@ public class Seat
         this.maxYaw = Math.max(minYaw, maxYaw);
         this.minPitch = Math.min(minPitch, maxPitch);
         this.maxPitch = Math.max(minPitch, maxPitch);
+        offsetYawAngle = (this.minYaw + this.maxYaw) / 2F;
     }
 
     public void setOffsetYawAngle(float offsetYawAngle)
     {
-        this.offsetYawAngle = MathHelper.wrapAngleTo180_float(offsetYawAngle);
+        this.offsetYawAngle = offsetYawAngle;
     }
 
     public void setYawAndPitch(EntityLivingBase entity)
     {
-        float seatYaw = MathHelper.wrapAngleTo180_float(entity.rotationYawHead + offsetYawAngle);
+        float seatYaw = MathHelper.wrapAngleTo180_float(entity.rotationYawHead);
         float seatPitch = MathHelper.wrapAngleTo180_float(entity.rotationPitch);
         float entityYaw = MathHelper.wrapAngleTo180_float(entity.renderYawOffset);
 
-        targetYaw = Math.min(Math.max(seatYaw - entityYaw, minYaw), maxYaw);
+        targetYaw = Math.min(Math.max((seatYaw - entityYaw + offsetYawAngle) % 360F, minYaw), maxYaw);
         targetPitch = Math.min(Math.max(seatPitch, -maxPitch), -minPitch);
 
         float newYaw = yaw;

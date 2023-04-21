@@ -1,5 +1,7 @@
 package com.wolffsmod.entity;
 
+import noppes.npcs.entity.EntityCustomNpc;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
@@ -17,12 +19,11 @@ public abstract class EntityFlanPlaneNPC extends EntityFlanDriveableNPC
     }
 
     @Override
-    public void onUpdate()
+    public void updateNpc(EntityCustomNpc npc)
     {
+        super.updateNpc(npc);
         propSpeed = propEngineOn ? (basePropSpeed + throttle) / (basePropSpeed + 1F) : 0F;
         propAngle += (Math.pow(Math.abs(propSpeed), 0.4F)) * 1.5F;
-
-        super.onUpdate();
     }
 
     @Override

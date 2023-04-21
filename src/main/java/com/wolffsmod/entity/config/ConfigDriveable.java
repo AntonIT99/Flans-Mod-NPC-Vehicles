@@ -31,7 +31,8 @@ public interface ConfigDriveable
 
     /**
      * (Not in Flan's files) set the offset yaw of the passenger seat
-     * 0 is default = looking forward when the "head" looks forward,
+     * Default: (minYaw + maxYaw) / 2
+     * 0 = looking forward when the "head" looks forward,
      * -90/90 = looking sidewards when the "head" looks forward
      * 180 = looking backward when the "head" looks forward,
      */

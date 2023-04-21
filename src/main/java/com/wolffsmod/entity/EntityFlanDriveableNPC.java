@@ -152,8 +152,8 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         {
             float minYaw = -360F;
             float maxYaw = 360F;
-            float minPitch = -180F;
-            float maxPitch = 180F;
+            float minPitch = -90F;
+            float maxPitch = 90F;
             if (split.length > 6)
             {
                 minYaw = Float.parseFloat(split[3]);
