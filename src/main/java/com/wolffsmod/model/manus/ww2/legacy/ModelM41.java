@@ -1,12 +1,12 @@
-package com.wolffsmod.model.waw;
+package com.wolffsmod.model.manus.ww2.legacy;
 
 import com.flansmod.client.tmt.Coord2D;
 import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.wolffsmod.model.ModelFlanVehicle;
 
-public class ModelM4 extends ModelFlanVehicle
+public class ModelM41 extends ModelFlanVehicle
 {
-    public ModelM4()
+    public ModelM41()
     {
         int textureX = 512;
         int textureY = 512;

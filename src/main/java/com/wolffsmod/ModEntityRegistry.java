@@ -1,6 +1,7 @@
 package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
+import com.wolffsmod.entity.manus.ww2.EntityT34Legacy;
 import com.wolffsmod.entity.price.*;
 import com.wolffsmod.entity.w44.*;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -89,9 +90,7 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.official.yeolde.EntityTwoSeatBiplane.class, "Two Seat Biplane (Official Pack)");
 
 		//World at War Pack
-		createEntity(EntityPanzer.class, "Panzer IV (World at War Pack)");
-		createEntity(EntityM4.class, "M4 Sherman (World at War Pack)");
-		createEntity(EntityT34.class, "T-34/85 (World at War Pack)");
+		createEntity(com.wolffsmod.entity.waw.EntityBlackPrince.class, "Black Prince (World at War Pack)");
 
 		//Modern Official Pack
 		createEntity(EntitySentryGun.class, "Sentry Gun (Official Pack)");
@@ -124,6 +123,12 @@ public class ModEntityRegistry {
 		createEntity(EntitySU85.class, "SU-85 (Manus Pack)");
 		createEntity(EntityT34_76.class, "T-34/76 (Manus Pack)");
 		createEntity(EntityT34_85.class, "T-34/85 (Manus Pack)");
+
+		//Manus WW2 Pack Legacy
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityM4Legacy.class, "M4 Sherman (Manus Pack Legacy)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityPanzer4GLegacy.class, "Panzer IV Ausf. G (Manus Pack Legacy)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityPanzer4HLegacy.class, "Panzer IV Ausf. H (Manus Pack Legacy)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityT34Legacy.class, "T-34/85 (Manus Pack Legacy)");
 
 		//Manus Modern Warfare Pack
 		createEntity(EntityBoxer1.class, "GTK Boxer (Manus Pack)");

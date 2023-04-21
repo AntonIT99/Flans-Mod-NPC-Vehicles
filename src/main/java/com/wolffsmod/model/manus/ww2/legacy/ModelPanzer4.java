@@ -1,12 +1,12 @@
-package com.wolffsmod.model.waw;
+package com.wolffsmod.model.manus.ww2.legacy;
 
 import com.flansmod.client.tmt.Coord2D;
 import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.wolffsmod.model.ModelFlanVehicle;
 
-public class ModelPanzer extends ModelFlanVehicle
+public class ModelPanzer4 extends ModelFlanVehicle
 {
-    public ModelPanzer()
+    public ModelPanzer4()
     {
         int textureX = 512;
         int textureY = 512;

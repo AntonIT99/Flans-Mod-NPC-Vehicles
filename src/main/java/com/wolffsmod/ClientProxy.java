@@ -1,9 +1,12 @@
 package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
+import com.wolffsmod.entity.manus.ww2.EntityM4Legacy;
+import com.wolffsmod.entity.manus.ww2.EntityT34Legacy;
 import com.wolffsmod.entity.price.*;
 import com.wolffsmod.entity.w44.*;
 import com.wolffsmod.model.*;
+import com.wolffsmod.model.manus.ww2.legacy.ModelT34;
 import com.wolffsmod.model.price.ModelMCOMStation;
 import com.wolffsmod.model.price.ModelMilitaryCrate;
 import com.wolffsmod.model.price.ModelRadioStation;
@@ -11,6 +14,7 @@ import com.wolffsmod.model.price.ModelRadioStationSmall;
 import com.wolffsmod.model.price.ModelSandBags1;
 import com.wolffsmod.model.price.ModelSandBags2;
 import com.wolffsmod.model.price.ModelSupplies;
+import com.wolffsmod.model.manus.ww2.legacy.ModelPanzer4;
 import com.wolffsmod.render.*;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
@@ -101,7 +105,7 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.legacy.EntityMustang.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelBF109Legacy(), "BF109Legacy/Mustang.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.legacy.EntityPak40.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelPak40Legacy(), "Pak40Legacy/Pak40.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.legacy.EntityPanzerIV.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelPanzerLegacy(), "PanzerIVLegacy/PanzerIV.png"));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.legacy.EntityPanzerIVOld.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelPanzerLegacyIII(), "PanzerIVOld/PanzerIV.png").setTranslation(0F, 0F, 0F).setRotation(0F, 0F, 0F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.legacy.EntityPanzerIVOld.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelPanzerLegacyIII(), "Panzer/PanzerIV.png").setTranslation(0F, 0F, 0F).setRotation(0F, 0F, 0F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.legacy.EntityPanzer.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelPanzerLegacyII(), "PanzerLegacy/PanzerIV.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.legacy.EntityM4Sherman.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelShermanLegacy(), "M4ShermanLegacy/M4Sherman.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.legacy.EntitySherman.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelShermanLegacyII(), "ShermanLegacy/Sherman.png"));
@@ -114,9 +118,7 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.yeolde.EntityTwoSeatBiplane.class, new RenderFlansModEntity(new com.wolffsmod.model.official.yeolde.ModelTwoSeatBiplane()));
 
 		//World at War Pack
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.EntityPanzer.class, new RenderPanzer(new com.wolffsmod.model.waw.ModelPanzer(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.EntityM4.class, new RenderM4(new com.wolffsmod.model.waw.ModelM4(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.EntityT34.class, new RenderT34(new com.wolffsmod.model.waw.ModelT34(), 0));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityBlackPrince.class, new RenderFlansModEntity(new ModelPanzer4(), "Panzer4/EnglishTank.png"));
 
 		//Modern Official Pack
 		RenderingRegistry.registerEntityRenderingHandler(EntitySentryGun.class, new RenderFlansModEntity(new ModelSentryGun()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
@@ -149,6 +151,12 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntitySU85.class, new RenderSU85(new ModelSU85(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityT34_76.class, new RenderT34_76(new ModelT34_76(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityT34_85.class, new RenderT34_85(new ModelT34_85(), 0));
+
+		//Manus WW2 Pack Legacy
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityM4Legacy.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelM41(), "M4/M4Sherman.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityPanzer4GLegacy.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelPanzer4(), "Panzer4/PanzerIVG.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityPanzer4HLegacy.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelPanzer4(), "Panzer4/PanzerIVH.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityT34Legacy.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelT34()));
 
 		//Manus Modern Warfare Pack
 		RenderingRegistry.registerEntityRenderingHandler(EntityBwTruck.class, new RenderFlansModEntity(new ModelBwTruck()));

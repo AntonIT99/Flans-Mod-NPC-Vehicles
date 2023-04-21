@@ -1,12 +1,12 @@
 
-package com.wolffsmod.model.waw;
+package com.wolffsmod.model.manus.ww2.legacy;
 
 import com.flansmod.client.tmt.Coord2D;
 import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.flansmod.client.tmt.Shape2D;
 import com.wolffsmod.model.ModelFlanPlane;
 
-public class ModelYak3 extends ModelFlanPlane
+public class ModelYAK3 extends ModelFlanPlane
 {
     int textureX;
     int textureY;
@@ -14,7 +14,7 @@ public class ModelYak3 extends ModelFlanPlane
     boolean VarDoor;
     boolean VarWing;
     
-    public ModelYak3() {
+    public ModelYAK3() {
         textureX = 512;
         textureY = 512;
         VarGear = false;

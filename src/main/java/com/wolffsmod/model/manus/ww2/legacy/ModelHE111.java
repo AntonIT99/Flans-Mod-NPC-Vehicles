@@ -1,5 +1,5 @@
 
-package com.wolffsmod.model.waw;
+package com.wolffsmod.model.manus.ww2.legacy;
 
 import com.flansmod.client.tmt.Coord2D;
 import com.flansmod.client.tmt.ModelRendererTurbo;
