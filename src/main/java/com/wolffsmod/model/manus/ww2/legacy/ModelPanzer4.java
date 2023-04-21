@@ -330,5 +330,6 @@ public class ModelPanzer4 extends ModelFlanVehicle
         barrelModel[5].setRotationPoint(11.0F, -36.0F, -7.0F);
 
         flipAll();
+        translateAll(0, -8, 0);
     }
 }
