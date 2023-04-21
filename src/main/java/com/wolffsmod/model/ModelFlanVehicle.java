@@ -60,7 +60,7 @@ public abstract class ModelFlanVehicle extends ModelVehicle
                 GL11.glScalef(vehicleGunModelScale, vehicleGunModelScale, vehicleGunModelScale);
                 if (passengers.get(0) != null)
                 {
-                    gunModelPart.rotateAngleY = passengers.get(0).offsetYawAngle - passengers.get(0).getLocalYaw() * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleY = -passengers.get(0).getLocalYaw() * (float) Math.PI / 180F;
                 }
                 gunModelPart.render(f5);
                 GL11.glPopMatrix();
@@ -77,7 +77,7 @@ public abstract class ModelFlanVehicle extends ModelVehicle
                 //Yaw, pitch and render
                 if (passengers.get(1) != null)
                 {
-                    gunModelPart.rotateAngleY = passengers.get(1).offsetYawAngle -passengers.get(1).getLocalYaw() * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleY = -passengers.get(1).getLocalYaw() * (float) Math.PI / 180F;
                     gunModelPart.rotateAngleZ = -passengers.get(1).getPitch() * (float) Math.PI / 180F;
                 }
                 gunModelPart.render(f5);
@@ -95,7 +95,7 @@ public abstract class ModelFlanVehicle extends ModelVehicle
                 //Yaw, pitch, recoil and render
                 if (passengers.get(2) != null)
                 {
-                    gunModelPart.rotateAngleY = passengers.get(2).offsetYawAngle - passengers.get(2).getLocalYaw() * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleY = -passengers.get(2).getLocalYaw() * (float) Math.PI / 180F;
                     gunModelPart.rotateAngleZ = -passengers.get(2).getPitch() * (float) Math.PI / 180F;
                 }
                 gunModelPart.render(f5);
@@ -109,7 +109,10 @@ public abstract class ModelFlanVehicle extends ModelVehicle
                 if (passengers.get(i) != null)
                 {
                     for(ModelRendererTurbo gunModelPart : gunModel[i])
-                        gunModelPart.rotateAngleY = passengers.get(i).offsetYawAngle * (float) Math.PI / 180F;
+                    {
+                        gunModelPart.rotateAngleY = -passengers.get(i).getLocalYaw() * (float) Math.PI / 180F;
+                        gunModelPart.rotateAngleZ = -passengers.get(i).getPitch() * (float) Math.PI / 180F;
+                    }
                 }
                 renderPart(gunModel[i]);
                 GL11.glPopMatrix();

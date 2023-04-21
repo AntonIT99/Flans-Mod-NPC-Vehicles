@@ -208,7 +208,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
     {
         if (passengers.get(id) != null)
         {
-            passengers.get(id).offsetYawAngle = angle;
+            passengers.get(id).setOffsetYawAngle(angle);
         }
     }
 
