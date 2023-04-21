@@ -7,9 +7,9 @@ import net.minecraft.world.World;
 public class EntityRadioStationSmall extends EntityFlanVehicleNPC
 {
 
-	public EntityRadioStationSmall(World p_i1602_1_) {
-		super(p_i1602_1_);
-		// TODO Auto-generated constructor stub
+	public EntityRadioStationSmall(World w)
+	{
+		super(w);
 		this.setSize(1.0F, 2.0F);
 	}
 

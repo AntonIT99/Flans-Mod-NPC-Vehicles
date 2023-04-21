@@ -69,7 +69,7 @@ public class ModEntityRegistry {
 		//WW2 Official Pack Legacy
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityBF109.class, "Messerschmitt Bf 109 (Official Pack Legacy)");
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityBofors.class, "40mm Bofors (Official Pack Legacy)");
-		//TODO: add Flakvierling (AAGun)
+		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityFlakvierling.class, "20mm Flakvierling 38 (Official Pack Legacy)");
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityJeep.class, "Jeep (Official Pack Legacy)");
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityKubel.class, "Kuebelwagen (Official Pack Legacy)");
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityM4Sherman.class, "M4 Sherman (Official Pack Legacy)");
@@ -83,6 +83,10 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntitySherman.class, "Sherman (Official Pack Legacy)");
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityYak9.class, "Yakovlev Yak-9 (Official Pack Legacy)");
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityZero.class, "Mitsubishi A6M Zero (Official Pack Legacy)");
+
+		//Ye Olde Official Pack
+		createEntity(com.wolffsmod.entity.official.yeolde.EntityBiplane.class, "Biplane (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.yeolde.EntityTwoSeatBiplane.class, "Two Seat Biplane (Official Pack)");
 
 		//World at War Pack
 		createEntity(EntityPanzer.class, "Panzer IV (World at War Pack)");

@@ -1,9 +1,9 @@
 package com.wolffsmod.model.official.ww2;
 
-import com.flansmod.client.model.ModelAAGun;
 import com.flansmod.client.tmt.ModelRendererTurbo;
+import com.wolffsmod.model.ModelFlanAAGun;
 
-public class ModelFlakvierlingLegacy extends ModelAAGun
+public class ModelFlakvierlingLegacy extends ModelFlanAAGun
 {
     public ModelFlakvierlingLegacy()
     {
