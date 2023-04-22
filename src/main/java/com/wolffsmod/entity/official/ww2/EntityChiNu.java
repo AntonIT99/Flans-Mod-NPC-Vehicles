@@ -9,7 +9,7 @@ public class EntityChiNu extends EntityFlanVehicleNPC
     public EntityChiNu(World w)
     {
         super(w);
-        this.setSize(3.0F, 2.9F);
+        setSize(3.0F, 2.9F);
     }
     
     @Override

@@ -6,6 +6,6 @@ public class EntityZis3 extends EntityFlanVehicleNPC
 {
 	public EntityZis3(World w) {
 		super(w);
-		this.setSize(2.2F, 1.8F);
+		setSize(2.2F, 1.8F);
 	}
 }

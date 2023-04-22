@@ -9,7 +9,7 @@ public class EntityT3485 extends EntityFlanVehicleNPC
     public EntityT3485(World w)
     {
         super(w);
-        this.setSize(3.5F, 3.0F);
+        setSize(3.5F, 3.0F);
     }
     
     @Override

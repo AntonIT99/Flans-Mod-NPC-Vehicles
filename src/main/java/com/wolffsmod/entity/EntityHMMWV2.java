@@ -6,6 +6,6 @@ public class EntityHMMWV2 extends EntityFlanVehicleNPC
 {
 	public EntityHMMWV2(World w) {
 		super(w);
-		this.setSize(3.5F, 2.5F);
+		setSize(3.5F, 2.5F);
 	}
 }

@@ -9,7 +9,7 @@ public class EntitySherman extends EntityFlanVehicleNPC
     public EntitySherman(World w)
     {
         super(w);
-        this.setSize(3.5F, 3.0F);
+        setSize(3.5F, 3.0F);
     }
     
     @Override

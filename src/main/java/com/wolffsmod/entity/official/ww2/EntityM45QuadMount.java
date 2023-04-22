@@ -9,7 +9,7 @@ public class EntityM45QuadMount extends EntityFlanVehicleNPC
     public EntityM45QuadMount(World w)
     {
         super(w);
-        this.setSize(3.0F, 2.5F);
+        setSize(3.0F, 2.5F);
     }
     
     @Override

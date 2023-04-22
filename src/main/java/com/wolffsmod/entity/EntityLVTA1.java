@@ -6,6 +6,6 @@ public class EntityLVTA1 extends EntityFlanVehicleNPC
 {
 	public EntityLVTA1(World w) {
 		super(w);
-		this.setSize(3.8F, 2.5F);
+		setSize(3.8F, 2.5F);
 	}
 }

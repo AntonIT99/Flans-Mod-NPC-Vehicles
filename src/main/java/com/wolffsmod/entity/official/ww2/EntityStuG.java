@@ -9,7 +9,7 @@ public class EntityStuG extends EntityFlanVehicleNPC
     public EntityStuG(World w)
     {
         super(w);
-        this.setSize(3.5F, 2.2F);
+        setSize(3.5F, 2.2F);
     }
     
     @Override

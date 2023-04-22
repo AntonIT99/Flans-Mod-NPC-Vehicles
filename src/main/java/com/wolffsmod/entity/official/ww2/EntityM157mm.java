@@ -9,7 +9,7 @@ public class EntityM157mm extends EntityFlanVehicleNPC
     public EntityM157mm(World w)
     {
         super(w);
-        this.setSize(3.0F, 2.5F);
+        setSize(3.0F, 2.5F);
     }
     
     @Override

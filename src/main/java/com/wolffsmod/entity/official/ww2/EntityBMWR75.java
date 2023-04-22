@@ -9,7 +9,7 @@ public class EntityBMWR75 extends EntityFlanVehicleNPC
     public EntityBMWR75(World w)
     {
         super(w);
-        this.setSize(3.0F, 2.0F);
+        setSize(3.0F, 2.0F);
     }
     
     @Override

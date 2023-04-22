@@ -9,7 +9,7 @@ public class EntityCromwell extends EntityFlanVehicleNPC
     public EntityCromwell(World w)
     {
         super(w);
-        this.setSize(3.5F, 2.8F);
+        setSize(3.5F, 2.8F);
     }
     
     @Override

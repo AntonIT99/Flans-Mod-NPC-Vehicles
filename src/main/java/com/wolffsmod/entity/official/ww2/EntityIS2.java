@@ -9,7 +9,7 @@ public class EntityIS2 extends EntityFlanVehicleNPC
     public EntityIS2(World w)
     {
         super(w);
-        this.setSize(3.5F, 3.0F);
+        setSize(3.5F, 3.0F);
     }
     
     @Override

@@ -9,7 +9,7 @@ public class EntityM1Abrams extends EntityFlanVehicleNPC
 
 	public EntityM1Abrams(World w) {
 		super(w);
-		this.setSize(5F, 3.0F);
+		setSize(5F, 3.0F);
 	}
 	
 	@Override

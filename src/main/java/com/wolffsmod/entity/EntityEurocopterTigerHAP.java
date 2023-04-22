@@ -8,7 +8,7 @@ public class EntityEurocopterTigerHAP extends EntityFlanPlaneNPC
 	public EntityEurocopterTigerHAP(World p_i1602_1_) {
 		super(p_i1602_1_);
 		// TODO Auto-generated constructor stub
-		this.setSize(3.0F, 3.0F);
+		setSize(3.0F, 3.0F);
 	}
 
 }

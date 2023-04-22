@@ -9,7 +9,7 @@ public class EntityChiHa extends EntityFlanVehicleNPC
     public EntityChiHa(World w)
     {
         super(w);
-        this.setSize(2.8F, 2.5F);
+        setSize(2.8F, 2.5F);
     }
     
     @Override

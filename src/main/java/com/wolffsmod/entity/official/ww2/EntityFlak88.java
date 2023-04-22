@@ -9,7 +9,7 @@ public class EntityFlak88 extends EntityFlanVehicleNPC
     public EntityFlak88(World w)
     {
         super(w);
-        this.setSize(3.5F, 2.5F);
+        setSize(3.5F, 2.5F);
     }
     
     @Override

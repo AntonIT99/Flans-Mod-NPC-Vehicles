@@ -9,7 +9,7 @@ public class EntitySU112 extends EntityFlanVehicleNPC
     public EntitySU112(World w)
     {
         super(w);
-        this.setSize(3.0F, 2.5F);
+        setSize(3.0F, 2.5F);
     }
     
     @Override

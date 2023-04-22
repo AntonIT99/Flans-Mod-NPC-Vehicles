@@ -10,7 +10,7 @@ public class EntityRadioStationSmall extends EntityFlanVehicleNPC
 	public EntityRadioStationSmall(World w)
 	{
 		super(w);
-		this.setSize(1.0F, 2.0F);
+		setSize(1.0F, 2.0F);
 	}
 
 }

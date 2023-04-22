@@ -7,7 +7,7 @@ public class EntityRomeoClassSub extends EntityFlanShipNPC
 
 	public EntityRomeoClassSub(World w) {
 		super(w);
-		this.setSize(3.0F, 2.0F);
+		setSize(3.0F, 2.0F);
 	}
 
 }

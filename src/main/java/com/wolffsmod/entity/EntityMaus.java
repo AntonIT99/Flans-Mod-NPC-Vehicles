@@ -6,6 +6,6 @@ public class EntityMaus extends EntityFlanVehicleNPC
 {
 	public EntityMaus(World w) {
 		super(w);
-		this.setSize(3.7F, 3.6F);
+		setSize(3.7F, 3.6F);
 	}
 }

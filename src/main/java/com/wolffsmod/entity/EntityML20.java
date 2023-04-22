@@ -6,6 +6,6 @@ public class EntityML20 extends EntityFlanVehicleNPC
 {
 	public EntityML20(World w) {
 		super(w);
-		this.setSize(2.8F, 2.2F);
+		setSize(2.8F, 2.2F);
 	}
 }

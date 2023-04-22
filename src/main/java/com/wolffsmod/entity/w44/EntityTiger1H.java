@@ -9,7 +9,7 @@ public class EntityTiger1H extends EntityFlanVehicleNPC
     public EntityTiger1H(World w)
     {
         super(w);
-        this.setSize(3.75F, 3.0F);
+        setSize(3.75F, 3.0F);
     }
 
     @Override

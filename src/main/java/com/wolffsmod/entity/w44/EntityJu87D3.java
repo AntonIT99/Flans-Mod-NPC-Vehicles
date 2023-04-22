@@ -9,7 +9,7 @@ public class EntityJu87D3 extends EntityFlanPlaneNPC
     public EntityJu87D3(World w)
     {
         super(w);
-        this.setSize(3.0F, 5.0F);
+        setSize(3.0F, 5.0F);
     }
 
     @Override

@@ -6,6 +6,6 @@ public class Entity38t extends EntityFlanVehicleNPC
 {
 	public Entity38t(World w) {
 		super(w);
-		this.setSize(3.0F, 2.3F);
+		setSize(3.0F, 2.3F);
 	}
 }

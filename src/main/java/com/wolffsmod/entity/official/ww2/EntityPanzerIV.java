@@ -9,7 +9,7 @@ public class EntityPanzerIV extends EntityFlanVehicleNPC
     public EntityPanzerIV(World w)
     {
         super(w);
-        this.setSize(3.5F, 2.8F);
+        setSize(3.5F, 2.8F);
     }
     
     @Override
