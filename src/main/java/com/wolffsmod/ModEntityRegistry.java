@@ -110,6 +110,7 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.kikkoceccato.EntitySkwI.class, "Sanitaetskraftwagen I Ausf. A (Kikkoceccato)");
 
 		//Manus WW2 Pack
+		//createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_A6M_1A
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_FlakpanzerIV_1A.class, "Flakpanzer IV Wirbelwind (Manus Pack)");
 
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_Jagdpanther_1A.class, "Jagdpanzer V Jagdpanther (Manus Pack)");
@@ -194,10 +195,8 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.price.EntitySupplies.class, "Supplies (Price)");
 
 		createEntity(EntityM41.class, "M41");
-		createEntity(EntityA6M1.class, "A6M1");
 		createEntity(EntityRomeoClassSub.class, "Romeo Class Sub (Monolith Pack)");
 		createEntity(EntityMirageF1.class, "Mirage F1");
-		createEntity(EntityHigginsBoat.class, "HigginsBoat");
 		createEntity(EntitySlava.class, "Slava");
 		createEntity(EntityA7V.class, "A7V"); // Monolith Pack ?
 		createEntity(EntityEurocopterTigerHAP.class, "EurocopterTigerHAP");
