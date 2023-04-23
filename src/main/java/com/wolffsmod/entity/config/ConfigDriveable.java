@@ -20,6 +20,9 @@ public interface ConfigDriveable
     /** Driver/Pilot [...] **/
     void setDriver(String data);
 
+    /** RotatedDriverOffset [...] **/
+    void setRotatedDriverOffset(String data);
+
     /** DriverAimSpeed [...] **/
     void setDriverAimSpeed(String data);
 

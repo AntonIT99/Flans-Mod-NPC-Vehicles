@@ -3,6 +3,7 @@ package com.wolffsmod.render;
 import org.lwjgl.opengl.GL11;
 
 import com.wolffsmod.Strings;
+import com.wolffsmod.entity.EntityFlanAAGunNPC;
 import com.wolffsmod.entity.EntityFlanPlaneNPC;
 
 import net.minecraft.client.model.ModelBase;
@@ -15,6 +16,7 @@ import net.minecraft.util.Vec3;
 public class RenderFlansModEntity extends RenderLiving
 {
     public static final float DEFAULT_Y_TRANSLATION = -2.133F;
+    public static final float DEFAULT_Y_TRANSLATION_AAGUN = -1.5F;
     private final ResourceLocation texture;
     private float scaleFactor = 1F;
     private Vec3 scale = null;
@@ -60,9 +62,16 @@ public class RenderFlansModEntity extends RenderLiving
     protected void preRenderCallback(EntityLivingBase entity, float f)
     {
         if (translation != null)
+        {
             GL11.glTranslatef((float)translation.xCoord, (float)translation.yCoord * scaleFactor, (float)translation.zCoord);
+        }
         else
-            GL11.glTranslatef(0F, DEFAULT_Y_TRANSLATION * scaleFactor, 0F);
+        {
+            if (entity instanceof EntityFlanAAGunNPC)
+                GL11.glTranslatef(0F, DEFAULT_Y_TRANSLATION_AAGUN * scaleFactor, 0F);
+            else
+                GL11.glTranslatef(0F, DEFAULT_Y_TRANSLATION * scaleFactor, 0F);
+        }
 
         if (rotation != null)
         {

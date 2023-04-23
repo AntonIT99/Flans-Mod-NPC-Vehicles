@@ -1,7 +1,6 @@
 package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
-import com.wolffsmod.entity.w44.*;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 import net.minecraft.entity.Entity;
@@ -101,7 +100,7 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.waw.EntitySopwith.class, "Sopwith Camel (World at War Pack)");
 		createEntity(com.wolffsmod.entity.waw.EntityType4.class, "Type 4 Chi-To (World at War Pack)");
 
-		//Modern Official Pack
+		//Modern Warfare Official Pack
 		createEntity(EntitySentryGun.class, "Sentry Gun (Official Pack)");
 
 		//Wolff's Pack
@@ -113,6 +112,14 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.kikkoceccato.EntitySkwI.class, "Sanitaetskraftwagen I Ausf. A (Kikkoceccato)");
 
 		//Manus WW2 Pack
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_AAGun_Flak20mmVierling_1A.class, "20mm Flakvierling 38 (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_AAGun_Flak20mmVierling_2A.class, "20mm Flakvierling 38 without shield (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_AAGun_Flak20mmVierling_3A.class, "20mm Flakvierling 38 - Manned (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_AAGun_Flak20mmVierling_4A.class, "20mm Flakvierling 38 without shield - Manned (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_AAGun_Flak88_1A.class, "88mm Flak 36 (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_AAGun_Flak88_2A.class, "88mm Flak 36 Anti tank (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_AAGun_Flak88_3A.class, "88mm Flak 36 Anti tank - cover East/West (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_AAGun_Flak88_4A.class, "88mm Flak 36 Anti tank - cover North/South (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_A6M_1A.class, "Mitsubishi A6M Zero (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_Arado196_1A.class, "Arado Ar 196 (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_B17G_1A.class, "Boeing B-17G (Manus Pack)");
@@ -173,18 +180,18 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.manus.ww2.legacy.EntityT34.class, "T-34/85 (Manus Pack Legacy)");
 
 		//Manus Modern Warfare Pack
-		createEntity(EntityBoxer1.class, "GTK Boxer (Manus Pack)");
-		createEntity(EntityBoxer2.class, "GTK Boxer with HK Grenade Machine Gun (Manus Pack)");
-		createEntity(EntityBoxer3.class, "GTK Boxer with Cal. 50 Gun (Manus Pack)");
-		createEntity(EntityBoxer4.class, "GTK Boxer with with 20mm Cannon (Manus Pack)");
-		createEntity(EntityBoxer5.class, "GTK Boxer with Skyranger AD (Manus Pack)");
-		createEntity(EntityBwTruck.class, "German Bundeswehr Truck (Manus Pack)");
-		createEntity(EntityHMMWV1.class, "M998 HMMWV (Manus Pack)");
-		createEntity(EntityHMMWV2.class, "M998 HMMWV with open load area (Manus Pack)");
-		createEntity(EntityHMMWV3.class, "M998 HMMWV with Cal. 50 Gun (Manus Pack)");
-		createEntity(EntityHMMWV4.class, "M998 HMMWV with M134 (Manus Pack)");
-		createEntity(EntityLeopardIIA6.class, "Leopard 2 A6 (Manus Pack)");
-		createEntity(EntityLeopard2A7.class, "Leopard 2 A7+ PSO (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.mw.EntityBoxer1.class, "GTK Boxer (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.mw.EntityBoxer2.class, "GTK Boxer with HK Grenade Machine Gun (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.mw.EntityBoxer3.class, "GTK Boxer with Cal. 50 Gun (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.mw.EntityBoxer4.class, "GTK Boxer with with 20mm Cannon (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.mw.EntityBoxer5.class, "GTK Boxer with Skyranger AD (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.mw.EntityBwTruck.class, "German Bundeswehr Truck (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.mw.EntityHMMWV1.class, "M998 HMMWV (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.mw.EntityHMMWV2.class, "M998 HMMWV with open load area (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.mw.EntityHMMWV3.class, "M998 HMMWV with Cal. 50 Gun (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.mw.EntityHMMWV4.class, "M998 HMMWV with M134 (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.mw.EntityLeopard2A6.class, "Leopard 2 A6 (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.mw.EntityLeopard2A7.class, "Leopard 2 A7+ PSO (Manus Pack)");
 
 		//Extra Zero 8
 		createEntity(Entity38t.class, "Panzer 38(t) (Extra Zero 8)");
@@ -215,7 +222,7 @@ public class ModEntityRegistry {
 		createEntity(EntityK2.class, "K2 Black Panther (Monolith Pack)");
 		createEntity(EntityM60A1.class, "M60A1 Patton");
 		createEntity(EntityM1Abrams.class, "M1 Abrams");
-		createEntity(EntityLeopard2A6.class, "Leopard 2 A6");
+		createEntity(com.wolffsmod.entity.EntityLeopard2A6.class, "Leopard 2 A6");
 		createEntity(EntityT90.class, "T-90");
 	
 		//Price additions
@@ -246,10 +253,10 @@ public class ModEntityRegistry {
 		createEntity(EntityJihadBMP1.class, "Jihad BMP-1D");
 
 		//Warfare 44
-		createEntity(EntityPanzerIVF1.class, "Panzer IV Ausf. F1 (Warfare 44)");
-		createEntity(EntityJu87D3.class, "Junker Ju 87 D-3 (Warfare 44)");
-		createEntity(EntityStuG3G.class, "StuG III Ausf. G (Warfare 44)");
-		createEntity(EntityTiger1H.class, "Panzer VI Tiger Ausf. H (Warfare 44)");
+		createEntity(com.wolffsmod.entity.w44.EntityPanzerIVF1.class, "Panzer IV Ausf. F1 (Warfare 44)");
+		createEntity(com.wolffsmod.entity.w44.EntityJu87D3.class, "Junker Ju 87 D-3 (Warfare 44)");
+		createEntity(com.wolffsmod.entity.w44.EntityStuG3G.class, "StuG III Ausf. G (Warfare 44)");
+		createEntity(com.wolffsmod.entity.w44.EntityTiger1H.class, "Panzer VI Tiger Ausf. H (Warfare 44)");
 
 	}
 	public static void createEntity(Class<? extends Entity> entityClass, String entityName)

@@ -1,5 +1,6 @@
 package com.wolffsmod.entity;
 
+import com.flansmod.common.RotatedAxes;
 import com.flansmod.common.driveables.*;
 import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.WolffNPCMod;
@@ -56,6 +57,32 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
     public double getMovementVelocity()
     {
         return Vec3.createVectorHelper((posX - prevPosX), (posY - prevPosY), (posZ - prevPosZ)).lengthVector();
+    }
+
+    @Override
+    public void updateRiderPosition()
+    {
+        if (riddenByEntity != null && !driver.position.equals(Vector3f.Zero))
+        {
+            Vector3f driverPos = getDriverPosition();
+            riddenByEntity.setPosition(posX + driverPos.getX(), posY + driverPos.getY() + riddenByEntity.getYOffset(), posZ + driverPos.getZ());
+        }
+        else
+        {
+            super.updateRiderPosition();
+        }
+    }
+
+    public Vector3f getDriverPosition()
+    {
+        RotatedAxes axes = new RotatedAxes(renderYawOffset, 0F, 0F);
+        axes.rotateLocalYaw(90F);
+        return axes.findLocalVectorGlobally(
+                new Vector3f(driver.position.getX() / 16F, driver.position.getY() / 16F + 0.6F, driver.position.getZ() / 16F))
+                .translate(driver.offset.getX() / 16F, driver.offset.getY() / 16F, driver.offset.getZ());
+        /*return axes.findLocalVectorGlobally(
+                new Vector3f( 0F / 16F, driver.position.getY() / 16F + 0.6F,  0F / 16F))
+                .translate(-8 / 16F, driver.offset.getY() / 16F, (13F + 3F) / 16F);*/
     }
 
     @Override
@@ -170,6 +197,13 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
     }
 
     @Override
+    public void setRotatedDriverOffset(String data)
+    {
+        String[] split = data.split(" ");
+        driver.offset = new Vector3f(Float.parseFloat(split[0]), Float.parseFloat(split[1]), Float.parseFloat(split[2]));
+    }
+
+    @Override
     public void setDriverAimSpeed(String data)
     {
         String[] split = data.split(" ");
@@ -242,6 +276,8 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
             gun = new String[]{"ShootPointPrimary", split[0], split[1], split[2], split[3], split[4]};
         if (split.length == 4 || split.length == 7)
             gun = new String[]{"ShootPointPrimary", split[0], split[1], split[2], split[3]};
+        if (split.length == 3)
+            gun = new String[]{"ShootPointPrimary", split[0], split[1], split[2], "core"};
 
         if (split.length >= 8)
             offPos = new Vector3f(Float.parseFloat(split[5]) / 16F, Float.parseFloat(split[6]) / 16F, Float.parseFloat(split[7]) / 16F);

@@ -11,6 +11,7 @@ public class Seat
     public float yawSpeed = 2F;
     public float pitchSpeed = 2F;
     public Vector3f position = new Vector3f();
+    public Vector3f offset = new Vector3f();
 
     private float minYaw;
     private float maxYaw;
@@ -41,6 +42,7 @@ public class Seat
     public void copyProperties(Seat other)
     {
         position.set(other.position);
+        offset.set(other.offset);
         minYaw = other.minYaw;
         maxYaw = other.maxYaw;
         minPitch = other.minPitch;
@@ -56,6 +58,7 @@ public class Seat
         yaw = other.yaw;
         pitch = other.pitch;
         position.set(other.position);
+        offset.set(other.offset);
         minYaw = other.minYaw;
         maxYaw = other.maxYaw;
         minPitch = other.minPitch;

@@ -17,6 +17,7 @@ public class EntityType4HoRo extends EntityFlanVehicleNPC
     {
         setTurnSpeed(0.3F);
         setDriver("3 5 15 -1.5 1.5 -2 15");
+        setRotatedDriverOffset("13 0 -8");
         addBarrelPosition("0 34 0");
         
     }

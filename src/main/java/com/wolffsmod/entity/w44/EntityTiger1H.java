@@ -18,7 +18,7 @@ public class EntityTiger1H extends EntityFlanVehicleNPC
         setTurnSpeed(0.35F);
         setDriver("0 38 0 -360 360 -8 15");
         setDriverAimSpeed("0.57 0.47");
-        setPassenger("1 35 12 15 core -510 10 -10 10 44_Mg34 PassengerGun1");
+        setPassenger("1 35 12 15 core -10 10 -10 10 44_Mg34 PassengerGun1");
         addGun("28 34 6 turret 44_Mg34");
         addGunOrigin("1 41 -2 10");
 

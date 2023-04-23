@@ -29,6 +29,24 @@ public class EntityCustomNpc extends EntityNPCFlying
 	}
 
 	@Override
+	public void updateRiderPosition()
+	{
+		EntityLivingBase modelEntity = modelData.getEntity(this);
+		if (riddenByEntity != null && modelEntity != null)
+		{
+			modelEntity.posX = posX;
+			modelEntity.posY = posY;
+			modelEntity.posZ = posZ;
+			modelEntity.riddenByEntity = riddenByEntity;
+			modelEntity.updateRiderPosition();
+		}
+		else
+		{
+			super.updateRiderPosition();
+		}
+	}
+
+	@Override
 	protected float func_110146_f(float par1, float par2)
 	{
 		if (this.isAIEnabled())
