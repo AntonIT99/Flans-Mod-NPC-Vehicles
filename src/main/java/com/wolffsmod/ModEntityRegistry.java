@@ -1,15 +1,7 @@
 package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
-import com.wolffsmod.entity.kikkoceccato.EntityPanzerI;
-import com.wolffsmod.entity.kikkoceccato.EntitySkwI;
-import com.wolffsmod.entity.manus.ww2.legacy.EntityT34;
-import com.wolffsmod.entity.manus.ww2.legacy.EntityM4;
-import com.wolffsmod.entity.manus.ww2.legacy.EntityPanzer4G;
-import com.wolffsmod.entity.manus.ww2.legacy.EntityPanzer4H;
 import com.wolffsmod.entity.w44.*;
-import com.wolffsmod.entity.wolff.EntityPanzerIVJ;
-import com.wolffsmod.entity.wolff.EntitySdKfz251D;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 import net.minecraft.entity.Entity;
@@ -37,13 +29,13 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.official.ww2.EntityCrusader.class, "Cruiser Mk. VI Crusader (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.ww2.EntityFlak88.class, "88mm Flak 36 (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.ww2.EntityFlakvierling.class, "20mm Flakvierling 38 (Official Pack)");
-		createEntity(com.wolffsmod.entity.official.ww2.EntityFokker.class, "Fokker Dr.1 (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityFokker.class, "Fokker Dr.I (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.ww2.EntityFury.class, "M4A3E8 Sherman Fury (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.ww2.EntityGreyhound.class, "M8 Greyhound (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.ww2.EntityHellcat.class, "M18 Hellcat (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.ww2.EntityIS2.class, "IS-2 (Official Pack)");
-		createEntity(com.wolffsmod.entity.official.ww2.EntityJeep.class, "Jeep (Official Pack)");
-		createEntity(com.wolffsmod.entity.official.ww2.EntityKubel.class, "Kuebelwagen (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityJeep.class, "M38 Willys Jeep (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.ww2.EntityKubel.class, "VW Type 82 Kubelwagen (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.ww2.EntityKV1.class, "KV-1 (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.ww2.EntityLancaster.class, "Avro Lancaster (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.ww2.EntityLuchs.class, "Panzer II Ausf. L Luchs (Official Pack)");
@@ -96,7 +88,18 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.official.yeolde.EntityTwoSeatBiplane.class, "Two Seat Biplane (Official Pack)");
 
 		//World at War Pack
+		createEntity(com.wolffsmod.entity.waw.EntityB24.class, "Consolidated B-24 Liberator (World at War Pack)");
+		createEntity(com.wolffsmod.entity.waw.EntityB71.class, "Avia B-71 (World at War Pack)");
 		createEntity(com.wolffsmod.entity.waw.EntityBlackPrince.class, "Black Prince (World at War Pack)");
+		createEntity(com.wolffsmod.entity.waw.EntityC202.class, "Macchi C.202 Folgore (World at War Pack)");
+		createEntity(com.wolffsmod.entity.waw.EntityCarro.class, "Carro Armato M15 (World at War Pack)");
+		createEntity(com.wolffsmod.entity.waw.EntityDo17.class, "Dornier Do 17 (World at War Pack)");
+		createEntity(com.wolffsmod.entity.waw.EntityFokker.class, "Fokker Dr.I (World at War Pack)");
+		createEntity(com.wolffsmod.entity.waw.EntityLA7.class, "Lavochkin La-7 (World at War Pack)");
+		createEntity(com.wolffsmod.entity.waw.EntityLusac.class, "LUSAC-11 (World at War Pack)");
+		createEntity(com.wolffsmod.entity.waw.EntityRenault.class, "AMC-35 Renault (World at War Pack)");
+		createEntity(com.wolffsmod.entity.waw.EntitySopwith.class, "Sopwith Camel (World at War Pack)");
+		createEntity(com.wolffsmod.entity.waw.EntityType4.class, "Type 4 Chi-To (World at War Pack)");
 
 		//Modern Official Pack
 		createEntity(EntitySentryGun.class, "Sentry Gun (Official Pack)");
@@ -110,16 +113,42 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.kikkoceccato.EntitySkwI.class, "Sanitaetskraftwagen I Ausf. A (Kikkoceccato)");
 
 		//Manus WW2 Pack
-		//createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_A6M_1A
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_A6M_1A.class, "Mitsubishi A6M Zero (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_Arado196_1A.class, "Arado Ar 196 (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_B17G_1A.class, "Boeing B-17G (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_Bf109E_1A.class, "Messerschmitt Bf 109 E-3 (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_F4U_1A.class, "F4U-4 Corsair VMF-214 Black Sheep (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_F4U_2A.class, "F4U-4 Corsair VBF-10 The Twilight Warriors (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_Fw190_1A.class, "Focke-Wulf Fw 190 A-4 (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_HE111_1A.class, "Heinkel He 111 (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_Hurricane_1A.class, "Hawker Hurricane (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_IL2_1A.class, "Ilyushin Il-2 - Missiles (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_IL2_3A.class, "Ilyushin Il-2 - Bombs (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_IL2M_1A.class, "Ilyushin Il-2M - Missiles (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_IL2M_3A.class, "Ilyushin Il-2M - Bombs (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_IL2M_4A.class, "Ilyushin Il-2M 6. GvShAP - Missiles (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_IL2M_6A.class, "Ilyushin Il-2M 6. GvShAP - Bombs  (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_JU87_1A.class, "Junker Ju 87 Stuka (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_JU87_2A.class, "Junker Ju 87 Kanonenvogel (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_ME262A_1A.class, "Messerschmitt Me 262A Schwalbe (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_P38_1A.class, "P-38 Lightning (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_P51_1A.class, "North American P-51 Mustang (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_Spitfire_1A.class, "Supermarine Spitfire (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_SpitFireMkVB_1A.class, "Supermarine Spitfire Mk VB (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_YAK3_1A.class, "Yakovlev Yak-3 (Manus Pack Legacy)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_YAK3_1Aneu.class, "Yakovlev Yak-3 (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_FlakpanzerIV_1A.class, "Flakpanzer IV Wirbelwind (Manus Pack)");
-
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_GMCTruck_1A.class, "GMC Truck (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_GMCTruck_2A.class, "GMC Truck open Back (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_HigginsBoat_1A.class, "LCVP 2 Higgins Boat (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_Jagdpanther_1A.class, "Jagdpanzer V Jagdpanther (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_JagdpanzerIV_1A.class, "Jagdpanzer IV/70 Guderian Ente (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_Jagdtiger_1A.class, "Jagdpanzer VI Jagdtiger (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_M4A1_1A.class, "M4A1 Sherman (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_M4A1_2A.class, "M4A1 Sherman with T-34 Calliope (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_M4A3_1A.class, "M4A3 Sherman (Manus Pack)");
-
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_OpelBlitz_1A.class, "Opel Blitz (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_OpelBlitz_2A.class, "Opel Blitz Afrikakorps (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_Panther_1A.class, "Panzer V Panther Ausf. G (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_PanzerhaubitzeHummel_1A.class, "Panzerhaubitze Hummel (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_PanzerIV_1A.class, "Panzer IV Ausf. G (Manus Pack)");
@@ -128,16 +157,20 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_SU85_1A.class, "SU-85 (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_SU100_1A.class, "SU-100 (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_SU122_1A.class, "SU-122 (Manus Pack)");
-		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_TigerI_1A.class, "Panzer VI Tiger Ausf. E (Manus Pack)");
-		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_TigerII_1A.class, "Panzer VI Tiger II Ausf. B (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_T34_1A.class, "T-34/76 (Manus Pack)");
 		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_T34_2A.class, "T-34/85 (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_TigerI_1A.class, "Panzer VI Tiger Ausf. E (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_TigerII_1A.class, "Panzer VI Tiger II Ausf. B (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_VWType82_1A.class, "VW Type 82 Kubelwagen (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_WillyJeep_1A.class, "M38 Willys Jeep (Manus Pack)");
 
 		//Manus WW2 Pack Legacy
-		createEntity(EntityM4.class, "M4 Sherman (Manus Pack Legacy)");
-		createEntity(EntityPanzer4G.class, "Panzer IV Ausf. G (Manus Pack Legacy)");
-		createEntity(EntityPanzer4H.class, "Panzer IV Ausf. H (Manus Pack Legacy)");
-		createEntity(EntityT34.class, "T-34/85 (Manus Pack Legacy)");
+		createEntity(com.wolffsmod.entity.manus.ww2.legacy.EntityM4.class, "M4 Sherman (Manus Pack Legacy)");
+		createEntity(com.wolffsmod.entity.manus.ww2.legacy.EntityME109.class, "Messerschmitt Bf 109 (Manus Pack Legacy)");
+		createEntity(com.wolffsmod.entity.manus.ww2.legacy.EntityME262.class, "Messerschmitt Me 262 (Manus Pack Legacy)");
+		createEntity(com.wolffsmod.entity.manus.ww2.legacy.EntityPanzer4G.class, "Panzer IV Ausf. G (Manus Pack Legacy)");
+		createEntity(com.wolffsmod.entity.manus.ww2.legacy.EntityPanzer4H.class, "Panzer IV Ausf. H (Manus Pack Legacy)");
+		createEntity(com.wolffsmod.entity.manus.ww2.legacy.EntityT34.class, "T-34/85 (Manus Pack Legacy)");
 
 		//Manus Modern Warfare Pack
 		createEntity(EntityBoxer1.class, "GTK Boxer (Manus Pack)");

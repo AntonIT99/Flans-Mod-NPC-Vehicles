@@ -16,7 +16,7 @@ public class EntityM4 extends EntityFlanVehicleNPC
 	@Override
 	public void setupConfig()
 	{
-		setDriver("0 21 0 -360 360 -5 45");
+		setDriver("0 21 0 -360 360 -10 20");
 		addBarrelPosition("0 31 0");
 
 	}

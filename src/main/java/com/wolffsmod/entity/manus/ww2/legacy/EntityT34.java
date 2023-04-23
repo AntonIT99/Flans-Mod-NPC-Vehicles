@@ -11,4 +11,12 @@ public class EntityT34 extends EntityFlanVehicleNPC
 		super(w);
 		setSize(3.0F, 2.5F);
 	}
+
+	@Override
+	public void setupConfig()
+	{
+		setDriver("0 17 0 -360 360 -10 20");
+		addBarrelPosition("15 44 0");
+
+	}
 }

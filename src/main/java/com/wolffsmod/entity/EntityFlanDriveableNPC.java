@@ -238,12 +238,12 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         Vector3f offPos;
         String[] gun = new String[0];
 
-        if (split.length == 5 || split.length == 8)
+        if (split.length == 5 || split.length >= 8)
             gun = new String[]{"ShootPointPrimary", split[0], split[1], split[2], split[3], split[4]};
         if (split.length == 4 || split.length == 7)
             gun = new String[]{"ShootPointPrimary", split[0], split[1], split[2], split[3]};
 
-        if (split.length == 8)
+        if (split.length >= 8)
             offPos = new Vector3f(Float.parseFloat(split[5]) / 16F, Float.parseFloat(split[6]) / 16F, Float.parseFloat(split[7]) / 16F);
         else if (split.length == 7)
             offPos = new Vector3f(Float.parseFloat(split[4]) / 16F, Float.parseFloat(split[5]) / 16F, Float.parseFloat(split[6]) / 16F);
@@ -262,19 +262,21 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         DriveablePosition rootPos;
         Vector3f offPos;
         String[] gun;
-        if (split.length == 8)
+        if (split.length >= 8)
         {
-            gun = new String[]{"ShootPointPrimary", split[0], split[1], split[2], split[3], split[4]};
+            gun = new String[]{"ShootPointSecondary", split[0], split[1], split[2], split[3], split[4]};
             offPos = new Vector3f(Float.parseFloat(split[5]) / 16F, Float.parseFloat(split[6]) / 16F, Float.parseFloat(split[7]) / 16F);
         }
         else if (split.length == 7)
         {
-            gun = new String[]{"ShootPointPrimary", split[0], split[1], split[2], split[3]};
+            gun = new String[]{"ShootPointSecondary", split[0], split[1], split[2], split[3]};
             offPos = new Vector3f(Float.parseFloat(split[4]) / 16F, Float.parseFloat(split[5]) / 16F, Float.parseFloat(split[6]) / 16F);
         }
         else
         {
-            gun = split;
+            gun = new String[split.length + 1];
+            gun[0] = "ShootPointSecondary";
+            System.arraycopy(split, 0, gun, 1, split.length);
             offPos = new Vector3f(0F, 0F, 0F);
         }
         rootPos = getShootPoint(gun);

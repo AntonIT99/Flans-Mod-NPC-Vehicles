@@ -24,7 +24,7 @@ public class ModelPanzerIVJ extends ModelFlanVehicle //Same as Filename
 
 	public ModelPanzerIVJ() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[227];
+		bodyModel = new ModelRendererTurbo[222];
 		bodyModel[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Import ImportImportImportBox1
 		bodyModel[1] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Import ImportImportImportBox2
 		bodyModel[2] = new ModelRendererTurbo(this, 17, 1, textureX, textureY); // Import ImportImportImportBox3
@@ -247,30 +247,6 @@ public class ModelPanzerIVJ extends ModelFlanVehicle //Same as Filename
 		bodyModel[219] = new ModelRendererTurbo(this, 258, 440, textureX, textureY); // Import ImportImporttoadd
 		bodyModel[220] = new ModelRendererTurbo(this, 235, 451, textureX, textureY); // Import Importwheel
 		bodyModel[221] = new ModelRendererTurbo(this, 235, 451, textureX, textureY); // Import Importwheel
-		
-		bodyModel[222] = new ModelRendererTurbo(this, 1, 510, textureX, textureY); // Box 4
-
-		bodyModel[222].addBox(-3F, -0.5F, -0.5F, 1, 1, 1, 0F); // Box 4
-		bodyModel[222].setRotationPoint(44F, -19F, -9.5F);
-
-		bodyModel[223] = new ModelRendererTurbo(this, 0, 506, textureX, textureY); // Box 0
-		bodyModel[224] = new ModelRendererTurbo(this, 1, 510, textureX, textureY); // Box 1
-		bodyModel[225] = new ModelRendererTurbo(this, 11, 510, textureX, textureY); // Box 2
-		bodyModel[226] = new ModelRendererTurbo(this, 6, 510, textureX, textureY); // Box 3
-
-		bodyModel[223].addBox(-2F, -0.5F, -0.5F, 8, 1, 1, 0F); // Box 0
-
-		bodyModel[224].addShapeBox(4F, -1.5F, -0.5F, 1, 1, 1, 0F,-0.3F, 0.1F, -0.3F, -0.3F, 0.1F, -0.3F, -0.3F, 0.1F, -0.3F, -0.3F, 0.1F, -0.3F, -0.1F, 0.1F, -0.2F, -0.2F, 0.1F, -0.2F, -0.2F, 0.1F, -0.2F, -0.1F, 0.1F, -0.2F); // Box 1
-
-		bodyModel[225].addShapeBox(6F, -0.5F, -0.5F, 1, 1, 1, 0F,0F, 0.1F, 0.1F, -0.1F, 0.1F, 0.1F, -0.1F, 0.1F, 0.1F, 0F, 0.1F, 0.1F, 0F, 0.1F, 0.1F, -0.1F, 0.1F, 0.1F, -0.1F, 0.1F, 0.1F, 0F, 0.1F, 0.1F); // Box 2
-
-		bodyModel[226].addShapeBox(7F, -0.5F, -0.5F, 1, 1, 1, 0F,0.1F, -0.1F, -0.1F, 0.1F, 0F, 0F, 0.1F, 0F, 0F, 0.1F, -0.1F, -0.1F, 0.1F, -0.1F, -0.1F, 0.1F, 0F, 0F, 0.1F, 0F, 0F, 0.1F, -0.1F, -0.1F); // Box 3
-
-		//Gun Origin
-		for (int i = 223; i<227; i++)
-		{
-			bodyModel[i].setRotationPoint(44F, -19F, -9.5F);
-		}
 
 		bodyModel[0].addShapeBox(0F, 0F, 0F, 18, 15, 42, 0F, 0F, 0F, 0F, 0F, -6F, 0F, 0F, -6F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F); // Import ImportImportImportBox1
 		bodyModel[0].setRotationPoint(43F, -16F, -21F);

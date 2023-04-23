@@ -16,14 +16,8 @@ public class EntitySdKfz251D extends EntityFlanVehicleNPC
 	public void setupConfig()
 	{
 		setTurnSpeed(0.35F);
-		setDriver("4 -1 -5");
-		setPassenger("1 4 -1 -5 core");
-		setPassenger("2 -21 -2 -6 core");
-		setPassenger("3 -21 -2 6 core");
+		setDriver("4 -1 -5 -60 60 -15 25");
 		setPassenger("4 -10 12 0 core -60 60 -15 25 maschinengewehr34 MGFront");
-		setPassenger("5 -32 12 0 core 135 225 -10 40 maschinengewehr34 MGRear");
 		addGunOrigin("4 2 5 0");
-		addGunOrigin("5 -43 6 0");
-
 	}
 }

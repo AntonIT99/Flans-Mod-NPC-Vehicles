@@ -38,7 +38,7 @@ public abstract class ModelFlanVehicle extends ModelVehicle
         renderTracks();
         renderFancyTrack(vehicle.trackLinksLeft, vehicle.trackLinksRight);
         renderGuns(vehicle.passengers, vehicle.vehicleGunModelScale);
-        renderTurretAndBarrel(vehicle.turretOrigin, vehicle.driver, vehicle.driver.getLocalYaw(), vehicle.recoilPos);
+        renderTurretAndBarrel(vehicle.turretOrigin, vehicle.driver, vehicle.recoilPos);
         renderDrillHead(vehicle.harvesterAngle);
         renderAnimDoors();
     }
@@ -120,12 +120,12 @@ public abstract class ModelFlanVehicle extends ModelVehicle
         }
     }
 
-    protected void renderTurretAndBarrel(Vector3f turretOrigin, Seat driver, float yaw, float recoilPos)
+    protected void renderTurretAndBarrel(Vector3f turretOrigin, Seat driver, float recoilPos)
     {
         GL11.glPushMatrix();
         {
             GL11.glTranslatef(turretOrigin.x, turretOrigin.y, turretOrigin.z);
-            GL11.glRotatef(-yaw, 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef(-driver.getLocalYaw(), 0.0F, 1.0F, 0.0F);
             GL11.glTranslatef(-turretOrigin.x, -turretOrigin.y, -turretOrigin.z);
 
             GL11.glPushMatrix();
@@ -246,6 +246,8 @@ public abstract class ModelFlanVehicle extends ModelVehicle
     {
         if (rotateWheels)
         {
+            rotateWheels(frontWheelModel, wheelsAngle);
+            rotateWheels(backWheelModel, wheelsAngle);
             rotateWheels(leftBackWheelModel, wheelsAngle);
             rotateWheels(rightBackWheelModel, wheelsAngle);
             rotateWheels(leftFrontWheelModel, wheelsAngle);
@@ -253,6 +255,8 @@ public abstract class ModelFlanVehicle extends ModelVehicle
             rotateWheels(rightTrackWheelModels, wheelsAngle);
             rotateWheels(leftTrackWheelModels, wheelsAngle);
         }
+        renderPart(frontWheelModel);
+        renderPart(backWheelModel);
         renderPart(leftBackWheelModel);
         renderPart(rightBackWheelModel);
         renderPart(leftFrontWheelModel);

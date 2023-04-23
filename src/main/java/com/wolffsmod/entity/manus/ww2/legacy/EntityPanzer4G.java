@@ -16,7 +16,7 @@ public class EntityPanzer4G extends EntityFlanVehicleNPC
 	public void setupConfig()
 	{
 		setTurnSpeed(1F);
-		setDriver("0 21 0 -360 360 -5 45");
+		setDriver("0 21 0 -360 360 -5 20");
 		addBarrelPosition("0 31 0");
 
 	}

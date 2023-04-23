@@ -106,13 +106,24 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.yeolde.EntityTwoSeatBiplane.class, new RenderFlansModEntity(new com.wolffsmod.model.official.yeolde.ModelTwoSeatBiplane()));
 
 		//World at War Pack
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityB24.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelLancaster(), "Lancaster/B24.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityB71.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelLancaster(), "Lancaster/B71.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityBlackPrince.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelPanzer4(), "Panzer4/EnglishTank.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityC202.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_YAK3_1(), "Yak3_old/Thunderbolt.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityCarro.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelT34(), "T34/CarroArmato.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityDo17.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelLancaster(), "Lancaster/Do17.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityFokker.class, new RenderFlansModEntity(new com.wolffsmod.model.waw.ModelFokkerDr1(), "FokkerDr1/FokkerDr1.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityLA7.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_YAK3_1(), "Yak3_old/LA7.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityLusac.class, new RenderFlansModEntity(new com.wolffsmod.model.waw.ModelSopwithCamel(), "SopwithCamel/Lusac.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityRenault.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelM41(), "M4/AMC.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntitySopwith.class, new RenderFlansModEntity(new com.wolffsmod.model.waw.ModelSopwithCamel(), "SopwithCamel/SopwithCamel.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityType4.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelM41(), "M4/Type4.png"));
 
 		//Modern Official Pack
 		RenderingRegistry.registerEntityRenderingHandler(EntitySentryGun.class, new RenderFlansModEntity(new ModelSentryGun()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
 
 		//Wolff's Pack
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.wolff.EntitySdKfz251D.class, new RenderFlansModEntity(new com.wolffsmod.model.wolff.ModelSdKfz251D()).setTranslation(0F, -2.2F, 0F).setRotation(0F, 90F, 0F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.wolff.EntitySdKfz251D.class, new RenderFlansModEntity(new com.wolffsmod.model.wolff.ModelSdKfz251D()).setTranslation(0F, 0.9F, 0F).setRotation(0F, 90F, 0F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.wolff.EntityPanzerIVJ.class, new RenderFlansModEntity(new com.wolffsmod.model.wolff.ModelPanzerIVJ()).setTranslation(0F, -2F, 0F).setScale(0.9F, 0.9F, 0.9F));
 
 		//Kikkoceccato
@@ -137,11 +148,11 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_IL2M_6A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_IL2M_6(), "IL2M_6_GvShAP_Bombs/IL2M_6_GvShAP.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_JU87_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_JU87_1(), "Ju87_Stuka/Ju87_Stuka.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_JU87_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_JU87_2(), "Ju87_Kanonenvogel/Ju87_Kanonenvogel.png"));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_ME262A_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_ME262_1(), "ME262A/ME262A_KG54.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_ME262A_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_ME262A_1(), "ME262A/ME262A_KG54.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_P38_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_P38_1(), "P38/P38_metal.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_P51_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_P51_1(), "P51/P51_CR_Y.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_Spitfire_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_Spitfire_1(), "Spitfire_Manus/Spitfire_grey.png"));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_SpitFireMkVB_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_SpitFireMkVB_1(), "SpitFireMkVB_603_Squadron/SpitFireMkVB_603_Squadron.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_SpitFireMkVB_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_SpitFireMkVB_1(), "SpitfireMkVB/SpitFireMkVB_603_Squadron.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_YAK3_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_YAK3_1(), "Yak3_old/Yak3.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_YAK3_1Aneu.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_YAK3_1neu(), "Yak3/Yak3_303_FAD.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_FlakpanzerIV_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_FlakpanzerIV_1(), "FlakpanzerIV/FlakpanzerIV.png"));
@@ -162,17 +173,19 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_PanzerIV_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_PanzerIV_2(), "PanzerIV_Manus/PanzerIVH.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_RenaultFT17_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_RenaultFT17_1(), "RenaultFT17/RenaultFT17.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_SU85_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_SU85_1(), "SU85/SU85.png"));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_SU100_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_SU100_1(), "SU100/SU100.pn"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_SU100_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_SU100_1(), "SU100/SU100.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_SU122_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_SU122_1(), "SU122/SU122.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_T34_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_T34_1(), "T34_76/T34_76.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_T34_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_T34_2(), "T34_85/T34_85.png"));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_TigerI_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_TigerI_1(), "TigerIE/TigerIE.pn"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_TigerI_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_TigerI_1(), "TigerIE/TigerIE.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_TigerII_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_TigerII_1(), "TigerIIB/TigerIIB.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_VWType82_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_VWType82_1(), "VWType82/VWType82.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_WillyJeep_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Vehicle_WillyJeep_1(), "WillyJeep/WillyJeep.png"));
 
 		//Manus WW2 Pack Legacy
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.legacy.EntityM4.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelM41(), "M4/M4Sherman.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.legacy.EntityME109.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_ME109_1(), "BF109Old/BF109.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.legacy.EntityME262.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_ME262_1(), "ME262/ME262.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.legacy.EntityPanzer4G.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelPanzer4(), "Panzer4/PanzerIVG.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.legacy.EntityPanzer4H.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelPanzer4(), "Panzer4/PanzerIVH.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ww2.legacy.EntityT34.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelT34()));

@@ -12,6 +12,8 @@ package com.wolffsmod.model.wolff; //Path where the model is located
 import com.flansmod.client.tmt.Coord2D;
 import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.flansmod.client.tmt.Shape2D;
+import com.flansmod.common.vector.Vector3f;
+import com.wolffsmod.entity.Seat;
 import com.wolffsmod.model.ModelFlanVehicle;
 
 import net.minecraft.entity.Entity;
@@ -715,6 +717,16 @@ public class ModelSdKfz251D extends ModelFlanVehicle //Same as Filename
 
 		bodyModel[171].addShapeBox(-12F, -2F, -0.5F, 2, 1, 1, 0F, 0.5F, -0.5F, -0.25F, -2F, -0.5F, -0.2F, -2F, -0.5F, -0.2F, 0.5F, -0.5F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -0.08F, 0F, 0F, -0.08F, 0F, 0F, -0.25F); // Import Schulter1
 		bodyModel[171].setRotationPoint(0F, 0F, 0F);
+
+		bodyDoorOpenModel = new ModelRendererTurbo[2];
+		bodyDoorOpenModel[0] = new ModelRendererTurbo(this, 481, 153, textureX, textureY); // Import ImportBox127
+		bodyDoorOpenModel[1] = new ModelRendererTurbo(this, 457, 161, textureX, textureY); // Import ImportBox128
+
+		bodyDoorOpenModel[0].addShapeBox(0F, 0F, 0F, 10, 16, 1, 0F, 10.5F, -0.5F, -0.5F, -10F, -0.5F, -0.5F, -10F, -0.5F, 0F, 10.5F, -0.5F, 0F, 0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0.5F, 0F, 0F); // Import ImportBox127
+		bodyDoorOpenModel[0].setRotationPoint(-57.25F, -19.5F, 9.5F);
+
+		bodyDoorOpenModel[1].addShapeBox(0F, 0F, 0F, 10, 16, 1, 0F, 10.5F, -0.5F, -0.5F, -10F, -0.5F, -0.5F, -10F, -0.5F, 0F, 10.5F, -0.5F, 0F, 0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0.5F, 0F, 0F); // Import ImportBox128
+		bodyDoorOpenModel[1].setRotationPoint(-57.25F, -19.5F, -11F);
 
 		bodyDoorCloseModel = new ModelRendererTurbo[2];
 		bodyDoorCloseModel[0] = new ModelRendererTurbo(this, 441, 169, textureX, textureY); // Import ImportBox107
@@ -1639,12 +1651,6 @@ public class ModelSdKfz251D extends ModelFlanVehicle //Same as Filename
 		}
 		passenger[83].rotateAngleY = f3 / (180F / (float)Math.PI) - 90 / (180F / (float)Math.PI);
 
-		//TODO: check turret rotation
-		/*for (int i = 0; i < 24; i++)
-		{
-			turretModel[i].rotateAngleY = f3 / (180F / (float)Math.PI) / 1.5F;
-		}*/
-		
 		for (ModelRendererTurbo modelRendererTurbo : driver)
 		{
 			modelRendererTurbo.render(f5);
@@ -1653,6 +1659,15 @@ public class ModelSdKfz251D extends ModelFlanVehicle //Same as Filename
 		{
 			modelRendererTurbo.render(f5);
 		}
+	}
+
+	@Override
+	protected void renderTurretAndBarrel(Vector3f turretOrigin, Seat driver, float recoilPos)
+	{
+		Seat invertedYawDriver = new Seat();
+		invertedYawDriver.copy(driver);
+		invertedYawDriver.setLocalYaw(-driver.getLocalYaw());
+		super.renderTurretAndBarrel(turretOrigin, invertedYawDriver, recoilPos);
 	}
 	
 	protected float degToRad(float degrees)
