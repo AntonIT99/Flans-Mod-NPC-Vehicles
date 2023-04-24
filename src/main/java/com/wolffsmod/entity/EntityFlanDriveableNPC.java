@@ -123,6 +123,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         EntityUtil.Copy(npc, this);
         updateDriverAndPassengers();
 
+        System.out.println(getMovementVelocity());
         throttle = (float) (getMovementVelocity() / npc.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
     }
 
@@ -443,7 +444,4 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         super.writeEntityToNBT(tag);
         tag.setBoolean("DoorsOpen", doorsOpen);
     }
-
-    @Override
-    public void setupConfig() {}
 }

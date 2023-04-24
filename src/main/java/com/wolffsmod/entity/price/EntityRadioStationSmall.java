@@ -13,4 +13,9 @@ public class EntityRadioStationSmall extends EntityFlanVehicleNPC
 		setSize(1.0F, 2.0F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

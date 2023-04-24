@@ -11,4 +11,9 @@ public class EntityA7V extends EntityFlanVehicleNPC
 		setSize(3.0F, 3.0F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

@@ -10,4 +10,9 @@ public class EntitySlava extends EntityFlanShipNPC
 		setSize(6.0F, 3.0F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

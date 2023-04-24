@@ -8,4 +8,10 @@ public class EntityHetzer extends EntityFlanVehicleNPC
 		super(w);
 		setSize(3.0F, 2.5F);
 	}
+
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

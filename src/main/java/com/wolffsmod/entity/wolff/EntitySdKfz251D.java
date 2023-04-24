@@ -19,7 +19,7 @@ public class EntitySdKfz251D extends EntityFlanVehicleNPC
         setDriver("4 -1 -5 -60 60 -15 25");
         setPassenger("4 -10 12 0 core -60 60 -15 25 maschinengewehr34 MGFront");
         addGunOrigin("4 2 5 0");
-        setPassenger("Passenger 5 -32 12 0 core 135 225 -10 40 maschinengewehr34 MGRear");
+        setPassenger("5 -32 12 0 core 135 225 -10 40 maschinengewehr34 MGRear");
         addGunOrigin("5 -43 6 0");
     }
 }

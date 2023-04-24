@@ -8,4 +8,10 @@ public class EntitySentryGun extends EntityFlanVehicleNPC
 		super(w);
 		setSize(1.0F, 1.8F);
 	}
+
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

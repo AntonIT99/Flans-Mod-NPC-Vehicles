@@ -11,4 +11,9 @@ public class EntityT72A1979 extends EntityFlanVehicleNPC
 		setSize(3.5F, 3.0F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

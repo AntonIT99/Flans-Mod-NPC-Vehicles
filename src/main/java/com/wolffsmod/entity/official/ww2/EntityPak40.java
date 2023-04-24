@@ -17,6 +17,7 @@ public class EntityPak40 extends EntityFlanVehicleNPC
     {
         setTurnSpeed(0.0F);
         setDriver("0 -2 0 -15 15 -10 10");
+        setRotatedDriverOffset("-8 0 -12");
         addBarrelPosition("0 9 0");
         
     }

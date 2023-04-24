@@ -11,4 +11,9 @@ public class EntityTKlate extends EntityFlanVehicleNPC
 		setSize(4.5F, 3.0F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

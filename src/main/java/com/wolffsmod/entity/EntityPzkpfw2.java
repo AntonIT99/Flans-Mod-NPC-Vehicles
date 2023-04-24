@@ -8,4 +8,10 @@ public class EntityPzkpfw2 extends EntityFlanVehicleNPC
 		super(w);
 		setSize(3.5F, 2.5F);
 	}
+
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

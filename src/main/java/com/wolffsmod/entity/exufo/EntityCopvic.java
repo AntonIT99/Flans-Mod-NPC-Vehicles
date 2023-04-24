@@ -1,16 +1,15 @@
-package com.wolffsmod.entity.price;
+package com.wolffsmod.entity.exufo;
 
 import com.wolffsmod.entity.EntityFlanVehicleNPC;
 
 import net.minecraft.world.World;
 
-public class EntitySupplies extends EntityFlanVehicleNPC
+public class EntityCopvic extends EntityFlanVehicleNPC
 {
-
-	public EntitySupplies(World w)
+	public EntityCopvic(World w)
 	{
 		super(w);
-		setSize(3.0F, 3.0F);
+		setSize(4.5F, 3.0F);
 	}
 
 	@Override

@@ -11,4 +11,9 @@ public class EntityTeKe extends EntityFlanVehicleNPC
 		setSize(4.5F, 3.0F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

@@ -17,6 +17,7 @@ public class EntityFlak88 extends EntityFlanVehicleNPC
     {
         setTurnSpeed(0.0F);
         setDriver("0 1 0 -360 360 -5 89");
+        setRotatedDriverOffset("-9 0 14");
         addBarrelPosition("0 15 0");
         
     }

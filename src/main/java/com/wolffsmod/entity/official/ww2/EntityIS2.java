@@ -16,6 +16,7 @@ public class EntityIS2 extends EntityFlanVehicleNPC
     public void setupConfig()
     {
         setTurnSpeed(0.25F);
+        setRotatedDriverOffset("-8 0 -9");
         setDriver("0 38 0 -360 360 -6 20");
         addBarrelPosition("0 34 0");
         addGun("8 20 0 turret dp28");

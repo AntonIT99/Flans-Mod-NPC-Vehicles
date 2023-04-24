@@ -17,6 +17,7 @@ public class EntityKV1 extends EntityFlanVehicleNPC
     {
         setTurnSpeed(0.15F);
         setDriver("0 28 0 -360 360 -10 20");
+        setRotatedDriverOffset("-26 0 0");
         addBarrelPosition("0 34 0");
         addGun("8 34 8 turret dp28");
         

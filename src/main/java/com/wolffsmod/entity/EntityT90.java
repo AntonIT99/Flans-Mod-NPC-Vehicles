@@ -11,4 +11,9 @@ public class EntityT90 extends EntityFlanVehicleNPC
 		setSize(4.0F, 2.5F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

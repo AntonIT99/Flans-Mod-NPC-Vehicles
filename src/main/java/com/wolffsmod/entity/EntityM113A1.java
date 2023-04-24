@@ -11,4 +11,9 @@ public class EntityM113A1 extends EntityFlanVehicleNPC
 		setSize(3.5F, 2.5F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

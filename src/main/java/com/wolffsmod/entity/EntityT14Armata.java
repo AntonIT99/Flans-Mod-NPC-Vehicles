@@ -11,4 +11,9 @@ public class EntityT14Armata extends EntityFlanVehicleNPC
 		setSize(3.5F, 3.0F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

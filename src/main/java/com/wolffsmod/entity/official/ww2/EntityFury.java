@@ -17,6 +17,7 @@ public class EntityFury extends EntityFlanVehicleNPC
     {
         setTurnSpeed(0.55F);
         setDriver("0 36 0 -360 360 -10 25");
+        setRotatedDriverOffset("-6 0 7");
         addBarrelPosition("0 34 0");
         addGun("8 34 8 turret browning");
         

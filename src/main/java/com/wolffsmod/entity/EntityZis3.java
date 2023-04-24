@@ -8,4 +8,10 @@ public class EntityZis3 extends EntityFlanVehicleNPC
 		super(w);
 		setSize(2.2F, 1.8F);
 	}
+
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

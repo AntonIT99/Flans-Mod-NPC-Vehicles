@@ -11,4 +11,9 @@ public class EntityEurocopterTigerHAP extends EntityFlanPlaneNPC
 		setSize(3.0F, 3.0F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

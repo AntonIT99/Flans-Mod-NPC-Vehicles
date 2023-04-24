@@ -17,6 +17,7 @@ public class EntityCrusader extends EntityFlanVehicleNPC
     {
         setTurnSpeed(0.3F);
         setDriver("0 18 0 -360 360 -15 20");
+        setRotatedDriverOffset("-10 0 0");
         addBarrelPosition("5 25 2");
         addGun("8 20 0 turret bren");
         

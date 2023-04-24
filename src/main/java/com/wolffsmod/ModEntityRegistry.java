@@ -1,7 +1,6 @@
 package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
-import com.wolffsmod.entity.wolff.EntitySdKfz251DManned;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 import net.minecraft.entity.Entity;
@@ -260,6 +259,9 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.w44.EntityStuG3G.class, "StuG III Ausf. G (Warfare 44)");
 		createEntity(com.wolffsmod.entity.w44.EntityTiger1H.class, "Panzer VI Tiger Ausf. H (Warfare 44)");
 
+		//Exufo's cop cars
+		createEntity(com.wolffsmod.entity.exufo.EntityCopvic.class, "Cop Car 1 (Exufo)");
+		createEntity(com.wolffsmod.entity.exufo.EntityCV.class, "Cop Car 2 (Exufo)");
 	}
 	public static void createEntity(Class<? extends Entity> entityClass, String entityName)
 	{

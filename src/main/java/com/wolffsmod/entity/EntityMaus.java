@@ -8,4 +8,10 @@ public class EntityMaus extends EntityFlanVehicleNPC
 		super(w);
 		setSize(3.7F, 3.6F);
 	}
+
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

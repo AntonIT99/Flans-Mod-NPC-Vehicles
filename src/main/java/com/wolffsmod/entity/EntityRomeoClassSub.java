@@ -10,4 +10,9 @@ public class EntityRomeoClassSub extends EntityFlanShipNPC
 		setSize(3.0F, 2.0F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

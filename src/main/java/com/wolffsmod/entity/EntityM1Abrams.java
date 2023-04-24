@@ -8,4 +8,10 @@ public class EntityM1Abrams extends EntityFlanVehicleNPC
 		super(w);
 		setSize(5F, 3.0F);
 	}
+
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

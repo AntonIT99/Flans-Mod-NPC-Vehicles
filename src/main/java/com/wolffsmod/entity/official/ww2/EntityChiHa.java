@@ -17,6 +17,7 @@ public class EntityChiHa extends EntityFlanVehicleNPC
     {
         setTurnSpeed(0.25F);
         setDriver("0 14 0 -360 360 -3 3.5");
+        setRotatedDriverOffset("5 0 1");
         addBarrelPosition("0 34 0");
         addGun("8 34 8 turret type99");
         

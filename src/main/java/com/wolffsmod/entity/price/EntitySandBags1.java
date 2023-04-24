@@ -13,4 +13,9 @@ public class EntitySandBags1 extends EntityFlanVehicleNPC
 		setSize(1.0F, 1.0F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

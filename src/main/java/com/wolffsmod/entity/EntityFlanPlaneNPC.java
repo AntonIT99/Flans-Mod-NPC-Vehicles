@@ -23,7 +23,7 @@ public abstract class EntityFlanPlaneNPC extends EntityFlanDriveableNPC
     {
         super.updateNpc(npc);
         propSpeed = propEngineOn ? (basePropSpeed + throttle) / (basePropSpeed + 1F) : 0F;
-        propAngle += (Math.pow(Math.abs(propSpeed), 0.4F)) * 1.5F;
+        propAngle += Math.abs(propSpeed) * 3F;
     }
 
     @Override

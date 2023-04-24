@@ -17,6 +17,7 @@ public class EntityChurchill extends EntityFlanVehicleNPC
     {
         setTurnSpeed(0.35F);
         setDriver("0 23 0 -360 360 -7 20");
+        setRotatedDriverOffset("-8 0 -4");
         addBarrelPosition("0 34 0");
         addGun("8 34 8 turret bren");
         

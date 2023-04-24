@@ -8,4 +8,10 @@ public class EntityLVTA1 extends EntityFlanVehicleNPC
 		super(w);
 		setSize(3.8F, 2.5F);
 	}
+
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

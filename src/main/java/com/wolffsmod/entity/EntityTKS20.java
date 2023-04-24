@@ -8,4 +8,10 @@ public class EntityTKS20 extends EntityFlanVehicleNPC
 		super(w);
 		setSize(2.0F, 1.4F);
 	}
+
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

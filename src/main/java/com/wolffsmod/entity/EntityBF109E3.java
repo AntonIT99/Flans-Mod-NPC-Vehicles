@@ -11,4 +11,9 @@ public class EntityBF109E3 extends EntityFlanPlaneNPC
 		setSize(4.5F, 3.0F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

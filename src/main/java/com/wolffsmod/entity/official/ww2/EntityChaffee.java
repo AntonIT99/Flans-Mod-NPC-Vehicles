@@ -17,6 +17,7 @@ public class EntityChaffee extends EntityFlanVehicleNPC
     {
         setTurnSpeed(0.35F);
         setDriver("0 28 0 -360 360 -15 20");
+        setRotatedDriverOffset("-5 0 -9");
         addBarrelPosition("5 25 2");
         addGun("8 34 8 turret browning");
         

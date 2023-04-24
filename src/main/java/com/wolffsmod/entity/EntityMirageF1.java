@@ -11,4 +11,9 @@ public class EntityMirageF1 extends EntityFlanPlaneNPC
 		setSize(3.5F, 2.8F);
 	}
 
+	@Override
+	public void setupConfig()
+	{
+		
+	}
 }

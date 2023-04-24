@@ -8,4 +8,10 @@ public class Entity38t extends EntityFlanVehicleNPC
 		super(w);
 		setSize(3.0F, 2.3F);
 	}
+
+	@Override
+	public void setupConfig()
+	{
+
+	}
 }

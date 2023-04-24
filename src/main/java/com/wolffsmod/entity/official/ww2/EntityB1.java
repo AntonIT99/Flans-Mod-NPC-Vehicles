@@ -17,6 +17,7 @@ public class EntityB1 extends EntityFlanVehicleNPC
     {
         setTurnSpeed(0.5F);
         setDriver("0 28 0 -360 360 -10 12");
+        setRotatedDriverOffset("-6 2 -5");
         setPassenger("1 20 0 -6 core -2 2 -3 12 2Pdr PassengerGun1");
         addBarrelPosition("0 34 0");
         addGun("8 20 0 turret mg42");

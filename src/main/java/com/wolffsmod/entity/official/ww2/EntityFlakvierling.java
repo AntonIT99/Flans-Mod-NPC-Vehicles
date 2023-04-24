@@ -17,6 +17,7 @@ public class EntityFlakvierling extends EntityFlanVehicleNPC
     {
         setTurnSpeed(0.0F);
         setDriver("0 -1 0 -360 360 0 89");
+        setRotatedDriverOffset("-20 0 0");
         addShootPointPrimary("48 6 4 turret");
         addBarrelPosition("30 10 5");
         addBarrelPosition("30 5 5");

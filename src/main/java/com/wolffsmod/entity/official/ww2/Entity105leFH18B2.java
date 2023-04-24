@@ -18,6 +18,7 @@ public class Entity105leFH18B2 extends EntityFlanVehicleNPC
 		setTurnSpeed(0.5F);
 		//TODO: check driver position and barrel position
 		setDriver("0 28 0 -30 30 -4 45");
+		setRotatedDriverOffset("-6 2 -5");
 		addBarrelPosition("0 34 0");
 	}
 }
