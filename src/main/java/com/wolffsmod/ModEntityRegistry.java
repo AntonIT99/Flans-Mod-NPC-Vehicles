@@ -68,8 +68,8 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityBF109.class, "Messerschmitt Bf 109 (Official Pack Legacy)");
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityBofors.class, "40mm Bofors (Official Pack Legacy)");
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityFlakvierling.class, "20mm Flakvierling 38 (Official Pack Legacy)");
-		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityJeep.class, "Jeep (Official Pack Legacy)");
-		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityKubel.class, "Kuebelwagen (Official Pack Legacy)");
+		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityJeep.class, "M38 Willys Jeep (Official Pack Legacy)");
+		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityKubel.class, "VW Type 82 Kubelwagen (Official Pack Legacy)");
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityM4Sherman.class, "M4 Sherman (Official Pack Legacy)");
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityM157mm.class, "57mm M1 (Official Pack Legacy)");
 		createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityMustang.class, "North American P-51 Mustang (Official Pack Legacy)");

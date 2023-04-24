@@ -71,18 +71,31 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         {
             super.updateRiderPosition();
         }
+        System.out.println("NPC Vehicle");
+        System.out.println("PosX: " + posX);
+        System.out.println("PosY: " + posY);
+        System.out.println("PosZ: " + posZ);
+        System.out.println("X: " + (posX - riddenByEntity.posX));
+        System.out.println("Y: " + (posY - riddenByEntity.posY));
+        System.out.println("Z: " + (posZ - riddenByEntity.posZ));
+        System.out.println("RiderX: " + riddenByEntity.posX);
+        System.out.println("RiderY: " + riddenByEntity.posY);
+        System.out.println("RiderZ: " + riddenByEntity.posZ);
     }
 
     public Vector3f getDriverPosition()
     {
+        RotatedAxes looking = new RotatedAxes(driver.getGlobalYaw(renderYawOffset), 0F, 0F);
         RotatedAxes axes = new RotatedAxes(renderYawOffset, 0F, 0F);
+        looking.rotateLocalYaw(90F);
         axes.rotateLocalYaw(90F);
-        return axes.findLocalVectorGlobally(
-                new Vector3f(driver.position.getX() / 16F, driver.position.getY() / 16F + 0.6F, driver.position.getZ() / 16F))
-                .translate(driver.offset.getX() / 16F, driver.offset.getY() / 16F, driver.offset.getZ());
-        /*return axes.findLocalVectorGlobally(
-                new Vector3f( 0F / 16F, driver.position.getY() / 16F + 0.6F,  0F / 16F))
-                .translate(-8 / 16F, driver.offset.getY() / 16F, (13F + 3F) / 16F);*/
+
+        Vector3f position = axes.findLocalVectorGlobally(new Vector3f(driver.position.getX() / 16F, driver.position.getY() / 16F + yDriveableOffset,  driver.position.getZ() / 16F));
+        Vector3f offset = looking.findLocalVectorGlobally(new Vector3f(driver.rotatedOffset.getX() / 16F, driver.rotatedOffset.getY() / 16F,  driver.rotatedOffset.getZ() / 16F));
+        System.out.println(driver.position.getX());
+        System.out.println(driver.position.getY());
+        System.out.println(driver.position.getZ());
+        return Vector3f.add(position, offset, null);
     }
 
     @Override
@@ -189,9 +202,9 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
                 maxPitch = Float.parseFloat(split[6]);
             }
             driver = new Seat(
-                    Float.parseFloat(split[2]),
-                    Float.parseFloat(split[1]),
                     Float.parseFloat(split[0]),
+                    Float.parseFloat(split[1]),
+                    Float.parseFloat(split[2]),
                     minYaw, maxYaw, minPitch, maxPitch);
         }
     }
@@ -200,7 +213,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
     public void setRotatedDriverOffset(String data)
     {
         String[] split = data.split(" ");
-        driver.offset = new Vector3f(Float.parseFloat(split[0]), Float.parseFloat(split[1]), Float.parseFloat(split[2]));
+        driver.rotatedOffset = new Vector3f(Float.parseFloat(split[0]), Float.parseFloat(split[1]), Float.parseFloat(split[2]));
     }
 
     @Override

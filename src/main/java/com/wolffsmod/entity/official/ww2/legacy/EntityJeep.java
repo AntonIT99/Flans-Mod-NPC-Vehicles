@@ -9,7 +9,7 @@ public class EntityJeep extends EntityFlanVehicleNPC
     public EntityJeep(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(2F, 2F);
     }
     
     @Override
