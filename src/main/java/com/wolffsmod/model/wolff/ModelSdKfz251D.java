@@ -2,29 +2,22 @@
 // Copyright (C) 2016 Minecraft-SMP.de
 // This file is for Flan's Flying Mod Version 4.0.x+
 
-// Model: Panzer4J
+// Model: YourClassName
 // Model Creator: 
-// Created on: 10.08.2016 - 18:26:57
-// Last changed on: 10.08.2016 - 18:26:57
+// Created on: 18.09.2016 - 13:48:34
+// Last changed on: 18.09.2016 - 13:48:34
 
 package com.wolffsmod.model.wolff; //Path where the model is located
 
 import com.flansmod.client.tmt.Coord2D;
 import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.flansmod.client.tmt.Shape2D;
-import com.flansmod.common.vector.Vector3f;
-import com.wolffsmod.entity.Seat;
 import com.wolffsmod.model.ModelFlanVehicle;
-
-import net.minecraft.entity.Entity;
 
 public class ModelSdKfz251D extends ModelFlanVehicle //Same as Filename
 {
-	int textureX = 4096;
-	int textureY = 3072;
-	
-	public ModelRendererTurbo[] driver;
-	public ModelRendererTurbo[] passenger;
+	int textureX = 512;
+	int textureY = 512;
 
 	public ModelSdKfz251D() //Same as Filename
 	{
@@ -718,6 +711,7 @@ public class ModelSdKfz251D extends ModelFlanVehicle //Same as Filename
 		bodyModel[171].addShapeBox(-12F, -2F, -0.5F, 2, 1, 1, 0F, 0.5F, -0.5F, -0.25F, -2F, -0.5F, -0.2F, -2F, -0.5F, -0.2F, 0.5F, -0.5F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -0.08F, 0F, 0F, -0.08F, 0F, 0F, -0.25F); // Import Schulter1
 		bodyModel[171].setRotationPoint(0F, 0F, 0F);
 
+
 		bodyDoorOpenModel = new ModelRendererTurbo[2];
 		bodyDoorOpenModel[0] = new ModelRendererTurbo(this, 481, 153, textureX, textureY); // Import ImportBox127
 		bodyDoorOpenModel[1] = new ModelRendererTurbo(this, 457, 161, textureX, textureY); // Import ImportBox128
@@ -727,6 +721,7 @@ public class ModelSdKfz251D extends ModelFlanVehicle //Same as Filename
 
 		bodyDoorOpenModel[1].addShapeBox(0F, 0F, 0F, 10, 16, 1, 0F, 10.5F, -0.5F, -0.5F, -10F, -0.5F, -0.5F, -10F, -0.5F, 0F, 10.5F, -0.5F, 0F, 0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0.5F, 0F, 0F); // Import ImportBox128
 		bodyDoorOpenModel[1].setRotationPoint(-57.25F, -19.5F, -11F);
+
 
 		bodyDoorCloseModel = new ModelRendererTurbo[2];
 		bodyDoorCloseModel[0] = new ModelRendererTurbo(this, 441, 169, textureX, textureY); // Import ImportBox107
@@ -743,22 +738,22 @@ public class ModelSdKfz251D extends ModelFlanVehicle //Same as Filename
 		leftFrontWheelModel[0] = new ModelRendererTurbo(this, 10, 238, textureX, textureY); // Import ImportShape42
 		leftFrontWheelModel[1] = new ModelRendererTurbo(this, 246, 220, textureX, textureY); // Import ImportShape207
 
-		leftFrontWheelModel[0].addShape3D(51F, -3F, -18.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 0, 3, 0), new Coord2D(9, 0, 9, 0), new Coord2D(12, 3, 12, 3), new Coord2D(12, 9, 12, 9), new Coord2D(9, 12, 9, 12), new Coord2D(3, 12, 3, 12), new Coord2D(0, 9, 0, 9), new Coord2D(0, 3, 0, 3) }), 4, 12, 12, 44, 4, ModelRendererTurbo.MR_FRONT, new float[] {5 ,6 ,5 ,6 ,5 ,6 ,5 ,6}); // Import ImportShape42
-		leftFrontWheelModel[0].setRotationPoint(0F, 0F, 0F);
+		leftFrontWheelModel[0].addShape3D(6F, -6F, 0F, new Shape2D(new Coord2D[] { new Coord2D(3, 0, 3, 0), new Coord2D(9, 0, 9, 0), new Coord2D(12, 3, 12, 3), new Coord2D(12, 9, 12, 9), new Coord2D(9, 12, 9, 12), new Coord2D(3, 12, 3, 12), new Coord2D(0, 9, 0, 9), new Coord2D(0, 3, 0, 3) }), 4, 12, 12, 44, 4, ModelRendererTurbo.MR_FRONT, new float[] {5 ,6 ,5 ,6 ,5 ,6 ,5 ,6}); // Import ImportShape42
+		leftFrontWheelModel[0].setRotationPoint(45F, 3F, 18.5F);
 
-		leftFrontWheelModel[1].addShape3D(50F, -2F, -18.55F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape207
-		leftFrontWheelModel[1].setRotationPoint(0F, 0F, 0F);
+		leftFrontWheelModel[1].addShape3D(5F, -5F, 0F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape207
+		leftFrontWheelModel[1].setRotationPoint(45F, 3F, 18.55F);
 
 
 		rightFrontWheelModel = new ModelRendererTurbo[2];
 		rightFrontWheelModel[0] = new ModelRendererTurbo(this, 91, 241, textureX, textureY); // Import ImportShape15
 		rightFrontWheelModel[1] = new ModelRendererTurbo(this, 150, 242, textureX, textureY); // Import ImportShape206
 
-		rightFrontWheelModel[0].addShape3D(51F, -3F, 14.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 0, 3, 0), new Coord2D(9, 0, 9, 0), new Coord2D(12, 3, 12, 3), new Coord2D(12, 9, 12, 9), new Coord2D(9, 12, 9, 12), new Coord2D(3, 12, 3, 12), new Coord2D(0, 9, 0, 9), new Coord2D(0, 3, 0, 3) }), 4, 12, 12, 44, 4, ModelRendererTurbo.MR_FRONT, new float[] {5 ,6 ,5 ,6 ,5 ,6 ,5 ,6}); // Import ImportShape15
-		rightFrontWheelModel[0].setRotationPoint(0F, 0F, 0F);
+		rightFrontWheelModel[0].addShape3D(6F, -6F, -5F, new Shape2D(new Coord2D[] { new Coord2D(3, 0, 3, 0), new Coord2D(9, 0, 9, 0), new Coord2D(12, 3, 12, 3), new Coord2D(12, 9, 12, 9), new Coord2D(9, 12, 9, 12), new Coord2D(3, 12, 3, 12), new Coord2D(0, 9, 0, 9), new Coord2D(0, 3, 0, 3) }), 4, 12, 12, 44, 4, ModelRendererTurbo.MR_FRONT, new float[] {5 ,6 ,5 ,6 ,5 ,6 ,5 ,6}); // Import ImportShape15
+		rightFrontWheelModel[0].setRotationPoint(45F, 3F, -19.5F);
 
-		rightFrontWheelModel[1].addShape3D(50F, -2F, 16.55F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape206
-		rightFrontWheelModel[1].setRotationPoint(0F, 0F, 0F);
+		rightFrontWheelModel[1].addShape3D(5F, -5F, 0F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape206
+		rightFrontWheelModel[1].setRotationPoint(45F, 3F, -16.55F);
 
 
 		leftTrackWheelModels = new ModelRendererTurbo[8];
@@ -771,29 +766,29 @@ public class ModelSdKfz251D extends ModelFlanVehicle //Same as Filename
 		leftTrackWheelModels[6] = new ModelRendererTurbo(this, 154, 269, textureX, textureY); // Import ImportShape49
 		leftTrackWheelModels[7] = new ModelRendererTurbo(this, 192, 266, textureX, textureY); // Import ImportShape50
 
-		leftTrackWheelModels[0].addShape3D(25F, -3F, -17.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape43
-		leftTrackWheelModels[0].setRotationPoint(0F, 0F, 0F);
+		leftTrackWheelModels[0].addShape3D(5F, -5F, -29F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape43
+		leftTrackWheelModels[0].setRotationPoint(20F, 2F, -12.5F);
 
-		leftTrackWheelModels[1].addShape3D(13.5F, -1F, -16.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape44
-		leftTrackWheelModels[1].setRotationPoint(0F, 0F, 0F);
+		leftTrackWheelModels[1].addShape3D(5F, -5F, -29F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape44
+		leftTrackWheelModels[1].setRotationPoint(8.5F, 4F, -12.5F);
 
-		leftTrackWheelModels[2].addShape3D(6.5F, -1F, -17.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape45
-		leftTrackWheelModels[2].setRotationPoint(0F, 0F, 0F);
+		leftTrackWheelModels[2].addShape3D(5F, -5F, -29F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape45
+		leftTrackWheelModels[2].setRotationPoint(1.5F, 4F, -11.5F);
 
-		leftTrackWheelModels[3].addShape3D(-0.5F, -1F, -16.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape46
-		leftTrackWheelModels[3].setRotationPoint(0F, 0F, 0F);
+		leftTrackWheelModels[3].addShape3D(5F, -5F, -29F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape46
+		leftTrackWheelModels[3].setRotationPoint(-5.5F, 4F, -12.5F);
 
-		leftTrackWheelModels[4].addShape3D(-7.5F, -1F, -17.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape47
-		leftTrackWheelModels[4].setRotationPoint(0F, 0F, 0F);
+		leftTrackWheelModels[4].addShape3D(5F, -5F, -29F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape47
+		leftTrackWheelModels[4].setRotationPoint(-12.5F, 4F, -11.5F);
 
-		leftTrackWheelModels[5].addShape3D(-14.5F, -1F, -16.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape48
-		leftTrackWheelModels[5].setRotationPoint(0F, 0F, 0F);
+		leftTrackWheelModels[5].addShape3D(5F, -5F, -29F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape48
+		leftTrackWheelModels[5].setRotationPoint(-19.5F, 4F, -12.5F);
 
-		leftTrackWheelModels[6].addShape3D(-21.5F, -1F, -17.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape49
-		leftTrackWheelModels[6].setRotationPoint(0F, 0F, 0F);
+		leftTrackWheelModels[6].addShape3D(5F, -5F, -29F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape49
+		leftTrackWheelModels[6].setRotationPoint(-26.5F, 4F, -11.5F);
 
-		leftTrackWheelModels[7].addShape3D(-29.5F, -2F, -16.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape50
-		leftTrackWheelModels[7].setRotationPoint(0F, 0F, 0F);
+		leftTrackWheelModels[7].addShape3D(5F, -5F, -29F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape50
+		leftTrackWheelModels[7].setRotationPoint(-34.5F, 3F, -12.5F);
 
 
 		rightTrackWheelModels = new ModelRendererTurbo[8];
@@ -806,29 +801,29 @@ public class ModelSdKfz251D extends ModelFlanVehicle //Same as Filename
 		rightTrackWheelModels[6] = new ModelRendererTurbo(this, 39, 194, textureX, textureY); // Import ImportShape13
 		rightTrackWheelModels[7] = new ModelRendererTurbo(this, 2, 190, textureX, textureY); // Import ImportShape14
 
-		rightTrackWheelModels[0].addShape3D(-21.5F, -1F, 16.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape7
-		rightTrackWheelModels[0].setRotationPoint(0F, 0F, 0F);
+		rightTrackWheelModels[0].addShape3D(5F, -5F, 0F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape7
+		rightTrackWheelModels[0].setRotationPoint(-26.5F, 4F, -16.5F);
 
-		rightTrackWheelModels[1].addShape3D(-29.5F, -2F, 15.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape8
-		rightTrackWheelModels[1].setRotationPoint(0F, 0F, 0F);
+		rightTrackWheelModels[1].addShape3D(5F, -5F, 0F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape8
+		rightTrackWheelModels[1].setRotationPoint(-34.5F, 3F, -15.5F);
 
-		rightTrackWheelModels[2].addShape3D(-14.5F, -1F, 15.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape9
-		rightTrackWheelModels[2].setRotationPoint(0F, 0F, 0F);
+		rightTrackWheelModels[2].addShape3D(5F, -5F, 0F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape9
+		rightTrackWheelModels[2].setRotationPoint(-19.5F, 4F, -15.5F);
 
-		rightTrackWheelModels[3].addShape3D(-7.5F, -1F, 16.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape10
-		rightTrackWheelModels[3].setRotationPoint(0F, 0F, 0F);
+		rightTrackWheelModels[3].addShape3D(5F, -5F, 0F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape10
+		rightTrackWheelModels[3].setRotationPoint(-12.5F, 4F, -16.5F);
 
-		rightTrackWheelModels[4].addShape3D(-0.5F, -1F, 15.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape11
-		rightTrackWheelModels[4].setRotationPoint(0F, 0F, 0F);
+		rightTrackWheelModels[4].addShape3D(5F, -5F, 0F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape11
+		rightTrackWheelModels[4].setRotationPoint(-5.5F, 4F, -15.5F);
 
-		rightTrackWheelModels[5].addShape3D(6.5F, -1F, 16.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape12
-		rightTrackWheelModels[5].setRotationPoint(0F, 0F, 0F);
+		rightTrackWheelModels[5].addShape3D(5F, -5F, 0F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape12
+		rightTrackWheelModels[5].setRotationPoint(1.5F, 4F, -16.5F);
 
-		rightTrackWheelModels[6].addShape3D(13.5F, -1F, 15.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape13
-		rightTrackWheelModels[6].setRotationPoint(0F, 0F, 0F);
+		rightTrackWheelModels[6].addShape3D(5F, -5F, 0F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape13
+		rightTrackWheelModels[6].setRotationPoint(9.5F, 4F, -15.5F);
 
-		rightTrackWheelModels[7].addShape3D(25F, -3F, 16.5F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape14
-		rightTrackWheelModels[7].setRotationPoint(0F, 0F, 0F);
+		rightTrackWheelModels[7].addShape3D(5F, -5F, 0F, new Shape2D(new Coord2D[] { new Coord2D(3, 1, 3, 1), new Coord2D(7, 1, 7, 1), new Coord2D(9, 3, 9, 3), new Coord2D(9, 7, 9, 7), new Coord2D(7, 9, 7, 9), new Coord2D(3, 9, 3, 9), new Coord2D(1, 7, 1, 7), new Coord2D(1, 3, 1, 3) }), 2, 9, 9, 28, 2, ModelRendererTurbo.MR_FRONT, new float[] {3 ,4 ,3 ,4 ,3 ,4 ,3 ,4}); // Import ImportShape14
+		rightTrackWheelModels[7].setRotationPoint(20F, 2F, -16.5F);
 
 
 		leftTrackModel = new ModelRendererTurbo[10];
@@ -915,770 +910,197 @@ public class ModelSdKfz251D extends ModelFlanVehicle //Same as Filename
 
 		rightTrackModel[9].addShapeBox(-45F, 19F, -13.5F, 49, 1, 6, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F); // Import ImportBox39
 		rightTrackModel[9].setRotationPoint(10F, -11F, -7F);
-		
-		turretModel = new ModelRendererTurbo[24];
-		turretModel[0] = new ModelRendererTurbo(this, 11, 507, textureX, textureY); // Box 4
-		turretModel[1] = new ModelRendererTurbo(this, 11, 507, textureX, textureY); // Box 5
-		turretModel[2] = new ModelRendererTurbo(this, 20, 500, textureX, textureY); // Box 24
-		turretModel[3] = new ModelRendererTurbo(this, 20, 500, textureX, textureY); // Box 25
-		turretModel[4] = new ModelRendererTurbo(this, 9, 480, textureX, textureY); // Ammo 1
-		turretModel[5] = new ModelRendererTurbo(this, 0, 484, textureX, textureY); // Ammo 2
-		turretModel[6] = new ModelRendererTurbo(this, 0, 489, textureX, textureY); // Barrel 1
-		turretModel[7] = new ModelRendererTurbo(this, 0, 492, textureX, textureY); // Barrel 2
-		turretModel[8] = new ModelRendererTurbo(this, 5, 489, textureX, textureY); // Barrel 3
-		turretModel[9] = new ModelRendererTurbo(this, 0, 495, textureX, textureY); // Barrel 4
-		turretModel[10] = new ModelRendererTurbo(this, 5, 492, textureX, textureY); // Barrel 5
-		turretModel[11] = new ModelRendererTurbo(this, 5, 495, textureX, textureY); // Barrel 6
-		turretModel[12] = new ModelRendererTurbo(this, 0, 498, textureX, textureY); // Barrel 7
-		turretModel[13] = new ModelRendererTurbo(this, 0, 501, textureX, textureY); // Body 1
-		turretModel[14] = new ModelRendererTurbo(this, 0, 504, textureX, textureY); // Body 2
-		turretModel[15] = new ModelRendererTurbo(this, 0, 507, textureX, textureY); // Body 3
-		turretModel[16] = new ModelRendererTurbo(this, 12, 492, textureX, textureY); // Griff 1
-		turretModel[17] = new ModelRendererTurbo(this, 19, 492, textureX, textureY); // Griff 2
-		turretModel[18] = new ModelRendererTurbo(this, 19, 501, textureX, textureY); // Griff 3
-		turretModel[19] = new ModelRendererTurbo(this, 0, 480, textureX, textureY); // Mun 1
-		turretModel[20] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Mun 2
-		turretModel[21] = new ModelRendererTurbo(this, 22, 480, textureX, textureY); // Schulter 1
-		turretModel[22] = new ModelRendererTurbo(this, 22, 483, textureX, textureY); // Schulter 2
-		turretModel[23] = new ModelRendererTurbo(this, 22, 486, textureX, textureY); // Schulter 3
 
-		turretModel[0].addShapeBox(0.5F, 1F, 0F, 1, 2, 1, 0F,0F, 0.75F, 0F, 0F, 0.75F, 0F, -0.5F, 0.75F, 0F, 0.5F, 0.75F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 0.5F, 0F, 0F, -0.5F, 0F, 0F); // Box 4
 
-		turretModel[1].addShapeBox(0.5F, 1F, -1F, 1, 2, 1, 0F,0.5F, 0.75F, 0F, -0.5F, 0.75F, 0F, 0F, 0.75F, 0F, 0F, 0.75F, 0F, -0.5F, 0F, 0F, 0.5F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F); // Box 5
 
-		turretModel[2].addShapeBox(0F, -4F, 1F, 1, 7, 5, 0F,1.5F, -0.5F, 0F, -1.5F, -0.5F, 0F, -5.5F, -1.5F, 2F, 5.5F, -1.5F, 2F, -1F, 0F, 0F, 1F, 0F, 0F, -3F, 0F, 2F, 3F, 0F, 2F); // Box 24
+		// Passenger 5
+		ModelRendererTurbo[][] gun_4_Model = new ModelRendererTurbo[3][];
 
-		turretModel[3].addShapeBox(0F, -4F, -6F, 1, 7, 5, 0F,5.5F, -1.5F, 2F, -5.5F, -1.5F, 2F, -1.5F, -0.5F, 0F, 1.5F, -0.5F, 0F, 3F, 0F, 2F, -3F, 0F, 2F, 1F, 0F, 0F, -1F, 0F, 0F); // Box 25
+		gun_4_Model[0] = new ModelRendererTurbo[4];
+		gun_4_Model[0][0] = new ModelRendererTurbo(this, 11, 507, textureX, textureY); // Box 4
+		gun_4_Model[0][1] = new ModelRendererTurbo(this, 11, 507, textureX, textureY); // Box 5
+		gun_4_Model[0][2] = new ModelRendererTurbo(this, 20, 500, textureX, textureY); // Box 24
+		gun_4_Model[0][3] = new ModelRendererTurbo(this, 20, 500, textureX, textureY); // Box 25
+
+		gun_4_Model[0][0].addShapeBox(0.5F, 1F, 0F, 1, 2, 1, 0F,0F, 0.75F, 0F, 0F, 0.75F, 0F, -0.5F, 0.75F, 0F, 0.5F, 0.75F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 0.5F, 0F, 0F, -0.5F, 0F, 0F); // Box 4
+
+		gun_4_Model[0][1].addShapeBox(0.5F, 1F, -1F, 1, 2, 1, 0F,0.5F, 0.75F, 0F, -0.5F, 0.75F, 0F, 0F, 0.75F, 0F, 0F, 0.75F, 0F, -0.5F, 0F, 0F, 0.5F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F); // Box 5
+
+		gun_4_Model[0][2].addShapeBox(0F, -4F, 1F, 1, 7, 5, 0F,1.5F, -0.5F, 0F, -1.5F, -0.5F, 0F, -5.5F, -1.5F, 2F, 5.5F, -1.5F, 2F, -1F, 0F, 0F, 1F, 0F, 0F, -3F, 0F, 2F, 3F, 0F, 2F); // Box 24
+
+		gun_4_Model[0][3].addShapeBox(0F, -4F, -6F, 1, 7, 5, 0F,5.5F, -1.5F, 2F, -5.5F, -1.5F, 2F, -1.5F, -0.5F, 0F, 1.5F, -0.5F, 0F, 3F, 0F, 2F, -3F, 0F, 2F, 1F, 0F, 0F, -1F, 0F, 0F); // Box 25
 
 		//Gun Origin
-		for (int i = 0; i < 4; i++)
+		for (ModelRendererTurbo gunPart : gun_4_Model[0])
 		{
-			turretModel[i].setRotationPoint(2F, -24F, 0F);
+			gunPart.setRotationPoint(2F, -24F, 0F);
 		}
-		
 
-		turretModel[4].addBox(-3.4F, -0.2F, 0F, 2, 3, 4, 0F); // Ammo 1
 
-		turretModel[5].addShapeBox(-2.9F, -0.8F, 0F, 1, 1, 3, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Ammo 2
+		gun_4_Model[1] = new ModelRendererTurbo[20];
+		gun_4_Model[1][0] = new ModelRendererTurbo(this, 9, 480, textureX, textureY); // Ammo 1
+		gun_4_Model[1][1] = new ModelRendererTurbo(this, 0, 484, textureX, textureY); // Ammo 2
+		gun_4_Model[1][2] = new ModelRendererTurbo(this, 0, 489, textureX, textureY); // Barrel 1
+		gun_4_Model[1][3] = new ModelRendererTurbo(this, 0, 492, textureX, textureY); // Barrel 2
+		gun_4_Model[1][4] = new ModelRendererTurbo(this, 5, 489, textureX, textureY); // Barrel 3
+		gun_4_Model[1][5] = new ModelRendererTurbo(this, 0, 495, textureX, textureY); // Barrel 4
+		gun_4_Model[1][6] = new ModelRendererTurbo(this, 5, 492, textureX, textureY); // Barrel 5
+		gun_4_Model[1][7] = new ModelRendererTurbo(this, 5, 495, textureX, textureY); // Barrel 6
+		gun_4_Model[1][8] = new ModelRendererTurbo(this, 0, 498, textureX, textureY); // Barrel 7
+		gun_4_Model[1][9] = new ModelRendererTurbo(this, 0, 501, textureX, textureY); // Body 1
+		gun_4_Model[1][10] = new ModelRendererTurbo(this, 0, 504, textureX, textureY); // Body 2
+		gun_4_Model[1][11] = new ModelRendererTurbo(this, 0, 507, textureX, textureY); // Body 3
+		gun_4_Model[1][12] = new ModelRendererTurbo(this, 12, 492, textureX, textureY); // Griff 1
+		gun_4_Model[1][13] = new ModelRendererTurbo(this, 19, 492, textureX, textureY); // Griff 2
+		gun_4_Model[1][14] = new ModelRendererTurbo(this, 19, 501, textureX, textureY); // Griff 3
+		gun_4_Model[1][15] = new ModelRendererTurbo(this, 0, 480, textureX, textureY); // Mun 1
+		gun_4_Model[1][16] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Mun 2
+		gun_4_Model[1][17] = new ModelRendererTurbo(this, 22, 480, textureX, textureY); // Schulter 1
+		gun_4_Model[1][18] = new ModelRendererTurbo(this, 22, 483, textureX, textureY); // Schulter 2
+		gun_4_Model[1][19] = new ModelRendererTurbo(this, 22, 486, textureX, textureY); // Schulter 3
 
-		turretModel[6].addShapeBox(11F, -1F, -0.5F, 1, 1, 1, 0F,0F, -0.2F, -0.2F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, -0.2F, -0.2F); // Barrel 1
+		gun_4_Model[1][0].addBox(-3.4F, -0.2F, 0F, 2, 3, 4, 0F); // Ammo 1
 
-		turretModel[7].addShapeBox(10F, -1F, -0.5F, 1, 1, 1, 0F,0F, -0.05F, -0.05F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, -0.05F, -0.05F, 0F, -0.05F, -0.05F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, -0.05F, -0.05F); // Barrel 2
+		gun_4_Model[1][1].addShapeBox(-2.9F, -0.8F, 0F, 1, 0, 3, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Ammo 2
 
-		turretModel[8].addShapeBox(-1F, -1F, -0.5F, 11, 1, 1, 0F,0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F); // Barrel 3
+		gun_4_Model[1][2].addShapeBox(11F, -1F, -0.5F, 1, 1, 1, 0F,0F, -0.2F, -0.2F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, -0.2F, -0.2F); // Barrel 1
 
-		turretModel[9].addShapeBox(8F, -1.9F, -0.5F, 1, 1, 1, 0F,-0.4F, 0F, -0.4F, -0.4F, 0F, -0.4F, -0.4F, 0F, -0.4F, -0.4F, 0F, -0.4F, -0.2F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.2F, 0F, -0.3F); // Barrel 4
+		gun_4_Model[1][3].addShapeBox(10F, -1F, -0.5F, 1, 1, 1, 0F,0F, -0.05F, -0.05F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, -0.05F, -0.05F, 0F, -0.05F, -0.05F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, -0.05F, -0.05F); // Barrel 2
 
-		turretModel[10].addShapeBox(0F, -2F, -0.5F, 2, 1, 1, 0F,-0.2F, -0.3F, -0.4F, -1F, -0.3F, -0.4F, -1F, -0.3F, -0.4F, -0.2F, -0.3F, -0.4F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F); // Barrel 5
+		gun_4_Model[1][4].addShapeBox(-1F, -1F, -0.5F, 11, 1, 1, 0F,0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F); // Barrel 3
 
-		turretModel[11].addShapeBox(-1F, -1F, -0.5F, 11, 1, 1, 0F,0F, 0F, 0F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, 0F, 0F); // Barrel 6
+		gun_4_Model[1][5].addShapeBox(8F, -1.9F, -0.5F, 1, 1, 1, 0F,-0.4F, 0F, -0.4F, -0.4F, 0F, -0.4F, -0.4F, 0F, -0.4F, -0.4F, 0F, -0.4F, -0.2F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.2F, 0F, -0.3F); // Barrel 4
 
-		turretModel[12].addShapeBox(-1F, -1F, -0.5F, 11, 1, 1, 0F,0F, 0F, 0F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, 0F, 0F); // Barrel 7
+		gun_4_Model[1][6].addShapeBox(0F, -2F, -0.5F, 2, 1, 1, 0F,-0.2F, -0.3F, -0.4F, -1F, -0.3F, -0.4F, -1F, -0.3F, -0.4F, -0.2F, -0.3F, -0.4F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F); // Barrel 5
 
-		turretModel[13].addBox(-9F, -1F, -0.5F, 8, 1, 1, 0F); // Body 1
+		gun_4_Model[1][7].addShapeBox(-1F, -1F, -0.5F, 11, 1, 1, 0F,0F, 0F, 0F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, 0F, 0F); // Barrel 6
 
-		turretModel[14].addShapeBox(-9F, -2F, -0.5F, 8, 1, 1, 0F,-5F, -0.6F, 0F, -0.4F, -0.6F, 0F, -0.4F, -0.6F, 0F, -5F, -0.6F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Body 2
+		gun_4_Model[1][8].addShapeBox(-1F, -1F, -0.5F, 11, 1, 1, 0F,0F, 0F, 0F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, 0F, 0F); // Barrel 7
 
-		turretModel[15].addShapeBox(-3.4F, -1.2F, -0.3F, 2, 1, 1, 0F,-0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, -0.4F, 0F, -0.3F, -0.4F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, -0.2F, -0.3F, 0F, -0.2F); // Body 3
+		gun_4_Model[1][9].addBox(-9F, -1F, -0.5F, 8, 1, 1, 0F); // Body 1
 
-		turretModel[16].addShapeBox(-5.5F, 0F, -0.5F, 2, 1, 1, 0F,0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, 0F, 0F, -0.3F); // Griff 1
+		gun_4_Model[1][10].addShapeBox(-9F, -2F, -0.5F, 8, 1, 1, 0F,-5F, -0.6F, 0F, -0.4F, -0.6F, 0F, -0.4F, -0.6F, 0F, -5F, -0.6F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Body 2
 
-		turretModel[17].addShapeBox(-5.5F, 0F, -0.5F, 2, 1, 1, 0F,0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, 0F, 0F, -0.3F); // Griff 2
+		gun_4_Model[1][11].addShapeBox(-3.4F, -1.2F, -0.3F, 2, 1, 1, 0F,-0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, -0.4F, 0F, -0.3F, -0.4F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, -0.2F, -0.3F, 0F, -0.2F); // Body 3
 
-		turretModel[18].addShapeBox(-5.5F, 0F, -0.5F, 1, 3, 1, 0F,0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 1F, -0.8F, -0.2F, -1F, -0.5F, -0.2F, -1F, -0.5F, -0.2F, 01F, -0.8F, -0.2F); // Griff 3
+		gun_4_Model[1][12].addShapeBox(-5.5F, 0F, -0.5F, 2, 1, 1, 0F,0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, 0F, 0F, -0.3F); // Griff 1
 
-		turretModel[19].addShapeBox(-4.2F, -1F, -1.2F, 1, 1, 1, 0F,-0.4F, -0.25F, 0F, -0.1F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F, -0.4F, -0.25F, 0F, -0.1F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F); // Mun 1
+		gun_4_Model[1][13].addShapeBox(-5.5F, 0F, -0.5F, 2, 1, 1, 0F,0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, 0F, 0F, -0.3F); // Griff 2
 
-		turretModel[20].addShapeBox(-4F, -1.5F, -1.3F, 1, 2, 1, 0F,-0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Mun 2
+		gun_4_Model[1][14].addShapeBox(-5.5F, 0F, -0.5F, 1, 3, 1, 0F,0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 1F, -0.8F, -0.2F, -1F, -0.5F, -0.2F, -1F, -0.5F, -0.2F, 01F, -0.8F, -0.2F); // Griff 3
 
-		turretModel[21].addShapeBox(-12F, -2F, -0.5F, 2, 1, 1, 0F,0.5F, -0.5F, -0.25F, -2F, -0.5F, -0.2F, -2F, -0.5F, -0.2F, 0.5F, -0.5F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -0.08F, 0F, 0F, -0.08F, 0F, 0F, -0.25F); // Schulter 1
+		gun_4_Model[1][15].addShapeBox(-4.2F, -1F, -1.2F, 1, 1, 1, 0F,-0.4F, -0.25F, 0F, -0.1F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F, -0.4F, -0.25F, 0F, -0.1F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F); // Mun 1
 
-		turretModel[22].addShapeBox(-12F, -1F, -0.5F, 3, 1, 1, 0F,0F, 0F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.25F); // Schulter 2
+		gun_4_Model[1][16].addShapeBox(-4F, -1.5F, -1.3F, 1, 2, 1, 0F,-0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Mun 2
 
-		turretModel[23].addShapeBox(-12F, 0F, -0.5F, 3, 1, 1, 0F,0F, 0F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, -0.3F, -0.9F, 0F, -0.3F, -0.9F, 0F, 0F, 0F, -0.25F); // Schulter 3
+		gun_4_Model[1][17].addShapeBox(-12F, -2F, -0.5F, 2, 1, 1, 0F,0.5F, -0.5F, -0.25F, -2F, -0.5F, -0.2F, -2F, -0.5F, -0.2F, 0.5F, -0.5F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -0.08F, 0F, 0F, -0.08F, 0F, 0F, -0.25F); // Schulter 1
+
+		gun_4_Model[1][18].addShapeBox(-12F, -1F, -0.5F, 3, 1, 1, 0F,0F, 0F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.25F); // Schulter 2
+
+		gun_4_Model[1][19].addShapeBox(-12F, 0F, -0.5F, 3, 1, 1, 0F,0F, 0F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, -0.3F, -0.9F, 0F, -0.3F, -0.9F, 0F, 0F, 0F, -0.25F); // Schulter 3
 
 		//Gun Origin
-		for (int i = 4; i < 24; i++)
+		for (ModelRendererTurbo gunPart : gun_4_Model[1])
 		{
-			turretModel[i].setRotationPoint(2F, -24F, 0F);
+			gunPart.setRotationPoint(2F, -24F, 0F);
 		}
-		
-		int textureOffsetY = 370;
-		
-		driver = new ModelRendererTurbo[91];
-		driver[0] = new ModelRendererTurbo(this, 3000, 3+textureOffsetY, textureX, textureY); // Import Import702
-		driver[1] = new ModelRendererTurbo(this, 3057, 1+textureOffsetY, textureX, textureY); // Import Import704
-		driver[2] = new ModelRendererTurbo(this, 3000, 3+textureOffsetY, textureX, textureY); // Import ImportBox15
-		driver[3] = new ModelRendererTurbo(this, 3000, 4+textureOffsetY, textureX, textureY); // Import ImportBox16
-		driver[4] = new ModelRendererTurbo(this, 3079, 1+textureOffsetY, textureX, textureY); // Import ImportBox17
-		driver[5] = new ModelRendererTurbo(this, 3000, 16+textureOffsetY, textureX, textureY); // Import ImportBox18
-		driver[6] = new ModelRendererTurbo(this, 3000, textureOffsetY, textureX, textureY); // Import ImportBox19
-		driver[7] = new ModelRendererTurbo(this, 3000, 16+textureOffsetY, textureX, textureY); // Import ImportBox20
-		driver[8] = new ModelRendererTurbo(this, 3000, -16+textureOffsetY, textureX, textureY); // Import ImportBox8
-		driver[9] = new ModelRendererTurbo(this, 3542, 30+textureOffsetY, textureX, textureY); // Import ImportBox9
-		driver[10] = new ModelRendererTurbo(this, 3350, 30+textureOffsetY, textureX, textureY); // Import ImportBox10
-		driver[11] = new ModelRendererTurbo(this, 3528, -16+textureOffsetY, textureX, textureY); // Import ImportBox11
-		driver[12] = new ModelRendererTurbo(this, 3350, 30+textureOffsetY, textureX, textureY); // Import ImportBox12
-		driver[13] = new ModelRendererTurbo(this, 3542, 30+textureOffsetY, textureX, textureY); // Import ImportBox13
-		driver[14] = new ModelRendererTurbo(this, 3008, 24+textureOffsetY, textureX, textureY); // Import Box14
-		driver[15] = new ModelRendererTurbo(this, 2, 81+textureOffsetY, textureX, textureY); // Import Import
-		driver[16] = new ModelRendererTurbo(this, 97, 17+textureOffsetY, textureX, textureY); // Import Import
-		driver[17] = new ModelRendererTurbo(this, 49, 25+textureOffsetY, textureX, textureY); // Import Import
-		driver[18] = new ModelRendererTurbo(this, 73, 33+textureOffsetY, textureX, textureY); // Import Import
-		driver[19] = new ModelRendererTurbo(this, 97, 33+textureOffsetY, textureX, textureY); // Import Import
-		driver[20] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Import
-		driver[21] = new ModelRendererTurbo(this, 17, 41+textureOffsetY, textureX, textureY); // Import Import
-		driver[22] = new ModelRendererTurbo(this, 49, 41+textureOffsetY, textureX, textureY); // Import Import
-		driver[23] = new ModelRendererTurbo(this, 81, 49+textureOffsetY, textureX, textureY); // Import Import
-		driver[24] = new ModelRendererTurbo(this, 105, 49+textureOffsetY, textureX, textureY); // Import Import
-		driver[25] = new ModelRendererTurbo(this, 1, 57+textureOffsetY, textureX, textureY); // Import Import
-		driver[26] = new ModelRendererTurbo(this, 25, 57+textureOffsetY, textureX, textureY); // Import Import
-		driver[27] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Import
-		driver[28] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Import
-		driver[29] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Import
-		driver[30] = new ModelRendererTurbo(this, 1, textureOffsetY, textureX, textureY); // Import Import
-		driver[31] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Box36
-		driver[32] = new ModelRendererTurbo(this, 12, 73+textureOffsetY, textureX, textureY); // Import Box37
-		driver[33] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Box33
-		driver[34] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Box35
-		driver[35] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Box36
-		driver[36] = new ModelRendererTurbo(this, 64, 900+textureOffsetY, textureX, textureY); // Import Box39
-		driver[37] = new ModelRendererTurbo(this, 60, 73+textureOffsetY, textureX, textureY); // Import Box41
-		driver[38] = new ModelRendererTurbo(this, 60, 73+textureOffsetY, textureX, textureY); // Import Box43
-		driver[39] = new ModelRendererTurbo(this, 58, 56+textureOffsetY, textureX, textureY); // Import Box44
-		driver[40] = new ModelRendererTurbo(this, 60, 63+textureOffsetY, textureX, textureY); // Import Box46
-		driver[41] = new ModelRendererTurbo(this, 1240, 350+textureOffsetY, textureX, textureY); // Import Box52
-		driver[42] = new ModelRendererTurbo(this, 60, 63+textureOffsetY, textureX, textureY); // Import Box53
-		driver[43] = new ModelRendererTurbo(this, 25, 67+textureOffsetY, textureX, textureY); // Import Box50
-		driver[44] = new ModelRendererTurbo(this, 25, 67+textureOffsetY, textureX, textureY); // Import Box51
-		driver[45] = new ModelRendererTurbo(this, 25, 67+textureOffsetY, textureX, textureY); // Import Box52
-		driver[46] = new ModelRendererTurbo(this, 58, 56+textureOffsetY, textureX, textureY); // Import Box55
-		driver[47] = new ModelRendererTurbo(this, 64, 600+textureOffsetY, textureX, textureY); // Import Box52
-		driver[48] = new ModelRendererTurbo(this, 280, 520+textureOffsetY, textureX, textureY); // Import Box53
-		driver[49] = new ModelRendererTurbo(this, 280, 520+textureOffsetY, textureX, textureY); // Import Box52
-		driver[50] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box52
-		driver[51] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box53
-		driver[52] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box54
-		driver[53] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box55
-		driver[54] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box56
-		driver[55] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box57
-		driver[56] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box58
-		driver[57] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box59
-		driver[58] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box60
-		driver[59] = new ModelRendererTurbo(this, 75, 24+textureOffsetY, textureX, textureY); // Import Box61
-		driver[60] = new ModelRendererTurbo(this, 58, 56+textureOffsetY, textureX, textureY); // Import Box62
-		driver[61] = new ModelRendererTurbo(this, 60, 63+textureOffsetY, textureX, textureY); // Import Box65
-		driver[62] = new ModelRendererTurbo(this, 60, 73+textureOffsetY, textureX, textureY); // Import Box66
-		driver[63] = new ModelRendererTurbo(this, 58, 56+textureOffsetY, textureX, textureY); // Import Box67
-		driver[64] = new ModelRendererTurbo(this, 60, 73+textureOffsetY, textureX, textureY); // Import Box68
-		driver[65] = new ModelRendererTurbo(this, 60, 63+textureOffsetY, textureX, textureY); // Import Box69
-		driver[66] = new ModelRendererTurbo(this, 12, 73+textureOffsetY, textureX, textureY); // Import Box70
-		driver[67] = new ModelRendererTurbo(this, 12, 73+textureOffsetY, textureX, textureY); // Import Box71
-		driver[68] = new ModelRendererTurbo(this, 12, 73+textureOffsetY, textureX, textureY); // Import Box72
-		driver[69] = new ModelRendererTurbo(this, 25, 57+textureOffsetY, textureX, textureY); // Import Box64
-		driver[70] = new ModelRendererTurbo(this, 25, 57+textureOffsetY, textureX, textureY); // Import Box65
-		driver[71] = new ModelRendererTurbo(this, 1220, 70+textureOffsetY, textureX, textureY); // Import Import
-		driver[72] = new ModelRendererTurbo(this, 900, 30+textureOffsetY, textureX, textureY); // Import Import
-		driver[73] = new ModelRendererTurbo(this, 49, 1+textureOffsetY, textureX, textureY); // Import Import
-		driver[74] = new ModelRendererTurbo(this, 300, 420+textureOffsetY, textureX, textureY); // Import Box57
-		driver[75] = new ModelRendererTurbo(this, 2150, 420+textureOffsetY, textureX, textureY); // Import Box52
-		driver[76] = new ModelRendererTurbo(this, 49, 1+textureOffsetY, textureX, textureY); // Import Import
-		driver[77] = new ModelRendererTurbo(this, 400, 170+textureOffsetY, textureX, textureY); // Import Import
-		driver[78] = new ModelRendererTurbo(this, 650, 30+textureOffsetY, textureX, textureY); // Import Import
-		driver[79] = new ModelRendererTurbo(this, 264, 48+textureOffsetY, textureX, textureY); // Import Import
-		driver[80] = new ModelRendererTurbo(this, 288, 54+textureOffsetY, textureX, textureY); // Import Box2
-		driver[81] = new ModelRendererTurbo(this, 264, 48+textureOffsetY, textureX, textureY); // Import Import
-		driver[82] = new ModelRendererTurbo(this, 288, 54+textureOffsetY, textureX, textureY); // Import Import
-		driver[83] = new ModelRendererTurbo(this, 264, 8+textureOffsetY, textureX, textureY); // Box 0
-		driver[84] = new ModelRendererTurbo(this, 304, 24+textureOffsetY, textureX, textureY); // Box 1
-		driver[85] = new ModelRendererTurbo(this, 304, 24+textureOffsetY, textureX, textureY); // Box 2
-		driver[86] = new ModelRendererTurbo(this, 264, 24+textureOffsetY, textureX, textureY); // Box 3
-		driver[87] = new ModelRendererTurbo(this, 264, 24+textureOffsetY, textureX, textureY); // Box 4
-		driver[88] = new ModelRendererTurbo(this, 280, 24+textureOffsetY, textureX, textureY); // Box 5
-		driver[89] = new ModelRendererTurbo(this, 312, 57+textureOffsetY, textureX, textureY); // Box 6
-		driver[90] = new ModelRendererTurbo(this, 312, 57+textureOffsetY, textureX, textureY); // Box 7
 
-		driver[0].addShapeBox(-4.5F, -8F, -4.5F, 9, 2, 9, 0F,-0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F); // Import Import702
 
-		driver[1].addShapeBox(-4.5F, -5F, -4.5F, 9, 1, 4, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.35F, 0F, 1.3F, 0.35F, 0F, 1.3F, 0.35F, 0F, 0F, 0.35F, 0F, 0F); // Import Import704
+		gun_4_Model[2] = new ModelRendererTurbo[0];
 
-		driver[2].addShapeBox(-4.5F, -9F, -4.5F, 9, 1, 9, 0F,-1.5F, 0F, -1.5F, -1.5F, 0F, -1.5F, -1.5F, 0F, -1.5F, -1.5F, 0F, -1.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Import ImportBox15
+		registerGunModel("MGFront", gun_4_Model);
 
-		driver[3].addBox(-4.5F, -7F, -4.5F, 9, 2, 9, 0F); // Import ImportBox16
+		// Passenger 6
+		ModelRendererTurbo[][] gun_5_Model = new ModelRendererTurbo[3][];
 
-		driver[4].addShapeBox(-5.5F, -5F, -3.5F, 11, 3, 9, 0F,-1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, -1F, -1F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, -0.5F, 0F, 0F, -0.5F, 0F); // Import ImportBox17
+		gun_5_Model[0] = new ModelRendererTurbo[1];
+		gun_5_Model[0][0] = new ModelRendererTurbo(this, 0, 482, textureX, textureY); // Box 20
 
-		driver[5].addShapeBox(3.5F, -4F, -4.5F, 1, 4, 4, 0F,0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.4F, 0F, -0.5F, -0.4F, 0F, -2.5F, 0F, 0F, -2.5F); // Import ImportBox18
+		gun_5_Model[0][0].addBox(-1F, 0F, -0.5F, 1, 1, 1, 0F); // Box 20
 
-		driver[6].addShapeBox(-4.5F, 0F, -4F, 9, 1, 1, 0F,-0.4F, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, -0.6F, -0.8F, 0F, -0.6F, -0.8F, 0F, -0.6F, -0.8F, 0F, -0.6F, -0.8F, 0F); // Import ImportBox19
-
-		driver[7].addShapeBox(-4.5F, -4F, -4.5F, 1, 4, 4, 0F,0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, -0.4F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -2.5F, -0.4F, 0F, -2.5F); // Import ImportBox20
-
-		driver[8].addShapeBox(-5.45F, -66F, -59.5F, 1, 256, 256, 0F,-0.9F, -59F, -59F, 0F, -59F, -59F, 0F, -59F, -195F, -0.9F, -59F, -195F, -0.9F, -195F, -59F, 0F, -195F, -59F, 0F, -195F, -195F, -0.9F, -195F, -195F); // Import ImportBox8
-
-		driver[9].addShapeBox(-5.45F, -46.25F, -42F, 1, 80, 80, 0F,-0.9F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, -0.9F, -39.7F, -39.7F, -0.9F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, -0.9F, -39.7F, -39.7F); // Import ImportBox9
-
-		driver[10].addShapeBox(-5.2F, -47.65F, -39.5F, 1, 80, 80, 0F,-1.1F, -39.7F, -39.7F, 0.2F, -39.7F, -39.7F, 0.2F, -39.7F, -39.7F, -1.1F, -39.7F, -39.7F, -0.8F, -39.7F, -39.7F, -0.1F, -39.7F, -39.7F, -0.1F, -39.7F, -39.7F, -0.8F, -39.7F, -39.7F); // Import ImportBox10
-
-		driver[11].addShapeBox(3.55F, -66F, -59.5F, 1, 256, 256, 0F,-0.9F, -59F, -59F, 0F, -59F, -59F, 0F, -59F, -195F, -0.9F, -59F, -195F, -0.9F, -195F, -59F, 0F, -195F, -59F, 0F, -195F, -195F, -0.9F, -195F, -195F); // Import ImportBox11
-
-		driver[12].addShapeBox(3.2F, -47.65F, -39.5F, 1, 80, 80, 0F,-0.9F, -39.7F, -39.7F, -0.2F, -39.7F, -39.7F, -0.2F, -39.7F, -39.7F, -0.9F, -39.7F, -39.7F, -1.2F, -39.7F, -39.7F, 0.1F, -39.7F, -39.7F, 0.1F, -39.7F, -39.7F, -1.2F, -39.7F, -39.7F); // Import ImportBox12
-
-		driver[13].addShapeBox(3.45F, -46.25F, -42F, 1, 80, 80, 0F,-1.1F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, -1.1F, -39.7F, -39.7F, -1.1F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, -1.1F, -39.7F, -39.7F); // Import ImportBox13
-
-		driver[14].addShapeBox(-4F, -7.8F, -4F, 8, 8, 8, 0F,0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, -0.19F, 0.01F, 0.01F, -0.19F, 0.01F, 0.01F, -0.19F, 0.01F, 0.01F, -0.19F, 0.01F); // Import Box14
-
-		driver[15].addShapeBox(-4.5F, 7.3F, -2.2F, 16, 8, 5, 0F,0.1F, 0.0F, 0.1F, -6.9F, 0.0F, 0.1F, -6.9F, 0.0F, -0.51F, 0.1F, 0.0F, -0.5F, 0.1F, -6.7F, 0.1F, -6.9F, -6.7F, 0.1F, -6.9F, -6.7F, -0.5F, 0.1F, -6.7F, -0.5F); // Import Import
-
-		driver[16].addShapeBox(-3.3F, 1.3F, -2.4F, 8, 13, 1, 0F,0.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, 0.0F, 0.0F, 0.1F, 0.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, 0.0F, -6.7F, 0.1F); // Import Import
-
-		driver[17].addShapeBox(-3.3F, 0.3F, -2.4F, 8, 8, 1, 0F,0.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, 0.0F, 0.0F, 0.1F, 0.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, 0.0F, -6.7F, 0.1F); // Import Import
-
-		driver[18].addShapeBox(2.3F, 0.3F, -2.4F, 8, 8, 1, 0F,0.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, 0.0F, 0.0F, 0.1F, 0.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, 0.0F, -6.7F, 0.1F); // Import Import
-
-		driver[19].addShapeBox(2.3F, 1.3F, -2.4F, 8, 13, 1, 0F,0.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, 0.0F, 0.0F, 0.1F, 0.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, 0.0F, -6.7F, 0.1F); // Import Import
-
-		driver[20].addShapeBox(-2.5F, 6.5F, -2.6F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Import
-
-		driver[21].addShapeBox(-3.3F, 0F, -2.2F, 8, 7, 5, 0F,0.0F, 0.2F, 0.3F, -7.0F, 0.2F, 0.3F, -7.0F, 0.2F, -0.6F, 0.0F, 0.2F, -0.6F, 0.0F, -6.7F, 0.3F, -7.0F, -6.7F, 0.3F, -7.0F, -6.7F, -0.6F, 0.0F, -6.7F, -0.6F); // Import Import
-
-		driver[22].addShapeBox(2.3F, 0F, -2.2F, 8, 7, 5, 0F,0.0F, 0.2F, 0.3F, -7.0F, 0.2F, 0.3F, -7.0F, 0.2F, -0.6F, 0.0F, 0.2F, -0.6F, 0.0F, -6.7F, 0.3F, -7.0F, -6.7F, 0.3F, -7.0F, -6.7F, -0.6F, 0.0F, -6.7F, -0.6F); // Import Import
-
-		driver[23].addShapeBox(-3.3F, 0.4F, 1.8F, 8, 10, 1, 0F,0.0F, 0.1F, 0.1F, -7.0F, 0.1F, 0.1F, -7.0F, 0.1F, -0.6F, 0.0F, 0.1F, -0.6F, -3.0F, -6.0F, 0.1F, -5.0F, -7.7F, 0.1F, -5.0F, -7.7F, -0.6F, -3.0F, -6.0F, -0.6F); // Import Import
-
-		driver[24].addShapeBox(-4.7F, 0.4F, 1.8F, 8, 10, 1, 0F,-7.0F, 0.1F, 0.1F, 0.0F, 0.1F, 0.1F, 0.0F, 0.1F, -0.6F, -7.0F, 0.1F, -0.6F, -5.0F, -7.7F, 0.1F, -3.0F, -6.0F, 0.1F, -3.0F, -6.0F, -0.6F, -5.0F, -7.7F, -0.6F); // Import Import
-
-		driver[25].addShapeBox(-0.5F, 2.7F, 1.8F, 8, 12, 1, 0F,0.1F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, -7.0F, 0.0F, -0.51F, 0.1F, 0.0F, -0.5F, 0.1F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, -7.0F, -6.7F, -0.5F, 0.1F, -6.7F, -0.5F); // Import Import
-
-		driver[26].addShapeBox(-3F, 7F, 2.5F, 6, 2, 2, 0F,0.0F, 0.4F, 0.2F, 0.0F, -0.8F, 0.2F, 0.0F, -0.8F, 0.2F, 0.0F, 0.4F, 0.2F, 0.5F, -1.2F, 0.2F, -0.5F, 0.2F, 0.2F, -0.5F, 0.2F, 0.2F, 0.5F, -1.2F, 0.2F); // Import Import
-
-		driver[27].addShapeBox(-4.6F, 6.5F, -2.6F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -2F, 0.0F, 0.0F, -2F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2F, -1.0F, 0.0F, -2F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Import
-
-		driver[28].addShapeBox(0.6F, 6.5F, -2.6F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Import
-
-		driver[29].addShapeBox(2.7F, 6.5F, -2.6F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Import
-
-		driver[30].addShapeBox(-4.5F, 0F, -2F, 16, 36, 4, 0F,0.0F, 0.1F, 0.1F, -7.0F, 0.1F, 0.1F, -7.0F, 0.1F, 0.1F, 0.0F, 0.1F, 0.1F, 0.0F, -24F, 0.1F, -7.0F, -24F, 0.1F, -7.0F, -24F, 0.1F, 0.0F, -24F, 0.1F); // Import Import
-
-		driver[31].addShapeBox(0.6F, 6.5F, -2.8F, 4, 2, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Box36
-
-		driver[32].addShapeBox(1.1F, 7.5F, -2.8F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, 0F, 0.0F, 0.0F, 0F, -2F, 0.0F, -3F, -2F, 0.0F, -3F, -2F, 0.0F, 0.0F, -2F, 0.0F); // Import Box37
-
-		driver[33].addShapeBox(-2.5F, 6.5F, -2.8F, 4, 2, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Box33
-
-		driver[34].addShapeBox(2.7F, 6.5F, -2.8F, 4, 2, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Box35
-
-		driver[35].addShapeBox(-4.6F, 6.5F, -2.8F, 4, 2, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Box36
-
-		driver[36].addShapeBox(-0.5F, 0.92F, -2.6F, 480, 240, 6, 0F,-0.5F, 0F, 0F, -478.43F, 1.07F, 0F, -478.43F, 1.07F, -5.5F, -0.5F, 0F, -5.5F, -1.2F, -239.352F, 0F, -477.75F, -240.352F, 0F, -477.75F, -240.352F, -5.5F, -1.2F, -239.352F, -5.5F); // Import Box39
-
-		driver[37].addShapeBox(-3.5F, 3.8F, -2.3F, 8, 8, 1, 0F,0F, 0.5F, 0F, -5.5F, 0.5F, 0F, -5.5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -6F, 0F, -5.5F, -6F, 0F, -5.5F, -6F, 0F, 0F, -6F, 0F); // Import Box41
-
-		driver[38].addShapeBox(-4F, 8.8F, -2.3F, 8, 8, 1, 0F,0F, 0.5F, 0F, -5F, 0.5F, 0F, -5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -5F, 0F, -5F, -5F, 0F, -5F, -5F, 0F, 0F, -5F, 0F); // Import Box43
-
-		driver[39].addShapeBox(-4F, 8.8F, -2.4F, 8, 4, 1, 0F,0F, 0.5F, 0F, -5F, 0.5F, 0F, -5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -3F, 0F, -5F, -3F, 0F, -5F, -3F, 0F, 0F, -3F, 0F); // Import Box44
-
-		driver[40].addShapeBox(-3F, 9.8F, -2.39F, 4, 8, 1, 0F,0F, 0.5F, 0F, -3F, 0.5F, 0F, -3F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -6F, 0F, -3F, -6F, 0F, -3F, -6F, 0F, 0F, -6F, 0F); // Import Box46
-
-		driver[41].addShapeBox(-3.5F, 1.6F, -2.2F, 800, 800, 10, 0F,0F, -0.25F, 0F, -797.5F, -0.25F, 0F, -797.5F, -0.25F, -9F, 0F, -0.25F, -9F, 0F, -798.5F, 0F, -797.5F, -798.5F, 0F, -797.5F, -798.5F, -9F, 0F, -798.5F, -9F); // Import Box52
-
-		driver[42].addShapeBox(-2.8F, 4.8F, -2.39F, 4, 8, 1, 0F,0F, 0.5F, 0F, -3F, 0.5F, 0F, -3F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -7F, 0F, -3F, -7F, 0F, -3F, -7F, 0F, 0F, -7F, 0F); // Import Box53
-
-		driver[43].addShapeBox(-2.3F, 0.05F, -1.69F, 8, 7, 4, 0F,0.2F, 0.2F, 0.4F, -6.75F, 0.2F, 0.4F, -6.75F, 0.2F, -0.3F, 0.2F, 0.2F, -0.3F, 0.2F, -6.7F, 0.4F, -6.75F, -6.7F, 0.4F, -6.75F, -6.7F, -0.3F, 0.2F, -6.7F, -0.3F); // Import Box50
-
-		driver[44].addShapeBox(1.25F, 0.05F, -1.69F, 8, 7, 4, 0F,0.2F, 0.2F, 0.4F, -6.75F, 0.2F, 0.4F, -6.75F, 0.2F, -0.3F, 0.2F, 0.2F, -0.3F, 0.2F, -6.7F, 0.4F, -6.75F, -6.7F, 0.4F, -6.75F, -6.7F, -0.3F, 0.2F, -6.7F, -0.3F); // Import Box51
-
-		driver[45].addShapeBox(-2.1F, 0.05F, 1.5F, 11, 7, 1, 0F,0.2F, 0.2F, 0.3F, -6.6F, 0.2F, 0.3F, -6.6F, 0.2F, -0.3F, 0.2F, 0.2F, -0.3F, 0.2F, -6.7F, 0.3F, -6.6F, -6.7F, 0.3F, -6.6F, -6.7F, -0.3F, 0.2F, -6.7F, -0.3F); // Import Box52
-
-		driver[46].addShapeBox(-3.5F, 3.8F, -2.4F, 8, 4, 1, 0F,0F, 0.5F, 0F, -5.5F, 0.5F, 0F, -5.5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -3.5F, 0F, -5.5F, -3.5F, 0F, -5.5F, -3.5F, 0F, 0F, -3.5F, 0F); // Import Box55
-
-		driver[47].addShapeBox(-11.5F, 0.92F, -2.6F, 480, 240, 6, 0F,-10.43F, 1.07F, 0F, -468.5F, 0F, 0F, -468.5F, 0F, -5.5F, -10.43F, 1.07F, -5.5F, -9.75F, -240.352F, 0F, -469.2F, -239.3F, 0F, -469.2F, -239.3F, -5.5F, -9.75F, -240.352F, -5.5F); // Import Box52
-
-		driver[48].addShapeBox(-2.44F, -0.13F, -2.6F, 40, 40, 1, 0F,0F, 0F, 0F, -38.65F, 0F, 0F, -38.65F, 0F, 0F, 0F, 0F, 0F, -0.5F, -39.5F, 0F, -39.3F, -39.3F, 0F, -39.3F, -39.3F, 0F, -0.5F, -39.5F, 0F); // Import Box53
-
-		driver[49].addShapeBox(1.06F, -0.13F, -2.6F, 40, 40, 1, 0F,-1.35F, 0F, 0F, -40F, 0F, 0F, -40F, 0F, 0F, -1.35F, 0F, 0F, -0.7F, -39.3F, 0F, -39.5F, -39.5F, 0F, -39.5F, -39.5F, 0F, -0.7F, -39.3F, 0F); // Import Box52
-
-		driver[50].addShapeBox(-0.2F, 3.5F, -2.55F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box52
-
-		driver[51].addShapeBox(-0.2F, 1.5F, -2.55F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box53
-
-		driver[52].addShapeBox(-0.2F, 5.5F, -2.55F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box54
-
-		driver[53].addShapeBox(-0.2F, 9F, -2.55F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box55
-
-		driver[54].addShapeBox(-0.2F, 11F, -2.55F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box56
-
-		driver[55].addShapeBox(-2.8F, 9.3F, -2.85F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box57
-
-		driver[56].addShapeBox(2.2F, 9.3F, -2.85F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box58
-
-		driver[57].addShapeBox(-2.45F, 4F, -2.85F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.65F, 0F, -0.4F, -29.65F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.65F, -0.4F, -29.65F, -29.65F, -0.4F, -29.65F, -29.65F, -0.4F, 0F, -29.65F, -0.4F); // Import Box59
-
-		driver[58].addShapeBox(2.1F, 4F, -2.85F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.65F, 0F, -0.4F, -29.65F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.65F, -0.4F, -29.65F, -29.65F, -0.4F, -29.65F, -29.65F, -0.4F, 0F, -29.65F, -0.4F); // Import Box60
-
-		driver[59].addShapeBox(-0.75F, 4.2F, -2.51F, 6, 6, 1, 0F,-0.3F, -0.1F, -0.4F, -5.45F, 0.3F, -0.4F, -5.45F, 0.3F, -0.4F, -0.3F, -0.1F, -0.4F, -0.3F, -5.3F, -0.4F, -5F, -6.3F, -0.4F, -5F, -6.3F, -0.4F, -0.3F, -5.3F, -0.4F); // Import Box61
-
-		driver[60].addShapeBox(1F, 3.8F, -2.4F, 8, 4, 1, 0F,0F, 0.5F, 0F, -5.5F, 0.5F, 0F, -5.5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -3.5F, 0F, -5.5F, -3.5F, 0F, -5.5F, -3.5F, 0F, 0F, -3.5F, 0F); // Import Box62
-
-		driver[61].addShapeBox(1.8F, 4.8F, -2.39F, 4, 8, 1, 0F,0F, 0.5F, 0F, -3F, 0.5F, 0F, -3F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -7F, 0F, -3F, -7F, 0F, -3F, -7F, 0F, 0F, -7F, 0F); // Import Box65
-
-		driver[62].addShapeBox(1F, 3.8F, -2.3F, 8, 8, 1, 0F,0F, 0.5F, 0F, -5.5F, 0.5F, 0F, -5.5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -6F, 0F, -5.5F, -6F, 0F, -5.5F, -6F, 0F, 0F, -6F, 0F); // Import Box66
-
-		driver[63].addShapeBox(1F, 8.8F, -2.4F, 8, 4, 1, 0F,0F, 0.5F, 0F, -5F, 0.5F, 0F, -5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -3F, 0F, -5F, -3F, 0F, -5F, -3F, 0F, 0F, -3F, 0F); // Import Box67
-
-		driver[64].addShapeBox(1F, 8.8F, -2.3F, 8, 8, 1, 0F,0F, 0.5F, 0F, -5F, 0.5F, 0F, -5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -5F, 0F, -5F, -5F, 0F, -5F, -5F, 0F, 0F, -5F, 0F); // Import Box68
-
-		driver[65].addShapeBox(2F, 9.8F, -2.39F, 4, 8, 1, 0F,0F, 0.5F, 0F, -3F, 0.5F, 0F, -3F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -6F, 0F, -3F, -6F, 0F, -3F, -6F, 0F, 0F, -6F, 0F); // Import Box69
-
-		driver[66].addShapeBox(3.2F, 7.5F, -2.8F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, 0F, 0.0F, 0.0F, 0F, -2F, 0.0F, -3F, -2F, 0.0F, -3F, -2F, 0.0F, 0.0F, -2F, 0.0F); // Import Box70
-
-		driver[67].addShapeBox(-2F, 7.5F, -2.8F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, 0F, 0.0F, 0.0F, 0F, -2F, 0.0F, -3F, -2F, 0.0F, -3F, -2F, 0.0F, 0.0F, -2F, 0.0F); // Import Box71
-
-		driver[68].addShapeBox(-4.1F, 7.5F, -2.8F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, 0F, 0.0F, 0.0F, 0F, -2F, 0.0F, -3F, -2F, 0.0F, -3F, -2F, 0.0F, 0.0F, -2F, 0.0F); // Import Box72
-
-		driver[69].addShapeBox(-3F, 7F, 2.5F, 6, 2, 2, 0F,0.75F, -1.6F, -0.8F, -0.75F, -2.8F, -0.8F, -0.75F, -2.8F, -0.8F, 0.75F, -1.6F, -0.8F, 0.5F, -1.2F, 0.2F, -0.5F, 0.2F, 0.2F, -0.5F, 0.2F, 0.2F, 0.5F, -1.2F, 0.2F); // Import Box64
-
-		driver[70].addShapeBox(-3F, 7F, 2.5F, 6, 2, 2, 0F,0.0F, 0.4F, 0.2F, 0.0F, -0.8F, 0.2F, 0F, -0.8F, 0.2F, 0.0F, 0.4F, 0.2F, -0.25F, -3.2F, -0.8F, 0.25F, -1.8F, -0.8F, 0.25F, -1.8F, -0.8F, -0.25F, -3.2F, -0.8F); // Import Box65
-
-		driver[71].addShapeBox(-8F, 7.8F, 0F, 160, 40, 160, 0F, 0.3F, 0.0F, 0.3F, -155.7F, 0.0F, 0.3F, -155.7F, 0.0F, -155.7F, 0.3F, 0.0F, -155.7F, 0.3F, -39F, 0.3F, -155.7F, -39F, 0.3F, -155.7F, -39F, -155.7F, 0.3F, -39F, -155.7F); // Import Import
-		driver[71].setRotationPoint(0F, 0F, 0F);
-		driver[71].rotateAngleX = -1.04719755F;
-
-		driver[72].addShapeBox(5.2F, -0.4F, 1.5F, 80, 1, 40, 0F, 0.4F, 0.0F, 0.15F, -77.9F, 0.0F, 0.15F, -77.9F, 0.0F, -38.85F, 0.4F, 0.0F, -38.85F, 0.4F, 0.0F, 0.15F, -77.6F, 0.0F, 0.15F, -77.6F, 0.0F, -38.85F, 0.4F, 0.0F, -38.85F); // Import Import
-		driver[72].setRotationPoint(0F, 0F, 0F);
-		driver[72].rotateAngleX = -1.04719755F;
-
-		driver[73].addShapeBox(-8F, -0.2F, 0F, 8, 15, 4, 0F, 0.2F, 0.0F, 0.15F, -3.8F, 0.0F, 0.15F, -3.8F, 0.0F, 0.15F, 0.2F, 0.0F, 0.15F, 0.2F, -7F, 0.15F, -3.8F, -7F, 0.15F, -3.8F, -7F, 0.15F, 0.2F, -7F, 0.15F); // Import Import
-		driver[73].setRotationPoint(0F, 0F, 0F);
-		driver[73].rotateAngleX = -1.04719755F;
-
-		driver[74].addShapeBox(7.3F, 3.5F, -16.25F, 10, 800, 800, 0F, 0F, -0.25F, -17.5F, -9F, -0.25F, -17.5F, -9F, -0.25F, -781F, 0F, -0.25F, -781F, 0F, -798.5F, -17.5F, -9F, -798.5F, -17.5F, -9F, -798.5F, -781F, 0F, -798.5F, -781F); // Import Box57
-		driver[74].setRotationPoint(0F, 0F, 0F);
-		driver[74].rotateAngleX = -1.04719755F;
-
-		driver[75].addShapeBox(-1.7F, 1.6F, -16.75F, 10, 800, 800, 0F, -9F, -0.25F, -17.5F, 0F, -0.25F, -17.5F, 0F, -0.25F, -780F, -9F, -0.25F, -780F, -9F, -798.5F, -17.5F, 0F, -798.5F, -17.5F, 0F, -798.5F, -780F, -9F, -798.5F, -780F); // Import Box52
-		driver[75].setRotationPoint(0F, 0F, 0F);
-		driver[75].rotateAngleX = -1.04719755F;;
-
-		driver[76].addShapeBox(4F, -0.2F, 0F, 8, 15, 4, 0F, 0.2F, 0.0F, 0.15F, -3.8F, 0.0F, 0.15F, -3.8F, 0.0F, 0.15F, 0.2F, 0.0F, 0.15F, 0.2F, -7.0F, 0.15F, -3.8F, -7.0F, 0.15F, -3.8F, -7.0F, 0.15F, 0.2F, -7.0F, 0.15F); // Import Import
-		driver[76].setRotationPoint(0F, 0F, 0F);
-		driver[76].rotateAngleX = -1.04719755F;
-
-		driver[77].addShapeBox(4F, 7.8F, 0F, 160, 40, 160, 0F, 0.3F, 0F, 0.3F, -155.7F, 0F, 0.3F, -155.7F, 0F, -155.7F, 0.3F, 0F, -155.7F, 0.3F, -39F, 0.3F, -155.7F, -39F, 0.3F, -155.7F, -39F, -155.7F, 0.3F, -39F, -155.7F); // Import Import
-		driver[77].setRotationPoint(0F, 0F, 0F);
-		driver[77].rotateAngleX = -1.04719755F;
-
-		driver[78].addShapeBox(-7.2F, -0.4F, 1.5F, 80, 1, 40, 0F, 0.1F, 0.0F, 0.15F, -77.6F, 0.0F, 0.15F, -77.6F, 0.0F, -38.85F, 0.1F, 0.0F, -38.85F, 0.4F, 0.0F, 0.15F, -77.6F, 0.0F, 0.15F, -77.6F, 0.0F, -38.85F, 0.4F, 0.0F, -38.85F); // Import Import
-		driver[78].setRotationPoint(0F, 0F, 0F);
-		driver[78].rotateAngleX = -1.04719755F;
-
-		driver[79].addShapeBox(-4F, 5F, 8F, 4, 12, 4, 0F, 0F, 0.15F, 0.05F, 0.25F, 0.15F, 0.05F, 0.25F, 0.15F, 0.05F, 0F, 0.15F, 0.05F, 0F, 0.01F, 0.05F, 0.25F, 0.01F, 0.05F, 0.25F, 0.01F, 0.05F, 0F, 0.01F, 0.05F); // Import Import
-		driver[79].setRotationPoint(0F, 0F, 0F);
-		driver[79].rotateAngleX = -1.22173048F;
-
-		driver[80].addShapeBox(-4F, 11F, 8F, 4, 6, 4, 0F, 0.5F, 0.15F, 0.45F, 0.25F, 0.15F, 0.45F, 0.25F, 0.15F, 0.45F, 0.5F, 0.15F, 0.45F, 0.5F, 0.05F, 0.45F, 0.25F, 0.05F, 0.45F, 0.25F, 0.05F, 0.45F, 0.5F, 0.05F, 0.45F); // Import Box2
-		driver[80].setRotationPoint(0F, 0F, 0F);
-		driver[80].rotateAngleX = -1.22173048F;
-
-		driver[81].addShapeBox(0F, 5F, 8F, 4, 12, 4, 0F, 0.25F, 0.15F, 0.05F, 0F, 0.15F, 0.05F, 0F, 0.15F, 0.05F, 0.25F, 0.15F, 0.05F, 0.25F, 0.01F, 0.05F, 0F, 0.01F, 0.05F, 0F, 0.01F, 0.05F, 0.25F, 0.01F, 0.05F); // Import Import
-		driver[81].setRotationPoint(0F, 0F, 0F);
-		driver[81].rotateAngleX = -1.22173048F;
-
-		driver[82].addShapeBox(0F, 11F, 8F, 4, 6, 4, 0F, 0.5F, 0.15F, 0.45F, 0.25F, 0.15F, 0.45F, 0.25F, 0.15F, 0.45F, 0.5F, 0.15F, 0.45F, 0.5F, 0.05F, 0.45F, 0.25F, 0.05F, 0.45F, 0.25F, 0.05F, 0.45F, 0.5F, 0.05F, 0.45F); // Import Import
-		driver[82].setRotationPoint(0F, 0F, 0F);
-		driver[82].rotateAngleX = -1.22173048F;
-
-		driver[83].addShapeBox(-4F, -8F, -4F, 8, 8, 8, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 0
-		driver[83].setRotationPoint(0F, 0F, 0F);
-
-		driver[84].addShapeBox(-8F, 0F, 0F, 4, 12, 4, 0F, 0F, 0.0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 1
-		driver[84].setRotationPoint(0F, 0F, 0F);
-		driver[84].rotateAngleX = -1.04719755F;
-
-		driver[85].addShapeBox(4F, 0F, 0F, 4, 12, 4, 0F, 0F, 0.0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 2
-		driver[85].setRotationPoint(0F, 0F, 0F);
-		driver[85].rotateAngleX = -1.04719755F;
-
-		driver[86].addShapeBox(-4F, 5F, 8F, 4, 12, 4, 0F, 0F, 0.0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 3
-		driver[86].setRotationPoint(0F, 0F, 0F);
-		driver[86].rotateAngleX = -1.22173048F;
-
-		driver[87].addShapeBox(0F, 5F, 8F, 4, 12, 4, 0F, 0F, 0.0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 4
-		driver[87].setRotationPoint(0F, 0F, 0F);
-		driver[87].rotateAngleX = -1.22173048F;
-
-		driver[88].addShapeBox(-4F, 0F, -2F, 8, 12, 4, 0F, 0F, 0.0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 5
-		driver[88].setRotationPoint(0F, 0F, 0F);
-
-		driver[89].addShapeBox(-8F, 8.8F, 0F, 8, 3, 4, 0F, 0.2F, 0.0F, 0.15F, -3.8F, 0F, 0.15F, -3.8F, 0F, 0.15F, 0.2F, 0F, 0.15F, 0.2F, 0.21F, 0.15F, -3.8F, 0.21F, 0.15F, -3.8F, 0.21F, 0.15F, 0.2F, 0.21F, 0.15F); // Box 6
-		driver[89].setRotationPoint(0F, 0F, 0F);
-		driver[89].rotateAngleX = -1.04719755F;
-
-		driver[90].addShapeBox(4F, 8.8F, 0F, 8, 3, 4, 0F, 0.2F, 0.0F, 0.15F, -3.8F, 0F, 0.15F, -3.8F, 0F, 0.15F, 0.2F, 0F, 0.15F, 0.2F, 0.21F, 0.15F, -3.8F, 0.21F, 0.15F, -3.8F, 0.21F, 0.15F, 0.2F, 0.21F, 0.15F); // Box 7
-		driver[90].setRotationPoint(0F, 0F, 0F);
-		driver[90].rotateAngleX = -1.04719755F;
-		
 		//Gun Origin
-		for (int i = 0; i < 91; i++)
+		for (ModelRendererTurbo gunPart : gun_5_Model[0])
 		{
-			driver[i].setRotationPoint(0F, -12F, 4F);
-			driver[i].rotateAngleY = -1.57079633F;
+			gunPart.setRotationPoint(-45F, -25F, 0F);
 		}
 
-		passenger = new ModelRendererTurbo[91];
-		passenger[0] = new ModelRendererTurbo(this, 3000, 3+textureOffsetY, textureX, textureY); // Import Import702
-		passenger[1] = new ModelRendererTurbo(this, 3057, 1+textureOffsetY, textureX, textureY); // Import Import704
-		passenger[2] = new ModelRendererTurbo(this, 3000, 3+textureOffsetY, textureX, textureY); // Import ImportBox15
-		passenger[3] = new ModelRendererTurbo(this, 3000, 4+textureOffsetY, textureX, textureY); // Import ImportBox16
-		passenger[4] = new ModelRendererTurbo(this, 3079, 1+textureOffsetY, textureX, textureY); // Import ImportBox17
-		passenger[5] = new ModelRendererTurbo(this, 3000, 16+textureOffsetY, textureX, textureY); // Import ImportBox18
-		passenger[6] = new ModelRendererTurbo(this, 3000, textureOffsetY, textureX, textureY); // Import ImportBox19
-		passenger[7] = new ModelRendererTurbo(this, 3000, 16+textureOffsetY, textureX, textureY); // Import ImportBox20
-		passenger[8] = new ModelRendererTurbo(this, 3000, -16+textureOffsetY, textureX, textureY); // Import ImportBox8
-		passenger[9] = new ModelRendererTurbo(this, 3542, 30+textureOffsetY, textureX, textureY); // Import ImportBox9
-		passenger[10] = new ModelRendererTurbo(this, 3350, 30+textureOffsetY, textureX, textureY); // Import ImportBox10
-		passenger[11] = new ModelRendererTurbo(this, 3528, -16+textureOffsetY, textureX, textureY); // Import ImportBox11
-		passenger[12] = new ModelRendererTurbo(this, 3350, 30+textureOffsetY, textureX, textureY); // Import ImportBox12
-		passenger[13] = new ModelRendererTurbo(this, 3542, 30+textureOffsetY, textureX, textureY); // Import ImportBox13
-		passenger[14] = new ModelRendererTurbo(this, 3008, 24+textureOffsetY, textureX, textureY); // Import Box14
-		passenger[15] = new ModelRendererTurbo(this, 2, 81+textureOffsetY, textureX, textureY); // Import Import
-		passenger[16] = new ModelRendererTurbo(this, 97, 17+textureOffsetY, textureX, textureY); // Import Import
-		passenger[17] = new ModelRendererTurbo(this, 49, 25+textureOffsetY, textureX, textureY); // Import Import
-		passenger[18] = new ModelRendererTurbo(this, 73, 33+textureOffsetY, textureX, textureY); // Import Import
-		passenger[19] = new ModelRendererTurbo(this, 97, 33+textureOffsetY, textureX, textureY); // Import Import
-		passenger[20] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Import
-		passenger[21] = new ModelRendererTurbo(this, 17, 41+textureOffsetY, textureX, textureY); // Import Import
-		passenger[22] = new ModelRendererTurbo(this, 49, 41+textureOffsetY, textureX, textureY); // Import Import
-		passenger[23] = new ModelRendererTurbo(this, 81, 49+textureOffsetY, textureX, textureY); // Import Import
-		passenger[24] = new ModelRendererTurbo(this, 105, 49+textureOffsetY, textureX, textureY); // Import Import
-		passenger[25] = new ModelRendererTurbo(this, 1, 57+textureOffsetY, textureX, textureY); // Import Import
-		passenger[26] = new ModelRendererTurbo(this, 25, 57+textureOffsetY, textureX, textureY); // Import Import
-		passenger[27] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Import
-		passenger[28] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Import
-		passenger[29] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Import
-		passenger[30] = new ModelRendererTurbo(this, 1, textureOffsetY, textureX, textureY); // Import Import
-		passenger[31] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Box36
-		passenger[32] = new ModelRendererTurbo(this, 12, 73+textureOffsetY, textureX, textureY); // Import Box37
-		passenger[33] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Box33
-		passenger[34] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Box35
-		passenger[35] = new ModelRendererTurbo(this, 1, 73+textureOffsetY, textureX, textureY); // Import Box36
-		passenger[36] = new ModelRendererTurbo(this, 64, 900+textureOffsetY, textureX, textureY); // Import Box39
-		passenger[37] = new ModelRendererTurbo(this, 60, 73+textureOffsetY, textureX, textureY); // Import Box41
-		passenger[38] = new ModelRendererTurbo(this, 60, 73+textureOffsetY, textureX, textureY); // Import Box43
-		passenger[39] = new ModelRendererTurbo(this, 58, 56+textureOffsetY, textureX, textureY); // Import Box44
-		passenger[40] = new ModelRendererTurbo(this, 60, 63+textureOffsetY, textureX, textureY); // Import Box46
-		passenger[41] = new ModelRendererTurbo(this, 1240, 350+textureOffsetY, textureX, textureY); // Import Box52
-		passenger[42] = new ModelRendererTurbo(this, 60, 63+textureOffsetY, textureX, textureY); // Import Box53
-		passenger[43] = new ModelRendererTurbo(this, 25, 67+textureOffsetY, textureX, textureY); // Import Box50
-		passenger[44] = new ModelRendererTurbo(this, 25, 67+textureOffsetY, textureX, textureY); // Import Box51
-		passenger[45] = new ModelRendererTurbo(this, 25, 67+textureOffsetY, textureX, textureY); // Import Box52
-		passenger[46] = new ModelRendererTurbo(this, 58, 56+textureOffsetY, textureX, textureY); // Import Box55
-		passenger[47] = new ModelRendererTurbo(this, 64, 600+textureOffsetY, textureX, textureY); // Import Box52
-		passenger[48] = new ModelRendererTurbo(this, 280, 520+textureOffsetY, textureX, textureY); // Import Box53
-		passenger[49] = new ModelRendererTurbo(this, 280, 520+textureOffsetY, textureX, textureY); // Import Box52
-		passenger[50] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box52
-		passenger[51] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box53
-		passenger[52] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box54
-		passenger[53] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box55
-		passenger[54] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box56
-		passenger[55] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box57
-		passenger[56] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box58
-		passenger[57] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box59
-		passenger[58] = new ModelRendererTurbo(this, 135, textureOffsetY, textureX, textureY); // Import Box60
-		passenger[59] = new ModelRendererTurbo(this, 75, 24+textureOffsetY, textureX, textureY); // Import Box61
-		passenger[60] = new ModelRendererTurbo(this, 58, 56+textureOffsetY, textureX, textureY); // Import Box62
-		passenger[61] = new ModelRendererTurbo(this, 60, 63+textureOffsetY, textureX, textureY); // Import Box65
-		passenger[62] = new ModelRendererTurbo(this, 60, 73+textureOffsetY, textureX, textureY); // Import Box66
-		passenger[63] = new ModelRendererTurbo(this, 58, 56+textureOffsetY, textureX, textureY); // Import Box67
-		passenger[64] = new ModelRendererTurbo(this, 60, 73+textureOffsetY, textureX, textureY); // Import Box68
-		passenger[65] = new ModelRendererTurbo(this, 60, 63+textureOffsetY, textureX, textureY); // Import Box69
-		passenger[66] = new ModelRendererTurbo(this, 12, 73+textureOffsetY, textureX, textureY); // Import Box70
-		passenger[67] = new ModelRendererTurbo(this, 12, 73+textureOffsetY, textureX, textureY); // Import Box71
-		passenger[68] = new ModelRendererTurbo(this, 12, 73+textureOffsetY, textureX, textureY); // Import Box72
-		passenger[69] = new ModelRendererTurbo(this, 25, 57+textureOffsetY, textureX, textureY); // Import Box64
-		passenger[70] = new ModelRendererTurbo(this, 25, 57+textureOffsetY, textureX, textureY); // Import Box65
-		passenger[71] = new ModelRendererTurbo(this, 1220, 70+textureOffsetY, textureX, textureY); // Import Import
-		passenger[72] = new ModelRendererTurbo(this, 900, 30+textureOffsetY, textureX, textureY); // Import Import
-		passenger[73] = new ModelRendererTurbo(this, 49, 1+textureOffsetY, textureX, textureY); // Import Import
-		passenger[74] = new ModelRendererTurbo(this, 300, 420+textureOffsetY, textureX, textureY); // Import Box57
-		passenger[75] = new ModelRendererTurbo(this, 2150, 420+textureOffsetY, textureX, textureY); // Import Box52
-		passenger[76] = new ModelRendererTurbo(this, 49, 1+textureOffsetY, textureX, textureY); // Import Import
-		passenger[77] = new ModelRendererTurbo(this, 400, 170+textureOffsetY, textureX, textureY); // Import Import
-		passenger[78] = new ModelRendererTurbo(this, 650, 30+textureOffsetY, textureX, textureY); // Import Import
-		passenger[79] = new ModelRendererTurbo(this, 264, 48+textureOffsetY, textureX, textureY); // Import Import
-		passenger[80] = new ModelRendererTurbo(this, 288, 54+textureOffsetY, textureX, textureY); // Import Box2
-		passenger[81] = new ModelRendererTurbo(this, 264, 48+textureOffsetY, textureX, textureY); // Import Import
-		passenger[82] = new ModelRendererTurbo(this, 288, 54+textureOffsetY, textureX, textureY); // Import Import
-		passenger[83] = new ModelRendererTurbo(this, 264, 8+textureOffsetY, textureX, textureY); // Box 0
-		passenger[84] = new ModelRendererTurbo(this, 304, 24+textureOffsetY, textureX, textureY); // Box 1
-		passenger[85] = new ModelRendererTurbo(this, 304, 24+textureOffsetY, textureX, textureY); // Box 2
-		passenger[86] = new ModelRendererTurbo(this, 264, 24+textureOffsetY, textureX, textureY); // Box 3
-		passenger[87] = new ModelRendererTurbo(this, 264, 24+textureOffsetY, textureX, textureY); // Box 4
-		passenger[88] = new ModelRendererTurbo(this, 280, 24+textureOffsetY, textureX, textureY); // Box 5
-		passenger[89] = new ModelRendererTurbo(this, 312, 57+textureOffsetY, textureX, textureY); // Box 6
-		passenger[90] = new ModelRendererTurbo(this, 312, 57+textureOffsetY, textureX, textureY); // Box 7
 
-		passenger[0].addShapeBox(-4.5F, -8F, -4.5F, 9, 2, 9, 0F,-0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F); // Import Import702
+		gun_5_Model[1] = new ModelRendererTurbo[20];
+		gun_5_Model[1][0] = new ModelRendererTurbo(this, 9, 480, textureX, textureY); // Ammo 1
+		gun_5_Model[1][1] = new ModelRendererTurbo(this, 0, 484, textureX, textureY); // Ammo 2
+		gun_5_Model[1][2] = new ModelRendererTurbo(this, 0, 489, textureX, textureY); // Barrel 1
+		gun_5_Model[1][3] = new ModelRendererTurbo(this, 0, 492, textureX, textureY); // Barrel 2
+		gun_5_Model[1][4] = new ModelRendererTurbo(this, 5, 489, textureX, textureY); // Barrel 3
+		gun_5_Model[1][5] = new ModelRendererTurbo(this, 0, 495, textureX, textureY); // Barrel 4
+		gun_5_Model[1][6] = new ModelRendererTurbo(this, 5, 492, textureX, textureY); // Barrel 5
+		gun_5_Model[1][7] = new ModelRendererTurbo(this, 5, 495, textureX, textureY); // Barrel 6
+		gun_5_Model[1][8] = new ModelRendererTurbo(this, 0, 498, textureX, textureY); // Barrel 7
+		gun_5_Model[1][9] = new ModelRendererTurbo(this, 0, 501, textureX, textureY); // Body 1
+		gun_5_Model[1][10] = new ModelRendererTurbo(this, 0, 504, textureX, textureY); // Body 2
+		gun_5_Model[1][11] = new ModelRendererTurbo(this, 0, 507, textureX, textureY); // Body 3
+		gun_5_Model[1][12] = new ModelRendererTurbo(this, 12, 492, textureX, textureY); // Griff 1
+		gun_5_Model[1][13] = new ModelRendererTurbo(this, 19, 492, textureX, textureY); // Griff 2
+		gun_5_Model[1][14] = new ModelRendererTurbo(this, 19, 501, textureX, textureY); // Griff 3
+		gun_5_Model[1][15] = new ModelRendererTurbo(this, 0, 480, textureX, textureY); // Mun 1
+		gun_5_Model[1][16] = new ModelRendererTurbo(this, 5, 480, textureX, textureY); // Mun 2
+		gun_5_Model[1][17] = new ModelRendererTurbo(this, 22, 480, textureX, textureY); // Schulter 1
+		gun_5_Model[1][18] = new ModelRendererTurbo(this, 22, 483, textureX, textureY); // Schulter 2
+		gun_5_Model[1][19] = new ModelRendererTurbo(this, 22, 486, textureX, textureY); // Schulter 3
 
-		passenger[1].addShapeBox(-4.5F, -5F, -4.5F, 9, 1, 4, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.35F, 0F, 1.3F, 0.35F, 0F, 1.3F, 0.35F, 0F, 0F, 0.35F, 0F, 0F); // Import Import704
+		gun_5_Model[1][0].addBox(-3.4F, -0.2F, 0F, 2, 3, 4, 0F); // Ammo 1
 
-		passenger[2].addShapeBox(-4.5F, -9F, -4.5F, 9, 1, 9, 0F,-1.5F, 0F, -1.5F, -1.5F, 0F, -1.5F, -1.5F, 0F, -1.5F, -1.5F, 0F, -1.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Import ImportBox15
+		gun_5_Model[1][1].addShapeBox(-2.9F, -0.8F, 0F, 1, 0, 3, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.6F, 0F, 0F, -0.6F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.6F, 0F, 0F, 0.6F, 0F); // Ammo 2
 
-		passenger[3].addBox(-4.5F, -7F, -4.5F, 9, 2, 9, 0F); // Import ImportBox16
+		gun_5_Model[1][2].addShapeBox(11F, -1F, -0.5F, 1, 1, 1, 0F,0F, -0.2F, -0.2F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, -0.2F, -0.2F); // Barrel 1
 
-		passenger[4].addShapeBox(-5.5F, -5F, -3.5F, 11, 3, 9, 0F,-1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, -1F, -1F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, -0.5F, 0F, 0F, -0.5F, 0F); // Import ImportBox17
+		gun_5_Model[1][3].addShapeBox(10F, -1F, -0.5F, 1, 1, 1, 0F,0F, -0.05F, -0.05F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, -0.05F, -0.05F, 0F, -0.05F, -0.05F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, -0.05F, -0.05F); // Barrel 2
 
-		passenger[5].addShapeBox(3.5F, -4F, -4.5F, 1, 4, 4, 0F,0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.4F, 0F, -0.5F, -0.4F, 0F, -2.5F, 0F, 0F, -2.5F); // Import ImportBox18
+		gun_5_Model[1][4].addShapeBox(-1F, -1F, -0.5F, 11, 1, 1, 0F,0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F); // Barrel 3
 
-		passenger[6].addShapeBox(-4.5F, 0F, -4F, 9, 1, 1, 0F,-0.4F, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, -0.6F, -0.8F, 0F, -0.6F, -0.8F, 0F, -0.6F, -0.8F, 0F, -0.6F, -0.8F, 0F); // Import ImportBox19
+		gun_5_Model[1][5].addShapeBox(8F, -1.9F, -0.5F, 1, 1, 1, 0F,-0.4F, 0F, -0.4F, -0.4F, 0F, -0.4F, -0.4F, 0F, -0.4F, -0.4F, 0F, -0.4F, -0.2F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.2F, 0F, -0.3F); // Barrel 4
 
-		passenger[7].addShapeBox(-4.5F, -4F, -4.5F, 1, 4, 4, 0F,0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, -0.4F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -2.5F, -0.4F, 0F, -2.5F); // Import ImportBox20
+		gun_5_Model[1][6].addShapeBox(0F, -2F, -0.5F, 2, 1, 1, 0F,-0.2F, -0.3F, -0.4F, -1F, -0.3F, -0.4F, -1F, -0.3F, -0.4F, -0.2F, -0.3F, -0.4F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F); // Barrel 5
 
-		passenger[8].addShapeBox(-5.45F, -66F, -59.5F, 1, 256, 256, 0F,-0.9F, -59F, -59F, 0F, -59F, -59F, 0F, -59F, -195F, -0.9F, -59F, -195F, -0.9F, -195F, -59F, 0F, -195F, -59F, 0F, -195F, -195F, -0.9F, -195F, -195F); // Import ImportBox8
+		gun_5_Model[1][7].addShapeBox(-1F, -1F, -0.5F, 11, 1, 1, 0F,0F, 0F, 0F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, 0F, 0F); // Barrel 6
 
-		passenger[9].addShapeBox(-5.45F, -46.25F, -42F, 1, 80, 80, 0F,-0.9F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, -0.9F, -39.7F, -39.7F, -0.9F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, -0.9F, -39.7F, -39.7F); // Import ImportBox9
+		gun_5_Model[1][8].addShapeBox(-1F, -1F, -0.5F, 11, 1, 1, 0F,0F, 0F, 0F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.1F, -0.1F, 0F, -0.1F, -0.1F, 0F, 0F, 0F); // Barrel 7
 
-		passenger[10].addShapeBox(-5.2F, -47.65F, -39.5F, 1, 80, 80, 0F,-1.1F, -39.7F, -39.7F, 0.2F, -39.7F, -39.7F, 0.2F, -39.7F, -39.7F, -1.1F, -39.7F, -39.7F, -0.8F, -39.7F, -39.7F, -0.1F, -39.7F, -39.7F, -0.1F, -39.7F, -39.7F, -0.8F, -39.7F, -39.7F); // Import ImportBox10
+		gun_5_Model[1][9].addBox(-9F, -1F, -0.5F, 8, 1, 1, 0F); // Body 1
 
-		passenger[11].addShapeBox(3.55F, -66F, -59.5F, 1, 256, 256, 0F,-0.9F, -59F, -59F, 0F, -59F, -59F, 0F, -59F, -195F, -0.9F, -59F, -195F, -0.9F, -195F, -59F, 0F, -195F, -59F, 0F, -195F, -195F, -0.9F, -195F, -195F); // Import ImportBox11
+		gun_5_Model[1][10].addShapeBox(-9F, -2F, -0.5F, 8, 1, 1, 0F,-5F, -0.6F, 0F, -0.4F, -0.6F, 0F, -0.4F, -0.6F, 0F, -5F, -0.6F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Body 2
 
-		passenger[12].addShapeBox(3.2F, -47.65F, -39.5F, 1, 80, 80, 0F,-0.9F, -39.7F, -39.7F, -0.2F, -39.7F, -39.7F, -0.2F, -39.7F, -39.7F, -0.9F, -39.7F, -39.7F, -1.2F, -39.7F, -39.7F, 0.1F, -39.7F, -39.7F, 0.1F, -39.7F, -39.7F, -1.2F, -39.7F, -39.7F); // Import ImportBox12
+		gun_5_Model[1][11].addShapeBox(-3.4F, -1.2F, -0.3F, 2, 1, 1, 0F,-0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, -0.4F, 0F, -0.3F, -0.4F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, -0.2F, -0.3F, 0F, -0.2F); // Body 3
 
-		passenger[13].addShapeBox(3.45F, -46.25F, -42F, 1, 80, 80, 0F,-1.1F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, -1.1F, -39.7F, -39.7F, -1.1F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, 0F, -39.7F, -39.7F, -1.1F, -39.7F, -39.7F); // Import ImportBox13
+		gun_5_Model[1][12].addShapeBox(-5.5F, 0F, -0.5F, 2, 1, 1, 0F,0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, 0F, 0F, -0.3F); // Griff 1
 
-		passenger[14].addShapeBox(-4F, -7.8F, -4F, 8, 8, 8, 0F,0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, 0.01F, -0.19F, 0.01F, 0.01F, -0.19F, 0.01F, 0.01F, -0.19F, 0.01F, 0.01F, -0.19F, 0.01F); // Import Box14
+		gun_5_Model[1][13].addShapeBox(-5.5F, 0F, -0.5F, 2, 1, 1, 0F,0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.3F, -0.3F, 0F, -0.3F, -0.3F, 0F, -0.3F, 0F, 0F, -0.3F); // Griff 2
 
-		passenger[15].addShapeBox(-4.5F, 7.3F, -2.2F, 16, 8, 5, 0F,0.1F, 0.0F, 0.1F, -6.9F, 0.0F, 0.1F, -6.9F, 0.0F, -0.51F, 0.1F, 0.0F, -0.5F, 0.1F, -6.7F, 0.1F, -6.9F, -6.7F, 0.1F, -6.9F, -6.7F, -0.5F, 0.1F, -6.7F, -0.5F); // Import Import
+		gun_5_Model[1][14].addShapeBox(-5.5F, 0F, -0.5F, 1, 3, 1, 0F,0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 1F, -0.8F, -0.2F, -1F, -0.5F, -0.2F, -1F, -0.5F, -0.2F, 01F, -0.8F, -0.2F); // Griff 3
 
-		passenger[16].addShapeBox(-3.3F, 1.3F, -2.4F, 8, 13, 1, 0F,0.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, 0.0F, 0.0F, 0.1F, 0.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, 0.0F, -6.7F, 0.1F); // Import Import
+		gun_5_Model[1][15].addShapeBox(-4.2F, -1F, -1.2F, 1, 1, 1, 0F,-0.4F, -0.25F, 0F, -0.1F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F, -0.4F, -0.25F, 0F, -0.1F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F); // Mun 1
 
-		passenger[17].addShapeBox(-3.3F, 0.3F, -2.4F, 8, 8, 1, 0F,0.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, 0.0F, 0.0F, 0.1F, 0.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, 0.0F, -6.7F, 0.1F); // Import Import
+		gun_5_Model[1][16].addShapeBox(-4F, -1.5F, -1.3F, 1, 2, 1, 0F,-0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Mun 2
 
-		passenger[18].addShapeBox(2.3F, 0.3F, -2.4F, 8, 8, 1, 0F,0.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, 0.0F, 0.0F, 0.1F, 0.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, 0.0F, -6.7F, 0.1F); // Import Import
+		gun_5_Model[1][17].addShapeBox(-12F, -2F, -0.5F, 2, 1, 1, 0F,0.5F, -0.5F, -0.25F, -2F, -0.5F, -0.2F, -2F, -0.5F, -0.2F, 0.5F, -0.5F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -0.08F, 0F, 0F, -0.08F, 0F, 0F, -0.25F); // Schulter 1
 
-		passenger[19].addShapeBox(2.3F, 1.3F, -2.4F, 8, 13, 1, 0F,0.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, 0.0F, 0.0F, 0.1F, 0.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, 0.0F, -6.7F, 0.1F); // Import Import
+		gun_5_Model[1][18].addShapeBox(-12F, -1F, -0.5F, 3, 1, 1, 0F,0F, 0F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.25F); // Schulter 2
 
-		passenger[20].addShapeBox(-2.5F, 6.5F, -2.6F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Import
+		gun_5_Model[1][19].addShapeBox(-12F, 0F, -0.5F, 3, 1, 1, 0F,0F, 0F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, -0.3F, -0.9F, 0F, -0.3F, -0.9F, 0F, 0F, 0F, -0.25F); // Schulter 3
 
-		passenger[21].addShapeBox(-3.3F, 0F, -2.2F, 8, 7, 5, 0F,0.0F, 0.2F, 0.3F, -7.0F, 0.2F, 0.3F, -7.0F, 0.2F, -0.6F, 0.0F, 0.2F, -0.6F, 0.0F, -6.7F, 0.3F, -7.0F, -6.7F, 0.3F, -7.0F, -6.7F, -0.6F, 0.0F, -6.7F, -0.6F); // Import Import
-
-		passenger[22].addShapeBox(2.3F, 0F, -2.2F, 8, 7, 5, 0F,0.0F, 0.2F, 0.3F, -7.0F, 0.2F, 0.3F, -7.0F, 0.2F, -0.6F, 0.0F, 0.2F, -0.6F, 0.0F, -6.7F, 0.3F, -7.0F, -6.7F, 0.3F, -7.0F, -6.7F, -0.6F, 0.0F, -6.7F, -0.6F); // Import Import
-
-		passenger[23].addShapeBox(-3.3F, 0.4F, 1.8F, 8, 10, 1, 0F,0.0F, 0.1F, 0.1F, -7.0F, 0.1F, 0.1F, -7.0F, 0.1F, -0.6F, 0.0F, 0.1F, -0.6F, -3.0F, -6.0F, 0.1F, -5.0F, -7.7F, 0.1F, -5.0F, -7.7F, -0.6F, -3.0F, -6.0F, -0.6F); // Import Import
-
-		passenger[24].addShapeBox(-4.7F, 0.4F, 1.8F, 8, 10, 1, 0F,-7.0F, 0.1F, 0.1F, 0.0F, 0.1F, 0.1F, 0.0F, 0.1F, -0.6F, -7.0F, 0.1F, -0.6F, -5.0F, -7.7F, 0.1F, -3.0F, -6.0F, 0.1F, -3.0F, -6.0F, -0.6F, -5.0F, -7.7F, -0.6F); // Import Import
-
-		passenger[25].addShapeBox(-0.5F, 2.7F, 1.8F, 8, 12, 1, 0F,0.1F, 0.0F, 0.1F, -7.0F, 0.0F, 0.1F, -7.0F, 0.0F, -0.51F, 0.1F, 0.0F, -0.5F, 0.1F, -6.7F, 0.1F, -7.0F, -6.7F, 0.1F, -7.0F, -6.7F, -0.5F, 0.1F, -6.7F, -0.5F); // Import Import
-
-		passenger[26].addShapeBox(-3F, 7F, 2.5F, 6, 2, 2, 0F,0.0F, 0.4F, 0.2F, 0.0F, -0.8F, 0.2F, 0.0F, -0.8F, 0.2F, 0.0F, 0.4F, 0.2F, 0.5F, -1.2F, 0.2F, -0.5F, 0.2F, 0.2F, -0.5F, 0.2F, 0.2F, 0.5F, -1.2F, 0.2F); // Import Import
-
-		passenger[27].addShapeBox(-4.6F, 6.5F, -2.6F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -2F, 0.0F, 0.0F, -2F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2F, -1.0F, 0.0F, -2F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Import
-
-		passenger[28].addShapeBox(0.6F, 6.5F, -2.6F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Import
-
-		passenger[29].addShapeBox(2.7F, 6.5F, -2.6F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Import
-
-		passenger[30].addShapeBox(-4.5F, 0F, -2F, 16, 36, 4, 0F,0.0F, 0.1F, 0.1F, -7.0F, 0.1F, 0.1F, -7.0F, 0.1F, 0.1F, 0.0F, 0.1F, 0.1F, 0.0F, -24F, 0.1F, -7.0F, -24F, 0.1F, -7.0F, -24F, 0.1F, 0.0F, -24F, 0.1F); // Import Import
-
-		passenger[31].addShapeBox(0.6F, 6.5F, -2.8F, 4, 2, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Box36
-
-		passenger[32].addShapeBox(1.1F, 7.5F, -2.8F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, 0F, 0.0F, 0.0F, 0F, -2F, 0.0F, -3F, -2F, 0.0F, -3F, -2F, 0.0F, 0.0F, -2F, 0.0F); // Import Box37
-
-		passenger[33].addShapeBox(-2.5F, 6.5F, -2.8F, 4, 2, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Box33
-
-		passenger[34].addShapeBox(2.7F, 6.5F, -2.8F, 4, 2, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Box35
-
-		passenger[35].addShapeBox(-4.6F, 6.5F, -2.8F, 4, 2, 1, 0F,0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, -2.0F, -1.0F, 0.0F, 0.0F, -1.0F, 0.0F); // Import Box36
-
-		passenger[36].addShapeBox(-0.5F, 0.92F, -2.6F, 480, 240, 6, 0F,-0.5F, 0F, 0F, -478.43F, 1.07F, 0F, -478.43F, 1.07F, -5.5F, -0.5F, 0F, -5.5F, -1.2F, -239.352F, 0F, -477.75F, -240.352F, 0F, -477.75F, -240.352F, -5.5F, -1.2F, -239.352F, -5.5F); // Import Box39
-
-		passenger[37].addShapeBox(-3.5F, 3.8F, -2.3F, 8, 8, 1, 0F,0F, 0.5F, 0F, -5.5F, 0.5F, 0F, -5.5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -6F, 0F, -5.5F, -6F, 0F, -5.5F, -6F, 0F, 0F, -6F, 0F); // Import Box41
-
-		passenger[38].addShapeBox(-4F, 8.8F, -2.3F, 8, 8, 1, 0F,0F, 0.5F, 0F, -5F, 0.5F, 0F, -5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -5F, 0F, -5F, -5F, 0F, -5F, -5F, 0F, 0F, -5F, 0F); // Import Box43
-
-		passenger[39].addShapeBox(-4F, 8.8F, -2.4F, 8, 4, 1, 0F,0F, 0.5F, 0F, -5F, 0.5F, 0F, -5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -3F, 0F, -5F, -3F, 0F, -5F, -3F, 0F, 0F, -3F, 0F); // Import Box44
-
-		passenger[40].addShapeBox(-3F, 9.8F, -2.39F, 4, 8, 1, 0F,0F, 0.5F, 0F, -3F, 0.5F, 0F, -3F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -6F, 0F, -3F, -6F, 0F, -3F, -6F, 0F, 0F, -6F, 0F); // Import Box46
-
-		passenger[41].addShapeBox(-3.5F, 1.6F, -2.2F, 800, 800, 10, 0F,0F, -0.25F, 0F, -797.5F, -0.25F, 0F, -797.5F, -0.25F, -9F, 0F, -0.25F, -9F, 0F, -798.5F, 0F, -797.5F, -798.5F, 0F, -797.5F, -798.5F, -9F, 0F, -798.5F, -9F); // Import Box52
-
-		passenger[42].addShapeBox(-2.8F, 4.8F, -2.39F, 4, 8, 1, 0F,0F, 0.5F, 0F, -3F, 0.5F, 0F, -3F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -7F, 0F, -3F, -7F, 0F, -3F, -7F, 0F, 0F, -7F, 0F); // Import Box53
-
-		passenger[43].addShapeBox(-2.3F, 0.05F, -1.69F, 8, 7, 4, 0F,0.2F, 0.2F, 0.4F, -6.75F, 0.2F, 0.4F, -6.75F, 0.2F, -0.3F, 0.2F, 0.2F, -0.3F, 0.2F, -6.7F, 0.4F, -6.75F, -6.7F, 0.4F, -6.75F, -6.7F, -0.3F, 0.2F, -6.7F, -0.3F); // Import Box50
-
-		passenger[44].addShapeBox(1.25F, 0.05F, -1.69F, 8, 7, 4, 0F,0.2F, 0.2F, 0.4F, -6.75F, 0.2F, 0.4F, -6.75F, 0.2F, -0.3F, 0.2F, 0.2F, -0.3F, 0.2F, -6.7F, 0.4F, -6.75F, -6.7F, 0.4F, -6.75F, -6.7F, -0.3F, 0.2F, -6.7F, -0.3F); // Import Box51
-
-		passenger[45].addShapeBox(-2.1F, 0.05F, 1.5F, 11, 7, 1, 0F,0.2F, 0.2F, 0.3F, -6.6F, 0.2F, 0.3F, -6.6F, 0.2F, -0.3F, 0.2F, 0.2F, -0.3F, 0.2F, -6.7F, 0.3F, -6.6F, -6.7F, 0.3F, -6.6F, -6.7F, -0.3F, 0.2F, -6.7F, -0.3F); // Import Box52
-
-		passenger[46].addShapeBox(-3.5F, 3.8F, -2.4F, 8, 4, 1, 0F,0F, 0.5F, 0F, -5.5F, 0.5F, 0F, -5.5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -3.5F, 0F, -5.5F, -3.5F, 0F, -5.5F, -3.5F, 0F, 0F, -3.5F, 0F); // Import Box55
-
-		passenger[47].addShapeBox(-11.5F, 0.92F, -2.6F, 480, 240, 6, 0F,-10.43F, 1.07F, 0F, -468.5F, 0F, 0F, -468.5F, 0F, -5.5F, -10.43F, 1.07F, -5.5F, -9.75F, -240.352F, 0F, -469.2F, -239.3F, 0F, -469.2F, -239.3F, -5.5F, -9.75F, -240.352F, -5.5F); // Import Box52
-
-		passenger[48].addShapeBox(-2.44F, -0.13F, -2.6F, 40, 40, 1, 0F,0F, 0F, 0F, -38.65F, 0F, 0F, -38.65F, 0F, 0F, 0F, 0F, 0F, -0.5F, -39.5F, 0F, -39.3F, -39.3F, 0F, -39.3F, -39.3F, 0F, -0.5F, -39.5F, 0F); // Import Box53
-
-		passenger[49].addShapeBox(1.06F, -0.13F, -2.6F, 40, 40, 1, 0F,-1.35F, 0F, 0F, -40F, 0F, 0F, -40F, 0F, 0F, -1.35F, 0F, 0F, -0.7F, -39.3F, 0F, -39.5F, -39.5F, 0F, -39.5F, -39.5F, 0F, -0.7F, -39.3F, 0F); // Import Box52
-
-		passenger[50].addShapeBox(-0.2F, 3.5F, -2.55F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box52
-
-		passenger[51].addShapeBox(-0.2F, 1.5F, -2.55F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box53
-
-		passenger[52].addShapeBox(-0.2F, 5.5F, -2.55F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box54
-
-		passenger[53].addShapeBox(-0.2F, 9F, -2.55F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box55
-
-		passenger[54].addShapeBox(-0.2F, 11F, -2.55F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box56
-
-		passenger[55].addShapeBox(-2.8F, 9.3F, -2.85F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box57
-
-		passenger[56].addShapeBox(2.2F, 9.3F, -2.85F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.5F, 0F, -0.4F, -29.5F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, -29.5F, -29.5F, -0.4F, 0F, -29.5F, -0.4F); // Import Box58
-
-		passenger[57].addShapeBox(-2.45F, 4F, -2.85F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.65F, 0F, -0.4F, -29.65F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.65F, -0.4F, -29.65F, -29.65F, -0.4F, -29.65F, -29.65F, -0.4F, 0F, -29.65F, -0.4F); // Import Box59
-
-		passenger[58].addShapeBox(2.1F, 4F, -2.85F, 30, 30, 1, 0F,0F, 0F, -0.4F, -29.65F, 0F, -0.4F, -29.65F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, -29.65F, -0.4F, -29.65F, -29.65F, -0.4F, -29.65F, -29.65F, -0.4F, 0F, -29.65F, -0.4F); // Import Box60
-
-		passenger[59].addShapeBox(-0.75F, 4.2F, -2.51F, 6, 6, 1, 0F,-0.3F, -0.1F, -0.4F, -5.45F, 0.3F, -0.4F, -5.45F, 0.3F, -0.4F, -0.3F, -0.1F, -0.4F, -0.3F, -5.3F, -0.4F, -5F, -6.3F, -0.4F, -5F, -6.3F, -0.4F, -0.3F, -5.3F, -0.4F); // Import Box61
-
-		passenger[60].addShapeBox(1F, 3.8F, -2.4F, 8, 4, 1, 0F,0F, 0.5F, 0F, -5.5F, 0.5F, 0F, -5.5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -3.5F, 0F, -5.5F, -3.5F, 0F, -5.5F, -3.5F, 0F, 0F, -3.5F, 0F); // Import Box62
-
-		passenger[61].addShapeBox(1.8F, 4.8F, -2.39F, 4, 8, 1, 0F,0F, 0.5F, 0F, -3F, 0.5F, 0F, -3F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -7F, 0F, -3F, -7F, 0F, -3F, -7F, 0F, 0F, -7F, 0F); // Import Box65
-
-		passenger[62].addShapeBox(1F, 3.8F, -2.3F, 8, 8, 1, 0F,0F, 0.5F, 0F, -5.5F, 0.5F, 0F, -5.5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -6F, 0F, -5.5F, -6F, 0F, -5.5F, -6F, 0F, 0F, -6F, 0F); // Import Box66
-
-		passenger[63].addShapeBox(1F, 8.8F, -2.4F, 8, 4, 1, 0F,0F, 0.5F, 0F, -5F, 0.5F, 0F, -5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -3F, 0F, -5F, -3F, 0F, -5F, -3F, 0F, 0F, -3F, 0F); // Import Box67
-
-		passenger[64].addShapeBox(1F, 8.8F, -2.3F, 8, 8, 1, 0F,0F, 0.5F, 0F, -5F, 0.5F, 0F, -5F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -5F, 0F, -5F, -5F, 0F, -5F, -5F, 0F, 0F, -5F, 0F); // Import Box68
-
-		passenger[65].addShapeBox(2F, 9.8F, -2.39F, 4, 8, 1, 0F,0F, 0.5F, 0F, -3F, 0.5F, 0F, -3F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, -6F, 0F, -3F, -6F, 0F, -3F, -6F, 0F, 0F, -6F, 0F); // Import Box69
-
-		passenger[66].addShapeBox(3.2F, 7.5F, -2.8F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, 0F, 0.0F, 0.0F, 0F, -2F, 0.0F, -3F, -2F, 0.0F, -3F, -2F, 0.0F, 0.0F, -2F, 0.0F); // Import Box70
-
-		passenger[67].addShapeBox(-2F, 7.5F, -2.8F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, 0F, 0.0F, 0.0F, 0F, -2F, 0.0F, -3F, -2F, 0.0F, -3F, -2F, 0.0F, 0.0F, -2F, 0.0F); // Import Box71
-
-		passenger[68].addShapeBox(-4.1F, 7.5F, -2.8F, 4, 4, 1, 0F,0.0F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, -3F, 0.0F, 0.0F, 0F, 0.0F, 0.0F, 0F, -2F, 0.0F, -3F, -2F, 0.0F, -3F, -2F, 0.0F, 0.0F, -2F, 0.0F); // Import Box72
-
-		passenger[69].addShapeBox(-3F, 7F, 2.5F, 6, 2, 2, 0F,0.75F, -1.6F, -0.8F, -0.75F, -2.8F, -0.8F, -0.75F, -2.8F, -0.8F, 0.75F, -1.6F, -0.8F, 0.5F, -1.2F, 0.2F, -0.5F, 0.2F, 0.2F, -0.5F, 0.2F, 0.2F, 0.5F, -1.2F, 0.2F); // Import Box64
-
-		passenger[70].addShapeBox(-3F, 7F, 2.5F, 6, 2, 2, 0F,0.0F, 0.4F, 0.2F, 0.0F, -0.8F, 0.2F, 0F, -0.8F, 0.2F, 0.0F, 0.4F, 0.2F, -0.25F, -3.2F, -0.8F, 0.25F, -1.8F, -0.8F, 0.25F, -1.8F, -0.8F, -0.25F, -3.2F, -0.8F); // Import Box65
-
-		passenger[71].addShapeBox(-8F, 6.8F, 0F, 160, 40, 160, 0F, 0.3F, 0.0F, 0.3F, -155.7F, 0.0F, 0.3F, -155.7F, 0.0F, -155.7F, 0.3F, 0.0F, -155.7F, 0.3F, -39F, 0.3F, -155.7F, -39F, 0.3F, -155.7F, -39F, -155.7F, 0.3F, -39F, -155.7F); // Import Import
-		passenger[71].setRotationPoint(0F, 0F, 0F);
-		passenger[71].rotateAngleX = -1.04719755F;
-
-		passenger[72].addShapeBox(5.2F, -1.4F, 1.5F, 80, 1, 40, 0F, 0.4F, 0.0F, 0.15F, -77.9F, 0.0F, 0.15F, -77.9F, 0.0F, -38.85F, 0.4F, 0.0F, -38.85F, 0.4F, 0.0F, 0.15F, -77.6F, 0.0F, 0.15F, -77.6F, 0.0F, -38.85F, 0.4F, 0.0F, -38.85F); // Import Import
-		passenger[72].setRotationPoint(0F, 0F, 0F);
-		passenger[72].rotateAngleX = -1.04719755F;
-
-		passenger[73].addShapeBox(-8F, -1.2F, 0F, 8, 15, 4, 0F, 0.2F, 0.0F, 0.15F, -3.8F, 0.0F, 0.15F, -3.8F, 0.0F, 0.15F, 0.2F, 0.0F, 0.15F, 0.2F, -7F, 0.15F, -3.8F, -7F, 0.15F, -3.8F, -7F, 0.15F, 0.2F, -7F, 0.15F); // Import Import
-		passenger[73].setRotationPoint(0F, 0F, 0F);
-		passenger[73].rotateAngleX = -1.04719755F;
-
-		passenger[74].addShapeBox(7.3F, 2.5F, -16.25F, 10, 800, 800, 0F, 0F, -0.25F, -17.5F, -9F, -0.25F, -17.5F, -9F, -0.25F, -781F, 0F, -0.25F, -781F, 0F, -798.5F, -17.5F, -9F, -798.5F, -17.5F, -9F, -798.5F, -781F, 0F, -798.5F, -781F); // Import Box57
-		passenger[74].setRotationPoint(0F, 0F, 0F);
-		passenger[74].rotateAngleX = -1.04719755F;
-
-		passenger[75].addShapeBox(-1.7F, 0.599999999999999F, -16.75F, 10, 800, 800, 0F, -9F, -0.25F, -17.5F, 0F, -0.25F, -17.5F, 0F, -0.25F, -780F, -9F, -0.25F, -780F, -9F, -798.5F, -17.5F, 0F, -798.5F, -17.5F, 0F, -798.5F, -780F, -9F, -798.5F, -780F); // Import Box52
-		passenger[75].setRotationPoint(0F, 0F, 0F);
-		passenger[75].rotateAngleX = -1.04719755F;
-
-		passenger[76].addShapeBox(4F, -1.2F, 0F, 8, 15, 4, 0F, 0.2F, 0.0F, 0.15F, -3.8F, 0.0F, 0.15F, -3.8F, 0.0F, 0.15F, 0.2F, 0.0F, 0.15F, 0.2F, -7.0F, 0.15F, -3.8F, -7.0F, 0.15F, -3.8F, -7.0F, 0.15F, 0.2F, -7.0F, 0.15F); // Import Import
-		passenger[76].setRotationPoint(0F, 0F, 0F);
-		passenger[76].rotateAngleX = -1.04719755F;
-
-		passenger[77].addShapeBox(4F, 6.8F, 0F, 160, 40, 160, 0F, 0.3F, 0F, 0.3F, -155.7F, 0F, 0.3F, -155.7F, 0F, -155.7F, 0.3F, 0F, -155.7F, 0.3F, -39F, 0.3F, -155.7F, -39F, 0.3F, -155.7F, -39F, -155.7F, 0.3F, -39F, -155.7F); // Import Import
-		passenger[77].setRotationPoint(0F, 0F, 0F);
-		passenger[77].rotateAngleX = -1.04719755F;
-
-		passenger[78].addShapeBox(-7.2F, -1.4F, 1.5F, 80, 1, 40, 0F, 0.1F, 0.0F, 0.15F, -77.6F, 0.0F, 0.15F, -77.6F, 0.0F, -38.85F, 0.1F, 0.0F, -38.85F, 0.4F, 0.0F, 0.15F, -77.6F, 0.0F, 0.15F, -77.6F, 0.0F, -38.85F, 0.4F, 0.0F, -38.85F); // Import Import
-		passenger[78].setRotationPoint(0F, 0F, 0F);
-		passenger[78].rotateAngleX = -1.04719755F;
-
-		passenger[79].addShapeBox(-4F, 12F, -2F, 4, 12, 4, 0F, 0F, 0.15F, 0.05F, 0.25F, 0.15F, 0.05F, 0.25F, 0.15F, 0.05F, 0F, 0.15F, 0.05F, 0F, 0.01F, 0.05F, 0.25F, 0.01F, 0.05F, 0.25F, 0.01F, 0.05F, 0F, 0.01F, 0.05F); // Import Import
-		passenger[79].setRotationPoint(0F, 0F, 0F);
-
-		passenger[80].addShapeBox(-4F, 18F, -2F, 4, 6, 4, 0F, 0.5F, 0.15F, 0.45F, 0.25F, 0.15F, 0.45F, 0.25F, 0.15F, 0.45F, 0.5F, 0.15F, 0.45F, 0.5F, 0.05F, 0.45F, 0.25F, 0.05F, 0.45F, 0.25F, 0.05F, 0.45F, 0.5F, 0.05F, 0.45F); // Import Box2
-		passenger[80].setRotationPoint(0F, 0F, 0F);
-
-		passenger[81].addShapeBox(0F, 12F, -2F, 4, 12, 4, 0F, 0.25F, 0.15F, 0.05F, 0F, 0.15F, 0.05F, 0F, 0.15F, 0.05F, 0.25F, 0.15F, 0.05F, 0.25F, 0.01F, 0.05F, 0F, 0.01F, 0.05F, 0F, 0.01F, 0.05F, 0.25F, 0.01F, 0.05F); // Import Import
-		passenger[81].setRotationPoint(0F, 0F, 0F);
-
-		passenger[82].addShapeBox(0F, 18F, -2F, 4, 6, 4, 0F, 0.5F, 0.15F, 0.45F, 0.25F, 0.15F, 0.45F, 0.25F, 0.15F, 0.45F, 0.5F, 0.15F, 0.45F, 0.5F, 0.05F, 0.45F, 0.25F, 0.05F, 0.45F, 0.25F, 0.05F, 0.45F, 0.5F, 0.05F, 0.45F); // Import Import
-		passenger[82].setRotationPoint(0F, 0F, 0F);
-
-		passenger[83].addShapeBox(-4F, -8F, -4F, 8, 8, 8, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 0
-		passenger[83].setRotationPoint(0F, 0F, 0F);
-
-		passenger[84].addShapeBox(-8F, -1F, 0F, 4, 12, 4, 0F, 0F, 0.0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 1
-		passenger[84].setRotationPoint(0F, 0F, 0F);
-		passenger[84].rotateAngleX = -1.04719755F;
-
-		passenger[85].addShapeBox(4F, -1F, 0F, 4, 12, 4, 0F, 0F, 0.0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 2
-		passenger[85].setRotationPoint(0F, 0F, 0F);
-		passenger[85].rotateAngleX = -1.04719755F;
-
-		passenger[86].addShapeBox(-4F, 12F, -2F, 4, 12, 4, 0F, 0F, 0.0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 3
-		passenger[86].setRotationPoint(0F, 0F, 0F);
-
-		passenger[87].addShapeBox(0F, 12F, -2F, 4, 12, 4, 0F, 0F, 0.0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 4
-		passenger[87].setRotationPoint(0F, 0F, 0F);
-
-		passenger[88].addShapeBox(-4F, 0F, -2F, 8, 12, 4, 0F, 0F, 0.0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 5
-		passenger[88].setRotationPoint(0F, 0F, 0F);
-
-		passenger[89].addShapeBox(-8F, 7.8F, 0F, 8, 3, 4, 0F, 0.2F, 0.0F, 0.15F, -3.8F, 0F, 0.15F, -3.8F, 0F, 0.15F, 0.2F, 0F, 0.15F, 0.2F, 0.21F, 0.15F, -3.8F, 0.21F, 0.15F, -3.8F, 0.21F, 0.15F, 0.2F, 0.21F, 0.15F); // Box 6
-		passenger[89].setRotationPoint(0F, 0F, 0F);
-		passenger[89].rotateAngleX = -1.04719755F;
-
-		passenger[90].addShapeBox(4F, 7.8F, 0F, 8, 3, 4, 0F, 0.2F, 0.0F, 0.15F, -3.8F, 0F, 0.15F, -3.8F, 0F, 0.15F, 0.2F, 0F, 0.15F, 0.2F, 0.21F, 0.15F, -3.8F, 0.21F, 0.15F, -3.8F, 0.21F, 0.15F, 0.2F, 0.21F, 0.15F); // Box 7
-		passenger[90].setRotationPoint(0F, 0F, 0F);
-		passenger[90].rotateAngleX = -1.04719755F;
-		
 		//Gun Origin
-		for (int i = 0; i < 91; i++)
+		for (ModelRendererTurbo gunPart : gun_5_Model[1])
 		{
-			passenger[i].setRotationPoint(-12F, -27F, 1F);
-			passenger[i].rotateAngleY = -1.57079633F;
+			gunPart.setRotationPoint(-45F, -25F, 0F);
 		}
-		
+
+
+		gun_5_Model[2] = new ModelRendererTurbo[0];
+
+		registerGunModel("MGRear", gun_5_Model);
+
+		translateAll(0F, 0F, 0F);
+
+
+		flipAll();
 	}
-	
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		super.render(entity, f, f1, f2, f3, f4, f5);
-		for (int i = 0; i < 15; i++)
-		{
-			passenger[i].rotateAngleY = f3 / (180F / (float)Math.PI) - 90 / (180F / (float)Math.PI);
-		}
-		passenger[83].rotateAngleY = f3 / (180F / (float)Math.PI) - 90 / (180F / (float)Math.PI);
-
-		for (ModelRendererTurbo modelRendererTurbo : driver)
-		{
-			modelRendererTurbo.render(f5);
-		}
-		for (ModelRendererTurbo modelRendererTurbo : passenger)
-		{
-			modelRendererTurbo.render(f5);
-		}
-	}
-
-	@Override
-	protected void renderTurretAndBarrel(Vector3f turretOrigin, Seat driver, float recoilPos)
-	{
-		Seat invertedYawDriver = new Seat();
-		invertedYawDriver.copy(driver);
-		invertedYawDriver.setLocalYaw(-driver.getLocalYaw());
-		super.renderTurretAndBarrel(turretOrigin, invertedYawDriver, recoilPos);
-	}
-	
-	protected float degToRad(float degrees)
-    {
-        return degrees * (float) Math.PI / 180 ;
-    }
-	
-	protected void setRotation(ModelRendererTurbo model, float rotX, float rotY, float rotZ)
-    {
-        model.rotateAngleX = degToRad(rotX);
-        model.rotateAngleY = degToRad(rotY);
-        model.rotateAngleZ = degToRad(rotZ);        
-    }
 }

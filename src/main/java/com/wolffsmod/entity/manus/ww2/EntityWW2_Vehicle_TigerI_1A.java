@@ -16,6 +16,7 @@ public class EntityWW2_Vehicle_TigerI_1A extends EntityFlanVehicleNPC
     public void setupConfig()
     {
         setDriver("0 34 0 -360 360 -10 20");
+        setRotatedDriverOffset("-9 0 -9");
         setPassenger("1 33 12 17 core -30 30 -10 10 WW2_MG_MG42ZB_1A FrontMG");
         addBarrelPosition("0 32 0");
         addGun("30 32 7 turret WW2_MG_MG42ZB_1A");

@@ -16,6 +16,7 @@ public class EntityWW2_Vehicle_T34_1A extends EntityFlanVehicleNPC
     public void setupConfig()
     {
         setDriver("0 25 0 -360 360 -10 20");
+        setRotatedDriverOffset("-3 0 6");
         setPassenger("1 24 3 -6 core -30 30 -10 10 WW2_MG_DP28_1A FrontMG");
         addBarrelPosition("0 33 0");
         addGun("30 33 -5 turret WW2_MG_DP28_1A");

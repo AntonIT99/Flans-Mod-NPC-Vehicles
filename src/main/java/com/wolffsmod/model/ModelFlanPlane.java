@@ -4,12 +4,14 @@ import org.lwjgl.opengl.GL11;
 
 import com.flansmod.client.model.ModelPlane;
 import com.flansmod.client.tmt.ModelRendererTurbo;
+import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.EntityFlanPlaneNPC;
 import com.wolffsmod.entity.Seat;
 
 import net.minecraft.entity.Entity;
 
 import java.util.Map;
+import java.util.Optional;
 
 public abstract class ModelFlanPlane extends ModelPlane
 {
@@ -25,7 +27,7 @@ public abstract class ModelFlanPlane extends ModelPlane
             renderPart(bodyDoorOpenModel);
         else
             renderPart(bodyDoorCloseModel);
-        renderGuns(plane.passengers, plane.vehicleGunModelScale);
+        renderGuns(plane, plane.vehicleGunModelScale);
         renderPart(noseModel);
         renderPart(bayModel);
         renderPart(tailModel);
@@ -52,14 +54,18 @@ public abstract class ModelFlanPlane extends ModelPlane
         renderAnimDoors();
     }
 
-    protected void renderGuns(Map<Integer, Seat> passengers, float vehicleGunModelScale)
+    protected void renderGuns(EntityFlanDriveableNPC entity, float vehicleGunModelScale)
     {
         float f5 = 0.0625F;
 
-        for (ModelRendererTurbo[][] gunModel : gunModels.values())
+        for (String gunName : gunModels.keySet())
         {
+            ModelRendererTurbo[][] gunModel = gunModels.get(gunName);
+
             if (gunModel.length < 1)
                 return;
+
+            Optional<Seat> passenger = entity.getPassengerFromGun(gunName);
 
             //Yaw only parts
             for (ModelRendererTurbo gunModelPart : gunModel[0])
@@ -67,10 +73,7 @@ public abstract class ModelFlanPlane extends ModelPlane
                 //Yaw and render
                 GL11.glPushMatrix();
                 GL11.glScalef(vehicleGunModelScale, vehicleGunModelScale, vehicleGunModelScale);
-                if (passengers.get(0) != null)
-                {
-                    gunModelPart.rotateAngleY = (180F - passengers.get(0).getLocalYaw()) * (float) Math.PI / 180F;
-                }
+                passenger.ifPresent(seat -> gunModelPart.rotateAngleY = (180F - seat.getLocalYaw()) * (float) Math.PI / 180F);
                 gunModelPart.render(f5);
                 GL11.glPopMatrix();
             }
@@ -83,11 +86,11 @@ public abstract class ModelFlanPlane extends ModelPlane
             {
                 GL11.glPushMatrix();
                 GL11.glScalef(vehicleGunModelScale, vehicleGunModelScale, vehicleGunModelScale);
-                if (passengers.get(1) != null)
+                if (passenger.isPresent())
                 {
                     //Yaw, pitch and render
-                    gunModelPart.rotateAngleY = (180F - passengers.get(1).getLocalYaw()) * (float) Math.PI / 180F;
-                    gunModelPart.rotateAngleZ = -passengers.get(1).getPitch() * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleY = (180F - passenger.get().getLocalYaw()) * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleZ = -passenger.get().getPitch() * (float) Math.PI / 180F;
                 }
                 gunModelPart.render(f5);
                 GL11.glPopMatrix();
@@ -101,11 +104,11 @@ public abstract class ModelFlanPlane extends ModelPlane
             {
                 GL11.glPushMatrix();
                 GL11.glScalef(vehicleGunModelScale, vehicleGunModelScale, vehicleGunModelScale);
-                if (passengers.get(2) != null)
+                if (passenger.isPresent())
                 {
                     //Yaw, pitch, recoil and render
-                    gunModelPart.rotateAngleY = (180F - passengers.get(2).getLocalYaw()) * (float) Math.PI / 180F;
-                    gunModelPart.rotateAngleZ = -passengers.get(2).getPitch() * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleY = (180F - passenger.get().getLocalYaw()) * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleZ = -passenger.get().getPitch() * (float) Math.PI / 180F;
                 }
                 gunModelPart.render(f5);
                 GL11.glPopMatrix();
@@ -118,11 +121,11 @@ public abstract class ModelFlanPlane extends ModelPlane
             {
                 GL11.glPushMatrix();
                 GL11.glScalef(vehicleGunModelScale, vehicleGunModelScale, vehicleGunModelScale);
-                if (passengers.get(3) != null)
+                if (passenger.isPresent())
                 {
                     //Yaw, pitch, recoil and render
-                    gunModelPart.rotateAngleY = (180F - passengers.get(3).getLocalYaw()) * (float) Math.PI / 180F;
-                    gunModelPart.rotateAngleZ = -passengers.get(3).getPitch() * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleY = (180F - passenger.get().getLocalYaw()) * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleZ = -passenger.get().getPitch() * (float) Math.PI / 180F;
                 }
                 gunModelPart.render(f5);
                 GL11.glPopMatrix();
@@ -132,12 +135,12 @@ public abstract class ModelFlanPlane extends ModelPlane
             {
                 GL11.glPushMatrix();
                 GL11.glScalef(vehicleGunModelScale, vehicleGunModelScale, vehicleGunModelScale);
-                if (passengers.get(i) != null)
+                if (passenger.isPresent())
                 {
                     for (ModelRendererTurbo gunModelPart : gunModel[i])
                     {
-                        gunModelPart.rotateAngleY = (180F - passengers.get(i).getLocalYaw()) * (float) Math.PI / 180F;
-                        gunModelPart.rotateAngleZ = -passengers.get(i).getPitch() * (float) Math.PI / 180F;
+                        gunModelPart.rotateAngleY = (180F - passenger.get().getLocalYaw()) * (float) Math.PI / 180F;
+                        gunModelPart.rotateAngleZ = -passenger.get().getPitch() * (float) Math.PI / 180F;
                     }
                 }
                 renderPart(gunModel[i]);

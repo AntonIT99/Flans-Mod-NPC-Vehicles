@@ -23,6 +23,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public abstract class EntityFlanDriveableNPC extends EntityLiving implements ConfigDriveable
 {
@@ -71,31 +72,30 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         {
             super.updateRiderPosition();
         }
-        System.out.println("NPC Vehicle");
-        System.out.println("PosX: " + posX);
-        System.out.println("PosY: " + posY);
-        System.out.println("PosZ: " + posZ);
-        System.out.println("X: " + (posX - riddenByEntity.posX));
-        System.out.println("Y: " + (posY - riddenByEntity.posY));
-        System.out.println("Z: " + (posZ - riddenByEntity.posZ));
-        System.out.println("RiderX: " + riddenByEntity.posX);
-        System.out.println("RiderY: " + riddenByEntity.posY);
-        System.out.println("RiderZ: " + riddenByEntity.posZ);
     }
 
     public Vector3f getDriverPosition()
     {
         RotatedAxes looking = new RotatedAxes(driver.getGlobalYaw(renderYawOffset), 0F, 0F);
         RotatedAxes axes = new RotatedAxes(renderYawOffset, 0F, 0F);
+
         looking.rotateLocalYaw(90F);
         axes.rotateLocalYaw(90F);
 
         Vector3f position = axes.findLocalVectorGlobally(new Vector3f(driver.position.getX() / 16F, driver.position.getY() / 16F + yDriveableOffset,  driver.position.getZ() / 16F));
         Vector3f offset = looking.findLocalVectorGlobally(new Vector3f(driver.rotatedOffset.getX() / 16F, driver.rotatedOffset.getY() / 16F,  driver.rotatedOffset.getZ() / 16F));
-        System.out.println(driver.position.getX());
-        System.out.println(driver.position.getY());
-        System.out.println(driver.position.getZ());
+
         return Vector3f.add(position, offset, null);
+    }
+
+    public Optional<Seat> getPassengerFromGun(String gunName)
+    {
+        for (Seat passenger: passengers.values())
+        {
+            if (passenger.gun.equals(gunName))
+                return Optional.of(passenger);
+        }
+        return Optional.empty();
     }
 
     @Override
@@ -242,11 +242,13 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
                 minPitch = Float.parseFloat(split[7]);
                 maxPitch = Float.parseFloat(split[8]);
             }
-            passengers.put(Integer.parseInt(split[0]),
-                    new Seat(Float.parseFloat(split[3]),
-                            Float.parseFloat(split[2]),
-                            Float.parseFloat(split[1]),
-                            minYaw, maxYaw, minPitch, maxPitch));
+            Seat seat = new Seat(Float.parseFloat(split[3]),
+                    Float.parseFloat(split[2]),
+                    Float.parseFloat(split[1]),
+                    minYaw, maxYaw, minPitch, maxPitch);
+            if (split.length > 10)
+                seat.gun = split[10];
+            passengers.put(Integer.parseInt(split[0]), seat);
         }
     }
 

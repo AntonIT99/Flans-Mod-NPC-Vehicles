@@ -17,6 +17,7 @@ public class EntityT3485 extends EntityFlanVehicleNPC
     {
         setTurnSpeed(0.3F);
         setDriver("0 32 0 -360 360 -6 17");
+        setRotatedDriverOffset("-15 0 -6");
         addBarrelPosition("0 30 0");
         addGun("8 34 8 turret dp28");
         

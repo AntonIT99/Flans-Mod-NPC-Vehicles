@@ -17,6 +17,7 @@ public class EntityPanzer extends EntityFlanVehicleNPC
     {
         setTurnSpeed(0.3F);
         setDriver("0 14 0 -360 360 0 45");
+        setRotatedDriverOffset("12 0 -8");
         setPassenger("1 0 34 0 turret -360 360 -15 60 mg42 MG42");
         addBarrelPosition("0 34 0");
         addGun("8 34 8 turret mg42");

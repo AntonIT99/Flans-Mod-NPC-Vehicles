@@ -1,6 +1,7 @@
 package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
+import com.wolffsmod.entity.wolff.EntitySdKfz251DManned;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 import net.minecraft.entity.Entity;
@@ -106,6 +107,7 @@ public class ModEntityRegistry {
 		//Wolff's Pack
 		createEntity(com.wolffsmod.entity.wolff.EntityPanzerIVJ.class, "Panzer IV Ausf. J (Wolff's Pack)");
 		createEntity(com.wolffsmod.entity.wolff.EntitySdKfz251D.class, "SdKfz 251 Ausf. D (Wolff's Pack)");
+		createEntity(com.wolffsmod.entity.wolff.EntitySdKfz251DManned.class, "SdKfz 251 Ausf. D - Manned (Wolff's Pack)");
 
 		//Kikkoceccato
 		createEntity(com.wolffsmod.entity.kikkoceccato.EntityPanzerI.class, "Panzer I Ausf. A (Kikkoceccato)");

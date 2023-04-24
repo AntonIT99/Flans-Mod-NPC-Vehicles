@@ -12,6 +12,7 @@ public class Seat
     public float pitchSpeed = 2F;
     public Vector3f position = new Vector3f();
     public Vector3f rotatedOffset = new Vector3f();
+    public String gun = "";
 
     private float minYaw;
     private float maxYaw;
@@ -51,6 +52,7 @@ public class Seat
         pitchSpeed = other.pitchSpeed;
         offsetYawAngle = other.offsetYawAngle;
         gunOrigin.set(other.gunOrigin);
+        gun = other.gun;
     }
 
     public void copy(Seat other)
@@ -67,6 +69,7 @@ public class Seat
         pitchSpeed = other.pitchSpeed;
         offsetYawAngle = other.offsetYawAngle;
         gunOrigin.set(other.gunOrigin);
+        gun = other.gun;
     }
 
     public Seat(float x, float y, float z, float minYaw, float maxYaw, float minPitch, float maxPitch)

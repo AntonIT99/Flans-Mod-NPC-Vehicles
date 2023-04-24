@@ -2,35 +2,35 @@ package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
 import com.wolffsmod.model.*;
+import com.wolffsmod.model.wolff.ModelSdKfz251DManned;
 import com.wolffsmod.render.*;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends ServerProxy{
-	
+
+	/**
+	 * When using RenderFlansModEntity, a default Y-translation of -2.133F is applied
+	 * The scale() method automatically scales the translation as well.
+	 * Use setTranslation(), setScale() and setRotation() to override the values in OpenGL
+	 * <p>
+	 * Scale Factor		Default Y-Translation
+	 * 	0.5					-1.07
+	 * 	0.75				-1.60
+	 *	0.80				-1.71
+	 *	0.90				-1.92
+	 *	1.00				-2.13
+	 * 	1.10				-2.35
+	 * 	1.20				-2.56
+	 * 	1.25				-2.67
+	 * 	1.30				-2.77
+	 * 	1.40				-2.99
+	 * 	1.5					-3.20
+	 * 	2.0					-4.26
+	 */
+
 	@Override
 	public void registerRenderers()
 	{
-		/**
-		* When using RenderFlansModEntity, a default Y-translation of -2.1F is applied
-		* The scale() method adapts automatically the translation to its scaled value.
-		* Use setScale() and setTranslation() to override the values in OpenGL
-		*
-		* Scale Factor		Default Y-Translation
-		* 	0.5					-1.05
-		* 	0.75				-1.58
-		*	0.80				-1.68
-		*	0.90				-1.89
-		*	1.00				-2.10
-		* 	1.10				-2.31
-		* 	1.20				-2.52
-		* 	1.25				-2.63
-		* 	1.30				-2.73
-		* 	1.40				-2.94
-		* 	1.5					-3.15
-		* 	2.0					-4.20
-		*
-		*/
-
 		//WW2 Official Pack
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.Entity105leFH18B2.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.Model105leFH18B2()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityB1.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelB1()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
@@ -39,10 +39,10 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityBofors.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelBofors()).setTranslation(0F, -2.3F, 0F).setScale(1.1F, 1.1F, 1.1F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityCamel.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelCamel()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityChaffee.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelChaffee()).setTranslation(0F, -2.133F, 0F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityChiHa.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelChiHa()).setTranslation(0F, -2.133F, 0F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityChiHa.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelChiHa()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityChiNu.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelChiNu()).setTranslation(0F, -2.5F, 0F).setScale(1.25F, 1.25F, 1.25F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityChurchill.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelChurchill()).setTranslation(0F, -1.8F, 0F).setScale(0.8F, 0.8F, 0.8F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityCromwell.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelCromwell()).setTranslation(0F, -2.133F, 0F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityCromwell.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelCromwell()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityCrusader.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelCrusader()).setTranslation(0F, -2.2F, 0F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityFlak88.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelFlak88()).setTranslation(0F, -2.1F, 0F).setScale(1.1F, 1.1F, 1.1F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityFlakvierling.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelFlakvierling()).setTranslation(0F, -2.1F, 0F).setScale(1.1F, 1.1F, 1.1F));
@@ -76,8 +76,8 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityT3485.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelT3485()).setTranslation(0F, -2.6F, 0F).setScale(1.3F, 1.3F, 1.3F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityTiger.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelTiger()).setTranslation(0F, -2.4F, 0F).setScale(1.2F, 1.2F, 1.2F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityTiger131.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelTiger131()).setTranslation(0F, -2.4F, 0F).setScale(1.2F, 1.2F, 1.2F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityTigerII.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelTigerII()).setTranslation(0F, -2.133F, 0F).scale(1.1F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityType4HoRo.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelType4HoRo()).setTranslation(0F, -2.133F, 0F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityTigerII.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelTigerII()).scale(1.1F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityType4HoRo.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelType4HoRo()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityUC2Pdr.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelUC2Pdr()).setTranslation(0F, -2.1F, 0F).setScale(1.1F, 1.1F, 1.1F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityYak9.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelYak9()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityZero.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelZero()));
@@ -122,8 +122,9 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntitySentryGun.class, new RenderFlansModEntity(new ModelSentryGun()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
 
 		//Wolff's Pack
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.wolff.EntitySdKfz251D.class, new RenderFlansModEntity(new com.wolffsmod.model.wolff.ModelSdKfz251D()).setTranslation(0F, 0.9F, 0F).setRotation(0F, 90F, 0F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.wolff.EntityPanzerIVJ.class, new RenderFlansModEntity(new com.wolffsmod.model.wolff.ModelPanzerIVJ()).setTranslation(0F, -2F, 0F).setScale(0.9F, 0.9F, 0.9F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.wolff.EntitySdKfz251D.class, new RenderFlansModEntity(new com.wolffsmod.model.wolff.ModelSdKfz251D()));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.wolff.EntitySdKfz251DManned.class, new RenderFlansModEntity(new com.wolffsmod.model.wolff.ModelSdKfz251DManned(), "SdKfz251D_Manned/SdKfz251D.png").setTranslation(0F, 0.9F, 0F).setRotation(0F, 90F, 0F));
 
 		//Kikkoceccato
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.kikkoceccato.EntityPanzerI.class, new RenderFlansModEntity(new com.wolffsmod.model.kikkoceccato.ModelPanzerI()).setTranslation(0F, -1.5F, 0F).setScale(0.55F, 0.55F, 0.55F));
@@ -280,9 +281,9 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntityJihadBMP1.class, new RenderJihadBMP1(new ModelJihadBMP1(), 0));	
 
 		//Warfare 44
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityPanzerIVF1.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelPanzerIVF1(), "PanzerIVF/PanzerIVF.png").setTranslation(0F, -2.133F, 0F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityJu87D3.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelJu87D3()).setTranslation(0F, -2.133F, 0F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityStuG3G.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelStuG3G()).setTranslation(0F, -2.133F, 0F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityTiger1H.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelTiger1H()).setTranslation(0F, -2.133F, 0F).scale(1.2F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityJu87D3.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelJu87D3()));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityPanzerIVF1.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelPanzerIVF1(), "PanzerIVF/PanzerIVF.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityStuG3G.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelStuG3G()));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityTiger1H.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelTiger1H()).scale(1.2F));
 	}
 }

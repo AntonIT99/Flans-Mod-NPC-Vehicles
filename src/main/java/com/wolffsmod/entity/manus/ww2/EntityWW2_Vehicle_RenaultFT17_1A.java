@@ -16,6 +16,7 @@ public class EntityWW2_Vehicle_RenaultFT17_1A extends EntityFlanVehicleNPC
     public void setupConfig()
     {
         setDriver("0 18 0 -360 360 -10 25");
+        setRotatedDriverOffset("-2 0 -1");
         addBarrelPosition("0 34 0");
         addGun("10 24 -2 turret WW2_MG_BrowningM1919_1A");
         

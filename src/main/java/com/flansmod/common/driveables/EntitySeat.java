@@ -349,18 +349,6 @@ public class EntitySeat extends Entity implements IControllable, IEntityAddition
         riddenByEntity.lastTickPosX = riddenByEntity.prevPosX = prevPlayerPosX;
         riddenByEntity.lastTickPosY = riddenByEntity.prevPosY = prevPlayerPosY;
         riddenByEntity.lastTickPosZ = riddenByEntity.prevPosZ = prevPlayerPosZ;
-        System.out.println("Flan Vehicle");
-        System.out.println("PosX: " + driveable.posX);
-        System.out.println("PosY: " + driveable.posY);
-        System.out.println("PosZ: " + driveable.posZ);
-        System.out.println("X: " + (driveable.posX - riddenByEntity.posX));
-        System.out.println("Y: " + (driveable.posY - riddenByEntity.posY));
-        System.out.println("Z: " + (driveable.posZ - riddenByEntity.posZ));
-        System.out.println("RiderX: " + riddenByEntity.posX);
-        System.out.println("RiderY: " + riddenByEntity.posY);
-        System.out.println("RiderZ: " + riddenByEntity.posZ);
-
-
     }
 
     @Override
@@ -725,7 +713,7 @@ public class EntitySeat extends Entity implements IControllable, IEntityAddition
     @Override
     public boolean interactFirst(EntityPlayer entityplayer) //interact : change back when Forge updates
     {
-        if (isDead)
+    	if (isDead)
             return false;
         if (worldObj.isRemote)
             return false;
