@@ -8,6 +8,7 @@ class Config:
     def __init__(self):
         self.turn_speed = 1
         self.driver = ""
+        self.rotated_offset = ""
         self.driver_aim_speed = ""
         self.driver_gun_origin = ""
         self.passenger = []
@@ -42,8 +43,10 @@ def read_config(file_path) -> Config:
             data = split[1].strip()
             if "TurnLeftSpeed" in param or "TurnRightSpeed" in split:
                 config.turn_speed = float(data)
-            if "Driver" == param or "Pilot" in split:
+            if "Driver" == param or "Pilot" == split:
                 config.driver = data
+            if "RotatedDriverOffset" in split:
+                config.rotated_offset = data
             if "DriverAimSpeed" in param:
                 config.driver_aim_speed = data
             if "DriverGunOrigin" in param:
@@ -92,6 +95,8 @@ def get_config_code(config: Config) -> str:
         code += "setTurnSpeed(" + str(config.turn_speed) + "F);" + new_line
     if config.driver:
         code += "setDriver(\"" + config.driver + "\");" + new_line
+    if config.rotated_offset:
+        code += "setRotatedDriverOffset(\"" + config.rotated_offset + "\");" + new_line
     if config.driver_aim_speed:
         code += "setDriverAimSpeed(\"" + config.driver_aim_speed + "\");" + new_line
     if config.driver_gun_origin:
