@@ -16,7 +16,7 @@ public class EntityJagdpanzer38t extends EntityFlanVehicleNPC
     public void setupConfig()
     {
         setTurnSpeed(0.45F);
-        setDriver("-6 9 5 -5 15 -6 12");
+        setDriver("-6 9 5 -5 11 -6 12");
         setRotatedDriverOffset("0 0 0");
         addShootPointPrimary("67 15 5 turret");
         

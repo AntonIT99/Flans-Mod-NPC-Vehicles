@@ -9,13 +9,10 @@
 
 package com.wolffsmod.model.wolff; //Path where the model is located
 
-import com.flansmod.client.model.ModelVehicle;
-import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.flansmod.client.tmt.Coord2D;
+import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.flansmod.client.tmt.Shape2D;
 import com.wolffsmod.model.ModelFlanVehicle;
-
-import net.minecraft.entity.Entity;
 
 public class ModelPanzerIVJ extends ModelFlanVehicle //Same as Filename
 {

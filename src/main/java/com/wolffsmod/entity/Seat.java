@@ -72,10 +72,12 @@ public class Seat
         gun = other.gun;
     }
 
-    public Seat(float x, float y, float z, float minYaw, float maxYaw, float minPitch, float maxPitch)
+    public Seat(float x, float y, float z, float minYaw, float maxYaw, float minPitch, float maxPitch, boolean hasOffset)
     {
         position = new Vector3f(x, y, z);
         set(minYaw, maxYaw, minPitch, maxPitch);
+        if (hasOffset)
+            offsetYawAngle = (this.minYaw + this.maxYaw) / 2F;
     }
 
     public void set(float minYaw, float maxYaw, float minPitch, float maxPitch)
@@ -84,7 +86,6 @@ public class Seat
         this.maxYaw = Math.max(minYaw, maxYaw);
         this.minPitch = Math.min(minPitch, maxPitch);
         this.maxPitch = Math.max(minPitch, maxPitch);
-        offsetYawAngle = (this.minYaw + this.maxYaw) / 2F;
     }
 
     public void setOffsetYawAngle(float offsetYawAngle)

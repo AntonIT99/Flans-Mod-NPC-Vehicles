@@ -38,6 +38,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
     public Seat driver = new Seat();
     public Map<Integer, Seat> passengers = new HashMap<>();
     public boolean doorsOpen;
+    public boolean forceMaxThrottle;
     public float throttle;
     public float turnSpeed = 1F;
     public float yDriveableOffset = 0.625F;
@@ -123,7 +124,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         EntityUtil.Copy(npc, this);
         updateDriverAndPassengers();
 
-        throttle = (float) (getMovementVelocity() / npc.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
+        throttle = forceMaxThrottle ? 1F : (float) (getMovementVelocity() / npc.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
     }
 
     protected void updateDriverAndPassengers()
@@ -205,7 +206,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
                     Float.parseFloat(split[0]),
                     Float.parseFloat(split[1]),
                     Float.parseFloat(split[2]),
-                    minYaw, maxYaw, minPitch, maxPitch);
+                    minYaw, maxYaw, minPitch, maxPitch, false);
         }
     }
 
@@ -245,7 +246,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
             Seat seat = new Seat(Float.parseFloat(split[3]),
                     Float.parseFloat(split[2]),
                     Float.parseFloat(split[1]),
-                    minYaw, maxYaw, minPitch, maxPitch);
+                    minYaw, maxYaw, minPitch, maxPitch, true);
             if (split.length > 10)
                 seat.gun = split[10];
             passengers.put(Integer.parseInt(split[0]), seat);
@@ -435,6 +436,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
     {
         super.readEntityFromNBT(tag);
         doorsOpen = tag.getBoolean("DoorsOpen");
+        forceMaxThrottle = tag.getBoolean("forceMaxThrottle");
     }
 
     @Override
@@ -442,5 +444,6 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
     {
         super.writeEntityToNBT(tag);
         tag.setBoolean("DoorsOpen", doorsOpen);
+        tag.setBoolean("forceMaxThrottle", forceMaxThrottle);
     }
 }

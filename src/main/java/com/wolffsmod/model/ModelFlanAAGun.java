@@ -1,5 +1,7 @@
 package com.wolffsmod.model;
 
+import org.lwjgl.opengl.GL11;
+
 import com.flansmod.client.model.ModelAAGun;
 import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.wolffsmod.entity.EntityFlanAAGunNPC;
@@ -20,45 +22,51 @@ public abstract class ModelFlanAAGun extends ModelAAGun
             aBaseModel.render(f5);
         }
 
-        for (ModelRendererTurbo aSeatModel : seatModel)
+        GL11.glPushMatrix();
         {
-            aSeatModel.render(f5);
-        }
+            GL11.glRotatef(-aagun.driver.getLocalYaw(), 0.0F, 1.0F, 0.0F);
 
-        for (ModelRendererTurbo aGunModel : gunModel)
-        {
-            aGunModel.setPosition(barrelX, barrelY, barrelZ);
-            aGunModel.rotateAngleZ = -aagun.driver.getPitch() / 180F * (float) Math.PI;
-            aGunModel.render(f5);
-        }
-
-        for (ModelRendererTurbo aGunsightModel : gunsightModel)
-        {
-            aGunsightModel.rotateAngleZ = -aagun.driver.getPitch() / 180F * (float) Math.PI;
-            aGunsightModel.render(f5);
-        }
-
-        for(int i = 0; i < barrelModel.length; i++)
-        {
-            for(int j = 0; j < barrelModel[i].length; j++)
+            for (ModelRendererTurbo aSeatModel : seatModel)
             {
-                barrelModel[i][j].setPosition(-aagun.barrelRecoil[i] * (float)(Math.cos(-aagun.driver.getPitch() * (float) Math.PI / 180F)) + barrelX, - aagun.barrelRecoil[i] * (float)(Math.sin(-aagun.driver.getPitch() * (float) Math.PI / 180F)) + barrelY, barrelZ);
-                barrelModel[i][j].rotateAngleZ = -aagun.driver.getPitch() / 180F * (float) Math.PI;
-                barrelModel[i][j].render(f5);
+                aSeatModel.render(f5);
             }
-        }
 
-        for(int i = 0; i < ammoModel.length; i++)
-        {
-            if(i < aagun.hasAmmo.length && aagun.hasAmmo[i])
+            for (ModelRendererTurbo aGunModel : gunModel)
             {
-                for(int j = 0; j < ammoModel[i].length; j++)
+                aGunModel.setPosition(barrelX, barrelY, barrelZ);
+                aGunModel.rotateAngleZ = -aagun.driver.getPitch() / 180F * (float) Math.PI;
+                aGunModel.render(f5);
+            }
+
+            for (ModelRendererTurbo aGunsightModel : gunsightModel)
+            {
+                aGunsightModel.rotateAngleZ = -aagun.driver.getPitch() / 180F * (float) Math.PI;
+                aGunsightModel.render(f5);
+            }
+
+            for(int i = 0; i < barrelModel.length; i++)
+            {
+                for(int j = 0; j < barrelModel[i].length; j++)
                 {
-                    ammoModel[i][j].setPosition(barrelX, barrelY, barrelZ);
-                    ammoModel[i][j].rotateAngleZ = -aagun.driver.getPitch() / 180F * (float) Math.PI;
-                    ammoModel[i][j].render(f5);
+                    barrelModel[i][j].setPosition(-aagun.barrelRecoil[i] * (float)(Math.cos(-aagun.driver.getPitch() * (float) Math.PI / 180F)) + barrelX, - aagun.barrelRecoil[i] * (float)(Math.sin(-aagun.driver.getPitch() * (float) Math.PI / 180F)) + barrelY, barrelZ);
+                    barrelModel[i][j].rotateAngleZ = -aagun.driver.getPitch() / 180F * (float) Math.PI;
+                    barrelModel[i][j].render(f5);
+                }
+            }
+
+            for(int i = 0; i < ammoModel.length; i++)
+            {
+                if(i < aagun.hasAmmo.length && aagun.hasAmmo[i])
+                {
+                    for(int j = 0; j < ammoModel[i].length; j++)
+                    {
+                        ammoModel[i][j].setPosition(barrelX, barrelY, barrelZ);
+                        ammoModel[i][j].rotateAngleZ = -aagun.driver.getPitch() / 180F * (float) Math.PI;
+                        ammoModel[i][j].render(f5);
+                    }
                 }
             }
         }
+        GL11.glPopMatrix();
     }
 }

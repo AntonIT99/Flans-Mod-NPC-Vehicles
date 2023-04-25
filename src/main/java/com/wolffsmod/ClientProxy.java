@@ -129,7 +129,7 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.mw.EntityF22.class, new RenderFlansModEntity(new com.wolffsmod.model.official.mw.ModelF22()).scale(1.19F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.mw.EntityHind.class, new RenderFlansModEntity(new com.wolffsmod.model.official.mw.ModelHind()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.mw.EntityHumvee.class, new RenderFlansModEntity(new com.wolffsmod.model.official.mw.ModelHumvee()));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.mw.EntityLeopard2A6.class, new RenderFlansModEntity(new com.wolffsmod.model.official.mw.ModelLeopard2A6()).scale(0.77F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.mw.EntityLeopard2A6.class, new RenderFlansModEntity(new com.wolffsmod.model.official.mw.ModelLeopard2A6()).setTranslation(0F, -1.77F, 0F).setScale(0.77F, 0.77F, 0.77F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.mw.EntityLittleBird.class, new RenderFlansModEntity(new com.wolffsmod.model.official.mw.ModelLittleBird()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.mw.EntityMIM23.class, new RenderFlansModEntity(new com.wolffsmod.model.official.mw.ModelMIM23()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.mw.EntitySentryGun.class, new RenderFlansModEntity(new com.wolffsmod.model.official.mw.ModelSentryGun()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
@@ -292,9 +292,6 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntityT14Armata.class, new RenderT14Armata(new ModelT14Armata(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityK2.class, new RenderK2(new ModelK2(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityM60A1.class, new RenderM60A1(new ModelM60A1(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityM1Abrams.class, new RenderM1Abrams(new ModelM1Abrams(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.EntityLeopard2A6.class, new RenderLeopard2A6(new ModelLeopard2A6(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT90.class, new RenderT90(new ModelT90(), 0));
 
 		//Price additions
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityMCOMStation.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelMCOMStation()).setTranslation(0F, -1.65F, 0F).setScale(1.1F, 1.1F, 1.1F).setRotation(180F, -180F, 0F));
@@ -332,5 +329,8 @@ public class ClientProxy extends ServerProxy{
 		//Exufo's cop cars
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.exufo.EntityCopvic.class, new RenderFlansModEntity(new com.wolffsmod.model.exufo.ModelCopvic(), "FordCrownVictoria_Police/FordCrownVictoria_Police.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.exufo.EntityCV.class, new RenderFlansModEntity(new com.wolffsmod.model.exufo.ModelCV(), "FordCrownVictoria/FordCrownVictoria.png"));
+
+		//Prototype
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.EntityRatte.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.ModelRatte()).scale(2.4F));
 	}
 }

@@ -3291,9 +3291,7 @@ public class ModelM10 extends ModelFlanVehicle //Same as Filename
 
 	private void initGuns()
 	{
-		//TODO: fix gun rotation with turret
-		// Passenger 2
-		/*ModelRendererTurbo[][] gun_1_Model = new ModelRendererTurbo[3][];
+		ModelRendererTurbo[][] gun_1_Model = new ModelRendererTurbo[3][];
 
 		gun_1_Model[0] = new ModelRendererTurbo[0];
 
@@ -3410,6 +3408,6 @@ public class ModelM10 extends ModelFlanVehicle //Same as Filename
 
 		gun_1_Model[2] = new ModelRendererTurbo[0];
 
-		registerGunModel("PassengerGun1", gun_1_Model);*/
+		registerGunModel("PassengerGun1", gun_1_Model);
 	}
 }

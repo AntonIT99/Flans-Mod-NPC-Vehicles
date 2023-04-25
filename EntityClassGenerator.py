@@ -182,7 +182,7 @@ def create_rendering_and_registry_list(configs: dict):
     with open(os.path.join(".", "ClientProxy.txt"), "w") as f:
         for name in sorted(configs.keys()):
             scaling = f".scale({configs[name].model_scale}F)" if configs[name].model_scale != 1 else ""
-            f.write(f"RenderingRegistry.registerEntityRenderingHandler({name}.class, new RenderFlansModEntity(new Model{configs[name].model_name}()){scaling}));\n")
+            f.write(f"RenderingRegistry.registerEntityRenderingHandler({name}.class, new RenderFlansModEntity(new Model{configs[name].model_name}()){scaling});\n")
 
     with open(os.path.join(".", "EntityRegistry.txt"), "w") as f:
         for name in sorted(configs.keys()):

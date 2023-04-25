@@ -276,9 +276,6 @@ public class ModEntityRegistry {
 		createEntity(EntityT14Armata.class, "T-14 Armata");
 		createEntity(EntityK2.class, "K2 Black Panther (Monolith Pack)");
 		createEntity(EntityM60A1.class, "M60A1 Patton");
-		createEntity(EntityM1Abrams.class, "M1 Abrams");
-		createEntity(com.wolffsmod.entity.EntityLeopard2A6.class, "Leopard 2 A6");
-		createEntity(EntityT90.class, "T-90");
 	
 		//Price additions
 		createEntity(com.wolffsmod.entity.price.EntityMCOMStation.class, "MCOM Station (Price)");
@@ -316,6 +313,9 @@ public class ModEntityRegistry {
 		//Exufo's cop cars
 		createEntity(com.wolffsmod.entity.exufo.EntityCopvic.class, "Ford Crown Victoria Police (brlanyangxdd)");
 		createEntity(com.wolffsmod.entity.exufo.EntityCV.class, "Ford Crown Victoria (brlanyangxdd)");
+
+		//Prototype
+		createEntity(com.wolffsmod.entity.prototype.EntityRatte.class, "Landkreuzer P.1000 Ratte (Prototype)");
 	}
 
 	public static void createEntity(Class<? extends Entity> entityClass, String entityName)
