@@ -10,7 +10,6 @@ import com.wolffsmod.entity.Seat;
 
 import net.minecraft.entity.Entity;
 
-import java.util.Map;
 import java.util.Optional;
 
 public abstract class ModelFlanPlane extends ModelPlane
@@ -36,11 +35,9 @@ public abstract class ModelFlanPlane extends ModelPlane
         renderPart(topWingModel);
         renderAnimWings();
         renderPropeller(plane.propAngle);
-        for (ModelRendererTurbo[] heliMainRotorModel : heliMainRotorModels) renderPart(heliMainRotorModel);
-        for (ModelRendererTurbo[] heliTailRotorModel : heliTailRotorModels) renderPart(heliTailRotorModel);
+        renderRotor(plane.propAngle);
         for (ModelRendererTurbo[] partModel : valkyrie) renderPart(partModel);
         renderPart(helicopterModeParts);
-        renderPart(skidsModel);
         renderPart(yawFlapModel);
         renderPart(pitchFlapLeftModel);
         renderPart(pitchFlapRightModel);
@@ -48,9 +45,17 @@ public abstract class ModelFlanPlane extends ModelPlane
         renderPart(pitchFlapRightWingModel);
         renderPart(hudModel);
         renderPart(tailDoorCloseModel);
-        renderPart(rightWingPos1Model);
-        renderPart(leftWingPos1Model);
-        renderWheels();
+        if (plane.varWing)
+        {
+            renderPart(leftWingPos1Model);
+            renderPart(rightWingPos1Model);
+        }
+        else
+        {
+            renderPart(leftWingPos2Model);
+            renderPart(rightWingPos2Model);
+        }
+        renderLandingGearAndWheels(plane);
         renderAnimDoors();
     }
 
@@ -63,7 +68,7 @@ public abstract class ModelFlanPlane extends ModelPlane
             ModelRendererTurbo[][] gunModel = gunModels.get(gunName);
 
             if (gunModel.length < 1)
-                return;
+                continue;
 
             Optional<Seat> passenger = entity.getPassengerFromGun(gunName);
 
@@ -79,7 +84,7 @@ public abstract class ModelFlanPlane extends ModelPlane
             }
 
             if (gunModel.length < 2)
-                return;
+                continue;
 
             //Yaw and pitch, no recoil parts
             for (ModelRendererTurbo gunModelPart : gunModel[1])
@@ -97,7 +102,7 @@ public abstract class ModelFlanPlane extends ModelPlane
             }
 
             if (gunModel.length < 3)
-                return;
+                continue;
 
             //Yaw, pitch and recoil parts
             for (ModelRendererTurbo gunModelPart : gunModel[2])
@@ -115,7 +120,7 @@ public abstract class ModelFlanPlane extends ModelPlane
             }
 
             if (gunModel.length < 4)
-                return;
+                continue;
             
             for(ModelRendererTurbo gunModelPart : gunModel[3])
             {
@@ -159,12 +164,16 @@ public abstract class ModelFlanPlane extends ModelPlane
         GL11.glPopMatrix();
     }
 
-    protected void renderWheels()
+    protected void renderLandingGearAndWheels(EntityFlanPlaneNPC plane)
     {
-        renderPart(bodyWheelModel);
-        renderPart(tailWheelModel);
-        renderPart(leftWingWheelModel);
-        renderPart(rightWingWheelModel);
+        if (!plane.gearUp)
+        {
+            renderPart(skidsModel);
+            renderPart(bodyWheelModel);
+            renderPart(tailWheelModel);
+            renderPart(leftWingWheelModel);
+            renderPart(rightWingWheelModel);
+        }
 
         GL11.glPushMatrix();
         {
@@ -204,6 +213,30 @@ public abstract class ModelFlanPlane extends ModelPlane
                 prop[i].rotateAngleX = propAngle + (i * 2F * (float) Math.PI) / (prop.length);
             }
             renderPart(prop);
+        }
+    }
+
+    protected void renderRotor(float rotorAngle)
+    {
+        //Render heli main rotors
+        for(int i = 0; i < heliMainRotorModels.length; i++)
+        {
+            GL11.glPushMatrix();
+            GL11.glTranslatef(heliMainRotorOrigins[i].x, heliMainRotorOrigins[i].y, heliMainRotorOrigins[i].z);
+            GL11.glRotatef(rotorAngle * heliRotorSpeeds[i] * 1440F / (float)Math.PI, 0.0F, 1.0F, 0.0F);
+            GL11.glTranslatef(-heliMainRotorOrigins[i].x, -heliMainRotorOrigins[i].y, -heliMainRotorOrigins[i].z);
+            renderPart(heliMainRotorModels[i]);
+            GL11.glPopMatrix();
+        }
+        //Render heli tail rotors
+        for(int i = 0; i < heliTailRotorModels.length; i++)
+        {
+            GL11.glPushMatrix();
+            GL11.glTranslatef(heliTailRotorOrigins[i].x, heliTailRotorOrigins[i].y, heliTailRotorOrigins[i].z);
+            GL11.glRotatef(rotorAngle * 1440F / (float)Math.PI, 0.0F, 0.0F, 1.0F);
+            GL11.glTranslatef(-heliTailRotorOrigins[i].x, -heliTailRotorOrigins[i].y, -heliTailRotorOrigins[i].z);
+            renderPart(heliTailRotorModels[i]);
+            GL11.glPopMatrix();
         }
     }
 

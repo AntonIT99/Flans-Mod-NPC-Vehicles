@@ -7,10 +7,13 @@ import net.minecraft.world.World;
 
 public abstract class EntityFlanPlaneNPC extends EntityFlanDriveableNPC
 {
-    public boolean propEngineOn = true;
+    public boolean propEngineOn;
     public float basePropSpeed = 0.1F;
     public float propSpeed;
     public float propAngle;
+
+    public boolean gearUp;
+    public boolean varWing;
 
     public EntityFlanPlaneNPC(World w)
     {
@@ -31,6 +34,8 @@ public abstract class EntityFlanPlaneNPC extends EntityFlanDriveableNPC
     {
         super.readEntityFromNBT(tag);
         propEngineOn = tag.getBoolean("PropellerOn");
+        gearUp = tag.getBoolean("GearUp");
+        varWing = tag.getBoolean("VarWings");
     }
 
     @Override
@@ -38,5 +43,7 @@ public abstract class EntityFlanPlaneNPC extends EntityFlanDriveableNPC
     {
         super.writeEntityToNBT(tag);
         tag.setBoolean("PropellerOn", propEngineOn);
+        tag.setBoolean("GearUp", gearUp);
+        tag.setBoolean("VarWings", varWing);
     }
 }

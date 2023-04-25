@@ -123,7 +123,6 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         EntityUtil.Copy(npc, this);
         updateDriverAndPassengers();
 
-        System.out.println(getMovementVelocity());
         throttle = (float) (getMovementVelocity() / npc.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
     }
 

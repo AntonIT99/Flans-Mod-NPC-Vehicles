@@ -28,6 +28,9 @@ class Config:
         self.track_link_length = 0
         self.fix_track_link = 5
         self.turret_origin = ""
+        self.model_name = ""
+        self.model_scale = 1
+        self.full_name = ""
 
 
 def read_config(file_path) -> Config:
@@ -85,6 +88,16 @@ def read_config(file_path) -> Config:
                 config.fix_track_link = int(data)
             if "TurretOrigin" in param:
                 config.turret_origin = data
+            if "ModelScale" == param:
+                config.model_scale = float(data)
+            if "Model" == param:
+                model = data.split(".")
+                if len(model) > 1:
+                    config.model_name = model[1]
+                else:
+                    config.model_name = model[0]
+            if "Name" == param:
+                config.full_name = data
     return config
 
 
@@ -153,7 +166,7 @@ public class {name} extends {extended_class}
         super(w);
         setSize(3.5F, 2.5F);
     }}
-    
+
     @Override
     public void setupConfig()
     {{
@@ -165,12 +178,29 @@ public class {name} extends {extended_class}
         f.write(java_code)
 
 
+def create_rendering_and_registry_list(configs: dict):
+    with open(os.path.join(".", "ClientProxy.txt"), "w") as f:
+        for name in sorted(configs.keys()):
+            scaling = f".scale({configs[name].model_scale}F)" if configs[name].model_scale != 1 else ""
+            f.write(f"RenderingRegistry.registerEntityRenderingHandler({name}.class, new RenderFlansModEntity(new Model{configs[name].model_name}()){scaling}));\n")
+
+    with open(os.path.join(".", "EntityRegistry.txt"), "w") as f:
+        for name in sorted(configs.keys()):
+            f.write(f"createEntity({name}.class, \"{configs[name].full_name}\");\n")
+
+
+entity_configs = {}
 for file_name in os.listdir(planes_folder):
     if file_name.endswith(".txt"):
-        class_name = "Entity" + os.path.splitext(file_name)[0].replace("-", "")
-        create_java_class(class_name, True, get_config_code(read_config(os.path.join(planes_folder, file_name))))
+        class_name = "Entity" + os.path.splitext(file_name)[0].replace("-", "").replace(" ", "")
+        config = read_config(os.path.join(planes_folder, file_name))
+        entity_configs[class_name] = config
+        create_java_class(class_name, True, get_config_code(config))
 
 for file_name in os.listdir(vehicles_folder):
     if file_name.endswith(".txt"):
-        class_name = "Entity" + os.path.splitext(file_name)[0].replace("-", "")
-        create_java_class(class_name, False, get_config_code(read_config(os.path.join(vehicles_folder, file_name))))
+        class_name = "Entity" + os.path.splitext(file_name)[0].replace("-", "").replace(" ", "")
+        config = read_config(os.path.join(vehicles_folder, file_name))
+        entity_configs[class_name] = config
+        create_java_class(class_name, False, get_config_code(config))
+create_rendering_and_registry_list(entity_configs)

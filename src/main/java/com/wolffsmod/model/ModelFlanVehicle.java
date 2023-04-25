@@ -54,7 +54,7 @@ public abstract class ModelFlanVehicle extends ModelVehicle
             ModelRendererTurbo[][] gunModel = gunModels.get(gunName);
 
             if (gunModel.length < 1)
-                return;
+                continue;
 
             Optional<Seat> passenger = entity.getPassengerFromGun(gunName);
 
@@ -70,7 +70,7 @@ public abstract class ModelFlanVehicle extends ModelVehicle
             }
 
             if (gunModel.length < 2)
-                return;
+                continue;
 
             //Yaw and pitch, no recoil parts
             for (ModelRendererTurbo gunModelPart : gunModel[1])
@@ -88,7 +88,7 @@ public abstract class ModelFlanVehicle extends ModelVehicle
             }
 
             if (gunModel.length < 3)
-                return;
+                continue;
 
             //Yaw, pitch and recoil parts
             for (ModelRendererTurbo gunModelPart : gunModel[2])
