@@ -1,6 +1,7 @@
 package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
+import com.wolffsmod.entity.lizard.EntityT55A;
 import com.wolffsmod.model.*;
 import com.wolffsmod.render.*;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -284,14 +285,19 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.ez8.EntityZSU234.class, new RenderFlansModEntity(new com.wolffsmod.model.ez8.ModelZSU23v2()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.ez8.EntityZU232.class, new RenderFlansModEntity(new com.wolffsmod.model.ez8.ModelZU232(), "BTRZD/BTRZD.png"));
 
-		//TaP
-		RenderingRegistry.registerEntityRenderingHandler(EntityM113A1.class, new RenderM113A1(new ModelM113A1(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT72A1979.class, new RenderT72A1979(new ModelT72A1979(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT55A.class, new RenderT55A(new ModelT55A(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityType90KyuMaru.class, new RenderType90KyuMaru(new ModelType90KyuMaru(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT14Armata.class, new RenderT14Armata(new ModelT14Armata(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityK2.class, new RenderK2(new ModelK2(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityM60A1.class, new RenderM60A1(new ModelM60A1(), 0));
+		//Lizard
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.lizard.EntityM113A1.class, new RenderFlansModEntity(new com.wolffsmod.model.lizard.ModelM113A1()));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.lizard.EntityM113A3.class, new RenderFlansModEntity(new com.wolffsmod.model.lizard.ModelM113A3()));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.lizard.EntityT55A.class, new RenderFlansModEntity(new com.wolffsmod.model.lizard.ModelT55A()));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.lizard.EntityT72A.class, new RenderFlansModEntity(new com.wolffsmod.model.lizard.ModelT72A(), "T72A1979/T72A1979.png"));
+
+		//Tankcraft
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.tankcraft.EntityM60A1.class, new RenderFlansModEntity(new com.wolffsmod.model.tankcraft.ModelTCM60A1(), "M60A1/M60A1.png"));
+
+		//TaP & Monolith Pack
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityType90.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelKyuMaru(), "Type90KyuMaru/Type90KyuMaru.png").scale(0.85F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityT14Armata.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelArmataMBT(), "T14Armata/T14Armata.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityK2BlackPanther.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelK2overdrive(), "K2/K2.png"));
 
 		//Price additions
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityMCOMStation.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelMCOMStation()).setTranslation(0F, -1.65F, 0F).setScale(1.1F, 1.1F, 1.1F).setRotation(180F, -180F, 0F));
