@@ -86,7 +86,12 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         Vector3f position = axes.findLocalVectorGlobally(new Vector3f(driver.position.getX() / 16F, driver.position.getY() / 16F + yDriveableOffset,  driver.position.getZ() / 16F));
         Vector3f offset = looking.findLocalVectorGlobally(new Vector3f(driver.rotatedOffset.getX() / 16F, driver.rotatedOffset.getY() / 16F,  driver.rotatedOffset.getZ() / 16F));
 
-        return Vector3f.add(position, offset, null);
+        Vector3f driverPos = Vector3f.add(position, offset, null);
+
+        if (npc != null && npc.display.modelSize != 5)
+            driverPos.scale(npc.display.modelSize / 5F);
+
+        return driverPos;
     }
 
     public Optional<Seat> getPassengerFromGun(String gunName)

@@ -878,8 +878,12 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			for (ShootPoint shootPoint: driveable.shootPointsPrimary)
 			{
 				Vector3f gunVector = NPCInterfaceUtil.getFiringPosition(shootPoint, driveable.turretOrigin, driverYaw, pitch, renderYawOffset);
-				origin = (Vector3f.add(new Vector3f(posX, posY + driveable.yDriveableOffset, posZ), gunVector, null)).toVec3();
-				NPCInterfaceUtil.spawnParticle(driveable.shootParticlesPrimary, shootPoint, gunVector, driverYaw, pitch, renderYawOffset, posX, posY + driveable.yDriveableOffset, posZ, dimension);
+
+				if (display.modelSize != 5)
+					gunVector.scale(display.modelSize / 5F);
+
+				origin = (Vector3f.add(new Vector3f(posX, posY + driveable.yDriveableOffset * (display.modelSize / 5F), posZ), gunVector, null)).toVec3();
+				NPCInterfaceUtil.spawnParticle(driveable.shootParticlesPrimary, shootPoint, gunVector, driverYaw, pitch, renderYawOffset, posX, posY + driveable.yDriveableOffset, posZ, dimension, display.modelSize / 5F);
 				spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
 			}
 		}

@@ -205,7 +205,7 @@ public class NPCInterfaceUtil
         public String name;
     }
 
-    public static void spawnParticle(ArrayList<ShootParticle> list, ShootPoint shootPoint, Vector3f gunVector, float driverYaw, float driverPitch, float entityYaw, double posX, double posY, double posZ, int dimension)
+    public static void spawnParticle(ArrayList<ShootParticle> list, ShootPoint shootPoint, Vector3f gunVector, float driverYaw, float driverPitch, float entityYaw, double posX, double posY, double posZ, int dimension, float scale)
     {
         RotatedAxes looking = new RotatedAxes(driverYaw, driverPitch, 0F);
         RotatedAxes axes = new RotatedAxes(entityYaw, 0F, 0F);
@@ -225,10 +225,12 @@ public class NPCInterfaceUtil
                 Vector3f v2 = axes.findLocalVectorGlobally(shootPoint.rootPos.position);
                 Vector3f v3 = axes.findLocalVectorGlobally(looking.findLocalVectorGlobally(shootPoint.offPos));
                 Vector3f.add(v2, v3, gunVector);
+                if (scale != 1F)
+                    gunVector.scale(scale);
             }
 
             FlansMod.getPacketHandler().sendToAllAround(
-                    new PacketParticle(s.name, posX + gunVector.x, posY + gunVector.y, posZ + gunVector.z, velocity.x, velocity.y, velocity.z),
+                    new PacketParticle(s.name, posX + gunVector.x, posY + gunVector.y, posZ + gunVector.z, velocity.x, velocity.y, velocity.z, scale),
                     posX + gunVector.x, posY + gunVector.y, posZ + gunVector.z, FlansMod.driveableUpdateRange, dimension);
 
             shootPoint.rootPos.position.x = bkx;

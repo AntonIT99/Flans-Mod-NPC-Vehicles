@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.wolffsmod.Strings;
 import com.wolffsmod.entity.EntityFlanAAGunNPC;
+import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.EntityFlanPlaneNPC;
 
 import net.minecraft.client.model.ModelBase;
@@ -61,16 +62,21 @@ public class RenderFlansModEntity extends RenderLiving
     @Override
     protected void preRenderCallback(EntityLivingBase entity, float f)
     {
+        float npcModelScale = 1F;
+
+        if (entity instanceof EntityFlanDriveableNPC && ((EntityFlanDriveableNPC) entity).npc != null)
+            npcModelScale = ((EntityFlanDriveableNPC) entity).npc.display.modelSize / 5F;
+
         if (translation != null)
         {
-            GL11.glTranslatef((float)translation.xCoord, (float)translation.yCoord * scaleFactor, (float)translation.zCoord);
+            GL11.glTranslatef((float)translation.xCoord, (float)translation.yCoord * scaleFactor * npcModelScale, (float)translation.zCoord);
         }
         else
         {
             if (entity instanceof EntityFlanAAGunNPC)
-                GL11.glTranslatef(0F, DEFAULT_Y_TRANSLATION_AAGUN * scaleFactor, 0F);
+                GL11.glTranslatef(0F, DEFAULT_Y_TRANSLATION_AAGUN * scaleFactor * npcModelScale, 0F);
             else
-                GL11.glTranslatef(0F, DEFAULT_Y_TRANSLATION * scaleFactor, 0F);
+                GL11.glTranslatef(0F, DEFAULT_Y_TRANSLATION * scaleFactor * npcModelScale, 0F);
         }
 
         if (rotation != null)
