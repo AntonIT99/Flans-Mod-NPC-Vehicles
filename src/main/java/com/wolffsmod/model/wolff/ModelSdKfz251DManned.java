@@ -13,6 +13,7 @@ import com.flansmod.client.tmt.Coord2D;
 import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.flansmod.client.tmt.Shape2D;
 import com.flansmod.common.vector.Vector3f;
+import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.Seat;
 import com.wolffsmod.model.ModelFlanVehicle;
 
@@ -1662,12 +1663,12 @@ public class ModelSdKfz251DManned extends ModelFlanVehicle //Same as Filename
 	}
 
 	@Override
-	protected void renderTurretAndBarrel(Vector3f turretOrigin, Seat driver, float recoilPos)
+	protected void renderTurretAndBarrel(Vector3f turretOrigin, EntityFlanDriveableNPC entity, float recoilPos)
 	{
 		Seat invertedYawDriver = new Seat();
-		invertedYawDriver.copy(driver);
-		invertedYawDriver.setLocalYaw(-driver.getLocalYaw());
-		super.renderTurretAndBarrel(turretOrigin, invertedYawDriver, recoilPos);
+		invertedYawDriver.copy(entity.driver);
+		invertedYawDriver.setLocalYaw(-entity.driver.getLocalYaw());
+		super.renderTurretAndBarrel(turretOrigin, entity, recoilPos);
 	}
 	
 	protected float degToRad(float degrees)

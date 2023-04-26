@@ -1,5 +1,6 @@
 package com.wolffsmod.entity;
 
+import com.flansmod.common.driveables.EnumDriveablePart;
 import com.flansmod.common.vector.Vector3f;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -13,6 +14,7 @@ public class Seat
     public Vector3f position = new Vector3f();
     public Vector3f rotatedOffset = new Vector3f();
     public String gun = "";
+    public EnumDriveablePart part = EnumDriveablePart.core;
 
     private float minYaw;
     private float maxYaw;
@@ -53,6 +55,7 @@ public class Seat
         offsetYawAngle = other.offsetYawAngle;
         gunOrigin.set(other.gunOrigin);
         gun = other.gun;
+        part = other.part;
     }
 
     public void copy(Seat other)
@@ -70,6 +73,7 @@ public class Seat
         offsetYawAngle = other.offsetYawAngle;
         gunOrigin.set(other.gunOrigin);
         gun = other.gun;
+        part = other.part;
     }
 
     public Seat(float x, float y, float z, float minYaw, float maxYaw, float minPitch, float maxPitch, boolean hasOffset)

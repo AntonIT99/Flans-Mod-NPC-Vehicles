@@ -236,6 +236,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
             float maxYaw = 360F;
             float minPitch = -180F;
             float maxPitch = 180F;
+
             if (split.length > 8)
             {
                 minYaw = Float.parseFloat(split[5]);
@@ -243,12 +244,19 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
                 minPitch = Float.parseFloat(split[7]);
                 maxPitch = Float.parseFloat(split[8]);
             }
-            Seat seat = new Seat(Float.parseFloat(split[3]),
-                    Float.parseFloat(split[2]),
+
+            Seat seat = new Seat(
                     Float.parseFloat(split[1]),
+                    Float.parseFloat(split[2]),
+                    Float.parseFloat(split[3]),
                     minYaw, maxYaw, minPitch, maxPitch, true);
+
+            if (split.length > 4)
+                seat.part = EnumDriveablePart.getPart(split[4]);
+
             if (split.length > 10)
                 seat.gun = split[10];
+
             passengers.put(Integer.parseInt(split[0]), seat);
         }
     }

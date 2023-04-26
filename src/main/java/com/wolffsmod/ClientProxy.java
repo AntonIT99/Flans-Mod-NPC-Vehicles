@@ -331,6 +331,6 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.exufo.EntityCV.class, new RenderFlansModEntity(new com.wolffsmod.model.exufo.ModelCV(), "FordCrownVictoria/FordCrownVictoria.png"));
 
 		//Prototype
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.EntityRatte.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.ModelRatte()).scale(2.4F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.EntityRatte.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.ModelRatte()).setTranslation(0F, -5F, 0F).setScale(2.4F, 2.4F, 2.4F));
 	}
 }

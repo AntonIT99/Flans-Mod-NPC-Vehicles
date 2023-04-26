@@ -5,19 +5,21 @@ import org.lwjgl.opengl.GL11;
 import com.flansmod.client.model.AnimTrackLink;
 import com.flansmod.client.model.ModelVehicle;
 import com.flansmod.client.tmt.ModelRendererTurbo;
+import com.flansmod.common.driveables.EntitySeat;
+import com.flansmod.common.driveables.EnumDriveablePart;
 import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.EntityFlanVehicleNPC;
 import com.wolffsmod.entity.Seat;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 
-import java.util.Map;
 import java.util.Optional;
 
 public abstract class ModelFlanVehicle extends ModelVehicle
 {
+    private static final float worldScale = 0.0625F;
+
     public ModelFlanVehicle() {}
 
     @Override
@@ -40,15 +42,13 @@ public abstract class ModelFlanVehicle extends ModelVehicle
         renderTracks();
         renderFancyTrack(vehicle.trackLinksLeft, vehicle.trackLinksRight);
         renderGuns(vehicle, vehicle.vehicleGunModelScale);
-        renderTurretAndBarrel(vehicle.turretOrigin, vehicle.driver, vehicle.recoilPos);
+        renderTurretAndBarrel(vehicle.turretOrigin, vehicle, vehicle.recoilPos);
         renderDrillHead(vehicle.harvesterAngle);
         renderAnimDoors();
     }
 
     protected void renderGuns(EntityFlanDriveableNPC entity, float vehicleGunModelScale)
     {
-        float f5 = 0.0625F;
-
         for (String gunName : gunModels.keySet())
         {
             ModelRendererTurbo[][] gunModel = gunModels.get(gunName);
@@ -58,6 +58,9 @@ public abstract class ModelFlanVehicle extends ModelVehicle
 
             Optional<Seat> passenger = entity.getPassengerFromGun(gunName);
 
+            if (passenger.isPresent() && passenger.get().part == EnumDriveablePart.turret)
+                continue;
+
             //Yaw only parts
             for (ModelRendererTurbo gunModelPart : gunModel[0])
             {
@@ -65,7 +68,7 @@ public abstract class ModelFlanVehicle extends ModelVehicle
                 GL11.glPushMatrix();
                 GL11.glScalef(vehicleGunModelScale, vehicleGunModelScale, vehicleGunModelScale);
                 passenger.ifPresent(seat -> gunModelPart.rotateAngleY = -seat.getLocalYaw() * (float) Math.PI / 180F);
-                gunModelPart.render(f5);
+                gunModelPart.render(worldScale);
                 GL11.glPopMatrix();
             }
 
@@ -83,7 +86,7 @@ public abstract class ModelFlanVehicle extends ModelVehicle
                     gunModelPart.rotateAngleY = -passenger.get().getLocalYaw() * (float) Math.PI / 180F;
                     gunModelPart.rotateAngleZ = -passenger.get().getPitch() * (float) Math.PI / 180F;
                 }
-                gunModelPart.render(f5);
+                gunModelPart.render(worldScale);
                 GL11.glPopMatrix();
             }
 
@@ -101,7 +104,7 @@ public abstract class ModelFlanVehicle extends ModelVehicle
                     gunModelPart.rotateAngleY = -passenger.get().getLocalYaw() * (float) Math.PI / 180F;
                     gunModelPart.rotateAngleZ = -passenger.get().getPitch() * (float) Math.PI / 180F;
                 }
-                gunModelPart.render(f5);
+                gunModelPart.render(worldScale);
                 GL11.glPopMatrix();
             }
 
@@ -123,12 +126,62 @@ public abstract class ModelFlanVehicle extends ModelVehicle
         }
     }
 
-    protected void renderTurretAndBarrel(Vector3f turretOrigin, Seat driver, float recoilPos)
+    protected void renderTurretGuns(EntityFlanDriveableNPC entity)
+    {
+        for (String gunName : gunModels.keySet())
+        {
+            ModelRendererTurbo[][] gunModel = gunModels.get(gunName);
+
+            if (gunModel.length < 1)
+                continue;
+
+            Optional<Seat> passenger = entity.getPassengerFromGun(gunName);
+
+            if (passenger.isPresent() && passenger.get().part == EnumDriveablePart.turret)
+            {
+                float effectiveYaw = passenger.get().getLocalYaw() - entity.driver.getLocalYaw();
+
+                //Yaw only parts
+                for (ModelRendererTurbo gunModelPart : gunModel[0])
+                {
+                    //Yaw and render
+                    gunModelPart.rotateAngleY = -effectiveYaw * (float) Math.PI / 180F;
+                    gunModelPart.render(worldScale, oldRotateOrder);
+                }
+
+                if (gunModel.length < 2)
+                    continue;
+
+                //Yaw and pitch, no recoil parts
+                for (ModelRendererTurbo gunModelPart : gunModel[1])
+                {
+                    //Yaw, pitch and render
+                    gunModelPart.rotateAngleY = -effectiveYaw * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleZ = -passenger.get().getPitch() * (float) Math.PI / 180F;
+                    gunModelPart.render(worldScale, oldRotateOrder);
+                }
+
+                if (gunModel.length < 3)
+                    continue;
+
+                //Yaw, pitch and recoil parts
+                for (ModelRendererTurbo gunModelPart : gunModel[2])
+                {
+                    //Yaw, pitch, recoil and render
+                    gunModelPart.rotateAngleY = -effectiveYaw * (float) Math.PI / 180F;
+                    gunModelPart.rotateAngleZ = -passenger.get().getPitch() * (float) Math.PI / 180F;
+                    gunModelPart.render(worldScale, oldRotateOrder);
+                }
+            }
+        }
+    }
+
+    protected void renderTurretAndBarrel(Vector3f turretOrigin, EntityFlanDriveableNPC entity, float recoilPos)
     {
         GL11.glPushMatrix();
         {
             GL11.glTranslatef(turretOrigin.x, turretOrigin.y, turretOrigin.z);
-            GL11.glRotatef(-driver.getLocalYaw(), 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef(-entity.driver.getLocalYaw(), 0.0F, 1.0F, 0.0F);
             GL11.glTranslatef(-turretOrigin.x, -turretOrigin.y, -turretOrigin.z);
 
             GL11.glPushMatrix();
@@ -138,13 +191,13 @@ public abstract class ModelFlanVehicle extends ModelVehicle
                 renderPart(turretModel);
 
                 for (ModelRendererTurbo model: barrelModel)
-                    model.rotateAngleZ = -driver.getPitch() * (float) Math.PI / 180F;
+                    model.rotateAngleZ = -entity.driver.getPitch() * (float) Math.PI / 180F;
                 renderPart(barrelModel);
 
                 GL11.glPushMatrix();
                 {
                     GL11.glTranslatef(barrelAttach.x, barrelAttach.y, -barrelAttach.z);
-                    GL11.glRotatef(-driver.getPitch(), 0F, 0F, 1F);
+                    GL11.glRotatef(-entity.driver.getPitch(), 0F, 0F, 1F);
                     renderPart(barrelSpecModel);
                 }
                 GL11.glPopMatrix();
@@ -152,16 +205,17 @@ public abstract class ModelFlanVehicle extends ModelVehicle
                 for (ModelRendererTurbo[] ammo : ammoModel)
                 {
                     for (ModelRendererTurbo model : ammo)
-                        model.rotateAngleZ = -driver.getPitch() * (float) Math.PI / 180F;
+                        model.rotateAngleZ = -entity.driver.getPitch() * (float) Math.PI / 180F;
                     renderPart(ammo);
                 }
 
                 renderDrakon();
+                renderTurretGuns(entity);
             }
             GL11.glPopMatrix();
 
             GL11.glTranslatef(barrelAttach.x, barrelAttach.y, -barrelAttach.z);
-            GL11.glRotatef(-driver.getPitch(), 0F, 0F, 1F);
+            GL11.glRotatef(-entity.driver.getPitch(), 0F, 0F, 1F);
             GL11.glTranslatef(recoilPos*-(5F/16F),0F, 0F);
             renderPart(animBarrelModel);
         }
