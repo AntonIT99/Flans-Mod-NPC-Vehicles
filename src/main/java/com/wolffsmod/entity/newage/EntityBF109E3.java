@@ -16,6 +16,7 @@ public class EntityBF109E3 extends EntityFlanPlaneNPC
     public void setupConfig()
     {
         setTurnSpeed(0.83F);
+        setDriver("1 20 0");
         addShootPointPrimary("42 30 3 core mg17");
         addShootPointPrimary("42 30 -3 core mg17");
         addShootPointPrimary("35 14 -43 leftWing mgff");

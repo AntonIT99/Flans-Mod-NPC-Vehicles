@@ -16,6 +16,7 @@ public class EntityMirageF1 extends EntityFlanPlaneNPC
     public void setupConfig()
     {
         setTurnSpeed(2.2F);
+        setDriver("60 17 0");
         addShootPointPrimary("32 13 6 core DEFAgun");
         addShootPointPrimary("32 13 -6 core DEFAgun");
         addShootPointSecondary("-26 25 -100 leftWing");

@@ -16,6 +16,7 @@ public class EntityHurricaneMk2c extends EntityFlanPlaneNPC
     public void setupConfig()
     {
         setTurnSpeed(0.85F);
+        setDriver("24 11 0");
         addShootPointPrimary("87 -1 41 rightWing hispano20");
         addShootPointPrimary("87 0 56 rightWing hispano20");
         addShootPointPrimary("87 0 -56 leftWing hispano20");

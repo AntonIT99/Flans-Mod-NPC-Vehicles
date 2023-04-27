@@ -44,11 +44,11 @@ def read_config(file_path) -> Config:
                 continue
             param = split[0]
             data = split[1].strip()
-            if "TurnLeftSpeed" in param or "TurnRightSpeed" in split:
+            if "TurnLeftSpeed" in param or "TurnRightSpeed" in param:
                 config.turn_speed = float(data)
-            if "Driver" == param or "Pilot" == split:
+            if ("Driver" == param or "Pilot" == param) and "YawBeforePitch" not in data:
                 config.driver = data
-            if "RotatedDriverOffset" in split:
+            if "RotatedDriverOffset" in param:
                 config.rotated_offset = data
             if "DriverAimSpeed" in param:
                 config.driver_aim_speed = data
