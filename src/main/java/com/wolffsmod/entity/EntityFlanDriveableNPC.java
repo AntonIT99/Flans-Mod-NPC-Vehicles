@@ -9,7 +9,7 @@ import com.wolffsmod.network.FlanEntitySyncPacket;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import noppes.npcs.client.EntityUtil;
 import noppes.npcs.entity.EntityCustomNpc;
-import noppes.npcs.util.NPCInterfaceUtil;
+import com.wolffsmod.customnpc.NPCInterfaceUtil;
 
 import net.minecraft.client.renderer.entity.NPCRendererHelper;
 import net.minecraft.client.renderer.entity.RenderManager;

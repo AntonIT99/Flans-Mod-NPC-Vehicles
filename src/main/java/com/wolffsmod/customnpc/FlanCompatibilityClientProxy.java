@@ -1,8 +1,7 @@
-package noppes.npcs;
+package com.wolffsmod.customnpc;
 
 import com.flansmod.client.model.RenderBullet;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import noppes.npcs.util.EntityNPCFlanBullet;
 
 public class FlanCompatibilityClientProxy extends FlanCompatibilityCommonProxy
 {

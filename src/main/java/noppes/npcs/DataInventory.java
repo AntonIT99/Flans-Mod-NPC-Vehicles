@@ -14,7 +14,7 @@ import noppes.npcs.constants.EnumPotionType;
 import noppes.npcs.enchants.EnchantInterface;
 import noppes.npcs.entity.EntityNPCInterface;
 import noppes.npcs.items.*;
-import noppes.npcs.util.NPCInterfaceUtil;
+import com.wolffsmod.customnpc.NPCInterfaceUtil;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;

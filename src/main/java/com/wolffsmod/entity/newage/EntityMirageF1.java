@@ -1,10 +1,10 @@
 package com.wolffsmod.entity.newage;
 
-import com.wolffsmod.entity.EntityFlanVehicleNPC;
+import com.wolffsmod.entity.EntityFlanPlaneNPC;
 
 import net.minecraft.world.World;
 
-public class EntityMirageF1 extends EntityFlanVehicleNPC
+public class EntityMirageF1 extends EntityFlanPlaneNPC
 {
     public EntityMirageF1(World w)
     {

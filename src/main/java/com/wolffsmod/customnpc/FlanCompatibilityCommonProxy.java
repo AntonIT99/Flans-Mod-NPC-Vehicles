@@ -1,4 +1,4 @@
-package noppes.npcs;
+package com.wolffsmod.customnpc;
 
 public class FlanCompatibilityCommonProxy
 {

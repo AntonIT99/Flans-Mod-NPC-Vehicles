@@ -1,11 +1,9 @@
-package noppes.npcs;
+package com.wolffsmod.customnpc;
 
-import com.flansmod.common.guns.EntityBullet;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
-import noppes.npcs.util.EntityNPCFlanBullet;
 
 @Mod(modid = FlanCompatibilityMod.MOD_ID, name = FlanCompatibilityMod.MOD_NAME, version = FlanCompatibilityMod.MOD_VERSION, dependencies="required-after: customnpcs; required-after: flansmod")
 public class FlanCompatibilityMod

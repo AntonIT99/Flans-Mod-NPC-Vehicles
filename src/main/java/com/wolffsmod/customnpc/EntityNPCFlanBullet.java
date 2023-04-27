@@ -1,4 +1,4 @@
-package noppes.npcs.util;
+package com.wolffsmod.customnpc;
 
 import com.flansmod.common.FlansMod;
 import com.flansmod.common.guns.BulletType;

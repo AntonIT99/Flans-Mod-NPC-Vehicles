@@ -1,10 +1,10 @@
 package com.wolffsmod.entity.baf;
 
-import com.wolffsmod.entity.EntityFlanVehicleNPC;
+import com.wolffsmod.entity.EntityFlanPlaneNPC;
 
 import net.minecraft.world.World;
 
-public class EntityHurricane extends EntityFlanVehicleNPC
+public class EntityHurricane extends EntityFlanPlaneNPC
 {
     public EntityHurricane(World w)
     {

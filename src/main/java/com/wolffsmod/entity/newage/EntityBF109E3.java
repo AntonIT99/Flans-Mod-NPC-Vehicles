@@ -1,10 +1,10 @@
 package com.wolffsmod.entity.newage;
 
-import com.wolffsmod.entity.EntityFlanVehicleNPC;
+import com.wolffsmod.entity.EntityFlanPlaneNPC;
 
 import net.minecraft.world.World;
 
-public class EntityBF109E3 extends EntityFlanVehicleNPC
+public class EntityBF109E3 extends EntityFlanPlaneNPC
 {
     public EntityBF109E3(World w)
     {

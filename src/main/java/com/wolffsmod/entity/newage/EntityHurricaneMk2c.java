@@ -1,10 +1,10 @@
 package com.wolffsmod.entity.newage;
 
-import com.wolffsmod.entity.EntityFlanVehicleNPC;
+import com.wolffsmod.entity.EntityFlanPlaneNPC;
 
 import net.minecraft.world.World;
 
-public class EntityHurricaneMk2c extends EntityFlanVehicleNPC
+public class EntityHurricaneMk2c extends EntityFlanPlaneNPC
 {
     public EntityHurricaneMk2c(World w)
     {

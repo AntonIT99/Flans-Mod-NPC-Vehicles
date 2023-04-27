@@ -40,9 +40,9 @@ import noppes.npcs.entity.data.DataTimers;
 import noppes.npcs.roles.*;
 import noppes.npcs.scripted.entity.ScriptNpc;
 import noppes.npcs.scripted.event.NpcEvent;
-import noppes.npcs.util.EntityNPCFlanBullet;
+import com.wolffsmod.customnpc.EntityNPCFlanBullet;
 import noppes.npcs.util.GameProfileAlt;
-import noppes.npcs.util.NPCInterfaceUtil;
+import com.wolffsmod.customnpc.NPCInterfaceUtil;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
