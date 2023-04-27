@@ -21,7 +21,6 @@ public class Entity44_PantherCommand extends EntityFlanVehicleNPC
         setDriverAimSpeed("0.5 0.4 0");
         addBarrelPosition("70 32 0");
         addGun("25 33 6 turret 44_Mg34");
-        addGunOrigin("1 54 2 11");
         addShootParticlesPrimary("largeexplode 0 0 0");
         addShootParticlesPrimary("explode 1.5 0 0");
         addShootParticlesPrimary("largesmoke 0.5 0 0.1");

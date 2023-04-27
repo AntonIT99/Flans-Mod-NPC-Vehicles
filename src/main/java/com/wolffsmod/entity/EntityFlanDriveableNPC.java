@@ -417,7 +417,8 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
     public void addGunOrigin(String data)
     {
         String[] split = data.split(" ");
-        passengers.get(Integer.parseInt(split[0])).gunOrigin = new Vector3f(Float.parseFloat(split[1])/16F, Float.parseFloat(split[2])/16F, Float.parseFloat(split[3])/16F);
+        if (passengers.get(Integer.parseInt(split[0])) != null)
+            passengers.get(Integer.parseInt(split[0])).gunOrigin = new Vector3f(Float.parseFloat(split[1])/16F, Float.parseFloat(split[2])/16F, Float.parseFloat(split[3])/16F);
     }
 
     @Override

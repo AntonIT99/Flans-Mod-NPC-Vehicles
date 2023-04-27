@@ -418,7 +418,7 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.w44.Entity44_Type92Tripod.class, "Type 92 Tripod (Warfare 44)");
 		createEntity(com.wolffsmod.entity.w44.Entity44_Type98AA.class, "20mm Type 98 (Warfare 44)");
 		createEntity(com.wolffsmod.entity.w44.Entity44_ValentineII.class, "Valentine Mk. II (Warfare 44)");
-		createEntity(com.wolffsmod.entity.w44.Entity44_Wespe.class, "Wespe II (Warfare 44)");
+		createEntity(com.wolffsmod.entity.w44.Entity44_Wespe.class, "Wespe (Warfare 44)");
 		createEntity(com.wolffsmod.entity.w44.Entity44_Willys30Cal.class, "M38 Willy's Jeep .30 Cal (Warfare 44)");
 		createEntity(com.wolffsmod.entity.w44.Entity44_Willys50Cal.class, "M38 Willy's Jeep .50 Cal (Warfare 44)");
 		createEntity(com.wolffsmod.entity.w44.Entity44_Yak9.class, "Yak-9T (Warfare 44)");

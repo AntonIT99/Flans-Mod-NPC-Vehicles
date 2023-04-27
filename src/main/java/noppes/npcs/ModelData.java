@@ -32,6 +32,7 @@ public class ModelData extends ModelDataShared{
 						PixelmonHelper.setName(entity, "Abra");
 				}
 			} catch (Exception e) {
+				e.printStackTrace();
 			} 
 		}
 		return entity;
