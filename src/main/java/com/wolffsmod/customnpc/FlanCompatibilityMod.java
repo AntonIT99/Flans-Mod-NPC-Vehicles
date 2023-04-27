@@ -12,7 +12,7 @@ public class FlanCompatibilityMod
     public static final String MOD_NAME = "CustomNPCs Flan Compatibility Mod";
     public static final String MOD_VERSION = "1.0";
 
-    @SidedProxy(clientSide = "noppes.npcs.FlanCompatibilityClientProxy", serverSide = "noppes.npcs.FlanCompatibilityCommonProxy")
+    @SidedProxy(clientSide = "com.wolffsmod.customnpc.FlanCompatibilityClientProxy", serverSide = "com.wolffsmod.customnpc.FlanCompatibilityCommonProxy")
     public static FlanCompatibilityCommonProxy PROXY;
 
     @Mod.Instance(FlanCompatibilityMod.MOD_ID)
