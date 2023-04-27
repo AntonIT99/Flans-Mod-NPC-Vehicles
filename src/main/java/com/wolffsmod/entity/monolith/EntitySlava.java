@@ -9,7 +9,7 @@ public class EntitySlava extends EntityFlanShipNPC
     public EntitySlava(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(6.0F, 3.0F);
     }
     
     @Override

@@ -9,7 +9,7 @@ public class EntityM41 extends EntityFlanVehicleNPC
     public EntityM41(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(4.5F, 3.0F);
     }
     
     @Override

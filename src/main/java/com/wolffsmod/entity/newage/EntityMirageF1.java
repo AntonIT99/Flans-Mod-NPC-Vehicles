@@ -9,7 +9,7 @@ public class EntityMirageF1 extends EntityFlanPlaneNPC
     public EntityMirageF1(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(3.5F, 2.8F);
     }
     
     @Override

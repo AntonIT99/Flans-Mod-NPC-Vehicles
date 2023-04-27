@@ -9,7 +9,7 @@ public class EntityHurricaneMk2c extends EntityFlanPlaneNPC
     public EntityHurricaneMk2c(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(4.5F, 3.0F);
     }
     
     @Override

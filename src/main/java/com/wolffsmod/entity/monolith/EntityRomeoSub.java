@@ -9,7 +9,7 @@ public class EntityRomeoSub extends EntityFlanShipNPC
     public EntityRomeoSub(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(3.0F, 2.0F);
     }
     
     @Override
