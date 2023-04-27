@@ -1,8 +1,7 @@
 package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
-import com.wolffsmod.render.RenderFlansModEntity;
-import cpw.mods.fml.client.registry.RenderingRegistry;
+import com.wolffsmod.entity.monolith.EntityKimJongSub;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 import net.minecraft.entity.Entity;
@@ -273,6 +272,7 @@ public class ModEntityRegistry {
 		//Lizard
 		createEntity(com.wolffsmod.entity.lizard.EntityM113A1.class, "M113A1 (Lizard)");
 		createEntity(com.wolffsmod.entity.lizard.EntityM113A3.class, "M113A3 (Lizard)");
+		createEntity(com.wolffsmod.entity.lizard.EntityM41.class, "M41 Walker Bulldog (Lizard)");
 		createEntity(com.wolffsmod.entity.lizard.EntityT55A.class, "T-55A (Lizard)");
 		createEntity(com.wolffsmod.entity.lizard.EntityT72A.class, "T-72A 1979 (Lizard)");
 
@@ -280,10 +280,22 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.tankcraft.EntityM60A1.class, "M60A1 Patton RISE 1975 (Tankcraft)");
 
 		//TaP & Monolith Pack
-		createEntity(com.wolffsmod.entity.monolith.EntityType90.class, "Type 90 Kyu-maru (TaP)");
-		createEntity(com.wolffsmod.entity.monolith.EntityT14Armata.class, "T-14 Armata (TaP)");
+		createEntity(com.wolffsmod.entity.monolith.EntityA7V.class, "A7V (TaP)");
 		createEntity(com.wolffsmod.entity.monolith.EntityK2BlackPanther.class, "K2 Black Panther (TaP)");
-	
+		createEntity(com.wolffsmod.entity.monolith.EntityKimJongSub.class, "Type 033 Class Submarine (TaP)");
+		createEntity(com.wolffsmod.entity.monolith.EntityRomeoSub.class, "Project 633 Class Submarine (TaP)");
+		createEntity(com.wolffsmod.entity.monolith.EntitySlava.class, "Project 1164 Atlant Slava Class Cruiser (TaP)");
+		createEntity(com.wolffsmod.entity.monolith.EntityT14Armata.class, "T-14 Armata (TaP)");
+		createEntity(com.wolffsmod.entity.monolith.EntityT26.class, "T-26 1933 (TaP)");
+		createEntity(com.wolffsmod.entity.monolith.EntityType90.class, "Type 90 Kyu-maru (TaP)");
+
+		//Other TaP
+		createEntity(com.wolffsmod.entity.baf.EntityHurricane.class, "Hawker Hurricane Mk.I (TaP)");
+		createEntity(com.wolffsmod.entity.newage.EntityBF109E3.class, "Messerschmitt Bf 109 E-3 (TaP)");
+		createEntity(com.wolffsmod.entity.newage.EntityHurricaneMk2c.class, "Hawker Hurricane Mk.II C (TaP)");
+		createEntity(com.wolffsmod.entity.newage.EntityHurricaneMk2d.class, "Hawker Hurricane Mk.II D (TaP)");
+		createEntity(com.wolffsmod.entity.newage.EntityMirageF1.class, "Dassault Mirage F1 (TaP)");
+
 		//Price additions
 		createEntity(com.wolffsmod.entity.price.EntityMCOMStation.class, "MCOM Station (Price)");
 		createEntity(com.wolffsmod.entity.price.EntityMilitaryCrate.class, "Military Crate (Somberfob)");
@@ -293,20 +305,12 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.price.EntitySandBags2.class, "SandBags (high res) (Price)");
 		createEntity(com.wolffsmod.entity.price.EntitySupplies.class, "Supplies (Price)");
 
-		createEntity(EntityM41.class, "M41");
-		createEntity(EntityRomeoClassSub.class, "Romeo Class Subee"); // TaP ?
-		createEntity(EntityMirageF1.class, "Mirage F1");
-		createEntity(EntitySlava.class, "Slava");
-		createEntity(EntityA7V.class, "A7V"); // TaP ?
 		createEntity(EntityEurocopterTigerHAP.class, "EurocopterTigerHAP");
-		createEntity(EntityT26.class, "T-26"); // TaP ?
 		createEntity(EntityPak43.class, "Pak-43");
 		createEntity(EntitySoDa.class, "So-Da");
 		createEntity(EntityTeKe.class, "Te-Ke");
 		createEntity(EntityTKlate.class, "TKlate");
-		createEntity(EntityBF109E3.class, "BF-109 E3");
 		createEntity(EntityBF109G10.class, "BF-109 G10");
-		createEntity(EntityHawkerHurricane.class, "Hawker Hurricane");
 		createEntity(EntityOccupier.class, "Occupier");
 		createEntity(EntityP51D.class, "P-51D");
 		createEntity(EntityJihadBMP1.class, "Jihad BMP-1D");

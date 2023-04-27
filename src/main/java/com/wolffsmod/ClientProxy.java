@@ -1,8 +1,9 @@
 package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
-import com.wolffsmod.entity.lizard.EntityT55A;
 import com.wolffsmod.model.*;
+import com.wolffsmod.model.newage.ModelHurricane40;
+import com.wolffsmod.model.newage.ModelHurricanemk2;
 import com.wolffsmod.render.*;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
@@ -288,6 +289,7 @@ public class ClientProxy extends ServerProxy{
 		//Lizard
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.lizard.EntityM113A1.class, new RenderFlansModEntity(new com.wolffsmod.model.lizard.ModelM113A1()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.lizard.EntityM113A3.class, new RenderFlansModEntity(new com.wolffsmod.model.lizard.ModelM113A3()));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.lizard.EntityM41.class, new RenderFlansModEntity(new com.wolffsmod.model.lizard.ModelM41()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.lizard.EntityT55A.class, new RenderFlansModEntity(new com.wolffsmod.model.lizard.ModelT55A()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.lizard.EntityT72A.class, new RenderFlansModEntity(new com.wolffsmod.model.lizard.ModelT72A(), "T72A1979/T72A1979.png"));
 
@@ -295,9 +297,21 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.tankcraft.EntityM60A1.class, new RenderFlansModEntity(new com.wolffsmod.model.tankcraft.ModelTCM60A1(), "M60A1/M60A1.png"));
 
 		//TaP & Monolith Pack
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityType90.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelKyuMaru(), "Type90KyuMaru/Type90KyuMaru.png").scale(0.85F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityT14Armata.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelArmataMBT(), "T14Armata/T14Armata.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityA7V.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelA7V()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityK2BlackPanther.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelK2overdrive(), "K2/K2.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityKimJongSub.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelRomeo(), "RomeoClassSub/RomeoClassSub.png").scale(3.0F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityRomeoSub.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelRomeo(), "RomeoClassSub/KimJongSub.png").scale(3.0F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntitySlava.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelSlava()).scale(3.0F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityT14Armata.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelArmataMBT(), "T14Armata/T14Armata.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityT26.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelT26()));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityType90.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelKyuMaru(), "Type90KyuMaru/Type90KyuMaru.png").scale(0.85F));
+
+		//Other TaP
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.baf.EntityHurricane.class, new RenderFlansModEntity(new com.wolffsmod.model.baf.ModelHurricane(), "HawkerHurricane/HawkerHurricane.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityBF109E3.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelBF109E3()).scale(1.1F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityHurricaneMk2c.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelHurricanemk2(), "HurricaneMkII/HurricaneMkII.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityHurricaneMk2d.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelHurricane40(), "HurricaneMkIId/HurricaneMkIId.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityMirageF1.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelMirageF1()).scale(1.2F));
 
 		//Price additions
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityMCOMStation.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelMCOMStation()).setTranslation(0F, -1.65F, 0F).setScale(1.1F, 1.1F, 1.1F).setRotation(180F, -180F, 0F));
@@ -308,20 +322,21 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySandBags2.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSandBags2()).setTranslation(0F, -0.5F, 0F).setScale(0.25F, 0.25F, 0.25F).setRotation(180F, 0F, 0F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySupplies.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSupplies()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityM41.class, new RenderM41(new ModelM41(), 0));
+		/*RenderingRegistry.registerEntityRenderingHandler(EntityM41.class, new RenderM41(new ModelM41(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityRomeoClassSub.class, new RenderRomeoClassSub(new ModelRomeoClassSub(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityMirageF1.class, new RenderMirageF1(new ModelMirageF1(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySlava.class, new RenderSlava(new ModelSlava(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityA7V.class, new RenderA7V(new ModelA7V(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityEurocopterTigerHAP.class, new RenderEurocopterTigerHAP(new ModelEurocopterTigerHAP(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityT26.class, new RenderT26(new ModelT26(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPak43.class, new RenderPak43(new ModelPak43(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntitySoDa.class, new RenderSoDa(new ModelSoDa(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityTeKe.class, new RenderTeKe(new ModelTeKe(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityTKlate.class, new RenderTKlate(new ModelTKlate(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityBF109E3.class, new RenderBF109E3(new ModelBF109E3(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityBF109G10.class, new RenderBF109G10(new ModelBF109G10(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityHawkerHurricane.class, new RenderHawkerHurricane(new ModelHawkerHurricane(), 0));
+		RenderingRegistry.registerEntityRenderingHandler(EntityT26.class, new RenderT26(new ModelT26(), 0));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBF109E3.class, new RenderBF109E3(new ModelBF109E3(), 0));*/
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityPak43.class, new RenderPak43(new ModelPak43(), 0));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySoDa.class, new RenderSoDa(new ModelSoDa(), 0));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTeKe.class, new RenderTeKe(new ModelTeKe(), 0));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTKlate.class, new RenderTKlate(new ModelTKlate(), 0));
+		RenderingRegistry.registerEntityRenderingHandler(EntityEurocopterTigerHAP.class, new RenderEurocopterTigerHAP(new ModelEurocopterTigerHAP(), 0));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBF109G10.class, new RenderBF109G10(new ModelBF109G10(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOccupier.class, new RenderOccupier(new ModelOccupier(), 0));	
 		RenderingRegistry.registerEntityRenderingHandler(EntityP51D.class, new RenderP51D(new ModelP51D(), 0));	
 		RenderingRegistry.registerEntityRenderingHandler(EntityJihadBMP1.class, new RenderJihadBMP1(new ModelJihadBMP1(), 0));	
