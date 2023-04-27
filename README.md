@@ -2,7 +2,7 @@
 
 [Wiki](https://github.com/AntonIT99/Flans-Mod-NPC-Vehicles/wiki/Flan's-Mod-NPC-Vehicles-Wiki)
 
-# Modified classes in CustomNPC+:
+### Modified classes in CustomNPC+:
 
 package noppes.npcs:
 - DataInventory
