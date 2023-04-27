@@ -16,7 +16,9 @@ public class EntityTKS20mm extends EntityFlanVehicleNPC
     public void setupConfig()
     {
         setTurnSpeed(0.5F);
-        setDriver("-2 -2 -3 -10 10 -10 20");
+        //TODO fix driver gun rotation
+        //setDriver("-2 -2 -3 -10 10 -10 20");
+        setDriver("-2 -2 -3 0 0 -10 20");
         setRotatedDriverOffset("0 0 0");
         addShootPointPrimary("10 7 6 turret");
         
