@@ -305,10 +305,10 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.price.EntitySandBags2.class, "SandBags (high res) (Price)");
 		createEntity(com.wolffsmod.entity.price.EntitySupplies.class, "Supplies (Price)");
 
-		createEntity(EntityEurocopterTigerHAP.class, "EurocopterTigerHAP");
-		createEntity(EntityPak43.class, "Pak-43");
-		createEntity(EntitySoDa.class, "So-Da");
-		createEntity(EntityTeKe.class, "Te-Ke");
+		createEntity(EntityEurocopterTigerHAP.class, "Eurocopter Tiger HAP");
+		createEntity(EntityPak43.class, "88mm PaK 43");
+		createEntity(EntitySoDa.class, "Type 98 So-Da");
+		createEntity(EntityTeKe.class, "Type 97 Te-Ke");
 		createEntity(EntityTKlate.class, "TKlate");
 		createEntity(EntityOccupier.class, "Occupier");
 		createEntity(EntityP51D.class, "P-51D");
@@ -432,6 +432,30 @@ public class ModEntityRegistry {
 
 		//Prototype
 		createEntity(com.wolffsmod.entity.prototype.EntityRatte.class, "Landkreuzer P.1000 Ratte (Prototype)");
+
+		//Manus Civil Pack
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Plane_Boeing707_1A.class, "Boeing 707 (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Plane_Learjet28_1A.class, "Learjet 28 (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_ATeam_1A.class, "GMC Van A-Team Style (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_BankTruck_1A.class, "Bank Truck (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Car_1A.class, "Large Black Car (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Car_2A.class, "Pink Cadillac (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Cop_1A.class, "Police Car (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_F1_1A.class, "Formula 1 Racer (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_GolfCart_1A.class, "Chevrolet Suburban 2010 White (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW1_1A.class, "Small Panel Truck (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW1_2A.class, "Small Tipper (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW1_3A.class, "Small Tipper with Load (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW2_1A.class, "Large Panel Truck (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW2_2A.class, "Large Tank Truck (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW2_3A.class, "Large Cement Transporter (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW3_1A.class, "Fire Department Equipment Truck (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW3_2A.class, "Fire Department Ladder Truck (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Medic_1A.class, "Ambulance Van (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_PoliceTruck_1A.class, "Police Truck (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_PoliceTruck_2A.class, "SWAT Truck (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Ram_1A.class, "Dogde Ram (Manus Pack)");
+		createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Taxi_1A.class, "Taxi Car (Manus Pack)");
 	}
 
 	public static void createEntity(Class<? extends Entity> entityClass, String entityName)

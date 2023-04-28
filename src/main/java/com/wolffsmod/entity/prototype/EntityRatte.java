@@ -15,9 +15,9 @@ public class EntityRatte extends EntityFlanVehicleNPC
     @Override
     public void setupConfig()
     {
-        setTurnSpeed(0.1F);
+        setTurnSpeed(0.05F);
         setDriver("8 248 0 -360 360 -10 40");
-        setDriverAimSpeed("0.25 0.15 0");
+        setDriverAimSpeed("0.15 0.1 0");
         setRotatedDriverOffset("6 0 -12");
         setPassenger("1 216 120 -30 core -12 12 -24 24 128mmGun Mantle");
         setPassenger("2 -386 200 -114 core -360 360 -15 20 128mmGun Left");

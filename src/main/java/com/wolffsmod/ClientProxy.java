@@ -450,5 +450,29 @@ public class ClientProxy extends ServerProxy{
 
 		//Prototype
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.EntityRatte.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.ModelRatte()).setTranslation(0F, -5F, 0F).setScale(2.4F, 2.4F, 2.4F));
+
+		//Manus Civil Pack
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Plane_Boeing707_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Plane_Boeing707_1(), "Boeing707/Boeing707_Lufthansa.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Plane_Learjet28_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Plane_Learjet28_1(), "Learjet28/Learjet28.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_ATeam_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_ATeam_1(), "ATeam/ATeam.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_BankTruck_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_BankTruck_1(), "BankTruck/BankTruck.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Car_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_Car_1(), "Car1/Car_Black.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Car_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_Car_2(), "Car2/Cadillac_Pink.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Cop_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_Cop_1(), "CopCar/CopCar.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_F1_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_F1_1(), "Formula1/F1_Red.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_GolfCart_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_GolfCart_1(), "GolfCart/GolfCart.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW1_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_LKW1_1(), "LKW1_1/LKW.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW1_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_LKW1_2(), "LKW1_2/LKW.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW1_3A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_LKW1_3(), "LKW1_3/LKW.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW2_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_LKW2_1(), "LKW2_1/LKW.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW2_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_LKW2_2(), "LKW2_2/LKW.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW2_3A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_LKW2_3(), "LKW2_3/LKW.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW3_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_LKW3_1(), "LKW3_1/LKW.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_LKW3_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_LKW3_2(), "LKW3_2/LKW.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Medic_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_Medic_1(), "AmbulanceVan/AmbulanceVan.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_PoliceTruck_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_PoliceTruck_1(), "PoliceTruck1/PoliceTruck.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_PoliceTruck_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_PoliceTruck_2(), "PoliceTruck2/PoliceTruck.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Ram_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_Ram_1(), "DogdeRam/DogdeRam.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Taxi_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_Taxi_1(), "Taxi/Taxi.png"));
 	}
 }
