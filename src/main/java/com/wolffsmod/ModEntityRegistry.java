@@ -118,7 +118,7 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.official.mw.EntitySentryGun.class, "Sentry Gun (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.mw.EntitySU25.class, "Sukhoi Su-25 Grach (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.mw.EntityT90.class, "T-90MS (Official Pack)");
-		createEntity(com.wolffsmod.entity.official.mw.EntityTiger.class, "Eurocopter EC665 Tiger (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.mw.EntityTiger.class, "Eurocopter EC-665 Tiger (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.mw.EntityTornado.class, "Panavia Tornado GR4 (Official Pack)");
 
 		//Utility Pack
@@ -279,7 +279,7 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.tankcraft.EntityM60A1.class, "M60A1 Patton RISE 1975 (Tankcraft)");
 
 		//TaP & Monolith Pack
-		createEntity(com.wolffsmod.entity.monolith.EntityA7V.class, "A7V (TaP)");
+		createEntity(com.wolffsmod.entity.monolith.EntityA7V.class, "Sturmpanzerwagen A7V (TaP)");
 		createEntity(com.wolffsmod.entity.monolith.EntityK2BlackPanther.class, "K2 Black Panther (TaP)");
 		createEntity(com.wolffsmod.entity.monolith.EntityKimJongSub.class, "Type 033 Class Submarine (TaP)");
 		createEntity(com.wolffsmod.entity.monolith.EntityRomeoSub.class, "Project 633 Class Submarine (TaP)");
@@ -291,6 +291,8 @@ public class ModEntityRegistry {
 		//Other TaP
 		createEntity(com.wolffsmod.entity.baf.EntityHurricane.class, "Hawker Hurricane Mk.I (TaP)");
 		createEntity(com.wolffsmod.entity.newage.EntityBF109E3.class, "Messerschmitt Bf 109 E-3 (TaP)");
+		createEntity(com.wolffsmod.entity.newage.EntityEurocopterTigerHAD.class, "Eurocopter EC-665 Tigre HAD (TaP)");
+		createEntity(com.wolffsmod.entity.newage.EntityEurocopterTigerUHT.class, "Eurocopter EC-665 Tiger UHT (TaP)");
 		createEntity(com.wolffsmod.entity.newage.EntityHurricaneMk2c.class, "Hawker Hurricane Mk.II C (TaP)");
 		createEntity(com.wolffsmod.entity.newage.EntityHurricaneMk2d.class, "Hawker Hurricane Mk.II D (TaP)");
 		createEntity(com.wolffsmod.entity.newage.EntityMirageF1.class, "Dassault Mirage F1 (TaP)");
@@ -304,7 +306,6 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.price.EntitySandBags2.class, "SandBags (high res) (Price)");
 		createEntity(com.wolffsmod.entity.price.EntitySupplies.class, "Supplies (Price)");
 
-		createEntity(EntityEurocopterTigerHAP.class, "Eurocopter EC665 Tiger HAP");
 		createEntity(EntityPak43.class, "88mm PaK 43");
 		createEntity(EntitySoDa.class, "Type 98 So-Da");
 		createEntity(EntityTeKe.class, "Type 97 Te-Ke");

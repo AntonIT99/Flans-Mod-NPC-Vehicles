@@ -307,6 +307,8 @@ public class ClientProxy extends ServerProxy{
 		//Other TaP
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.baf.EntityHurricane.class, new RenderFlansModEntity(new com.wolffsmod.model.baf.ModelHurricane(), "HawkerHurricane/HawkerHurricane.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityBF109E3.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelBF109E3()).scale(1.1F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityEurocopterTigerHAD.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelEurocopterTigerHAP()).scale(0.95F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityEurocopterTigerUHT.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelEurocopterTigerUHT()).scale(0.95F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityHurricaneMk2c.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelHurricanemk2(), "HurricaneMkII/HurricaneMkII.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityHurricaneMk2d.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelHurricane40(), "HurricaneMkIId/HurricaneMkIId.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityMirageF1.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelMirageF1()).scale(1.2F));
@@ -325,7 +327,6 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntitySoDa.class, new RenderFlansModEntity(new ModelSoDa()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTeKe.class, new RenderFlansModEntity(new ModelTeKe()).setRotation(0F, 90F, 0F).setTranslation(0F, 0.9F, 0F).setScale(1.1F, 1.1F, 1.1F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTKlate.class, new RenderFlansModEntity(new ModelTKlate()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityEurocopterTigerHAP.class, new RenderFlansModEntity(new ModelEurocopterTigerHAP()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOccupier.class, new RenderFlansModEntity(new ModelOccupier()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityP51D.class, new RenderFlansModEntity(new ModelP51D()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityJihadBMP1.class, new RenderFlansModEntity(new ModelJihadBMP1()));
