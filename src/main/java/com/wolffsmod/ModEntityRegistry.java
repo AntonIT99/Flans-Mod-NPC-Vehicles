@@ -296,6 +296,11 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.newage.EntityHurricaneMk2c.class, "Hawker Hurricane Mk.II C (TaP)");
 		createEntity(com.wolffsmod.entity.newage.EntityHurricaneMk2d.class, "Hawker Hurricane Mk.II D (TaP)");
 		createEntity(com.wolffsmod.entity.newage.EntityMirageF1.class, "Dassault Mirage F1 (TaP)");
+		createEntity(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxBMP1.class, "Toyota Hilux Technical w/ BMP-1 Turret (TaP)");
+		createEntity(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxDSHK.class, "Toyota Hilux Technical w/ DShK (TaP)");
+		createEntity(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxKornet.class, "Toyota Hilux Technical w/ Kornet (TaP)");
+		createEntity(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxS5.class, "Toyota Hilux Technical w/ UB-32 RocketPod (TaP)");
+		createEntity(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxSPG9.class, "Toyota Hilux Technical w/ SPG-9 (TaP)");
 
 		//Price additions
 		createEntity(com.wolffsmod.entity.price.EntityMCOMStation.class, "MCOM Station (Price)");
@@ -312,7 +317,6 @@ public class ModEntityRegistry {
 		createEntity(EntityTKlate.class, "Type 94 TK late");
 		createEntity(EntityOccupier.class, "TX-225 GAVw Occupier");
 		createEntity(EntityP51D.class, "North American P-51D Mustang");
-		createEntity(EntityJihadBMP1.class, "Jihad BMP-1D");
 
 		//Warfare 44
 		createEntity(com.wolffsmod.entity.w44.Entity44_50CalTripod.class, "M2 Browning .50 Cal Tripod (Warfare 44)");

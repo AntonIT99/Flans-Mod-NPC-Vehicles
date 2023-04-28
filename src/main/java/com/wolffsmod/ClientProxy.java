@@ -312,6 +312,11 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityHurricaneMk2c.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelHurricanemk2(), "HurricaneMkII/HurricaneMkII.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityHurricaneMk2d.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelHurricane40(), "HurricaneMkIId/HurricaneMkIId.png"));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityMirageF1.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelMirageF1()).scale(1.2F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxBMP1.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelToyotaHiluxBMP1()).scale(1.1F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxDSHK.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelToyotaHiluxDSHK()).scale(1.1F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxKornet.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelToyotaHiluxKornet()).scale(1.1F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxS5.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelToyotaHiluxS5()).scale(1.1F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxSPG9.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelToyotaHiluxSPG9()).scale(1.1F));
 
 		//Price additions
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityMCOMStation.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelMCOMStation()).setTranslation(0F, -1.65F, 0F).setScale(1.1F, 1.1F, 1.1F).setRotation(180F, -180F, 0F));
@@ -322,14 +327,13 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySandBags2.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSandBags2()).setTranslation(0F, -0.5F, 0F).setScale(0.25F, 0.25F, 0.25F).setRotation(180F, 0F, 0F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySupplies.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSupplies()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
 
-		//TODO: find original models
+		//TODO: replace models by original ones
 		RenderingRegistry.registerEntityRenderingHandler(EntityPak43.class, new RenderFlansModEntity(new ModelPak43()));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySoDa.class, new RenderFlansModEntity(new ModelSoDa()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTeKe.class, new RenderFlansModEntity(new ModelTeKe()).setRotation(0F, 90F, 0F).setTranslation(0F, 0.9F, 0F).setScale(1.1F, 1.1F, 1.1F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTKlate.class, new RenderFlansModEntity(new ModelTKlate()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOccupier.class, new RenderFlansModEntity(new ModelOccupier()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityP51D.class, new RenderFlansModEntity(new ModelP51D()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityJihadBMP1.class, new RenderFlansModEntity(new ModelJihadBMP1()));
 
 		//Warfare 44
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.Entity44_50CalTripod.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.Model50CalTripod()).scale(0.45F));
