@@ -2,8 +2,6 @@ package com.wolffsmod;
 
 import com.wolffsmod.entity.*;
 import com.wolffsmod.model.*;
-import com.wolffsmod.model.newage.ModelHurricane40;
-import com.wolffsmod.model.newage.ModelHurricanemk2;
 import com.wolffsmod.render.*;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
