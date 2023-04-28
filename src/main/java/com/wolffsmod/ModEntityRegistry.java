@@ -305,13 +305,13 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.price.EntitySandBags2.class, "SandBags (high res) (Price)");
 		createEntity(com.wolffsmod.entity.price.EntitySupplies.class, "Supplies (Price)");
 
-		createEntity(EntityEurocopterTigerHAP.class, "Eurocopter Tiger HAP");
+		createEntity(EntityEurocopterTigerHAP.class, "Eurocopter EC665 Tiger HAP");
 		createEntity(EntityPak43.class, "88mm PaK 43");
 		createEntity(EntitySoDa.class, "Type 98 So-Da");
 		createEntity(EntityTeKe.class, "Type 97 Te-Ke");
-		createEntity(EntityTKlate.class, "TKlate");
-		createEntity(EntityOccupier.class, "Occupier");
-		createEntity(EntityP51D.class, "P-51D");
+		createEntity(EntityTKlate.class, "Type 94 TK late");
+		createEntity(EntityOccupier.class, "TX-225 GAVw Occupier");
+		createEntity(EntityP51D.class, "North American P-51D Mustang");
 		createEntity(EntityJihadBMP1.class, "Jihad BMP-1D");
 
 		//Warfare 44
