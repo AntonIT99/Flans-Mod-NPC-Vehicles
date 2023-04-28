@@ -323,14 +323,14 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySupplies.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSupplies()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
 
 		//TODO: find original models
-		RenderingRegistry.registerEntityRenderingHandler(EntityPak43.class, new RenderPak43(new ModelPak43(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySoDa.class, new RenderSoDa(new ModelSoDa(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTeKe.class, new RenderTeKe(new ModelTeKe(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTKlate.class, new RenderTKlate(new ModelTKlate(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityEurocopterTigerHAP.class, new RenderEurocopterTigerHAP(new ModelEurocopterTigerHAP(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityOccupier.class, new RenderOccupier(new ModelOccupier(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityP51D.class, new RenderP51D(new ModelP51D(), 0));	
-		RenderingRegistry.registerEntityRenderingHandler(EntityJihadBMP1.class, new RenderJihadBMP1(new ModelJihadBMP1(), 0));	
+		RenderingRegistry.registerEntityRenderingHandler(EntityPak43.class, new RenderFlansModEntity(new ModelPak43()));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySoDa.class, new RenderFlansModEntity(new ModelSoDa()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTeKe.class, new RenderFlansModEntity(new ModelTeKe()).setRotation(0F, 90F, 0F).setTranslation(0F, 0.9F, 0F).setScale(1.1F, 1.1F, 1.1F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTKlate.class, new RenderFlansModEntity(new ModelTKlate()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityEurocopterTigerHAP.class, new RenderFlansModEntity(new ModelEurocopterTigerHAP()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityOccupier.class, new RenderFlansModEntity(new ModelOccupier()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityP51D.class, new RenderFlansModEntity(new ModelP51D()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityJihadBMP1.class, new RenderFlansModEntity(new ModelJihadBMP1()));
 
 		//Warfare 44
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.Entity44_50CalTripod.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.Model50CalTripod()).scale(0.45F));
