@@ -17,7 +17,7 @@ public class EntitySkyshield extends EntityFlanAAGunNPC
         //TODO: check driver position
         setDriver("6 30 -9 -360 360 0 90");
         setNumBarrels(1);
-        addBarrel("0 100 0 0");
+        addBarrel("0 60 24 0");
         setRecoil(4F);
     }
 }

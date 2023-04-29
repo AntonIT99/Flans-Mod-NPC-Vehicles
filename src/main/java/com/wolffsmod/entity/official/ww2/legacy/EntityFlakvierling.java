@@ -17,10 +17,10 @@ public class EntityFlakvierling extends EntityFlanAAGunNPC
     {
         setDriver("8 28 8 -360 360 0 90");
         setNumBarrels(4);
-        addBarrel("0 40 6 6");
-        addBarrel("1 40 12 6");
-        addBarrel("2 40 12 0");
-        addBarrel("3 40 6 0");
+        addBarrel("0 30 6 6");
+        addBarrel("1 30 12 6");
+        addBarrel("2 30 12 0");
+        addBarrel("3 30 6 0");
         setRecoil(5F);
     }
 }

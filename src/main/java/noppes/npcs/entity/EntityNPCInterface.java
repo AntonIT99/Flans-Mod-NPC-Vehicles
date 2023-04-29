@@ -3,6 +3,7 @@ package noppes.npcs.entity;
 import com.flansmod.client.FlansModClient;
 import com.flansmod.client.model.GunAnimations;
 import com.flansmod.common.FlansMod;
+import com.flansmod.common.RotatedAxes;
 import com.flansmod.common.driveables.*;
 import com.flansmod.common.guns.*;
 import com.flansmod.common.network.PacketPlaySound;
@@ -922,7 +923,10 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 				EntityFlanAAGunNPC aaGun = (EntityFlanAAGunNPC)getFlanDriveableEntity().get();
 				for (int currentBarrel=0; currentBarrel<aaGun.numBarrels; currentBarrel++)
 				{
-					origin = NPCInterfaceUtil.rotate(aaGun.barrelX[currentBarrel] / 16D - aaGun.barrelZ[currentBarrel] / 16D, aaGun.barrelY[currentBarrel] / 16D, aaGun.barrelX[currentBarrel] / 16D + aaGun.barrelZ[currentBarrel] / 16D, yaw, pitch).addVector(posX, posY, posZ);
+					RotatedAxes axes = new RotatedAxes(yaw, pitch, 0F);
+					axes.rotateLocalYaw(90F);
+					Vec3 barrel = axes.findLocalVectorGlobally(new Vector3f(aaGun.barrelX[currentBarrel] / 16D, aaGun.barrelY[currentBarrel] / 16D, aaGun.barrelZ[currentBarrel] / 16D)).toVec3();
+					origin = barrel.addVector(posX, posY, posZ);
 					spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
 				}
 			}

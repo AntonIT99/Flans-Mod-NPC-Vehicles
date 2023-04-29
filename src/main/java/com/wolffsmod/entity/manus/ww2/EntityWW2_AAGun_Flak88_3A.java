@@ -16,7 +16,7 @@ public class EntityWW2_AAGun_Flak88_3A extends EntityFlanAAGunNPC
     {
         setDriver("3 30 -16 -360 360 0 90");
         setNumBarrels(1);
-        addBarrel("0 88 40 0");
+        addBarrel("0 72 28 0");
         setRecoil(5F);
     }
 }
