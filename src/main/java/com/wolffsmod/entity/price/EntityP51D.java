@@ -1,4 +1,6 @@
-package com.wolffsmod.entity;
+package com.wolffsmod.entity.price;
+
+import com.wolffsmod.entity.EntityFlanPlaneNPC;
 
 import net.minecraft.world.World;
 

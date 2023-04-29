@@ -1,4 +1,6 @@
-package com.wolffsmod.entity;
+package com.wolffsmod.entity.price;
+
+import com.wolffsmod.entity.EntityFlanVehicleNPC;
 
 import net.minecraft.world.World;
 

@@ -326,14 +326,12 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySandBags1.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSandBags1()).setTranslation(0F, -1.5F, 0F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySandBags2.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSandBags2()).setTranslation(0F, -0.5F, 0F).setScale(0.25F, 0.25F, 0.25F).setRotation(180F, 0F, 0F));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySupplies.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSupplies()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
-
-		//TODO: replace models by original ones
-		RenderingRegistry.registerEntityRenderingHandler(EntityPak43.class, new RenderFlansModEntity(new ModelPak43()));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySoDa.class, new RenderFlansModEntity(new ModelSoDa()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTeKe.class, new RenderFlansModEntity(new ModelTeKe()).setRotation(0F, 90F, 0F).setTranslation(0F, 0.9F, 0F).setScale(1.1F, 1.1F, 1.1F));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTKlate.class, new RenderFlansModEntity(new ModelTKlate()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityOccupier.class, new RenderFlansModEntity(new ModelOccupier()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityP51D.class, new RenderFlansModEntity(new ModelP51D()));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityPak43.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelPak43()));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySoDa.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSoDa()));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityTeKe.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelTeKe()).scale(1.1F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityTKlate.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelTKlate()));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityOccupier.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelOccupier()));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityP51D.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelP51D()));
 
 		//Warfare 44
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.Entity44_50CalTripod.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.Model50CalTripod()).scale(0.45F));

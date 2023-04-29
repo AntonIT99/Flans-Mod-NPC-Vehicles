@@ -1,6 +1,11 @@
 package com.wolffsmod;
 
-import com.wolffsmod.entity.*;
+import com.wolffsmod.entity.price.EntityOccupier;
+import com.wolffsmod.entity.price.EntityP51D;
+import com.wolffsmod.entity.price.EntityPak43;
+import com.wolffsmod.entity.price.EntitySoDa;
+import com.wolffsmod.entity.price.EntityTKlate;
+import com.wolffsmod.entity.price.EntityTeKe;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 import net.minecraft.entity.Entity;
@@ -310,13 +315,12 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.price.EntitySandBags1.class, "SandBags (low res) (Price)");
 		createEntity(com.wolffsmod.entity.price.EntitySandBags2.class, "SandBags (high res) (Price)");
 		createEntity(com.wolffsmod.entity.price.EntitySupplies.class, "Supplies (Price)");
-
-		createEntity(EntityPak43.class, "88mm PaK 43");
-		createEntity(EntitySoDa.class, "Type 98 So-Da");
-		createEntity(EntityTeKe.class, "Type 97 Te-Ke");
-		createEntity(EntityTKlate.class, "Type 94 TK late");
-		createEntity(EntityOccupier.class, "TX-225 GAVw Occupier");
-		createEntity(EntityP51D.class, "North American P-51D Mustang");
+		createEntity(com.wolffsmod.entity.price.EntityPak43.class, "88mm PaK 43");
+		createEntity(com.wolffsmod.entity.price.EntitySoDa.class, "Type 98 So-Da");
+		createEntity(com.wolffsmod.entity.price.EntityTeKe.class, "Type 97 Te-Ke");
+		createEntity(com.wolffsmod.entity.price.EntityTKlate.class, "Type 94 TK late");
+		createEntity(com.wolffsmod.entity.price.EntityOccupier.class, "TX-225 GAVw Occupier");
+		createEntity(com.wolffsmod.entity.price.EntityP51D.class, "North American P-51D Mustang");
 
 		//Warfare 44
 		createEntity(com.wolffsmod.entity.w44.Entity44_50CalTripod.class, "M2 Browning .50 Cal Tripod (Warfare 44)");
