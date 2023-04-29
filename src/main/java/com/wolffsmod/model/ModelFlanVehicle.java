@@ -373,7 +373,8 @@ public abstract class ModelFlanVehicle extends ModelVehicle
     }
 
     @Override
-    public void flipAll() {
+    public void flipAll()
+    {
         flip(bodyModel);
         flip(bodyDoorOpenModel);
         flip(bodyDoorCloseModel);
@@ -382,8 +383,6 @@ public abstract class ModelFlanVehicle extends ModelVehicle
             for (ModelRendererTurbo[] mods : modsOfMods)
                 flip(mods);
         }
-        flip(bodyDoorOpenModel);
-        flip(bodyDoorCloseModel);
         flip(turretModel);
         flip(barrelModel);
         flip(barrelSpecModel);
@@ -436,8 +435,6 @@ public abstract class ModelFlanVehicle extends ModelVehicle
             for (ModelRendererTurbo[] mods : modsOfMods)
                 translate(mods, x, y, z);
         }
-        translate(bodyDoorOpenModel, x, y, z);
-        translate(bodyDoorCloseModel, x, y, z);
         translate(turretModel, x, y, z);
         translate(barrelModel, x, y, z);
         translate(barrelSpecModel, x, y, z);
