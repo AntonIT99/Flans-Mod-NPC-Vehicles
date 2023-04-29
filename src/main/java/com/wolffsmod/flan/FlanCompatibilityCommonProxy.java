@@ -1,4 +1,4 @@
-package com.wolffsmod.customnpc;
+package com.wolffsmod.flan;
 
 public class FlanCompatibilityCommonProxy
 {

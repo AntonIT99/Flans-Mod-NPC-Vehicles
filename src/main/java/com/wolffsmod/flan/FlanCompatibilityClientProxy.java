@@ -1,4 +1,4 @@
-package com.wolffsmod.customnpc;
+package com.wolffsmod.flan;
 
 import com.flansmod.client.model.RenderBullet;
 import cpw.mods.fml.client.registry.RenderingRegistry;

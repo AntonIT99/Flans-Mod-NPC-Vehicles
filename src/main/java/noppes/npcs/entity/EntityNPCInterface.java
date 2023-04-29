@@ -4,24 +4,73 @@ import com.flansmod.client.FlansModClient;
 import com.flansmod.client.model.GunAnimations;
 import com.flansmod.common.FlansMod;
 import com.flansmod.common.RotatedAxes;
-import com.flansmod.common.driveables.*;
-import com.flansmod.common.guns.*;
+import com.flansmod.common.driveables.DriveableType;
+import com.flansmod.common.driveables.ItemPlane;
+import com.flansmod.common.driveables.ItemVehicle;
+import com.flansmod.common.driveables.ShootPoint;
+import com.flansmod.common.guns.AAGunType;
+import com.flansmod.common.guns.EntityBullet;
+import com.flansmod.common.guns.EntityShootable;
+import com.flansmod.common.guns.GunType;
+import com.flansmod.common.guns.ItemAAGun;
+import com.flansmod.common.guns.ItemBullet;
+import com.flansmod.common.guns.ItemGrenade;
+import com.flansmod.common.guns.ItemGun;
+import com.flansmod.common.guns.ItemShootable;
+import com.flansmod.common.guns.ShootableType;
 import com.flansmod.common.network.PacketPlaySound;
 import com.flansmod.common.vector.Vector3f;
+import com.wolffsmod.customnpc.NPCInterfaceUtil;
 import com.wolffsmod.entity.EntityFlanAAGunNPC;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.Seat;
+import com.wolffsmod.flan.EntityNPCFlanBullet;
+import com.wolffsmod.flan.FlanUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.ServerChatEvent;
-import noppes.npcs.*;
+import noppes.npcs.CustomItems;
+import noppes.npcs.CustomNpcs;
+import noppes.npcs.DataAI;
+import noppes.npcs.DataAdvanced;
+import noppes.npcs.DataDisplay;
+import noppes.npcs.DataInventory;
+import noppes.npcs.DataStats;
+import noppes.npcs.EventHooks;
+import noppes.npcs.IChatMessages;
+import noppes.npcs.NBTTags;
+import noppes.npcs.NoppesUtilPlayer;
+import noppes.npcs.NoppesUtilServer;
+import noppes.npcs.NpcDamageSource;
+import noppes.npcs.Server;
+import noppes.npcs.VersionCompatibility;
+import noppes.npcs.ai.EntityAIAmbushTarget;
+import noppes.npcs.ai.EntityAIAnimation;
+import noppes.npcs.ai.EntityAIAttackTarget;
+import noppes.npcs.ai.EntityAIAvoidTarget;
+import noppes.npcs.ai.EntityAIBustDoor;
+import noppes.npcs.ai.EntityAIDodgeShoot;
+import noppes.npcs.ai.EntityAIFindShade;
+import noppes.npcs.ai.EntityAIFollow;
+import noppes.npcs.ai.EntityAIJob;
+import noppes.npcs.ai.EntityAILook;
 import noppes.npcs.ai.EntityAIMoveIndoors;
+import noppes.npcs.ai.EntityAIMovingPath;
+import noppes.npcs.ai.EntityAIOrbitTarget;
 import noppes.npcs.ai.EntityAIPanic;
+import noppes.npcs.ai.EntityAIRangedAttack;
+import noppes.npcs.ai.EntityAIReturn;
+import noppes.npcs.ai.EntityAIRole;
+import noppes.npcs.ai.EntityAISprintToTarget;
+import noppes.npcs.ai.EntityAIStalkTarget;
+import noppes.npcs.ai.EntityAITransform;
 import noppes.npcs.ai.EntityAIWander;
 import noppes.npcs.ai.EntityAIWatchClosest;
-import noppes.npcs.ai.*;
+import noppes.npcs.ai.EntityAIWaterNav;
+import noppes.npcs.ai.EntityAIWorldLines;
+import noppes.npcs.ai.EntityAIZigZagTarget;
 import noppes.npcs.ai.pathfinder.FlyingMoveHelper;
 import noppes.npcs.ai.pathfinder.PathNavigateFlying;
 import noppes.npcs.ai.selector.NPCAttackSelector;
@@ -32,27 +81,59 @@ import noppes.npcs.ai.target.EntityAIOwnerHurtTarget;
 import noppes.npcs.api.entity.ICustomNpc;
 import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.client.EntityUtil;
-import noppes.npcs.constants.*;
+import noppes.npcs.constants.EnumAnimation;
+import noppes.npcs.constants.EnumJobType;
+import noppes.npcs.constants.EnumMovingType;
+import noppes.npcs.constants.EnumNavType;
+import noppes.npcs.constants.EnumPacketClient;
+import noppes.npcs.constants.EnumPotionType;
+import noppes.npcs.constants.EnumRoleType;
+import noppes.npcs.constants.EnumStandingType;
 import noppes.npcs.controllers.FactionController;
 import noppes.npcs.controllers.LinkedNpcController;
 import noppes.npcs.controllers.LinkedNpcController.LinkedData;
 import noppes.npcs.controllers.PlayerDataController;
-import noppes.npcs.controllers.data.*;
+import noppes.npcs.controllers.data.DataScript;
+import noppes.npcs.controllers.data.DataTransform;
+import noppes.npcs.controllers.data.Dialog;
+import noppes.npcs.controllers.data.DialogOption;
+import noppes.npcs.controllers.data.Faction;
+import noppes.npcs.controllers.data.Line;
+import noppes.npcs.controllers.data.PlayerQuestData;
+import noppes.npcs.controllers.data.QuestData;
 import noppes.npcs.entity.data.DataTimers;
-import noppes.npcs.roles.*;
+import noppes.npcs.roles.JobBard;
+import noppes.npcs.roles.JobFollower;
+import noppes.npcs.roles.JobInterface;
+import noppes.npcs.roles.RoleCompanion;
+import noppes.npcs.roles.RoleFollower;
+import noppes.npcs.roles.RoleInterface;
 import noppes.npcs.scripted.entity.ScriptNpc;
 import noppes.npcs.scripted.event.NpcEvent;
-import com.wolffsmod.customnpc.EntityNPCFlanBullet;
 import noppes.npcs.util.GameProfileAlt;
-import com.wolffsmod.customnpc.NPCInterfaceUtil;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.IEntitySelector;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.DataWatcher;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.NPCEntityHelper;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILeapAtTarget;
+import net.minecraft.entity.ai.EntityAIOpenDoor;
+import net.minecraft.entity.ai.EntityAIRestrictSun;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
+import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.item.EntityFireworkRocket;
@@ -67,17 +148,37 @@ import net.minecraft.entity.projectile.EntityEgg;
 import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBow;
+import net.minecraft.item.ItemEgg;
+import net.minecraft.item.ItemExpBottle;
+import net.minecraft.item.ItemFirework;
+import net.minecraft.item.ItemPotion;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.IChatComponent;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public abstract class EntityNPCInterface extends EntityCreature implements IEntityAdditionalSpawnData, ICommandSender, IRangedAttackMob, IBossDisplayData{
 	public Seat driver = new Seat();
@@ -496,7 +597,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			Entity sourceOfDamage = damagesource.getSourceOfDamage();
 			if (sourceOfDamage instanceof EntityShootable)
 			{
-				ShootableType type = ((EntityShootable)sourceOfDamage).getType();
+				ShootableType type = FlanUtils.getType((EntityShootable)sourceOfDamage);
 				float baseDamage = i / type.damageVsLiving;
 				i = isFlanPlane() ? baseDamage * type.damageVsPlanes : baseDamage * type.damageVsVehicles;
 			}
@@ -797,7 +898,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			int chargeDelay = gunType.model == null ? 0 : gunType.model.chargeDelayAfterReload;
 			int chargeTime = gunType.model == null ? 1 : gunType.model.chargeTime;
 
-			animations.doReload(stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime, 1, false);
+			FlanUtils.doReloadAnimation(animations, stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime, 1, false);
 		}
 		if (offHandItem != null && offHandItem.getItem() instanceof ItemGun)
 		{
@@ -809,7 +910,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			int chargeDelay = gunType.model == null ? 0 : gunType.model.chargeDelayAfterReload;
 			int chargeTime = gunType.model == null ? 1 : gunType.model.chargeTime;
 
-			animations.doReload(this.stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime, 1, false);
+			FlanUtils.doReloadAnimation(animations, stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime, 1, false);
 		}
 	}
 
@@ -861,7 +962,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		{
 			GunType gunType = ((ItemGun)itemStackGun.getItem()).type;
 			damage = ((ItemGun)itemStackGun.getItem()).type.getDamage(itemStackGun);
-			speed = Math.round(Math.max(((ItemGun)itemStackGun.getItem()).type.getBulletSpeed(itemStackGun, itemStackShootable), 1F));
+			speed = Math.round(Math.max(FlanUtils.getBulletSpeed(((ItemGun)itemStackGun.getItem()).type, itemStackGun, itemStackShootable), 1F));
 			spread = gunType.getSpread(itemStackGun, isSneaking(), isSprinting());
 			shotgun = (gunType.getNumBullets(itemStackGun) > 1);
 		}
@@ -879,7 +980,9 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 				if (driveableType.isPresent())
 				{
 					DriveableType type = driveableType.get();
-					damage = type.damageMultiplierPrimary;
+					Optional<Float> damageMultiplierPrimary = FlanUtils.getDamageMultiplierPrimary(type);
+					if (damageMultiplierPrimary.isPresent())
+						damage = damageMultiplierPrimary.get();
 					speed = (int) type.bulletSpeed;
 					spread = type.bulletSpread;
 				}
@@ -939,45 +1042,31 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 
 	public void spawnFlanShootable(ItemShootable item, Vec3 origin, float yaw, float pitch, float spread, float damage, float speed, boolean shotgun)
 	{
-		EntityShootable shot;
+		EntityShootable shot = null;
+
 		if (item instanceof ItemGrenade)
 		{
 			shot = ((ItemGrenade) item).getGrenade(worldObj, this);
 		}
-		else
+		else if (item instanceof ItemBullet)
 		{
-			if (item instanceof ItemBullet)
-			{
-				shot = new EntityNPCFlanBullet(
-						worldObj,
-						origin,
-						yaw,
-						pitch,
-						this,
-						spread,
-						damage,
-						((ItemBullet)item).type,
-						speed,
-						item.type);
-			}
-			else
-			{
-				shot = item.getEntity(
-						worldObj,
-						origin,
-						yaw,
-						pitch,
-						this,
-						spread,
-						damage,
-						speed,
-						0,
-						item.type);
-			}
-			if (shot instanceof EntityBullet)
-				((EntityBullet) shot).shotgun = shotgun;
+			shot = new EntityNPCFlanBullet(
+					worldObj,
+					origin,
+					yaw,
+					pitch,
+					this,
+					spread,
+					damage,
+					((ItemBullet)item).type,
+					speed,
+					item.type);
+
+			((EntityBullet) shot).shotgun = shotgun;
 		}
-		worldObj.spawnEntityInWorld(shot);
+
+		if (shot != null)
+			worldObj.spawnEntityInWorld(shot);
 	}
 
 	public EntityProjectile shoot(EntityLivingBase entity, int accuracy, ItemStack proj, boolean indirect){

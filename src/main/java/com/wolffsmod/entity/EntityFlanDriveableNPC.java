@@ -1,15 +1,20 @@
 package com.wolffsmod.entity;
 
 import com.flansmod.common.RotatedAxes;
-import com.flansmod.common.driveables.*;
+import com.flansmod.common.driveables.DriveablePosition;
+import com.flansmod.common.driveables.EnumDriveablePart;
+import com.flansmod.common.driveables.EnumWeaponType;
+import com.flansmod.common.driveables.PilotGun;
+import com.flansmod.common.driveables.ShootPoint;
 import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.WolffNPCMod;
+import com.wolffsmod.customnpc.NPCInterfaceUtil;
 import com.wolffsmod.entity.config.ConfigDriveable;
+import com.wolffsmod.flan.FlanUtils;
 import com.wolffsmod.network.FlanEntitySyncPacket;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import noppes.npcs.client.EntityUtil;
 import noppes.npcs.entity.EntityCustomNpc;
-import com.wolffsmod.customnpc.NPCInterfaceUtil;
 
 import net.minecraft.client.renderer.entity.NPCRendererHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -66,7 +71,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
     @Override
     public void updateRiderPosition()
     {
-        if (riddenByEntity != null && !driver.position.equals(Vector3f.Zero))
+        if (riddenByEntity != null && !driver.position.equals(FlanUtils.VEC3F_ZERO))
         {
             Vector3f driverPos = getDriverPosition();
             riddenByEntity.setPosition(posX + driverPos.getX(), posY + driverPos.getY() + riddenByEntity.getYOffset(), posZ + driverPos.getZ());
@@ -318,7 +323,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
             offPos = new Vector3f(0F, 0F, 0F);
 
         rootPos = getShootPoint(gun);
-        ShootPoint sPoint = new ShootPoint(rootPos, offPos);
+        ShootPoint sPoint = FlanUtils.createShootPoint(rootPos, offPos);
         shootPointsPrimary.add(sPoint);
     }
 
@@ -347,7 +352,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
             offPos = new Vector3f(0F, 0F, 0F);
         }
         rootPos = getShootPoint(gun);
-        ShootPoint sPoint = new ShootPoint(rootPos, offPos);
+        ShootPoint sPoint = FlanUtils.createShootPoint(rootPos, offPos);
         shootPointsSecondary.add(sPoint);
     }
 
@@ -370,9 +375,9 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         String[] split = data.split(" ");
         primary = EnumWeaponType.BOMB;
         if (split.length == 3)
-            shootPointsPrimary.add(new ShootPoint(new DriveablePosition(new Vector3f(Float.parseFloat(split[0]) / 16F, Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F), EnumDriveablePart.core), new Vector3f(0, 0, 0)));
+            shootPointsPrimary.add(FlanUtils.createShootPoint(new DriveablePosition(new Vector3f(Float.parseFloat(split[0]) / 16F, Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F), EnumDriveablePart.core), new Vector3f(0, 0, 0)));
         else if (split.length == 6)
-            shootPointsPrimary.add(new ShootPoint(new DriveablePosition(new Vector3f(Float.parseFloat(split[0]) / 16F, Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F), EnumDriveablePart.core), new Vector3f(Float.parseFloat(split[3]) / 16F, Float.parseFloat(split[4]) / 16F, Float.parseFloat(split[5]) / 16F)));
+            shootPointsPrimary.add(FlanUtils.createShootPoint(new DriveablePosition(new Vector3f(Float.parseFloat(split[0]) / 16F, Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F), EnumDriveablePart.core), new Vector3f(Float.parseFloat(split[3]) / 16F, Float.parseFloat(split[4]) / 16F, Float.parseFloat(split[5]) / 16F)));
     }
 
     @Override
@@ -381,9 +386,9 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         String[] split = data.split(" ");
         primary = EnumWeaponType.SHELL;
         if (split.length == 3)
-            shootPointsPrimary.add(new ShootPoint(new DriveablePosition(new Vector3f(Float.parseFloat(split[0]) / 16F, Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F), EnumDriveablePart.turret), new Vector3f(0, 0, 0)));
+            shootPointsPrimary.add(FlanUtils.createShootPoint(new DriveablePosition(new Vector3f(Float.parseFloat(split[0]) / 16F, Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F), EnumDriveablePart.turret), new Vector3f(0, 0, 0)));
         else if (split.length == 6)
-            shootPointsPrimary.add(new ShootPoint(new DriveablePosition(new Vector3f(Float.parseFloat(split[0]) / 16F, Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F), EnumDriveablePart.turret), new Vector3f(Float.parseFloat(split[3]) / 16F, Float.parseFloat(split[4]) / 16F, Float.parseFloat(split[5]) / 16F)));
+            shootPointsPrimary.add(FlanUtils.createShootPoint(new DriveablePosition(new Vector3f(Float.parseFloat(split[0]) / 16F, Float.parseFloat(split[1]) / 16F, Float.parseFloat(split[2]) / 16F), EnumDriveablePart.turret), new Vector3f(Float.parseFloat(split[3]) / 16F, Float.parseFloat(split[4]) / 16F, Float.parseFloat(split[5]) / 16F)));
     }
 
     @Override
@@ -404,7 +409,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
             rootPos = getShootPoint(gun);
             offPos = new Vector3f(Float.parseFloat(split[5]) / 16F, Float.parseFloat(split[6]) / 16F, Float.parseFloat(split[7]) / 16F);
         }
-        ShootPoint sPoint = new ShootPoint(rootPos, offPos);
+        ShootPoint sPoint = FlanUtils.createShootPoint(rootPos, offPos);
         shootPointsSecondary.add(sPoint);
     }
 

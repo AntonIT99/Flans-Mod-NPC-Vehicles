@@ -7,9 +7,9 @@ import com.flansmod.common.driveables.ShootPoint;
 import com.flansmod.common.guns.AttachmentType;
 import com.flansmod.common.guns.GunType;
 import com.flansmod.common.guns.ItemGun;
-import com.flansmod.common.network.PacketParticle;
 import com.flansmod.common.network.PacketPlaySound;
 import com.flansmod.common.vector.Vector3f;
+import com.wolffsmod.flan.FlanUtils;
 import noppes.npcs.Server;
 import noppes.npcs.constants.EnumPacketClient;
 
@@ -231,7 +231,7 @@ public class NPCInterfaceUtil
             }
 
             FlansMod.getPacketHandler().sendToAllAround(
-                    new PacketParticle(s.name, posX + gunVector.x, posY + gunVector.y, posZ + gunVector.z, velocity.x, velocity.y, velocity.z, scale),
+                    FlanUtils.createPacketParticle(s.name, posX + gunVector.x, posY + gunVector.y, posZ + gunVector.z, velocity.x, velocity.y, velocity.z, scale),
                     posX + gunVector.x, posY + gunVector.y, posZ + gunVector.z, FlansMod.driveableUpdateRange, dimension);
 
             shootPoint.rootPos.position.x = bkx;

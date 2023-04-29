@@ -1,4 +1,4 @@
-package com.wolffsmod.customnpc;
+package com.wolffsmod.flan;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -12,7 +12,7 @@ public class FlanCompatibilityMod
     public static final String MOD_NAME = "CustomNPCs Flan Compatibility Mod";
     public static final String MOD_VERSION = "1.0";
 
-    @SidedProxy(clientSide = "com.wolffsmod.customnpc.FlanCompatibilityClientProxy", serverSide = "com.wolffsmod.customnpc.FlanCompatibilityCommonProxy")
+    @SidedProxy(clientSide = "com.wolffsmod.flan.FlanCompatibilityClientProxy", serverSide = "com.wolffsmod.flan.FlanCompatibilityCommonProxy")
     public static FlanCompatibilityCommonProxy PROXY;
 
     @Mod.Instance(FlanCompatibilityMod.MOD_ID)

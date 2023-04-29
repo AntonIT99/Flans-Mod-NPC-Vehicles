@@ -11,6 +11,7 @@ import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.EntityFlanVehicleNPC;
 import com.wolffsmod.entity.Seat;
+import com.wolffsmod.flan.FlanUtils;
 
 import net.minecraft.entity.Entity;
 
@@ -19,6 +20,11 @@ import java.util.Optional;
 public abstract class ModelFlanVehicle extends ModelVehicle
 {
     private static final float worldScale = 0.0625F;
+
+    public ModelRendererTurbo[] leftFrontLegModel = new ModelRendererTurbo[0];
+    public ModelRendererTurbo[] rightFrontLegModel = new ModelRendererTurbo[0];
+    public ModelRendererTurbo[] leftBackLegModel = new ModelRendererTurbo[0];
+    public ModelRendererTurbo[] rightBackLegModel = new ModelRendererTurbo[0];
 
     public ModelFlanVehicle() {}
 
@@ -364,5 +370,112 @@ public abstract class ModelFlanVehicle extends ModelVehicle
             renderPart(fancyTrackModel);
             GL11.glPopMatrix();
         }
+    }
+
+    @Override
+    public void flipAll() {
+        flip(bodyModel);
+        flip(bodyDoorOpenModel);
+        flip(bodyDoorCloseModel);
+        for (ModelRendererTurbo[][] modsOfMods : gunModels.values())
+        {
+            for (ModelRendererTurbo[] mods : modsOfMods)
+                flip(mods);
+        }
+        flip(bodyDoorOpenModel);
+        flip(bodyDoorCloseModel);
+        flip(turretModel);
+        flip(barrelModel);
+        flip(barrelSpecModel);
+        flip(animBarrelModel);
+        flip(leftFrontWheelModel);
+        flip(rightFrontWheelModel);
+        flip(leftBackWheelModel);
+        flip(rightBackWheelModel);
+        flip(rightFrontLegModel);
+        flip(leftFrontLegModel);
+        flip(rightBackLegModel);
+        flip(leftBackLegModel);
+        flip(rightTrackModel);
+        flip(leftTrackModel);
+        flip(rightTrackWheelModels);
+        flip(leftTrackWheelModels);
+        flip(trailerModel);
+        flip(steeringWheelModel);
+        flip(frontWheelModel);
+        flip(backWheelModel);
+        flip(drillHeadModel);
+        flip(rightAnimTrackModel1);
+        flip(leftAnimTrackModel1);
+        flip(rightAnimTrackModel2);
+        flip(leftAnimTrackModel2);
+        flip(rightAnimTrackModel3);
+        flip(leftAnimTrackModel3);
+        flip(drakonArmModel);
+        flip(drakonRailModel);
+        flip(drakonDoorModel);
+        flip(drakonModel);
+        flip(drakonReloadModel);
+        for (ModelRendererTurbo[] latm : leftAnimTrackModel)
+            flip(latm);
+        for (ModelRendererTurbo[] ratm : rightAnimTrackModel)
+            flip(ratm);
+        flip(doorAnimModel);
+        flip(door2AnimModel);
+        flip(fancyTrackModel);
+    }
+
+    @Override
+    public void translateAll(float x, float y, float z)
+    {
+        translate(bodyModel, x, y, z);
+        translate(bodyDoorOpenModel, x, y, z);
+        translate(bodyDoorCloseModel, x, y, z);
+        for (ModelRendererTurbo[][] modsOfMods : gunModels.values())
+        {
+            for (ModelRendererTurbo[] mods : modsOfMods)
+                translate(mods, x, y, z);
+        }
+        translate(bodyDoorOpenModel, x, y, z);
+        translate(bodyDoorCloseModel, x, y, z);
+        translate(turretModel, x, y, z);
+        translate(barrelModel, x, y, z);
+        translate(barrelSpecModel, x, y, z);
+        translate(animBarrelModel, x, y, z);
+        translate(leftFrontWheelModel, x, y, z);
+        translate(rightFrontWheelModel, x, y, z);
+        translate(leftBackWheelModel, x, y, z);
+        translate(rightBackWheelModel, x, y, z);
+        translate(leftFrontLegModel, x, y, z);
+        translate(rightFrontLegModel, x, y, z);
+        translate(leftBackLegModel, x, y, z);
+        translate(rightBackLegModel, x, y, z);
+        translate(rightTrackModel, x, y, z);
+        translate(leftTrackModel, x, y, z);
+        translate(rightTrackWheelModels, x, y, z);
+        translate(leftTrackWheelModels, x, y, z);
+        translate(trailerModel, x, y, z);
+        translate(steeringWheelModel, x, y, z);
+        translate(frontWheelModel, x, y, z);
+        translate(backWheelModel, x, y, z);
+        translate(drillHeadModel, x, y, z);
+        translate(rightAnimTrackModel1, x, y, z);
+        translate(leftAnimTrackModel1, x, y, z);
+        translate(rightAnimTrackModel2, x, y, z);
+        translate(leftAnimTrackModel2, x, y, z);
+        translate(rightAnimTrackModel3, x, y, z);
+        translate(leftAnimTrackModel3, x, y, z);
+        for (ModelRendererTurbo[] latm : leftAnimTrackModel)
+            translate(latm, x, y, z);
+        for (ModelRendererTurbo[] ratm : rightAnimTrackModel)
+            translate(ratm, x, y, z);
+        translate(doorAnimModel, x, y, z);
+        translate(door2AnimModel, x, y, z);
+        translate(drakonArmModel, x, y, z);
+        translate(drakonRailModel, x, y, z);
+        translate(drakonDoorModel, x, y, z);
+        translate(drakonReloadModel, x, y, z);
+        translate(drakonModel, x, y, z);
+        translate(fancyTrackModel, x, y, z);
     }
 }

@@ -10,6 +10,7 @@ import com.flansmod.common.guns.ItemGun;
 import com.flansmod.common.guns.ItemShootable;
 import com.flansmod.common.guns.ShootableType;
 import com.flansmod.common.teams.ItemTeamArmour;
+import com.wolffsmod.flan.FlanUtils;
 import noppes.npcs.constants.EnumNpcToolMaterial;
 import noppes.npcs.constants.EnumParticleType;
 import noppes.npcs.constants.EnumPotionType;
@@ -156,7 +157,8 @@ public class DataInventory implements IInventory{
 		if (type != null)
 		{
 			type.health.values().stream().map(box -> box.health).max(Comparator.naturalOrder()).ifPresent(health -> npc.stats.maxHealth = health);
-			npc.stats.pDamage = type.damageMultiplierPrimary;
+			Optional<Float> damageMultiplierPrimary = FlanUtils.getDamageMultiplierPrimary(type);
+			damageMultiplierPrimary.ifPresent(value -> npc.stats.pDamage = value);
 			npc.stats.pSpeed = (int) type.bulletSpeed;
 			npc.stats.accuracy = NPCInterfaceUtil.bulletSpreadToAccuracy(type.bulletSpread);
 			npc.stats.minDelay = (int) Math.floor(type.shootDelay(false));
@@ -234,7 +236,7 @@ public class DataInventory implements IInventory{
 				if (item instanceof ItemTeamArmour)
 				{
 					meleeResistance += ((ItemTeamArmour)item).type.defence;
-					projectileResistance += ((ItemTeamArmour)item).type.bulletDefence;
+					projectileResistance += FlanUtils.getBulletDefence(((ItemTeamArmour)item).type);
 					explosionResistance += ((ItemTeamArmour)item).type.defence;
 
 					if (((ItemTeamArmour)item).type.negateFallDamage)
@@ -364,14 +366,7 @@ public class DataInventory implements IInventory{
 				if (fireSound == null)
 					fireSound = NPCInterfaceUtil.getGunFireSound(gunItemStack, gun, false);
 
-				if (projectile != null)
-				{
-					bulletSpeed = Math.min(bulletSpeed, gun.getBulletSpeed(gunItemStack, projectile));
-				}
-				else
-				{
-					bulletSpeed = Math.min(bulletSpeed, gun.getBulletSpeed(gunItemStack));
-				}
+				bulletSpeed = Math.min(bulletSpeed, FlanUtils.getBulletSpeed(gun, gunItemStack, projectile));
 			}
 
 			npc.stats.pDamage = damage / guns.size();
