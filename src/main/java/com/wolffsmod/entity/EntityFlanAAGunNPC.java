@@ -22,9 +22,6 @@ public abstract class EntityFlanAAGunNPC extends EntityFlanDriveableNPC implemen
         setupConfig();
         hasAmmo = new boolean[numBarrels];
         barrelRecoil = new float[numBarrels];
-        barrelX = new int[numBarrels];
-        barrelY = new int[numBarrels];
-        barrelZ = new int[numBarrels];
         Arrays.fill(hasAmmo, true);
         Arrays.fill(barrelRecoil, recoil);
     }
@@ -33,6 +30,9 @@ public abstract class EntityFlanAAGunNPC extends EntityFlanDriveableNPC implemen
     public void setNumBarrels(int numBarrels)
     {
         this.numBarrels = numBarrels;
+        barrelX = new int[numBarrels];
+        barrelY = new int[numBarrels];
+        barrelZ = new int[numBarrels];
     }
 
     @Override
