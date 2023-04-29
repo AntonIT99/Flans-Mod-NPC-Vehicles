@@ -1,15 +1,12 @@
 package com.wolffsmod.model.price;
 
-import com.flansmod.client.model.ModelVehicle;
-import com.flansmod.client.tmt.Coord2D;
 import com.flansmod.client.tmt.ModelRendererTurbo;
-import com.flansmod.client.tmt.Shape2D;
-import net.minecraft.client.model.ModelBase;
+import com.wolffsmod.model.ModelFlanVehicle;
+
 import net.minecraft.entity.Entity;
 
 
-
-public class ModelMilitaryCrate extends ModelVehicle //Same as Filename
+public class ModelMilitaryCrate extends ModelFlanVehicle //Same as Filename
 {
 	int textureX = 512;
 	int textureY = 512;
@@ -113,44 +110,5 @@ public class ModelMilitaryCrate extends ModelVehicle //Same as Filename
 
 
 		flipAll();
-	}
-
-
-
-  @Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		for(int i = 0; i < bodyModel.length; i++)
-		{
-			bodyModel[i].render(f5);
-		}
-		for(int i = 0; i < turretModel.length; i++)
-		{
-			turretModel[i].render(f5);
-		}
-		for(int i = 0; i < barrelModel.length; i++)
-		{
-			barrelModel[i].render(f5);
-		}
-		for(int i = 0; i < leftTrackModel.length; i++)
-		{
-			leftTrackModel[i].render(f5);
-		}
-		for(int i = 0; i < rightTrackModel.length; i++)
-		{
-			rightTrackModel[i].render(f5);
-		}
-		for(int i = 0; i < leftTrackWheelModels.length; i++)
-		{
-			leftTrackWheelModels[i].render(f5);
-		}
-		for(int i = 0; i < rightTrackWheelModels.length; i++)
-		{
-			rightTrackWheelModels[i].render(f5);
-		}
-		for(int i = 0; i < steeringWheelModel.length; i++)
-		{
-			steeringWheelModel[i].render(f5);
-		}
 	}
 }
