@@ -85,7 +85,7 @@ public class Entity44_PanzerIVF1 extends EntityFlanVehicleNPC
         addLeftLinkPoint("[-40,11,23.2]");
         addLeftLinkPoint("[30,13,23.2]");
         addLeftLinkPoint("[45,12,23.2]");
-        addRightLinkPoint("[48,12,-23.2]]");
+        addRightLinkPoint("[48,12,-23.2]");
         addRightLinkPoint("[50.3,10,-23.2]");
         addRightLinkPoint("[50.3,3,-23.2]");
         addRightLinkPoint("[45,-5,-23.2]");
