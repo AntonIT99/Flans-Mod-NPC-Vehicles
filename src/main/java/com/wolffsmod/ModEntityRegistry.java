@@ -1,5 +1,7 @@
 package com.wolffsmod;
 
+import com.wolffsmod.render.RenderFlansModEntity;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 import net.minecraft.entity.Entity;
@@ -119,6 +121,14 @@ public class ModEntityRegistry {
 		createEntity(com.wolffsmod.entity.official.mw.EntityT90.class, "T-90MS (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.mw.EntityTiger.class, "Eurocopter EC-665 Tiger (Official Pack)");
 		createEntity(com.wolffsmod.entity.official.mw.EntityTornado.class, "Panavia Tornado GR4 (Official Pack)");
+
+		//Titan Pack
+		createEntity(com.wolffsmod.entity.official.titan.EntityAlphaTitan.class, "Alpha Titan (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.titan.EntityProtoTitan.class, "Proto Titan (Official Pack)");
+		createEntity(com.wolffsmod.entity.official.titan.EntityZeroTitan.class, "Zero Titan (Official Pack)");
+
+		//Apocalypse Pack
+		createEntity(com.wolffsmod.entity.official.apocalypse.EntityBuggy.class, "Apocalypse Buggy (Official Pack)");
 
 		//Utility Pack
 		createEntity(com.wolffsmod.entity.official.utility.EntityTunnelBore.class, "Tunnel Bore (Utility Pack)");

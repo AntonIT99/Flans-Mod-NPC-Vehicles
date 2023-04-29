@@ -12,8 +12,8 @@ public interface ConfigDriveable
     void setTurnSpeed(float speed);
 
     /**
-     * Somehow influenced by WheelPosition
-     * Default: 0.625 (usually corresponds to having a wheel y position of -8)
+     * YOffset [y]
+     * Default: 0.625
      */
     void setYOffset(float y);
 

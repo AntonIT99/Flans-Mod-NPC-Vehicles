@@ -136,6 +136,14 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.mw.EntityTiger.class, new RenderFlansModEntity(new com.wolffsmod.model.official.mw.ModelEC665()));
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.mw.EntityTornado.class, new RenderFlansModEntity(new com.wolffsmod.model.official.mw.ModelTornado()).scale(1.2F));
 
+		//Titan Pack
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.titan.EntityAlphaTitan.class, new RenderFlansModEntity(new com.wolffsmod.model.official.titan.ModelProtoTitan(), "ProtoTitan/AlphaTitan.png").scale(2F));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.titan.EntityProtoTitan.class, new RenderFlansModEntity(new com.wolffsmod.model.official.titan.ModelProtoTitan(), "ProtoTitan/ProtoTitan.png"));
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.titan.EntityZeroTitan.class, new RenderFlansModEntity(new com.wolffsmod.model.official.titan.ModelZeroTitan()));
+
+		//Apocalypse Pack
+		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.apocalypse.EntityBuggy.class, new RenderFlansModEntity(new com.wolffsmod.model.official.apocalypse.ModelBuggy()));
+
 		//Utility Pack
 		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.utility.EntityTunnelBore.class, new RenderFlansModEntity(new com.wolffsmod.model.official.utility.ModelTunnelBore()));
 

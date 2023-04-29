@@ -45,6 +45,8 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
 
     public EntityCustomNpc npc;
 
+    private float modelScale = 1F;
+
     public EntityFlanDriveableNPC(World w)
     {
         super(w);
@@ -459,5 +461,15 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         super.writeEntityToNBT(tag);
         tag.setBoolean("DoorsOpen", doorsOpen);
         tag.setBoolean("forceMaxThrottle", forceMaxThrottle);
+    }
+
+    public float getModelScale()
+    {
+        return modelScale;
+    }
+
+    public void setModelScale(float scale)
+    {
+        modelScale = scale;
     }
 }

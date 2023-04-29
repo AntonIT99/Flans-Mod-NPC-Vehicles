@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import com.wolffsmod.Strings;
 import com.wolffsmod.entity.EntityFlanAAGunNPC;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
+import com.wolffsmod.entity.EntityFlanMechaNPC;
 import com.wolffsmod.entity.EntityFlanPlaneNPC;
 
 import net.minecraft.client.model.ModelBase;
@@ -18,6 +19,7 @@ public class RenderFlansModEntity extends RenderLiving
 {
     public static final float DEFAULT_Y_TRANSLATION = -2.133F;
     public static final float DEFAULT_Y_TRANSLATION_AAGUN = -1.5F;
+    public static final float DEFAULT_Y_TRANSLATION_MECHA = -1.5F;
     private final ResourceLocation texture;
     private float scaleFactor = 1F;
     private Vec3 scale = null;
@@ -67,6 +69,12 @@ public class RenderFlansModEntity extends RenderLiving
         if (entity instanceof EntityFlanDriveableNPC && ((EntityFlanDriveableNPC) entity).npc != null)
             npcModelScale = ((EntityFlanDriveableNPC) entity).npc.display.modelSize / 5F;
 
+        if (entity instanceof EntityFlanDriveableNPC)
+        {
+            float modelScale = (scale != null) ? (float) ((scale.xCoord + scale.yCoord + scale.zCoord) / 3F) : scaleFactor;
+            ((EntityFlanDriveableNPC) entity).setModelScale(npcModelScale * modelScale);
+        }
+
         if (translation != null)
         {
             GL11.glTranslatef((float)translation.xCoord, (float)translation.yCoord * scaleFactor * npcModelScale, (float)translation.zCoord);
@@ -75,6 +83,8 @@ public class RenderFlansModEntity extends RenderLiving
         {
             if (entity instanceof EntityFlanAAGunNPC)
                 GL11.glTranslatef(0F, DEFAULT_Y_TRANSLATION_AAGUN * scaleFactor * npcModelScale, 0F);
+            else if (entity instanceof EntityFlanMechaNPC)
+                GL11.glTranslatef(0F, DEFAULT_Y_TRANSLATION_MECHA * scaleFactor * npcModelScale, 0F);
             else
                 GL11.glTranslatef(0F, DEFAULT_Y_TRANSLATION * scaleFactor * npcModelScale, 0F);
         }

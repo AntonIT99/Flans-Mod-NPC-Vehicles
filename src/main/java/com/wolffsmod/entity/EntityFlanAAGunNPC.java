@@ -12,6 +12,7 @@ public abstract class EntityFlanAAGunNPC extends EntityFlanDriveableNPC implemen
     public float recoil = 5F;
     public float[] barrelRecoil;
     public boolean[] hasAmmo;
+
     public EntityFlanAAGunNPC(World w)
     {
         super(w);
