@@ -1,8 +1,6 @@
 package com.wolffsmod;
 
-import com.wolffsmod.entity.*;
-import com.wolffsmod.model.*;
-import com.wolffsmod.render.*;
+import com.wolffsmod.render.RenderFlansModEntity;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends ServerProxy{

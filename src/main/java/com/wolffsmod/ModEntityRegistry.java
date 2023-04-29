@@ -1,11 +1,5 @@
 package com.wolffsmod;
 
-import com.wolffsmod.entity.price.EntityOccupier;
-import com.wolffsmod.entity.price.EntityP51D;
-import com.wolffsmod.entity.price.EntityPak43;
-import com.wolffsmod.entity.price.EntitySoDa;
-import com.wolffsmod.entity.price.EntityTKlate;
-import com.wolffsmod.entity.price.EntityTeKe;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 import net.minecraft.entity.Entity;

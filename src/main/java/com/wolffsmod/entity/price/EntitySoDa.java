@@ -7,9 +7,9 @@ import net.minecraft.world.World;
 public class EntitySoDa extends EntityFlanVehicleNPC
 {
 
-	public EntitySoDa(World p_i1602_1_) {
-		super(p_i1602_1_);
-		// TODO Auto-generated constructor stub
+	public EntitySoDa(World w)
+	{
+		super(w);
 		setSize(3.0F, 2.0F);
 	}
 

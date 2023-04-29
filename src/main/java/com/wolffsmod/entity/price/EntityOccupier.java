@@ -7,8 +7,9 @@ import net.minecraft.world.World;
 public class EntityOccupier extends EntityFlanVehicleNPC
 {
 
-	public EntityOccupier(World p_i1602_1_) {
-		super(p_i1602_1_);
+	public EntityOccupier(World w)
+	{
+		super(w);
 		setSize(4.5F, 3.0F);
 	}
 

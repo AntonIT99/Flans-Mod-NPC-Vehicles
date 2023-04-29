@@ -7,8 +7,9 @@ import net.minecraft.world.World;
 public class EntityMCOMStation extends EntityFlanVehicleNPC
 {
 
-	public EntityMCOMStation(World p_i1602_1_) {
-		super(p_i1602_1_);
+	public EntityMCOMStation(World w)
+	{
+		super(w);
 		setSize(1.0F, 2.0F);
 	}
 

@@ -7,9 +7,9 @@ import net.minecraft.world.World;
 public class EntityTiger131 extends EntityFlanVehicleNPC
 {
 
-	public EntityTiger131(World p_i1602_1_)
+	public EntityTiger131(World w)
 	{
-		super(p_i1602_1_);
+		super(w);
 		setSize(3.75F, 3.0F);
 	}
 

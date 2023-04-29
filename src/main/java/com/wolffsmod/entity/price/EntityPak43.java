@@ -7,8 +7,9 @@ import net.minecraft.world.World;
 public class EntityPak43 extends EntityFlanVehicleNPC
 {
 
-	public EntityPak43(World p_i1602_1_) {
-		super(p_i1602_1_);
+	public EntityPak43(World w)
+	{
+		super(w);
 		setSize(3.5F, 2.5F);
 	}
 

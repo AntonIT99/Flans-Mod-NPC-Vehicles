@@ -7,9 +7,9 @@ import net.minecraft.world.World;
 public class EntityTeKe extends EntityFlanVehicleNPC
 {
 
-	public EntityTeKe(World p_i1602_1_) {
-		super(p_i1602_1_);
-		// TODO Auto-generated constructor stub
+	public EntityTeKe(World w)
+	{
+		super(w);
 		setSize(3.0F, 2.0F);
 	}
 
