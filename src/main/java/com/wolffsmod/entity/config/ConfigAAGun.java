@@ -9,4 +9,7 @@ public interface ConfigAAGun
      *  Default: 5
      * */
     void setRecoil(float recoil);
+
+    /** Barrel [...] */
+    void addBarrel(String data);
 }

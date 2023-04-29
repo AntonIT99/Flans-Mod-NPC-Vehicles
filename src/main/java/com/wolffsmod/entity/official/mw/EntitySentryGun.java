@@ -14,7 +14,12 @@ public class EntitySentryGun extends EntityFlanAAGunNPC
 	@Override
 	public void setupConfig()
 	{
+		setDriver("8 28 8 -360 360 -90 90");
 		setNumBarrels(4);
+		addBarrel("0 40 6 6");
+		addBarrel("1 40 6 6");
+		addBarrel("2 40 6 6");
+		addBarrel("3 40 6 6");
 		setRecoil(5);
 	}
 }

@@ -20,6 +20,7 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -237,5 +238,19 @@ public class NPCInterfaceUtil
             shootPoint.rootPos.position.y = bky;
             shootPoint.rootPos.position.z = bkz;
         }
+    }
+
+    public static Vec3 rotate(double x, double y, double z, float yaw, float pitch)
+    {
+        double cosYaw = Math.cos(180F - yaw * Math.PI / 180F);
+        double sinYaw = Math.sin(180F - yaw * Math.PI / 180F);
+        double cosPitch = Math.cos(pitch * Math.PI / 180F);
+        double sinPitch = Math.sin(pitch * Math.PI / 180F);
+
+        double newX = x * cosYaw + (y * sinPitch + z * cosPitch) * sinYaw;
+        double newY = y * cosPitch - z * sinPitch;
+        double newZ = -x * sinYaw + (y * sinPitch + z * cosPitch) * cosYaw;
+
+        return Vec3.createVectorHelper(newX, newY, newZ);
     }
 }

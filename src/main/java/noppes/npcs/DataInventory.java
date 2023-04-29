@@ -3,7 +3,9 @@ package noppes.npcs;
 import com.flansmod.common.driveables.DriveableType;
 import com.flansmod.common.driveables.ItemPlane;
 import com.flansmod.common.driveables.ItemVehicle;
+import com.flansmod.common.guns.AAGunType;
 import com.flansmod.common.guns.GunType;
+import com.flansmod.common.guns.ItemAAGun;
 import com.flansmod.common.guns.ItemGun;
 import com.flansmod.common.guns.ItemShootable;
 import com.flansmod.common.guns.ShootableType;
@@ -166,6 +168,19 @@ public class DataInventory implements IInventory{
 			if (type.engineSound != null && !type.engineSound.isEmpty())
 				npc.advanced.stepSound = "flansmod:" + type.engineSound;
 			npc.stats.resistances.knockback = 2F;
+		}
+		else if (item.getItem() instanceof ItemAAGun)
+		{
+			AAGunType aagunType = ((ItemAAGun)item.getItem()).type;
+			npc.stats.maxHealth = aagunType.health;
+			npc.stats.pDamage = aagunType.damage;
+			npc.stats.accuracy = NPCInterfaceUtil.bulletSpreadToAccuracy(aagunType.accuracy);
+			npc.stats.minDelay = aagunType.reloadTime;
+			npc.stats.maxDelay = aagunType.reloadTime;
+			npc.stats.fireRate = aagunType.shootDelay;
+
+			if (aagunType.shootSound != null && !aagunType.shootSound.isEmpty())
+				npc.stats.fireSound = "flansmod:" + aagunType.shootSound;
 		}
 	}
 

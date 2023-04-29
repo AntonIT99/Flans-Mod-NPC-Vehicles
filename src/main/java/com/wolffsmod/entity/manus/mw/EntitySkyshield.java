@@ -14,10 +14,10 @@ public class EntitySkyshield extends EntityFlanAAGunNPC
     @Override
     public void setupConfig()
     {
-        setDriver("6 30 -9");
+        //TODO: check driver position
+        setDriver("6 30 -9 -360 360 0 90");
         setNumBarrels(1);
+        addBarrel("0 100 0 0");
         setRecoil(4F);
-        //TODO: check barrel position
-        addBarrelPosition("100 0 0");
     }
 }

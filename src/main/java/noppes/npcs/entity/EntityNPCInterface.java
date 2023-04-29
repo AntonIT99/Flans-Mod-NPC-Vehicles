@@ -7,6 +7,7 @@ import com.flansmod.common.driveables.*;
 import com.flansmod.common.guns.*;
 import com.flansmod.common.network.PacketPlaySound;
 import com.flansmod.common.vector.Vector3f;
+import com.wolffsmod.entity.EntityFlanAAGunNPC;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.Seat;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
@@ -706,9 +707,15 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		for(ItemStack gun: getGuns())
 			NPCInterfaceUtil.playGunReloadSound(gun, posX, posY, posZ, dimension);
 		Optional<DriveableType> driveableType = getHeldDriveable();
-		if (inventory.useDriveableStats && driveableType.isPresent())
+		Optional<AAGunType> aaGunType = getHeldAAGun();
+		if (inventory.useDriveableStats)
 		{
-			String reloadSound = driveableType.get().shootReloadSound;
+			String reloadSound = "";
+			if (driveableType.isPresent())
+				reloadSound = driveableType.get().shootReloadSound;
+			if (aaGunType.isPresent())
+				reloadSound = aaGunType.get().reloadSound;
+
 			if (reloadSound != null && !reloadSound.isEmpty())
 				PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, reloadSound, false);
 		}
@@ -741,6 +748,17 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 				return Optional.of(((ItemVehicle)item.getItem()).type);
 			else if (item.getItem() instanceof ItemPlane)
 				return Optional.of(((ItemPlane)item.getItem()).type);
+		}
+		return Optional.empty();
+	}
+
+	public Optional<AAGunType> getHeldAAGun()
+	{
+		ItemStack item = getHeldItem();
+		if (item != null)
+		{
+			if (item.getItem() instanceof ItemAAGun)
+				return Optional.of(((ItemAAGun)item.getItem()).type);
 		}
 		return Optional.empty();
 	}
@@ -853,13 +871,23 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			spread =  NPCInterfaceUtil.accuracyToBulletSpread(stats.accuracy);
 			shotgun = (stats.shotCount > 1);
 
-			Optional<DriveableType> driveableType = getHeldDriveable();
-			if (driveableType.isPresent())
+			if (inventory.useDriveableStats)
 			{
-				DriveableType type = driveableType.get();
-				damage = type.damageMultiplierPrimary;
-				speed = (int) type.bulletSpeed;
-				spread = type.bulletSpread;
+				Optional<DriveableType> driveableType = getHeldDriveable();
+				Optional<AAGunType> aaGunType = getHeldAAGun();
+				if (driveableType.isPresent())
+				{
+					DriveableType type = driveableType.get();
+					damage = type.damageMultiplierPrimary;
+					speed = (int) type.bulletSpeed;
+					spread = type.bulletSpread;
+				}
+				if (aaGunType.isPresent())
+				{
+					AAGunType type = aaGunType.get();
+					damage = type.damage;
+					spread = type.accuracy;
+				}
 			}
 		}
 
@@ -889,7 +917,19 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		}
 		else
 		{
-			spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
+			if (getFlanDriveableEntity().isPresent() && getFlanDriveableEntity().get() instanceof EntityFlanAAGunNPC)
+			{
+				EntityFlanAAGunNPC aaGun = (EntityFlanAAGunNPC)getFlanDriveableEntity().get();
+				for (int currentBarrel=0; currentBarrel<aaGun.numBarrels; currentBarrel++)
+				{
+					origin = NPCInterfaceUtil.rotate(aaGun.barrelX[currentBarrel] / 16D - aaGun.barrelZ[currentBarrel] / 16D, aaGun.barrelY[currentBarrel] / 16D, aaGun.barrelX[currentBarrel] / 16D + aaGun.barrelZ[currentBarrel] / 16D, yaw, pitch).addVector(posX, posY, posZ);
+					spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
+				}
+			}
+			else
+			{
+				spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
+			}
 		}
 	}
 

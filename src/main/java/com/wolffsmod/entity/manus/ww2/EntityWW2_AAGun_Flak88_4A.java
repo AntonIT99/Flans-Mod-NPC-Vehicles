@@ -14,7 +14,9 @@ public class EntityWW2_AAGun_Flak88_4A extends EntityFlanAAGunNPC
     @Override
     public void setupConfig()
     {
+        setDriver("3 30 -16 -360 360 0 90");
         setNumBarrels(1);
+        addBarrel("0 88 40 0");
         setRecoil(5F);
     }
 }
