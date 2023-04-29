@@ -54,12 +54,12 @@ public class EntityAIRangedAttack extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-    	EntityLivingBase var1 = this.entityHost.getAttackTarget();
+        EntityLivingBase var1 = this.entityHost.getAttackTarget();
 
         if (var1 == null || !var1.isEntityAlive()) return false;
-        
-		if(entityHost.getDistanceToEntity(var1) > entityHost.stats.aggroRange) return false;
-		
+
+        if(entityHost.getDistanceToEntity(var1) > entityHost.stats.aggroRange) return false;
+
         if (this.entityHost.inventory.getProjectile() == null)  return false;
         
         double var2 = this.entityHost.getDistanceSq(var1.posX, var1.boundingBox.minY, var1.posZ);
@@ -100,29 +100,29 @@ public class EntityAIRangedAttack extends EntityAIBase
      */
     public void updateTask()
     {
-    	this.entityHost.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30.0F, 30.0F);
+        this.entityHost.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30.0F, 30.0F);
         double var1 = this.entityHost.getDistanceSq(this.attackTarget.posX, this.attackTarget.boundingBox.minY, this.attackTarget.posZ);
-		float range = this.entityHost.stats.rangedRange * this.entityHost.stats.rangedRange;
+        float range = this.entityHost.stats.rangedRange * this.entityHost.stats.rangedRange;
 
-		if (!navOverride && this.entityHost.ai.directLOS)
-		{
-			if (this.entityHost.getEntitySenses().canSee(this.attackTarget))
-		    {
-				this.moveTries++;
-		    }
-			else
-			{
-				this.moveTries = 0;
-			}
-			int v = this.entityHost.ai.tacticalVariant == EnumNavType.Default ? 20 : 5;
-			if (var1 <= (double)range && this.moveTries >= v)
-			{
-				this.entityHost.getNavigator().clearPathEntity();
-			}
-			else
-			{
-				this.entityHost.getNavigator().tryMoveToEntityLiving(this.attackTarget, 1.0D);
-			}
+        if (!navOverride && this.entityHost.ai.directLOS)
+        {
+            if (this.entityHost.getEntitySenses().canSee(this.attackTarget))
+            {
+                this.moveTries++;
+            }
+            else
+            {
+                this.moveTries = 0;
+            }
+            int v = this.entityHost.ai.tacticalVariant == EnumNavType.Default ? 20 : 5;
+            if (var1 <= (double)range && this.moveTries >= v)
+            {
+                this.entityHost.getNavigator().clearPathEntity();
+            }
+            else
+            {
+                this.entityHost.getNavigator().tryMoveToEntityLiving(this.attackTarget, 1.0D);
+            }
         }
 
         this.rangedAttackTime = Math.max(this.rangedAttackTime - 1, 0);
@@ -138,27 +138,31 @@ public class EntityAIRangedAttack extends EntityAIBase
                  }
                  else
                  {
-                	 this.burstCount = 0;
-                	 this.hasFired = true;
-                	 this.rangedAttackTime = (this.entityHost.stats.maxDelay - MathHelper.floor_float(this.entityHost.getRNG().nextFloat() * (this.entityHost.stats.maxDelay - this.entityHost.stats.minDelay)));
+                     this.burstCount = 0;
+                     this.hasFired = true;
+                     this.rangedAttackTime = (this.entityHost.stats.maxDelay - MathHelper.floor_float(this.entityHost.getRNG().nextFloat() * (this.entityHost.stats.maxDelay - this.entityHost.stats.minDelay)));
                      entityHost.reloadGuns();
                  }
 
-            	 if (this.burstCount > 1)
+                if (this.burstCount > 1)
                  {
-            		 boolean indirect = false;
+                     boolean indirect = false;
 
-            		 switch(this.entityHost.ai.canFireIndirect)
-            		 {
-            		     case 1 : indirect = var1 > (double)range / 2; break;
-            		     case 2 : indirect = !this.entityHost.getEntitySenses().canSee(this.attackTarget);
-            		 }
+                     switch(this.entityHost.ai.canFireIndirect)
+                     {
+                         case 1 : indirect = var1 > (double)range / 2; break;
+                         case 2 : indirect = !this.entityHost.getEntitySenses().canSee(this.attackTarget);
+                     }
 
-            		 this.rangedAttackEntityHost.attackEntityWithRangedAttack(this.attackTarget, indirect ? 1 : 0);
-            		 if (this.entityHost.currentAnimation != EnumAnimation.AIMING)
-            		 {
-            			 this.entityHost.swingItem();
-            		 }
+                     if (!entityHost.isFlanDriveable() || (entityHost.getFlanDriveableEntity().isPresent() && !entityHost.getFlanDriveableEntity().get().driver.isRotating()))
+                     {
+                         this.rangedAttackEntityHost.attackEntityWithRangedAttack(this.attackTarget, indirect ? 1 : 0);
+                     }
+
+                     if (this.entityHost.currentAnimation != EnumAnimation.AIMING)
+                     {
+                         this.entityHost.swingItem();
+                     }
                  }
             } 
         }
@@ -166,11 +170,11 @@ public class EntityAIRangedAttack extends EntityAIBase
     
     public boolean hasFired()
     {
-    	return this.hasFired;
+        return this.hasFired;
     }
     
     public void navOverride(boolean nav){
-    	this.navOverride = nav;
+        this.navOverride = nav;
         this.setMutexBits(this.navOverride ? AiMutex.PATHING : AiMutex.LOOK + AiMutex.PASSIVE);
     }
 }

@@ -15,6 +15,5 @@ public class ShootPoint
 		offPos = offsetPos;
 		convergentAngle = convergent;
 		musik = scrageMusik;
-		
 	}
 }

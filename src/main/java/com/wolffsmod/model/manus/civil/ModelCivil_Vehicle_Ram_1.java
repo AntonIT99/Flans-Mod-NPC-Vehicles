@@ -1,0 +1,131 @@
+//Deobfuscated with https://github.com/SimplyProgrammer/Minecraft-Deobfuscator3000 using mappings "C:\Users\alpha\Documents\Minecraft\Minecraft-Deobfuscator3000-1.2.3\1.7.10 stable mappings"!
+
+//Decompiled by Procyon!
+
+package com.wolffsmod.model.manus.civil;
+
+import com.wolffsmod.model.*;
+import net.minecraft.client.model.*;
+import com.flansmod.client.tmt.*;
+
+public class ModelCivil_Vehicle_Ram_1 extends ModelFlanVehicle
+{
+    int textureX;
+    int textureY;
+    
+    public ModelCivil_Vehicle_Ram_1() {
+        this.textureX = 512;
+        this.textureY = 512;
+        (this.bodyModel = new ModelRendererTurbo[23])[0] = new ModelRendererTurbo((ModelBase)this, 0, 304, this.textureX, this.textureY);
+        this.bodyModel[1] = new ModelRendererTurbo((ModelBase)this, 0, 0, this.textureX, this.textureY);
+        this.bodyModel[2] = new ModelRendererTurbo((ModelBase)this, 0, 406, this.textureX, this.textureY);
+        this.bodyModel[3] = new ModelRendererTurbo((ModelBase)this, 0, 0, this.textureX, this.textureY);
+        this.bodyModel[4] = new ModelRendererTurbo((ModelBase)this, 0, 0, this.textureX, this.textureY);
+        this.bodyModel[5] = new ModelRendererTurbo((ModelBase)this, 0, 251, this.textureX, this.textureY);
+        this.bodyModel[6] = new ModelRendererTurbo((ModelBase)this, 0, 0, this.textureX, this.textureY);
+        this.bodyModel[7] = new ModelRendererTurbo((ModelBase)this, 0, 357, this.textureX, this.textureY);
+        this.bodyModel[8] = new ModelRendererTurbo((ModelBase)this, 0, 357, this.textureX, this.textureY);
+        this.bodyModel[9] = new ModelRendererTurbo((ModelBase)this, 0, 0, this.textureX, this.textureY);
+        this.bodyModel[10] = new ModelRendererTurbo((ModelBase)this, 0, 0, this.textureX, this.textureY);
+        this.bodyModel[11] = new ModelRendererTurbo((ModelBase)this, 0, 0, this.textureX, this.textureY);
+        this.bodyModel[12] = new ModelRendererTurbo((ModelBase)this, 0, 0, this.textureX, this.textureY);
+        this.bodyModel[13] = new ModelRendererTurbo((ModelBase)this, 118, 448, this.textureX, this.textureY);
+        this.bodyModel[14] = new ModelRendererTurbo((ModelBase)this, 0, 0, this.textureX, this.textureY);
+        this.bodyModel[15] = new ModelRendererTurbo((ModelBase)this, 117, 339, this.textureX, this.textureY);
+        this.bodyModel[16] = new ModelRendererTurbo((ModelBase)this, 0, 203, this.textureX, this.textureY);
+        this.bodyModel[17] = new ModelRendererTurbo((ModelBase)this, 0, 0, this.textureX, this.textureY);
+        this.bodyModel[18] = new ModelRendererTurbo((ModelBase)this, 0, 450, this.textureX, this.textureY);
+        this.bodyModel[19] = new ModelRendererTurbo((ModelBase)this, 0, 0, this.textureX, this.textureY);
+        this.bodyModel[20] = new ModelRendererTurbo((ModelBase)this, 0, 153, this.textureX, this.textureY);
+        this.bodyModel[21] = new ModelRendererTurbo((ModelBase)this, 0, 0, this.textureX, this.textureY);
+        this.bodyModel[22] = new ModelRendererTurbo((ModelBase)this, 118, 392, this.textureX, this.textureY);
+        this.bodyModel[0].addBox(0.0f, 0.0f, 0.0f, 5, 13, 36, 0.0f);
+        this.bodyModel[0].setRotationPoint(23.0f, -13.0f, -18.0f);
+        this.bodyModel[1].addBox(0.0f, 0.0f, 0.0f, 19, 2, 36, 0.0f);
+        this.bodyModel[1].setRotationPoint(9.0f, -15.0f, -18.0f);
+        this.bodyModel[1].rotateAngleZ = -0.1047198f;
+        this.bodyModel[2].addBox(0.0f, 0.0f, 0.0f, 20, 4, 36, 0.0f);
+        this.bodyModel[2].setRotationPoint(-11.0f, -2.0f, -18.0f);
+        this.bodyModel[3].addBox(0.0f, 0.0f, 0.0f, 14, 9, 5, 0.0f);
+        this.bodyModel[3].setRotationPoint(9.0f, -13.0f, -18.0f);
+        this.bodyModel[4].addBox(0.0f, 0.0f, 0.0f, 14, 9, 5, 0.0f);
+        this.bodyModel[4].setRotationPoint(9.0f, -13.0f, 13.0f);
+        this.bodyModel[5].addBox(0.0f, 0.0f, 0.0f, 1, 12, 36, 0.0f);
+        this.bodyModel[5].setRotationPoint(2.0f, -25.0f, 18.0f);
+        this.bodyModel[5].rotateAngleX = 3.141593f;
+        this.bodyModel[5].rotateAngleZ = -2.617994f;
+        this.bodyModel[6].addBox(0.0f, 0.0f, 0.0f, 12, 1, 36, 0.0f);
+        this.bodyModel[6].setRotationPoint(-10.0f, -25.0f, -18.0f);
+        this.bodyModel[7].addBox(0.0f, 0.0f, 0.0f, 6, 6, 38, 0.0f);
+        this.bodyModel[7].setRotationPoint(23.0f, -3.0f, -19.0f);
+        this.bodyModel[8].addBox(0.0f, 0.0f, 0.0f, 6, 6, 38, 0.0f);
+        this.bodyModel[8].setRotationPoint(-50.0f, -3.0f, -19.0f);
+        this.bodyModel[9].addBox(0.0f, 0.0f, 0.0f, 2, 2, 28, 0.0f);
+        this.bodyModel[9].setRotationPoint(15.0f, 3.0f, -14.0f);
+        this.bodyModel[10].addBox(0.0f, 0.0f, 0.0f, 2, 2, 28, 0.0f);
+        this.bodyModel[10].setRotationPoint(-36.0f, 3.0f, -14.0f);
+        this.bodyModel[11].addBox(0.0f, 0.0f, 0.0f, 55, 5, 18, 0.0f);
+        this.bodyModel[11].setRotationPoint(-37.0f, -1.0f, -9.0f);
+        this.bodyModel[12].addBox(0.0f, 0.0f, 0.0f, 15, 12, 26, 0.0f);
+        this.bodyModel[12].setRotationPoint(8.0f, -13.0f, -13.0f);
+        this.bodyModel[13].addBox(0.0f, 0.0f, 0.0f, 1, 9, 36, 0.0f);
+        this.bodyModel[13].setRotationPoint(-10.0f, -24.0f, -18.0f);
+        this.bodyModel[14].addBox(0.0f, 0.0f, 0.0f, 14, 2, 18, 0.0f);
+        this.bodyModel[14].setRotationPoint(-42.0f, -3.0f, -9.0f);
+        this.bodyModel[15].addBox(0.0f, 0.0f, 0.0f, 2, 13, 36, 0.0f);
+        this.bodyModel[15].setRotationPoint(-11.0f, -15.0f, -18.0f);
+        this.bodyModel[16].addBox(0.0f, 0.0f, 0.0f, 7, 6, 36, 0.0f);
+        this.bodyModel[16].setRotationPoint(-49.0f, -4.0f, -18.0f);
+        this.bodyModel[17].addBox(0.0f, 0.0f, 0.0f, 35, 10, 1, 0.0f);
+        this.bodyModel[17].setRotationPoint(-48.0f, -14.0f, 17.0f);
+        this.bodyModel[18].addBox(0.0f, 0.0f, 0.0f, 16, 6, 36, 0.0f);
+        this.bodyModel[18].setRotationPoint(-28.0f, -4.0f, -18.0f);
+        this.bodyModel[19].addBox(0.0f, 0.0f, 0.0f, 1, 10, 36, 0.0f);
+        this.bodyModel[19].setRotationPoint(-13.0f, -14.0f, -18.0f);
+        this.bodyModel[20].addBox(0.0f, 0.0f, 0.0f, 14, 1, 36, 0.0f);
+        this.bodyModel[20].setRotationPoint(-42.0f, -4.0f, -18.0f);
+        this.bodyModel[21].addBox(0.0f, 0.0f, 0.0f, 35, 10, 1, 0.0f);
+        this.bodyModel[21].setRotationPoint(-48.0f, -14.0f, -18.0f);
+        this.bodyModel[22].addBox(0.0f, 0.0f, 0.0f, 2, 13, 36, 0.0f);
+        this.bodyModel[22].setRotationPoint(7.0f, -15.0f, -18.0f);
+        (this.leftFrontWheelModel = new ModelRendererTurbo[1])[0] = new ModelRendererTurbo((ModelBase)this, 40, 495, this.textureX, this.textureY);
+        this.leftFrontWheelModel[0].addShape3D(6.0f, -6.0f, -2.5f, new Shape2D(new Coord2D[] { new Coord2D(3.0, 0.0, 3, 0), new Coord2D(9.0, 0.0, 9, 0), new Coord2D(12.0, 3.0, 12, 3), new Coord2D(12.0, 9.0, 12, 9), new Coord2D(9.0, 12.0, 9, 12), new Coord2D(3.0, 12.0, 3, 12), new Coord2D(0.0, 9.0, 0, 9), new Coord2D(0.0, 3.0, 0, 3) }), 5.0f, 12, 12, 40, 5, 0, new float[] { 6.0f, 4.0f, 6.0f, 4.0f, 6.0f, 4.0f, 6.0f, 3.0f });
+        this.leftFrontWheelModel[0].setRotationPoint(16.0f, 4.0f, -16.0f);
+        (this.leftBackWheelModel = new ModelRendererTurbo[1])[0] = new ModelRendererTurbo((ModelBase)this, 40, 495, this.textureX, this.textureY);
+        this.leftBackWheelModel[0].addShape3D(6.0f, -6.0f, -2.5f, new Shape2D(new Coord2D[] { new Coord2D(3.0, 0.0, 3, 0), new Coord2D(9.0, 0.0, 9, 0), new Coord2D(12.0, 3.0, 12, 3), new Coord2D(12.0, 9.0, 12, 9), new Coord2D(9.0, 12.0, 9, 12), new Coord2D(3.0, 12.0, 3, 12), new Coord2D(0.0, 9.0, 0, 9), new Coord2D(0.0, 3.0, 0, 3) }), 5.0f, 12, 12, 40, 5, 0, new float[] { 6.0f, 4.0f, 6.0f, 4.0f, 6.0f, 4.0f, 6.0f, 3.0f });
+        this.leftBackWheelModel[0].setRotationPoint(-35.0f, 4.0f, -16.0f);
+        (this.rightFrontWheelModel = new ModelRendererTurbo[1])[0] = new ModelRendererTurbo((ModelBase)this, 40, 495, this.textureX, this.textureY);
+        this.rightFrontWheelModel[0].addShape3D(6.0f, -6.0f, -2.5f, new Shape2D(new Coord2D[] { new Coord2D(3.0, 0.0, 3, 0), new Coord2D(9.0, 0.0, 9, 0), new Coord2D(12.0, 3.0, 12, 3), new Coord2D(12.0, 9.0, 12, 9), new Coord2D(9.0, 12.0, 9, 12), new Coord2D(3.0, 12.0, 3, 12), new Coord2D(0.0, 9.0, 0, 9), new Coord2D(0.0, 3.0, 0, 3) }), 5.0f, 12, 12, 40, 5, 0, new float[] { 6.0f, 4.0f, 6.0f, 4.0f, 6.0f, 4.0f, 6.0f, 3.0f });
+        this.rightFrontWheelModel[0].setRotationPoint(16.0f, 4.0f, 16.0f);
+        (this.rightBackWheelModel = new ModelRendererTurbo[1])[0] = new ModelRendererTurbo((ModelBase)this, 40, 495, this.textureX, this.textureY);
+        this.rightBackWheelModel[0].addShape3D(6.0f, -6.0f, -2.5f, new Shape2D(new Coord2D[] { new Coord2D(3.0, 0.0, 3, 0), new Coord2D(9.0, 0.0, 9, 0), new Coord2D(12.0, 3.0, 12, 3), new Coord2D(12.0, 9.0, 12, 9), new Coord2D(9.0, 12.0, 9, 12), new Coord2D(3.0, 12.0, 3, 12), new Coord2D(0.0, 9.0, 0, 9), new Coord2D(0.0, 3.0, 0, 3) }), 5.0f, 12, 12, 40, 5, 0, new float[] { 6.0f, 4.0f, 6.0f, 4.0f, 6.0f, 4.0f, 6.0f, 3.0f });
+        this.rightBackWheelModel[0].setRotationPoint(-35.0f, 4.0f, 16.0f);
+        (this.bodyDoorCloseModel = new ModelRendererTurbo[3])[0] = new ModelRendererTurbo((ModelBase)this, 98, 317, this.textureX, this.textureY);
+        this.bodyDoorCloseModel[1] = new ModelRendererTurbo((ModelBase)this, 98, 301, this.textureX, this.textureY);
+        this.bodyDoorCloseModel[2] = new ModelRendererTurbo((ModelBase)this, 96, 197, this.textureX, this.textureY);
+        this.bodyDoorCloseModel[0].addBox(-16.0f, 0.0f, -1.0f, 16, 13, 1, 0.0f);
+        this.bodyDoorCloseModel[0].setRotationPoint(7.0f, -15.0f, 18.0f);
+        this.bodyDoorCloseModel[1].addBox(-16.0f, 0.0f, 0.0f, 16, 13, 1, 0.0f);
+        this.bodyDoorCloseModel[1].setRotationPoint(7.0f, -15.0f, -18.0f);
+        this.bodyDoorCloseModel[2].addBox(0.0f, -10.0f, 0.0f, 1, 10, 36, 0.0f);
+        this.bodyDoorCloseModel[2].setRotationPoint(-49.0f, -4.0f, -18.0f);
+        (this.bodyDoorOpenModel = new ModelRendererTurbo[3])[0] = new ModelRendererTurbo((ModelBase)this, 98, 317, this.textureX, this.textureY);
+        this.bodyDoorOpenModel[1] = new ModelRendererTurbo((ModelBase)this, 98, 301, this.textureX, this.textureY);
+        this.bodyDoorOpenModel[2] = new ModelRendererTurbo((ModelBase)this, 96, 197, this.textureX, this.textureY);
+        this.bodyDoorOpenModel[0].addBox(-16.0f, 0.0f, -1.0f, 16, 13, 1, 0.0f);
+        this.bodyDoorOpenModel[0].setRotationPoint(7.0f, -15.0f, 18.0f);
+        this.bodyDoorOpenModel[0].rotateAngleY = -1.134464f;
+        this.bodyDoorOpenModel[1].addBox(-16.0f, 0.0f, 0.0f, 16, 13, 1, 0.0f);
+        this.bodyDoorOpenModel[1].setRotationPoint(7.0f, -15.0f, -18.0f);
+        this.bodyDoorOpenModel[1].rotateAngleY = 1.134464f;
+        this.bodyDoorOpenModel[2].addBox(0.0f, -10.0f, 0.0f, 1, 10, 36, 0.0f);
+        this.bodyDoorOpenModel[2].setRotationPoint(-49.0f, -4.0f, -18.0f);
+        this.bodyDoorOpenModel[2].rotateAngleZ = 2.4260077f;
+        this.steeringWheelModel = new ModelRendererTurbo[1];
+        (this.steeringWheelModel[0] = new ModelRendererTurbo((ModelBase)this, 150, 300, this.textureX, this.textureY)).addBox(0.0f, -4.0f, -4.0f, 1, 8, 8, 0.0f);
+        this.steeringWheelModel[0].setRotationPoint(6.0f, -13.0f, 9.0f);
+        this.steeringWheelModel[0].rotateAngleZ = -0.1919862f;
+        this.flipAll();
+        this.translateAll(9, 0, 0);
+    }
+}

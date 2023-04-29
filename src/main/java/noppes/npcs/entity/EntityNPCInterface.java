@@ -2,18 +2,75 @@ package noppes.npcs.entity;
 
 import com.flansmod.client.FlansModClient;
 import com.flansmod.client.model.GunAnimations;
-import com.flansmod.common.guns.*;
+import com.flansmod.common.FlansMod;
+import com.flansmod.common.RotatedAxes;
+import com.flansmod.common.driveables.DriveableType;
+import com.flansmod.common.driveables.ItemPlane;
+import com.flansmod.common.driveables.ItemVehicle;
+import com.flansmod.common.driveables.ShootPoint;
+import com.flansmod.common.guns.AAGunType;
+import com.flansmod.common.guns.EntityBullet;
+import com.flansmod.common.guns.EntityShootable;
+import com.flansmod.common.guns.GunType;
+import com.flansmod.common.guns.ItemAAGun;
+import com.flansmod.common.guns.ItemBullet;
+import com.flansmod.common.guns.ItemGrenade;
+import com.flansmod.common.guns.ItemGun;
+import com.flansmod.common.guns.ItemShootable;
+import com.flansmod.common.guns.ShootableType;
+import com.flansmod.common.network.PacketPlaySound;
+import com.flansmod.common.vector.Vector3f;
+import com.wolffsmod.customnpc.NPCInterfaceUtil;
+import com.wolffsmod.entity.EntityFlanAAGunNPC;
+import com.wolffsmod.entity.EntityFlanDriveableNPC;
+import com.wolffsmod.entity.Seat;
+import com.wolffsmod.flan.EntityNPCFlanBullet;
+import com.wolffsmod.flan.FlanUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.ServerChatEvent;
-import noppes.npcs.*;
+import noppes.npcs.CustomItems;
+import noppes.npcs.CustomNpcs;
+import noppes.npcs.DataAI;
+import noppes.npcs.DataAdvanced;
+import noppes.npcs.DataDisplay;
+import noppes.npcs.DataInventory;
+import noppes.npcs.DataStats;
+import noppes.npcs.EventHooks;
+import noppes.npcs.IChatMessages;
+import noppes.npcs.NBTTags;
+import noppes.npcs.NoppesUtilPlayer;
+import noppes.npcs.NoppesUtilServer;
+import noppes.npcs.NpcDamageSource;
+import noppes.npcs.Server;
+import noppes.npcs.VersionCompatibility;
+import noppes.npcs.ai.EntityAIAmbushTarget;
+import noppes.npcs.ai.EntityAIAnimation;
+import noppes.npcs.ai.EntityAIAttackTarget;
+import noppes.npcs.ai.EntityAIAvoidTarget;
+import noppes.npcs.ai.EntityAIBustDoor;
+import noppes.npcs.ai.EntityAIDodgeShoot;
+import noppes.npcs.ai.EntityAIFindShade;
+import noppes.npcs.ai.EntityAIFollow;
+import noppes.npcs.ai.EntityAIJob;
+import noppes.npcs.ai.EntityAILook;
 import noppes.npcs.ai.EntityAIMoveIndoors;
+import noppes.npcs.ai.EntityAIMovingPath;
+import noppes.npcs.ai.EntityAIOrbitTarget;
 import noppes.npcs.ai.EntityAIPanic;
+import noppes.npcs.ai.EntityAIRangedAttack;
+import noppes.npcs.ai.EntityAIReturn;
+import noppes.npcs.ai.EntityAIRole;
+import noppes.npcs.ai.EntityAISprintToTarget;
+import noppes.npcs.ai.EntityAIStalkTarget;
+import noppes.npcs.ai.EntityAITransform;
 import noppes.npcs.ai.EntityAIWander;
 import noppes.npcs.ai.EntityAIWatchClosest;
-import noppes.npcs.ai.*;
+import noppes.npcs.ai.EntityAIWaterNav;
+import noppes.npcs.ai.EntityAIWorldLines;
+import noppes.npcs.ai.EntityAIZigZagTarget;
 import noppes.npcs.ai.pathfinder.FlyingMoveHelper;
 import noppes.npcs.ai.pathfinder.PathNavigateFlying;
 import noppes.npcs.ai.selector.NPCAttackSelector;
@@ -24,27 +81,59 @@ import noppes.npcs.ai.target.EntityAIOwnerHurtTarget;
 import noppes.npcs.api.entity.ICustomNpc;
 import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.client.EntityUtil;
-import noppes.npcs.constants.*;
+import noppes.npcs.constants.EnumAnimation;
+import noppes.npcs.constants.EnumJobType;
+import noppes.npcs.constants.EnumMovingType;
+import noppes.npcs.constants.EnumNavType;
+import noppes.npcs.constants.EnumPacketClient;
+import noppes.npcs.constants.EnumPotionType;
+import noppes.npcs.constants.EnumRoleType;
+import noppes.npcs.constants.EnumStandingType;
 import noppes.npcs.controllers.FactionController;
 import noppes.npcs.controllers.LinkedNpcController;
 import noppes.npcs.controllers.LinkedNpcController.LinkedData;
 import noppes.npcs.controllers.PlayerDataController;
-import noppes.npcs.controllers.data.*;
+import noppes.npcs.controllers.data.DataScript;
+import noppes.npcs.controllers.data.DataTransform;
+import noppes.npcs.controllers.data.Dialog;
+import noppes.npcs.controllers.data.DialogOption;
+import noppes.npcs.controllers.data.Faction;
+import noppes.npcs.controllers.data.Line;
+import noppes.npcs.controllers.data.PlayerQuestData;
+import noppes.npcs.controllers.data.QuestData;
 import noppes.npcs.entity.data.DataTimers;
-import noppes.npcs.roles.*;
+import noppes.npcs.roles.JobBard;
+import noppes.npcs.roles.JobFollower;
+import noppes.npcs.roles.JobInterface;
+import noppes.npcs.roles.RoleCompanion;
+import noppes.npcs.roles.RoleFollower;
+import noppes.npcs.roles.RoleInterface;
 import noppes.npcs.scripted.entity.ScriptNpc;
 import noppes.npcs.scripted.event.NpcEvent;
-import noppes.npcs.util.EntityNPCFlanBullet;
 import noppes.npcs.util.GameProfileAlt;
-import noppes.npcs.util.NPCInterfaceUtil;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.IEntitySelector;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.DataWatcher;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.NPCEntityHelper;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILeapAtTarget;
+import net.minecraft.entity.ai.EntityAIOpenDoor;
+import net.minecraft.entity.ai.EntityAIRestrictSun;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
+import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.item.EntityFireworkRocket;
@@ -54,21 +143,46 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.projectile.*;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityEgg;
+import net.minecraft.entity.projectile.EntityPotion;
+import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBow;
+import net.minecraft.item.ItemEgg;
+import net.minecraft.item.ItemExpBottle;
+import net.minecraft.item.ItemFirework;
+import net.minecraft.item.ItemPotion;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.IChatComponent;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public abstract class EntityNPCInterface extends EntityCreature implements IEntityAdditionalSpawnData, ICommandSender, IRangedAttackMob, IBossDisplayData{
+	public Seat driver = new Seat();
+	public Map<Integer, Seat> passengers = new HashMap<>();
 	public ICustomNpc wrappedNPC;
 
 	public static final GameProfileAlt chateventProfile = new GameProfileAlt();
@@ -119,6 +233,8 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	public boolean updateAI = false;
 
 	public boolean lastBurst = false;
+
+	public int soundPosition;
 
 	public FlyingMoveHelper flyMoveHelper = new FlyingMoveHelper(this);
 	public PathNavigate flyNavigator = new PathNavigateFlying(this, worldObj);
@@ -182,6 +298,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		this.dataWatcher.addObject(15, Integer.valueOf(0)); // isWalking
 		this.dataWatcher.addObject(16, String.valueOf("")); // Role
 	}
+
 	protected boolean isAIEnabled(){
 		return true;
 	}
@@ -205,6 +322,8 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			}
 			this.timers.update();
 		}
+		if (soundPosition > 0)
+			soundPosition--;
 	}
 
 	public void setWorld(World world){
@@ -235,7 +354,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumPacketClient.ANIMATE_FLAN_MELEE);
 
 		if (var4){
-			if(getOwner() instanceof EntityPlayer)
+			if(getOwner() instanceof EntityPlayer && par1Entity instanceof EntityLivingBase)
 				NPCEntityHelper.setRecentlyHit((EntityLivingBase)par1Entity);
 			if (stats.knockback > 0){
 				par1Entity.addVelocity((double)(-MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F) * (float)stats.knockback * 0.5F), 0.1D, (double)(MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F) * (float)stats.knockback * 0.5F));
@@ -248,7 +367,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		}
 
 		if (stats.potionType != EnumPotionType.None){
-			if (stats.potionType != EnumPotionType.Fire)
+			if (stats.potionType != EnumPotionType.Fire && par1Entity instanceof EntityLivingBase)
 				((EntityLivingBase)par1Entity).addPotionEffect(new PotionEffect(this.getPotionEffect(stats.potionType), stats.potionDuration * 20, stats.potionAmp));
 			else
 				par1Entity.setFire(stats.potionDuration);
@@ -472,6 +591,18 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		if(damagesource.damageType != null && damagesource.damageType.equals("outOfWorld") && isKilled()){
 			reset();
 		}
+
+		if (isFlanDriveable())
+		{
+			Entity sourceOfDamage = damagesource.getSourceOfDamage();
+			if (sourceOfDamage instanceof EntityShootable)
+			{
+				ShootableType type = FlanUtils.getType((EntityShootable)sourceOfDamage);
+				float baseDamage = i / type.damageVsLiving;
+				i = isFlanPlane() ? baseDamage * type.damageVsPlanes : baseDamage * type.damageVsVehicles;
+			}
+		}
+
 		i = stats.resistances.applyResistance(damagesource, i);
 		if((float)this.hurtResistantTime > (float)this.maxHurtResistantTime / 2.0F && i <= this.lastDamage)
 			return false;
@@ -530,14 +661,30 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 				setAttackTarget(attackingEntity);
 			}
 			return super.attackEntityFrom(damagesource, i);
-		}
-		finally{
+		} finally{
 			if(event.getClearTarget()){
 				setAttackTarget(null);
 				setRevengeTarget(null);
 			}
 		}
 	}
+
+	public boolean isFlanDriveable()
+	{
+		return false;
+	}
+
+	public Optional<EntityFlanDriveableNPC> getFlanDriveableEntity()
+	{
+		return Optional.empty();
+	}
+
+	public boolean isFlanPlane()
+	{
+		return false;
+	}
+
+
 	public void onAttack(EntityLivingBase entity) {
 		if (entity == null || entity == this || isAttacking() || ai.onAttack == 3 || entity == getOwner())
 			return;
@@ -661,6 +808,19 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	{
 		for(ItemStack gun: getGuns())
 			NPCInterfaceUtil.playGunReloadSound(gun, posX, posY, posZ, dimension);
+		Optional<DriveableType> driveableType = getHeldDriveable();
+		Optional<AAGunType> aaGunType = getHeldAAGun();
+		if (inventory.useDriveableStats)
+		{
+			String reloadSound = "";
+			if (driveableType.isPresent())
+				reloadSound = driveableType.get().shootReloadSound;
+			if (aaGunType.isPresent())
+				reloadSound = aaGunType.get().reloadSound;
+
+			if (reloadSound != null && !reloadSound.isEmpty())
+				PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, reloadSound, false);
+		}
 		NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumPacketClient.ANIMATE_FLAN_RELOAD);
 	}
 
@@ -678,7 +838,31 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		{
 			guns.add(offHand);
 		}
- 		return guns;
+		return guns;
+	}
+
+	public Optional<DriveableType> getHeldDriveable()
+	{
+		ItemStack item = getHeldItem();
+		if (item != null)
+		{
+			if (item.getItem() instanceof ItemVehicle)
+				return Optional.of(((ItemVehicle)item.getItem()).type);
+			else if (item.getItem() instanceof ItemPlane)
+				return Optional.of(((ItemPlane)item.getItem()).type);
+		}
+		return Optional.empty();
+	}
+
+	public Optional<AAGunType> getHeldAAGun()
+	{
+		ItemStack item = getHeldItem();
+		if (item != null)
+		{
+			if (item.getItem() instanceof ItemAAGun)
+				return Optional.of(((ItemAAGun)item.getItem()).type);
+		}
+		return Optional.empty();
 	}
 
 	public void animateFlanGunMelee()
@@ -714,7 +898,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			int chargeDelay = gunType.model == null ? 0 : gunType.model.chargeDelayAfterReload;
 			int chargeTime = gunType.model == null ? 1 : gunType.model.chargeTime;
 
-			animations.doReload(stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime);
+			FlanUtils.doReloadAnimation(animations, stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime, 1, false);
 		}
 		if (offHandItem != null && offHandItem.getItem() instanceof ItemGun)
 		{
@@ -726,7 +910,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			int chargeDelay = gunType.model == null ? 0 : gunType.model.chargeDelayAfterReload;
 			int chargeTime = gunType.model == null ? 1 : gunType.model.chargeTime;
 
-			animations.doReload(this.stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime);
+			FlanUtils.doReloadAnimation(animations, stats.minDelay, pumpDelay, pumpTime, chargeDelay, chargeTime, 1, false);
 		}
 	}
 
@@ -766,69 +950,123 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 
 	public void shootFlanProjectile(ItemStack itemStackGun, ItemStack itemStackShootable)
 	{
-		ItemShootable itemShootable = (ItemShootable) itemStackShootable.getItem();
-		EntityShootable shot;
+		boolean shotgun;
+		float spread;
+		float damage;
+		float speed;
+		float yaw = rotationYawHead;
+		float pitch = rotationPitch;
+		Vec3 origin = Vec3.createVectorHelper(posX, posY + getEyeHeight(), posZ);
 
-		if (itemShootable instanceof ItemGrenade)
+		if(itemStackGun != null && inventory.useWeaponRangedStats)
 		{
-			shot = ((ItemGrenade) itemShootable).getGrenade(worldObj, this);
+			GunType gunType = ((ItemGun)itemStackGun.getItem()).type;
+			damage = ((ItemGun)itemStackGun.getItem()).type.getDamage(itemStackGun);
+			speed = Math.round(Math.max(FlanUtils.getBulletSpeed(((ItemGun)itemStackGun.getItem()).type, itemStackGun, itemStackShootable), 1F));
+			spread = gunType.getSpread(itemStackGun, isSneaking(), isSprinting());
+			shotgun = (gunType.getNumBullets(itemStackGun) > 1);
 		}
 		else
 		{
-			float spread;
-			float damage;
-			int speed;
-			boolean shotgun;
+			damage = stats.pDamage;
+			speed = (float) stats.pSpeed;
+			spread =  NPCInterfaceUtil.accuracyToBulletSpread(stats.accuracy);
+			shotgun = (stats.shotCount > 1);
 
-			if(itemStackGun != null && inventory.useWeaponRangedStats)
+			if (inventory.useDriveableStats)
 			{
-				GunType gunType = ((ItemGun)itemStackGun.getItem()).type;
-				damage = ((ItemGun)itemStackGun.getItem()).type.getDamage(itemStackGun);
-				speed = Math.round(Math.max(NPCInterfaceUtil.getBulletSpeed(((ItemGun)itemStackGun.getItem()).type, itemStackGun, itemStackShootable), 1F));
-				spread = gunType.getSpread(itemStackGun, isSneaking(), isSprinting());
-				shotgun = (gunType.getNumBullets(itemStackGun) > 1);
+				Optional<DriveableType> driveableType = getHeldDriveable();
+				Optional<AAGunType> aaGunType = getHeldAAGun();
+				if (driveableType.isPresent())
+				{
+					DriveableType type = driveableType.get();
+					Optional<Float> damageMultiplierPrimary = FlanUtils.getDamageMultiplierPrimary(type);
+					if (damageMultiplierPrimary.isPresent())
+						damage = damageMultiplierPrimary.get();
+					speed = (int) type.bulletSpeed;
+					spread = type.bulletSpread;
+				}
+				if (aaGunType.isPresent())
+				{
+					AAGunType type = aaGunType.get();
+					damage = type.damage;
+					spread = type.accuracy;
+				}
 			}
-			else
-			{
-				damage = stats.pDamage;
-				speed = stats.pSpeed;
-				spread =  NPCInterfaceUtil.accuracyToBulletSpread(stats.accuracy);
-				shotgun = (stats.shotCount > 1);
-			}
-
-			if (itemShootable instanceof ItemBullet)
-			{
-				shot = new EntityNPCFlanBullet(
-						worldObj,
-						Vec3.createVectorHelper(posX, posY + getEyeHeight(), posZ),
-						rotationYawHead,
-						rotationPitch,
-						this,
-						spread,
-						damage,
-						((ItemBullet)itemShootable).type,
-						speed,
-						itemShootable.type);
-			}
-			else
-			{
-				shot = itemShootable.getEntity(
-						worldObj,
-						Vec3.createVectorHelper(posX, posY + getEyeHeight(), posZ),
-						rotationYawHead,
-						rotationPitch,
-						this,
-						spread,
-						damage,
-						0,
-						itemShootable.type);
-			}
-
-			if (shot instanceof EntityBullet)
-				((EntityBullet) shot).shotgun = shotgun;
 		}
 
-		worldObj.spawnEntityInWorld(shot);
+		if (getFlanDriveableEntity().isPresent())
+		{
+			getFlanDriveableEntity().get().syncRotationWithClient();
+			yaw = driver.getGlobalYaw(renderYawOffset);
+			pitch = driver.getPitch();
+		}
+
+		if (getFlanDriveableEntity().isPresent() && (getFlanDriveableEntity().get().shootPointsPrimary.size() > 0))
+		{
+			EntityFlanDriveableNPC driveable = getFlanDriveableEntity().get();
+			float driverYaw = driveable.driver.getLocalYaw();
+
+			for (ShootPoint shootPoint: driveable.shootPointsPrimary)
+			{
+				Vector3f gunVector = NPCInterfaceUtil.getFiringPosition(shootPoint, driveable.turretOrigin, driverYaw, pitch, renderYawOffset);
+
+				if (display.modelSize != 5)
+					gunVector.scale(display.modelSize / 5F);
+
+				origin = (Vector3f.add(new Vector3f(posX, posY + driveable.yDriveableOffset * (display.modelSize / 5F), posZ), gunVector, null)).toVec3();
+				NPCInterfaceUtil.spawnParticle(driveable.shootParticlesPrimary, shootPoint, gunVector, driverYaw, pitch, renderYawOffset, posX, posY + driveable.yDriveableOffset, posZ, dimension, display.modelSize / 5F);
+				spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
+			}
+		}
+		else
+		{
+			if (getFlanDriveableEntity().isPresent() && getFlanDriveableEntity().get() instanceof EntityFlanAAGunNPC)
+			{
+				EntityFlanAAGunNPC aaGun = (EntityFlanAAGunNPC)getFlanDriveableEntity().get();
+				for (int currentBarrel=0; currentBarrel<aaGun.numBarrels; currentBarrel++)
+				{
+					RotatedAxes axes = new RotatedAxes(yaw, pitch, 0F);
+					axes.rotateLocalYaw(90F);
+					Vec3 barrel = axes.findLocalVectorGlobally(new Vector3f(aaGun.barrelX[currentBarrel] / 16D, aaGun.barrelY[currentBarrel] / 16D, aaGun.barrelZ[currentBarrel] / 16D)).toVec3();
+					origin = barrel.addVector(posX, posY, posZ);
+					spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
+				}
+			}
+			else
+			{
+				spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
+			}
+		}
+	}
+
+	public void spawnFlanShootable(ItemShootable item, Vec3 origin, float yaw, float pitch, float spread, float damage, float speed, boolean shotgun)
+	{
+		EntityShootable shot = null;
+
+		if (item instanceof ItemGrenade)
+		{
+			shot = ((ItemGrenade) item).getGrenade(worldObj, this);
+		}
+		else if (item instanceof ItemBullet)
+		{
+			shot = new EntityNPCFlanBullet(
+					worldObj,
+					origin,
+					yaw,
+					pitch,
+					this,
+					spread,
+					damage,
+					((ItemBullet)item).type,
+					speed,
+					item.type);
+
+			((EntityBullet) shot).shotgun = shotgun;
+		}
+
+		if (shot != null)
+			worldObj.spawnEntityInWorld(shot);
 	}
 
 	public EntityProjectile shoot(EntityLivingBase entity, int accuracy, ItemStack proj, boolean indirect){
@@ -858,6 +1096,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		}
 		tasks.taskEntries = new ArrayList<EntityAITaskEntry>();
 	}
+
 	public void updateTasks() {
 		if (worldObj == null || worldObj.isRemote)
 			return;
@@ -961,6 +1200,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			this.tasks.addTask(this.taskCount++, new EntityAIMovingPath(this));
 		}
 	}
+
 	/*
 	 * Branch task function for adjusting NPC door interactivity
 	 */
@@ -1099,6 +1339,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	public int getTalkInterval(){
 		return 160;
 	}
+
 	/**
 	 * Returns the sound this mob makes when it is hurt.
 	 */
@@ -1132,6 +1373,20 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	@Override
 	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
 	{
+		if (inventory.useDriveableStats)
+		{
+			Optional<DriveableType> driveableType = getHeldDriveable();
+			if (driveableType.isPresent() && driveableType.get().engineSound != null && !driveableType.get().engineSound.isEmpty())
+			{
+				if (soundPosition == 0)
+				{
+					PacketPlaySound.sendSoundPacket(posX, posY, posZ, driveableType.get().engineSoundRange, dimension, driveableType.get().engineSound, false);
+					soundPosition = driveableType.get().startSoundLength;
+				}
+				return;
+			}
+		}
+
 		if (!this.advanced.stepSound.equals(""))
 		{
 			this.playSound(this.advanced.stepSound, 0.15F, 1.0F);
@@ -1177,6 +1432,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		}
 		Server.sendData((EntityPlayerMP)player, EnumPacketClient.CHATBUBBLE, this.getEntityId(), line.text, !line.hideText);
 	}
+
 	public boolean getAlwaysRenderNameTagForRender(){
 		return true;
 	}
@@ -1218,7 +1474,6 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 
 		this.updateTasks();
 	}
-
 
 
 	@Override
@@ -1354,7 +1609,6 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	}
 
 
-
 	@Override
 	public void setInPortal(){
 		//prevent npcs from walking into portals
@@ -1435,7 +1689,9 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			inventory.armor.put(4 - slot, item);
 		}
 	}
+
 	private static final ItemStack[] lastActive = new ItemStack[5];
+
 	@Override
 	public ItemStack[] getLastActiveItems(){
 		return lastActive;
@@ -1671,6 +1927,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	public boolean isSneaking() {
 		return currentAnimation == EnumAnimation.SNEAKING;
 	}
+
 	@Override
 	public void knockBack(Entity par1Entity, float par2, double par3, double par5)
 	{
@@ -1691,6 +1948,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			this.motionY = 0.4000000059604645D;
 		}
 	}
+
 	@Override
 	public void addVelocity(double p_70024_1_, double p_70024_3_, double p_70024_5_) {
 		if (this.attackingPlayer != null) {
@@ -1724,9 +1982,11 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 			return fac;
 		}
 	}
+
 	public boolean isRemote(){
 		return worldObj == null || worldObj.isRemote;
 	}
+
 	public void setFaction(int integer) {
 		if(integer < 0|| isRemote())
 			return;
@@ -1799,6 +2059,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		}
 		return compound;
 	}
+
 	@Override
 	public void readSpawnData(ByteBuf buf) {
 		try {
@@ -1806,6 +2067,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		} catch (IOException e) {
 		}
 	}
+
 	public void readSpawnData(NBTTagCompound compound) {
 		stats.maxHealth = compound.getDouble("MaxHealth");
 		ai.setWalkingSpeed(compound.getInteger("Speed"));
@@ -1870,6 +2132,7 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 	{
 		return EntityBat.class != par1Class;
 	}
+
 	public void setImmuneToFire(boolean immuneToFire) {
 		this.isImmuneToFire = immuneToFire;
 		stats.immuneToFire = immuneToFire;
@@ -1905,11 +2168,13 @@ public abstract class EntityNPCInterface extends EntityCreature implements IEnti
 		this.getNavigator().setAvoidsWater(avoidWater);
 		ai.avoidsWater = avoidWater;
 	}
+
 	@Override
 	protected void fall(float par1) {
 		if (!this.stats.noFallDamage)
 			super.fall(par1);
 	}
+
 	@Override
 	public void setInWeb(){
 		if(!ai.ignoreCobweb)
