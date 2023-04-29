@@ -9,12 +9,10 @@
 
 package com.wolffsmod.model.price; //Path where the model is located
 
-import com.flansmod.client.model.ModelPlane;
 import com.flansmod.client.tmt.ModelRendererTurbo;
-import com.flansmod.client.tmt.Coord2D;
-import com.flansmod.client.tmt.Shape2D;
+import com.wolffsmod.model.ModelFlanPlane;
 
-public class ModelP51D extends ModelPlane //Same as Filename
+public class ModelP51D extends ModelFlanPlane //Same as Filename
 {
 	int textureX = 1024;
 	int textureY = 1024;
