@@ -325,7 +325,36 @@ public class ClientProxy extends ServerProxy{
 
 		if (ContentPacks.monolithAndTaP)
 		{
-			//TaP & Monolith Pack
+			//Monolith Pack
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityBMPT72.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelBMPT()).scale(0.9F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityChengdu.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelSkyMao(), "ChengduJ20/ChengduJ20.png").scale(0.7F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityF15J.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelGalmOne(), "GalmOne/F15J.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityFalken.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelFalken()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityFerdinand.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelFerdinand()).scale(1.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityGalmOne.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelGalmOne()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityGalmTwo.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelGalmTwo()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityKV2.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelKV2(), "KV2_Monolith/KV2.png").scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityMonitor.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelMonitorMk5()).scale(2.5F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityMorgan.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelADFX02Morgan()).scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityMsta.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelMsta()).scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityPorsche.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelPorsche(), "TigerPorsche/TigerPorsche.png").scale(1.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityRobertLee.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelRobertLee(), "M3Lee_Monolith/M3Lee.png").scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntitySchwererGustav.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelGustav()).scale(3.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityShinden.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelShinden()).scale(1.3F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityStug.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelStug()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntitySzhatie.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelSzhatie()).scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityT72.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelT72Mark3(), "T72A/T72A.png").scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityT80.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelT80Fixed(), "T80/T80.png").scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityT80Clone.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelT80BVotsu(), "T80Cammo/T80Cammo.png").scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityT90.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelT90A()).scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityTog2.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelTog()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityTos1a.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelTos2(), "Tos/Tos.png").scale(1.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityType74.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelType74()).scale(1.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityWZ123.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelNorinco(), "WZ123/WZ123.png").scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.Entityhashidate.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelHashidate()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.Entitytype10.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelType10Kai()).scale(1.2F));
+
+			//Monolith TaP
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityA7V.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelA7V()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityK2BlackPanther.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelK2overdrive(), "K2/K2.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityKimJongSub.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelRomeo(), "RomeoClassSub/RomeoClassSub.png").scale(3.0F));

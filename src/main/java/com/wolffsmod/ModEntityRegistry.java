@@ -310,7 +310,36 @@ public class ModEntityRegistry {
 
 		if (ContentPacks.monolithAndTaP)
 		{
-			//TaP & Monolith Pack
+			//Monolith Pack
+			createEntity(com.wolffsmod.entity.monolith.EntityBMPT72.class, "BMPT-72 (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityChengdu.class, "Chengdu J-20 (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityF15J.class, "McDonnell Douglas F-15J (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityFalken.class, "ADF-01 Falken (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityFerdinand.class, "Panzerjaeger Ferdinand (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityGalmOne.class, "McDonnell Douglas F-15 Galm One (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityGalmTwo.class, "McDonnell Douglas F-15 Galm Two (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityKV2.class, "KV-2 (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityMonitor.class, "USS Monitor (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityMorgan.class, "ADFX-02 Morgan (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityMsta.class, "2S19 Msta (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityPorsche.class, "Panzer VI Tiger Porsche (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityRobertLee.class, "M3 Lee (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntitySchwererGustav.class, "800mm Schwerer Gustav (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityShinden.class, "Kyushu J7W Shinden (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityStug.class, "StuG III Ausf. F (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntitySzhatie.class, "1K17 Szhatie (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityT72.class, "T-72A (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityT80.class, "T-80BV (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityT80Clone.class, "T-80BV Cammo (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityT90.class, "T-90A (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityTog2.class, "TOG II (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityTos1a.class, "TOS-1A Solntsepyok (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityType74.class, "Type 74 (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityWZ123.class, "WZ-123 (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.Entityhashidate.class, "Hashidate Class Gunboat (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.Entitytype10.class, "Type 10 Hitomaru (Monolith)");
+
+			//Monolith TaP
 			createEntity(com.wolffsmod.entity.monolith.EntityA7V.class, "Sturmpanzerwagen A7V (TaP)");
 			createEntity(com.wolffsmod.entity.monolith.EntityK2BlackPanther.class, "K2 Black Panther (TaP)");
 			createEntity(com.wolffsmod.entity.monolith.EntityKimJongSub.class, "Type 033 Class Submarine (TaP)");
