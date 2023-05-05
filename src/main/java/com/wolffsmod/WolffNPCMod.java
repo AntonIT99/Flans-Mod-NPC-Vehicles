@@ -33,6 +33,7 @@ public class WolffNPCMod
 
 	public static boolean ignoreFrustumCheckForNpcVehicles = true;
 	public static boolean ignoreFrustumCheckForLargeEntities = true;
+	public static boolean shootingParticles = true;
 	public static float entityUpdateRange = 512F;
 	public static float largeEntitySize = 5F;
 
@@ -40,13 +41,19 @@ public class WolffNPCMod
 	public static void preInit(FMLPreInitializationEvent event)
 	{
 		config = new Configuration(event.getSuggestedConfigurationFile());
+
 		entityUpdateRange = config.getFloat(
 				"Entity update range",
 				"General Settings",
 				entityUpdateRange,
 				0F,
 				1024F,
-				"Range in blocks for NPC vehicles to be updated.");
+				"Range in blocks for NPC vehicles to be updated");
+		shootingParticles = config.getBoolean(
+				"Shooting particles",
+				"General Settings",
+				shootingParticles,
+				"Enable shooting particles for some vehicles");
 		ignoreFrustumCheckForNpcVehicles = config.getBoolean(
 				"Ignore frustum check for NPC vehicles",
 				"Client Side Settings",
@@ -64,6 +71,9 @@ public class WolffNPCMod
 				0F,
 				64F,
 				"Ignore frustum check for entities with a hit box width or height greater than this value");
+
+		ContentPacks.loadPacksConfig(config);
+
 		if (config.hasChanged())
 			config.save();
 
