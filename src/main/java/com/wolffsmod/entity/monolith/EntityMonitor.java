@@ -1,10 +1,11 @@
 package com.wolffsmod.entity.monolith;
 
+import com.wolffsmod.entity.EntityFlanShipNPC;
 import com.wolffsmod.entity.EntityFlanVehicleNPC;
 
 import net.minecraft.world.World;
 
-public class EntityMonitor extends EntityFlanVehicleNPC
+public class EntityMonitor extends EntityFlanShipNPC
 {
     public EntityMonitor(World w)
     {
