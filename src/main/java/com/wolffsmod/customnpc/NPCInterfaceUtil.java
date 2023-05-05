@@ -9,6 +9,7 @@ import com.flansmod.common.guns.GunType;
 import com.flansmod.common.guns.ItemGun;
 import com.flansmod.common.network.PacketPlaySound;
 import com.flansmod.common.vector.Vector3f;
+import com.wolffsmod.WolffNPCMod;
 import com.wolffsmod.flan.FlanUtils;
 import noppes.npcs.Server;
 import noppes.npcs.constants.EnumPacketClient;
@@ -208,6 +209,9 @@ public class NPCInterfaceUtil
 
     public static void spawnParticle(ArrayList<ShootParticle> list, ShootPoint shootPoint, Vector3f gunVector, float driverYaw, float driverPitch, float entityYaw, double posX, double posY, double posZ, int dimension, float scale)
     {
+        if (!WolffNPCMod.shootingParticles)
+            return;
+
         RotatedAxes looking = new RotatedAxes(driverYaw, driverPitch, 0F);
         RotatedAxes axes = new RotatedAxes(entityYaw, 0F, 0F);
         axes.rotateLocalYaw(90F);
