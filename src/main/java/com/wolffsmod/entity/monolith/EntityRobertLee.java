@@ -9,7 +9,7 @@ public class EntityRobertLee extends EntityFlanVehicleNPC
     public EntityRobertLee(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(3.5F, 3.5F);
     }
     
     @Override

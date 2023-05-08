@@ -98,30 +98,14 @@ public class ClientProxy extends ServerProxy{
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.legacy.EntityPanzerIIL.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelPanzerIILuchs(), "LuchsLegacy/Luchs.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.legacy.EntityYak9.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelSpitfire(), "Spitfire/Yak9.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.legacy.EntityZero.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelSpitfire(), "Spitfire/Zero.png"));
-
 		}
 
-		//Ye Olde Official Pack
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.yeolde.EntityBiplane.class, new RenderFlansModEntity(new com.wolffsmod.model.official.yeolde.ModelBiplane()));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.yeolde.EntityTwoSeatBiplane.class, new RenderFlansModEntity(new com.wolffsmod.model.official.yeolde.ModelTwoSeatBiplane()));
-
-		if (ContentPacks.worldAtWar)
+		if (ContentPacks.officialYeOlde)
 		{
-			//World at War Pack
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityB24.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelLancaster(), "Lancaster/B24.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityB71.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelLancaster(), "Lancaster/B71.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityBlackPrince.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelPanzer4(), "Panzer4/EnglishTank.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityC202.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_YAK3_1(), "Yak3_old/Thunderbolt.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityCarro.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelT34(), "T34/CarroArmato.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityDo17.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelLancaster(), "Lancaster/Do17.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityFokker.class, new RenderFlansModEntity(new com.wolffsmod.model.waw.ModelFokkerDr1(), "FokkerDr1/FokkerDr1.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityLA7.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_YAK3_1(), "Yak3_old/LA7.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityLusac.class, new RenderFlansModEntity(new com.wolffsmod.model.waw.ModelSopwithCamel(), "SopwithCamel/Lusac.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityRenault.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelM41(), "M4/AMC.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntitySopwith.class, new RenderFlansModEntity(new com.wolffsmod.model.waw.ModelSopwithCamel(), "SopwithCamel/SopwithCamel.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityType4.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelM41(), "M4/Type4.png"));
+			//Ye Olde Official Pack
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.yeolde.EntityBiplane.class, new RenderFlansModEntity(new com.wolffsmod.model.official.yeolde.ModelBiplane()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.yeolde.EntityTwoSeatBiplane.class, new RenderFlansModEntity(new com.wolffsmod.model.official.yeolde.ModelTwoSeatBiplane()));
 		}
-
 
 		if (ContentPacks.officialMW)
 		{
@@ -147,25 +131,57 @@ public class ClientProxy extends ServerProxy{
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.mw.EntityTornado.class, new RenderFlansModEntity(new com.wolffsmod.model.official.mw.ModelTornado()).scale(1.2F));
 		}
 
-		//Titan Pack
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.titan.EntityAlphaTitan.class, new RenderFlansModEntity(new com.wolffsmod.model.official.titan.ModelProtoTitan(), "ProtoTitan/AlphaTitan.png").scale(2F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.titan.EntityProtoTitan.class, new RenderFlansModEntity(new com.wolffsmod.model.official.titan.ModelProtoTitan(), "ProtoTitan/ProtoTitan.png"));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.titan.EntityZeroTitan.class, new RenderFlansModEntity(new com.wolffsmod.model.official.titan.ModelZeroTitan()));
+		if (ContentPacks.officialTitan)
+		{
+			//Titan Pack
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.titan.EntityAlphaTitan.class, new RenderFlansModEntity(new com.wolffsmod.model.official.titan.ModelProtoTitan(), "ProtoTitan/AlphaTitan.png").scale(2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.titan.EntityProtoTitan.class, new RenderFlansModEntity(new com.wolffsmod.model.official.titan.ModelProtoTitan(), "ProtoTitan/ProtoTitan.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.titan.EntityZeroTitan.class, new RenderFlansModEntity(new com.wolffsmod.model.official.titan.ModelZeroTitan()));
+		}
 
-		//Apocalypse Pack
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.apocalypse.EntityBuggy.class, new RenderFlansModEntity(new com.wolffsmod.model.official.apocalypse.ModelBuggy()));
+		if (ContentPacks.officialApocalypse)
+		{
+			//Apocalypse Pack
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.apocalypse.EntityBuggy.class, new RenderFlansModEntity(new com.wolffsmod.model.official.apocalypse.ModelBuggy()));
+		}
 
-		//Utility Pack
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.utility.EntityTunnelBore.class, new RenderFlansModEntity(new com.wolffsmod.model.official.utility.ModelTunnelBore()));
+		if (ContentPacks.officialUtility)
+		{
+			//Utility Pack
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.utility.EntityTunnelBore.class, new RenderFlansModEntity(new com.wolffsmod.model.official.utility.ModelTunnelBore()));
+		}
 
-		//Wolff's Pack
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.wolff.EntityPanzerIVJ.class, new RenderFlansModEntity(new com.wolffsmod.model.wolff.ModelPanzerIVJ()).setTranslation(0F, -2F, 0F).setScale(0.9F, 0.9F, 0.9F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.wolff.EntitySdKfz251D.class, new RenderFlansModEntity(new com.wolffsmod.model.wolff.ModelSdKfz251D()));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.wolff.EntitySdKfz251DManned.class, new RenderFlansModEntity(new com.wolffsmod.model.wolff.ModelSdKfz251DManned(), "SdKfz251D_Manned/SdKfz251D.png").setTranslation(0F, 0.9F, 0F).setRotation(0F, 90F, 0F));
+		if (ContentPacks.worldAtWar)
+		{
+			//World at War Pack
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityB24.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelLancaster(), "Lancaster/B24.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityB71.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelLancaster(), "Lancaster/B71.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityBlackPrince.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelPanzer4(), "Panzer4/EnglishTank.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityC202.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_YAK3_1(), "Yak3_old/Thunderbolt.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityCarro.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelT34(), "T34/CarroArmato.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityDo17.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelLancaster(), "Lancaster/Do17.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityFokker.class, new RenderFlansModEntity(new com.wolffsmod.model.waw.ModelFokkerDr1(), "FokkerDr1/FokkerDr1.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityLA7.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.ModelWW2_Plane_YAK3_1(), "Yak3_old/LA7.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityLusac.class, new RenderFlansModEntity(new com.wolffsmod.model.waw.ModelSopwithCamel(), "SopwithCamel/Lusac.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityRenault.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelM41(), "M4/AMC.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntitySopwith.class, new RenderFlansModEntity(new com.wolffsmod.model.waw.ModelSopwithCamel(), "SopwithCamel/SopwithCamel.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.waw.EntityType4.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ww2.legacy.ModelM41(), "M4/Type4.png"));
+		}
 
-		//Kikkoceccato
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.kikkoceccato.EntityPanzerI.class, new RenderFlansModEntity(new com.wolffsmod.model.kikkoceccato.ModelPanzerI()).setTranslation(0F, -1.5F, 0F).setScale(0.55F, 0.55F, 0.55F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.kikkoceccato.EntitySkwI.class, new RenderFlansModEntity(new com.wolffsmod.model.kikkoceccato.ModelSkwI(), "PanzerI/SkwI.png").setTranslation(0F, -1.5F, 0F).setScale(0.55F, 0.55F, 0.55F));
+		if (ContentPacks.wolff)
+		{
+			//Wolff's Pack
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.wolff.EntityPanzerIVJ.class, new RenderFlansModEntity(new com.wolffsmod.model.wolff.ModelPanzerIVJ()).setTranslation(0F, -2F, 0F).setScale(0.9F, 0.9F, 0.9F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.wolff.EntitySdKfz251D.class, new RenderFlansModEntity(new com.wolffsmod.model.wolff.ModelSdKfz251D()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.wolff.EntitySdKfz251DManned.class, new RenderFlansModEntity(new com.wolffsmod.model.wolff.ModelSdKfz251DManned(), "SdKfz251D_Manned/SdKfz251D.png").setTranslation(0F, 0.9F, 0F).setRotation(0F, 90F, 0F));
+		}
+
+		if (ContentPacks.kikkoceccato)
+		{
+			//Kikkoceccato
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.kikkoceccato.EntityPanzerI.class, new RenderFlansModEntity(new com.wolffsmod.model.kikkoceccato.ModelPanzerI()).setTranslation(0F, -1.5F, 0F).setScale(0.55F, 0.55F, 0.55F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.kikkoceccato.EntitySkwI.class, new RenderFlansModEntity(new com.wolffsmod.model.kikkoceccato.ModelSkwI(), "PanzerI/SkwI.png").setTranslation(0F, -1.5F, 0F).setScale(0.55F, 0.55F, 0.55F));
+		}
 
 		if (ContentPacks.manusWW2)
 		{
@@ -320,14 +336,14 @@ public class ClientProxy extends ServerProxy{
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.lizard.EntityT72A.class, new RenderFlansModEntity(new com.wolffsmod.model.lizard.ModelT72A(), "T72A1979/T72A1979.png"));
 		}
 
-		//Tankcraft
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.tankcraft.EntityM60A1.class, new RenderFlansModEntity(new com.wolffsmod.model.tankcraft.ModelTCM60A1(), "M60A1/M60A1.png"));
-
-		if (ContentPacks.monolithAndTaP)
+		if (ContentPacks.monolith)
 		{
 			//Monolith Pack
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityBananaHeavy.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelBanana(), "Banana/BananaHeavy.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityBananaLight.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelBanana(), "Banana/BananaLight.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityBMPT72.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelBMPT()).scale(0.9F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityChengdu.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelSkyMao(), "ChengduJ20/ChengduJ20.png").scale(0.7F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityCanon.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelCannon()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityF15J.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelGalmOne(), "GalmOne/F15J.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityFalken.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelFalken()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityFerdinand.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelFerdinand()).scale(1.1F));
@@ -339,7 +355,7 @@ public class ClientProxy extends ServerProxy{
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityMsta.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelMsta()).scale(1.2F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityPorsche.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelPorsche(), "TigerPorsche/TigerPorsche.png").scale(1.1F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityRobertLee.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelRobertLee(), "M3Lee_Monolith/M3Lee.png").scale(1.2F));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntitySchwererGustav.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelGustav()).scale(3.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntitySchwererGustav.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelGustav()).setTranslation(0F, -5.2F, 0F).setScale(3.1F, 3.1F, 3.1F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityShinden.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelShinden()).scale(1.3F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityStug.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelStug()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntitySzhatie.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelSzhatie()).scale(1.2F));
@@ -351,9 +367,13 @@ public class ClientProxy extends ServerProxy{
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityTos1a.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelTos2(), "Tos/Tos.png").scale(1.1F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityType74.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelType74()).scale(1.1F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityWZ123.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelNorinco(), "WZ123/WZ123.png").scale(1.2F));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.Entityhashidate.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelHashidate()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityHashidate.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelHashidate()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.Entitytype10.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelType10Kai()).scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityYamato.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelYamato()));
+		}
 
+		if (ContentPacks.tap)
+		{
 			//Monolith TaP
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityA7V.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelA7V()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityK2BlackPanther.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelK2overdrive(), "K2/K2.png"));
@@ -377,23 +397,26 @@ public class ClientProxy extends ServerProxy{
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxKornet.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelToyotaHiluxKornet()).scale(1.1F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxS5.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelToyotaHiluxS5()).scale(1.1F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxSPG9.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelToyotaHiluxSPG9()).scale(1.1F));
-
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.tankcraft.EntityM60A1.class, new RenderFlansModEntity(new com.wolffsmod.model.tankcraft.ModelTCM60A1(), "M60A1/M60A1.png"));
 		}
 
-		//Price additions
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityMCOMStation.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelMCOMStation()).setTranslation(0F, -1.65F, 0F).setScale(1.1F, 1.1F, 1.1F).setRotation(180F, -180F, 0F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityMilitaryCrate.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelMilitaryCrate()).setTranslation(0F, -1.65F, 0F).setScale(1.1F, 1.1F, 1.1F).setRotation(180F, -180F, 0F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityRadioStation.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelRadioStation()).setTranslation(0F, -1.65F, 0F).setScale(1.1F, 1.1F, 1.1F).setRotation(180F, -180F, 0F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityRadioStationSmall.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelRadioStationSmall()).setTranslation(0F, -2.85F, 0F).setScale(1.1F, 1.1F, 1.1F).setRotation(180F, -180F, 0F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySandBags1.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSandBags1()).setTranslation(0F, -1.5F, 0F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySandBags2.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSandBags2()).setTranslation(0F, -0.5F, 0F).setScale(0.25F, 0.25F, 0.25F).setRotation(180F, 0F, 0F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySupplies.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSupplies()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityPak43.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelPak43()));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySoDa.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSoDa()));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityTeKe.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelTeKe()).scale(1.1F));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityTKlate.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelTKlate()));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityOccupier.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelOccupier()));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityP51D.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelP51D()));
+		if (ContentPacks.price)
+		{
+			//Price additions
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityMCOMStation.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelMCOMStation()).setTranslation(0F, -1.65F, 0F).setScale(1.1F, 1.1F, 1.1F).setRotation(180F, -180F, 0F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityMilitaryCrate.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelMilitaryCrate()).setTranslation(0F, -1.65F, 0F).setScale(1.1F, 1.1F, 1.1F).setRotation(180F, -180F, 0F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityRadioStation.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelRadioStation()).setTranslation(0F, -1.65F, 0F).setScale(1.1F, 1.1F, 1.1F).setRotation(180F, -180F, 0F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityRadioStationSmall.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelRadioStationSmall()).setTranslation(0F, -2.85F, 0F).setScale(1.1F, 1.1F, 1.1F).setRotation(180F, -180F, 0F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySandBags1.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSandBags1()).setTranslation(0F, -1.5F, 0F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySandBags2.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSandBags2()).setTranslation(0F, -0.5F, 0F).setScale(0.25F, 0.25F, 0.25F).setRotation(180F, 0F, 0F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySupplies.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSupplies()).setTranslation(0F, -2.2F, 0F).setScale(1.1F, 1.1F, 1.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityPak43.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelPak43()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntitySoDa.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelSoDa()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityTeKe.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelTeKe()).scale(1.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityTKlate.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelTKlate()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityOccupier.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelOccupier()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.price.EntityP51D.class, new RenderFlansModEntity(new com.wolffsmod.model.price.ModelP51D()));
+		}
 
 		if (ContentPacks.warfare44)
 		{
@@ -510,12 +533,18 @@ public class ClientProxy extends ServerProxy{
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.Entity44_ZiS30.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelZiS30()));
 		}
 
-		//Exufo's cop cars
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.exufo.EntityCopvic.class, new RenderFlansModEntity(new com.wolffsmod.model.exufo.ModelCopvic(), "FordCrownVictoria_Police/FordCrownVictoria_Police.png"));
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.exufo.EntityCV.class, new RenderFlansModEntity(new com.wolffsmod.model.exufo.ModelCV(), "FordCrownVictoria/FordCrownVictoria.png"));
+		if (ContentPacks.exufo)
+		{
+			//Exufo's cop cars
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.exufo.EntityCopvic.class, new RenderFlansModEntity(new com.wolffsmod.model.exufo.ModelCopvic(), "FordCrownVictoria_Police/FordCrownVictoria_Police.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.exufo.EntityCV.class, new RenderFlansModEntity(new com.wolffsmod.model.exufo.ModelCV(), "FordCrownVictoria/FordCrownVictoria.png"));
+		}
 
-		//Prototype
-		RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.EntityRatte.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.ModelRatte()).setTranslation(0F, -5F, 0F).setScale(2.4F, 2.4F, 2.4F));
+		if (ContentPacks.prototype)
+		{
+			//Prototype
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.EntityRatte.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.ModelRatte()).setTranslation(0F, -5F, 0F).setScale(2.4F, 2.4F, 2.4F));
+		}
 
 		if (ContentPacks.manusCivil)
 		{

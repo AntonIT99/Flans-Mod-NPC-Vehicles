@@ -9,7 +9,7 @@ public class EntityShinden extends EntityFlanPlaneNPC
     public EntityShinden(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(3.5F, 3F);
     }
     
     @Override

@@ -9,7 +9,7 @@ public class EntityBMPT72 extends EntityFlanVehicleNPC
     public EntityBMPT72(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(3.5F, 3F);
     }
     
     @Override

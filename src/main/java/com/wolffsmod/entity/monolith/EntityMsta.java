@@ -9,7 +9,7 @@ public class EntityMsta extends EntityFlanVehicleNPC
     public EntityMsta(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(4.5F, 4F);
     }
     
     @Override

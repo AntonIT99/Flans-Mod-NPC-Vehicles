@@ -9,7 +9,7 @@ public class EntityChengdu extends EntityFlanPlaneNPC
     public EntityChengdu(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(8F, 4F);
     }
     
     @Override

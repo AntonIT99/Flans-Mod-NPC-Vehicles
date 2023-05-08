@@ -9,7 +9,7 @@ public class EntityMorgan extends EntityFlanPlaneNPC
     public EntityMorgan(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(12F, 7.5F);
     }
     
     @Override

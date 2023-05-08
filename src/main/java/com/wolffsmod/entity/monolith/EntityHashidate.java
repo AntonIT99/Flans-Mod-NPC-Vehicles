@@ -4,9 +4,9 @@ import com.wolffsmod.entity.EntityFlanVehicleNPC;
 
 import net.minecraft.world.World;
 
-public class Entityhashidate extends EntityFlanVehicleNPC
+public class EntityHashidate extends EntityFlanVehicleNPC
 {
-    public Entityhashidate(World w)
+    public EntityHashidate(World w)
     {
         super(w);
         setSize(3.5F, 2.5F);

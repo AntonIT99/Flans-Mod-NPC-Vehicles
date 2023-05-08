@@ -1,7 +1,5 @@
 package com.wolffsmod;
 
-import com.wolffsmod.render.RenderFlansModEntity;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 import net.minecraft.entity.Entity;
@@ -86,25 +84,11 @@ public class ModEntityRegistry {
 			createEntity(com.wolffsmod.entity.official.ww2.legacy.EntityZero.class, "Mitsubishi A6M Zero (Official Pack Legacy)");
 		}
 
-		//Ye Olde Official Pack
-		createEntity(com.wolffsmod.entity.official.yeolde.EntityBiplane.class, "Biplane (Official Pack)");
-		createEntity(com.wolffsmod.entity.official.yeolde.EntityTwoSeatBiplane.class, "Two Seat Biplane (Official Pack)");
-
-		if (ContentPacks.worldAtWar)
+		if (ContentPacks.officialYeOlde)
 		{
-			//World at War Pack
-			createEntity(com.wolffsmod.entity.waw.EntityB24.class, "Consolidated B-24 Liberator (World at War Pack)");
-			createEntity(com.wolffsmod.entity.waw.EntityB71.class, "Avia B-71 (World at War Pack)");
-			createEntity(com.wolffsmod.entity.waw.EntityBlackPrince.class, "Black Prince (World at War Pack)");
-			createEntity(com.wolffsmod.entity.waw.EntityC202.class, "Macchi C.202 Folgore (World at War Pack)");
-			createEntity(com.wolffsmod.entity.waw.EntityCarro.class, "Carro Armato M15 (World at War Pack)");
-			createEntity(com.wolffsmod.entity.waw.EntityDo17.class, "Dornier Do 17 (World at War Pack)");
-			createEntity(com.wolffsmod.entity.waw.EntityFokker.class, "Fokker Dr.I (World at War Pack)");
-			createEntity(com.wolffsmod.entity.waw.EntityLA7.class, "Lavochkin La-7 (World at War Pack)");
-			createEntity(com.wolffsmod.entity.waw.EntityLusac.class, "LUSAC-11 (World at War Pack)");
-			createEntity(com.wolffsmod.entity.waw.EntityRenault.class, "AMC-35 Renault (World at War Pack)");
-			createEntity(com.wolffsmod.entity.waw.EntitySopwith.class, "Sopwith Camel (World at War Pack)");
-			createEntity(com.wolffsmod.entity.waw.EntityType4.class, "Type 4 Chi-To (World at War Pack)");
+			//Ye Olde Official Pack
+			createEntity(com.wolffsmod.entity.official.yeolde.EntityBiplane.class, "Biplane (Official Pack)");
+			createEntity(com.wolffsmod.entity.official.yeolde.EntityTwoSeatBiplane.class, "Two Seat Biplane (Official Pack)");
 		}
 
 		if (ContentPacks.officialMW)
@@ -131,25 +115,57 @@ public class ModEntityRegistry {
 			createEntity(com.wolffsmod.entity.official.mw.EntityTornado.class, "Panavia Tornado GR4 (Official Pack)");
 		}
 
-		//Titan Pack
-		createEntity(com.wolffsmod.entity.official.titan.EntityAlphaTitan.class, "Alpha Titan (Official Pack)");
-		createEntity(com.wolffsmod.entity.official.titan.EntityProtoTitan.class, "Proto Titan (Official Pack)");
-		createEntity(com.wolffsmod.entity.official.titan.EntityZeroTitan.class, "Zero Titan (Official Pack)");
+		if (ContentPacks.officialTitan)
+		{
+			//Titan Pack
+			createEntity(com.wolffsmod.entity.official.titan.EntityAlphaTitan.class, "Alpha Titan (Official Pack)");
+			createEntity(com.wolffsmod.entity.official.titan.EntityProtoTitan.class, "Proto Titan (Official Pack)");
+			createEntity(com.wolffsmod.entity.official.titan.EntityZeroTitan.class, "Zero Titan (Official Pack)");
+		}
 
-		//Apocalypse Pack
-		createEntity(com.wolffsmod.entity.official.apocalypse.EntityBuggy.class, "Apocalypse Buggy (Official Pack)");
+		if (ContentPacks.officialApocalypse)
+		{
+			//Apocalypse Pack
+			createEntity(com.wolffsmod.entity.official.apocalypse.EntityBuggy.class, "Apocalypse Buggy (Official Pack)");
+		}
 
-		//Utility Pack
-		createEntity(com.wolffsmod.entity.official.utility.EntityTunnelBore.class, "Tunnel Bore (Utility Pack)");
+		if (ContentPacks.officialUtility)
+		{
+			//Utility Pack
+			createEntity(com.wolffsmod.entity.official.utility.EntityTunnelBore.class, "Tunnel Bore (Utility Pack)");
+		}
 
-		//Wolff's Pack
-		createEntity(com.wolffsmod.entity.wolff.EntityPanzerIVJ.class, "Panzer IV Ausf. J (Wolff's Pack)");
-		createEntity(com.wolffsmod.entity.wolff.EntitySdKfz251D.class, "SdKfz 251 Ausf. D (Wolff's Pack)");
-		createEntity(com.wolffsmod.entity.wolff.EntitySdKfz251DManned.class, "SdKfz 251 Ausf. D - Manned (Wolff's Pack)");
+		if (ContentPacks.worldAtWar)
+		{
+			//World at War Pack
+			createEntity(com.wolffsmod.entity.waw.EntityB24.class, "Consolidated B-24 Liberator (World at War Pack)");
+			createEntity(com.wolffsmod.entity.waw.EntityB71.class, "Avia B-71 (World at War Pack)");
+			createEntity(com.wolffsmod.entity.waw.EntityBlackPrince.class, "Black Prince (World at War Pack)");
+			createEntity(com.wolffsmod.entity.waw.EntityC202.class, "Macchi C.202 Folgore (World at War Pack)");
+			createEntity(com.wolffsmod.entity.waw.EntityCarro.class, "Carro Armato M15 (World at War Pack)");
+			createEntity(com.wolffsmod.entity.waw.EntityDo17.class, "Dornier Do 17 (World at War Pack)");
+			createEntity(com.wolffsmod.entity.waw.EntityFokker.class, "Fokker Dr.I (World at War Pack)");
+			createEntity(com.wolffsmod.entity.waw.EntityLA7.class, "Lavochkin La-7 (World at War Pack)");
+			createEntity(com.wolffsmod.entity.waw.EntityLusac.class, "LUSAC-11 (World at War Pack)");
+			createEntity(com.wolffsmod.entity.waw.EntityRenault.class, "AMC-35 Renault (World at War Pack)");
+			createEntity(com.wolffsmod.entity.waw.EntitySopwith.class, "Sopwith Camel (World at War Pack)");
+			createEntity(com.wolffsmod.entity.waw.EntityType4.class, "Type 4 Chi-To (World at War Pack)");
+		}
 
-		//Kikkoceccato
-		createEntity(com.wolffsmod.entity.kikkoceccato.EntityPanzerI.class, "Panzer I Ausf. A (Kikkoceccato)");
-		createEntity(com.wolffsmod.entity.kikkoceccato.EntitySkwI.class, "Sanitaetskraftwagen I Ausf. A (Kikkoceccato)");
+		if (ContentPacks.wolff)
+		{
+			//Wolff's Pack
+			createEntity(com.wolffsmod.entity.wolff.EntityPanzerIVJ.class, "Panzer IV Ausf. J (Wolff's Pack)");
+			createEntity(com.wolffsmod.entity.wolff.EntitySdKfz251D.class, "SdKfz 251 Ausf. D (Wolff's Pack)");
+			createEntity(com.wolffsmod.entity.wolff.EntitySdKfz251DManned.class, "SdKfz 251 Ausf. D - Manned (Wolff's Pack)");
+		}
+
+		if (ContentPacks.kikkoceccato)
+		{
+			//Kikkoceccato
+			createEntity(com.wolffsmod.entity.kikkoceccato.EntityPanzerI.class, "Panzer I Ausf. A (Kikkoceccato)");
+			createEntity(com.wolffsmod.entity.kikkoceccato.EntitySkwI.class, "Sanitaetskraftwagen I Ausf. A (Kikkoceccato)");
+		}
 
 		if (ContentPacks.manusWW2)
 		{
@@ -305,40 +321,44 @@ public class ModEntityRegistry {
 			createEntity(com.wolffsmod.entity.lizard.EntityT72A.class, "T-72A 1979 (Lizard)");
 		}
 
-		//Tankcraft
-		createEntity(com.wolffsmod.entity.tankcraft.EntityM60A1.class, "M60A1 Patton RISE 1975 (Tankcraft)");
-
-		if (ContentPacks.monolithAndTaP)
+		if (ContentPacks.monolith)
 		{
 			//Monolith Pack
-			createEntity(com.wolffsmod.entity.monolith.EntityBMPT72.class, "BMPT-72 (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityChengdu.class, "Chengdu J-20 (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityF15J.class, "McDonnell Douglas F-15J (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityFalken.class, "ADF-01 Falken (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityFerdinand.class, "Panzerjaeger Ferdinand (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityGalmOne.class, "McDonnell Douglas F-15 Galm One (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityGalmTwo.class, "McDonnell Douglas F-15 Galm Two (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityKV2.class, "KV-2 (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityMonitor.class, "USS Monitor (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityMorgan.class, "ADFX-02 Morgan (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityMsta.class, "2S19 Msta (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityPorsche.class, "Panzer VI Tiger Porsche (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityRobertLee.class, "M3 Lee (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntitySchwererGustav.class, "800mm Schwerer Gustav (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityShinden.class, "Kyushu J7W Shinden (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityStug.class, "StuG III Ausf. F (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntitySzhatie.class, "1K17 Szhatie (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityT72.class, "T-72A (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityT80.class, "T-80BV (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityT80Clone.class, "T-80BV Cammo (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityT90.class, "T-90A (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityTog2.class, "TOG II (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityTos1a.class, "TOS-1A Solntsepyok (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityType74.class, "Type 74 (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.EntityWZ123.class, "WZ-123 (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.Entityhashidate.class, "Hashidate Class Gunboat (Monolith)");
-			createEntity(com.wolffsmod.entity.monolith.Entitytype10.class, "Type 10 Hitomaru (Monolith)");
+			createEntity(com.wolffsmod.entity.monolith.EntityBananaHeavy.class, "Banana Mech Heavy (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityBananaLight.class, "Banana Mech Standard (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityBMPT72.class, "BMPT-72 (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityCanon.class, "Generic Canon (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityChengdu.class, "Chengdu J-20 (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityF15J.class, "McDonnell Douglas F-15J (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityFalken.class, "ADF-01 Falken (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityFerdinand.class, "Panzerjaeger Ferdinand (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityGalmOne.class, "McDonnell Douglas F-15 Galm One (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityGalmTwo.class, "McDonnell Douglas F-15 Galm Two (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityKV2.class, "KV-2 (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityMonitor.class, "USS Monitor (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityMorgan.class, "ADFX-02 Morgan (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityMsta.class, "2S19 Msta (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityPorsche.class, "Panzer VI Tiger Porsche (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityRobertLee.class, "M3 Lee (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntitySchwererGustav.class, "800mm Schwerer Gustav (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityShinden.class, "Kyushu J7W Shinden (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityStug.class, "StuG III Ausf. F (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntitySzhatie.class, "1K17 Szhatie (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityT72.class, "T-72A (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityT80.class, "T-80BV (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityT80Clone.class, "T-80BV Cammo (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityT90.class, "T-90A (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityTog2.class, "TOG II (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityTos1a.class, "TOS-1A Solntsepyok (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityType74.class, "Type 74 (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityWZ123.class, "WZ-123 (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityHashidate.class, "Hashidate Class Gunboat (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.Entitytype10.class, "Type 10 Hitomaru (Monolith Pack)");
+			createEntity(com.wolffsmod.entity.monolith.EntityYamato.class, "46cm Type 94 Naval Gun (Monolith Pack)");
+		}
 
+		if (ContentPacks.tap)
+		{
 			//Monolith TaP
 			createEntity(com.wolffsmod.entity.monolith.EntityA7V.class, "Sturmpanzerwagen A7V (TaP)");
 			createEntity(com.wolffsmod.entity.monolith.EntityK2BlackPanther.class, "K2 Black Panther (TaP)");
@@ -362,22 +382,26 @@ public class ModEntityRegistry {
 			createEntity(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxKornet.class, "Toyota Hilux Technical w/ Kornet (TaP)");
 			createEntity(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxS5.class, "Toyota Hilux Technical w/ UB-32 RocketPod (TaP)");
 			createEntity(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxSPG9.class, "Toyota Hilux Technical w/ SPG-9 (TaP)");
+			createEntity(com.wolffsmod.entity.tankcraft.EntityM60A1.class, "M60A1 Patton RISE 1975 (TaP)");
 		}
 
-		//Price additions
-		createEntity(com.wolffsmod.entity.price.EntityMCOMStation.class, "MCOM Station (Price)");
-		createEntity(com.wolffsmod.entity.price.EntityMilitaryCrate.class, "Military Crate (Somberfob)");
-		createEntity(com.wolffsmod.entity.price.EntityRadioStation.class, "Radio Station (Price)");
-		createEntity(com.wolffsmod.entity.price.EntityRadioStationSmall.class, "Radio Station Small (Price)");
-		createEntity(com.wolffsmod.entity.price.EntitySandBags1.class, "SandBags (low res) (Price)");
-		createEntity(com.wolffsmod.entity.price.EntitySandBags2.class, "SandBags (high res) (Price)");
-		createEntity(com.wolffsmod.entity.price.EntitySupplies.class, "Supplies (Price)");
-		createEntity(com.wolffsmod.entity.price.EntityPak43.class, "88mm PaK 43");
-		createEntity(com.wolffsmod.entity.price.EntitySoDa.class, "Type 98 So-Da");
-		createEntity(com.wolffsmod.entity.price.EntityTeKe.class, "Type 97 Te-Ke");
-		createEntity(com.wolffsmod.entity.price.EntityTKlate.class, "Type 94 TK late");
-		createEntity(com.wolffsmod.entity.price.EntityOccupier.class, "TX-225 GAVw Occupier");
-		createEntity(com.wolffsmod.entity.price.EntityP51D.class, "North American P-51D Mustang");
+		if (ContentPacks.price)
+		{
+			//Price additions
+			createEntity(com.wolffsmod.entity.price.EntityMCOMStation.class, "MCOM Station (Price)");
+			createEntity(com.wolffsmod.entity.price.EntityMilitaryCrate.class, "Military Crate (Somberfob)");
+			createEntity(com.wolffsmod.entity.price.EntityRadioStation.class, "Radio Station (Price)");
+			createEntity(com.wolffsmod.entity.price.EntityRadioStationSmall.class, "Radio Station Small (Price)");
+			createEntity(com.wolffsmod.entity.price.EntitySandBags1.class, "SandBags (low res) (Price)");
+			createEntity(com.wolffsmod.entity.price.EntitySandBags2.class, "SandBags (high res) (Price)");
+			createEntity(com.wolffsmod.entity.price.EntitySupplies.class, "Supplies (Price)");
+			createEntity(com.wolffsmod.entity.price.EntityPak43.class, "88mm PaK 43");
+			createEntity(com.wolffsmod.entity.price.EntitySoDa.class, "Type 98 So-Da");
+			createEntity(com.wolffsmod.entity.price.EntityTeKe.class, "Type 97 Te-Ke");
+			createEntity(com.wolffsmod.entity.price.EntityTKlate.class, "Type 94 TK late");
+			createEntity(com.wolffsmod.entity.price.EntityOccupier.class, "TX-225 GAVw Occupier");
+			createEntity(com.wolffsmod.entity.price.EntityP51D.class, "North American P-51D Mustang");
+		}
 
 		if (ContentPacks.warfare44)
 		{
@@ -494,12 +518,18 @@ public class ModEntityRegistry {
 			createEntity(com.wolffsmod.entity.w44.Entity44_ZiS30.class, "57mm ZiS-30 (Warfare 44)");
 		}
 
-		//Exufo's cop cars
-		createEntity(com.wolffsmod.entity.exufo.EntityCopvic.class, "Ford Crown Victoria Police (brlanyangxdd)");
-		createEntity(com.wolffsmod.entity.exufo.EntityCV.class, "Ford Crown Victoria (brlanyangxdd)");
+		if (ContentPacks.exufo)
+		{
+			//Exufo's cop cars
+			createEntity(com.wolffsmod.entity.exufo.EntityCopvic.class, "Ford Crown Victoria Police (brlanyangxdd)");
+			createEntity(com.wolffsmod.entity.exufo.EntityCV.class, "Ford Crown Victoria (brlanyangxdd)");
+		}
 
-		//Prototype
-		createEntity(com.wolffsmod.entity.prototype.EntityRatte.class, "Landkreuzer P.1000 Ratte (Prototype)");
+		if (ContentPacks.prototype)
+		{
+			//Prototype
+			createEntity(com.wolffsmod.entity.prototype.EntityRatte.class, "Landkreuzer P.1000 Ratte (Prototype)");
+		}
 
 		if (ContentPacks.manusCivil)
 		{

@@ -9,7 +9,7 @@ public class EntityFalken extends EntityFlanPlaneNPC
     public EntityFalken(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(6F, 4F);
     }
     
     @Override

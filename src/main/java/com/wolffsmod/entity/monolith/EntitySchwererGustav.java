@@ -9,7 +9,7 @@ public class EntitySchwererGustav extends EntityFlanVehicleNPC
     public EntitySchwererGustav(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(6F, 8F);
     }
     
     @Override

@@ -9,7 +9,7 @@ public class EntityKV2 extends EntityFlanVehicleNPC
     public EntityKV2(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(4F, 4F);
     }
     
     @Override

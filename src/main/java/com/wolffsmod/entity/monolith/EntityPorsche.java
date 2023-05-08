@@ -9,7 +9,7 @@ public class EntityPorsche extends EntityFlanVehicleNPC
     public EntityPorsche(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(4.5F, 3.5F);
     }
     
     @Override
