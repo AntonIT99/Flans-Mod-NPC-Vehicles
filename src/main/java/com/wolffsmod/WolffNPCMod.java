@@ -15,7 +15,10 @@ import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.MOD_VERSION, dependencies="after: customnpcs; required-after: flansmod")
+@Mod(modid = Strings.MOD_ID,
+		name = Strings.MOD_NAME,
+		version = Strings.MOD_VERSION,
+		dependencies="after: customnpcs; required-after: flansmod")
 
 public class WolffNPCMod
 {
