@@ -57,8 +57,9 @@ public abstract class MixinEntityCustomNpc extends MixinEntityNPCInterface
      * @author Wolff
      * @reason update driveable NPC entity
      */
-    @Overwrite
-    public void func_70071_h_()
+    @Override
+    @Overwrite(remap = false)
+    public void onUpdate()
     {
         super.onUpdate();
         if (getFlanDriveableEntity().isPresent())

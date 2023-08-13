@@ -22,7 +22,7 @@ public abstract class MixinGuiNPCInv extends GuiContainerNPCInterface2
         super(npc, cont);
     }
 
-    @Inject(method = "func_73866_w_", at = @At(value = "TAIL"))
+    @Inject(method = "initGui", at = @At(value = "TAIL"))
     private void onInitGui(CallbackInfo callbackInfo)
     {
         addLabel(new GuiNpcLabel(70,"Melee", guiLeft + 371, guiTop + 60));
@@ -38,7 +38,7 @@ public abstract class MixinGuiNPCInv extends GuiContainerNPCInterface2
         addButton(new GuiNpcButton(77,guiLeft + 375, guiTop + 190, 30, 20, new String[]{"gui.no", "gui.yes"}, ((IMixinDataInventory)npc.inventory).getUseDriveableStats() ? 1:0));
     }
 
-    @Inject(method = "func_146284_a", at = @At(value = "TAIL"))
+    @Inject(method = "actionPerformed", at = @At(value = "TAIL"))
     private void onActionPerformed(GuiButton guibutton, CallbackInfo callbackInfo)
     {
         if(guibutton.id == 71)

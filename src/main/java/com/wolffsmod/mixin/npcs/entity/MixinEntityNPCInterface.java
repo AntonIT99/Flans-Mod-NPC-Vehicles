@@ -136,7 +136,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         super(w);
     }
 
-    @Inject(method = "func_70071_h_", at = @At(value = "TAIL"))
+    @Inject(method = "onUpdate", at = @At(value = "TAIL"))
     private void updateSoundPosition(CallbackInfo callbackInfo)
     {
         if (soundPosition > 0)
@@ -147,7 +147,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
      * @author Wolff
      * @reason step sound from Flan's driveables
      */
-    @Overwrite
+    @Overwrite(remap = false)
     protected void func_145780_a(int par1, int par2, int par3, Block block)
     {
         if (((IMixinDataInventory)inventory).getUseDriveableStats())
@@ -179,8 +179,8 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
      * @author Wolff
      * @reason added Flan's Melee animations
      */
-    @Overwrite
-    public boolean func_70652_k(Entity par1Entity)
+    @Overwrite(remap = false)
+    public boolean attackEntityAsMob(Entity par1Entity)
     {
         float f = stats.getAttackStrength();
 
@@ -223,8 +223,8 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
      * @author Wolff
      * @reason Flan damage multipliers vs planes/vehicles apply to NPC planes/vehicles
      */
-    @Overwrite
-    public boolean func_70097_a(DamageSource damagesource, float i)
+    @Overwrite(remap = false)
+    public boolean attackEntityFrom(DamageSource damagesource, float i)
     {
         if (this.worldObj.isRemote || CustomNpcs.FreezeNPCs || (damagesource.damageType != null && damagesource.damageType.equals("inWall"))){
             return false;
@@ -321,8 +321,8 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
      * @author Wolff
      * @reason shoot Flan bullet and use Flan stats
      */
-    @Overwrite
-    public void func_82196_d(EntityLivingBase entity, float f)
+    @Overwrite(remap = false)
+    public void attackEntityWithRangedAttack(EntityLivingBase entity, float f)
     {
         ItemStack proj = inventory.getProjectile();
         if(proj == null)

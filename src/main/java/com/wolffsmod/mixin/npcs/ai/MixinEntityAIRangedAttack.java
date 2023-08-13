@@ -41,8 +41,8 @@ public abstract class MixinEntityAIRangedAttack extends EntityAIBase
      * @author Wolff
      * @reason AI adjustments for vehicle NPCs
      */
-    @Overwrite
-    public void func_75246_d()
+    @Overwrite(remap = false)
+    public void updateTask()
     {
         entityHost.getLookHelper().setLookPositionWithEntity(attackTarget, 30.0F, 30.0F);
         double var1 = entityHost.getDistanceSq(attackTarget.posX, attackTarget.boundingBox.minY, attackTarget.posZ);

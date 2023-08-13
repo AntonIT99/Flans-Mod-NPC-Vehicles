@@ -37,8 +37,8 @@ public abstract class MixinEntityAIAnimation extends EntityAIBase
      * @author Wolff
      * @reason Hug animation when holding Flan's gun in off-hand
      */
-    @Overwrite
-    public boolean func_75250_a(){
+    @Overwrite(remap = false)
+    public boolean shouldExecute(){
         isDead = !npc.isEntityAlive();
         if(isDead)
             return npc.currentAnimation != EnumAnimation.LYING;
@@ -68,8 +68,8 @@ public abstract class MixinEntityAIAnimation extends EntityAIBase
      * @author Wolff
      * @reason Hug animation when holding Flan's gun in off-hand
      */
-    @Overwrite
-    public void func_75246_d()
+    @Overwrite(remap = false)
+    public void updateTask()
     {
         if(npc.stats.aimWhileShooting && npc.isAttacking())
         {
