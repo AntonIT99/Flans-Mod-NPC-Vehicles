@@ -12,7 +12,10 @@ import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.WolffNPCMod;
 import com.wolffsmod.flan.FlanUtils;
 import com.wolffsmod.network.EnumAnimPacket;
+import com.wolffsmod.network.FlanAnimPacket;
 import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.Unpooled;
 import noppes.npcs.CustomNpcs;
 import noppes.npcs.LogWriter;
@@ -137,27 +140,27 @@ public class NPCInterfaceUtil
         List<EntityPlayer> list = MinecraftServer.getServer().getConfigurationManager().playerEntityList;
         for (EntityPlayer player : list)
         {
-            if (entity.isInRangeToRender3d(player.posX, player.posY, player.posZ))
+            if (isInRangeToRender3d(entity, player.posX, player.posY, player.posZ))
             {
-                sendDataChecked((EntityPlayerMP)player, clientPacket, entity.getEntityId());
+                WolffNPCMod.network.sendTo(new FlanAnimPacket(entity.getEntityId(), clientPacket), (EntityPlayerMP)player);
             }
         }
     }
 
-    private static boolean sendDataChecked(EntityPlayerMP player, EnumAnimPacket type, Object... obs) {
-        PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());
+    public static boolean isInRangeToRender3d(Entity entity, double posX, double posY, double posZ)
+    {
+        double d3 = entity.posX - posX;
+        double d4 = entity.posY - posY;
+        double d5 = entity.posZ - posZ;
+        double d6 = d3 * d3 + d4 * d4 + d5 * d5;
+        return isInRangeToRenderDist(entity, d6);
+    }
 
-        try {
-            if (!Server.fillBuffer(buffer, type, obs)) {
-                return false;
-            }
-
-            CustomNpcs.Channel.sendTo(new FMLProxyPacket(buffer, "CustomNPCs"), player);
-        } catch (IOException var5) {
-            LogWriter.error(type + " Errored", var5);
-        }
-
-        return true;
+    public static boolean isInRangeToRenderDist(Entity entity, double dist)
+    {
+        double d1 = entity.boundingBox.getAverageEdgeLength();
+        d1 *= 64.0D * entity.renderDistanceWeight;
+        return dist < d1 * d1;
     }
 
     public static float accuracyToBulletSpread(int accuracy)
@@ -218,6 +221,9 @@ public class NPCInterfaceUtil
 
     public static class ShootParticle
     {
+        public float x, y, z;
+        public String name;
+
         public ShootParticle(String s, float x1, float y1, float z1)
         {
             x = x1;
@@ -225,8 +231,6 @@ public class NPCInterfaceUtil
             z = z1;
             name = s;
         }
-        public float x, y, z;
-        public String name;
     }
 
     public static void spawnParticle(ArrayList<ShootParticle> list, ShootPoint shootPoint, Vector3f gunVector, float driverYaw, float driverPitch, float entityYaw, double posX, double posY, double posZ, int dimension, float scale)

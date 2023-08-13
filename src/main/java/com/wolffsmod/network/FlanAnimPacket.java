@@ -17,9 +17,9 @@ public class FlanAnimPacket implements IMessage
     int entityId;
     EnumAnimPacket type;
 
-    public FlanAnimPacket(EntityFlanDriveableNPC entity, EnumAnimPacket type)
+    public FlanAnimPacket(int entityId, EnumAnimPacket type)
     {
-        entityId = entity.npc.getEntityId();
+        this.entityId = entityId;
         this.type = type;
     }
 
