@@ -1,9 +1,0 @@
-{
-  "required": true,
-  "minVersion": "0.7.11",
-  "package": "kamkeel.mixins",
-  "plugin": "kamkeel.mixins.FlansMixinPlugin",
-  "refmap": "flansnpc.refmap.json",
-  "target": "@env(DEFAULT)",
-  "compatibilityLevel": "JAVA_8"
-}

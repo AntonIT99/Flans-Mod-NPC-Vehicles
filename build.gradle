@@ -128,8 +128,8 @@ build {
 //--tweakClass org.spongepowered.asm.launch.MixinTweaker --mixin customnpcs.mixins.json
 //to your client and server program arguments if working in a dev environment.
 def embedMixin = !project.hasProperty("nomixin")
-def yourMixinConfig = 'flansnpc.mixins.json'
-def refMapForYourConfig = 'flansnpc.refmap.json'
+def yourMixinConfig = 'wolffsmod.mixins.json'
+def refMapForYourConfig = 'wolffsmod.refmap.json'
 def relativePathToMixinAP = 'tools/mixin-0.8-SNAPSHOT.jar'
 
 if(!embedMixin){

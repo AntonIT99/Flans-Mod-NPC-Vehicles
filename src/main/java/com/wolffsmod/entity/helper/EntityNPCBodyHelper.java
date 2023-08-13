@@ -1,6 +1,7 @@
 package com.wolffsmod.entity.helper;
 
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
+import com.wolffsmod.mixin.npcs.entity.IMixinEntityNPCInterface;
 import noppes.npcs.entity.EntityCustomNpc;
 
 import net.minecraft.entity.EntityBodyHelper;
@@ -19,14 +20,14 @@ public class EntityNPCBodyHelper extends EntityBodyHelper
     {
         super(entity);
         theLiving = entity;
-        if (theLiving instanceof EntityCustomNpc && ((EntityCustomNpc)theLiving).getFlanDriveableEntity().isPresent())
-            yawSpeed *= ((EntityCustomNpc)theLiving).getFlanDriveableEntity().get().turnSpeed;
+        if (theLiving instanceof EntityCustomNpc && ((IMixinEntityNPCInterface)theLiving).getFlanDriveableEntity().isPresent())
+            yawSpeed *= ((IMixinEntityNPCInterface)theLiving).getFlanDriveableEntity().get().turnSpeed;
     }
 
     @Override
     public void func_75664_a()
     {
-        if ((theLiving instanceof EntityCustomNpc && ((EntityCustomNpc)theLiving).isFlanDriveable()) || theLiving instanceof EntityFlanDriveableNPC)
+        if ((theLiving instanceof EntityCustomNpc && ((IMixinEntityNPCInterface)theLiving).isFlanDriveable()) || theLiving instanceof EntityFlanDriveableNPC)
         {
             if (isMovingXZ())
             {

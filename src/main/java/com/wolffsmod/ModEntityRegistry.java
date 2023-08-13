@@ -1,5 +1,6 @@
 package com.wolffsmod;
 
+import com.wolffsmod.flan.EntityNPCFlanBullet;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 import net.minecraft.entity.Entity;
@@ -8,10 +9,13 @@ import net.minecraft.entity.Entity;
 public class ModEntityRegistry {
 	private ModEntityRegistry() {}
 
-	private static int EntityID = 0;
+	private static int entityID = 0;
 
 	public static void registerEntities()
 	{
+		EntityRegistry.registerGlobalEntityID(EntityNPCFlanBullet.class, "NPCBullet", EntityRegistry.findGlobalUniqueEntityId());
+		EntityRegistry.registerModEntity(EntityNPCFlanBullet.class, "NPCBullet", entityID++, WolffNPCMod.instance, 200, 20, false);
+
 		if (ContentPacks.officialWW2)
 		{
 			//WW2 Official Pack
@@ -561,6 +565,6 @@ public class ModEntityRegistry {
 
 	public static void createEntity(Class<? extends Entity> entityClass, String entityName)
 	{
-		EntityRegistry.registerModEntity(entityClass, entityName, EntityID++, WolffNPCMod.INSTANCE, 64, 1, true);
+		EntityRegistry.registerModEntity(entityClass, entityName, entityID++, WolffNPCMod.instance, 64, 1, true);
 	}
 }

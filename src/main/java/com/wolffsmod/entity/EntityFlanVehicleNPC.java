@@ -52,13 +52,13 @@ public abstract class EntityFlanVehicleNPC extends EntityFlanDriveableNPC implem
     @Override
     public void addLeftLinkPoint(String point)
     {
-        leftTrackPoints.add(new Vector3f(point, ""));
+        leftTrackPoints.add(new Vector3f(point));
     }
 
     @Override
     public void addRightLinkPoint(String point)
     {
-        rightTrackPoints.add(new Vector3f(point, ""));
+        rightTrackPoints.add(new Vector3f(point));
     }
 
     @Override

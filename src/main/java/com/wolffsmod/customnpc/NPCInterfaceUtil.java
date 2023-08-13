@@ -11,18 +11,24 @@ import com.flansmod.common.network.PacketPlaySound;
 import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.WolffNPCMod;
 import com.wolffsmod.flan.FlanUtils;
+import com.wolffsmod.network.EnumAnimPacket;
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import io.netty.buffer.Unpooled;
+import noppes.npcs.CustomNpcs;
+import noppes.npcs.LogWriter;
 import noppes.npcs.Server;
-import noppes.npcs.constants.EnumPacketClient;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -126,16 +132,32 @@ public class NPCInterfaceUtil
         return !itemGun.type.ammo.isEmpty();
     }
 
-    public static void sendPacketWhenInRenderingRange(Entity entity, EnumPacketClient clientPacket)
+    public static void sendPacketWhenInRenderingRange(Entity entity, EnumAnimPacket clientPacket)
     {
         List<EntityPlayer> list = MinecraftServer.getServer().getConfigurationManager().playerEntityList;
         for (EntityPlayer player : list)
         {
             if (entity.isInRangeToRender3d(player.posX, player.posY, player.posZ))
             {
-                Server.sendData((EntityPlayerMP)player, clientPacket, entity.getEntityId());
+                sendDataChecked((EntityPlayerMP)player, clientPacket, entity.getEntityId());
             }
         }
+    }
+
+    private static boolean sendDataChecked(EntityPlayerMP player, EnumAnimPacket type, Object... obs) {
+        PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());
+
+        try {
+            if (!Server.fillBuffer(buffer, type, obs)) {
+                return false;
+            }
+
+            CustomNpcs.Channel.sendTo(new FMLProxyPacket(buffer, "CustomNPCs"), player);
+        } catch (IOException var5) {
+            LogWriter.error(type + " Errored", var5);
+        }
+
+        return true;
     }
 
     public static float accuracyToBulletSpread(int accuracy)

@@ -1,9 +1,12 @@
 package com.wolffsmod;
 
+import com.flansmod.client.model.RenderBullet;
+import com.wolffsmod.flan.EntityNPCFlanBullet;
 import com.wolffsmod.render.RenderFlansModEntity;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
-public class ClientProxy extends ServerProxy{
+public class ClientProxy extends CommonProxy
+{
 
 	/**
 	 * When using RenderFlansModEntity, a default Y-translation of -2.133F is applied
@@ -28,6 +31,8 @@ public class ClientProxy extends ServerProxy{
 	@Override
 	public void registerRenderers()
 	{
+		RenderingRegistry.registerEntityRenderingHandler(EntityNPCFlanBullet.class, new RenderBullet());
+
 		if (ContentPacks.officialWW2)
 		{
 			//WW2 Official Pack

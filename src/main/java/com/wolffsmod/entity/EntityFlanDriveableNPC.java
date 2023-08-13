@@ -11,6 +11,7 @@ import com.wolffsmod.WolffNPCMod;
 import com.wolffsmod.customnpc.NPCInterfaceUtil;
 import com.wolffsmod.entity.config.ConfigDriveable;
 import com.wolffsmod.flan.FlanUtils;
+import com.wolffsmod.mixin.npcs.entity.IMixinEntityNPCInterface;
 import com.wolffsmod.network.FlanEntitySyncPacket;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import noppes.npcs.client.EntityUtil;
@@ -141,29 +142,32 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
 
     protected void updateDriverAndPassengers()
     {
-        npc.driver.copyProperties(driver);
-        for (Integer id : passengers.keySet())
+        if (npc instanceof IMixinEntityNPCInterface)
         {
-            if (npc.passengers.containsKey(id))
+            ((IMixinEntityNPCInterface)npc).getDriver().copyProperties(driver);
+            for (Integer id : passengers.keySet())
             {
-                npc.passengers.get(id).copyProperties(passengers.get(id));
+                if (((IMixinEntityNPCInterface)npc).getPassengers().containsKey(id))
+                {
+                    ((IMixinEntityNPCInterface)npc).getPassengers().get(id).copyProperties(passengers.get(id));
+                }
+                else
+                {
+                    Seat passenger = new Seat();
+                    passenger.copy(passengers.get(id));
+                    ((IMixinEntityNPCInterface)npc).getPassengers().put(id, passenger);
+                }
             }
-            else
+
+            ((IMixinEntityNPCInterface)npc).getDriver().setYawAndPitch(this);
+            for (Integer id : ((IMixinEntityNPCInterface)npc).getPassengers().keySet())
             {
-                Seat passenger = new Seat();
-                passenger.copy(passengers.get(id));
-                npc.passengers.put(id, passenger);
+                ((IMixinEntityNPCInterface)npc).getPassengers().get(id).setYawAndPitch(this);
             }
-        }
 
-        npc.driver.setYawAndPitch(this);
-        for (Integer id : npc.passengers.keySet())
-        {
-            npc.passengers.get(id).setYawAndPitch(this);
+            driver = ((IMixinEntityNPCInterface)npc).getDriver();
+            passengers = ((IMixinEntityNPCInterface)npc).getPassengers();
         }
-
-        driver = npc.driver;
-        passengers = npc.passengers;
     }
 
     public void syncRotationWithClient()

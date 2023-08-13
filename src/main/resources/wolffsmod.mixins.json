@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "minVersion": "0.7.11",
+  "package": "com.wolffsmod.mixin",
+  "plugin": "com.wolffsmod.mixin.FlanNPCVehiclesMixinPlugin",
+  "refmap": "wolffsmod.refmap.json",
+  "target": "@env(DEFAULT)",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "flansmod.client.model.MixinModelCustomArmour",
+    "npcs.client.gui.mainmenu.MixinGuiNPCInv"
+  ],
+  "mixins": [
+    "npcs.MixinDataInventory",
+    "npcs.MixinDataStats",
+    "npcs.MixinResistances",
+    "npcs.ai.MixinEntityAIAnimation",
+    "npcs.ai.MixinEntityAIRangedAttack",
+    "npcs.entity.MixinEntityCustomNpc",
+    "npcs.entity.MixinEntityNPCInterface"
+  ]
+}
