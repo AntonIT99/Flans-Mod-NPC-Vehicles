@@ -1,4 +1,4 @@
-package com.wolffsmod.mixin.npcs.entity;
+package com.wolffsmod.mixin;
 
 import com.flansmod.client.FlansModClient;
 import com.flansmod.client.model.GunAnimations;
@@ -26,8 +26,10 @@ import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.Seat;
 import com.wolffsmod.flan.EntityNPCFlanBullet;
 import com.wolffsmod.flan.FlanUtils;
-import com.wolffsmod.mixin.npcs.IMixinDataInventory;
+import com.wolffsmod.mixin.IMixinDataInventory;
+import com.wolffsmod.mixin.IMixinEntityNPCInterface;
 import com.wolffsmod.network.EnumAnimPacket;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import noppes.npcs.CustomNpcs;
 import noppes.npcs.DataAdvanced;
 import noppes.npcs.DataDisplay;
@@ -53,10 +55,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.block.Block;
+import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.NPCEntityHelper;
+import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
@@ -83,7 +88,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Mixin(value = EntityNPCInterface.class)
-public abstract class MixinEntityNPCInterface extends EntityCreature implements IMixinEntityNPCInterface
+public abstract class MixinEntityNPCInterface extends EntityCreature implements IMixinEntityNPCInterface, IEntityAdditionalSpawnData, ICommandSender, IRangedAttackMob, IBossDisplayData
 {
     @Unique
     protected Seat driver = new Seat();
@@ -136,7 +141,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         super(w);
     }
 
-    @Inject(method = "onUpdate", at = @At(value = "TAIL"))
+    @Inject(method = "onUpdate", at = @At(value = "TAIL"), remap = false)
     private void updateSoundPosition(CallbackInfo callbackInfo)
     {
         if (soundPosition > 0)

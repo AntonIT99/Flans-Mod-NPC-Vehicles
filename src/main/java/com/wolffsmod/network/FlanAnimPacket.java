@@ -1,7 +1,7 @@
 package com.wolffsmod.network;
 
 import com.wolffsmod.WolffNPCMod;
-import com.wolffsmod.mixin.npcs.entity.IMixinEntityNPCInterface;
+import com.wolffsmod.mixin.IMixinEntityNPCInterface;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;

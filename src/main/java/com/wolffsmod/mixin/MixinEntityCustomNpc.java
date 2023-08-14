@@ -1,4 +1,4 @@
-package com.wolffsmod.mixin.npcs.entity;
+package com.wolffsmod.mixin;
 
 import com.wolffsmod.WolffNPCMod;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
@@ -37,13 +37,13 @@ public abstract class MixinEntityCustomNpc extends MixinEntityNPCInterface
         super(w);
     }
 
-    @Inject(method = "<init>", at = @At("RETURN"))
+    @Inject(method = "<init>", at = @At("RETURN"), remap = false)
     public void onEntityCustomInit(World world, CallbackInfo ci)
     {
         bodyHelperNPC = new EntityNPCBodyHelper(this);
     }
 
-    @Inject(method = "updateHitbox", at = @At("TAIL"))
+    @Inject(method = "updateHitbox", at = @At("TAIL"), remap = false)
     public void onUpdateHitbox(CallbackInfo ci)
     {
         //Rendering fix for large entities and Flan Vehicles

@@ -1,5 +1,6 @@
-package com.wolffsmod.mixin.npcs;
+package com.wolffsmod.mixin;
 
+import com.wolffsmod.mixin.IMixinDataInventory;
 import noppes.npcs.DataInventory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -7,10 +8,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 
 @Mixin(value = DataInventory.class)
-public abstract class MixinDataInventory implements IMixinDataInventory
+public abstract class MixinDataInventory implements IMixinDataInventory, IInventory
 {
     @Unique
     private boolean useWeaponMeleeStats = false;
@@ -21,7 +23,7 @@ public abstract class MixinDataInventory implements IMixinDataInventory
     @Unique
     private boolean useDriveableStats = false;
 
-    @Inject(method = "writeEntityToNBT", at = @At(value = "TAIL"))
+    @Inject(method = "writeEntityToNBT", at = @At(value = "TAIL"), remap = false)
     private void onWriteEntityToNBT(NBTTagCompound nbttagcompound, CallbackInfoReturnable<NBTTagCompound> cir)
     {
         nbttagcompound.setBoolean("UseWeaponMeleeStats", useWeaponMeleeStats);

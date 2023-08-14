@@ -88,9 +88,6 @@ jar {
     from sourceSets.api.output
 
     manifest {
-        attributes(
-            'FMLAT': "customnpcs_at.cfg",
-        )
     }
 }
 

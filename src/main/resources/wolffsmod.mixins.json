@@ -7,16 +7,16 @@
   "target": "@env(DEFAULT)",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "flansmod.client.model.MixinModelCustomArmour",
-    "npcs.client.gui.mainmenu.MixinGuiNPCInv"
+    "MixinModelCustomArmour",
+    "MixinGuiNPCInv"
   ],
   "mixins": [
-    "npcs.MixinDataInventory",
-    "npcs.MixinDataStats",
-    "npcs.MixinResistances",
-    "npcs.ai.MixinEntityAIAnimation",
-    "npcs.ai.MixinEntityAIRangedAttack",
-    "npcs.entity.MixinEntityCustomNpc",
-    "npcs.entity.MixinEntityNPCInterface"
+    "MixinDataInventory",
+    "MixinDataStats",
+    "MixinResistances",
+    "MixinEntityAIAnimation",
+    "MixinEntityAIRangedAttack",
+    "MixinEntityCustomNpc",
+    "MixinEntityNPCInterface"
   ]
 }

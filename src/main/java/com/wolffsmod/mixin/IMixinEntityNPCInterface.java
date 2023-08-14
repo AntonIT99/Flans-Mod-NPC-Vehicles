@@ -1,4 +1,4 @@
-package com.wolffsmod.mixin.npcs.entity;
+package com.wolffsmod.mixin;
 
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.Seat;

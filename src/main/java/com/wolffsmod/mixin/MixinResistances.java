@@ -1,4 +1,4 @@
-package com.wolffsmod.mixin.npcs;
+package com.wolffsmod.mixin;
 
 import com.flansmod.common.guns.EntityDamageSourceFlans;
 import noppes.npcs.Resistances;
@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import net.minecraft.util.DamageSource;
 
 @Mixin(value = Resistances.class)
-public class MixinResistances
+public abstract class MixinResistances
 {
     @Shadow
     public float arrow;

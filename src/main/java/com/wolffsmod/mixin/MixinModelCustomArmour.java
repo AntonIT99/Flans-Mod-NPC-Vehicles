@@ -1,4 +1,4 @@
-package com.wolffsmod.mixin.flansmod.client.model;
+package com.wolffsmod.mixin;
 
 import org.lwjgl.opengl.GL11;
 
@@ -24,7 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 
 @Mixin(value = ModelCustomArmour.class)
-public class MixinModelCustomArmour extends ModelBiped
+public abstract class MixinModelCustomArmour extends ModelBiped
 {
     @Unique
     private float dancingTicks;
@@ -57,7 +57,7 @@ public class MixinModelCustomArmour extends ModelBiped
      * @reason Compatibility for Custom NPCs
      */
     @Overwrite(remap = false)
-    public void func_78088_a(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         GL11.glPushMatrix();
         GL11.glScalef(type.modelScale, type.modelScale, type.modelScale);

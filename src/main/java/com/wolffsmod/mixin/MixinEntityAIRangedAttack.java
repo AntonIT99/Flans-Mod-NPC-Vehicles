@@ -1,6 +1,5 @@
-package com.wolffsmod.mixin.npcs.ai;
+package com.wolffsmod.mixin;
 
-import com.wolffsmod.mixin.npcs.entity.IMixinEntityNPCInterface;
 import noppes.npcs.ai.EntityAIRangedAttack;
 import noppes.npcs.constants.EnumAnimation;
 import noppes.npcs.constants.EnumNavType;

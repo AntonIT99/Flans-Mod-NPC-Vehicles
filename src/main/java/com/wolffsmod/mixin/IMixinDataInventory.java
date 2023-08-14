@@ -1,4 +1,4 @@
-package com.wolffsmod.mixin.npcs;
+package com.wolffsmod.mixin;
 
 public interface IMixinDataInventory
 {

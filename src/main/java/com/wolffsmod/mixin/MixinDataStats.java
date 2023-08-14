@@ -1,4 +1,4 @@
-package com.wolffsmod.mixin.npcs;
+package com.wolffsmod.mixin;
 
 import noppes.npcs.DataStats;
 import noppes.npcs.entity.EntityNPCInterface;
@@ -22,7 +22,7 @@ public abstract class MixinDataStats
     @Shadow
     public boolean aimWhileShooting;
 
-    @Inject(method = "<init>", at = @At("RETURN"))
+    @Inject(method = "<init>", at = @At("RETURN"), remap = false)
     public void onDataStatsInit(EntityNPCInterface npc, CallbackInfo ci)
     {
         attackStrength = 1F;

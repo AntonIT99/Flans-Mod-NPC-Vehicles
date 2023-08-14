@@ -1,4 +1,4 @@
-package com.wolffsmod.mixin.npcs.ai;
+package com.wolffsmod.mixin;
 
 import com.flansmod.common.guns.ItemGun;
 import noppes.npcs.ai.EntityAIAnimation;

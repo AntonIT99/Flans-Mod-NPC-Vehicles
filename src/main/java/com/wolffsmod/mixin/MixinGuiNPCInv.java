@@ -1,10 +1,11 @@
-package com.wolffsmod.mixin.npcs.client.gui.mainmenu;
+package com.wolffsmod.mixin;
 
-import com.wolffsmod.mixin.npcs.IMixinDataInventory;
 import noppes.npcs.client.gui.mainmenu.GuiNPCInv;
 import noppes.npcs.client.gui.util.GuiContainerNPCInterface2;
 import noppes.npcs.client.gui.util.GuiNpcButton;
 import noppes.npcs.client.gui.util.GuiNpcLabel;
+import noppes.npcs.client.gui.util.IGuiData;
+import noppes.npcs.client.gui.util.ITextfieldListener;
 import noppes.npcs.entity.EntityNPCInterface;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,14 +16,14 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.inventory.Container;
 
 @Mixin(value = GuiNPCInv.class)
-public abstract class MixinGuiNPCInv extends GuiContainerNPCInterface2
+public abstract class MixinGuiNPCInv extends GuiContainerNPCInterface2 implements IGuiData, ITextfieldListener
 {
     private MixinGuiNPCInv(EntityNPCInterface npc, Container cont)
     {
         super(npc, cont);
     }
 
-    @Inject(method = "initGui", at = @At(value = "TAIL"))
+    @Inject(method = "initGui", at = @At(value = "TAIL"), remap = false)
     private void onInitGui(CallbackInfo callbackInfo)
     {
         addLabel(new GuiNpcLabel(70,"Melee", guiLeft + 371, guiTop + 60));
@@ -38,7 +39,7 @@ public abstract class MixinGuiNPCInv extends GuiContainerNPCInterface2
         addButton(new GuiNpcButton(77,guiLeft + 375, guiTop + 190, 30, 20, new String[]{"gui.no", "gui.yes"}, ((IMixinDataInventory)npc.inventory).getUseDriveableStats() ? 1:0));
     }
 
-    @Inject(method = "actionPerformed", at = @At(value = "TAIL"))
+    @Inject(method = "actionPerformed", at = @At(value = "TAIL"), remap = false)
     private void onActionPerformed(GuiButton guibutton, CallbackInfo callbackInfo)
     {
         if(guibutton.id == 71)

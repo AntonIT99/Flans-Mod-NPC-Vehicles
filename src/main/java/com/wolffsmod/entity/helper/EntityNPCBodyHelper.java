@@ -1,7 +1,7 @@
 package com.wolffsmod.entity.helper;
 
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
-import com.wolffsmod.mixin.npcs.entity.IMixinEntityNPCInterface;
+import com.wolffsmod.mixin.IMixinEntityNPCInterface;
 import noppes.npcs.entity.EntityCustomNpc;
 
 import net.minecraft.entity.EntityBodyHelper;
