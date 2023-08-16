@@ -2,7 +2,7 @@ package com.wolffsmod.network;
 
 import com.wolffsmod.WolffNPCMod;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
-import com.wolffsmod.mixin.IMixinEntityNPCInterface;
+import com.wolffsmod.customnpc.IMixinEntityNPCInterface;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;

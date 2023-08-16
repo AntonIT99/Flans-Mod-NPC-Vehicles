@@ -1,5 +1,6 @@
 package com.wolffsmod.mixin;
 
+import com.wolffsmod.customnpc.IMixinDataInventory;
 import noppes.npcs.client.gui.mainmenu.GuiNPCInv;
 import noppes.npcs.client.gui.util.GuiContainerNPCInterface2;
 import noppes.npcs.client.gui.util.GuiNpcButton;

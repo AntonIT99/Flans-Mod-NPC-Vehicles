@@ -11,7 +11,7 @@ import com.wolffsmod.WolffNPCMod;
 import com.wolffsmod.customnpc.NPCInterfaceUtil;
 import com.wolffsmod.entity.config.ConfigDriveable;
 import com.wolffsmod.flan.FlanUtils;
-import com.wolffsmod.mixin.IMixinEntityNPCInterface;
+import com.wolffsmod.customnpc.IMixinEntityNPCInterface;
 import com.wolffsmod.network.FlanEntitySyncPacket;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import noppes.npcs.client.EntityUtil;

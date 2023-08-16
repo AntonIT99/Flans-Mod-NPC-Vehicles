@@ -4,13 +4,17 @@ import org.spongepowered.asm.lib.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-public class FlanNPCVehiclesMixinPlugin implements IMixinConfigPlugin {
+public class FlanNPCVehiclesMixinPlugin implements IMixinConfigPlugin
+{
     @Override
-    public void onLoad(String mixinPackage) {}
+    public void onLoad(String mixinPackage)
+    {
+        /* Do nothing */
+    }
 
     @Override
     public String getRefMapperConfig() {
@@ -23,26 +27,26 @@ public class FlanNPCVehiclesMixinPlugin implements IMixinConfigPlugin {
     }
 
     @Override
-    public void acceptTargets(Set<String> myTargets, Set<String> otherTargets) {}
+    public void acceptTargets(Set<String> myTargets, Set<String> otherTargets)
+    {
+        /* Do nothing */
+    }
 
     @Override
     public List<String> getMixins()
     {
-        List<String> mixins = new ArrayList<>();
-        mixins.add("MixinEntityAIAnimation");
-        mixins.add("MixinEntityAIRangedAttack");
-        mixins.add("MixinGuiNPCInv");
-        mixins.add("MixinEntityNPCInterface");
-        mixins.add("MixinEntityCustomNpc");
-        mixins.add("MixinDataInventory");
-        mixins.add("MixinDataStats");
-        mixins.add("MixinResistances");
-        return mixins;
+        return Collections.emptyList();
     }
 
     @Override
-    public void preApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {}
+    public void preApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo)
+    {
+        /* Do nothing */
+    }
 
     @Override
-    public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {}
+    public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo)
+    {
+        /* Do nothing */
+    }
 }

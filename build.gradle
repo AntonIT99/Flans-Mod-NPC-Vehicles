@@ -86,9 +86,6 @@ sourceSets {main { output.resourcesDir = output.classesDir }}
 
 jar {
     from sourceSets.api.output
-
-    manifest {
-    }
 }
 
 task clearOutput(type: Delete) {
@@ -121,9 +118,9 @@ build {
 //##########################################################################################################
 //########################################    Mixin  Part   ################################################
 //##########################################################################################################
-//Add
-//--tweakClass org.spongepowered.asm.launch.MixinTweaker --mixin customnpcs.mixins.json
-//to your client and server program arguments if working in a dev environment.
+// Add --tweakClass org.spongepowered.asm.launch.MixinTweaker --mixin wolffsmod.mixins.json
+// to your client and server program arguments if working in a dev environment.
+
 def embedMixin = !project.hasProperty("nomixin")
 def yourMixinConfig = 'wolffsmod.mixins.json'
 def refMapForYourConfig = 'wolffsmod.refmap.json'

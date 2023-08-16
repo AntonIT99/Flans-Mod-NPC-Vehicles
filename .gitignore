@@ -18,5 +18,7 @@ run/*
 Thumbs.db
 .DS_Store
 
-# Flan's Mod
+# Flan's Mod Content Packs
 !run/Flan/
+# Mods
+!run/mods/

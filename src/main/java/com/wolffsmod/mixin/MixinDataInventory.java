@@ -1,6 +1,6 @@
 package com.wolffsmod.mixin;
 
-import com.wolffsmod.mixin.IMixinDataInventory;
+import com.wolffsmod.customnpc.IMixinDataInventory;
 import noppes.npcs.DataInventory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
