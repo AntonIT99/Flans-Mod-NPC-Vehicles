@@ -18,6 +18,5 @@
     "MixinEntityAIRangedAttack",
     "MixinEntityCustomNpc",
     "MixinEntityNPCInterface"
-  ],
-  "verbose": true
+  ]
 }
