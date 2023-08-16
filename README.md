@@ -20,14 +20,8 @@ package noppes.npcs.ai:
 - EntityAIAnimation
 - EntityAIRangedAttack
 
-noppes.npcs.client.gui:
-- ~~PacketHandlerClient~~ (no longer modified with mixin)
-
 package noppes.npcs.client.gui.mainmenu:
 - GuiNPCInv
-
-package noppes.npcs.constants:
-- ~~EnumPacketClient~~ (no longer modified with mixin)
 
 package noppes.npcs.entity:
 - EntityCustomNpc
