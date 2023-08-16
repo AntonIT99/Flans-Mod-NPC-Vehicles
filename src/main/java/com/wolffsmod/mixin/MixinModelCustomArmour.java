@@ -27,11 +27,12 @@ import net.minecraft.util.MathHelper;
 public abstract class MixinModelCustomArmour extends ModelBiped
 {
     @Unique
+    private static final float PI = (float) Math.PI;
+    @Unique
     private float dancingTicks;
 
     @Shadow
     public ArmourType type;
-
     @Shadow
     public ModelRendererTurbo[] headModel = new ModelRendererTurbo[0];
     @Shadow
@@ -50,7 +51,7 @@ public abstract class MixinModelCustomArmour extends ModelBiped
     public ModelRendererTurbo[] skirtRearModel = new ModelRendererTurbo[0]; //Acts like a leg piece, but its pitch is set to the minimum of the two legs
 
     @Shadow
-    public void render(ModelRendererTurbo[] models, ModelRenderer bodyPart, float f5, float scale) {}
+    public abstract void render(ModelRendererTurbo[] models, ModelRenderer bodyPart, float f5, float scale);
 
     /**
      * @author Wolff
@@ -223,37 +224,37 @@ public abstract class MixinModelCustomArmour extends ModelBiped
 
         setRotationAngles(par1, par2, par3, par4, par5, par6, entity);
 
-        bipedHead.rotateAngleY = par4 / (180F / (float)Math.PI);
-        bipedHead.rotateAngleX = par5 / (180F / (float)Math.PI);
+        bipedHead.rotateAngleY = par4 / (180F / PI);
+        bipedHead.rotateAngleX = par5 / (180F / PI);
         bipedHeadwear.rotateAngleY = bipedHead.rotateAngleY;
         bipedHeadwear.rotateAngleX = bipedHead.rotateAngleX;
-        bipedRightArm.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 2.0F * par2 * 0.5F;
+        bipedRightArm.rotateAngleX = MathHelper.cos(par1 * 0.6662F + PI) * 2.0F * par2 * 0.5F;
         bipedLeftArm.rotateAngleX = MathHelper.cos(par1 * 0.6662F) * 2.0F * par2 * 0.5F;
         bipedRightArm.rotateAngleZ = 0.0F;
         bipedLeftArm.rotateAngleZ = 0.0F;
         bipedRightLeg.rotateAngleX = MathHelper.cos(par1 * 0.6662F) * 1.4F * par2;
-        bipedLeftLeg.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 1.4F * par2;
+        bipedLeftLeg.rotateAngleX = MathHelper.cos(par1 * 0.6662F + PI) * 1.4F * par2;
         bipedRightLeg.rotateAngleY = 0.0F;
         bipedLeftLeg.rotateAngleY = 0.0F;
 
         if (isRiding)
         {
-            bipedRightArm.rotateAngleX += -((float)Math.PI / 5F);
-            bipedLeftArm.rotateAngleX += -((float)Math.PI / 5F);
-            bipedRightLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
-            bipedLeftLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
-            bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
-            bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
+            bipedRightArm.rotateAngleX += -(PI / 5F);
+            bipedLeftArm.rotateAngleX += -(PI / 5F);
+            bipedRightLeg.rotateAngleX = -(PI * 2F / 5F);
+            bipedLeftLeg.rotateAngleX = -(PI * 2F / 5F);
+            bipedRightLeg.rotateAngleY = (PI / 10F);
+            bipedLeftLeg.rotateAngleY = -(PI / 10F);
         }
 
         if (heldItemLeft != 0)
         {
-            bipedLeftArm.rotateAngleX = bipedLeftArm.rotateAngleX * 0.5F - ((float)Math.PI / 10F) * (float)heldItemLeft;
+            bipedLeftArm.rotateAngleX = bipedLeftArm.rotateAngleX * 0.5F - (PI / 10F) * heldItemLeft;
         }
 
         if (heldItemRight != 0)
         {
-            bipedRightArm.rotateAngleX = bipedRightArm.rotateAngleX * 0.5F - ((float)Math.PI / 10F) * (float)heldItemRight;
+            bipedRightArm.rotateAngleX = bipedRightArm.rotateAngleX * 0.5F - (PI / 10F) * heldItemRight;
         }
 
         bipedRightArm.rotateAngleY = 0.0F;
@@ -262,7 +263,7 @@ public abstract class MixinModelCustomArmour extends ModelBiped
         if (onGround > -9990F)
         {
             float f = onGround;
-            bipedBody.rotateAngleY = MathHelper.sin(MathHelper.sqrt_float(f) * (float)Math.PI * 2.0F) * 0.2F;
+            bipedBody.rotateAngleY = MathHelper.sin(MathHelper.sqrt_float(f) * PI * 2.0F) * 0.2F;
             bipedRightArm.rotationPointZ = MathHelper.sin(bipedBody.rotateAngleY) * 5F;
             bipedRightArm.rotationPointX = -MathHelper.cos(bipedBody.rotateAngleY) * 5F;
             bipedLeftArm.rotationPointZ = -MathHelper.sin(bipedBody.rotateAngleY) * 5F;
@@ -274,11 +275,11 @@ public abstract class MixinModelCustomArmour extends ModelBiped
             f *= f;
             f *= f;
             f = 1.0F - f;
-            float f2 = MathHelper.sin(f * (float)Math.PI);
-            float f4 = MathHelper.sin(onGround * (float)Math.PI) * -(bipedHead.rotateAngleX - 0.7F) * 0.75F;
-            bipedRightArm.rotateAngleX -= (double)f2 * 1.2D + (double)f4;
+            float f2 = MathHelper.sin(f * PI);
+            float f4 = MathHelper.sin(onGround * PI) * -(bipedHead.rotateAngleX - 0.7F) * 0.75F;
+            bipedRightArm.rotateAngleX -= f2 * 1.2D + f4;
             bipedRightArm.rotateAngleY += bipedBody.rotateAngleY * 2.0F;
-            bipedRightArm.rotateAngleZ = MathHelper.sin(onGround * (float)Math.PI) * -0.4F;
+            bipedRightArm.rotateAngleZ = MathHelper.sin(onGround * PI) * -0.4F;
         }
 
         if (isSneak)
@@ -319,8 +320,8 @@ public abstract class MixinModelCustomArmour extends ModelBiped
             bipedLeftArm.rotateAngleZ = 0.0F;
             bipedRightArm.rotateAngleY = -(0.1F - f1 * 0.6F) + bipedHead.rotateAngleY;
             bipedLeftArm.rotateAngleY = (0.1F - f1 * 0.6F) + bipedHead.rotateAngleY + 0.4F;
-            bipedRightArm.rotateAngleX = -((float)Math.PI / 2F) + bipedHead.rotateAngleX;
-            bipedLeftArm.rotateAngleX = -((float)Math.PI / 2F) + bipedHead.rotateAngleX;
+            bipedRightArm.rotateAngleX = -(PI / 2F) + bipedHead.rotateAngleX;
+            bipedLeftArm.rotateAngleX = -(PI / 2F) + bipedHead.rotateAngleX;
             bipedRightArm.rotateAngleX -= f1 * 1.2F - f3 * 0.4F;
             bipedLeftArm.rotateAngleX -= f1 * 1.2F - f3 * 0.4F;
             bipedRightArm.rotateAngleZ += MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
@@ -347,69 +348,71 @@ public abstract class MixinModelCustomArmour extends ModelBiped
                 break;
         }
 
-        /*if(entity.advanced.job == EnumJobType.Puppet)
+        if (entity instanceof EntityCustomNpc)
+            puppetRotate((EntityCustomNpc) entity, par2);
+    }
+
+    @Unique
+    private void puppetRotate(EntityCustomNpc npc, float f)
+    {
+        if (npc.modelData.enableRotation && !npc.display.animationData.isActive() && isRotationActive(npc))
         {
-            JobPuppet job = (JobPuppet) entity.jobInterface;
-
-            if(job.isActive())
+            if(!npc.modelData.rotation.head.disabled)
             {
-                float pi = (float) Math.PI;
-
-                if(!job.head.disabled)
+                bipedHeadwear.rotateAngleX = bipedHead.rotateAngleX = npc.modelData.rotation.head.rotationX * PI;
+                bipedHeadwear.rotateAngleY = bipedHead.rotateAngleY = npc.modelData.rotation.head.rotationY * PI;
+                bipedHeadwear.rotateAngleZ = bipedHead.rotateAngleZ = npc.modelData.rotation.head.rotationZ * PI;
+            }
+            if(!npc.modelData.rotation.body.disabled)
+            {
+                bipedBody.rotateAngleX = npc.modelData.rotation.body.rotationX * PI;
+                bipedBody.rotateAngleY = npc.modelData.rotation.body.rotationY * PI;
+                bipedBody.rotateAngleZ = npc.modelData.rotation.body.rotationZ * PI;
+            }
+            if(!npc.modelData.rotation.larm.disabled)
+            {
+                bipedLeftArm.rotateAngleX = npc.modelData.rotation.larm.rotationX * PI;
+                bipedLeftArm.rotateAngleY = npc.modelData.rotation.larm.rotationY * PI;
+                bipedLeftArm.rotateAngleZ = npc.modelData.rotation.larm.rotationZ * PI;
+                if(!npc.display.disableLivingAnimation)
                 {
-                    bipedHeadwear.rotateAngleX = bipedHead.rotateAngleX = job.head.rotationX * pi;
-                    bipedHeadwear.rotateAngleY = bipedHead.rotateAngleY = job.head.rotationY * pi;
-                    bipedHeadwear.rotateAngleZ = bipedHead.rotateAngleZ = job.head.rotationZ * pi;
-                }
-
-                if(!job.body.disabled)
-                {
-                    bipedBody.rotateAngleX = job.body.rotationX * pi;
-                    bipedBody.rotateAngleY = job.body.rotationY * pi;
-                    bipedBody.rotateAngleZ = job.body.rotationZ * pi;
-                }
-
-                if(!job.larm.disabled)
-                {
-                    bipedLeftArm.rotateAngleX = job.larm.rotationX * pi;
-                    bipedLeftArm.rotateAngleY = job.larm.rotationY * pi;
-                    bipedLeftArm.rotateAngleZ = job.larm.rotationZ * pi;
-
-                    if(!entity.display.disableLivingAnimation)
-                    {
-                        bipedLeftArm.rotateAngleZ -= MathHelper.cos(par2 * 0.09F) * 0.05F + 0.05F;
-                        bipedLeftArm.rotateAngleX -= MathHelper.sin(par2 * 0.067F) * 0.05F;
-                    }
-                }
-
-                if(!job.rarm.disabled)
-                {
-                    bipedRightArm.rotateAngleX = job.rarm.rotationX * pi;
-                    bipedRightArm.rotateAngleY = job.rarm.rotationY * pi;
-                    bipedRightArm.rotateAngleZ = job.rarm.rotationZ * pi;
-
-                    if(!entity.display.disableLivingAnimation)
-                    {
-                        bipedRightArm.rotateAngleZ += MathHelper.cos(par2 * 0.09F) * 0.05F + 0.05F;
-                        bipedRightArm.rotateAngleX += MathHelper.sin(par2 * 0.067F) * 0.05F;
-                    }
-                }
-
-                if(!job.rleg.disabled)
-                {
-                    bipedRightLeg.rotateAngleX = job.rleg.rotationX * pi;
-                    bipedRightLeg.rotateAngleY = job.rleg.rotationY * pi;
-                    bipedRightLeg.rotateAngleZ = job.rleg.rotationZ * pi;
-                }
-
-                if(!job.lleg.disabled)
-                {
-                    bipedLeftLeg.rotateAngleX = job.lleg.rotationX * pi;
-                    bipedLeftLeg.rotateAngleY = job.lleg.rotationY * pi;
-                    bipedLeftLeg.rotateAngleZ = job.lleg.rotationZ * pi;
+                    bipedLeftArm.rotateAngleZ -= MathHelper.cos(f * 0.09F) * 0.05F + 0.05F;
+                    bipedLeftArm.rotateAngleX -= MathHelper.sin(f * 0.067F) * 0.05F;
                 }
             }
-        }*/
+            if(!npc.modelData.rotation.rarm.disabled)
+            {
+                bipedRightArm.rotateAngleX = npc.modelData.rotation.rarm.rotationX * PI;
+                bipedRightArm.rotateAngleY = npc.modelData.rotation.rarm.rotationY * PI;
+                bipedRightArm.rotateAngleZ = npc.modelData.rotation.rarm.rotationZ * PI;
+                if(!npc.display.disableLivingAnimation)
+                {
+                    bipedRightArm.rotateAngleZ += MathHelper.cos(f * 0.09F) * 0.05F + 0.05F;
+                    bipedRightArm.rotateAngleX += MathHelper.sin(f * 0.067F) * 0.05F;
+                }
+            }
+            if(!npc.modelData.rotation.rleg.disabled)
+            {
+                bipedRightLeg.rotateAngleX = npc.modelData.rotation.rleg.rotationX * PI;
+                bipedRightLeg.rotateAngleY = npc.modelData.rotation.rleg.rotationY * PI;
+                bipedRightLeg.rotateAngleZ = npc.modelData.rotation.rleg.rotationZ * PI;
+            }
+            if(!npc.modelData.rotation.lleg.disabled)
+            {
+                bipedLeftLeg.rotateAngleX = npc.modelData.rotation.lleg.rotationX * PI;
+                bipedLeftLeg.rotateAngleY = npc.modelData.rotation.lleg.rotationY * PI;
+                bipedLeftLeg.rotateAngleZ = npc.modelData.rotation.lleg.rotationZ * PI;
+            }
+        }
+    }
+
+    @Unique
+    private static boolean isRotationActive(EntityCustomNpc npc)
+    {
+        if (!npc.isEntityAlive())
+            return false;
+        else
+            return npc.modelData.rotation.whileAttacking && npc.isAttacking() || npc.modelData.rotation.whileMoving && npc.isWalking() || npc.modelData.rotation.whileStanding && !npc.isWalking();
     }
 
     @Unique
@@ -469,9 +472,9 @@ public abstract class MixinModelCustomArmour extends ModelBiped
     @Unique
     private void setRotationAnglesCrawling(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
     {
-        bipedHead.rotateAngleZ = -par4 / (180F / (float)Math.PI);
+        bipedHead.rotateAngleZ = -par4 / (180F / PI);
         bipedHead.rotateAngleY = 0;
-        bipedHead.rotateAngleX = -55 / (180F / (float)Math.PI);
+        bipedHead.rotateAngleX = -55 / (180F / PI);
 
         bipedHeadwear.rotateAngleX = bipedHead.rotateAngleX;
         bipedHeadwear.rotateAngleY = bipedHead.rotateAngleY;
@@ -479,14 +482,14 @@ public abstract class MixinModelCustomArmour extends ModelBiped
 
         if(par2 > 0.25)
             par2 = 0.25f;
-        float movement = MathHelper.cos(par1 * 0.8f + (float)Math.PI) * par2;
+        float movement = MathHelper.cos(par1 * 0.8f + PI) * par2;
 
-        bipedLeftArm.rotateAngleX = 180 / (180F / (float)Math.PI) - movement * 0.25f;
+        bipedLeftArm.rotateAngleX = 180 / (180F / PI) - movement * 0.25f;
         bipedLeftArm.rotateAngleY = movement * -0.46f;
         bipedLeftArm.rotateAngleZ = movement * -0.2f;
         bipedLeftArm.rotationPointY = 2 - movement * 9.0F;
 
-        bipedRightArm.rotateAngleX = 180 / (180F / (float)Math.PI) + movement * 0.25f;
+        bipedRightArm.rotateAngleX = 180 / (180F / PI) + movement * 0.25f;
         bipedRightArm.rotateAngleY = movement * -0.4f;
         bipedRightArm.rotateAngleZ = movement * -0.2f;
         bipedRightArm.rotationPointY = 2 + movement * 9.0F;
@@ -497,13 +500,13 @@ public abstract class MixinModelCustomArmour extends ModelBiped
 
         bipedLeftLeg.rotateAngleX = movement * 0.1f;
         bipedLeftLeg.rotateAngleY = movement * 0.1f;
-        bipedLeftLeg.rotateAngleZ = -7 / (180F / (float)Math.PI) - movement * 0.25f;
+        bipedLeftLeg.rotateAngleZ = -7 / (180F / PI) - movement * 0.25f;
         bipedLeftLeg.rotationPointY = 10.4f + movement * 9.0F;
         bipedLeftLeg.rotationPointZ = movement * 0.6f - 0.01f;
 
         bipedRightLeg.rotateAngleX = movement * -0.1f;
         bipedRightLeg.rotateAngleY = movement * 0.1f;
-        bipedRightLeg.rotateAngleZ = 7 / (180F / (float)Math.PI) - movement * 0.25f;
+        bipedRightLeg.rotateAngleZ = 7 / (180F / PI) - movement * 0.25f;
         bipedRightLeg.rotationPointY = 10.4f - movement * 9.0F;
         bipedRightLeg.rotationPointZ = movement * -0.6f - 0.01f;
     }
