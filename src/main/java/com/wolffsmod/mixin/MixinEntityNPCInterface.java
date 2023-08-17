@@ -152,6 +152,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
      * @author Wolff
      * @reason step sound from Flan's driveables
      */
+    @Override
     @Overwrite(remap = false)
     protected void func_145780_a(int par1, int par2, int par3, Block block)
     {
@@ -184,6 +185,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
      * @author Wolff
      * @reason added Flan's Melee animations
      */
+    @Override
     @Overwrite(remap = false)
     public boolean attackEntityAsMob(Entity par1Entity)
     {
@@ -228,6 +230,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
      * @author Wolff
      * @reason Flan damage multipliers vs planes/vehicles apply to NPC planes/vehicles
      */
+    @Override
     @Overwrite(remap = false)
     public boolean attackEntityFrom(DamageSource damagesource, float i)
     {
@@ -416,23 +419,6 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         worldObj.spawnEntityInWorld(throwable);
     }
 
-    protected List<ItemStack> getGuns()
-    {
-        ArrayList<ItemStack> guns = new ArrayList<>();
-        ItemStack mainHand = getHeldItem();
-        ItemStack offHand = getOffHand();
-
-        if(mainHand != null && mainHand.getItem() instanceof ItemGun && (NPCInterfaceUtil.isGunRangedWeapon((ItemGun) mainHand.getItem())))
-        {
-            guns.add(mainHand);
-        }
-        if(offHand != null && offHand.getItem() instanceof ItemGun && (NPCInterfaceUtil.isGunRangedWeapon((ItemGun) offHand.getItem())))
-        {
-            guns.add(offHand);
-        }
-        return guns;
-    }
-
     protected Optional<DriveableType> getHeldDriveable()
     {
         ItemStack item = getHeldItem();
@@ -503,16 +489,18 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
             }
         }
 
-        if (getFlanDriveableEntity().isPresent())
+        Optional<EntityFlanDriveableNPC> optionalDriveable = getFlanDriveableEntity();
+
+        if (optionalDriveable.isPresent())
         {
-            getFlanDriveableEntity().get().syncRotationWithClient();
+            optionalDriveable.get().syncRotationWithClient();
             yaw = driver.getGlobalYaw(renderYawOffset);
             pitch = driver.getPitch();
         }
 
-        if (getFlanDriveableEntity().isPresent() && (getFlanDriveableEntity().get().shootPointsPrimary.size() > 0))
+        if (optionalDriveable.isPresent() && (optionalDriveable.get().shootPointsPrimary.isEmpty()))
         {
-            EntityFlanDriveableNPC driveable = getFlanDriveableEntity().get();
+            EntityFlanDriveableNPC driveable = optionalDriveable.get();
             float driverYaw = driveable.driver.getLocalYaw();
 
             for (ShootPoint shootPoint: driveable.shootPointsPrimary)
@@ -529,9 +517,9 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         }
         else
         {
-            if (getFlanDriveableEntity().isPresent() && getFlanDriveableEntity().get() instanceof EntityFlanAAGunNPC)
+            if (optionalDriveable.isPresent() && optionalDriveable.get() instanceof EntityFlanAAGunNPC)
             {
-                EntityFlanAAGunNPC aaGun = (EntityFlanAAGunNPC)getFlanDriveableEntity().get();
+                EntityFlanAAGunNPC aaGun = (EntityFlanAAGunNPC)optionalDriveable.get();
                 for (int currentBarrel=0; currentBarrel<aaGun.numBarrels; currentBarrel++)
                 {
                     RotatedAxes axes = new RotatedAxes(yaw, pitch, 0F);
@@ -678,6 +666,24 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
 
             animations.doShoot(pumpDelay, pumpTime, hammerDelay, hammerAngle, althammerAngle, casingDelay);
         }
+    }
+
+    @Override
+    public List<ItemStack> getGuns()
+    {
+        ArrayList<ItemStack> guns = new ArrayList<>();
+        ItemStack mainHand = getHeldItem();
+        ItemStack offHand = getOffHand();
+
+        if(mainHand != null && mainHand.getItem() instanceof ItemGun && (NPCInterfaceUtil.isGunRangedWeapon((ItemGun) mainHand.getItem())))
+        {
+            guns.add(mainHand);
+        }
+        if(offHand != null && offHand.getItem() instanceof ItemGun && (NPCInterfaceUtil.isGunRangedWeapon((ItemGun) offHand.getItem())))
+        {
+            guns.add(offHand);
+        }
+        return guns;
     }
 
     @Override

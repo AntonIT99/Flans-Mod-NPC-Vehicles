@@ -41,6 +41,7 @@ public abstract class MixinEntityAIRangedAttack extends EntityAIBase
      * @author Wolff
      * @reason AI adjustments for vehicle NPCs
      */
+    @Override
     @Overwrite(remap = false)
     public void updateTask()
     {

@@ -57,6 +57,7 @@ public abstract class MixinModelCustomArmour extends ModelBiped
      * @author Wolff
      * @reason Compatibility for Custom NPCs
      */
+    @Override
     @Overwrite(remap = false)
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {

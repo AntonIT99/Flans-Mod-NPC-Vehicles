@@ -224,7 +224,7 @@ public class NPCInterfaceUtil
         }
     }
 
-    public static void spawnParticle(ArrayList<ShootParticle> list, ShootPoint shootPoint, Vector3f gunVector, float driverYaw, float driverPitch, float entityYaw, double posX, double posY, double posZ, int dimension, float scale)
+    public static void spawnParticle(List<ShootParticle> list, ShootPoint shootPoint, Vector3f gunVector, float driverYaw, float driverPitch, float entityYaw, double posX, double posY, double posZ, int dimension, float scale)
     {
         if (!WolffNPCMod.shootingParticles)
             return;

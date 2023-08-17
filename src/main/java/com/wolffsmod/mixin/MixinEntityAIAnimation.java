@@ -68,6 +68,7 @@ public abstract class MixinEntityAIAnimation extends EntityAIBase
      * @author Wolff
      * @reason Hug animation when holding Flan's gun in off-hand
      */
+    @Override
     @Overwrite(remap = false)
     public void updateTask()
     {
