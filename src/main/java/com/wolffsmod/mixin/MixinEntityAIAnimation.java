@@ -14,20 +14,20 @@ import net.minecraft.entity.ai.EntityAIBase;
 @Mixin(value = EntityAIAnimation.class)
 public abstract class MixinEntityAIAnimation extends EntityAIBase
 {
-    @Shadow
+    @Shadow(remap = false)
     private EntityNPCInterface npc;
-    @Shadow
+    @Shadow(remap = false)
     private boolean isAttacking;
-    @Shadow
+    @Shadow(remap = false)
     private boolean isDead;
-    @Shadow
+    @Shadow(remap = false)
     private boolean isAtStartpoint;
-    @Shadow
+    @Shadow(remap = false)
     private boolean hasPath;
 
-    @Shadow
+    @Shadow(remap = false)
     private void setAnimation(EnumAnimation animation) {}
-    @Shadow
+    @Shadow(remap = false)
     private boolean hasNavigation()
     {
         return false; //Dummy method body
@@ -37,7 +37,7 @@ public abstract class MixinEntityAIAnimation extends EntityAIBase
      * @author Wolff
      * @reason Hug animation when holding Flan's gun in off-hand
      */
-    @Overwrite(remap = false)
+    @Overwrite
     public boolean shouldExecute(){
         isDead = !npc.isEntityAlive();
         if(isDead)
@@ -69,7 +69,7 @@ public abstract class MixinEntityAIAnimation extends EntityAIBase
      * @reason Hug animation when holding Flan's gun in off-hand
      */
     @Override
-    @Overwrite(remap = false)
+    @Overwrite
     public void updateTask()
     {
         if(npc.stats.aimWhileShooting && npc.isAttacking())

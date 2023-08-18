@@ -31,26 +31,26 @@ public abstract class MixinModelCustomArmour extends ModelBiped
     @Unique
     private float dancingTicks;
 
-    @Shadow
+    @Shadow(remap = false)
     public ArmourType type;
-    @Shadow
+    @Shadow(remap = false)
     public ModelRendererTurbo[] headModel = new ModelRendererTurbo[0];
-    @Shadow
+    @Shadow(remap = false)
     public ModelRendererTurbo[] bodyModel = new ModelRendererTurbo[0];
-    @Shadow
+    @Shadow(remap = false)
     public ModelRendererTurbo[] leftArmModel = new ModelRendererTurbo[0];
-    @Shadow
+    @Shadow(remap = false)
     public ModelRendererTurbo[] rightArmModel = new ModelRendererTurbo[0];
-    @Shadow
+    @Shadow(remap = false)
     public ModelRendererTurbo[] leftLegModel = new ModelRendererTurbo[0];
-    @Shadow
+    @Shadow(remap = false)
     public ModelRendererTurbo[] rightLegModel = new ModelRendererTurbo[0];
-    @Shadow
+    @Shadow(remap = false)
     public ModelRendererTurbo[] skirtFrontModel = new ModelRendererTurbo[0]; //Acts like a leg piece, but its pitch is set to the maximum of the two legs
-    @Shadow
+    @Shadow(remap = false)
     public ModelRendererTurbo[] skirtRearModel = new ModelRendererTurbo[0]; //Acts like a leg piece, but its pitch is set to the minimum of the two legs
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract void render(ModelRendererTurbo[] models, ModelRenderer bodyPart, float f5, float scale);
 
     /**

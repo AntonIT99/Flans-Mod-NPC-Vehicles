@@ -11,15 +11,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = DataStats.class)
 public abstract class MixinDataStats
 {
-    @Shadow
+    @Shadow(remap = false)
     private float attackStrength;
-    @Shadow
+    @Shadow(remap = false)
     public int rangedRange;
-    @Shadow
+    @Shadow(remap = false)
     public int aggroRange;
-    @Shadow
+    @Shadow(remap = false)
     public float pDamage;
-    @Shadow
+    @Shadow(remap = false)
     public boolean aimWhileShooting;
 
     @Inject(method = "<init>", at = @At("RETURN"), remap = false)

@@ -61,7 +61,7 @@ public class FlanAnimPacket implements IMessage
             }
             else
             {
-                WolffNPCMod.logger.error("Anim Packet got wrong Entity ID");
+                WolffNPCMod.log.error("Anim Packet got wrong Entity ID");
             }
             return null;
         }

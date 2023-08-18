@@ -2,7 +2,7 @@ package com.wolffsmod.render;
 
 import org.lwjgl.opengl.GL11;
 
-import com.wolffsmod.Strings;
+import com.wolffsmod.ModInfo;
 import com.wolffsmod.entity.EntityFlanAAGunNPC;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.EntityFlanMechaNPC;
@@ -29,7 +29,7 @@ public class RenderFlansModEntity extends RenderLiving
     public RenderFlansModEntity(ModelBase model, String texturePath)
     {
         super(model, 0F);
-        texture = new ResourceLocation(Strings.MOD_ID + ":textures/entity/" + texturePath);
+        texture = new ResourceLocation(ModInfo.MOD_ID + ":textures/entity/" + texturePath);
     }
 
     public RenderFlansModEntity(ModelBase model)

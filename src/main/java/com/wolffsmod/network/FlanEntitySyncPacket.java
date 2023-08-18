@@ -79,7 +79,7 @@ public class FlanEntitySyncPacket implements IMessage
             }
             else
             {
-                WolffNPCMod.logger.error("Sync Packet got wrong Entity ID");
+                WolffNPCMod.log.error("Sync Packet got wrong Entity ID");
             }
             return null;
         }

@@ -67,11 +67,11 @@ public abstract class MixinDataInventory implements IMixinDataInventory, IInvent
     @Unique
     private boolean useDriveableStats = false;
 
-    @Shadow
+    @Shadow(remap = false)
     public HashMap<Integer,ItemStack> weapons;
-    @Shadow
+    @Shadow(remap = false)
     public HashMap<Integer,ItemStack> armor;
-    @Shadow
+    @Shadow(remap = false)
     private EntityNPCInterface npc;
 
     @Inject(method = "writeEntityToNBT", at = @At(value = "TAIL"), remap = false)

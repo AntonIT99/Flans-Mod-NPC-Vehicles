@@ -18,23 +18,23 @@ import net.minecraft.util.MathHelper;
 @Mixin(value = EntityAIRangedAttack.class)
 public abstract class MixinEntityAIRangedAttack extends EntityAIBase
 {
-    @Shadow
+    @Shadow(remap = false)
     @Final
     private EntityNPCInterface entityHost;
-    @Shadow
+    @Shadow(remap = false)
     @Final
     private IRangedAttackMob rangedAttackEntityHost;
-    @Shadow
+    @Shadow(remap = false)
     private EntityLivingBase attackTarget;
-    @Shadow
+    @Shadow(remap = false)
     private int rangedAttackTime;
-    @Shadow
+    @Shadow(remap = false)
     private int field_75318_f; //moveTries
-    @Shadow
+    @Shadow(remap = false)
     private int field_70846_g; //burstCount
-    @Shadow
+    @Shadow(remap = false)
     private boolean hasFired;
-    @Shadow
+    @Shadow(remap = false)
     private boolean navOverride;
 
     /**
@@ -42,7 +42,7 @@ public abstract class MixinEntityAIRangedAttack extends EntityAIBase
      * @reason AI adjustments for vehicle NPCs
      */
     @Override
-    @Overwrite(remap = false)
+    @Overwrite
     public void updateTask()
     {
         entityHost.getLookHelper().setLookPositionWithEntity(attackTarget, 30.0F, 30.0F);

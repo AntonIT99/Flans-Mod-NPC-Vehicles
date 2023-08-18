@@ -99,38 +99,38 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     @Unique
     protected int soundPosition;
 
-    @Shadow
+    @Shadow(remap = false)
     public ICustomNpc wrappedNPC;
-    @Shadow
+    @Shadow(remap = false)
     public DataDisplay display;
-    @Shadow
+    @Shadow(remap = false)
     public DataStats stats;
-    @Shadow
+    @Shadow(remap = false)
     public DataInventory inventory;
-    @Shadow
+    @Shadow(remap = false)
     public DataAdvanced advanced;
-    @Shadow
+    @Shadow(remap = false)
     public RoleInterface roleInterface;
-    @Shadow
+    @Shadow(remap = false)
     public Faction faction;
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract boolean isRemote();
-    @Shadow
+    @Shadow(remap = false)
     public abstract void reset();
-    @Shadow
+    @Shadow(remap = false)
     public abstract void updateTasks();
-    @Shadow
+    @Shadow(remap = false)
     public abstract EntityLivingBase getOwner();
-    @Shadow
+    @Shadow(remap = false)
     public abstract ItemStack getOffHand();
-    @Shadow
+    @Shadow(remap = false)
     public abstract boolean isKilled();
-    @Shadow
+    @Shadow(remap = false)
     public abstract boolean isAttacking();
-    @Shadow
+    @Shadow(remap = false)
     public abstract EntityProjectile shoot(EntityLivingBase entity, int accuracy, ItemStack proj, boolean indirect);
-    @Shadow
+    @Shadow(remap = false)
     private int getPotionEffect(EnumPotionType p)
     {
         return 0; //Dummy method body
@@ -141,7 +141,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         super(w);
     }
 
-    @Inject(method = "onUpdate", at = @At(value = "TAIL"), remap = false)
+    @Inject(method = "onUpdate", at = @At(value = "TAIL"))
     private void updateSoundPosition(CallbackInfo callbackInfo)
     {
         if (soundPosition > 0)
@@ -186,7 +186,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
      * @reason added Flan's Melee animations
      */
     @Override
-    @Overwrite(remap = false)
+    @Overwrite
     public boolean attackEntityAsMob(Entity par1Entity)
     {
         float f = stats.getAttackStrength();
@@ -231,7 +231,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
      * @reason Flan damage multipliers vs planes/vehicles apply to NPC planes/vehicles
      */
     @Override
-    @Overwrite(remap = false)
+    @Overwrite
     public boolean attackEntityFrom(DamageSource damagesource, float i)
     {
         if (this.worldObj.isRemote || CustomNpcs.FreezeNPCs || (damagesource.damageType != null && damagesource.damageType.equals("inWall"))){
@@ -329,7 +329,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
      * @author Wolff
      * @reason shoot Flan bullet and use Flan stats
      */
-    @Overwrite(remap = false)
+    @Overwrite
     public void attackEntityWithRangedAttack(EntityLivingBase entity, float f)
     {
         ItemStack proj = inventory.getProjectile();

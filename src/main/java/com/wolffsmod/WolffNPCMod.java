@@ -16,23 +16,23 @@ import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Strings.MOD_ID,
-		name = Strings.MOD_NAME,
-		version = Strings.MOD_VERSION,
+@Mod(modid = ModInfo.MOD_ID,
+		name = ModInfo.NAME,
+		version = ModInfo.VERSION,
 		dependencies="required-after: customnpcs; required-after: flansmod")
 public class WolffNPCMod
 {
 	@SidedProxy(clientSide = "com.wolffsmod.ClientProxy", serverSide = "com.wolffsmod.CommonProxy")
 	public static CommonProxy proxy;
 	
-	@Instance(Strings.MOD_ID)
+	@Instance(ModInfo.MOD_ID)
 	public static WolffNPCMod instance;
 
 	public static Configuration config;
 
 	public static SimpleNetworkWrapper network;
 
-	public static Logger logger = LogManager.getLogger("Wolff's NPC Vehicles");
+	public static final Logger log = LogManager.getLogger(ModInfo.MOD_ID);
 
 	public static boolean ignoreFrustumCheckForNpcVehicles = true;
 	public static boolean ignoreFrustumCheckForLargeEntities = true;

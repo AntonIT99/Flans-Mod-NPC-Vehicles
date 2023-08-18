@@ -29,7 +29,7 @@ public abstract class MixinEntityCustomNpc extends MixinEntityNPCInterface
     @Unique
     public EntityNPCBodyHelper bodyHelperNPC;
 
-    @Shadow
+    @Shadow(remap = false)
     public ModelData modelData;
 
     protected MixinEntityCustomNpc(World w)
@@ -58,7 +58,7 @@ public abstract class MixinEntityCustomNpc extends MixinEntityNPCInterface
      * @reason update driveable NPC entity
      */
     @Override
-    @Overwrite(remap = false)
+    @Overwrite
     public void onUpdate()
     {
         super.onUpdate();

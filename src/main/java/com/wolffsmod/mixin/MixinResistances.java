@@ -11,13 +11,13 @@ import net.minecraft.util.DamageSource;
 @Mixin(value = Resistances.class)
 public abstract class MixinResistances
 {
-    @Shadow
+    @Shadow(remap = false)
     public float arrow;
-    @Shadow
+    @Shadow(remap = false)
     public float playermelee;
-    @Shadow
+    @Shadow(remap = false)
     public float explosion;
-    @Shadow
+    @Shadow(remap = false)
     public boolean disableDamage;
 
     /**
