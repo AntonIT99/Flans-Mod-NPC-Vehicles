@@ -1,12 +1,14 @@
 package com.wolffsmod.mixin;
 
 import com.wolffsmod.customnpc.IMixinDataInventory;
+import noppes.npcs.client.Client;
 import noppes.npcs.client.gui.mainmenu.GuiNPCInv;
 import noppes.npcs.client.gui.util.GuiContainerNPCInterface2;
 import noppes.npcs.client.gui.util.GuiNpcButton;
 import noppes.npcs.client.gui.util.GuiNpcLabel;
 import noppes.npcs.client.gui.util.IGuiData;
 import noppes.npcs.client.gui.util.ITextfieldListener;
+import noppes.npcs.constants.EnumPacketServer;
 import noppes.npcs.entity.EntityNPCInterface;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.inventory.Container;
+import net.minecraft.nbt.NBTTagCompound;
 
 @Mixin(value = GuiNPCInv.class)
 public abstract class MixinGuiNPCInv extends GuiContainerNPCInterface2 implements IGuiData, ITextfieldListener
@@ -71,5 +74,12 @@ public abstract class MixinGuiNPCInv extends GuiContainerNPCInterface2 implement
                 npc.inventory.setWeapons(npc.inventory.getWeapons());
             save();
         }
+    }
+
+    @Inject(method = "save", at = @At(value = "TAIL"))
+    private void onSave(CallbackInfo callbackInfo)
+    {
+        Client.sendData(EnumPacketServer.MainmenuStatsSave, npc.stats.writeToNBT(new NBTTagCompound()));
+        Client.sendData(EnumPacketServer.MainmenuAdvancedSave, npc.advanced.writeToNBT(new NBTTagCompound()));
     }
 }

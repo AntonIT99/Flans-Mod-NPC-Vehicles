@@ -15,8 +15,8 @@ public class FlanAnimPacket implements IMessage
 {
     int entityId;
     EnumAnimPacket type;
-	
-	public FlanAnimPacket() {}
+
+    public FlanAnimPacket() {}
 
     public FlanAnimPacket(int entityId, EnumAnimPacket type)
     {
