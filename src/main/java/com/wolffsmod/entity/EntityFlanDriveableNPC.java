@@ -137,7 +137,15 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         EntityUtil.Copy(npc, this);
         updateDriverAndPassengers();
 
-        throttle = forceMaxThrottle ? 1F : (float) (getMovementVelocity() / npc.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
+        if (forceMaxThrottle)
+        {
+            throttle = 1F;
+        }
+        else
+        {
+            double maxVelocity = npc.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue();
+            throttle = (maxVelocity != 0D) ? (float) (getMovementVelocity() / maxVelocity) : 0F;
+        }
     }
 
     protected void updateDriverAndPassengers()
