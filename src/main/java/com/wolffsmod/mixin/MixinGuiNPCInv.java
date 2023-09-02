@@ -46,28 +46,28 @@ public abstract class MixinGuiNPCInv extends GuiContainerNPCInterface2 implement
     @Inject(method = "actionPerformed", at = @At(value = "TAIL"))
     private void onActionPerformed(GuiButton guibutton, CallbackInfo callbackInfo)
     {
-        if(guibutton.id == 71)
+        if (guibutton.id == 71)
         {
             ((IMixinDataInventory)npc.inventory).setUseWeaponMeleeStats(((GuiNpcButton)guibutton).getValue() == 1);
             if (((IMixinDataInventory)npc.inventory).getUseWeaponMeleeStats())
                 npc.inventory.setWeapons(npc.inventory.getWeapons());
             save();
         }
-        if(guibutton.id == 73)
+        else if (guibutton.id == 73)
         {
             ((IMixinDataInventory)npc.inventory).setUseWeaponRangedStats(((GuiNpcButton)guibutton).getValue() == 1);
             if (((IMixinDataInventory)npc.inventory).getUseWeaponRangedStats())
                 npc.inventory.setWeapons(npc.inventory.getWeapons());
             save();
         }
-        if(guibutton.id == 75)
+        else if (guibutton.id == 75)
         {
             ((IMixinDataInventory)npc.inventory).setUseArmorStats(((GuiNpcButton)guibutton).getValue() == 1);
             if (((IMixinDataInventory)npc.inventory).getUseArmorStats())
                 npc.inventory.setArmor(npc.inventory.getArmor());
             save();
         }
-        if(guibutton.id == 77)
+        else if (guibutton.id == 77)
         {
             ((IMixinDataInventory)npc.inventory).setUseDriveableStats(((GuiNpcButton)guibutton).getValue() == 1);
             if (((IMixinDataInventory)npc.inventory).getUseDriveableStats())

@@ -9,9 +9,10 @@ To run in a dev environment, add
 to the program arguments in the run configuration.
 To get more mixin debug output add ```-Dmixin.debug.export=true``` to the VM arguments.
 
-### Modified classes in CustomNPC+
+### Modified classes (Mixins) in CustomNPC+
 
 package noppes.npcs:
+- DataDisplay
 - DataInventory
 - DataStats
 - Resistances
@@ -21,13 +22,14 @@ package noppes.npcs.ai:
 - EntityAIRangedAttack
 
 package noppes.npcs.client.gui.mainmenu:
+- GuiNpcDisplay
 - GuiNPCInv
 
 package noppes.npcs.entity:
 - EntityCustomNpc
 - EntityNPCInterface
 
-### Modified classes in Flan's Mod
+### Modified classes (Mixins) in Flan's Mod
 
 package com.flansmod.client.model:
 - ModelCustomArmour

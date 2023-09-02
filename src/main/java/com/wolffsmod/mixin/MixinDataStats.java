@@ -28,7 +28,7 @@ public abstract class MixinDataStats
         attackStrength = 1F;
         rangedRange = 64;
         aggroRange = 64;
-        pDamage = 1;
+        pDamage = 1F;
         aimWhileShooting = true;
     }
 }

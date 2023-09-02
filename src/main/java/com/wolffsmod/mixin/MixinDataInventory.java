@@ -83,6 +83,15 @@ public abstract class MixinDataInventory implements IMixinDataInventory, IInvent
         nbttagcompound.setBoolean("UseDriveableStats", useDriveableStats);
     }
 
+    @Inject(method = "readEntityFromNBT", at = @At(value = "TAIL"), remap = false)
+    public void onReadEntityFromNBT(NBTTagCompound nbttagcompound, CallbackInfo callbackInfo)
+    {
+        useWeaponMeleeStats = nbttagcompound.getBoolean("UseWeaponMeleeStats");
+        useWeaponRangedStats = nbttagcompound.getBoolean("UseWeaponRangedStats");
+        useArmorStats = nbttagcompound.getBoolean("UseArmorStats");
+        useDriveableStats = nbttagcompound.getBoolean("UseDriveableStats");
+    }
+
     @Inject(method = "setWeapons", at = @At(value = "TAIL"), remap = false)
     private void onSetWeapons(HashMap<Integer, ItemStack> list, CallbackInfo callbackInfo)
     {

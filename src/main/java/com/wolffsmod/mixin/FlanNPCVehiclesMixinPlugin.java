@@ -52,7 +52,7 @@ public class FlanNPCVehiclesMixinPlugin implements IMixinConfigPlugin
             WolffNPCMod.log.error("Flan's Mod could not be found");
     }
 
-    private static List<File> getModFiles()
+    public static List<File> getModFiles()
     {
         List<File> modFiles = new ArrayList<>();
         Path modsPath = Paths.get("./mods");

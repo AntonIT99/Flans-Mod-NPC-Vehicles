@@ -7,16 +7,18 @@
   "target": "@env(DEFAULT)",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "MixinModelCustomArmour",
-    "MixinGuiNPCInv"
+    "MixinGuiNpcDisplay",
+    "MixinGuiNPCInv",
+    "MixinModelCustomArmour"
   ],
   "mixins": [
+    "MixinDataDisplay",
     "MixinDataInventory",
     "MixinDataStats",
-    "MixinResistances",
     "MixinEntityAIAnimation",
     "MixinEntityAIRangedAttack",
     "MixinEntityCustomNpc",
-    "MixinEntityNPCInterface"
+    "MixinEntityNPCInterface",
+    "MixinResistances"
   ]
 }

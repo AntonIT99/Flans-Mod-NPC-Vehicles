@@ -20,6 +20,7 @@ import com.flansmod.common.guns.ItemShootable;
 import com.flansmod.common.guns.ShootableType;
 import com.flansmod.common.network.PacketPlaySound;
 import com.flansmod.common.vector.Vector3f;
+import com.wolffsmod.customnpc.IMixinDataDisplay;
 import com.wolffsmod.customnpc.IMixinEntityNPCInterface;
 import com.wolffsmod.customnpc.NPCInterfaceUtil;
 import com.wolffsmod.entity.EntityFlanAAGunNPC;
@@ -202,7 +203,9 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         }
 
         boolean var4 = par1Entity.attackEntityFrom(new NpcDamageSource("mob", this), f);
-        NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumAnimPacket.FLAN_MELEE);
+
+        if (((IMixinDataDisplay)display).getHasFlanMeleeAnimation())
+            NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumAnimPacket.FLAN_MELEE);
 
         if (var4){
             if(getOwner() instanceof EntityPlayer && par1Entity instanceof EntityLivingBase)
@@ -372,7 +375,8 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
                 playSound(stats.fireSound, 2.0F, 1.0f);
             }
 
-            NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumAnimPacket.FLAN_SHOOT);
+            if (((IMixinDataDisplay)display).getHasFlanShootAnimation())
+                NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumAnimPacket.FLAN_SHOOT);
         }
     }
 
@@ -586,6 +590,9 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     @Override
     public void animateFlanGunMelee()
     {
+        if (!((IMixinDataDisplay)display).getHasFlanMeleeAnimation())
+            return;
+
         ItemStack heldItem = getHeldItem();
         ItemStack offHandItem = getOffHand();
         if (heldItem != null && heldItem.getItem() instanceof ItemGun)
@@ -605,6 +612,9 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     @Override
     public void animateFlanGunReload()
     {
+        if (!((IMixinDataDisplay)display).getHasFlanReloadAnimation())
+            return;
+
         ItemStack heldItem = getHeldItem();
         ItemStack offHandItem = getOffHand();
         if (heldItem != null && heldItem.getItem() instanceof ItemGun)
@@ -636,6 +646,9 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     @Override
     public void animateFlanGunShoot()
     {
+        if (!((IMixinDataDisplay)display).getHasFlanShootAnimation())
+            return;
+
         ItemStack heldItem = getHeldItem();
         ItemStack offHandItem = getOffHand();
         if (heldItem != null && heldItem.getItem() instanceof ItemGun)
@@ -704,7 +717,9 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
             if (reloadSound != null && !reloadSound.isEmpty())
                 PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, reloadSound, false);
         }
-        NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumAnimPacket.FLAN_RELOAD);
+
+        if (((IMixinDataDisplay)display).getHasFlanReloadAnimation())
+            NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumAnimPacket.FLAN_RELOAD);
     }
 
     @Override
