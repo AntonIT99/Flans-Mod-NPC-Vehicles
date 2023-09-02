@@ -158,7 +158,7 @@ public class FlanUtils
         }
         catch (NoSuchFieldException | IllegalAccessException exception)
         {
-            return type.bulletDefence;
+            return type.defence;
         }
     }
 
