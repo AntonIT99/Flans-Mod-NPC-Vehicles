@@ -42,7 +42,7 @@ public class CommandModelUpdate extends CommandBase {
 	}
 
 	@Override
-	public void processCommand(ICommandSender commandSender, String[] p_71515_2_)
+	public void processCommand(ICommandSender commandSender, String[] par2)
 	{
 		updateModels(commandSender);
 	}

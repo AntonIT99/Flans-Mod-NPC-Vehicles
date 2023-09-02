@@ -11,8 +11,8 @@ import com.flansmod.common.network.PacketPlaySound;
 import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.WolffNPCMod;
 import com.wolffsmod.flan.FlanUtils;
-import noppes.npcs.Server;
-import noppes.npcs.constants.EnumPacketClient;
+import com.wolffsmod.network.EnumAnimPacket;
+import com.wolffsmod.network.FlanAnimPacket;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -126,16 +126,32 @@ public class NPCInterfaceUtil
         return !itemGun.type.ammo.isEmpty();
     }
 
-    public static void sendPacketWhenInRenderingRange(Entity entity, EnumPacketClient clientPacket)
+    public static void sendPacketWhenInRenderingRange(Entity entity, EnumAnimPacket clientPacket)
     {
         List<EntityPlayer> list = MinecraftServer.getServer().getConfigurationManager().playerEntityList;
         for (EntityPlayer player : list)
         {
-            if (entity.isInRangeToRender3d(player.posX, player.posY, player.posZ))
+            if (isInRangeToRender3d(entity, player.posX, player.posY, player.posZ))
             {
-                Server.sendData((EntityPlayerMP)player, clientPacket, entity.getEntityId());
+                WolffNPCMod.network.sendTo(new FlanAnimPacket(entity.getEntityId(), clientPacket), (EntityPlayerMP)player);
             }
         }
+    }
+
+    public static boolean isInRangeToRender3d(Entity entity, double posX, double posY, double posZ)
+    {
+        double d3 = entity.posX - posX;
+        double d4 = entity.posY - posY;
+        double d5 = entity.posZ - posZ;
+        double d6 = d3 * d3 + d4 * d4 + d5 * d5;
+        return isInRangeToRenderDist(entity, d6);
+    }
+
+    public static boolean isInRangeToRenderDist(Entity entity, double dist)
+    {
+        double d1 = entity.boundingBox.getAverageEdgeLength();
+        d1 *= 64.0D * entity.renderDistanceWeight;
+        return dist < d1 * d1;
     }
 
     public static float accuracyToBulletSpread(int accuracy)
@@ -196,6 +212,9 @@ public class NPCInterfaceUtil
 
     public static class ShootParticle
     {
+        public float x, y, z;
+        public String name;
+
         public ShootParticle(String s, float x1, float y1, float z1)
         {
             x = x1;
@@ -203,11 +222,9 @@ public class NPCInterfaceUtil
             z = z1;
             name = s;
         }
-        public float x, y, z;
-        public String name;
     }
 
-    public static void spawnParticle(ArrayList<ShootParticle> list, ShootPoint shootPoint, Vector3f gunVector, float driverYaw, float driverPitch, float entityYaw, double posX, double posY, double posZ, int dimension, float scale)
+    public static void spawnParticle(List<ShootParticle> list, ShootPoint shootPoint, Vector3f gunVector, float driverYaw, float driverPitch, float entityYaw, double posX, double posY, double posZ, int dimension, float scale)
     {
         if (!WolffNPCMod.shootingParticles)
             return;

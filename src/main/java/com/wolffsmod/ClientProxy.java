@@ -1,9 +1,12 @@
 package com.wolffsmod;
 
+import com.flansmod.client.model.RenderBullet;
+import com.wolffsmod.flan.EntityNPCFlanBullet;
 import com.wolffsmod.render.RenderFlansModEntity;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
-public class ClientProxy extends ServerProxy{
+public class ClientProxy extends CommonProxy
+{
 
 	/**
 	 * When using RenderFlansModEntity, a default Y-translation of -2.133F is applied
@@ -28,6 +31,8 @@ public class ClientProxy extends ServerProxy{
 	@Override
 	public void registerRenderers()
 	{
+		RenderingRegistry.registerEntityRenderingHandler(EntityNPCFlanBullet.class, new RenderBullet());
+
 		if (ContentPacks.officialWW2)
 		{
 			//WW2 Official Pack
@@ -77,7 +82,7 @@ public class ClientProxy extends ServerProxy{
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityTiger131.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelTiger131()).setTranslation(0F, -2.4F, 0F).setScale(1.2F, 1.2F, 1.2F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityTigerII.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelTigerII()).scale(1.1F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityType4HoRo.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelType4HoRo()));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityUC2Pdr.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelUC2Pdr()).setTranslation(0F, -2.1F, 0F).setScale(1.1F, 1.1F, 1.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityUC2Pdr.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelUC2Pdr(), "UC2PDR/UC2PDR.png").setTranslation(0F, -2.1F, 0F).setScale(1.1F, 1.1F, 1.1F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityYak9.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelYak9()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.official.ww2.EntityZero.class, new RenderFlansModEntity(new com.wolffsmod.model.official.ww2.ModelZero()));
 

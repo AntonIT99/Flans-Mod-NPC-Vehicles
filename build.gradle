@@ -28,11 +28,24 @@ configurations {
 
 apply plugin: 'forge'
 
-version = "4.0"
+version = "5.0"
 group= "com.wolffsmod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Flan's Mod NPC Vehicles"
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+def embedMixin = !project.hasProperty("nomixin")
+def yourMixinConfig = 'wolffsmod.mixins.json'
+def refMapForYourConfig = 'wolffsmod.refmap.json'
+def relativePathToMixinAP = 'tools/mixin-0.8-SNAPSHOT.jar'
+def refMap = "${tasks.compileJava.temporaryDir}" + File.separator + refMapForYourConfig
+def mixinSrg = "${tasks.reobf.temporaryDir}" + File.separator + "mixins.srg"
+def sharedManifest = manifest {
+    attributes.put("TweakClass", "org.spongepowered.asm.launch.MixinTweaker")
+    attributes.put("FMLCorePluginContainsFMLMod", true)
+    attributes.put("ForceLoadAsMod", true)
+    attributes.put("MixinConfigs", yourMixinConfig)
+}
 
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
@@ -84,16 +97,6 @@ processResources
 
 sourceSets {main { output.resourcesDir = output.classesDir }}
 
-jar {
-    from sourceSets.api.output
-
-    manifest {
-        attributes(
-            'FMLAT': "customnpcs_at.cfg",
-        )
-    }
-}
-
 task clearOutput(type: Delete) {
     delete 'build/output/'
 }
@@ -114,6 +117,9 @@ task outputJar(type: Jar) {
 		exclude '**/customnpcs.mixins.json'
 		exclude '**/customnpcs.refmap.json'
     }
+    manifest {
+        from sharedManifest
+    }
 }
 
 build {
@@ -124,13 +130,8 @@ build {
 //##########################################################################################################
 //########################################    Mixin  Part   ################################################
 //##########################################################################################################
-//Add
-//--tweakClass org.spongepowered.asm.launch.MixinTweaker --mixin customnpcs.mixins.json
-//to your client and server program arguments if working in a dev environment.
-def embedMixin = !project.hasProperty("nomixin")
-def yourMixinConfig = 'customnpcs.mixins.json'
-def refMapForYourConfig = 'customnpcs.refmap.json'
-def relativePathToMixinAP = 'tools/mixin-0.8-SNAPSHOT.jar'
+// Add --tweakClass org.spongepowered.asm.launch.MixinTweaker --mixin wolffsmod.mixins.json
+// to your client and server program arguments if working in a dev environment.
 
 if(!embedMixin){
     version += "+nomixin"
@@ -165,10 +166,6 @@ dependencies {
     }
 }
 
-def refMap = "${tasks.compileJava.temporaryDir}" + File.separator + refMapForYourConfig
-
-def mixinSrg = "${tasks.reobf.temporaryDir}" + File.separator + "mixins.srg"
-
 jar {
     configurations.shade.each { dep ->
         from(project.zipTree(dep)){
@@ -178,10 +175,7 @@ jar {
 
     from refMap
     manifest {
-        attributes.put("TweakClass", "org.spongepowered.asm.launch.MixinTweaker")
-        attributes.put("FMLCorePluginContainsFMLMod", true)
-        attributes.put("ForceLoadAsMod", true)
-        attributes.put("MixinConfigs", yourMixinConfig)
+        from sharedManifest
     }
 
     // embed libraries in jar

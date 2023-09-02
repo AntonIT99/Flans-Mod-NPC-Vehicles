@@ -5,6 +5,7 @@ import com.flansmod.client.model.AnimTrackLink;
 import com.flansmod.common.RotatedAxes;
 import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.entity.config.ConfigVehicle;
+import com.wolffsmod.flan.FlanUtils;
 import noppes.npcs.entity.EntityCustomNpc;
 
 import net.minecraft.world.World;
@@ -52,13 +53,13 @@ public abstract class EntityFlanVehicleNPC extends EntityFlanDriveableNPC implem
     @Override
     public void addLeftLinkPoint(String point)
     {
-        leftTrackPoints.add(new Vector3f(point, ""));
+        leftTrackPoints.add(FlanUtils.createVector3f(point));
     }
 
     @Override
     public void addRightLinkPoint(String point)
     {
-        rightTrackPoints.add(new Vector3f(point, ""));
+        rightTrackPoints.add(FlanUtils.createVector3f(point));
     }
 
     @Override

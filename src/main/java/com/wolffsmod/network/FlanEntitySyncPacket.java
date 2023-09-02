@@ -2,6 +2,7 @@ package com.wolffsmod.network;
 
 import com.wolffsmod.WolffNPCMod;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
+import com.wolffsmod.customnpc.IMixinEntityNPCInterface;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -65,10 +66,10 @@ public class FlanEntitySyncPacket implements IMessage
         public IMessage onMessage(FlanEntitySyncPacket message, MessageContext ctx)
         {
             Entity entity = Minecraft.getMinecraft().theWorld.getEntityByID(message.entityId);
-            if (entity instanceof EntityCustomNpc && ((EntityCustomNpc)entity).getFlanDriveableEntity().isPresent())
+            if (entity instanceof EntityCustomNpc && ((IMixinEntityNPCInterface)entity).getFlanDriveableEntity().isPresent())
             {
                 EntityCustomNpc npc = (EntityCustomNpc) entity;
-                EntityFlanDriveableNPC driveable = npc.getFlanDriveableEntity().get();
+                EntityFlanDriveableNPC driveable = ((IMixinEntityNPCInterface)npc).getFlanDriveableEntity().get();
                 driveable.driver.setLocalYaw(message.driverYaw);
                 driveable.driver.setPitch(message.driverPitch);
                 driveable.renderYawOffset = npc.renderYawOffset = message.renderYawOffset;
@@ -78,7 +79,7 @@ public class FlanEntitySyncPacket implements IMessage
             }
             else
             {
-                WolffNPCMod.logger.error("Sync Packet got wrong Entity ID");
+                WolffNPCMod.log.error("Sync Packet got wrong Entity ID");
             }
             return null;
         }

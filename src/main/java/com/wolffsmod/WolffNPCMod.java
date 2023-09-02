@@ -1,5 +1,6 @@
 package com.wolffsmod;
 
+import com.wolffsmod.network.FlanAnimPacket;
 import com.wolffsmod.network.FlanEntitySyncPacket;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -15,21 +16,23 @@ import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.MOD_VERSION, dependencies="after: customnpcs; required-after: flansmod")
-
+@Mod(modid = ModInfo.MOD_ID,
+		name = ModInfo.NAME,
+		version = ModInfo.VERSION,
+		dependencies="required-after: customnpcs; required-after: flansmod")
 public class WolffNPCMod
 {
-	@SidedProxy(clientSide = "com.wolffsmod.ClientProxy", serverSide = "com.wolffsmod.ServerProxy")
-	public static ServerProxy PROXY;
+	@SidedProxy(clientSide = "com.wolffsmod.ClientProxy", serverSide = "com.wolffsmod.CommonProxy")
+	public static CommonProxy proxy;
 	
-	@Instance(Strings.MOD_ID)
-	public static WolffNPCMod INSTANCE;
+	@Instance(ModInfo.MOD_ID)
+	public static WolffNPCMod instance;
 
 	public static Configuration config;
 
 	public static SimpleNetworkWrapper network;
 
-	public static Logger logger = LogManager.getLogger("Wolff's NPC Vehicles");
+	public static final Logger log = LogManager.getLogger(ModInfo.MOD_ID);
 
 	public static boolean ignoreFrustumCheckForNpcVehicles = true;
 	public static boolean ignoreFrustumCheckForLargeEntities = true;
@@ -77,15 +80,16 @@ public class WolffNPCMod
 		if (config.hasChanged())
 			config.save();
 
-		network = NetworkRegistry.INSTANCE.newSimpleChannel("EntitySyncChannel");
+		network = NetworkRegistry.INSTANCE.newSimpleChannel("NPCVehiclesChannel");
 		network.registerMessage(FlanEntitySyncPacket.Handler.class, FlanEntitySyncPacket.class, 0, Side.CLIENT);
+		network.registerMessage(FlanAnimPacket.Handler.class, FlanAnimPacket.class, 1, Side.CLIENT);
 	}
 
 	@EventHandler
 	public static void init(FMLInitializationEvent event)
 	{
 		ModEntityRegistry.registerEntities();
-		PROXY.registerRenderers();
+		proxy.registerRenderers();
 	}
 	
 	@EventHandler
