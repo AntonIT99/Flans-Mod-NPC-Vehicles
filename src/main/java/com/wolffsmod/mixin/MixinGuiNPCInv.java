@@ -76,7 +76,7 @@ public abstract class MixinGuiNPCInv extends GuiContainerNPCInterface2 implement
         }
     }
 
-    @Inject(method = "save", at = @At(value = "TAIL"))
+    @Inject(method = "save", at = @At(value = "TAIL"), remap = false)
     private void onSave(CallbackInfo callbackInfo)
     {
         Client.sendData(EnumPacketServer.MainmenuStatsSave, npc.stats.writeToNBT(new NBTTagCompound()));
