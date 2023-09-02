@@ -32,6 +32,20 @@ public class FlanUtils
 
     private FlanUtils() {}
 
+    public static Vector3f createVector3f(String input)
+    {
+        Vector3f vec = new Vector3f();
+        String noBrackets = input.substring(1, input.length() - 1);
+        String[] split = noBrackets.split(",");
+        if (split.length == 3)
+        {
+            vec.x = Float.parseFloat(split[0]);
+            vec.y = Float.parseFloat(split[1]);
+            vec.z = Float.parseFloat(split[2]);
+        }
+        return vec;
+    }
+
     public static ShootPoint createShootPoint(DriveablePosition rootPos, Vector3f offPos)
     {
         for (Constructor<?> constructor : ShootPoint.class.getConstructors())
