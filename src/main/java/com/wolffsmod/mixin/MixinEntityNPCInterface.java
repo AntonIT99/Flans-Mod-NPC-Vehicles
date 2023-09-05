@@ -31,6 +31,8 @@ import com.wolffsmod.flan.FlanUtils;
 import com.wolffsmod.customnpc.IMixinDataInventory;
 import com.wolffsmod.network.EnumAnimPacket;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import noppes.npcs.CustomNpcs;
 import noppes.npcs.DataAdvanced;
 import noppes.npcs.DataDisplay;
@@ -744,5 +746,28 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     public void setLastBurst(boolean lastBurst)
     {
         this.lastBurst = lastBurst;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void performHurtAnimation()
+    {
+        super.performHurtAnimation();
+        removeHurtEffectWhenTurnedOff();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void handleHealthUpdate(byte b)
+    {
+        super.handleHealthUpdate(b);
+        removeHurtEffectWhenTurnedOff();
+    }
+
+    @Unique
+    private void removeHurtEffectWhenTurnedOff()
+    {
+        if (!((IMixinDataDisplay)display).getDisplayHurtEffect())
+            maxHurtTime = hurtTime = 0;
     }
 }

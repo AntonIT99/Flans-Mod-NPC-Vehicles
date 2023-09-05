@@ -20,6 +20,8 @@ public abstract class MixinDataDisplay implements IMixinDataDisplay
     private boolean hasFlanReloadAnimation = true;
     @Unique
     private boolean hasFlanMeleeAnimation = true;
+    @Unique
+    private boolean displayHurtEffect = true;
 
     @Inject(method = "writeToNBT", at = @At(value = "TAIL"), remap = false)
     private void onWriteToNBT(NBTTagCompound nbttagcompound, CallbackInfoReturnable<NBTTagCompound> cir)
@@ -27,6 +29,7 @@ public abstract class MixinDataDisplay implements IMixinDataDisplay
         nbttagcompound.setBoolean("FlanShootAnimation", hasFlanShootAnimation);
         nbttagcompound.setBoolean("FlanReloadAnimation", hasFlanReloadAnimation);
         nbttagcompound.setBoolean("FlanMeleeAnimation", hasFlanMeleeAnimation);
+        nbttagcompound.setBoolean("DisplayHurt", displayHurtEffect);
     }
 
     @Inject(method = "readToNBT", at = @At(value = "TAIL"), remap = false)
@@ -35,6 +38,7 @@ public abstract class MixinDataDisplay implements IMixinDataDisplay
         hasFlanShootAnimation = nbttagcompound.getBoolean("FlanShootAnimation");
         hasFlanReloadAnimation = nbttagcompound.getBoolean("FlanReloadAnimation");
         hasFlanMeleeAnimation = nbttagcompound.getBoolean("FlanMeleeAnimation");
+        displayHurtEffect = nbttagcompound.getBoolean("DisplayHurt");
     }
 
     @Override
@@ -56,6 +60,12 @@ public abstract class MixinDataDisplay implements IMixinDataDisplay
     }
 
     @Override
+    public boolean getDisplayHurtEffect()
+    {
+        return displayHurtEffect;
+    }
+
+    @Override
     public void setHasFlanShootAnimation(boolean hasFlanShootAnimation)
     {
         this.hasFlanShootAnimation = hasFlanShootAnimation;
@@ -71,5 +81,11 @@ public abstract class MixinDataDisplay implements IMixinDataDisplay
     public void setHasFlanMeleeAnimation(boolean hasFlanMeleeAnimation)
     {
         this.hasFlanMeleeAnimation = hasFlanMeleeAnimation;
+    }
+
+    @Override
+    public void setDisplayHurtEffect(boolean displayHurt)
+    {
+        this.displayHurtEffect = displayHurt;
     }
 }

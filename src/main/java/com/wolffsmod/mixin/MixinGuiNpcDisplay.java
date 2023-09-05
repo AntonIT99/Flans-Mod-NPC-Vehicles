@@ -6,6 +6,7 @@ import noppes.npcs.client.gui.mainmenu.GuiNpcDisplay;
 import noppes.npcs.client.gui.util.GuiNPCInterface2;
 import noppes.npcs.client.gui.util.GuiNpcButton;
 import noppes.npcs.client.gui.util.GuiNpcLabel;
+import noppes.npcs.client.gui.util.GuiNpcTextField;
 import noppes.npcs.client.gui.util.IGuiData;
 import noppes.npcs.client.gui.util.ITextfieldListener;
 import noppes.npcs.entity.EntityNPCInterface;
@@ -33,6 +34,9 @@ public abstract class MixinGuiNpcDisplay extends GuiNPCInterface2 implements ITe
 
         addLabel(new GuiNpcLabel(21, "Flan Melee Animations", guiLeft + 240, guiTop + 193));
         addButton(new GuiNpcButton(21, guiLeft + 350, guiTop + 188, 50, 20, new String[]{"gui.no", "gui.yes"}, ((IMixinDataDisplay)npc.display).getHasFlanMeleeAnimation() ? 1:0));
+
+        addLabel(new GuiNpcLabel(22, "Display Hurt Effect", guiLeft + 255, guiTop + 55));
+        addButton(new GuiNpcButton(22, guiLeft + 360, guiTop + 50, 50, 20, new String[]{"gui.no", "gui.yes"}, ((IMixinDataDisplay)npc.display).getDisplayHurtEffect() ? 1:0));
     }
 
     @Inject(method = "actionPerformed", at = @At(value = "TAIL"))
@@ -47,6 +51,11 @@ public abstract class MixinGuiNpcDisplay extends GuiNPCInterface2 implements ITe
         else if (guibutton.id == 21)
         {
             ((IMixinDataDisplay)npc.display).setHasFlanMeleeAnimation(((GuiNpcButton)guibutton).getValue() == 1);
+            save();
+        }
+        else if (guibutton.id == 22)
+        {
+            ((IMixinDataDisplay)npc.display).setDisplayHurtEffect(((GuiNpcButton)guibutton).getValue() == 1);
             save();
         }
     }
