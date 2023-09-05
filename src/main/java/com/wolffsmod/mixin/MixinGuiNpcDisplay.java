@@ -1,12 +1,10 @@
 package com.wolffsmod.mixin;
 
 import com.wolffsmod.customnpc.IMixinDataDisplay;
-import com.wolffsmod.customnpc.IMixinDataInventory;
 import noppes.npcs.client.gui.mainmenu.GuiNpcDisplay;
 import noppes.npcs.client.gui.util.GuiNPCInterface2;
 import noppes.npcs.client.gui.util.GuiNpcButton;
 import noppes.npcs.client.gui.util.GuiNpcLabel;
-import noppes.npcs.client.gui.util.GuiNpcTextField;
 import noppes.npcs.client.gui.util.IGuiData;
 import noppes.npcs.client.gui.util.ITextfieldListener;
 import noppes.npcs.entity.EntityNPCInterface;

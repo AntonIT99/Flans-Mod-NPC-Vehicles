@@ -6,10 +6,11 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.Entity;
 
 
-public class ModEntityRegistry {
-	private ModEntityRegistry() {}
-
+public class ModEntityRegistry
+{
 	private static int entityID = 0;
+
+	private ModEntityRegistry() {}
 
 	public static void registerEntities()
 	{

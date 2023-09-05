@@ -47,7 +47,7 @@ public abstract class MixinEntityAIRangedAttack extends EntityAIBase
     {
         entityHost.getLookHelper().setLookPositionWithEntity(attackTarget, 30.0F, 30.0F);
         double var1 = entityHost.getDistanceSq(attackTarget.posX, attackTarget.boundingBox.minY, attackTarget.posZ);
-        float range = entityHost.stats.rangedRange * entityHost.stats.rangedRange;
+        float range = (float) entityHost.stats.rangedRange * entityHost.stats.rangedRange;
 
         if (!navOverride && entityHost.ai.directLOS)
         {
@@ -95,8 +95,14 @@ public abstract class MixinEntityAIRangedAttack extends EntityAIBase
 
                     switch(entityHost.ai.canFireIndirect)
                     {
-                        case 1: indirect = var1 > (double)range / 2; break;
-                        case 2: indirect = !entityHost.getEntitySenses().canSee(attackTarget);
+                        case 1:
+                            indirect = var1 > (double)range / 2;
+                            break;
+                        case 2:
+                            indirect = !entityHost.getEntitySenses().canSee(attackTarget);
+                            break;
+                        default:
+                            break;
                     }
 
                     if (!((IMixinEntityNPCInterface)entityHost).isFlanDriveable() || (((IMixinEntityNPCInterface)entityHost).getFlanDriveableEntity().isPresent() && !((IMixinEntityNPCInterface)entityHost).getFlanDriveableEntity().get().driver.isRotating()))
