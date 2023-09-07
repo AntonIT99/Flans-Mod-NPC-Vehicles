@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = SubGuiNpcResistanceProperties.class)
 public abstract class MixinSubGuiNpcResistanceProperties extends SubGuiInterface implements ISliderListener, ITextfieldListener
 {
-    @Shadow
+    @Shadow(remap = false)
     private Resistances resistances;
 
     @Inject(method = "initGui", at = @At(value = "TAIL"))

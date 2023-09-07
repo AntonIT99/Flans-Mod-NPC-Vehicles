@@ -73,7 +73,7 @@ public abstract class MixinResistances implements IMixinResistances
      * @author Wolff
      * @reason modify the NBTTagCompound
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public NBTTagCompound writeToNBT()
     {
         NBTTagCompound compound = new NBTTagCompound();
