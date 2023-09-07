@@ -562,6 +562,28 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Ram_1A.class, "Dogde Ram (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Taxi_1A.class, "Taxi Car (Manus Pack)");
 		}
+
+		if (ContentPacks.manusDayZ)
+		{
+			//Manus DayZ Pack
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_1A.class, "Chevrolet Suburban 2010");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_2A.class, "Chevrolet Suburban Police");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_3A.class, "Chevrolet Suburban Police K-9");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_GAZ24Volga_1A.class, "GAZ-24 Volga");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_GAZ24Volga_2A.class, "GAZ-24 Volga Russian Police");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_IkarusZ260_1A.class, "Ikarus Z260");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_IkarusZ60_1A.class, "Ikarus Z60");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_1A.class, "Land Rover Defender");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_2A.class, "Land Rover Defender Military");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_3A.class, "Land Rover Defender Hart Top");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_4A.class, "Land Rover Defender Open Roof");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_1A.class, "UAZ-469");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_2A.class, "UAZ-469 Open Roof");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_3A.class, "UAZ-469 Paradnyj Parade Car");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_VWPassatB2_1A.class, "VW Passat B2 Yellow Hatchback");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_VWPassatB2_2A.class, "VW Passat B2 Red Hatchback");
+
+		}
 	}
 
 	public static void createEntity(Class<? extends Entity> entityClass, String entityName)

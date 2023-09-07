@@ -578,5 +578,26 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Taxi_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.civil.ModelCivil_Vehicle_Taxi_1(), "Taxi/Taxi.png"));
 
 		}
+
+		if (ContentPacks.manusDayZ)
+		{
+			//Manus DayZ Pack
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_ChevroletSuburban2010_1(), "ChevroletSuburban2010/ChevroletSuburban2010_Black.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_ChevroletSuburban2010_2(), "ChevroletSuburbanPolice/ChevroletSuburbanPolice.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_3A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_ChevroletSuburban2010_3(), "ChevroletSuburbanPoliceK9/ChevroletSuburbanPoliceK9.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_GAZ24Volga_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_GAZ24Volga_1(), "GAZ24Volga/GAZ24Volga.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_GAZ24Volga_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_GAZ24Volga_2(), "GAZ24VolgaPolice/GAZ24VolgaPolice.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_IkarusZ260_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_IkarusZ260_1(), "IkarusZ60/IkarusZ60.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_IkarusZ60_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_IkarusZ60_1(), "IkarusZ260/IkarusZ260.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_LandRoverDefender_1(), "LandRoverDefender/LandRoverDefender.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_LandRoverDefender_2(), "LandRoverDefenderMilitary/LandRoverDefenderMilitary.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_3A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_LandRoverDefender_3(), "LandRoverDefenderHartTop/LandRoverDefenderHartTop.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_4A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_LandRoverDefender_4(), "LandRoverDefenderOpenRoof/LandRoverDefenderOpenRoof.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_UAZ469_1(), "UAZ469/UAZ469_Green.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_UAZ469_2(), "UAZ469OpenRoof/UAZ469OpenRoof.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_3A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_UAZ469_3(), "UAZ469ParadeCar/UAZ469ParadeCar.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_VWPassatB2_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_VWPassatB2_1(), "VWPassatB2/VWPassatB2_Red.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_VWPassatB2_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_VWPassatB2_2(), "VWPassatB2/VWPassatB2_Yellow.png"));
+		}
 	}
 }
