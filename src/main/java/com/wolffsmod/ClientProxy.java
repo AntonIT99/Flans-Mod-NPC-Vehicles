@@ -1,6 +1,11 @@
 package com.wolffsmod;
 
 import com.flansmod.client.model.RenderBullet;
+import com.wolffsmod.entity.w44.EntityFlak20mm;
+import com.wolffsmod.entity.w44.EntityLeFH18;
+import com.wolffsmod.entity.w44.EntityLeIG18;
+import com.wolffsmod.entity.w44.EntityM7Priest;
+import com.wolffsmod.entity.w44.EntityOstwind;
 import com.wolffsmod.flan.EntityNPCFlanBullet;
 import com.wolffsmod.render.RenderFlansModEntity;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -536,6 +541,13 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.Entity44_ZiS2.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelZiS2(), "ZiS23/ZiS23.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.Entity44_ZiS3.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelZiS3(), "ZiS23/ZiS23.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.Entity44_ZiS30.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelZiS30()));
+
+			//Additional Warfare 44 models found in TaP
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityFlak20mm.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelFlak20()).scale(0.9F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityLeFH18.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelLeFH18()).scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityLeIG18.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelIG18()).scale(1.3F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityM7Priest.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelM7Priest()).scale(1.15F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityOstwind.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelOstwind()));
 		}
 
 		if (ContentPacks.exufo)
@@ -598,6 +610,13 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_3A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_UAZ469_3(), "UAZ469ParadeCar/UAZ469ParadeCar.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_VWPassatB2_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_VWPassatB2_1(), "VWPassatB2/VWPassatB2_Red.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_VWPassatB2_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.dayz.ModelDayZ_Vehicle_VWPassatB2_2(), "VWPassatB2/VWPassatB2_Yellow.png"));
+		}
+
+		if (ContentPacks.sturmgeschuetz)
+		{
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.sturmgeschuetz.EntityBobSemple.class, new RenderFlansModEntity(new com.wolffsmod.model.sturmgeschuetz.ModelBobSemple()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.sturmgeschuetz.EntityDisstonTractor.class, new RenderFlansModEntity(new com.wolffsmod.model.sturmgeschuetz.ModelDisstonTractor()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.sturmgeschuetz.EntityFerdinand.class, new RenderFlansModEntity(new com.wolffsmod.model.sturmgeschuetz.ModelFerdinand(), "PanzerjaegerFerdinand/Ferdinand.png"));
 		}
 	}
 }

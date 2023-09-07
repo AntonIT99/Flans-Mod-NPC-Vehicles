@@ -1,5 +1,10 @@
 package com.wolffsmod;
 
+import com.wolffsmod.entity.w44.EntityFlak20mm;
+import com.wolffsmod.entity.w44.EntityLeFH18;
+import com.wolffsmod.entity.w44.EntityLeIG18;
+import com.wolffsmod.entity.w44.EntityM7Priest;
+import com.wolffsmod.entity.w44.EntityOstwind;
 import com.wolffsmod.flan.EntityNPCFlanBullet;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
@@ -521,6 +526,13 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.w44.Entity44_ZiS2.class, "57mm ZiS-2 (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_ZiS3.class, "76mm ZiS-3 (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_ZiS30.class, "57mm ZiS-30 (Warfare 44)");
+
+			//Additional Warfare 44 models found in TaP
+			createEntity(EntityFlak20mm.class, "20mm FlaK 30/38");
+			createEntity(EntityLeFH18.class, "105mm leFH 18");
+			createEntity(EntityLeIG18.class, "75mm leIG 18");
+			createEntity(EntityM7Priest.class, "M7 Priest");
+			createEntity(EntityOstwind.class, "Flakpanzer IV Ostwind");
 		}
 
 		if (ContentPacks.exufo)
@@ -566,23 +578,29 @@ public class ModEntityRegistry
 		if (ContentPacks.manusDayZ)
 		{
 			//Manus DayZ Pack
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_1A.class, "Chevrolet Suburban 2010");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_2A.class, "Chevrolet Suburban Police");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_3A.class, "Chevrolet Suburban Police K-9");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_GAZ24Volga_1A.class, "GAZ-24 Volga");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_GAZ24Volga_2A.class, "GAZ-24 Volga Russian Police");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_IkarusZ260_1A.class, "Ikarus Z260");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_IkarusZ60_1A.class, "Ikarus Z60");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_1A.class, "Land Rover Defender");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_2A.class, "Land Rover Defender Military");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_3A.class, "Land Rover Defender Hart Top");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_4A.class, "Land Rover Defender Open Roof");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_1A.class, "UAZ-469");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_2A.class, "UAZ-469 Open Roof");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_3A.class, "UAZ-469 Paradnyj Parade Car");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_VWPassatB2_1A.class, "VW Passat B2 Yellow Hatchback");
-			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_VWPassatB2_2A.class, "VW Passat B2 Red Hatchback");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_1A.class, "Chevrolet Suburban 2010 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_2A.class, "Chevrolet Suburban Police (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_3A.class, "Chevrolet Suburban Police K-9 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_GAZ24Volga_1A.class, "GAZ-24 Volga (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_GAZ24Volga_2A.class, "GAZ-24 Volga Russian Police (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_IkarusZ260_1A.class, "Ikarus Z260 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_IkarusZ60_1A.class, "Ikarus Z60 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_1A.class, "Land Rover Defender (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_2A.class, "Land Rover Defender Military (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_3A.class, "Land Rover Defender Hart Top (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_4A.class, "Land Rover Defender Open Roof (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_1A.class, "UAZ-469 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_2A.class, "UAZ-469 Open Roof (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_3A.class, "UAZ-469 Paradnyj Parade Car (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_VWPassatB2_1A.class, "VW Passat B2 Yellow Hatchback (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_VWPassatB2_2A.class, "VW Passat B2 Red Hatchback (Manus Pack)");
+		}
 
+		if (ContentPacks.sturmgeschuetz)
+		{
+			createEntity(com.wolffsmod.entity.sturmgeschuetz.EntityBobSemple.class, "Bob Semple Tank (Sturmgeschuetz)");
+			createEntity(com.wolffsmod.entity.sturmgeschuetz.EntityDisstonTractor.class, "Disston Tractor Tank (Sturmgeschuetz)");
+			createEntity(com.wolffsmod.entity.sturmgeschuetz.EntityFerdinand.class, "Panzerjaeger Ferdinand (Sturmgeschuetz)");
 		}
 	}
 
