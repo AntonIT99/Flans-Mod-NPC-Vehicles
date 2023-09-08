@@ -22,6 +22,8 @@ public class Entity44_OI extends EntityFlanVehicleNPC
         setPassenger("1 55 22 -18 core -120 20 -5 5 44_47mmCannon PassengerGun1");
         setPassenger("2 55 22 18 core -20 120 -5 5 44_47mmCannon PassengerGun2");
         setPassenger("3 -77 31 0 core 70 280 -10 5 44_Type99 PassengerGun3");
+        setPassengerOffsetYaw(1, 0F);
+        setPassengerOffsetYaw(2, 0F);
         addBarrelPosition("76 55 0");
         addGunOrigin("1 60 12 -18");
         addGunOrigin("2 60 12 18");
