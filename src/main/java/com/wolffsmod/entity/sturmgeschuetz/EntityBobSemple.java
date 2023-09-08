@@ -15,6 +15,7 @@ public class EntityBobSemple extends EntityFlanVehicleNPC
     @Override
     public void setupConfig()
     {
+        setDriver("0 0 0 0 0 0 0");
         setTurnSpeed(0.3F);
     }
 }

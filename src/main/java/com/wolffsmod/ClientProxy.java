@@ -614,8 +614,8 @@ public class ClientProxy extends CommonProxy
 
 		if (ContentPacks.sturmgeschuetz)
 		{
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.sturmgeschuetz.EntityBobSemple.class, new RenderFlansModEntity(new com.wolffsmod.model.sturmgeschuetz.ModelBobSemple()));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.sturmgeschuetz.EntityDisstonTractor.class, new RenderFlansModEntity(new com.wolffsmod.model.sturmgeschuetz.ModelDisstonTractor()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.sturmgeschuetz.EntityBobSemple.class, new RenderFlansModEntity(new com.wolffsmod.model.sturmgeschuetz.ModelBobSemple()).scale(0.8F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.sturmgeschuetz.EntityDisstonTractor.class, new RenderFlansModEntity(new com.wolffsmod.model.sturmgeschuetz.ModelDisstonTractor()).scale(0.6F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.sturmgeschuetz.EntityFerdinand.class, new RenderFlansModEntity(new com.wolffsmod.model.sturmgeschuetz.ModelFerdinand(), "PanzerjaegerFerdinand/Ferdinand.png"));
 		}
 	}
