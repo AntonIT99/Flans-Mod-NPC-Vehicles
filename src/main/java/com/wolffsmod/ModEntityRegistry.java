@@ -653,6 +653,11 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.akaku.EntityZundappCN.class, "Zundapp K800 (Akaku)");
 			createEntity(com.wolffsmod.entity.akaku.EntityZundappN.class, "Zundapp KS 750 (Akaku)");
 		}
+
+		if (ContentPacks.aoba)
+		{
+			createEntity(com.wolffsmod.entity.aoba.EntityT95.class, "T95 Gun Motor Carriage");
+		}
 	}
 
 	public static void createEntity(Class<? extends Entity> entityClass, String entityName)

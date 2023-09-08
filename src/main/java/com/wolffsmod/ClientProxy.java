@@ -1,11 +1,6 @@
 package com.wolffsmod;
 
 import com.flansmod.client.model.RenderBullet;
-import com.wolffsmod.entity.w44.EntityFlak20mm;
-import com.wolffsmod.entity.w44.EntityLeFH18;
-import com.wolffsmod.entity.w44.EntityLeIG18;
-import com.wolffsmod.entity.w44.EntityM7Priest;
-import com.wolffsmod.entity.w44.EntityOstwind;
 import com.wolffsmod.flan.EntityNPCFlanBullet;
 import com.wolffsmod.render.RenderFlansModEntity;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -668,6 +663,11 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityZundappC.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelZundappC(), "Zundapp/Zundapp_C.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityZundappCN.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelZundappCN(), "Zundapp/Zundapp_CN.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityZundappN.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelZundappN(), "Zundapp/Zundapp_N.png"));
+		}
+
+		if (ContentPacks.aoba)
+		{
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.aoba.EntityT95.class, new RenderFlansModEntity(new com.wolffsmod.model.aoba.ModelT95()).scale(1.25F));
 		}
 	}
 }

@@ -29,6 +29,7 @@ public class ContentPacks
     public static boolean prototype = true;
     public static boolean sturmgeschuetz = true;
     public static boolean akaku = true;
+    public static boolean aoba = true;
 
     private ContentPacks() {}
 
@@ -58,6 +59,7 @@ public class ContentPacks
         exufo = config.getBoolean("Exufo's cop cars", "Content Packs", exufo, "Enable content pack models");
         prototype = config.getBoolean("Prototype", "Content Packs", prototype, "Enable content pack models");
         sturmgeschuetz = config.getBoolean("Sturmgeschütz", "Content Packs", sturmgeschuetz, "Enable content pack models");
-        akaku = config.getBoolean("Akaku", "Content Packs", sturmgeschuetz, "Enable content pack models");
+        akaku = config.getBoolean("Akaku", "Content Packs", akaku, "Enable content pack models");
+        aoba = config.getBoolean("Aoba", "Content Packs", aoba, "Enable content pack models");
     }
 }
