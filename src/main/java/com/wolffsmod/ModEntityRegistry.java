@@ -538,8 +538,8 @@ public class ModEntityRegistry
 		if (ContentPacks.exufo)
 		{
 			//Exufo's cop cars
-			createEntity(com.wolffsmod.entity.exufo.EntityCopvic.class, "Ford Crown Victoria Police (brlanyangxdd)");
-			createEntity(com.wolffsmod.entity.exufo.EntityCV.class, "Ford Crown Victoria (brlanyangxdd)");
+			createEntity(com.wolffsmod.entity.exufo.EntityCopvic.class, "Ford Crown Victoria Police (Exufo)");
+			createEntity(com.wolffsmod.entity.exufo.EntityCV.class, "Ford Crown Victoria (Exufo)");
 		}
 
 		if (ContentPacks.prototype)

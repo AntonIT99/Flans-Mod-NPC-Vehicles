@@ -28,7 +28,7 @@ configurations {
 
 apply plugin: 'forge'
 
-version = "5.0"
+version = "6.0"
 group= "com.wolffsmod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Flan's Mod NPC Vehicles"
 sourceCompatibility = 1.8

@@ -21,6 +21,9 @@ package noppes.npcs.ai:
 - EntityAIAnimation
 - EntityAIRangedAttack
 
+package noppes.npcs.client.gui:
+- SubGuiNpcResistanceProperties
+
 package noppes.npcs.client.gui.mainmenu:
 - GuiNpcDisplay
 - GuiNPCInv
