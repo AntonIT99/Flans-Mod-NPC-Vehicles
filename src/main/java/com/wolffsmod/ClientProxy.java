@@ -618,5 +618,56 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.sturmgeschuetz.EntityDisstonTractor.class, new RenderFlansModEntity(new com.wolffsmod.model.sturmgeschuetz.ModelDisstonTractor()).scale(0.6F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.sturmgeschuetz.EntityFerdinand.class, new RenderFlansModEntity(new com.wolffsmod.model.sturmgeschuetz.ModelFerdinand(), "PanzerjaegerFerdinand/Ferdinand.png"));
 		}
+
+		if (ContentPacks.akaku)
+		{
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityHanomag.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelHanomag()).scale(1.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityMeillerwagen.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelMeillerwagen()).scale(1.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityMeillerwagenN.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelMeillerwagenN()).scale(1.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityMeillerwagenR.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelMeillerwagenR()).scale(1.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityMeillerwagenRN.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelMeillerwagenRN()).scale(1.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzCCE.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzCCE(), "OpelBlitz_akaku/OpelBlitz.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzCCEAK.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzCCEAK(), "OpelBlitz_akaku/OpelBlitz_Afrikakorps.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzCCF1.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzCCF1(), "OpelBlitz_akaku/OpelBlitz.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzCCF1AK.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzCCF1AK(), "OpelBlitz_akaku/OpelBlitz_Afrikakorps.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzCCFB.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzCCFB(), "OpelBlitz_akaku/OpelBlitz.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzCCFBAK.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzCCFBAK(), "OpelBlitz_akaku/OpelBlitz_Afrikakorps.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzCCFT.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzCCFT(), "OpelBlitz_akaku/OpelBlitz.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzCCFTAK.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzCCFTAK(), "OpelBlitz_akaku/OpelBlitz_Afrikakorps.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzDamaged.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzDamaged(), "OpelBlitz_akaku/OpelBlitz_Damaged.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzDamagedAK.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzDamagedAK(), "OpelBlitz_akaku/OpelBlitz_Afrikakorps_Damaged.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzTCFB.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzTCFB(), "OpelBlitz_akaku/OpelBlitz.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzTCFBAK.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzTCFBAK(), "OpelBlitz_akaku/OpelBlitz_Afrikakorps.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzTNE.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzTNE(), "OpelBlitz_akaku/OpelBlitz.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzTNEAK.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzTNEAK(), "OpelBlitz_akaku/OpelBlitz_Afrikakorps.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzTNF1.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzTNF1(), "OpelBlitz_akaku/OpelBlitz.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzTNF1AK.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzTNF1AK(), "OpelBlitz_akaku/OpelBlitz_Afrikakorps.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzTNF2.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzTNF2(), "OpelBlitz_akaku/OpelBlitz.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityOpelBlitzTNF2AK.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelOpelBlitzTNF2AK(), "OpelBlitz_akaku/OpelBlitz_Afrikakorps.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntitySS.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelSS(), "MercedesBenzSS/MercedesBenzSS_Red.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntitySSBlack.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelSSBlack(), "MercedesBenzSS/MercedesBenzSS_Black.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntitySSK.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelSSK(), "MercedesBenzSSK/MercedesBenzSSK.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntitySSKFlug.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelSSKFlug(), "MercedesBenzSSK/MercedesBenzSSK_Flug.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntitySSKL1.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelSSKL1(), "MercedesBenzSSKL/MercedesBenzSSKL_1.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntitySSKL2.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelSSKL2(), "MercedesBenzSSKL/MercedesBenzSSKL_2.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntitySSKL3.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelSSKL3(), "MercedesBenzSSKL/MercedesBenzSSKL_3.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntitySSKL4.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelSSKL4(), "MercedesBenzSSKL/MercedesBenzSSKL_4.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntitySSKL5.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelSSKL5(), "MercedesBenzSSKL/MercedesBenzSSKL_5.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntitySSKL6.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelSSKL6(), "MercedesBenzSSKL/MercedesBenzSSKL_6.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntitySSWehr.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelSSWehr(), "MercedesBenzSSWehrmacht/MercedesBenzSSWehrmacht.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityTankwagen.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelTankwagen(), "OpelBlitzTankwagen/OpelBlitzTankwagen.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityTankwagenAK.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelTankwagenAK(), "OpelBlitzTankwagen/OpelBlitzTankwagen_AK.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityTankwagenAKH.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelTankwagenAKH(), "OpelBlitzTankwagen/OpelBlitzTankwagen_AKH.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityTankwagenH.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelTankwagenH(), "OpelBlitzTankwagen/OpelBlitzTankwagen_H.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityW31.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelW31(), "W31/W31.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityW31AK.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelW31AK(), "W31/W31AK.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityW31M.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelW31M(), "W31/W31M.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityZundapp.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelZundapp(), "Zundapp/Zundapp.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityZundappAK.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelZundappAK(), "Zundapp/Zundapp_AK.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityZundappAKN.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelZundappAKN(), "Zundapp/Zundapp_AKN.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityZundappC.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelZundappC(), "Zundapp/Zundapp_C.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityZundappCN.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelZundappCN(), "Zundapp/Zundapp_CN.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.akaku.EntityZundappN.class, new RenderFlansModEntity(new com.wolffsmod.model.akaku.ModelZundappN(), "Zundapp/Zundapp_N.png"));
+		}
 	}
 }

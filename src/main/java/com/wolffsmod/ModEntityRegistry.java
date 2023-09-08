@@ -602,6 +602,57 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.sturmgeschuetz.EntityDisstonTractor.class, "Disston Tractor Tank (Sturmgeschuetz)");
 			createEntity(com.wolffsmod.entity.sturmgeschuetz.EntityFerdinand.class, "Panzerjaeger Ferdinand (Sturmgeschuetz)");
 		}
+
+		if (ContentPacks.akaku)
+		{
+			createEntity(com.wolffsmod.entity.akaku.EntityHanomag.class, "Hanomag SS 100 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityMeillerwagen.class, "Hanomag Towing Meillerwagen Lowered with A4/V2 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityMeillerwagenN.class, "Hanomag Towing Meillerwagen Lowered (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityMeillerwagenR.class, "Hanomag Towing Meillerwagen Raised with A4/V2 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityMeillerwagenRN.class, "Hanomag Towing Meillerwagen Raised (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCE.class, "Opel Blitz Kfz 305 Carrier Empty (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCEAK.class, "Opel Blitz Kfz 305 Carrier Afrikakorps Empty (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCF1.class, "Opel Blitz Kfz 305 Carrier Full w/ Misc. (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCF1AK.class, "Opel Blitz Kfz 305 Carrier Afrikakorps Full w/ Misc. (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCFB.class, "Opel Blitz Kfz 305 Carrier Full w/ Barrels (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCFBAK.class, "Opel Blitz Kfz 305 Carrier Afrikakorps Full w/ Barrels (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCFT.class, "Opel Blitz Kfz 305 Troop Carrier (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCFTAK.class, "Opel Blitz Kfz 305 Troop Carrier Afrikakorps (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzDamaged.class, "Opel Blitz Kfz 305 Carrier Damaged (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzDamagedAK.class, "Opel Blitz Kfz 305 Carrier Afrikakorps Damaged (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTCFB.class, "Opel Blitz Kfz 305 Transport Full w/ Barrels (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTCFBAK.class, "Opel Blitz Kfz 305 Transport Afrikakorps Full w/ Barrels (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTNE.class, "Opel Blitz Kfz 305 Transport Empty (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTNEAK.class, "Opel Blitz Kfz 305 Transport Afrikakorps Empty (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTNF1.class, "Opel Blitz Kfz 305 Transport Full w/ Misc. (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTNF1AK.class, "Opel Blitz Kfz 305 Transport Afrikakorps Full w/ Misc. (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTNF2.class, "Opel Blitz Kfz 305 Transport Full w/ Crates (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTNF2AK.class, "Opel Blitz Kfz 305 Transport Afrikakorps Full w/ Crates (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySS.class, "Mercedes Benz SS Red (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSBlack.class, "Mercedes Benz SS Black (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSK.class, "Mercedes Benz SSK (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKFlug.class, "Mercedes Benz SSK The Flug's (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKL1.class, "Mercedes Benz SSKL Red No.1 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKL2.class, "Mercedes Benz SSKL Blue No.2 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKL3.class, "Mercedes Benz SSKL Green No.3 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKL4.class, "Mercedes Benz SSKL Yellow No.4 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKL5.class, "Mercedes Benz SSKL Brown No.5 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKL6.class, "Mercedes Benz SSKL White No.6 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSWehr.class, "Mercedes Benz SS Wehrmacht (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityTankwagen.class, "Opel Blitz Kfz 385 Tankwagen (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityTankwagenAK.class, "Opel Blitz Kfz 385 Tankwagen Afrikakorps (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityTankwagenAKH.class, "Opel Blitz Kfz 385 Tankwagen H Afrikakorps (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityTankwagenH.class, "Opel Blitz Kfz 385 Tankwagen H (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityW31.class, "Mercedes Benz W31 G4 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityW31AK.class, "Wehrmacht W31 G4 Afrikakorps (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityW31M.class, "Wehrmacht W31 G4 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityZundapp.class, "Zundapp KS 750 S (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityZundappAK.class, "Zundapp KS 750 S Afrikakorps (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityZundappAKN.class, "Zundapp KS 750 Afrikakorps (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityZundappC.class, "Zundapp K800 S (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityZundappCN.class, "Zundapp K800 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityZundappN.class, "Zundapp KS 750 (Akaku)");
+		}
 	}
 
 	public static void createEntity(Class<? extends Entity> entityClass, String entityName)
