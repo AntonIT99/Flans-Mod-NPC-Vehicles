@@ -770,4 +770,11 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         if (!((IMixinDataDisplay)display).getDisplayHurtEffect())
             maxHurtTime = hurtTime = 0;
     }
+
+    @Inject(method = "onDeathUpdate", at = @At(value = "HEAD"))
+    private void beforeDeathUpdate(CallbackInfo callbackInfo)
+    {
+        if (!((IMixinDataDisplay)display).getDisplayHurtEffect() && stats.hideKilledBody)
+            deathTime = 20;
+    }
 }
