@@ -658,6 +658,49 @@ public class ModEntityRegistry
 		{
 			createEntity(com.wolffsmod.entity.aoba.EntityT95.class, "T95 Gun Motor Carriage");
 		}
+
+		if (ContentPacks.cow)
+		{
+			createEntity(com.wolffsmod.entity.cow.EntityKa27.class, "Kamov Ka-27 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.EntityPantherG.class, "Panzer V Panther Ausf. G (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.EntityTiger2.class, "Panzer VI Tiger II (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityamx30.class, "AMX-30 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityamx30dca.class, "AMX-30 DCA (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityamx40.class, "AMX-40 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitycl13a5.class, "CL-13A Mk5 Sabre (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitycl13b.class, "CL-13B Mk6 Sabre (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitydickermax.class, "Dicker Max (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitydshkgaz.class, "4M GAZ DSHK (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityf4cphantom.class, "McDonnell F-4C Phantom II (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityf86f2.class, "North American F-86F-2 Sabre (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityf86f40.class, "North American F-86F-40 Sabre (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityhmswarspite.class, "HMS Warspite (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityis4.class, "IS-4 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityjpz45.class, "Kanonenjagdpanzer (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitykpz70.class, "Kampfpanzer 70 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityleclerc.class, "Leclerc (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityleo2a4.class, "Leopard 2A4 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityleo2k.class, "Leopard 2K (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitym103.class, "M103 Heavy (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitym1abrams.class, "M1 Abrams (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitym26italy.class, "M26 Ariete (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitym26pershing.class, "M26 Pershing (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitym3bradley.class, "M3 Bradley (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitymbt70.class, "MBT-70 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitymig19pt.class, "Mikoyan-Gurevich MiG-19PT (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitymitsut2.class, "Mitsubishi T-2 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityraketenjagdpanzer.class, "Raketenjagdpanzer (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityreaperdrone.class, "MQ-9 Reaper (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt10m.class, "T-10M (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt26super.class, "T26 SuperPershing (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt3485.class, "T-34/85 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt44100.class, "T-44-100 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt4485.class, "T-44-85 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt55a.class, "T-55A (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt72a.class, "T-72A (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt80b.class, "T-80B (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt80u.class, "T-80U (Cow West)");
+		}
 	}
 
 	public static void createEntity(Class<? extends Entity> entityClass, String entityName)

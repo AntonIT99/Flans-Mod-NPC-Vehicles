@@ -30,6 +30,7 @@ public class ContentPacks
     public static boolean sturmgeschuetz = true;
     public static boolean akaku = true;
     public static boolean aoba = true;
+    public static boolean cow = true;
 
     private ContentPacks() {}
 
@@ -61,5 +62,6 @@ public class ContentPacks
         sturmgeschuetz = config.getBoolean("Sturmgeschütz", "Content Packs", sturmgeschuetz, "Enable content pack models");
         akaku = config.getBoolean("Akaku", "Content Packs", akaku, "Enable content pack models");
         aoba = config.getBoolean("Aoba", "Content Packs", aoba, "Enable content pack models");
+        cow = config.getBoolean("Cow West", "Content Packs", aoba, "Enable content pack models");
     }
 }
