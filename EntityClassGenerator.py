@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 planes_folder = "planes"
 vehicles_folder = "vehicles"
@@ -190,17 +191,23 @@ def create_rendering_and_registry_list(configs: dict):
 
 
 entity_configs = {}
-for file_name in os.listdir(planes_folder):
-    if file_name.endswith(".txt"):
-        class_name = "Entity" + os.path.splitext(file_name)[0].replace("-", "").replace(" ", "")
-        config = read_config(os.path.join(planes_folder, file_name))
-        entity_configs[class_name] = config
-        create_java_class(class_name, True, get_config_code(config))
 
-for file_name in os.listdir(vehicles_folder):
-    if file_name.endswith(".txt"):
-        class_name = "Entity" + os.path.splitext(file_name)[0].replace("-", "").replace(" ", "")
-        config = read_config(os.path.join(vehicles_folder, file_name))
-        entity_configs[class_name] = config
-        create_java_class(class_name, False, get_config_code(config))
+planes_path = Path(planes_folder)
+if planes_path.exists() and planes_path.is_dir():
+    for file_name in os.listdir(planes_folder):
+        if file_name.endswith(".txt"):
+            class_name = "Entity" + os.path.splitext(file_name)[0].replace("-", "").replace(" ", "")
+            config = read_config(os.path.join(planes_folder, file_name))
+            entity_configs[class_name] = config
+            create_java_class(class_name, True, get_config_code(config))
+
+vehicles_path = Path(vehicles_folder)
+if vehicles_path.exists() and vehicles_path.is_dir():
+    for file_name in os.listdir(vehicles_folder):
+        if file_name.endswith(".txt"):
+            class_name = "Entity" + os.path.splitext(file_name)[0].replace("-", "").replace(" ", "")
+            config = read_config(os.path.join(vehicles_folder, file_name))
+            entity_configs[class_name] = config
+            create_java_class(class_name, False, get_config_code(config))
+
 create_rendering_and_registry_list(entity_configs)
