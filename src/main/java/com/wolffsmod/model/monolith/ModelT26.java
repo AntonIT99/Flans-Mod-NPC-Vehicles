@@ -2,12 +2,11 @@
 
 //Decompiled by Procyon!
 
-package com.wolffsmod.model.monolith;
+package com.flansmod.client.model.monolith;
 
-import com.flansmod.client.tmt.ModelRendererTurbo;
-import com.wolffsmod.model.ModelFlanVehicle;
-
-import net.minecraft.client.model.ModelBase;
+import com.wolffsmod.model.*;
+import com.flansmod.client.tmt.*;
+import net.minecraft.client.model.*;
 
 public class ModelT26 extends ModelFlanVehicle
 {
