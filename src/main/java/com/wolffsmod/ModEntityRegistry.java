@@ -701,6 +701,12 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.cow.Entityt80b.class, "T-80B (Cow West)");
 			createEntity(com.wolffsmod.entity.cow.Entityt80u.class, "T-80U (Cow West)");
 		}
+
+		if (ContentPacks.moneybuster)
+		{
+			createEntity(com.wolffsmod.entity.moneybuster.EntityMortaio35.class, "Mortaio da 81 Mod. 35");
+			createEntity(com.wolffsmod.entity.moneybuster.EntityCarroArmato.class, "Carro Armato L6/40");
+		}
 	}
 
 	public static void createEntity(Class<? extends Entity> entityClass, String entityName)

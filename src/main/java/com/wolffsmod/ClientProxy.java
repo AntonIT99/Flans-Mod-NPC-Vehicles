@@ -712,5 +712,11 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cow.Entityt80b.class, new RenderFlansModEntity(new com.wolffsmod.model.cow.Modelt80b(), "T80B/T80B.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cow.Entityt80u.class, new RenderFlansModEntity(new com.wolffsmod.model.cow.Modelcow_t80u(), "T80U/T80U.png"));
 		}
+
+		if (ContentPacks.moneybuster)
+		{
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.moneybuster.EntityMortaio35.class, new RenderFlansModEntity(new com.wolffsmod.model.moneybuster.ModelMortaio35()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.moneybuster.EntityCarroArmato.class, new RenderFlansModEntity(new com.wolffsmod.model.moneybuster.ModelCarroL640(), "L640/L640.png").scale(1.2F));
+		}
 	}
 }
