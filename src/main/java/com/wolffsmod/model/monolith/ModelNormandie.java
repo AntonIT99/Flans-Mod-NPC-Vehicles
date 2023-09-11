@@ -2,7 +2,7 @@
 
 //Decompiled by Procyon!
 
-package com.flansmod.client.model.monolith;
+package com.wolffsmod.model.monolith;
 
 import com.wolffsmod.model.*;
 import com.flansmod.client.tmt.*;
