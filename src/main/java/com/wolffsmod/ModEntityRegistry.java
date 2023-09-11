@@ -483,7 +483,7 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.w44.Entity44_PantherCommand.class, "Befehlspanzer V Panther (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_PantherG.class, "Panzer V Panther Ausf. G (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_Panzer2C.class, "Panzer II Ausf. C (Warfare 44)");
-			createEntity(com.wolffsmod.entity.w44.Entity44_Panzer38t.class, "Panzer38(t) Ausf. A (Warfare 44)");
+			createEntity(com.wolffsmod.entity.w44.Entity44_Panzer38t.class, "Panzer 38(t) Ausf. A (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_PanzerIIIF.class, "Panzer III Ausf. F (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_PanzerIIIM.class, "Panzer III Ausf. M (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_PanzerIVF1.class, "Panzer IV Ausf. F1 (Warfare 44)");
@@ -704,8 +704,18 @@ public class ModEntityRegistry
 
 		if (ContentPacks.moneybuster)
 		{
-			createEntity(com.wolffsmod.entity.moneybuster.EntityMortaio35.class, "Mortaio da 81 Mod. 35");
-			createEntity(com.wolffsmod.entity.moneybuster.EntityCarroArmato.class, "Carro Armato L6/40");
+			createEntity(com.wolffsmod.entity.moneybuster.EntityMortaio35.class, "Mortaio da 81 Mod. 35 (Moneybuster)");
+			createEntity(com.wolffsmod.entity.moneybuster.EntityCarroArmato.class, "Carro Armato L6/40 (Moneybuster)");
+		}
+
+		if (ContentPacks.wot)
+		{
+			createEntity(com.wolffsmod.entity.wot.EntityE75.class, "Panzer E-75 (World of Tanks)");
+		}
+
+		if (ContentPacks.berggeit)
+		{
+			createEntity(com.wolffsmod.entity.berggeit.EntityKV2.class, "KV-2 (Berggeit)");
 		}
 	}
 

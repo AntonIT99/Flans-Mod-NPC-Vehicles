@@ -31,7 +31,9 @@ public class ContentPacks
     public static boolean akaku = true;
     public static boolean aoba = true;
     public static boolean cow = true;
-    public static boolean moneybuster = false;
+    public static boolean moneybuster = true;
+    public static boolean wot = true;
+    public static boolean berggeit = true;
 
     private ContentPacks() {}
 
@@ -65,5 +67,7 @@ public class ContentPacks
         aoba = config.getBoolean("Aoba", "Content Packs", aoba, "Enable content pack models");
         cow = config.getBoolean("Cow West", "Content Packs", cow, "Enable content pack models");
         moneybuster = config.getBoolean("Moneybuster", "Content Packs", moneybuster, "Enable content pack models");
+        wot = config.getBoolean("World of Tanks", "Content Packs", wot, "Enable content pack models");
+        berggeit = config.getBoolean("Berggeit", "Content Packs", wot, "Enable content pack models");
     }
 }
