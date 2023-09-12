@@ -1,10 +1,5 @@
 package com.wolffsmod;
 
-import com.wolffsmod.entity.w44.EntityFlak20mm;
-import com.wolffsmod.entity.w44.EntityLeFH18;
-import com.wolffsmod.entity.w44.EntityLeIG18;
-import com.wolffsmod.entity.w44.EntityM7Priest;
-import com.wolffsmod.entity.w44.EntityOstwind;
 import com.wolffsmod.flan.EntityNPCFlanBullet;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
@@ -380,7 +375,10 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.monolith.EntityType90.class, "Type 90 Kyu-maru (TaP)");
 
 			//Other TaP
-			createEntity(com.wolffsmod.entity.baf.EntityHurricane.class, "Hawker Hurricane Mk.I (TaP)");
+			createEntity(com.wolffsmod.entity.baf.EntityT0FHurricane.class, "Hawker Hurricane Mk.I (TaP)");
+			createEntity(com.wolffsmod.entity.baf.EntityT1TMosquito.class, "De Havilland Mosquito F Mk II (TaP)");
+			createEntity(com.wolffsmod.entity.baf.EntityT1p5FVickersValiant.class, "Vickers Valiant (TaP)");
+			createEntity(com.wolffsmod.entity.baf.EntityT1p5Fwyvern.class, "Westland Wyvern (TaP)");
 			createEntity(com.wolffsmod.entity.newage.EntityBF109E3.class, "Messerschmitt Bf 109 E-3 (TaP)");
 			createEntity(com.wolffsmod.entity.newage.EntityEurocopterTigerHAD.class, "Eurocopter EC-665 Tigre HAD (TaP)");
 			createEntity(com.wolffsmod.entity.newage.EntityEurocopterTigerUHT.class, "Eurocopter EC-665 Tiger UHT (TaP)");
@@ -393,6 +391,13 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxS5.class, "Toyota Hilux Technical w/ UB-32 RocketPod (TaP)");
 			createEntity(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxSPG9.class, "Toyota Hilux Technical w/ SPG-9 (TaP)");
 			createEntity(com.wolffsmod.entity.tankcraft.EntityM60A1.class, "M60A1 Patton RISE 1975 (TaP)");
+
+			//Additional Warfare 44 models found in TaP
+			createEntity(com.wolffsmod.entity.w44.EntityFlak20mm.class, "20mm FlaK 30/38 (TaP)");
+			createEntity(com.wolffsmod.entity.w44.EntityLeFH18.class, "105mm leFH 18 (TaP)");
+			createEntity(com.wolffsmod.entity.w44.EntityLeIG18.class, "75mm leIG 18 (TaP)");
+			createEntity(com.wolffsmod.entity.w44.EntityM7Priest.class, "M7 Priest (TaP)");
+			createEntity(com.wolffsmod.entity.w44.EntityOstwind.class, "Flakpanzer IV Ostwind (TaP)");
 		}
 
 		if (ContentPacks.price)
@@ -526,13 +531,6 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.w44.Entity44_ZiS2.class, "57mm ZiS-2 (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_ZiS3.class, "76mm ZiS-3 (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_ZiS30.class, "57mm ZiS-30 (Warfare 44)");
-
-			//Additional Warfare 44 models found in TaP
-			createEntity(EntityFlak20mm.class, "20mm FlaK 30/38");
-			createEntity(EntityLeFH18.class, "105mm leFH 18");
-			createEntity(EntityLeIG18.class, "75mm leIG 18");
-			createEntity(EntityM7Priest.class, "M7 Priest");
-			createEntity(EntityOstwind.class, "Flakpanzer IV Ostwind");
 		}
 
 		if (ContentPacks.exufo)

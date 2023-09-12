@@ -1,6 +1,7 @@
 package com.wolffsmod;
 
 import com.flansmod.client.model.RenderBullet;
+import com.wolffsmod.entity.baf.EntityT0FHurricane;
 import com.wolffsmod.flan.EntityNPCFlanBullet;
 import com.wolffsmod.render.RenderFlansModEntity;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -390,7 +391,10 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.monolith.EntityType90.class, new RenderFlansModEntity(new com.wolffsmod.model.monolith.ModelKyuMaru(), "Type90KyuMaru/Type90KyuMaru.png").scale(0.85F));
 
 			//Other TaP
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.baf.EntityHurricane.class, new RenderFlansModEntity(new com.wolffsmod.model.baf.ModelHurricane(), "HawkerHurricane/HawkerHurricane.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.baf.EntityT0FHurricane.class, new RenderFlansModEntity(new com.wolffsmod.model.baf.ModelHurricane(), "HawkerHurricane/HawkerHurricane.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.baf.EntityT1TMosquito.class, new RenderFlansModEntity(new com.wolffsmod.model.baf.ModelMosquito()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.baf.EntityT1p5FVickersValiant.class, new RenderFlansModEntity(new com.wolffsmod.model.baf.ModelValiant()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.baf.EntityT1p5Fwyvern.class, new RenderFlansModEntity(new com.wolffsmod.model.baf.ModelWyvern()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityBF109E3.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelBF109E3()).scale(1.1F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityEurocopterTigerHAD.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelEurocopterTigerHAP()).scale(0.95F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityEurocopterTigerUHT.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelEurocopterTigerUHT()).scale(0.95F));
@@ -403,6 +407,13 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxS5.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelToyotaHiluxS5()).scale(1.1F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxSPG9.class, new RenderFlansModEntity(new com.wolffsmod.model.newage.ModelToyotaHiluxSPG9()).scale(1.1F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.tankcraft.EntityM60A1.class, new RenderFlansModEntity(new com.wolffsmod.model.tankcraft.ModelTCM60A1(), "M60A1/M60A1.png"));
+
+			//Additional Warfare 44 models found in TaP
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityFlak20mm.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelFlak20()).scale(0.9F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityLeFH18.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelLeFH18()).scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityLeIG18.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelIG18()).scale(1.3F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityM7Priest.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelM7Priest()).scale(1.15F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityOstwind.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelOstwind()));
 		}
 
 		if (ContentPacks.price)
@@ -536,13 +547,6 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.Entity44_ZiS2.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelZiS2(), "ZiS23/ZiS23.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.Entity44_ZiS3.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelZiS3(), "ZiS23/ZiS23.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.Entity44_ZiS30.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelZiS30()));
-
-			//Additional Warfare 44 models found in TaP
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityFlak20mm.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelFlak20()).scale(0.9F));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityLeFH18.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelLeFH18()).scale(1.2F));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityLeIG18.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelIG18()).scale(1.3F));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityM7Priest.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelM7Priest()).scale(1.15F));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.w44.EntityOstwind.class, new RenderFlansModEntity(new com.wolffsmod.model.w44.ModelOstwind()));
 		}
 
 		if (ContentPacks.exufo)
