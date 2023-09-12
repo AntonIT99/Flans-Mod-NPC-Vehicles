@@ -19,7 +19,7 @@ Also, entries (to copy to the actual source code) are generated in ClientProxy.t
 - EnumerateTextures.py reads from the folders "vehicles" and "planes" and creates a sorted list of planes and vehicles 
 with their models, textures and paintjobs in the generated file textures.txt
 
-- ModelSorter.py classifies decompiled java model files in its current directory by putting them into folders
+- SortModels.py classifies decompiled java model files in its current directory by copying them into folders
 named after their extending classes (ModelPlane, ModelVehicle, etc.)
 
 #### Distribution
