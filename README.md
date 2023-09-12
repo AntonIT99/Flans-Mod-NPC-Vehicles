@@ -9,6 +9,11 @@ To run in a dev environment, add
 to the program arguments in the run configuration.
 To get more mixin debug output add ```-Dmixin.debug.export=true``` to the VM arguments.
 
+The EntityClassGenerator.py allows generating automatically java classes for Entities for each flan's config txt file 
+located in the subfolders "vehicles" and "planes" of the current directory: the generated java files are put into
+subfolders named after the used model namespace (for example w44 for warfare 44). 
+Also, entries (to copy to the actual source code) are generated in ClientProxy.txt and EntityRegistry.txt
+
 ### Modified classes (Mixins) in CustomNPC+
 
 package noppes.npcs:
