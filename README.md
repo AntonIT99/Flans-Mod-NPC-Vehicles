@@ -14,6 +14,8 @@ located in the subfolders "vehicles" and "planes" of the current directory: the 
 subfolders named after the used model namespace (for example w44 for warfare 44). 
 Also, entries (to copy to the actual source code) are generated in ClientProxy.txt and EntityRegistry.txt
 
+Once the source code has been compiled with ```gradlew build```, the JAR to be distributed is located in build/output.
+
 ### Modified classes (Mixins) in CustomNPC+
 
 package noppes.npcs:
