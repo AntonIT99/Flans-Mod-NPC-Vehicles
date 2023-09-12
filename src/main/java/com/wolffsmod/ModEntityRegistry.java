@@ -654,7 +654,7 @@ public class ModEntityRegistry
 
 		if (ContentPacks.aoba)
 		{
-			createEntity(com.wolffsmod.entity.aoba.EntityT95.class, "T95 Gun Motor Carriage");
+			createEntity(com.wolffsmod.entity.aoba.EntityT95.class, "T95 Gun Motor Carriage (Aoba)");
 		}
 
 		if (ContentPacks.cow)
@@ -729,7 +729,7 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.cvts.Entity11930_Mortar_81mm_M1.class, "81mm M1 Mortar (CVT)");
 			createEntity(com.wolffsmod.entity.cvts.Entity11931_Mortar_81mm_M1_Battery.class, "81mm M1 Mortar Battery (CVT)");
 			createEntity(com.wolffsmod.entity.cvts.Entity11932_RocketLauncher_28cm_Wurfgerat40.class, "28cm schweres Wurfgeraet 40 (CVT)");
-			createEntity(com.wolffsmod.entity.cvts.Entity11940_AAGun_2cm_Flakvierling38.class, "20mm  Flakvierling 38 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11940_AAGun_2cm_Flakvierling38.class, "20mm Flakvierling 38 (CVT)");
 			createEntity(com.wolffsmod.entity.cvts.Entity11941_AAGun_40mm_Bofors.class, "40mm Bofors (CVT)");
 			createEntity(com.wolffsmod.entity.cvts.Entity11950_AAGun_88mm_FlaK18.class, "88mm FlaK 18 (CVT)");
 			createEntity(com.wolffsmod.entity.cvts.Entity11960_AAGun_127mm_Type89.class, "127mm Type 89 (CVT)");
