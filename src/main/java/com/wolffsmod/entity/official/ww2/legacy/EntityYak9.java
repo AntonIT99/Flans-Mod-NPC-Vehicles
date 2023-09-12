@@ -15,11 +15,14 @@ public class EntityYak9 extends EntityFlanPlaneNPC
     @Override
     public void setupConfig()
     {
-        setTurnSpeed(1.8F);
-        setDriver("-4 -4 0");
-        addShootPointSecondary("-30 -12 0");
-        addShootPointPrimary("60 3 -5 nose dp28");
-        addShootPointPrimary("60 3 5 nose dp28");
-        
+        setTurnSpeed(0.8F);
+        setDriver("-4 -1 0");
+        addShootPointPrimary("50 8 5 nose");
+        addShootPointPrimary("58 2 0 nose");
+        addShootPointPrimary("50 8 -5 nose");
+        addShootPointPrimary("38 -4 44 rightWing");
+        addShootPointPrimary("38 -4 -44 leftWing");
+        addShootPointSecondary("-4 -16 0 core");
+        addShootParticlesPrimary("cloud 0 0 0");
     }
 }

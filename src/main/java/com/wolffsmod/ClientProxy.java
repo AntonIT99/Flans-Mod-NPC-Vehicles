@@ -751,6 +751,30 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11960_AAGun_127mm_Type89.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model127mm_Type89(), "Type89/Type89.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11970_Navalgun_155mm_3rdYearType_SINGLE.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model155mm_3rdYearTypeSINGLE(), "3rdYearType/3rdYearType.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11971_Navalgun_155mm_3rdYearType.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model155mm_3rdYearType(), "3rdYearTypeSingle/3rdYearTypeSingle.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11010_Truck_GMCCCKW.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.ModelGMCTruck2Kai(), "OpelBlitz/OpelBlitz.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11011_Truck_OpelBlitz.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.ModelOpelBlitz1Kai(), "GMCTruck_Manus/GMCTruck_open.png"));
+		}
+
+		if (ContentPacks.mos)
+		{
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.miyabi.Entity11231_Attacker_O2SkyMaster.class, new RenderFlansModEntity(new com.wolffsmod.model.miyabi.ModelO2_SkyMaster(), "SkyMaster/SkyMaster.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11003_AirRideMachine_WarpSter.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.ModelWarpSter(), "WarpStar/WarpStar.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11004_AirRideMachine_WagonSter.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.ModelWagonSter(), "WagonStar/WagonStar.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11012_Van_PAYDAYVAN.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.ModelPAYDAY_VAN(), "PaydayVan/PaydayVan.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11013_APC_SdKfz251Hanomag.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.ModelSdKfz251(), "SdKfz251_Mos/SdKfz251.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11013_Bike_BMWR75.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.ModelBMW_R75(), "BMWR75_Mos/BMWR75.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11014_APC_37cm_SdKfz251_10.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.ModelSdKfz251_10(), "SdKfz251_Mos_2/SdKfz251.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11015_APC_2cm_SdKfz251_23.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.ModelSdKfz251_23(), "SdKfz251_Mos/SdKfz251.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11019_LightTank_CardboardTank.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.Modeldanborutank(), "CardboardTank/CardboardTank.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11021_MediumTank_Type89.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.ModelType89M(), "Type89IGo/Type89IGo.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11040_FlameTank_Pz3FlSdKfz141_3.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.ModelPzkpfw3_Fl_SdKfz141_3(), "FlammpanzerIII/FlammpanzerIII.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11042_SPG_Navy12cmSPG.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.Model12cmSPG()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11043_SPG_28cm_SdKfz251_1Wurfrahmen40.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.ModelSdKfz251_1_Wurfrahmen40(), "SdKfz251_Mos_2/SdKfz251.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11202_LightFighterEBiPlane_SPADA2.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.ModelSPAD_A2()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11215_Fighter_F8Crusader.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.ModelF8_Crusader(), "F8Crusader/F8Crusader.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11221_DiveBomber_B7ARyusei.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.ModelB7A()).scale(1.45F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11906_Interior_Sofa.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.Modelsofa(), "Sofa/Sofa.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.mos.Entity11907_Interior_Radio.class, new RenderFlansModEntity(new com.wolffsmod.model.mos.Modelradio(), "Radio/Radio.png"));
 		}
 	}
 }

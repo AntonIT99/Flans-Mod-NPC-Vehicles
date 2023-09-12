@@ -4,11 +4,11 @@
 
 package com.wolffsmod.model.cvts;
 
-import com.flansmod.client.model.*;
+import com.wolffsmod.model.*;
 import com.flansmod.client.tmt.*;
 import net.minecraft.client.model.*;
 
-public class ModelCamelKai extends ModelPlane
+public class ModelCamelKai extends ModelFlanPlane
 {
     public ModelCamelKai() {
         final int textureX = 128;

@@ -4,11 +4,11 @@
 
 package com.wolffsmod.model.cvts;
 
-import com.flansmod.client.model.*;
+import com.wolffsmod.model.*;
 import net.minecraft.client.model.*;
 import com.flansmod.client.tmt.*;
 
-public class ModelJU87GKai extends ModelPlane
+public class ModelJU87GKai extends ModelFlanPlane
 {
     int textureX;
     int textureY;

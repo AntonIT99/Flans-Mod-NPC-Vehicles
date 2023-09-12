@@ -15,14 +15,16 @@ public class EntityWW2_Plane_JU87_2A extends EntityFlanPlaneNPC
     @Override
     public void setupConfig()
     {
-        setTurnSpeed(2.0F);
-        setDriver("7 26 0");
-        setPassenger("1 -08 26 0 core 150 210 0 50 WW2_MG_MG81ZB_1A MG81");
-        addShootPointPrimary("27 23 -26 leftWing WW2_MG_MG42ZB_1A");
-        addShootPointPrimary("27 23 26 rightWing WW2_MG_MG42ZB_1A");
-        addShootPointSecondary("60 13 -38 leftWing WW2_MG_BordkanoneBK37_1A");
-        addShootPointSecondary("60 13 38 rightWing WW2_MG_BordkanoneBK37_1A");
+        setTurnSpeed(0.8F);
+        setDriver("12 28 0");
+        setPassenger("1 -8 27 0 core 140 220 -5 50 WW2_MG_MG81ZB_1A MG81");
+        addShootPointSecondary("27 23 -26 leftWing WW2_MG_MG42ZB_1A");
+        addShootPointSecondary("27 23 26 rightWing WW2_MG_MG42ZB_1A");
+        addShootPointPrimary("60 13 38 rightWing");
+        addShootPointPrimary("60 13 -38 leftWing");
         addGunOrigin("1 -30 43 0");
+        addShootParticlesPrimary("cloud 0 0 0");
+        addShootParticlesPrimary("explode 0 0 0");
         
     }
 }

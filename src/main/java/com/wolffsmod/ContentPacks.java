@@ -35,6 +35,7 @@ public class ContentPacks
     public static boolean wot = true;
     public static boolean berggeit = true;
     public static boolean cvt = true;
+    public static boolean mos = true;
 
     private ContentPacks() {}
 
@@ -71,5 +72,6 @@ public class ContentPacks
         wot = config.getBoolean("World of Tanks", "Content Packs", wot, "Enable content pack models");
         berggeit = config.getBoolean("Berggeit", "Content Packs", berggeit, "Enable content pack models");
         cvt = config.getBoolean("CVT", "Content Packs", cvt, "Enable content pack models");
+        mos = config.getBoolean("Mos", "Content Packs", mos, "Enable content pack models");
     }
 }

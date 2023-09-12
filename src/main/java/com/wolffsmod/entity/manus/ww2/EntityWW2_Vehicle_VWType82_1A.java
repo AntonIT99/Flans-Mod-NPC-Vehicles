@@ -15,10 +15,16 @@ public class EntityWW2_Vehicle_VWType82_1A extends EntityFlanVehicleNPC
     @Override
     public void setupConfig()
     {
+        setTurnSpeed(0.75F);
         setDriver("3 -2 -7");
-        setPassenger("1 3 -2 7 core");
-        setPassenger("2 -12 3 0 core -50 50 0 45 WW2_MG_MG42ZB_1A MG42");
-        addGunOrigin("2 -9 18 0");
+        setRotatedDriverOffset("0 0 0");
+        setPassenger("1 7 -2 7 core -360 360 -89 89");
+        setPassenger("2 -9 -2 -7 core -360 360 -89 89 dummygun DummyGun");
+        setPassenger("3 -9 -2 7 core -360 360 -89 89");
+        addShootPointPrimary("16 8 0 core");
+        addShootPointSecondary("16 8 0 core");
+        addShootParticlesPrimary("note 0 1 0");
+        addShootParticlesPrimary("note 0 2 0");
         
     }
 }

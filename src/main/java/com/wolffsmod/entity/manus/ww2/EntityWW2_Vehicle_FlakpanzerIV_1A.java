@@ -15,12 +15,13 @@ public class EntityWW2_Vehicle_FlakpanzerIV_1A extends EntityFlanVehicleNPC
     @Override
     public void setupConfig()
     {
-        setDriver("0 34 0 -360 360 -5 85");
+        setTurnSpeed(0.45F);
+        setDriver("0 35 0 -360 360 -10 89");
         setRotatedDriverOffset("-23 0 0");
-        setPassenger("1 31 12 12 core -30 30 -10 10 WW2_MG_MG42ZB_1A FrontMG");
-        addBarrelPosition("0 40 0");
-        addBarrelPosition("0 40 0");
-        addGunOrigin("1 48 18 12");
-        
+        addShootPointPrimary("40 42 -6 turret");
+        addShootPointPrimary("40 38 6 turret");
+        addShootPointPrimary("40 42 6 turret");
+        addShootPointPrimary("40 38 -6 turret");
+
     }
 }

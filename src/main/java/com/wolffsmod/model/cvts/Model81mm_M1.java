@@ -4,11 +4,11 @@
 
 package com.wolffsmod.model.cvts;
 
-import com.flansmod.client.model.*;
+import com.wolffsmod.model.*;
 import com.flansmod.client.tmt.*;
 import net.minecraft.client.model.*;
 
-public class Model81mm_M1 extends ModelVehicle
+public class Model81mm_M1 extends ModelFlanVehicle
 {
     int textureX;
     int textureY;

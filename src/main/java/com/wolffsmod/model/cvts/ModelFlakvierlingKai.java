@@ -4,11 +4,11 @@
 
 package com.wolffsmod.model.cvts;
 
-import com.flansmod.client.model.*;
+import com.wolffsmod.model.*;
 import com.flansmod.client.tmt.*;
 import net.minecraft.client.model.*;
 
-public class ModelFlakvierlingKai extends ModelVehicle
+public class ModelFlakvierlingKai extends ModelFlanVehicle
 {
     public ModelFlakvierlingKai() {
         (this.bodyModel = new ModelRendererTurbo[4])[0] = new ModelRendererTurbo((ModelBase)this, 0, 0, 128, 64);

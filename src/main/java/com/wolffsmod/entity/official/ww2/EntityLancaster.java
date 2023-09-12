@@ -15,16 +15,20 @@ public class EntityLancaster extends EntityFlanPlaneNPC
     @Override
     public void setupConfig()
     {
+        setTurnSpeed(0.55F);
         setDriver("115 20 0");
-        setPassenger("1 148 2 0 nose -30 30 -25 25 browning30Cal Nose");
-        setPassenger("2 90 10 0 core");
-        setPassenger("3 70 10 0 core");
-        setPassenger("4 -48 36 0 tail -360 360 0 45 browning30Cal Dorsal");
-        setPassenger("5 -128 20 0 tail 135 225 -30 30 browning30Cal Tail");
-        addShootPointPrimary("0 -32 0");
-        addGunOrigin("1 148 -2 0");
-        addGunOrigin("4 -48 32 0");
-        addGunOrigin("5 -128 16 0");
-        
+        setPassenger("1 148 2 0 nose -30 30 -30 30 pg_7.7mm_browning Nose");
+        setPassenger("2 90 10 0 core -360 360 -89 89");
+        setPassenger("3 70 10 0 core -360 360 -89 89");
+        setPassenger("4 -48 36 0 core -360 360 -10 55 pg_7.7mm_browning Dorsal");
+        setPassenger("5 -128 20 0 tail 120 240 -35 35 pg_7.7mm_browning Tail");
+        addShootPointPrimary("0 16 0 core");
+        addShootPointSecondary("48 -19 6 core");
+        addShootPointSecondary("48 -19 -6 core");
+        addGunOrigin("1 148 -4 0");
+        addGunOrigin("4 -48 30 0");
+        addGunOrigin("5 -128 14 0");
+        addShootParticlesPrimary("note 0 3 0");
+        addShootParticlesPrimary("note 0 4 0");
     }
 }

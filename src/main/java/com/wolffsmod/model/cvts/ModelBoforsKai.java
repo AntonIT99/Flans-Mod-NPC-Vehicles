@@ -4,11 +4,11 @@
 
 package com.wolffsmod.model.cvts;
 
-import com.flansmod.client.model.*;
+import com.wolffsmod.model.*;
 import com.flansmod.client.tmt.*;
 import net.minecraft.client.model.*;
 
-public class ModelBoforsKai extends ModelAAGun
+public class ModelBoforsKai extends ModelFlanAAGun
 {
     public ModelBoforsKai() {
         (this.baseModel = new ModelRendererTurbo[5])[0] = new ModelRendererTurbo((ModelBase)this, 0, 0, 128, 64);

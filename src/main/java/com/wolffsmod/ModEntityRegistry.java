@@ -208,8 +208,8 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_YAK3_1A.class, "Yakovlev Yak-3 (Manus Pack Legacy)");
 			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_YAK3_1Aneu.class, "Yakovlev Yak-3 (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_FlakpanzerIV_1A.class, "Flakpanzer IV Wirbelwind (Manus Pack)");
-			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_GMCTruck_1A.class, "GMC Truck (Manus Pack)");
-			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_GMCTruck_2A.class, "GMC Truck open Back (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_GMCTruck_1A.class, "GMC CCKW Truck (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_GMCTruck_2A.class, "GMC CCKW Truck open Back (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_HigginsBoat_1A.class, "LCVP 2 Higgins Boat (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_Jagdpanther_1A.class, "Jagdpanzer V Jagdpanther (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_JagdpanzerIV_1A.class, "Jagdpanzer IV/70 Guderian Ente (Manus Pack)");
@@ -735,6 +735,30 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.cvts.Entity11960_AAGun_127mm_Type89.class, "127mm Type 89 (CVT)");
 			createEntity(com.wolffsmod.entity.cvts.Entity11970_Navalgun_155mm_3rdYearType_SINGLE.class, "155mm 3rd Year Type - Single (CVT)");
 			createEntity(com.wolffsmod.entity.cvts.Entity11971_Navalgun_155mm_3rdYearType.class, "155mm 3rd Year Type (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11010_Truck_GMCCCKW.class, "GMC CCKW Truck (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11011_Truck_OpelBlitz.class, "Opel Blitz (CVT)");
+		}
+
+		if (ContentPacks.mos)
+		{
+			createEntity(com.wolffsmod.entity.miyabi.Entity11231_Attacker_O2SkyMaster.class, "Cessna O-2 Skymaster (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11003_AirRideMachine_WarpSter.class, "Warp Star (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11004_AirRideMachine_WagonSter.class, "Wagon Star (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11012_Van_PAYDAYVAN.class, "Payday Van (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11013_APC_SdKfz251Hanomag.class, "SdKfz 251 Hanomag (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11013_Bike_BMWR75.class, "BMW R 75 Gespann (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11014_APC_37cm_SdKfz251_10.class, "SdKfz 251/10 (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11015_APC_2cm_SdKfz251_23.class, "SdKfz 251/23 (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11019_LightTank_CardboardTank.class, "Cardboard Tank (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11021_MediumTank_Type89.class, "Type 89 I-Go (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11040_FlameTank_Pz3FlSdKfz141_3.class, "Flammpanzer III (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11042_SPG_Navy12cmSPG.class, "12cm SPG (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11043_SPG_28cm_SdKfz251_1Wurfrahmen40.class, "SdKfz 251/1 Wurfrahmen 40 (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11202_LightFighterEBiPlane_SPADA2.class, "SPAD A2 (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11215_Fighter_F8Crusader.class, "Vought F-8 Crusader (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11221_DiveBomber_B7ARyusei.class, "Aichi B7A Ryusei (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11906_Interior_Sofa.class, "Interior Sofa (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11907_Interior_Radio.class, "Interior Radio (MosPack)");
 		}
 	}
 

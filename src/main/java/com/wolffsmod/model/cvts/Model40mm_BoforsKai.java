@@ -4,11 +4,11 @@
 
 package com.wolffsmod.model.cvts;
 
-import com.flansmod.client.model.*;
+import com.wolffsmod.model.*;
 import com.flansmod.client.tmt.*;
 import net.minecraft.client.model.*;
 
-public class Model40mm_BoforsKai extends ModelVehicle
+public class Model40mm_BoforsKai extends ModelFlanVehicle
 {
     public Model40mm_BoforsKai() {
         final int textureX = 512;

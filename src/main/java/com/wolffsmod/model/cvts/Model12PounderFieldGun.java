@@ -4,11 +4,11 @@
 
 package com.wolffsmod.model.cvts;
 
-import com.flansmod.client.model.*;
+import com.wolffsmod.model.*;
 import com.flansmod.client.tmt.*;
 import net.minecraft.client.model.*;
 
-public class Model12PounderFieldGun extends ModelVehicle
+public class Model12PounderFieldGun extends ModelFlanVehicle
 {
     int textureX;
     int textureY;

@@ -15,6 +15,7 @@ public class EntityWW2_Vehicle_OpelBlitz_2A extends EntityFlanVehicleNPC
     @Override
     public void setupConfig()
     {
+        setTurnSpeed(0.65F);
         setDriver("8 0 -8");
         setPassenger("1 8 0 8 core");
         setPassenger("2 -12 7 -10 core 60 160 -45 45");

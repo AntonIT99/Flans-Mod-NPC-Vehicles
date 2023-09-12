@@ -15,10 +15,38 @@ public class EntityWW2_Vehicle_RenaultFT17_1A extends EntityFlanVehicleNPC
     @Override
     public void setupConfig()
     {
-        setDriver("0 18 0 -360 360 -10 25");
+        setTurnSpeed(0.45F);
+        setDriver("0 18 0 -360 360 -10 35");
         setRotatedDriverOffset("-2 0 -1");
-        addBarrelPosition("0 34 0");
-        addGun("10 24 -2 turret WW2_MG_BrowningM1919_1A");
-        
+        setPassenger("1 -24 17 8 core -360 360 -89 89 dummygun DummyGun");
+        setPassenger("2 -24 17 -8 core -360 360 -89 89");
+        setPassenger("3 -48 12 0 core -360 360 -89 89");
+        addShootPointPrimary("18 24 1 turret");
+        addShootPointSecondary("");
+        addShootParticlesPrimary("largeexplode 0 0 0");
+        addShootParticlesPrimary("explode 0 0 0");
+        addShootParticlesPrimary("explode 0 0 0");
+        addShootParticlesPrimary("explode 0 0 0");
+        addShootParticlesPrimary("explode 0 0 0");
+        addShootParticlesPrimary("explode 0 0 0");
+        addShootParticlesPrimary("explode 0 0 0");
+        addShootParticlesPrimary("explode 1 0 0");
+        addShootParticlesPrimary("explode 1 0 0");
+        addShootParticlesPrimary("explode 1 0 0");
+        addShootParticlesPrimary("explode 1 0 0");
+        addShootParticlesPrimary("explode 1 0 0");
+        addShootParticlesPrimary("explode 1 0 0");
+        addShootParticlesPrimary("cloud 0 0 0");
+        addShootParticlesPrimary("cloud 0 0 0");
+        addShootParticlesPrimary("cloud 0 0 0");
+        addShootParticlesPrimary("cloud 0 0 0");
+        addShootParticlesPrimary("cloud 0 0 0");
+        addShootParticlesPrimary("cloud 0 0 0");
+        addShootParticlesPrimary("cloud 1 0 0");
+        addShootParticlesPrimary("cloud 1 0 0");
+        addShootParticlesPrimary("cloud 1 0 0");
+        addShootParticlesPrimary("cloud 1 0 0");
+        addShootParticlesPrimary("cloud 1 0 0");
+        addShootParticlesPrimary("cloud 1 0 0");
     }
 }

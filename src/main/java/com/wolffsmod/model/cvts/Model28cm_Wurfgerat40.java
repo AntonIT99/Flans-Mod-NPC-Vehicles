@@ -4,11 +4,11 @@
 
 package com.wolffsmod.model.cvts;
 
-import com.flansmod.client.model.*;
+import com.wolffsmod.model.*;
 import com.flansmod.client.tmt.*;
 import net.minecraft.client.model.*;
 
-public class Model28cm_Wurfgerat40 extends ModelVehicle
+public class Model28cm_Wurfgerat40 extends ModelFlanVehicle
 {
     int textureX;
     int textureY;

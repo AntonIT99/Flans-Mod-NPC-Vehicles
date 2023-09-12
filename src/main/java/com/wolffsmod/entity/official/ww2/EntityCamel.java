@@ -15,10 +15,11 @@ public class EntityCamel extends EntityFlanPlaneNPC
     @Override
     public void setupConfig()
     {
-        setTurnSpeed(3.0F);
+        setTurnSpeed(0.7F);
         setDriver("0 -4 0");
-        addShootPointPrimary("30 3 5 nose browning");
-        addShootPointPrimary("30 3 -5 nose browning");
+        addShootPointPrimary("30 4 4 nose");
+        addShootPointPrimary("30 4 -4 nose");
+        addShootParticlesPrimary("cloud 0 0 0");
         
     }
 }
