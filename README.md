@@ -12,12 +12,15 @@ To get more mixin debug output add ```-Dmixin.debug.export=true``` to the VM arg
 #### Helper Scripts
 
 - EntityClassGenerator.py allows generating automatically java classes for Entities for each flan's config txt file 
-located in the subfolders "vehicles" and "planes" of the current directory: the generated java files are put into
-subfolders named after the used model namespace (for example w44 for warfare 44). 
+located in the folders "vehicles" and "planes" of the current directory: the generated java files are put into
+folders named after the used model namespace (for example w44 for warfare 44). 
 Also, entries (to copy to the actual source code) are generated in ClientProxy.txt and EntityRegistry.txt
 
-- EnumerateTextures.py reads from the subfolders "vehicles" and "planes" and creates a sorted list of planes and vehicles 
+- EnumerateTextures.py reads from the folders "vehicles" and "planes" and creates a sorted list of planes and vehicles 
 with their models, textures and paintjobs in the generated file textures.txt
+
+- ModelSorter.py classifies decompiled java model files in its current directory by putting them into folders
+named after their extending classes (ModelPlane, ModelVehicle, etc.)
 
 #### Distribution
 
