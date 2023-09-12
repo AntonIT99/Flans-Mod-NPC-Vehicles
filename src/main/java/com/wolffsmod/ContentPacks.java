@@ -34,6 +34,7 @@ public class ContentPacks
     public static boolean moneybuster = true;
     public static boolean wot = true;
     public static boolean berggeit = true;
+    public static boolean cvt = true;
 
     private ContentPacks() {}
 
@@ -68,6 +69,7 @@ public class ContentPacks
         cow = config.getBoolean("Cow West", "Content Packs", cow, "Enable content pack models");
         moneybuster = config.getBoolean("Moneybuster", "Content Packs", moneybuster, "Enable content pack models");
         wot = config.getBoolean("World of Tanks", "Content Packs", wot, "Enable content pack models");
-        berggeit = config.getBoolean("Berggeit", "Content Packs", wot, "Enable content pack models");
+        berggeit = config.getBoolean("Berggeit", "Content Packs", berggeit, "Enable content pack models");
+        cvt = config.getBoolean("CVT", "Content Packs", cvt, "Enable content pack models");
     }
 }

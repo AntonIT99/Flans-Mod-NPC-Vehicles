@@ -1,7 +1,6 @@
 package com.wolffsmod;
 
 import com.flansmod.client.model.RenderBullet;
-import com.wolffsmod.entity.baf.EntityT0FHurricane;
 import com.wolffsmod.flan.EntityNPCFlanBullet;
 import com.wolffsmod.render.RenderFlansModEntity;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -731,6 +730,27 @@ public class ClientProxy extends CommonProxy
 		if (ContentPacks.berggeit)
 		{
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.berggeit.EntityKV2.class, new RenderFlansModEntity(new com.wolffsmod.model.berggeit.ModelKV2(), "KV2_berggeit/KV2.png"));
+		}
+
+		if (ContentPacks.cvt)
+		{
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11901_Interior_Chair1.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.ModelChair1()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11902_Interior_Chair2.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.ModelChair2()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11903_Interior_Chair3.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.ModelChair3()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11904_Interior_ZABUTON.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.ModelZABUTON(), "Zabuton/Zabuton.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11905_Interior_KOTATSU.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.ModelKOTATSU(),  "Kotatsu/Kotatsu.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11908_StorageBox.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.ModelStorageBox(), "StorageBox/StorageBox_Blue.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11910_12PounderFieldGun.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model12PounderFieldGun(), "12PounderFieldGun/12PounderFieldGun.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11920_12PounderHowitzer.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model12PounderHowitzer(), "12PounderFieldGun/12PounderFieldGun.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11930_Mortar_81mm_M1.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model81mm_M1(), "M1Mortar/M1Mortar.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11931_Mortar_81mm_M1_Battery.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model81mm_M1_Battery(), "M1Mortar/M1Mortar.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11932_RocketLauncher_28cm_Wurfgerat40.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model28cm_Wurfgerat40(), "Wurfgeraet40/Wurfgeraet40.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11940_AAGun_2cm_Flakvierling38.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.ModelFlakvierlingKai(), "Flakvierling_CVT/Flakvierling.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11941_AAGun_40mm_Bofors.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model40mm_BoforsKai(), "Bofors_CVT/Bofors.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11950_AAGun_88mm_FlaK18.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.ModelFlak88aKai(), "Flak18/Flak18.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11960_AAGun_127mm_Type89.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model127mm_Type89(), "Type89/Type89.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11970_Navalgun_155mm_3rdYearType_SINGLE.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model155mm_3rdYearTypeSINGLE(), "3rdYearType/3rdYearType.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11971_Navalgun_155mm_3rdYearType.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model155mm_3rdYearType(), "3rdYearTypeSingle/3rdYearTypeSingle.png"));
 		}
 	}
 }

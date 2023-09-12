@@ -715,6 +715,27 @@ public class ModEntityRegistry
 		{
 			createEntity(com.wolffsmod.entity.berggeit.EntityKV2.class, "KV-2 (Berggeit)");
 		}
+
+		if (ContentPacks.cvt)
+		{
+			createEntity(com.wolffsmod.entity.cvts.Entity11901_Interior_Chair1.class, "Interior Chair 1 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11902_Interior_Chair2.class, "Interior Chair 2 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11903_Interior_Chair3.class, "Interior Chair 3 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11904_Interior_ZABUTON.class, "Interior Zabuton (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11905_Interior_KOTATSU.class, "Interior Kotastu (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11908_StorageBox.class, "Storage Box (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11910_12PounderFieldGun.class, "12 Pounder Field Gun (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11920_12PounderHowitzer.class, "12 Pounder Howitzer (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11930_Mortar_81mm_M1.class, "81mm M1 Mortar (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11931_Mortar_81mm_M1_Battery.class, "81mm M1 Mortar Battery (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11932_RocketLauncher_28cm_Wurfgerat40.class, "28cm schweres Wurfgeraet 40 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11940_AAGun_2cm_Flakvierling38.class, "20mm  Flakvierling 38 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11941_AAGun_40mm_Bofors.class, "40mm Bofors (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11950_AAGun_88mm_FlaK18.class, "88mm FlaK 18 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11960_AAGun_127mm_Type89.class, "127mm Type 89 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11970_Navalgun_155mm_3rdYearType_SINGLE.class, "155mm 3rd Year Type - Single (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11971_Navalgun_155mm_3rdYearType.class, "155mm 3rd Year Type (CVT)");
+		}
 	}
 
 	public static void createEntity(Class<? extends Entity> entityClass, String entityName)
