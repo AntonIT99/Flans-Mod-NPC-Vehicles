@@ -16,6 +16,7 @@ public class EntityUH1B extends EntityFlanPlaneNPC
     public void setupConfig()
     {
         setTurnSpeed(2.2F);
+        setDriver("41 4 10");
         setPassenger("1 41 4 -10 nose -130 130 -30 85 dummygun DummyGun");
         setPassenger("2 12 8 -10 back1 -130 130 -30 85");
         setPassenger("3 12 8 0 back2 -130 130 -30 85");

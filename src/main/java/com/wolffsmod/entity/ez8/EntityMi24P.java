@@ -16,6 +16,7 @@ public class EntityMi24P extends EntityFlanPlaneNPC
     public void setupConfig()
     {
         setTurnSpeed(2.0F);
+        setDriver("54 16 0");
         setPassenger("1 82 6 0 nose -125 125 -90 90 dummygun DummyGun");
         setPassenger("2 -3 15 4 back1 -360 360 -90 90");
         setPassenger("3 -3 15 -4 back2 -360 360 -90 90");
