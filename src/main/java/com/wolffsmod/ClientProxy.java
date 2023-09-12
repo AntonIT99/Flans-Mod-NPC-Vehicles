@@ -749,8 +749,8 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11941_AAGun_40mm_Bofors.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model40mm_BoforsKai(), "Bofors_CVT/Bofors.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11950_AAGun_88mm_FlaK18.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.ModelFlak88aKai(), "Flak18/Flak18.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11960_AAGun_127mm_Type89.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model127mm_Type89(), "Type89/Type89.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11970_Navalgun_155mm_3rdYearType_SINGLE.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model155mm_3rdYearTypeSINGLE(), "3rdYearType/3rdYearType.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11971_Navalgun_155mm_3rdYearType.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model155mm_3rdYearType(), "3rdYearTypeSingle/3rdYearTypeSingle.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11970_Navalgun_155mm_3rdYearType_SINGLE.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model155mm_3rdYearTypeSINGLE(), "3rdYearTypeSingle/3rdYearTypeSingle.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11971_Navalgun_155mm_3rdYearType.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.Model155mm_3rdYearType(), "3rdYearType/3rdYearType.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11010_Truck_GMCCCKW.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.ModelGMCTruck2Kai(), "OpelBlitz/OpelBlitz.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.cvts.Entity11011_Truck_OpelBlitz.class, new RenderFlansModEntity(new com.wolffsmod.model.cvts.ModelOpelBlitz1Kai(), "GMCTruck_Manus/GMCTruck_open.png"));
 		}
