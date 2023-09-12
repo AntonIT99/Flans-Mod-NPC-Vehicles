@@ -1,12 +1,8 @@
 import os
+from pathlib import Path
 
 vehicles_directory = "./vehicles"
 planes_directory = "./planes"
-
-vehicles_files = [file for file in os.listdir(vehicles_directory) if file.endswith(".txt")]
-planes_files = [file for file in os.listdir(planes_directory) if file.endswith(".txt")]
-
-keyword = "Model baf."
 
 name = {}
 model = {}
@@ -38,8 +34,16 @@ def read_files(directory, files):
                         advpaintjob[identifier].append(line)
 
 
-read_files(planes_directory, planes_files)
-read_files(vehicles_directory, vehicles_files)
+vehicles_path = Path(vehicles_directory)
+planes_path = Path(planes_directory)
+
+if planes_path.exists() and planes_path.is_dir():
+    planes_files = [file for file in os.listdir(planes_directory) if file.endswith(".txt")]
+    read_files(planes_directory, planes_files)
+if vehicles_path.exists() and vehicles_path.is_dir():
+    vehicles_files = [file for file in os.listdir(vehicles_directory) if file.endswith(".txt")]
+    read_files(vehicles_directory, vehicles_files)
+
 with open("textures.txt", "w", encoding="utf-8") as file:
     for key in sorted(model.keys()):
         file.write(name[key] + "\n")
