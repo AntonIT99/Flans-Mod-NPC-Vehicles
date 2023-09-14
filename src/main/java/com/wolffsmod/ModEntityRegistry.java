@@ -779,6 +779,20 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.mos.Entity11906_Interior_Sofa.class, "Interior Sofa (MosPack)");
 			createEntity(com.wolffsmod.entity.mos.Entity11907_Interior_Radio.class, "Interior Radio (MosPack)");
 		}
+
+		if (ContentPacks.manusSciFi)
+		{
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityDropshipMk1.class, "Dropship Mk.1 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityDropshipMk2.class, "Dropship Mk.2 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityDropshipMk3_A.class, "Dropship Mk.3 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityDropshipMk3_B.class, "Dropship Mk.3 VIP Transport (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityDropshipMk3_C.class, "Dropship Mk.3 Command (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityTIEFighter.class, "TIE/LN Fighter (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityTIEInterceptor.class, "TIE/IN Interceptor (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityViperMk2.class, "Colonial Viper Mk.2 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityTIE.class, "TIE/LN Fighter (Manus Pack Legacy)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityTIEInter.class, "TIE/IN Interceptor (Manus Pack Legacy)");
+		}
 	}
 
 	public static void createEntity(Class<? extends Entity> entityClass, String entityName)

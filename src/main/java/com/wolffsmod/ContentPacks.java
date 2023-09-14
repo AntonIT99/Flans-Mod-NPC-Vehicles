@@ -15,6 +15,7 @@ public class ContentPacks
     public static boolean manusMW = true;
     public static boolean manusCivil = true;
     public static boolean manusDayZ = true;
+    public static boolean manusSciFi = true;
 
     public static boolean warfare44 = true;
     public static boolean worldAtWar = true;
@@ -52,6 +53,7 @@ public class ContentPacks
         manusMW = config.getBoolean("Manus Modern Warfare", "Content Packs", manusMW, "Enable content pack models");
         manusCivil = config.getBoolean("Manus Civil", "Content Packs", manusCivil, "Enable content pack models");
         manusDayZ = config.getBoolean("Manus DayZ", "Content Packs", manusDayZ, "Enable content pack models");
+        manusSciFi = config.getBoolean("Manus SciFi", "Content Packs", manusSciFi, "Enable content pack models");
 
         warfare44 = config.getBoolean("Warfare 44", "Content Packs", warfare44, "Enable content pack models");
         worldAtWar = config.getBoolean("World at War", "Content Packs", worldAtWar, "Enable content pack models");
