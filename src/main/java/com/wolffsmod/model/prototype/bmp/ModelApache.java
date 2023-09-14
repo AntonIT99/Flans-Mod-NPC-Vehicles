@@ -4,12 +4,12 @@
 
 package com.wolffsmod.model.prototype.bmp;
 
-import com.flansmod.client.model.*;
+import com.wolffsmod.model.*;
 import com.flansmod.client.tmt.*;
 import net.minecraft.client.model.*;
 import com.flansmod.common.vector.*;
 
-public class ModelApache extends ModelPlane
+public class ModelApache extends ModelFlanPlane
 {
     int textureX;
     int textureY;

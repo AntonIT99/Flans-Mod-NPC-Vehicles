@@ -4,11 +4,11 @@
 
 package com.wolffsmod.model.prototype.bmp;
 
-import com.flansmod.client.model.*;
+import com.wolffsmod.model.*;
 import com.flansmod.client.tmt.*;
 import net.minecraft.client.model.*;
 
-public class ModelScorpion extends ModelVehicle
+public class ModelScorpion extends ModelFlanVehicle
 {
     int textureX;
     int textureY;
