@@ -798,8 +798,8 @@ public class ClientProxy extends CommonProxy
 
 		if (ContentPacks.manusSciFi)
 		{
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityDropshipMk1.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelDropshipMk1()));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityDropshipMk2.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelDropshipMk2(), "DropshipMk1/DropshipMk1.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityDropshipMk1.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelDropshipMk1()).scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityDropshipMk2.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelDropshipMk2(), "DropshipMk1/DropshipMk1.png").scale(1.2F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityDropshipMk3_A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelDropshipMk3_A(), "DropshipMk3/DropshipMk3_Grey.png").scale(1.2F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityDropshipMk3_B.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelDropshipMk3_B(), "DropshipMk3/DropshipMk3_Grey.png").scale(1.2F));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityDropshipMk3_C.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelDropshipMk3_C(), "DropshipMk3/DropshipMk3_Grey.png").scale(1.2F));
