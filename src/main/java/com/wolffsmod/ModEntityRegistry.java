@@ -542,8 +542,27 @@ public class ModEntityRegistry
 
 		if (ContentPacks.prototype)
 		{
-			//Prototype
+			//Landkreuzer P.1000 Ratte
 			createEntity(com.wolffsmod.entity.prototype.EntityRatte.class, "Landkreuzer P.1000 Ratte (Prototype)");
+
+			//British Military Pack
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityAS90.class, "L131 AS-90 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityApache.class, "AgustaWestland Apache AH-1 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityCentAVRE.class, "FV4011 Centurion mk5/2 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityCenturion.class, "FV4003 Centurion AVRE (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityChallyII.class, "FV4034 Challenger II (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityChieftain.class, "FV4201 Chieftain (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityDaring.class, "HMS Daring Type 45 Destroyer (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityHarrier.class, "British Aerospace Harrier GR9 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityJaguar.class, "SEPECAT Jaguar (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityMoke.class, "Mini Moke (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityScimitar.class, "FV107 Scimitar (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityScorpion.class, "FV101 Scorpion (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityScorpion90.class, "FV101 Scorpion 90mm (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityTSR2.class, "TSR-2 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityTeapot.class, "Teapot (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityTyphoon.class, "Eurofighter Typhoon (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityWarrior.class, "FV510 Warrior Tan (Prototype)");
 		}
 
 		if (ContentPacks.manusCivil)

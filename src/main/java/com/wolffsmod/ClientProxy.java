@@ -557,8 +557,27 @@ public class ClientProxy extends CommonProxy
 
 		if (ContentPacks.prototype)
 		{
-			//Prototype
+			//Landkreuzer P.1000 Ratte
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.EntityRatte.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.ModelRatte()).setTranslation(0F, -5F, 0F).setScale(2.4F, 2.4F, 2.4F));
+
+			//British Military Pack
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityAS90.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelAS90()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityApache.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelApache(), "ApacheAH1/ApacheAH1.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityCentAVRE.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelCentAVRE(), "CenturionAVRE/CenturionAVRE.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityCenturion.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelCenturion()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityChallyII.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelChallenger(), "ChallengerII_Prototype/ChallengerII.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityChieftain.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelChieftain()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityDaring.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelDaring()).scale(4.0F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityHarrier.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelHarrier()).scale(1.1F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityJaguar.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelJaguar()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityMoke.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelMoke()).scale(0.5F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityScimitar.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelScimitar(), "Scorpion/Scorpion.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityScorpion.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelScorpion()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityScorpion90.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelScorpion90(), "Scorpion/Scorpion.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityTSR2.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelTSR2()).scale(1.25F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityTeapot.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelTeapot()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityTyphoon.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelTyphoon()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityWarrior.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelWarrior()));
 		}
 
 		if (ContentPacks.manusCivil)
