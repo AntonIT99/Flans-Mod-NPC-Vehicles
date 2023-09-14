@@ -806,8 +806,8 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityTIEFighter.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelTIEFighter()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityTIEInterceptor.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelTIEInterceptor()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityViperMk2.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelViperMk2()));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityTIE.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelTIEFighterLegacy(), "TIEFighterLegacy/TIEFighter.png"));
-			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityTIEInter.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelTIEInterceptorLegacy(), "TIEInterceptorLegacy/TIEInterceptor.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityTIE.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelTIE(), "TIEFighterLegacy/TIEFighter.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityTIEInter.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelTIEInter(), "TIEInterceptorLegacy/TIEInterceptor.png"));
 		}
 	}
 }
