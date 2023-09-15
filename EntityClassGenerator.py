@@ -1,4 +1,5 @@
 import os
+import traceback
 from pathlib import Path
 
 planes_folder = "planes"
@@ -106,6 +107,7 @@ def read_config(file_path) -> Config:
                     config.full_name = data
     except:
         print("Errored reading file " + file_path + " at line: " + line_tracker)
+        traceback.print_exc()
     return config
 
 
