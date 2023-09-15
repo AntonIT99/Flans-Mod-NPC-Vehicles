@@ -540,11 +540,14 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.exufo.EntityCV.class, "Ford Crown Victoria (Exufo)");
 		}
 
-		if (ContentPacks.prototype)
+		if (ContentPacks.prototypeRatte)
 		{
 			//Landkreuzer P.1000 Ratte
 			createEntity(com.wolffsmod.entity.prototype.EntityRatte.class, "Landkreuzer P.1000 Ratte (Prototype)");
+		}
 
+		if (ContentPacks.prototypeBMP)
+		{
 			//British Military Pack
 			createEntity(com.wolffsmod.entity.prototype.bmp.EntityAS90.class, "L131 AS-90 (Prototype)");
 			createEntity(com.wolffsmod.entity.prototype.bmp.EntityApache.class, "AgustaWestland Apache AH-1 (Prototype)");
@@ -563,6 +566,18 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.prototype.bmp.EntityTeapot.class, "Teapot (Prototype)");
 			createEntity(com.wolffsmod.entity.prototype.bmp.EntityTyphoon.class, "Eurofighter Typhoon (Prototype)");
 			createEntity(com.wolffsmod.entity.prototype.bmp.EntityWarrior.class, "FV510 Warrior Tan (Prototype)");
+		}
+
+		if (ContentPacks.prototypeSciFi)
+		{
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityA144.class, "A-144 Phalanx (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityVF1S.class, "VF-1S Strike Valkyrie (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityVF1Valkyrie.class, "VF-1A Valkyrie (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityVF1Valkyriegun.class, "VF-1A Valkyrie (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityXwing.class, "T-65 X-Wing Red Five (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityBFP.class, "District 9 Prawn Mech (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityMonster.class, "HWR-00 MKII Monster (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityRex.class, "Metal Gear Rex (Prototype)");
 		}
 
 		if (ContentPacks.manusCivil)
@@ -792,6 +807,9 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.manus.sifi.EntityViperMk2.class, "Colonial Viper Mk.2 (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.sifi.EntityTIE.class, "TIE/LN Fighter (Manus Pack Legacy)");
 			createEntity(com.wolffsmod.entity.manus.sifi.EntityTIEInter.class, "TIE/IN Interceptor (Manus Pack Legacy)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityImperialThrone.class, "Imperial Throne (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityXX9.class, "XX-9 Turbo Laser Turret (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityMadcat.class, "Madcat Omnimech (Manus Pack)");
 		}
 	}
 

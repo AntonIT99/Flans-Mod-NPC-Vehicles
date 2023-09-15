@@ -17,6 +17,11 @@ public class ContentPacks
     public static boolean manusDayZ = true;
     public static boolean manusSciFi = true;
 
+    public static boolean prototypeRatte = true;
+    public static boolean prototypeFC = true;
+    public static boolean prototypeSciFi = true;
+    public static boolean prototypeBMP = true;
+
     public static boolean warfare44 = true;
     public static boolean worldAtWar = true;
     public static boolean monolith = true;
@@ -27,7 +32,6 @@ public class ContentPacks
     public static boolean kikkoceccato = true;
     public static boolean price = true;
     public static boolean exufo = true;
-    public static boolean prototype = true;
     public static boolean sturmgeschuetz = true;
     public static boolean akaku = true;
     public static boolean aoba = true;
@@ -55,6 +59,11 @@ public class ContentPacks
         manusDayZ = config.getBoolean("Manus DayZ", "Content Packs", manusDayZ, "Enable content pack models");
         manusSciFi = config.getBoolean("Manus SciFi", "Content Packs", manusSciFi, "Enable content pack models");
 
+        prototypeRatte = config.getBoolean("Prototype Landkreuzer Ratte", "Content Packs", prototypeRatte, "Enable content pack models");
+        prototypeFC = config.getBoolean("Prototype Future Craft", "Content Packs", prototypeFC, "Enable content pack models");
+        prototypeSciFi = config.getBoolean("Prototype SciFi", "Content Packs", prototypeSciFi, "Enable content pack models");
+        prototypeBMP = config.getBoolean("Prototype British Military", "Content Packs", prototypeBMP, "Enable content pack models");
+
         warfare44 = config.getBoolean("Warfare 44", "Content Packs", warfare44, "Enable content pack models");
         worldAtWar = config.getBoolean("World at War", "Content Packs", worldAtWar, "Enable content pack models");
         monolith = config.getBoolean("Monolith", "Content Packs", monolith, "Enable content pack models");
@@ -65,7 +74,6 @@ public class ContentPacks
         kikkoceccato = config.getBoolean("Kikkoceccato", "Content Packs", kikkoceccato, "Enable content pack models");
         price = config.getBoolean("Price additions", "Content Packs", price, "Enable content pack models");
         exufo = config.getBoolean("Exufo's cop cars", "Content Packs", exufo, "Enable content pack models");
-        prototype = config.getBoolean("Prototype", "Content Packs", prototype, "Enable content pack models");
         sturmgeschuetz = config.getBoolean("Sturmgeschütz", "Content Packs", sturmgeschuetz, "Enable content pack models");
         akaku = config.getBoolean("Akaku", "Content Packs", akaku, "Enable content pack models");
         aoba = config.getBoolean("Aoba", "Content Packs", aoba, "Enable content pack models");

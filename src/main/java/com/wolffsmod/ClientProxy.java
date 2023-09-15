@@ -555,11 +555,14 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.exufo.EntityCV.class, new RenderFlansModEntity(new com.wolffsmod.model.exufo.ModelCV(), "FordCrownVictoria/FordCrownVictoria.png"));
 		}
 
-		if (ContentPacks.prototype)
+		if (ContentPacks.prototypeRatte)
 		{
 			//Landkreuzer P.1000 Ratte
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.EntityRatte.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.ModelRatte()).setTranslation(0F, -5F, 0F).setScale(2.4F, 2.4F, 2.4F));
+		}
 
+		if (ContentPacks.prototypeBMP)
+		{
 			//British Military Pack
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityAS90.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelAS90()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityApache.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelApache(), "ApacheAH1/ApacheAH1.png"));
@@ -578,6 +581,18 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityTeapot.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelTeapot()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityTyphoon.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelTyphoon()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.bmp.EntityWarrior.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.bmp.ModelWarrior()));
+		}
+
+		if (ContentPacks.prototypeSciFi)
+		{
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.psf.EntityA144.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.psf.ModelA144()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.psf.EntityVF1S.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.psf.ModelVF1S()).scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.psf.EntityVF1Valkyrie.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.psf.ModelValkyrie()).scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.psf.EntityVF1Valkyriegun.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.psf.ModelValkyrieG(), "Valkyrie/Valkyrie.png").scale(1.2F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.psf.EntityXwing.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.psf.ModelXwing()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.psf.EntityBFP.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.psf.ModelBFP()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.psf.EntityMonster.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.psf.ModelMonster()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.psf.EntityRex.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.psf.ModelRex()).scale(0.6F));
 		}
 
 		if (ContentPacks.manusCivil)
@@ -808,6 +823,9 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityViperMk2.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelViperMk2()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityTIE.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelTIE(), "TIEFighterLegacy/TIEFighter.png"));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityTIEInter.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelTIEInter(), "TIEInterceptorLegacy/TIEInterceptor.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityImperialThrone.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelImperialThrone()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityXX9.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelXX9()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityMadcat.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelMadcat()).scale(1.2F));
 		}
 	}
 }
