@@ -16,6 +16,8 @@ public class ContentPacks
     public static boolean manusCivil = true;
     public static boolean manusDayZ = true;
     public static boolean manusSciFi = true;
+    public static boolean manusWH40K = true;
+    public static boolean manusShips = true;
 
     public static boolean prototypeRatte = true;
     public static boolean prototypeFC = true;
@@ -42,46 +44,51 @@ public class ContentPacks
     public static boolean cvt = true;
     public static boolean mos = true;
 
+    private static String desc = "Enable content pack models";
+    private static String category = "Content Packs";
+
     private ContentPacks() {}
 
     public static void loadPacksConfig(Configuration config)
     {
-        officialWW2 = config.getBoolean("Official WW2", "Content Packs", officialWW2, "Enable content pack models");
-        officialMW = config.getBoolean("Official Modern Warfare", "Content Packs", officialMW, "Enable content pack models");
-        officialYeOlde = config.getBoolean("Official Ye Olde", "Content Packs", officialYeOlde, "Enable content pack models");
-        officialTitan = config.getBoolean("Official Titan", "Content Packs", officialTitan, "Enable content pack models");
-        officialApocalypse = config.getBoolean("Official Apocalypse", "Content Packs", officialApocalypse, "Enable content pack models");
-        officialUtility = config.getBoolean("Utility", "Content Packs", officialUtility, "Enable content pack models");
+        officialWW2 = config.getBoolean("Official WW2", category, officialWW2, desc);
+        officialMW = config.getBoolean("Official Modern Warfare", category, officialMW, desc);
+        officialYeOlde = config.getBoolean("Official Ye Olde", category, officialYeOlde, desc);
+        officialTitan = config.getBoolean("Official Titan", category, officialTitan, desc);
+        officialApocalypse = config.getBoolean("Official Apocalypse", category, officialApocalypse, desc);
+        officialUtility = config.getBoolean("Utility", category, officialUtility, desc);
 
-        manusWW2 = config.getBoolean("Manus WW2", "Content Packs", manusWW2, "Enable content pack models");
-        manusMW = config.getBoolean("Manus Modern Warfare", "Content Packs", manusMW, "Enable content pack models");
-        manusCivil = config.getBoolean("Manus Civil", "Content Packs", manusCivil, "Enable content pack models");
-        manusDayZ = config.getBoolean("Manus DayZ", "Content Packs", manusDayZ, "Enable content pack models");
-        manusSciFi = config.getBoolean("Manus SciFi", "Content Packs", manusSciFi, "Enable content pack models");
+        manusWW2 = config.getBoolean("Manus WW2", category, manusWW2, desc);
+        manusMW = config.getBoolean("Manus Modern Warfare", category, manusMW, desc);
+        manusCivil = config.getBoolean("Manus Civil", category, manusCivil, desc);
+        manusDayZ = config.getBoolean("Manus DayZ", category, manusDayZ, desc);
+        manusSciFi = config.getBoolean("Manus SciFi", category, manusSciFi, desc);
+        manusWH40K = config.getBoolean("Manus WH40K", category, manusWH40K, desc);
+        manusShips = config.getBoolean("Manus Ships", category, manusShips, desc);
 
-        prototypeRatte = config.getBoolean("Prototype Landkreuzer Ratte", "Content Packs", prototypeRatte, "Enable content pack models");
-        prototypeFC = config.getBoolean("Prototype Future Craft", "Content Packs", prototypeFC, "Enable content pack models");
-        prototypeSciFi = config.getBoolean("Prototype SciFi", "Content Packs", prototypeSciFi, "Enable content pack models");
-        prototypeBMP = config.getBoolean("Prototype British Military", "Content Packs", prototypeBMP, "Enable content pack models");
+        prototypeRatte = config.getBoolean("Prototype Landkreuzer Ratte", category, prototypeRatte, desc);
+        prototypeFC = config.getBoolean("Prototype Future Craft", category, prototypeFC, desc);
+        prototypeSciFi = config.getBoolean("Prototype SciFi", category, prototypeSciFi, desc);
+        prototypeBMP = config.getBoolean("Prototype British Military", category, prototypeBMP, desc);
 
-        warfare44 = config.getBoolean("Warfare 44", "Content Packs", warfare44, "Enable content pack models");
-        worldAtWar = config.getBoolean("World at War", "Content Packs", worldAtWar, "Enable content pack models");
-        monolith = config.getBoolean("Monolith", "Content Packs", monolith, "Enable content pack models");
-        tap = config.getBoolean("Tyrants & Plebeians", "Content Packs", tap, "Enable content pack models");
-        extraZero8 = config.getBoolean("Extra Zero 8", "Content Packs", extraZero8, "Enable content pack models");
-        lizard = config.getBoolean("Lizard", "Content Packs", lizard, "Enable content pack models");
-        wolff = config.getBoolean("Wolff", "Content Packs", wolff, "Enable content pack models");
-        kikkoceccato = config.getBoolean("Kikkoceccato", "Content Packs", kikkoceccato, "Enable content pack models");
-        price = config.getBoolean("Price additions", "Content Packs", price, "Enable content pack models");
-        exufo = config.getBoolean("Exufo's cop cars", "Content Packs", exufo, "Enable content pack models");
-        sturmgeschuetz = config.getBoolean("Sturmgeschütz", "Content Packs", sturmgeschuetz, "Enable content pack models");
-        akaku = config.getBoolean("Akaku", "Content Packs", akaku, "Enable content pack models");
-        aoba = config.getBoolean("Aoba", "Content Packs", aoba, "Enable content pack models");
-        cow = config.getBoolean("Cow West", "Content Packs", cow, "Enable content pack models");
-        moneybuster = config.getBoolean("Moneybuster", "Content Packs", moneybuster, "Enable content pack models");
-        wot = config.getBoolean("World of Tanks", "Content Packs", wot, "Enable content pack models");
-        berggeit = config.getBoolean("Berggeit", "Content Packs", berggeit, "Enable content pack models");
-        cvt = config.getBoolean("CVT", "Content Packs", cvt, "Enable content pack models");
-        mos = config.getBoolean("MosPack", "Content Packs", mos, "Enable content pack models");
+        warfare44 = config.getBoolean("Warfare 44", category, warfare44, desc);
+        worldAtWar = config.getBoolean("World at War", category, worldAtWar, desc);
+        monolith = config.getBoolean("Monolith", category, monolith, desc);
+        tap = config.getBoolean("Tyrants & Plebeians", category, tap, desc);
+        extraZero8 = config.getBoolean("Extra Zero 8", category, extraZero8, desc);
+        lizard = config.getBoolean("Lizard", category, lizard, desc);
+        wolff = config.getBoolean("Wolff", category, wolff, desc);
+        kikkoceccato = config.getBoolean("Kikkoceccato", category, kikkoceccato, desc);
+        price = config.getBoolean("Price additions", category, price, desc);
+        exufo = config.getBoolean("Exufo's cop cars", category, exufo, desc);
+        sturmgeschuetz = config.getBoolean("Sturmgeschütz", category, sturmgeschuetz, desc);
+        akaku = config.getBoolean("Akaku", category, akaku, desc);
+        aoba = config.getBoolean("Aoba", category, aoba, desc);
+        cow = config.getBoolean("Cow West", category, cow, desc);
+        moneybuster = config.getBoolean("Moneybuster", category, moneybuster, desc);
+        wot = config.getBoolean("World of Tanks", category, wot, desc);
+        berggeit = config.getBoolean("Berggeit", category, berggeit, desc);
+        cvt = config.getBoolean("CVT", category, cvt, desc);
+        mos = config.getBoolean("MosPack", category, mos, desc);
     }
 }

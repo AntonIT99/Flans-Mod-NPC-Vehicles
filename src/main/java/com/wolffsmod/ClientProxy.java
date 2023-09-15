@@ -1,7 +1,6 @@
 package com.wolffsmod;
 
 import com.flansmod.client.model.RenderBullet;
-import com.wolffsmod.entity.prototype.fc.EntityAR15;
 import com.wolffsmod.flan.EntityNPCFlanBullet;
 import com.wolffsmod.render.RenderFlansModEntity;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -850,6 +849,22 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityImperialThrone.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelImperialThrone()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityXX9.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelXX9()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.sifi.EntityMadcat.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.sifi.ModelMadcat()).scale(1.2F));
+		}
+
+		if (ContentPacks.manusWH40K)
+		{
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Plane_Valkyrie_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.wh40k.ModelWH40K_Plane_Valkyrie_1(), "Valkyrie1/Valkyrie1.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Plane_Valkyrie_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.wh40k.ModelWH40K_Plane_Valkyrie_2(), "Valkyrie2/Valkyrie2.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Plane_Vulture_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.wh40k.ModelWH40K_Plane_Vulture_1(), "Vulture1/Vulture1.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Plane_Vulture_2A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.wh40k.ModelWH40K_Plane_Vulture_2(), "Vulture2/Vulture2.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Vehicle_Baneblade_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.wh40k.ModelWH40K_Vehicle_Baneblade_1(), "Baneblade/Baneblade.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Vehicle_LemanRuss_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.wh40k.ModelWH40K_Vehicle_LemanRuss_1(), "LemanRuss/LemanRuss.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Mecha_Warhound_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.wh40k.ModelWH40K_Mecha_Warhound_1(), "Warhound/Warhound.png"));
+		}
+
+		if (ContentPacks.manusShips)
+		{
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.manus.ships.EntityShips_Plane_PrinzEugen_1A.class, new RenderFlansModEntity(new com.wolffsmod.model.manus.ships.ModelShips_Plane_PrinzEugen_1(), "PrinzEugen/PrinzEugen.png"));
 		}
 	}
 }

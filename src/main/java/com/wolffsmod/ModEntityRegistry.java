@@ -1,6 +1,5 @@
 package com.wolffsmod;
 
-import com.wolffsmod.entity.prototype.fc.EntityAR15;
 import com.wolffsmod.flan.EntityNPCFlanBullet;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
@@ -834,6 +833,22 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.manus.sifi.EntityImperialThrone.class, "Imperial Throne (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.sifi.EntityXX9.class, "XX-9 Turbo Laser Turret (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.sifi.EntityMadcat.class, "Madcat Omnimech (Manus Pack)");
+		}
+
+		if (ContentPacks.manusWH40K)
+		{
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Plane_Valkyrie_1A.class, "Valkyrie Dropship Weapons Set 1 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Plane_Valkyrie_2A.class, "Valkyrie Dropship Weapons Set 2 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Plane_Vulture_1A.class, "Vulture Gunship Weapons Set 1 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Plane_Vulture_2A.class, "Vulture Gunship Weapons Set 2 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Vehicle_Baneblade_1A.class, "Imperial Guard Baneblade (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Vehicle_LemanRuss_1A.class, "Leman Russ Battle Tank (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Mecha_Warhound_1A.class, "Imperial Warhound Titan (Manus Pack)");
+		}
+
+		if (ContentPacks.manusShips)
+		{
+			createEntity(com.wolffsmod.entity.manus.ships.EntityShips_Plane_PrinzEugen_1A.class, "Prinz Eugen (Manus Pack)");
 		}
 	}
 
