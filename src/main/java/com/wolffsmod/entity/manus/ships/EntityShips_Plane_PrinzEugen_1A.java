@@ -10,13 +10,13 @@ public class EntityShips_Plane_PrinzEugen_1A extends EntityFlanPlaneNPC
     public EntityShips_Plane_PrinzEugen_1A(World w)
     {
         super(w);
-        setSize(3.5F, 2.5F);
+        setSize(20F, 40F);
     }
 
     @Override
     public void setupConfig()
     {
-        setTurnSpeed(0.1F);
+        setTurnSpeed(0.01F);
         setDriver("807 285 0");
         setPassenger("1 1231 191 0 core -90 90 0 30 Ships_MG_20cmGun_1A PassengerGun1");
         setPassenger("2 997 247 0 core -90 90 0 30 Ships_MG_20cmGun_1A PassengerGun2");
