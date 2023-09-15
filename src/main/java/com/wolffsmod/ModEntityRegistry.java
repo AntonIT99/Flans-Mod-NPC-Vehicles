@@ -1,5 +1,6 @@
 package com.wolffsmod;
 
+import com.wolffsmod.entity.prototype.fc.EntityAR15;
 import com.wolffsmod.flan.EntityNPCFlanBullet;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
@@ -578,6 +579,29 @@ public class ModEntityRegistry
 			createEntity(com.wolffsmod.entity.prototype.psf.EntityBFP.class, "District 9 Prawn Mech (Prototype)");
 			createEntity(com.wolffsmod.entity.prototype.psf.EntityMonster.class, "HWR-00 MKII Monster (Prototype)");
 			createEntity(com.wolffsmod.entity.prototype.psf.EntityRex.class, "Metal Gear Rex (Prototype)");
+		}
+
+		if (ContentPacks.prototypeFC)
+		{
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityAF12.class, "AF-12 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityAR15.class, "AF-15 Wasp (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityBrutus.class, "Brutus MT-12 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityFang.class, "HF-17 Fang (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityGadfly.class, "LGS-72 Gadfly (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityHarpy.class, "HGS-114 Dolphin (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityLeviathan.class, "HT-9 Leviathan (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityLeviathanIIAA.class, "HAA-10 Leviathan II AA (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityLeviathanIIILaser.class, "HT-11 Leviathan III Laser (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityLeviathanIIIR.class, "HT-11 Leviathan III Railgun (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityLeviathanIIR.class, "HT-10 Leviathan II MBT (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityLeviathanIITD.class, "HD-10 Leviathan II Destroyer (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntitySBII.class, "Scout bike MKII (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityShark.class, "HGS-227 Shark (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityUTFScimitar.class, "UTF Scimitar (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityFafnir.class, "Type IX Fafnir (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityOmega.class, "Type IV Omega (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityPeregrine.class, "Peregrine mkII (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityZeroTitan.class, "Zero Titan mkII (Prototype)");
 		}
 
 		if (ContentPacks.manusCivil)

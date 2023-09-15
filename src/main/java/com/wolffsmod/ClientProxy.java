@@ -1,6 +1,7 @@
 package com.wolffsmod;
 
 import com.flansmod.client.model.RenderBullet;
+import com.wolffsmod.entity.prototype.fc.EntityAR15;
 import com.wolffsmod.flan.EntityNPCFlanBullet;
 import com.wolffsmod.render.RenderFlansModEntity;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -593,6 +594,29 @@ public class ClientProxy extends CommonProxy
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.psf.EntityBFP.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.psf.ModelBFP()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.psf.EntityMonster.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.psf.ModelMonster()));
 			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.psf.EntityRex.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.psf.ModelRex()).scale(0.6F));
+		}
+
+		if (ContentPacks.prototypeFC)
+		{
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityAF12.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelAF12()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityAR15.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelAR15()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityBrutus.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelBrutus()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityFang.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelFang(), "Fang/Fang_A.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityGadfly.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelGadfly()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityHarpy.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelHarpy()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityLeviathan.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelTank(), "Leviathan/Leviathan.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityLeviathanIIAA.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelLeviathanIIAA()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityLeviathanIIILaser.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelLeviathanIIILaser()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityLeviathanIIIR.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelLeviathanIII()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityLeviathanIIR.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelLeviathanII()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityLeviathanIITD.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelLeviathanIITD()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntitySBII.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelRC8()).scale(0.9F));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityShark.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelShark()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityUTFScimitar.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelUGFScythe()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityFafnir.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelFafnir()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityOmega.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelOmega()));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityPeregrine.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelPeregrine(), "PeregrineII/PeregrineII.png"));
+			RenderingRegistry.registerEntityRenderingHandler(com.wolffsmod.entity.prototype.fc.EntityZeroTitan.class, new RenderFlansModEntity(new com.wolffsmod.model.prototype.fc.ModelZerotitan(), "ZeroTitanII/ZeroTitanII.png"));
 		}
 
 		if (ContentPacks.manusCivil)
