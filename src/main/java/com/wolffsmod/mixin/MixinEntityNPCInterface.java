@@ -504,7 +504,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
             pitch = driver.getPitch();
         }
 
-        if (optionalDriveable.isPresent() && (optionalDriveable.get().shootPointsPrimary.isEmpty()))
+        if (optionalDriveable.isPresent() && (!optionalDriveable.get().shootPointsPrimary.isEmpty()))
         {
             EntityFlanDriveableNPC driveable = optionalDriveable.get();
             float driverYaw = driveable.driver.getLocalYaw();
