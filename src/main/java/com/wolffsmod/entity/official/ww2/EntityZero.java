@@ -15,11 +15,15 @@ public class EntityZero extends EntityFlanPlaneNPC
     @Override
     public void setupConfig()
     {
-        setTurnSpeed(2.0F);
-        setDriver("10 2 0");
-        addShootPointPrimary("80 11 6 nose type99");
-        addShootPointPrimary("80 11 -6 nose type99");
-        addShootPointSecondary("-30 -22 0");
-        
+        setTurnSpeed(0.8F);
+        setDriver("12 -1 0");
+        addShootPointPrimary("36 9 4 nose");
+        addShootPointPrimary("36 9 -4 nose");
+        addShootPointPrimary("28 -3 22 rightWing");
+        addShootPointPrimary("30 -3 22 rightWing");
+        addShootPointPrimary("28 -3 -22 leftWing");
+        addShootPointPrimary("30 -3 -22 leftWing");
+        addShootPointSecondary("-4 -16 0 core");
+        addShootParticlesPrimary("cloud 0 0 0");
     }
 }

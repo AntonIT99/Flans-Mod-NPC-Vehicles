@@ -15,10 +15,16 @@ public class EntityWW2_Vehicle_WillyJeep_1A extends EntityFlanVehicleNPC
     @Override
     public void setupConfig()
     {
-        setDriver("-7 0 -9");
-        setPassenger("1 -7 0 9 core");
-        setPassenger("2 -21 11 0 core -50 50 -10 30 WW2_MG_BrowningM2_1A M2");
-        addGunOrigin("2 -25 22 0");
+        setTurnSpeed(0.75F);
+        setDriver("-2 0 -9");
+        setRotatedDriverOffset("0 0 0");
+        setPassenger("1 -2 0 9 core -360 360 -89 89");
+        setPassenger("2 -21 11 0 core -65 65 -15 35 vg_12.7mm_browningm2 M2");
+        addShootPointPrimary("16 8 0 core");
+        addShootPointSecondary("16 8 0 core");
+        addGunOrigin("2 -15 3 0");
+        addShootParticlesPrimary("note 0 1 0");
+        addShootParticlesPrimary("note 0 2 0");
         
     }
 }

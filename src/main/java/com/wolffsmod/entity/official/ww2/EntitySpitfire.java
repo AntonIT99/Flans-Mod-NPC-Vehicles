@@ -15,11 +15,15 @@ public class EntitySpitfire extends EntityFlanPlaneNPC
     @Override
     public void setupConfig()
     {
-        setTurnSpeed(1.8F);
-        setDriver("-4 -4 0");
-        addShootPointPrimary("40 -4 44 rightWing browning");
-        addShootPointPrimary("40 -4 -44 leftWing browning");
-        addShootPointSecondary("-30 -12 0");
-        
+        setTurnSpeed(0.8F);
+        setDriver("-4 -1 0");
+        addShootPointPrimary("26 -4 18 rightWing");
+        addShootPointPrimary("26 -4 -18 leftWing");
+        addShootPointPrimary("38 -4 44 rightWing");
+        addShootPointPrimary("40 -4 44 rightWing");
+        addShootPointPrimary("38 -4 -44 leftWing");
+        addShootPointPrimary("40 -4 -44 leftWing");
+        addShootPointSecondary("-4 -16 0 core");
+        addShootParticlesPrimary("cloud 0 0 0");
     }
 }

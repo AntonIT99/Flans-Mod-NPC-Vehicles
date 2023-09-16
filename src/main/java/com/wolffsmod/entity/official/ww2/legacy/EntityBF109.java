@@ -15,11 +15,15 @@ public class EntityBF109 extends EntityFlanPlaneNPC
     @Override
     public void setupConfig()
     {
-        setTurnSpeed(1.8F);
-        setDriver("-4 -4 0");
-        addShootPointSecondary("-30 -12 0");
-        addShootPointPrimary("60 3 -5 nose mg42");
-        addShootPointPrimary("60 3 5 nose mg42");
-        
+        setTurnSpeed(0.8F);
+        setDriver("-4 -1 0");
+        addShootPointPrimary("50 8 5 nose");
+        addShootPointPrimary("50 8 -5 nose");
+        addShootPointPrimary("26 -4 28 rightWing");
+        addShootPointPrimary("26 -4 36 rightWing");
+        addShootPointPrimary("26 -4 -28 leftWing");
+        addShootPointPrimary("26 -4 -36 leftWing");
+        addShootPointSecondary("-4 -16 0 core");
+        addShootParticlesPrimary("cloud 0 0 0");
     }
 }

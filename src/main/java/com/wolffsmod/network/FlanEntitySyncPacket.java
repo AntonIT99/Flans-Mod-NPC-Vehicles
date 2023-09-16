@@ -12,6 +12,8 @@ import noppes.npcs.entity.EntityCustomNpc;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 
+import java.util.Optional;
+
 public class FlanEntitySyncPacket implements IMessage
 {
     int entityId;
@@ -66,10 +68,11 @@ public class FlanEntitySyncPacket implements IMessage
         public IMessage onMessage(FlanEntitySyncPacket message, MessageContext ctx)
         {
             Entity entity = Minecraft.getMinecraft().theWorld.getEntityByID(message.entityId);
-            if (entity instanceof EntityCustomNpc && ((IMixinEntityNPCInterface)entity).getFlanDriveableEntity().isPresent())
+            Optional<EntityFlanDriveableNPC> driveableNPC = ((IMixinEntityNPCInterface)entity).getFlanDriveableEntity();
+            if (entity instanceof EntityCustomNpc && driveableNPC.isPresent())
             {
                 EntityCustomNpc npc = (EntityCustomNpc) entity;
-                EntityFlanDriveableNPC driveable = ((IMixinEntityNPCInterface)npc).getFlanDriveableEntity().get();
+                EntityFlanDriveableNPC driveable = driveableNPC.get();
                 driveable.driver.setLocalYaw(message.driverYaw);
                 driveable.driver.setPitch(message.driverPitch);
                 driveable.renderYawOffset = npc.renderYawOffset = message.renderYawOffset;

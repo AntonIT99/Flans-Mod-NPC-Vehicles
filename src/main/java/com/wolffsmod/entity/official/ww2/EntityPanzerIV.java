@@ -15,11 +15,55 @@ public class EntityPanzerIV extends EntityFlanVehicleNPC
     @Override
     public void setupConfig()
     {
-        setTurnSpeed(0.35F);
-        setDriver("0 28 0 -360 360 -10 20");
-        setRotatedDriverOffset("-13 0 0");
-        addBarrelPosition("20 34 0");
-        addGun("8 34 8 turret mg42");
+        setDriver("0 22 0 -360 360 -10 20");
+        setRotatedDriverOffset("-9 0 0");
+        setPassenger("1 -32 18 14 core -360 360 -89 89 dummygun DummyGun");
+        setPassenger("2 -32 18 -14 core -360 360 -89 89");
+        addShootPointPrimary("28 30 -1 turret");
+        addShootPointSecondary("28 30 7 turret");
+        addShootParticlesPrimary("largeexplode 3 0 0");
+        addShootParticlesPrimary("explode 3 0 0");
+        addShootParticlesPrimary("explode 2 0 1");
+        addShootParticlesPrimary("explode 2 0 -1");
+        addShootParticlesPrimary("explode 3 0 0");
+        addShootParticlesPrimary("explode 2 0 1");
+        addShootParticlesPrimary("explode 2 0 -1");
+        addShootParticlesPrimary("explode 3 0 0");
+        addShootParticlesPrimary("explode 2 0 1");
+        addShootParticlesPrimary("explode 2 0 -1");
+        addShootParticlesPrimary("explode 3 0 0");
+        addShootParticlesPrimary("explode 2 0 1");
+        addShootParticlesPrimary("explode 2 0 -1");
+        addShootParticlesPrimary("explode 3 0 0");
+        addShootParticlesPrimary("explode 2 0 1");
+        addShootParticlesPrimary("explode 2 0 -1");
+        addShootParticlesPrimary("explode 3 0 0");
+        addShootParticlesPrimary("explode 2 0 1");
+        addShootParticlesPrimary("explode 2 0 -1");
+        addShootParticlesPrimary("explode 3 0 0");
+        addShootParticlesPrimary("explode 2 0 1");
+        addShootParticlesPrimary("explode 2 0 -1");
+        addShootParticlesPrimary("explode 3 0 0");
+        addShootParticlesPrimary("explode 2 0 1");
+        addShootParticlesPrimary("explode 2 0 -1");
+        addShootParticlesPrimary("cloud 3 0 0");
+        addShootParticlesPrimary("cloud 2 0 1");
+        addShootParticlesPrimary("cloud 2 0 -1");
+        addShootParticlesPrimary("cloud 3 0 0");
+        addShootParticlesPrimary("cloud 2 0 1");
+        addShootParticlesPrimary("cloud 2 0 -1");
+        addShootParticlesPrimary("cloud 3 0 0");
+        addShootParticlesPrimary("cloud 2 0 1");
+        addShootParticlesPrimary("cloud 2 0 -1");
+        addShootParticlesPrimary("cloud 3 0 0");
+        addShootParticlesPrimary("cloud 2 0 1");
+        addShootParticlesPrimary("cloud 2 0 -1");
+        addShootParticlesPrimary("cloud 3 0 0");
+        addShootParticlesPrimary("cloud 2 0 1");
+        addShootParticlesPrimary("cloud 2 0 -1");
+        addShootParticlesPrimary("cloud 3 0 0");
+        addShootParticlesPrimary("cloud 3 0 0");
+        addShootParticlesPrimary("cloud 3 0 0");
         
     }
 }

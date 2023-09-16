@@ -16,6 +16,7 @@ public class EntityAH1G extends EntityFlanPlaneNPC
     public void setupConfig()
     {
         setTurnSpeed(2.2F);
+        setDriver("22 11 0");
         setPassenger("1 45 7 0 nose -125 125 -75 10 pg_7.62mm_m134minigun Nose");
         addShootPointPrimary("12 6 -16 rightWing");
         addShootPointPrimary("12 6 16 leftWing");

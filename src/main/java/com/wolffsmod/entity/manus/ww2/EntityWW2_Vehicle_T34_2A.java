@@ -15,12 +15,38 @@ public class EntityWW2_Vehicle_T34_2A extends EntityFlanVehicleNPC
     @Override
     public void setupConfig()
     {
-        setDriver("0 28 0 -360 360 -10 20");
-        setRotatedDriverOffset("-5 0 -6");
-        setPassenger("1 24 3 -6 core -30 30 -10 10 WW2_MG_DP28_1A FrontMG");
-        addBarrelPosition("0 32 0");
-        addGun("26 30 -5 turret WW2_MG_DP28_1A");
-        addGunOrigin("1 37 15 11");
+        setTurnSpeed(0.45F);
+        setDriver("0 21 0 -360 360 -7 22");
+        setRotatedDriverOffset("-5 0 -5");
+        setPassenger("1 -36 17 10 core -360 360 -89 89 dummygun DummyGun");
+        setPassenger("2 -36 17 -10 core -360 360 -89 89");
+        addShootPointPrimary("26 29 0 turret");
+        addShootPointSecondary("26 29 6 turret");
+        addShootParticlesPrimary("largeexplode 4 0 0");
+        addShootParticlesPrimary("explode 4 0 0");
+        addShootParticlesPrimary("explode 4 0 0");
+        addShootParticlesPrimary("explode 4 0 0");
+        addShootParticlesPrimary("explode 4 0 0");
+        addShootParticlesPrimary("explode 4 0 0");
+        addShootParticlesPrimary("explode 4 0 0");
+        addShootParticlesPrimary("explode 5 0 0");
+        addShootParticlesPrimary("explode 5 0 0");
+        addShootParticlesPrimary("explode 5 0 0");
+        addShootParticlesPrimary("explode 5 0 0");
+        addShootParticlesPrimary("explode 5 0 0");
+        addShootParticlesPrimary("explode 5 0 0");
+        addShootParticlesPrimary("cloud 4 0 0");
+        addShootParticlesPrimary("cloud 4 0 0");
+        addShootParticlesPrimary("cloud 4 0 0");
+        addShootParticlesPrimary("cloud 4 0 0");
+        addShootParticlesPrimary("cloud 4 0 0");
+        addShootParticlesPrimary("cloud 4 0 0");
+        addShootParticlesPrimary("cloud 5 0 0");
+        addShootParticlesPrimary("cloud 5 0 0");
+        addShootParticlesPrimary("cloud 5 0 0");
+        addShootParticlesPrimary("cloud 5 0 0");
+        addShootParticlesPrimary("cloud 5 0 0");
+        addShootParticlesPrimary("cloud 5 0 0");
         
     }
 }

@@ -62,10 +62,7 @@ public abstract class MixinEntityCustomNpc extends MixinEntityNPCInterface
     public void onUpdate()
     {
         super.onUpdate();
-        if (getFlanDriveableEntity().isPresent())
-        {
-            getFlanDriveableEntity().get().updateNpc((EntityCustomNpc)(Object)this);
-        }
+        getFlanDriveableEntity().ifPresent(driveableNPC -> driveableNPC.updateNpc((EntityCustomNpc) (Object) this));
         if (isRemote())
         {
             ModelPartData particles = modelData.getPartData("particles");
@@ -121,9 +118,10 @@ public abstract class MixinEntityCustomNpc extends MixinEntityNPCInterface
     @Override
     public float getEyeHeight()
     {
-        if (getFlanDriveableEntity().isPresent() && !getFlanDriveableEntity().get().shootPointsPrimary.isEmpty())
+        Optional<EntityFlanDriveableNPC> driveableNPC = getFlanDriveableEntity();
+        if (driveableNPC.isPresent() && !driveableNPC.get().shootPointsPrimary.isEmpty())
         {
-            return getFlanDriveableEntity().get().shootPointsPrimary.get(0).rootPos.position.getY() + getFlanDriveableEntity().get().yDriveableOffset;
+            return driveableNPC.get().shootPointsPrimary.get(0).rootPos.position.getY() + driveableNPC.get().yDriveableOffset;
         }
         return super.getEyeHeight();
     }

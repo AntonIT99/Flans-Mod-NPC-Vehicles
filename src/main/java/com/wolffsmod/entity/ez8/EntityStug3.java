@@ -16,7 +16,7 @@ public class EntityStug3 extends EntityFlanVehicleNPC
     public void setupConfig()
     {
         setTurnSpeed(0.45F);
-        setDriver("-5 10 6 -15 15 -6 20");
+        setDriver("-5 10 6 -6 6 -6 20");
         setRotatedDriverOffset("0 0 0");
         setPassenger("1 -31 15 11 core -360 360 -89 89 dummygun DummyGun");
         setPassenger("2 -31 15 -11 core -360 360 -89 89");

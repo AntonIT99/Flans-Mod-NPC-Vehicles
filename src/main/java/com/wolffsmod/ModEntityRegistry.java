@@ -6,10 +6,11 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.Entity;
 
 
-public class ModEntityRegistry {
-	private ModEntityRegistry() {}
-
+public class ModEntityRegistry
+{
 	private static int entityID = 0;
+
+	private ModEntityRegistry() {}
 
 	public static void registerEntities()
 	{
@@ -207,8 +208,8 @@ public class ModEntityRegistry {
 			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_YAK3_1A.class, "Yakovlev Yak-3 (Manus Pack Legacy)");
 			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Plane_YAK3_1Aneu.class, "Yakovlev Yak-3 (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_FlakpanzerIV_1A.class, "Flakpanzer IV Wirbelwind (Manus Pack)");
-			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_GMCTruck_1A.class, "GMC Truck (Manus Pack)");
-			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_GMCTruck_2A.class, "GMC Truck open Back (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_GMCTruck_1A.class, "GMC CCKW Truck (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_GMCTruck_2A.class, "GMC CCKW Truck open Back (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_HigginsBoat_1A.class, "LCVP 2 Higgins Boat (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_Jagdpanther_1A.class, "Jagdpanzer V Jagdpanther (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.ww2.EntityWW2_Vehicle_JagdpanzerIV_1A.class, "Jagdpanzer IV/70 Guderian Ente (Manus Pack)");
@@ -374,7 +375,10 @@ public class ModEntityRegistry {
 			createEntity(com.wolffsmod.entity.monolith.EntityType90.class, "Type 90 Kyu-maru (TaP)");
 
 			//Other TaP
-			createEntity(com.wolffsmod.entity.baf.EntityHurricane.class, "Hawker Hurricane Mk.I (TaP)");
+			createEntity(com.wolffsmod.entity.baf.EntityT0FHurricane.class, "Hawker Hurricane Mk.I (TaP)");
+			createEntity(com.wolffsmod.entity.baf.EntityT1TMosquito.class, "De Havilland Mosquito F Mk II (TaP)");
+			createEntity(com.wolffsmod.entity.baf.EntityT1p5FVickersValiant.class, "Vickers Valiant (TaP)");
+			createEntity(com.wolffsmod.entity.baf.EntityT1p5Fwyvern.class, "Westland Wyvern (TaP)");
 			createEntity(com.wolffsmod.entity.newage.EntityBF109E3.class, "Messerschmitt Bf 109 E-3 (TaP)");
 			createEntity(com.wolffsmod.entity.newage.EntityEurocopterTigerHAD.class, "Eurocopter EC-665 Tigre HAD (TaP)");
 			createEntity(com.wolffsmod.entity.newage.EntityEurocopterTigerUHT.class, "Eurocopter EC-665 Tiger UHT (TaP)");
@@ -387,6 +391,13 @@ public class ModEntityRegistry {
 			createEntity(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxS5.class, "Toyota Hilux Technical w/ UB-32 RocketPod (TaP)");
 			createEntity(com.wolffsmod.entity.newage.EntityT3TToyotaHiluxSPG9.class, "Toyota Hilux Technical w/ SPG-9 (TaP)");
 			createEntity(com.wolffsmod.entity.tankcraft.EntityM60A1.class, "M60A1 Patton RISE 1975 (TaP)");
+
+			//Additional Warfare 44 models found in TaP
+			createEntity(com.wolffsmod.entity.w44.EntityFlak20mm.class, "20mm FlaK 30/38 (TaP)");
+			createEntity(com.wolffsmod.entity.w44.EntityLeFH18.class, "105mm leFH 18 (TaP)");
+			createEntity(com.wolffsmod.entity.w44.EntityLeIG18.class, "75mm leIG 18 (TaP)");
+			createEntity(com.wolffsmod.entity.w44.EntityM7Priest.class, "M7 Priest (TaP)");
+			createEntity(com.wolffsmod.entity.w44.EntityOstwind.class, "Flakpanzer IV Ostwind (TaP)");
 		}
 
 		if (ContentPacks.price)
@@ -477,7 +488,7 @@ public class ModEntityRegistry {
 			createEntity(com.wolffsmod.entity.w44.Entity44_PantherCommand.class, "Befehlspanzer V Panther (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_PantherG.class, "Panzer V Panther Ausf. G (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_Panzer2C.class, "Panzer II Ausf. C (Warfare 44)");
-			createEntity(com.wolffsmod.entity.w44.Entity44_Panzer38t.class, "Panzer38(t) Ausf. A (Warfare 44)");
+			createEntity(com.wolffsmod.entity.w44.Entity44_Panzer38t.class, "Panzer 38(t) Ausf. A (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_PanzerIIIF.class, "Panzer III Ausf. F (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_PanzerIIIM.class, "Panzer III Ausf. M (Warfare 44)");
 			createEntity(com.wolffsmod.entity.w44.Entity44_PanzerIVF1.class, "Panzer IV Ausf. F1 (Warfare 44)");
@@ -525,14 +536,71 @@ public class ModEntityRegistry {
 		if (ContentPacks.exufo)
 		{
 			//Exufo's cop cars
-			createEntity(com.wolffsmod.entity.exufo.EntityCopvic.class, "Ford Crown Victoria Police (brlanyangxdd)");
-			createEntity(com.wolffsmod.entity.exufo.EntityCV.class, "Ford Crown Victoria (brlanyangxdd)");
+			createEntity(com.wolffsmod.entity.exufo.EntityCopvic.class, "Ford Crown Victoria Police (Exufo)");
+			createEntity(com.wolffsmod.entity.exufo.EntityCV.class, "Ford Crown Victoria (Exufo)");
 		}
 
-		if (ContentPacks.prototype)
+		if (ContentPacks.prototypeRatte)
 		{
-			//Prototype
+			//Landkreuzer P.1000 Ratte
 			createEntity(com.wolffsmod.entity.prototype.EntityRatte.class, "Landkreuzer P.1000 Ratte (Prototype)");
+		}
+
+		if (ContentPacks.prototypeBMP)
+		{
+			//British Military Pack
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityAS90.class, "L131 AS-90 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityApache.class, "AgustaWestland Apache AH-1 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityCentAVRE.class, "FV4011 Centurion mk5/2 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityCenturion.class, "FV4003 Centurion AVRE (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityChallyII.class, "FV4034 Challenger II (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityChieftain.class, "FV4201 Chieftain (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityDaring.class, "HMS Daring Type 45 Destroyer (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityHarrier.class, "British Aerospace Harrier GR9 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityJaguar.class, "SEPECAT Jaguar (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityMoke.class, "Mini Moke (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityScimitar.class, "FV107 Scimitar (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityScorpion.class, "FV101 Scorpion (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityScorpion90.class, "FV101 Scorpion 90mm (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityTSR2.class, "TSR-2 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityTeapot.class, "Teapot (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityTyphoon.class, "Eurofighter Typhoon (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.bmp.EntityWarrior.class, "FV510 Warrior Tan (Prototype)");
+		}
+
+		if (ContentPacks.prototypeSciFi)
+		{
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityA144.class, "A-144 Phalanx (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityVF1S.class, "VF-1S Strike Valkyrie (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityVF1Valkyrie.class, "VF-1A Valkyrie (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityVF1Valkyriegun.class, "VF-1A Valkyrie (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityXwing.class, "T-65 X-Wing Red Five (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityBFP.class, "District 9 Prawn Mech (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityMonster.class, "HWR-00 MKII Monster (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.psf.EntityRex.class, "Metal Gear Rex (Prototype)");
+		}
+
+		if (ContentPacks.prototypeFC)
+		{
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityAF12.class, "AF-12 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityAR15.class, "AF-15 Wasp (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityBrutus.class, "Brutus MT-12 (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityFang.class, "HF-17 Fang (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityGadfly.class, "LGS-72 Gadfly (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityHarpy.class, "HGS-114 Dolphin (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityLeviathan.class, "HT-9 Leviathan (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityLeviathanIIAA.class, "HAA-10 Leviathan II AA (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityLeviathanIIILaser.class, "HT-11 Leviathan III Laser (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityLeviathanIIIR.class, "HT-11 Leviathan III Railgun (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityLeviathanIIR.class, "HT-10 Leviathan II MBT (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityLeviathanIITD.class, "HD-10 Leviathan II Destroyer (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntitySBII.class, "Scout bike MKII (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityShark.class, "HGS-227 Shark (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityUTFScimitar.class, "UTF Scimitar (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityFafnir.class, "Type IX Fafnir (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityOmega.class, "Type IV Omega (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityPeregrine.class, "Peregrine mkII (Prototype)");
+			createEntity(com.wolffsmod.entity.prototype.fc.EntityZeroTitan.class, "Zero Titan mkII (Prototype)");
 		}
 
 		if (ContentPacks.manusCivil)
@@ -560,6 +628,227 @@ public class ModEntityRegistry {
 			createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_PoliceTruck_2A.class, "SWAT Truck (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Ram_1A.class, "Dogde Ram (Manus Pack)");
 			createEntity(com.wolffsmod.entity.manus.civil.EntityCivil_Vehicle_Taxi_1A.class, "Taxi Car (Manus Pack)");
+		}
+
+		if (ContentPacks.manusDayZ)
+		{
+			//Manus DayZ Pack
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_1A.class, "Chevrolet Suburban 2010 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_2A.class, "Chevrolet Suburban Police (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_ChevroletSuburban2010_3A.class, "Chevrolet Suburban Police K-9 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_GAZ24Volga_1A.class, "GAZ-24 Volga (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_GAZ24Volga_2A.class, "GAZ-24 Volga Russian Police (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_IkarusZ260_1A.class, "Ikarus Z260 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_IkarusZ60_1A.class, "Ikarus Z60 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_1A.class, "Land Rover Defender (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_2A.class, "Land Rover Defender Military (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_3A.class, "Land Rover Defender Hart Top (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_LandRoverDefender_4A.class, "Land Rover Defender Open Roof (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_1A.class, "UAZ-469 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_2A.class, "UAZ-469 Open Roof (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_UAZ469_3A.class, "UAZ-469 Paradnyj Parade Car (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_VWPassatB2_1A.class, "VW Passat B2 Yellow Hatchback (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.dayz.EntityDayZ_Vehicle_VWPassatB2_2A.class, "VW Passat B2 Red Hatchback (Manus Pack)");
+		}
+
+		if (ContentPacks.sturmgeschuetz)
+		{
+			/*createEntity(com.wolffsmod.entity.sturmgeschuetz.EntityBobSemple.class, "Bob Semple Tank (Sturmgeschuetz)");
+			createEntity(com.wolffsmod.entity.sturmgeschuetz.EntityDisstonTractor.class, "Disston Tractor Tank (Sturmgeschuetz)");*/
+			createEntity(com.wolffsmod.entity.sturmgeschuetz.EntityFerdinand.class, "Panzerjaeger Ferdinand (Sturmgeschuetz)");
+		}
+
+		if (ContentPacks.akaku)
+		{
+			createEntity(com.wolffsmod.entity.akaku.EntityHanomag.class, "Hanomag SS 100 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityMeillerwagen.class, "Hanomag Towing Meillerwagen Lowered with A4/V2 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityMeillerwagenN.class, "Hanomag Towing Meillerwagen Lowered (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityMeillerwagenR.class, "Hanomag Towing Meillerwagen Raised with A4/V2 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityMeillerwagenRN.class, "Hanomag Towing Meillerwagen Raised (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCE.class, "Opel Blitz Kfz 305 Carrier Empty (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCEAK.class, "Opel Blitz Kfz 305 Carrier Afrikakorps Empty (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCF1.class, "Opel Blitz Kfz 305 Carrier Full w/ Misc. (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCF1AK.class, "Opel Blitz Kfz 305 Carrier Afrikakorps Full w/ Misc. (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCFB.class, "Opel Blitz Kfz 305 Carrier Full w/ Barrels (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCFBAK.class, "Opel Blitz Kfz 305 Carrier Afrikakorps Full w/ Barrels (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCFT.class, "Opel Blitz Kfz 305 Troop Carrier (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzCCFTAK.class, "Opel Blitz Kfz 305 Troop Carrier Afrikakorps (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzDamaged.class, "Opel Blitz Kfz 305 Carrier Damaged (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzDamagedAK.class, "Opel Blitz Kfz 305 Carrier Afrikakorps Damaged (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTCFB.class, "Opel Blitz Kfz 305 Transport Full w/ Barrels (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTCFBAK.class, "Opel Blitz Kfz 305 Transport Afrikakorps Full w/ Barrels (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTNE.class, "Opel Blitz Kfz 305 Transport Empty (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTNEAK.class, "Opel Blitz Kfz 305 Transport Afrikakorps Empty (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTNF1.class, "Opel Blitz Kfz 305 Transport Full w/ Misc. (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTNF1AK.class, "Opel Blitz Kfz 305 Transport Afrikakorps Full w/ Misc. (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTNF2.class, "Opel Blitz Kfz 305 Transport Full w/ Crates (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityOpelBlitzTNF2AK.class, "Opel Blitz Kfz 305 Transport Afrikakorps Full w/ Crates (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySS.class, "Mercedes Benz SS Red (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSBlack.class, "Mercedes Benz SS Black (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSK.class, "Mercedes Benz SSK (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKFlug.class, "Mercedes Benz SSK The Flug's (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKL1.class, "Mercedes Benz SSKL Red No.1 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKL2.class, "Mercedes Benz SSKL Blue No.2 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKL3.class, "Mercedes Benz SSKL Green No.3 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKL4.class, "Mercedes Benz SSKL Yellow No.4 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKL5.class, "Mercedes Benz SSKL Brown No.5 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSKL6.class, "Mercedes Benz SSKL White No.6 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntitySSWehr.class, "Mercedes Benz SS Wehrmacht (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityTankwagen.class, "Opel Blitz Kfz 385 Tankwagen (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityTankwagenAK.class, "Opel Blitz Kfz 385 Tankwagen Afrikakorps (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityTankwagenAKH.class, "Opel Blitz Kfz 385 Tankwagen H Afrikakorps (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityTankwagenH.class, "Opel Blitz Kfz 385 Tankwagen H (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityW31.class, "Mercedes Benz W31 G4 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityW31AK.class, "Wehrmacht W31 G4 Afrikakorps (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityW31M.class, "Wehrmacht W31 G4 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityZundapp.class, "Zundapp KS 750 S (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityZundappAK.class, "Zundapp KS 750 S Afrikakorps (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityZundappAKN.class, "Zundapp KS 750 Afrikakorps (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityZundappC.class, "Zundapp K800 S (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityZundappCN.class, "Zundapp K800 (Akaku)");
+			createEntity(com.wolffsmod.entity.akaku.EntityZundappN.class, "Zundapp KS 750 (Akaku)");
+		}
+
+		if (ContentPacks.aoba)
+		{
+			createEntity(com.wolffsmod.entity.aoba.EntityT95.class, "T95 Gun Motor Carriage (Aoba)");
+		}
+
+		if (ContentPacks.cow)
+		{
+			createEntity(com.wolffsmod.entity.cow.EntityKa27.class, "Kamov Ka-27 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.EntityPantherG.class, "Panzer V Panther Ausf. G (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.EntityTiger2.class, "Panzer VI Tiger II (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityamx30.class, "AMX-30 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityamx30dca.class, "AMX-30 DCA (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityamx40.class, "AMX-40 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitycl13a5.class, "CL-13A Mk5 Sabre (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitycl13b.class, "CL-13B Mk6 Sabre (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitydickermax.class, "Dicker Max (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitydshkgaz.class, "4M GAZ DSHK (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityf4cphantom.class, "McDonnell F-4C Phantom II (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityf86f2.class, "North American F-86F-2 Sabre (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityf86f40.class, "North American F-86F-40 Sabre (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityhmswarspite.class, "HMS Warspite (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityis4.class, "IS-4 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityjpz45.class, "Kanonenjagdpanzer (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitykpz70.class, "Kampfpanzer 70 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityleclerc.class, "Leclerc (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityleo2a4.class, "Leopard 2A4 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityleo2k.class, "Leopard 2K (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitym103.class, "M103 Heavy (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitym1abrams.class, "M1 Abrams (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitym26italy.class, "M26 Ariete (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitym26pershing.class, "M26 Pershing (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitym3bradley.class, "M3 Bradley (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitymbt70.class, "MBT-70 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitymig19pt.class, "Mikoyan-Gurevich MiG-19PT (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entitymitsut2.class, "Mitsubishi T-2 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityraketenjagdpanzer.class, "Raketenjagdpanzer (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityreaperdrone.class, "MQ-9 Reaper (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt10m.class, "T-10M (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt26super.class, "T26 SuperPershing (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt3485.class, "T-34/85 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt44100.class, "T-44-100 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt4485.class, "T-44-85 (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt55a.class, "T-55A (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt72a.class, "T-72A (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt80b.class, "T-80B (Cow West)");
+			createEntity(com.wolffsmod.entity.cow.Entityt80u.class, "T-80U (Cow West)");
+		}
+
+		if (ContentPacks.moneybuster)
+		{
+			createEntity(com.wolffsmod.entity.moneybuster.EntityMortaio35.class, "Mortaio da 81 Mod. 35 (Moneybuster)");
+			createEntity(com.wolffsmod.entity.moneybuster.EntityCarroArmato.class, "Carro Armato L6/40 (Moneybuster)");
+		}
+
+		if (ContentPacks.wot)
+		{
+			createEntity(com.wolffsmod.entity.wot.EntityE75.class, "Panzer E-75 (World of Tanks)");
+		}
+
+		if (ContentPacks.berggeit)
+		{
+			createEntity(com.wolffsmod.entity.berggeit.EntityKV2.class, "KV-2 (Berggeit)");
+		}
+
+		if (ContentPacks.cvt)
+		{
+			createEntity(com.wolffsmod.entity.cvts.Entity11901_Interior_Chair1.class, "Interior Chair 1 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11902_Interior_Chair2.class, "Interior Chair 2 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11903_Interior_Chair3.class, "Interior Chair 3 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11904_Interior_ZABUTON.class, "Interior Zabuton (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11905_Interior_KOTATSU.class, "Interior Kotastu (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11908_StorageBox.class, "Storage Box (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11910_12PounderFieldGun.class, "12 Pounder Field Gun (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11920_12PounderHowitzer.class, "12 Pounder Howitzer (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11930_Mortar_81mm_M1.class, "81mm M1 Mortar (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11931_Mortar_81mm_M1_Battery.class, "81mm M1 Mortar Battery (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11932_RocketLauncher_28cm_Wurfgerat40.class, "28cm schweres Wurfgeraet 40 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11940_AAGun_2cm_Flakvierling38.class, "20mm Flakvierling 38 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11941_AAGun_40mm_Bofors.class, "40mm Bofors (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11950_AAGun_88mm_FlaK18.class, "88mm FlaK 18 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11960_AAGun_127mm_Type89.class, "127mm Type 89 (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11970_Navalgun_155mm_3rdYearType_SINGLE.class, "155mm 3rd Year Type - Single (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11971_Navalgun_155mm_3rdYearType.class, "155mm 3rd Year Type (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11010_Truck_GMCCCKW.class, "GMC CCKW Truck (CVT)");
+			createEntity(com.wolffsmod.entity.cvts.Entity11011_Truck_OpelBlitz.class, "Opel Blitz (CVT)");
+		}
+
+		if (ContentPacks.mos)
+		{
+			createEntity(com.wolffsmod.entity.miyabi.Entity11231_Attacker_O2SkyMaster.class, "Cessna O-2 Skymaster (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11003_AirRideMachine_WarpSter.class, "Warp Star (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11004_AirRideMachine_WagonSter.class, "Wagon Star (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11012_Van_PAYDAYVAN.class, "Payday Van (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11013_APC_SdKfz251Hanomag.class, "SdKfz 251 Hanomag (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11013_Bike_BMWR75.class, "BMW R 75 Gespann (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11014_APC_37cm_SdKfz251_10.class, "SdKfz 251/10 (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11015_APC_2cm_SdKfz251_23.class, "SdKfz 251/23 (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11019_LightTank_CardboardTank.class, "Cardboard Tank (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11021_MediumTank_Type89.class, "Type 89 I-Go (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11040_FlameTank_Pz3FlSdKfz141_3.class, "Flammpanzer III (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11042_SPG_Navy12cmSPG.class, "12cm SPG (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11043_SPG_28cm_SdKfz251_1Wurfrahmen40.class, "SdKfz 251/1 Wurfrahmen 40 (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11202_LightFighterEBiPlane_SPADA2.class, "SPAD A2 (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11215_Fighter_F8Crusader.class, "Vought F-8 Crusader (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11221_DiveBomber_B7ARyusei.class, "Aichi B7A Ryusei (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11906_Interior_Sofa.class, "Interior Sofa (MosPack)");
+			createEntity(com.wolffsmod.entity.mos.Entity11907_Interior_Radio.class, "Interior Radio (MosPack)");
+		}
+
+		if (ContentPacks.manusSciFi)
+		{
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityDropshipMk1.class, "Dropship Mk.1 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityDropshipMk2.class, "Dropship Mk.2 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityDropshipMk3_A.class, "Dropship Mk.3 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityDropshipMk3_B.class, "Dropship Mk.3 VIP Transport (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityDropshipMk3_C.class, "Dropship Mk.3 Command (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityTIEFighter.class, "TIE/LN Fighter (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityTIEInterceptor.class, "TIE/IN Interceptor (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityViperMk2.class, "Colonial Viper Mk.2 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityTIE.class, "TIE/LN Fighter (Manus Pack Legacy)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityTIEInter.class, "TIE/IN Interceptor (Manus Pack Legacy)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityImperialThrone.class, "Imperial Throne (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityXX9.class, "XX-9 Turbo Laser Turret (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.sifi.EntityMadcat.class, "Madcat Omnimech (Manus Pack)");
+		}
+
+		if (ContentPacks.manusWH40K)
+		{
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Plane_Valkyrie_1A.class, "Valkyrie Dropship Weapons Set 1 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Plane_Valkyrie_2A.class, "Valkyrie Dropship Weapons Set 2 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Plane_Vulture_1A.class, "Vulture Gunship Weapons Set 1 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Plane_Vulture_2A.class, "Vulture Gunship Weapons Set 2 (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Vehicle_Baneblade_1A.class, "Imperial Guard Baneblade (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Vehicle_LemanRuss_1A.class, "Leman Russ Battle Tank (Manus Pack)");
+			createEntity(com.wolffsmod.entity.manus.wh40k.EntityWH40K_Mecha_Warhound_1A.class, "Imperial Warhound Titan (Manus Pack)");
+		}
+
+		if (ContentPacks.manusShips)
+		{
+			createEntity(com.wolffsmod.entity.manus.ships.EntityShips_Plane_PrinzEugen_1A.class, "Prinz Eugen (Manus Pack)");
 		}
 	}
 

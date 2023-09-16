@@ -15,8 +15,8 @@ public class EntityWW2_Plane_JU87_1A extends EntityFlanPlaneNPC
     @Override
     public void setupConfig()
     {
-        setTurnSpeed(2.0F);
-        setDriver("7 26 0");
+        setTurnSpeed(0.8F);
+        setDriver("12 28 0");
         setPassenger("1 -08 26 0 core 150 210 0 50 WW2_MG_MG81ZB_1A MG81");
         addShootPointPrimary("27 23 -26 leftWing WW2_MG_MG42ZB_1A");
         addShootPointPrimary("27 23 26 rightWing WW2_MG_MG42ZB_1A");

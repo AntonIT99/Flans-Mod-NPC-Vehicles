@@ -9,7 +9,8 @@
   "client": [
     "MixinGuiNpcDisplay",
     "MixinGuiNPCInv",
-    "MixinModelCustomArmour"
+    "MixinModelCustomArmour",
+    "MixinSubGuiNpcResistanceProperties"
   ],
   "mixins": [
     "MixinDataDisplay",
