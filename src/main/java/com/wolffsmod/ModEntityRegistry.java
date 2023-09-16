@@ -653,8 +653,8 @@ public class ModEntityRegistry
 
 		if (ContentPacks.sturmgeschuetz)
 		{
-			createEntity(com.wolffsmod.entity.sturmgeschuetz.EntityBobSemple.class, "Bob Semple Tank (Sturmgeschuetz)");
-			createEntity(com.wolffsmod.entity.sturmgeschuetz.EntityDisstonTractor.class, "Disston Tractor Tank (Sturmgeschuetz)");
+			/*createEntity(com.wolffsmod.entity.sturmgeschuetz.EntityBobSemple.class, "Bob Semple Tank (Sturmgeschuetz)");
+			createEntity(com.wolffsmod.entity.sturmgeschuetz.EntityDisstonTractor.class, "Disston Tractor Tank (Sturmgeschuetz)");*/
 			createEntity(com.wolffsmod.entity.sturmgeschuetz.EntityFerdinand.class, "Panzerjaeger Ferdinand (Sturmgeschuetz)");
 		}
 
