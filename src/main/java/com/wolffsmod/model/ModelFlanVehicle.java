@@ -5,13 +5,11 @@ import org.lwjgl.opengl.GL11;
 import com.flansmod.client.model.AnimTrackLink;
 import com.flansmod.client.model.ModelVehicle;
 import com.flansmod.client.tmt.ModelRendererTurbo;
-import com.flansmod.common.driveables.EntitySeat;
 import com.flansmod.common.driveables.EnumDriveablePart;
 import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.EntityFlanVehicleNPC;
 import com.wolffsmod.entity.Seat;
-import com.wolffsmod.flan.FlanUtils;
 
 import net.minecraft.entity.Entity;
 

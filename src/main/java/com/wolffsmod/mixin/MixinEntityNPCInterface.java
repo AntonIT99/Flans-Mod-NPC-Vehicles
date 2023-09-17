@@ -26,8 +26,8 @@ import com.wolffsmod.customnpc.NPCInterfaceUtil;
 import com.wolffsmod.entity.EntityFlanAAGunNPC;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.Seat;
-import com.wolffsmod.flan.EntityNPCFlanBullet;
-import com.wolffsmod.flan.FlanUtils;
+import com.wolffsmod.flansmod.EntityNPCFlanBullet;
+import com.wolffsmod.flansmod.FlanUtils;
 import com.wolffsmod.customnpc.IMixinDataInventory;
 import com.wolffsmod.network.EnumAnimPacket;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
@@ -403,8 +403,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         }
         else if (projectileItem instanceof ItemFirework)
         {
-            EntityFireworkRocket entityfireworkrocket = new EntityFireworkRocket(worldObj, posX, posY, posZ, projectileItemStack);
-            worldObj.spawnEntityInWorld(entityfireworkrocket);
+            worldObj.spawnEntityInWorld(new EntityFireworkRocket(worldObj, posX, posY, posZ, projectileItemStack));
         }
         else
         {

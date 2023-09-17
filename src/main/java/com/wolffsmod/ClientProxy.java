@@ -1,7 +1,7 @@
 package com.wolffsmod;
 
 import com.flansmod.client.model.RenderBullet;
-import com.wolffsmod.flan.EntityNPCFlanBullet;
+import com.wolffsmod.flansmod.EntityNPCFlanBullet;
 import com.wolffsmod.render.RenderFlansModEntity;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 

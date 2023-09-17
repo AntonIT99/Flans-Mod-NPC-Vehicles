@@ -13,7 +13,7 @@ import com.flansmod.common.teams.ItemTeamArmour;
 import com.wolffsmod.customnpc.IMixinDataInventory;
 import com.wolffsmod.customnpc.IMixinEntityNPCInterface;
 import com.wolffsmod.customnpc.NPCInterfaceUtil;
-import com.wolffsmod.flan.FlanUtils;
+import com.wolffsmod.flansmod.FlanUtils;
 import noppes.npcs.DataInventory;
 import noppes.npcs.constants.EnumNpcToolMaterial;
 import noppes.npcs.constants.EnumParticleType;
@@ -177,15 +177,12 @@ public abstract class MixinDataInventory implements IMixinDataInventory, IInvent
     @Unique
     private void setKnockbackResistance(Map<Integer, ItemStack> weapons, Map<Integer, ItemStack> armor)
     {
-        if (useWeaponMeleeStats || useWeaponRangedStats || useArmorStats)
+        if (useArmorStats)
         {
             AtomicReference<Float> knockbackResistance = new AtomicReference<>(1F);
             List<ItemStack> itemList = new ArrayList<>();
-
-            if (useWeaponMeleeStats || useWeaponRangedStats)
-                itemList.addAll(weapons.values());
-            if (useArmorStats)
-                itemList.addAll(armor.values());
+            itemList.addAll(armor.values());
+            itemList.addAll(weapons.values());
 
             for (ItemStack item : itemList)
             {

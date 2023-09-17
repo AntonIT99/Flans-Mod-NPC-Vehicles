@@ -5,7 +5,7 @@ import com.flansmod.client.model.AnimTrackLink;
 import com.flansmod.common.RotatedAxes;
 import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.entity.config.ConfigVehicle;
-import com.wolffsmod.flan.FlanUtils;
+import com.wolffsmod.flansmod.FlanUtils;
 import noppes.npcs.entity.EntityCustomNpc;
 
 import net.minecraft.world.World;

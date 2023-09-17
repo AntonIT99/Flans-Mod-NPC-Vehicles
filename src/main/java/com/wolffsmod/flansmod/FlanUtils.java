@@ -1,4 +1,4 @@
-package com.wolffsmod.flan;
+package com.wolffsmod.flansmod;
 
 import com.flansmod.client.model.GunAnimations;
 import com.flansmod.common.driveables.DriveablePosition;
@@ -16,7 +16,6 @@ import com.flansmod.common.vector.Vector3f;
 import net.minecraft.item.ItemStack;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Optional;

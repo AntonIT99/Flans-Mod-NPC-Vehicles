@@ -1,6 +1,6 @@
 package com.wolffsmod;
 
-import com.wolffsmod.flan.EntityNPCFlanBullet;
+import com.wolffsmod.flansmod.EntityNPCFlanBullet;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 import net.minecraft.entity.Entity;
