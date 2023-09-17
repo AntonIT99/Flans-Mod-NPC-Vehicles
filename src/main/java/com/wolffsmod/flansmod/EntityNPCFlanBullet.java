@@ -9,10 +9,11 @@ import io.netty.buffer.ByteBuf;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IProjectile;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class EntityNPCFlanBullet extends EntityBullet
+public class EntityNPCFlanBullet extends EntityBullet implements IProjectile
 {
     public EntityNPCFlanBullet(World world)
     {
@@ -25,28 +26,8 @@ public class EntityNPCFlanBullet extends EntityBullet
     }
 
     @Override
-    public void readSpawnData(ByteBuf data) {
-        try {
-            motionX = data.readDouble();
-            motionY = data.readDouble();
-            motionZ = data.readDouble();
-            impactX = data.readInt();
-            impactY = data.readInt();
-            impactZ = data.readInt();
-            int lockedOnToID = data.readInt();
-            if (lockedOnToID != -1)
-                lockedOnTo = worldObj.getEntityByID(lockedOnToID);
-            type = BulletType.getBullet(ByteBufUtils.readUTF8String(data));
-            penetratingPower = type.penetratingPower;
-            String name = ByteBufUtils.readUTF8String(data);
-            for (Object obj : worldObj.loadedEntityList) {
-                if (((Entity) obj).getCommandSenderName().equals(name))
-                    owner = (EntityLivingBase)obj;
-            }
-        } catch (Exception e) {
-            FlansMod.log("Failed to read bullet owner from server.");
-            super.setDead();
-            e.printStackTrace();
-        }
+    public void setThrowableHeading(double motionX, double motionY, double motionZ, float spread, float speed)
+    {
+        setArrowHeading(motionX, motionY, motionZ, spread, speed);
     }
 }

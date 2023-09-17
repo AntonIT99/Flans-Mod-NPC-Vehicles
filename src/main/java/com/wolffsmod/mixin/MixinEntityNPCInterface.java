@@ -403,8 +403,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         }
         else if (projectileItem instanceof ItemFirework)
         {
-            EntityFireworkRocket entityfireworkrocket = new EntityFireworkRocket(worldObj, posX, posY, posZ, projectileItemStack);
-            worldObj.spawnEntityInWorld(entityfireworkrocket);
+            worldObj.spawnEntityInWorld(new EntityFireworkRocket(worldObj, posX, posY, posZ, projectileItemStack));
         }
         else
         {
