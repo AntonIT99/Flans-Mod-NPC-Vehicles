@@ -10,7 +10,7 @@ import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.WolffNPCMod;
 import com.wolffsmod.customnpc.NPCInterfaceUtil;
 import com.wolffsmod.entity.config.ConfigDriveable;
-import com.wolffsmod.flan.FlanUtils;
+import com.wolffsmod.flansmod.FlanUtils;
 import com.wolffsmod.customnpc.IMixinEntityNPCInterface;
 import com.wolffsmod.network.FlanEntitySyncPacket;
 import cpw.mods.fml.common.network.NetworkRegistry;

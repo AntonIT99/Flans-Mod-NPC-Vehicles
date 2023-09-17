@@ -1,4 +1,4 @@
-package com.wolffsmod.flan;
+package com.wolffsmod.flansmod;
 
 import com.flansmod.common.FlansMod;
 import com.flansmod.common.guns.BulletType;

@@ -10,7 +10,7 @@ import com.flansmod.common.guns.ItemGun;
 import com.flansmod.common.network.PacketPlaySound;
 import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.WolffNPCMod;
-import com.wolffsmod.flan.FlanUtils;
+import com.wolffsmod.flansmod.FlanUtils;
 import com.wolffsmod.network.EnumAnimPacket;
 import com.wolffsmod.network.FlanAnimPacket;
 
