@@ -111,11 +111,7 @@ task outputJar(type: Jar) {
 		exclude 'nikedemos/'
 		exclude 'noppes/'
 		exclude 'tconstruct/'
-		exclude '**/flansmod/'
-		exclude '**/customnpcs/'
-		exclude '**/customnpcs_at.cfg'
-		exclude '**/customnpcs.mixins.json'
-		exclude '**/customnpcs.refmap.json'
+        exclude 'com/flansmod/'
     }
     manifest {
         from sharedManifest
