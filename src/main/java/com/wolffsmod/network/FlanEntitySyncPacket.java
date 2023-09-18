@@ -68,21 +68,26 @@ public class FlanEntitySyncPacket implements IMessage
         public IMessage onMessage(FlanEntitySyncPacket message, MessageContext ctx)
         {
             Entity entity = Minecraft.getMinecraft().theWorld.getEntityByID(message.entityId);
-            Optional<EntityFlanDriveableNPC> driveableNPC = ((IMixinEntityNPCInterface)entity).getFlanDriveableEntity();
-            if (entity instanceof EntityCustomNpc && driveableNPC.isPresent())
+            if (entity != null)
             {
-                EntityCustomNpc npc = (EntityCustomNpc) entity;
-                EntityFlanDriveableNPC driveable = driveableNPC.get();
-                driveable.driver.setLocalYaw(message.driverYaw);
-                driveable.driver.setPitch(message.driverPitch);
-                driveable.renderYawOffset = npc.renderYawOffset = message.renderYawOffset;
-                driveable.rotationYaw = npc.rotationYaw = message.rotationYaw;
-                driveable.rotationYawHead = npc.rotationYawHead = message.rotationYawHead;
-                driveable.rotationPitch = npc.rotationPitch = message.rotationPitch;
-            }
-            else
-            {
+                if (entity instanceof EntityCustomNpc)
+                {
+                    Optional<EntityFlanDriveableNPC> driveableNPC = ((IMixinEntityNPCInterface)entity).getFlanDriveableEntity();
+                    if (driveableNPC.isPresent())
+                    {
+                        EntityCustomNpc npc = (EntityCustomNpc) entity;
+                        EntityFlanDriveableNPC driveable = driveableNPC.get();
+                        driveable.driver.setLocalYaw(message.driverYaw);
+                        driveable.driver.setPitch(message.driverPitch);
+                        driveable.renderYawOffset = npc.renderYawOffset = message.renderYawOffset;
+                        driveable.rotationYaw = npc.rotationYaw = message.rotationYaw;
+                        driveable.rotationYawHead = npc.rotationYawHead = message.rotationYawHead;
+                        driveable.rotationPitch = npc.rotationPitch = message.rotationPitch;
+                        return null;
+                    }
+                }
                 WolffNPCMod.log.error("Sync Packet got wrong Entity ID");
+
             }
             return null;
         }

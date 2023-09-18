@@ -45,25 +45,28 @@ public class FlanAnimPacket implements IMessage
         public IMessage onMessage(FlanAnimPacket message, MessageContext ctx)
         {
             Entity entity = Minecraft.getMinecraft().theWorld.getEntityByID(message.entityId);
-            if (entity instanceof EntityNPCInterface)
+            if (entity != null)
             {
-                IMixinEntityNPCInterface npc = (IMixinEntityNPCInterface) entity;
-                switch(message.type)
+                if (entity instanceof EntityNPCInterface)
                 {
-                    case FLAN_SHOOT:
-                        npc.animateFlanGunShoot();
-                        break;
-                    case FLAN_RELOAD:
-                        npc.animateFlanGunReload();
-                        break;
-                    case FLAN_MELEE:
-                        npc.animateFlanGunMelee();
-                        break;
+                    IMixinEntityNPCInterface npc = (IMixinEntityNPCInterface) entity;
+                    switch(message.type)
+                    {
+                        case FLAN_SHOOT:
+                            npc.animateFlanGunShoot();
+                            break;
+                        case FLAN_RELOAD:
+                            npc.animateFlanGunReload();
+                            break;
+                        case FLAN_MELEE:
+                            npc.animateFlanGunMelee();
+                            break;
+                    }
                 }
-            }
-            else
-            {
-                WolffNPCMod.log.error("Anim Packet got wrong Entity ID");
+                else
+                {
+                    WolffNPCMod.log.error("Anim Packet got wrong Entity ID");
+                }
             }
             return null;
         }
