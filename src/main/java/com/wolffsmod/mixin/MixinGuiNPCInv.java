@@ -1,5 +1,7 @@
 package com.wolffsmod.mixin;
 
+import com.flansmod.common.driveables.ItemPlane;
+import com.flansmod.common.driveables.ItemVehicle;
 import com.wolffsmod.customnpc.IMixinDataInventory;
 import noppes.npcs.DataInventory;
 import noppes.npcs.client.Client;
@@ -77,18 +79,24 @@ public abstract class MixinGuiNPCInv extends GuiContainerNPCInterface2 implement
         }
     }
 
+    @Inject(method = "save", at = @At(value = "TAIL"), remap = false)
+    private void onSave(CallbackInfo callbackInfo)
+    {
+        if (readStatsFromInventory())
+            Client.sendData(EnumPacketServer.MainmenuStatsSave, npc.stats.writeToNBT(new NBTTagCompound()));
+        if (readSoundsFromDriveableItem())
+            Client.sendData(EnumPacketServer.MainmenuAdvancedSave, npc.advanced.writeToNBT(new NBTTagCompound()));
+    }
+
     private boolean readStatsFromInventory()
     {
         IMixinDataInventory inv = (IMixinDataInventory)npc.inventory;
         return inv.getUseWeaponMeleeStats() || inv.getUseWeaponRangedStats() || inv.getUseArmorStats() || inv.getUseDriveableStats();
     }
 
-    @Inject(method = "save", at = @At(value = "TAIL"), remap = false)
-    private void onSave(CallbackInfo callbackInfo)
+    private boolean readSoundsFromDriveableItem()
     {
-        if (readStatsFromInventory())
-            Client.sendData(EnumPacketServer.MainmenuStatsSave, npc.stats.writeToNBT(new NBTTagCompound()));
-        if (((IMixinDataInventory)npc.inventory).getUseDriveableStats())
-            Client.sendData(EnumPacketServer.MainmenuAdvancedSave, npc.advanced.writeToNBT(new NBTTagCompound()));
+        return ((IMixinDataInventory)npc.inventory).getUseDriveableStats() && npc.inventory.getWeapon() != null
+                && (npc.inventory.getWeapon().getItem() instanceof ItemPlane || npc.inventory.getWeapon().getItem() instanceof ItemVehicle);
     }
 }
