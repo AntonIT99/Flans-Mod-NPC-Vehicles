@@ -1,6 +1,7 @@
 package com.wolffsmod.mixin;
 
 import com.wolffsmod.customnpc.IMixinDataInventory;
+import noppes.npcs.DataInventory;
 import noppes.npcs.client.Client;
 import noppes.npcs.client.gui.mainmenu.GuiNPCInv;
 import noppes.npcs.client.gui.util.GuiContainerNPCInterface2;
@@ -76,10 +77,18 @@ public abstract class MixinGuiNPCInv extends GuiContainerNPCInterface2 implement
         }
     }
 
+    private boolean readStatsFromInventory()
+    {
+        IMixinDataInventory inv = (IMixinDataInventory)npc.inventory;
+        return inv.getUseWeaponMeleeStats() || inv.getUseWeaponRangedStats() || inv.getUseArmorStats() || inv.getUseDriveableStats();
+    }
+
     @Inject(method = "save", at = @At(value = "TAIL"), remap = false)
     private void onSave(CallbackInfo callbackInfo)
     {
-        Client.sendData(EnumPacketServer.MainmenuStatsSave, npc.stats.writeToNBT(new NBTTagCompound()));
-        Client.sendData(EnumPacketServer.MainmenuAdvancedSave, npc.advanced.writeToNBT(new NBTTagCompound()));
+        if (readStatsFromInventory())
+            Client.sendData(EnumPacketServer.MainmenuStatsSave, npc.stats.writeToNBT(new NBTTagCompound()));
+        if (((IMixinDataInventory)npc.inventory).getUseDriveableStats())
+            Client.sendData(EnumPacketServer.MainmenuAdvancedSave, npc.advanced.writeToNBT(new NBTTagCompound()));
     }
 }
