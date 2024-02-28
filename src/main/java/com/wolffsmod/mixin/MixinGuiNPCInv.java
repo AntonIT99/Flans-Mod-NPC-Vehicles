@@ -52,29 +52,21 @@ public abstract class MixinGuiNPCInv extends GuiContainerNPCInterface2 implement
         if (guibutton.id == 71)
         {
             ((IMixinDataInventory)npc.inventory).setUseWeaponMeleeStats(((GuiNpcButton)guibutton).getValue() == 1);
-            if (((IMixinDataInventory)npc.inventory).getUseWeaponMeleeStats())
-                npc.inventory.setWeapons(npc.inventory.getWeapons());
             save();
         }
         else if (guibutton.id == 73)
         {
             ((IMixinDataInventory)npc.inventory).setUseWeaponRangedStats(((GuiNpcButton)guibutton).getValue() == 1);
-            if (((IMixinDataInventory)npc.inventory).getUseWeaponRangedStats())
-                npc.inventory.setWeapons(npc.inventory.getWeapons());
             save();
         }
         else if (guibutton.id == 75)
         {
             ((IMixinDataInventory)npc.inventory).setUseArmorStats(((GuiNpcButton)guibutton).getValue() == 1);
-            if (((IMixinDataInventory)npc.inventory).getUseArmorStats())
-                npc.inventory.setArmor(npc.inventory.getArmor());
             save();
         }
         else if (guibutton.id == 77)
         {
             ((IMixinDataInventory)npc.inventory).setUseDriveableStats(((GuiNpcButton)guibutton).getValue() == 1);
-            if (((IMixinDataInventory)npc.inventory).getUseDriveableStats())
-                npc.inventory.setWeapons(npc.inventory.getWeapons());
             save();
         }
     }
@@ -83,9 +75,14 @@ public abstract class MixinGuiNPCInv extends GuiContainerNPCInterface2 implement
     private void onSave(CallbackInfo callbackInfo)
     {
         if (readStatsFromInventory())
+        {
+            npc.inventory.setArmor(npc.inventory.getArmor());
+            npc.inventory.setWeapons(npc.inventory.getWeapons());
+
             Client.sendData(EnumPacketServer.MainmenuStatsSave, npc.stats.writeToNBT(new NBTTagCompound()));
-        if (readSoundsFromDriveableItem())
-            Client.sendData(EnumPacketServer.MainmenuAdvancedSave, npc.advanced.writeToNBT(new NBTTagCompound()));
+            if (readSoundsFromDriveableItem())
+                Client.sendData(EnumPacketServer.MainmenuAdvancedSave, npc.advanced.writeToNBT(new NBTTagCompound()));
+        }
     }
 
     private boolean readStatsFromInventory()
