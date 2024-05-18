@@ -398,7 +398,7 @@ public abstract class MixinDataInventory implements IMixinDataInventory, IInvent
                     if (gunMaterial != null)
                     {
                         int damage = (bullet.getBulletDamage() + gunMaterial.getDamageVsEntity() + 1) / 2 + 5;
-                        damage += damage * EnchantInterface.getLevel(EnchantInterface.Damage, mainWeapon) * 0.5f;
+                        damage += (int) (damage * EnchantInterface.getLevel(EnchantInterface.Damage, mainWeapon) * 0.5f);
                         npc.stats.pDamage = damage;
                     }
                     npc.stats.pSpeed = 40;
@@ -471,7 +471,7 @@ public abstract class MixinDataInventory implements IMixinDataInventory, IInvent
                 if (staffMaterial != null)
                 {
                     int damage = 6 + staffMaterial.getDamageVsEntity() + npc.worldObj.rand.nextInt(4);
-                    damage += damage * EnchantInterface.getLevel(EnchantInterface.Damage, mainWeapon) * 0.5f;
+                    damage += (int) (damage * EnchantInterface.getLevel(EnchantInterface.Damage, mainWeapon) * 0.5f);
                     npc.stats.pDamage = damage;
                 }
                 npc.stats.pSpeed = 25;
