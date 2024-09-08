@@ -34,7 +34,7 @@ public class FlanNPCVehiclesMixinPlugin implements IMixinConfigPlugin
         for (File mod : getModFiles())
         {
             String modID = getModID(mod);
-            if (modID.equals("flansmod"))
+            if (modID.contains("flansmod") || modID.equals("austriaHungaryTurkeyMod")) // the modid "austriaHungaryTurkeyMod" is sometimes used in Tyrants and Plebeians Modpack
             {
                 modFound = true;
                 try
