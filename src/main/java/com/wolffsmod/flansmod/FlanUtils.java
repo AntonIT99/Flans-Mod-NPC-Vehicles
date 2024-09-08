@@ -18,7 +18,9 @@ import net.minecraft.item.ItemStack;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * This class provides methods for code compatibility between different Flan's Mod versions.
@@ -181,23 +183,23 @@ public class FlanUtils
      */
     public static PacketParticle createPacketParticle(String s, double x1, double y1, double z1, double x2, double y2, double z2, float size)
     {
-        for (Constructor<?> constructor : PacketParticle.class.getConstructors())
+        Optional<Constructor<?>> constructor8Args = Arrays.stream(PacketParticle.class.getConstructors()).filter(constructor -> constructor.getParameterTypes().length == 8 && constructor.getParameterTypes()[7].equals(float.class)).findAny();
+        Optional<Constructor<?>> constructor7Args = Arrays.stream(PacketParticle.class.getConstructors()).filter(constructor -> constructor.getParameterTypes().length == 7).findAny();
+
+        try
         {
-            try
+            if (constructor8Args.isPresent())
             {
-                if (constructor.getParameterTypes().length == 8)
-                {
-                    return (PacketParticle) constructor.newInstance(s, x1, y1, z1, x2, y2, z2, size);
-                }
-                else if (constructor.getParameterTypes().length == 7)
-                {
-                    return (PacketParticle) constructor.newInstance(s, x1, y1, z1, x2, y2, z2);
-                }
+                return (PacketParticle) constructor8Args.get().newInstance(s, x1, y1, z1, x2, y2, z2, size);
             }
-            catch (InvocationTargetException | InstantiationException | IllegalAccessException exception)
+            else if (constructor7Args.isPresent())
             {
-                exception.printStackTrace();
+                return (PacketParticle) constructor7Args.get().newInstance(s, x1, y1, z1, x2, y2, z2);
             }
+        }
+        catch (InvocationTargetException | InstantiationException | IllegalAccessException | IllegalArgumentException exception)
+        {
+            exception.printStackTrace();
         }
         throw new RuntimeException("No suitable constructor found in class PacketParticle");
     }
