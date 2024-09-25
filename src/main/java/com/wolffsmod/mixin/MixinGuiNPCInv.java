@@ -3,7 +3,6 @@ package com.wolffsmod.mixin;
 import com.flansmod.common.driveables.ItemPlane;
 import com.flansmod.common.driveables.ItemVehicle;
 import com.wolffsmod.customnpc.IMixinDataInventory;
-import noppes.npcs.DataInventory;
 import noppes.npcs.client.Client;
 import noppes.npcs.client.gui.mainmenu.GuiNPCInv;
 import noppes.npcs.client.gui.util.GuiContainerNPCInterface2;

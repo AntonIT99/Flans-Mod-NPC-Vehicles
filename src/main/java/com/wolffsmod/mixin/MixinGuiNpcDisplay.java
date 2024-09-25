@@ -1,10 +1,8 @@
 package com.wolffsmod.mixin;
 
-import com.flansmod.common.teams.ArmourType;
 import com.wolffsmod.customnpc.IMixinDataDisplay;
 import com.wolffsmod.customnpc.SubGuiFlanAnimations;
 import noppes.npcs.DataDisplay;
-import noppes.npcs.client.gui.SubGuiNpcTint;
 import noppes.npcs.client.gui.mainmenu.GuiNpcDisplay;
 import noppes.npcs.client.gui.util.GuiNPCInterface2;
 import noppes.npcs.client.gui.util.GuiNpcButton;

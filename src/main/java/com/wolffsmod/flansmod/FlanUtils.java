@@ -20,7 +20,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 /**
  * This class provides methods for code compatibility between different Flan's Mod versions.
