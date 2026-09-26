@@ -78,7 +78,10 @@ public abstract class MixinEntityAIClosestTargetProgressive extends EntityAITarg
         if (band == 0 || ++wolffsmod$slabCursor[band] >= 6 || targetEntity != null)
         {
             wolffsmod$slabCursor[band] = 0;
-            wolffsmod$nextBandTick[band] = worldTick + TargetSearchConfig.intervalForBand(band);
+            int interval = TargetSearchConfig.intervalForBand(band);
+            wolffsmod$nextBandTick[band] = band == 0 && TargetSearchConfig.synchronizeNearbyAcquisition
+                    ? wolffsmod$nextSharedTick(worldTick, interval)
+                    : worldTick + interval;
         }
         else
             wolffsmod$nextBandTick[band] = worldTick + 6;
@@ -96,9 +99,21 @@ public abstract class MixinEntityAIClosestTargetProgressive extends EntityAITarg
         for (int band = 0; band < wolffsmod$nextBandTick.length; band++)
         {
             int interval = TargetSearchConfig.intervalForBand(band);
-            wolffsmod$nextBandTick[band] = worldTick + (offset * (band * 2L + 1L)) % interval;
+            if (band == 0 && TargetSearchConfig.synchronizeNearbyAcquisition)
+                wolffsmod$nextBandTick[band] = worldTick;
+            else
+                wolffsmod$nextBandTick[band] = worldTick + (offset * (band * 2L + 1L)) % interval;
         }
         wolffsmod$scheduleInitialized = true;
+    }
+
+    @Unique
+    private static long wolffsmod$nextSharedTick(long worldTick, int interval)
+    {
+        if (interval <= 1)
+            return worldTick + 1L;
+        long remainder = worldTick % interval;
+        return worldTick + (remainder == 0L ? interval : interval - remainder);
     }
 
     @Unique

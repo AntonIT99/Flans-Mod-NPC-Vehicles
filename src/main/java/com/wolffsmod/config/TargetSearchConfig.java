@@ -6,6 +6,7 @@ public final class TargetSearchConfig
 {
     public static boolean enabled = true;
     public static boolean debugProfiling = false;
+    public static boolean synchronizeNearbyAcquisition = true;
     public static int nearInterval = 5;
     public static int closeInterval = 10;
     public static int mediumInterval = 20;
@@ -21,6 +22,10 @@ public final class TargetSearchConfig
         enabled = config.getBoolean(
                 "EnableProgressiveTargetSearch", category, true,
                 "Use staggered distance-band target searches for all CustomNPC+ NPCs. Disable to restore CustomNPC+'s original full-radius search.");
+        synchronizeNearbyAcquisition = config.getBoolean(
+                "SynchronizeNearbyTargetAcquisition", category, true,
+                "Give idle NPCs their 0-32 block target-search opportunity on a shared cadence so nearby formations react together. "
+                        + "Keeps the same average near-search interval; longer-range searches remain staggered.");
         nearInterval = interval(config, category, "NearSearchInterval", 5, "0-32 block search interval in ticks.");
         closeInterval = interval(config, category, "CloseSearchInterval", 10, "32-64 block search interval in ticks.");
         mediumInterval = interval(config, category, "MediumSearchInterval", 20, "64-128 block search interval in ticks.");
