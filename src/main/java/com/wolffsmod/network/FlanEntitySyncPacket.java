@@ -67,6 +67,13 @@ public class FlanEntitySyncPacket implements IMessage
         @Override
         public IMessage onMessage(FlanEntitySyncPacket message, MessageContext ctx)
         {
+            com.wolffsmod.render.VehicleRotationUpdates.enqueue(message);
+            return null;
+        }
+
+        public IMessage apply(FlanEntitySyncPacket message)
+        {
+            if (Minecraft.getMinecraft().theWorld == null) return null;
             Entity entity = Minecraft.getMinecraft().theWorld.getEntityByID(message.entityId);
             if (entity != null)
             {

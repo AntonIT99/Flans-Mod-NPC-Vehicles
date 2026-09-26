@@ -247,7 +247,11 @@ public class NPCInterfaceUtil
                 Vector3f v3 = axes.findLocalVectorGlobally(looking.findLocalVectorGlobally(shootPoint.offPos));
                 Vector3f.add(v2, v3, gunVector);
                 if (scale != 1F)
-                    gunVector.scale(scale);
+                {
+                    gunVector.x *= scale;
+                    gunVector.y *= scale;
+                    gunVector.z *= scale;
+                }
             }
 
             FlansMod.getPacketHandler().sendToAllAround(

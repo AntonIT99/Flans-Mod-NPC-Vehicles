@@ -10,6 +10,7 @@ import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.EntityFlanVehicleNPC;
 import com.wolffsmod.entity.Seat;
+import com.wolffsmod.render.StaticModelGroupCache;
 
 import net.minecraft.entity.Entity;
 
@@ -27,28 +28,44 @@ public abstract class ModelFlanVehicle extends ModelVehicle
     public ModelFlanVehicle() {}
 
     @Override
+    public void renderPart(ModelRendererTurbo[] models)
+    {
+        if (com.wolffsmod.render.VehicleGroupVisibility.skip(models, oldRotateOrder)) return;
+        StaticModelGroupCache.render(models, oldRotateOrder);
+    }
+
+    @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-        EntityFlanVehicleNPC vehicle = ((EntityFlanVehicleNPC) entity);
+        long benchmarkToken = com.wolffsmod.benchmark.VehicleBenchmark.begin(entity);
+        try
+        {
+            EntityFlanVehicleNPC vehicle = ((EntityFlanVehicleNPC) entity);
 
-        renderSteeringWheel(vehicle.wheelYaw);
-        renderPart(bodyModel);
-        if (vehicle.doorsOpen)
-            renderPart(bodyDoorOpenModel);
-        else
-            renderPart(bodyDoorCloseModel);
-        renderWheels(vehicle.wheelsAngle, vehicle.rotateWheels);
-        renderPart(leftFrontLegModel);
-        renderPart(rightFrontLegModel);
-        renderPart(leftBackLegModel);
-        renderPart(rightBackLegModel);
-        renderPart(trailerModel);
-        renderTracks();
-        renderFancyTrack(vehicle.trackLinksLeft, vehicle.trackLinksRight);
-        renderGuns(vehicle, vehicle.vehicleGunModelScale);
-        renderTurretAndBarrel(vehicle.turretOrigin, vehicle, vehicle.recoilPos);
-        renderDrillHead(vehicle.harvesterAngle);
-        renderAnimDoors();
+            renderSteeringWheel(vehicle.wheelYaw);
+            renderPart(bodyModel);
+            if (vehicle.doorsOpen)
+                renderPart(bodyDoorOpenModel);
+            else
+                renderPart(bodyDoorCloseModel);
+            renderWheels(vehicle.wheelsAngle, vehicle.rotateWheels);
+            renderPart(leftFrontLegModel);
+            renderPart(rightFrontLegModel);
+            renderPart(leftBackLegModel);
+            renderPart(rightBackLegModel);
+            renderPart(trailerModel);
+            wolffsmod$trackPhase = vehicle.wheelsAngle;
+            renderTracks();
+            renderFancyTrack(vehicle.trackLinksLeft, vehicle.trackLinksRight);
+            renderGuns(vehicle, vehicle.vehicleGunModelScale);
+            renderTurretAndBarrel(vehicle.turretOrigin, vehicle, vehicle.recoilPos);
+            renderDrillHead(vehicle.harvesterAngle);
+            renderAnimDoors();
+        }
+        finally
+        {
+            com.wolffsmod.benchmark.VehicleBenchmark.end(benchmarkToken);
+        }
     }
 
     protected void renderGuns(EntityFlanDriveableNPC entity, float vehicleGunModelScale)
@@ -228,6 +245,7 @@ public abstract class ModelFlanVehicle extends ModelVehicle
 
     protected void renderTracks()
     {
+        if (com.wolffsmod.WolffNPCMod.selectVehicleTrackFrames && renderSelectedTracks()) return;
         renderPart(rightTrackModel);
         renderPart(leftTrackModel);
         for (ModelRendererTurbo[] latm : leftAnimTrackModel)
@@ -240,6 +258,33 @@ public abstract class ModelFlanVehicle extends ModelVehicle
         renderPart(leftAnimTrackModel2);
         renderPart(rightAnimTrackModel3);
         renderPart(leftAnimTrackModel3);
+    }
+
+    private float wolffsmod$trackPhase;
+    private boolean renderSelectedTracks() {
+        boolean arrays = complete(leftAnimTrackModel) && complete(rightAnimTrackModel);
+        boolean numbered = leftAnimTrackModel1.length > 0 && leftAnimTrackModel2.length > 0 && leftAnimTrackModel3.length > 0
+                && rightAnimTrackModel1.length > 0 && rightAnimTrackModel2.length > 0 && rightAnimTrackModel3.length > 0;
+        boolean anyNumbered = leftAnimTrackModel1.length + leftAnimTrackModel2.length + leftAnimTrackModel3.length
+                + rightAnimTrackModel1.length + rightAnimTrackModel2.length + rightAnimTrackModel3.length > 0;
+        if (!Float.isFinite(wolffsmod$trackPhase) || (arrays && anyNumbered)
+                || (!arrays && (!numbered || leftAnimTrackModel.length + rightAnimTrackModel.length > 0))) return false;
+        renderPart(leftTrackModel); renderPart(rightTrackModel);
+        if (arrays) {
+            renderPart(leftAnimTrackModel[frame(leftAnimTrackModel.length)]);
+            renderPart(rightAnimTrackModel[frame(rightAnimTrackModel.length)]);
+        } else {
+            int f = frame(3);
+            renderPart(f == 0 ? leftAnimTrackModel1 : f == 1 ? leftAnimTrackModel2 : leftAnimTrackModel3);
+            renderPart(f == 0 ? rightAnimTrackModel1 : f == 1 ? rightAnimTrackModel2 : rightAnimTrackModel3);
+        }
+        return true;
+    }
+    private int frame(int count) { return com.wolffsmod.render.TrackFrameIndex.select(wolffsmod$trackPhase, count); }
+    private static boolean complete(ModelRendererTurbo[][] frames) {
+        if (frames == null || frames.length < 2) return false;
+        for (ModelRendererTurbo[] frame : frames) if (frame == null || frame.length == 0) return false;
+        return true;
     }
 
     protected void renderAnimDoors()
@@ -332,7 +377,9 @@ public abstract class ModelFlanVehicle extends ModelVehicle
         {
             leftTrackWheelModel.rotateAngleZ = -wheelsAngle;
         }
-        renderPart(wheelModels);
+        // renderWheels submits these same groups immediately after updating their angles.
+        if (!com.wolffsmod.WolffNPCMod.avoidDuplicateWheelRendering)
+            renderPart(wheelModels);
     }
 
     protected boolean hasFancyTracks()

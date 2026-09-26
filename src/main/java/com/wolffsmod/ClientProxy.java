@@ -3,7 +3,9 @@ package com.wolffsmod;
 import com.flansmod.client.model.RenderBullet;
 import com.wolffsmod.flansmod.EntityNPCFlanBullet;
 import com.wolffsmod.render.RenderFlansModEntity;
+import com.wolffsmod.render.StaticModelGroupCache;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxy extends CommonProxy
 {
@@ -31,6 +33,13 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerRenderers()
 	{
+		net.minecraftforge.client.ClientCommandHandler.instance.registerCommand(new com.wolffsmod.benchmark.BenchmarkCommand());
+		cpw.mods.fml.common.FMLCommonHandler.instance().bus().register(com.wolffsmod.benchmark.VehicleBenchmark.INSTANCE);
+		MinecraftForge.EVENT_BUS.register(com.wolffsmod.benchmark.VehicleBenchmark.INSTANCE);
+		MinecraftForge.EVENT_BUS.register(StaticModelGroupCache.INSTANCE);
+		cpw.mods.fml.common.FMLCommonHandler.instance().bus().register(StaticModelGroupCache.INSTANCE);
+		((net.minecraft.client.resources.IReloadableResourceManager)net.minecraft.client.Minecraft.getMinecraft().getResourceManager()).registerReloadListener(StaticModelGroupCache.INSTANCE);
+		cpw.mods.fml.common.FMLCommonHandler.instance().bus().register(new com.wolffsmod.render.VehicleRotationUpdates());
 		RenderingRegistry.registerEntityRenderingHandler(EntityNPCFlanBullet.class, new RenderBullet());
 
 		if (ContentPacks.officialWW2)

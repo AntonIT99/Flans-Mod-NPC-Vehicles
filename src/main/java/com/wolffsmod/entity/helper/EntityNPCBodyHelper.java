@@ -27,11 +27,23 @@ public class EntityNPCBodyHelper extends EntityBodyHelper
     @Override
     public void func_75664_a()
     {
+        if (theLiving instanceof EntityCustomNpc && ((IMixinEntityNPCInterface)theLiving).isFlanDriveable())
+            yawSpeed = Math.max(0F, ((IMixinEntityNPCInterface)theLiving).getFlanDriveableEntity().get().turnSpeed);
         if ((theLiving instanceof EntityCustomNpc && ((IMixinEntityNPCInterface)theLiving).isFlanDriveable()) || theLiving instanceof EntityFlanDriveableNPC)
         {
             if (isMovingXZ())
             {
-                theLiving.renderYawOffset = theLiving.rotationYaw;
+                float turnRate = yawSpeed;
+                if (theLiving instanceof EntityCustomNpc)
+                    turnRate = ((IMixinEntityNPCInterface)theLiving).getFlanDriveableEntity().get().turnSpeed;
+                // Combat look AI may point rotationYaw at the target while the navigator is
+                // travelling in a different direction. Hulls must follow actual travel;
+                // rotationYawHead and the independent Seat aim remain free to track targets.
+                double dx = theLiving.posX - theLiving.prevPosX;
+                double dz = theLiving.posZ - theLiving.prevPosZ;
+                float movementYaw = (float)(Math.atan2(dz, dx) * 180.0D / Math.PI) - 90.0F;
+                float delta = MathHelper.wrapAngleTo180_float(movementYaw - theLiving.renderYawOffset);
+                theLiving.renderYawOffset += Math.max(-turnRate, Math.min(turnRate, delta));
                 theLiving.rotationYawHead = computeAngleWithBound(theLiving.renderYawOffset, theLiving.rotationYawHead, 75.0F);
                 prevRenderYawHead = theLiving.rotationYawHead;
                 rotationTickCounter = 0;
@@ -57,10 +69,8 @@ public class EntityNPCBodyHelper extends EntityBodyHelper
 
                 targetYaw = computeAngleWithBound(theLiving.rotationYawHead, theLiving.renderYawOffset, f);
 
-                if (theLiving.renderYawOffset < targetYaw)
-                    theLiving.renderYawOffset += Math.min(yawSpeed, targetYaw - theLiving.renderYawOffset);
-                if (theLiving.renderYawOffset > targetYaw)
-                    theLiving.renderYawOffset -= Math.min(yawSpeed, theLiving.renderYawOffset - targetYaw);
+                float yawDelta = MathHelper.wrapAngleTo180_float(targetYaw - theLiving.renderYawOffset);
+                theLiving.renderYawOffset += Math.max(-yawSpeed, Math.min(yawSpeed, yawDelta));
             }
         }
         else

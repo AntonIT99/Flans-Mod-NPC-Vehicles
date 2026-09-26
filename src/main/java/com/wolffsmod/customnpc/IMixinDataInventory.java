@@ -11,4 +11,9 @@ public interface IMixinDataInventory
     void setUseWeaponRangedStats(boolean useWeaponRangedStats);
     void setUseArmorStats(boolean useArmorStats);
     void setUseDriveableStats(boolean useDriveableStats);
+
+    void importWeaponMeleeStats();
+    void importWeaponRangedStats();
+    void importArmorStats();
+    void importDriveableStats();
 }

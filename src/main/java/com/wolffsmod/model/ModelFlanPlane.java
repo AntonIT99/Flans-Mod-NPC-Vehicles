@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.flansmod.client.model.ModelPlane;
 import com.flansmod.client.tmt.ModelRendererTurbo;
+import com.wolffsmod.render.StaticModelGroupCache;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.EntityFlanPlaneNPC;
 import com.wolffsmod.entity.Seat;
@@ -14,49 +15,62 @@ import java.util.Optional;
 
 public abstract class ModelFlanPlane extends ModelPlane
 {
+    @Override
+    public void renderPart(ModelRendererTurbo[] models)
+    {
+        StaticModelGroupCache.render(models, oldRotateOrder);
+    }
     public ModelFlanPlane() {}
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-        EntityFlanPlaneNPC plane = ((EntityFlanPlaneNPC) entity);
+        long benchmarkToken = com.wolffsmod.benchmark.VehicleBenchmark.begin(entity);
+        try
+        {
+            EntityFlanPlaneNPC plane = ((EntityFlanPlaneNPC) entity);
 
-        renderPart(bodyModel);
-        if (plane.doorsOpen)
-            renderPart(bodyDoorOpenModel);
-        else
-            renderPart(bodyDoorCloseModel);
-        renderGuns(plane, plane.vehicleGunModelScale);
-        renderPart(noseModel);
-        renderPart(bayModel);
-        renderPart(tailModel);
-        renderPart(leftWingModel);
-        renderPart(rightWingModel);
-        renderPart(topWingModel);
-        renderAnimWings();
-        renderPropeller(plane.propAngle);
-        renderRotor(plane.propAngle);
-        for (ModelRendererTurbo[] partModel : valkyrie) renderPart(partModel);
-        renderPart(helicopterModeParts);
-        renderPart(yawFlapModel);
-        renderPart(pitchFlapLeftModel);
-        renderPart(pitchFlapRightModel);
-        renderPart(pitchFlapLeftWingModel);
-        renderPart(pitchFlapRightWingModel);
-        renderPart(hudModel);
-        renderPart(tailDoorCloseModel);
-        if (plane.varWing)
-        {
-            renderPart(leftWingPos1Model);
-            renderPart(rightWingPos1Model);
+            renderPart(bodyModel);
+            if (plane.doorsOpen)
+                renderPart(bodyDoorOpenModel);
+            else
+                renderPart(bodyDoorCloseModel);
+            renderGuns(plane, plane.vehicleGunModelScale);
+            renderPart(noseModel);
+            renderPart(bayModel);
+            renderPart(tailModel);
+            renderPart(leftWingModel);
+            renderPart(rightWingModel);
+            renderPart(topWingModel);
+            renderAnimWings();
+            renderPropeller(plane.propAngle);
+            renderRotor(plane.propAngle);
+            for (ModelRendererTurbo[] partModel : valkyrie) renderPart(partModel);
+            renderPart(helicopterModeParts);
+            renderPart(yawFlapModel);
+            renderPart(pitchFlapLeftModel);
+            renderPart(pitchFlapRightModel);
+            renderPart(pitchFlapLeftWingModel);
+            renderPart(pitchFlapRightWingModel);
+            renderPart(hudModel);
+            renderPart(tailDoorCloseModel);
+            if (plane.varWing)
+            {
+                renderPart(leftWingPos1Model);
+                renderPart(rightWingPos1Model);
+            }
+            else
+            {
+                renderPart(leftWingPos2Model);
+                renderPart(rightWingPos2Model);
+            }
+            renderLandingGearAndWheels(plane);
+            renderAnimDoors();
         }
-        else
+        finally
         {
-            renderPart(leftWingPos2Model);
-            renderPart(rightWingPos2Model);
+            com.wolffsmod.benchmark.VehicleBenchmark.end(benchmarkToken);
         }
-        renderLandingGearAndWheels(plane);
-        renderAnimDoors();
     }
 
     protected void renderGuns(EntityFlanDriveableNPC entity, float vehicleGunModelScale)

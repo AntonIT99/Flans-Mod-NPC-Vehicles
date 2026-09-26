@@ -16,10 +16,12 @@ import com.flansmod.common.vector.Vector3f;
 import net.minecraft.item.ItemStack;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.OptionalDouble;
 
 /**
  * This class provides methods for code compatibility between different Flan's Mod versions.
@@ -31,6 +33,62 @@ public class FlanUtils
     public static final Vector3f VEC3F_ZERO = new Vector3f(0F, 0F, 0F);
 
     private FlanUtils() {}
+
+    private static Method shootAnimationMethod;
+    private static int shootAnimationParameterCount;
+    private static boolean shootAnimationLookupDone;
+    private static boolean shootAnimationFailureLogged;
+
+    /**
+     * Flan forks disagree on whether doShoot has six parameters or an added
+     * timeToRecoil parameter. Keep the client visual optional and fork-safe.
+     */
+    public static void doShootAnimation(GunAnimations animations, int pumpDelay, int pumpTime,
+                                        int hammerDelay, float hammerAngle, float altHammerAngle,
+                                        int casingDelay)
+    {
+        if (!shootAnimationLookupDone)
+        {
+            shootAnimationLookupDone = true;
+            try
+            {
+                shootAnimationMethod = animations.getClass().getMethod("doShoot",
+                        int.class, int.class, int.class, float.class, float.class, int.class);
+                shootAnimationParameterCount = 6;
+            }
+            catch (NoSuchMethodException sixMissing)
+            {
+                try
+                {
+                    shootAnimationMethod = animations.getClass().getMethod("doShoot",
+                            int.class, int.class, int.class, float.class, float.class, int.class, int.class);
+                    shootAnimationParameterCount = 7;
+                }
+                catch (NoSuchMethodException sevenMissing)
+                {
+                    logAnimationFailureOnce("No compatible Flan doShoot animation method was found", sevenMissing);
+                }
+            }
+        }
+
+        if (shootAnimationMethod == null)
+            return;
+
+        try
+        {
+            if (shootAnimationParameterCount == 6)
+                shootAnimationMethod.invoke(animations, pumpDelay, pumpTime, hammerDelay,
+                        hammerAngle, altHammerAngle, casingDelay);
+            else
+                shootAnimationMethod.invoke(animations, pumpDelay, pumpTime, hammerDelay,
+                        hammerAngle, altHammerAngle, casingDelay, 20);
+        }
+        catch (ReflectiveOperationException | RuntimeException | LinkageError exception)
+        {
+            logAnimationFailureOnce("Flan shoot animation failed; disabling only the cosmetic animation", exception);
+            shootAnimationMethod = null;
+        }
+    }
 
     public static Vector3f createVector3f(String input)
     {
@@ -111,6 +169,15 @@ public class FlanUtils
                         animations.getClass().getMethod("doReload", int.class, int.class, int.class, int.class, int.class).invoke(animations, reloadTime, pumpDelay, pumpTime, chargeDelay, chargeTime);
                         return;
                     }
+                    else if (method.getParameterTypes().length == 10)
+                    {
+                        animations.getClass().getMethod("doReload", int.class, int.class, int.class,
+                                int.class, int.class, int.class, boolean.class, boolean.class,
+                                boolean.class, int.class).invoke(animations, reloadTime, pumpDelay,
+                                pumpTime, chargeDelay, chargeTime, ammoCount, single, false,
+                                false, ammoCount);
+                        return;
+                    }
                 }
                 catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException exception)
                 {
@@ -161,6 +228,76 @@ public class FlanUtils
         catch (NoSuchFieldException | IllegalAccessException exception)
         {
             return Optional.empty();
+        }
+    }
+
+    /**
+     * CollisionBox.health is a float in Flan's Ultimate Stability Edition but
+     * an int in the TAP / LabJac fork. Reading it as Number avoids a JVM field
+     * descriptor dependency on either fork.
+     */
+    public static OptionalDouble getMaxDriveableHealth(DriveableType type)
+    {
+        if (type.health == null || type.health.isEmpty())
+            return OptionalDouble.empty();
+
+        double maximum = Double.NEGATIVE_INFINITY;
+        boolean found = false;
+        for (Object collisionBox : type.health.values())
+        {
+            OptionalDouble health = getNumericField(collisionBox, "health");
+            if (health.isPresent())
+            {
+                maximum = Math.max(maximum, health.getAsDouble());
+                found = true;
+            }
+        }
+        return found ? OptionalDouble.of(maximum) : OptionalDouble.empty();
+    }
+
+    /**
+     * DriveableType.shootDelay(boolean) returns float in Ultimate Stability
+     * Edition and int in TAP. Reflection permits both return descriptors.
+     */
+    public static OptionalDouble getShootDelay(DriveableType type, boolean secondary)
+    {
+        try
+        {
+            Object value = type.getClass().getMethod("shootDelay", boolean.class).invoke(type, secondary);
+            return value instanceof Number
+                    ? OptionalDouble.of(((Number)value).doubleValue())
+                    : OptionalDouble.empty();
+        }
+        catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException exception)
+        {
+            return OptionalDouble.empty();
+        }
+    }
+
+    private static void logAnimationFailureOnce(String message, Throwable exception)
+    {
+        if (shootAnimationFailureLogged)
+            return;
+        shootAnimationFailureLogged = true;
+        com.wolffsmod.WolffNPCMod.log.warn(message + ": " + exception);
+    }
+
+    private static OptionalDouble getNumericField(Object owner, String fieldName)
+    {
+        if (owner == null)
+            return OptionalDouble.empty();
+
+        try
+        {
+            Field field = owner.getClass().getField(fieldName);
+            Object value = field.get(owner);
+            return value instanceof Number
+                    ? OptionalDouble.of(((Number)value).doubleValue())
+                    : OptionalDouble.empty();
+        }
+        catch (NoSuchFieldException | IllegalAccessException exception)
+        {
+            return OptionalDouble.empty();
         }
     }
 

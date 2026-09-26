@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.flansmod.client.model.ModelMecha;
 import com.flansmod.client.tmt.ModelRendererTurbo;
+import com.wolffsmod.render.StaticModelGroupCache;
 import com.flansmod.common.driveables.mechas.EnumMechaSlotType;
 import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.entity.EntityFlanMechaNPC;
@@ -13,28 +14,41 @@ import net.minecraft.item.ItemStack;
 
 public abstract class ModelFlanMecha extends ModelMecha
 {
+    @Override
+    public void renderPart(ModelRendererTurbo[] models)
+    {
+        StaticModelGroupCache.render(models, oldRotateOrder);
+    }
     public ModelFlanMecha() {}
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-        EntityFlanMechaNPC mecha = ((EntityFlanMechaNPC) entity);
-
-        renderPart(bodyModel);
-        renderPart(bodyDoorCloseModel);
-        for (ModelRendererTurbo[][] gun : gunModels.values())
-            for (ModelRendererTurbo[] gunPart : gun)
-                renderPart(gunPart);
-        renderPart(hipsModel);
-        for (ModelRendererTurbo aBarrelModel : barrelModel)
+        long benchmarkToken = com.wolffsmod.benchmark.VehicleBenchmark.begin(entity);
+        try
         {
-            aBarrelModel.rotateAngleZ = -(mecha.driver.getPitch() * (float)Math.PI / 180F);
-            aBarrelModel.render(f5, oldRotateOrder);
+            EntityFlanMechaNPC mecha = ((EntityFlanMechaNPC) entity);
+
+            renderPart(bodyModel);
+            renderPart(bodyDoorCloseModel);
+            for (ModelRendererTurbo[][] gun : gunModels.values())
+                for (ModelRendererTurbo[] gunPart : gun)
+                    renderPart(gunPart);
+            renderPart(hipsModel);
+            for (ModelRendererTurbo aBarrelModel : barrelModel)
+            {
+                aBarrelModel.rotateAngleZ = -(mecha.driver.getPitch() * (float)Math.PI / 180F);
+                aBarrelModel.render(f5, oldRotateOrder);
+            }
+            renderPart(headModel);
+            renderLeftArm(mecha, f1);
+            renderRightArm(mecha, f1);
+            renderLegs(mecha, f1);
         }
-        renderPart(headModel);
-        renderLeftArm(mecha, f1);
-        renderRightArm(mecha, f1);
-        renderLegs(mecha, f1);
+        finally
+        {
+            com.wolffsmod.benchmark.VehicleBenchmark.end(benchmarkToken);
+        }
     }
 
     protected void renderLegs(EntityFlanMechaNPC mecha, float f1)

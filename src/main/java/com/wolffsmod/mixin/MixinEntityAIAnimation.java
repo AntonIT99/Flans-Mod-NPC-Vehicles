@@ -43,25 +43,31 @@ public abstract class MixinEntityAIAnimation extends EntityAIBase
         if(isDead)
             return npc.currentAnimation != EnumAnimation.LYING;
 
-        if(npc.stats.aimWhileShooting && npc.isAttacking())
+        if(npc.stats.aimType == 1 && npc.isAttacking())
         {
             if (npc.getOffHand() != null && npc.getOffHand().getItem() instanceof ItemGun)
                 return npc.currentAnimation != EnumAnimation.HUG;
             return npc.currentAnimation != EnumAnimation.AIMING;
         }
-        if(npc.ai.animationType == EnumAnimation.NONE)
+        if(npc.stats.aimType == 2 && npc.isAttacking() && npc.getRangedTask() != null && npc.getRangedTask().isShooting())
+        {
+            if (npc.getOffHand() != null && npc.getOffHand().getItem() instanceof ItemGun)
+                return npc.currentAnimation != EnumAnimation.HUG;
+            return npc.currentAnimation != EnumAnimation.AIMING;
+        }
+        if(npc.ais.animationType == EnumAnimation.NONE)
             return npc.currentAnimation != EnumAnimation.NONE;
         isAttacking = npc.isAttacking();
-        if(npc.ai.returnToStart)
+        if(npc.ais.returnToStart)
             isAtStartpoint = npc.isVeryNearAssignedPlace();
         hasPath = !npc.getNavigator().noPath();
 
-        if(npc.ai.movingType == EnumMovingType.Standing && hasNavigation() && npc.currentAnimation.getWalkingAnimation() == 0)
+        if(npc.ais.movingType == EnumMovingType.Standing && hasNavigation() && npc.currentAnimation.getWalkingAnimation() == 0)
         {
             return npc.currentAnimation != EnumAnimation.NONE;
         }
 
-        return npc.currentAnimation != npc.ai.animationType;
+        return npc.currentAnimation != npc.ais.animationType;
     }
 
     /**
@@ -72,7 +78,8 @@ public abstract class MixinEntityAIAnimation extends EntityAIBase
     @Overwrite
     public void updateTask()
     {
-        if(npc.stats.aimWhileShooting && npc.isAttacking())
+        if((npc.stats.aimType == 1 && npc.isAttacking()) ||
+                (npc.stats.aimType == 2 && npc.isAttacking() && npc.getRangedTask() != null && npc.getRangedTask().isShooting()))
         {
             if (npc.getOffHand() != null && npc.getOffHand().getItem() instanceof ItemGun)
             {
@@ -82,10 +89,10 @@ public abstract class MixinEntityAIAnimation extends EntityAIBase
             setAnimation(EnumAnimation.AIMING);
             return;
         }
-        EnumAnimation type = npc.ai.animationType;
+        EnumAnimation type = npc.ais.animationType;
         if(isDead)
             type = EnumAnimation.LYING;
-        else if(npc.ai.movingType == EnumMovingType.Standing && npc.ai.animationType.getWalkingAnimation() == 0 && hasNavigation())
+        else if(npc.ais.movingType == EnumMovingType.Standing && npc.ais.animationType.getWalkingAnimation() == 0 && hasNavigation())
             type = EnumAnimation.NONE;
         setAnimation(type);
     }

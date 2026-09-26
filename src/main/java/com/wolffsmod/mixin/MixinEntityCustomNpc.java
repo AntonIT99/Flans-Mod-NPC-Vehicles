@@ -61,6 +61,8 @@ public abstract class MixinEntityCustomNpc extends MixinEntityNPCInterface
     @Overwrite
     public void onUpdate()
     {
+        long benchmarkToken = com.wolffsmod.benchmark.ServerBenchmark.begin(this);
+        try {
         super.onUpdate();
         getFlanDriveableEntity().ifPresent(driveableNPC -> driveableNPC.updateNpc((EntityCustomNpc) (Object) this));
         if (isRemote())
@@ -80,6 +82,9 @@ public abstract class MixinEntityCustomNpc extends MixinEntityNPCInterface
                 catch (Exception e) {}
                 EntityUtil.Copy(this, entity);
             }
+        }
+        } finally {
+            com.wolffsmod.benchmark.ServerBenchmark.endUpdate(benchmarkToken);
         }
     }
 

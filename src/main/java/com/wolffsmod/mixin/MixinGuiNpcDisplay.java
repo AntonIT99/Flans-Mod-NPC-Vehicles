@@ -29,7 +29,7 @@ public abstract class MixinGuiNpcDisplay extends GuiNPCInterface2 implements ITe
         super(npc);
     }
 
-    @Inject(method = "initGui", at = @At(value = "TAIL"))
+    @Inject(method = "func_73866_w_", at = @At(value = "TAIL"), remap = false)
     private void onInitGui(CallbackInfo callbackInfo)
     {
         addButton(new GuiNpcButton(21, guiLeft + 185, guiTop + 188, 150, 20, "Flan's Mod Settings"));
@@ -37,7 +37,7 @@ public abstract class MixinGuiNpcDisplay extends GuiNPCInterface2 implements ITe
         addButton(new GuiNpcButton(22, guiLeft + 360, guiTop + 50, 50, 20, new String[]{"gui.no", "gui.yes"}, ((IMixinDataDisplay)npc.display).getDisplayHurtEffect() ? 1:0));
     }
 
-    @Inject(method = "actionPerformed", at = @At(value = "TAIL"))
+    @Inject(method = "func_146284_a", at = @At(value = "TAIL"), remap = false)
     private void onActionPerformed(GuiButton guibutton, CallbackInfo callbackInfo)
     {
         if (guibutton.id == 21)

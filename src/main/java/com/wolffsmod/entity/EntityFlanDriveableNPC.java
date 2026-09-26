@@ -97,7 +97,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         Vector3f driverPos = Vector3f.add(position, offset, null);
 
         if (npc != null && npc.display.modelSize != 5)
-            driverPos.scale(npc.display.modelSize / 5F);
+            scaleVectorComponents(driverPos, npc.display.modelSize / 5F);
 
         return driverPos;
     }
@@ -110,6 +110,48 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
                 return Optional.of(passenger);
         }
         return Optional.empty();
+    }
+
+    /** Actual primary muzzle (or closest safe pivot) used by server fire control. */
+    public Vec3 getPrimaryAimOrigin()
+    {
+        float scale = npc != null ? npc.display.modelSize / 5F : 1F;
+        if (!shootPointsPrimary.isEmpty())
+        {
+            ShootPoint point = shootPointsPrimary.get(0);
+            Vector3f local = NPCInterfaceUtil.getFiringPosition(point, turretOrigin,
+                    driver.getLocalYaw(), driver.getPitch(), renderYawOffset);
+            scaleVectorComponents(local, scale);
+            return Vec3.createVectorHelper(posX + local.getX(),
+                    posY + yDriveableOffset * scale + local.getY(), posZ + local.getZ());
+        }
+        if (this instanceof EntityFlanAAGunNPC)
+        {
+            EntityFlanAAGunNPC aa = (EntityFlanAAGunNPC)this;
+            if (aa.numBarrels > 0)
+            {
+                RotatedAxes axes = new RotatedAxes(driver.getGlobalYaw(renderYawOffset), driver.getPitch(), 0F);
+                axes.rotateLocalYaw(90F);
+                Vector3f barrel = axes.findLocalVectorGlobally(new Vector3f(
+                        aa.barrelX[0] / 16F, aa.barrelY[0] / 16F, aa.barrelZ[0] / 16F));
+                scaleVectorComponents(barrel, scale);
+                return Vec3.createVectorHelper(posX + barrel.getX(), posY + barrel.getY(), posZ + barrel.getZ());
+            }
+        }
+        double eye = npc == null ? getEyeHeight() : npc.getEyeHeight();
+        return Vec3.createVectorHelper(posX, posY + eye, posZ);
+    }
+
+    /**
+     * Avoid Vector3f.scale(float): older LabJac/TAP Flan returns void while
+     * newer Flan forks return Vector3f, making an otherwise ordinary call
+     * binary-incompatible between the supported forks.
+     */
+    private static void scaleVectorComponents(Vector3f vector, float scale)
+    {
+        vector.x *= scale;
+        vector.y *= scale;
+        vector.z *= scale;
     }
 
     @Override
@@ -136,6 +178,9 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         this.npc = npc;
         EntityUtil.Copy(npc, this);
         updateDriverAndPassengers();
+        // Previously only firing sent this packet, leaving client turrets stale during reload.
+        if (!worldObj.isRemote && npc.getAttackTarget() != null && npc.ticksExisted % 2 == 0)
+            syncRotationWithClient();
 
         if (forceMaxThrottle)
         {
@@ -167,7 +212,7 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
                 }
             }
 
-            ((IMixinEntityNPCInterface)npc).getDriver().setYawAndPitch(this);
+            ((IMixinEntityNPCInterface)npc).getDriver().setYawAndPitch(this, true);
             for (Integer id : ((IMixinEntityNPCInterface)npc).getPassengers().keySet())
             {
                 ((IMixinEntityNPCInterface)npc).getPassengers().get(id).setYawAndPitch(this);

@@ -6,7 +6,14 @@ import com.flansmod.client.model.ModelCustomArmour;
 import com.flansmod.client.tmt.ModelRendererTurbo;
 import com.flansmod.common.teams.ArmourType;
 import noppes.npcs.CustomNpcs;
+import noppes.npcs.client.ClientCacheHandler;
+import noppes.npcs.client.ClientEventHandler;
 import noppes.npcs.constants.EnumAnimation;
+import noppes.npcs.constants.EnumAnimationPart;
+import noppes.npcs.controllers.data.Animation;
+import noppes.npcs.controllers.data.AnimationData;
+import noppes.npcs.controllers.data.Frame;
+import noppes.npcs.controllers.data.FramePart;
 import noppes.npcs.entity.EntityCustomNpc;
 import noppes.npcs.entity.EntityNPCInterface;
 import org.spongepowered.asm.mixin.Mixin;
@@ -52,6 +59,8 @@ public abstract class MixinModelCustomArmour extends ModelBiped
 
     @Shadow(remap = false)
     public abstract void render(ModelRendererTurbo[] models, ModelRenderer bodyPart, float f5, float scale);
+    @Shadow(remap = false)
+    public abstract void setBodyPart(ModelRendererTurbo[] models, ModelRenderer bodyPart, float scale);
 
     /**
      * @author Wolff
@@ -62,6 +71,8 @@ public abstract class MixinModelCustomArmour extends ModelBiped
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         GL11.glPushMatrix();
+        if (entity instanceof EntityCustomNpc)
+            applyCustomNpcFullModelTransform((EntityCustomNpc) entity);
         GL11.glScalef(type.modelScale, type.modelScale, type.modelScale);
         isSneak = entity.isSneaking();
         ItemStack itemstack = ((EntityLivingBase)entity).getEquipmentInSlot(0);
@@ -81,24 +92,27 @@ public abstract class MixinModelCustomArmour extends ModelBiped
             }
         }
 
+        boolean customAnimationActive = getActiveCustomAnimationFrame(entity) != null;
         if ((entity instanceof EntityNPCInterface))
         {
             setRotationAnglesCustomNpc(f, f1, f2, f3, f4, f5, (EntityNPCInterface)entity);
-            renderHeadNPC((EntityNPCInterface)entity, f5);
-            renderBodyNPC((EntityNPCInterface)entity, f5);
-            renderLeftArmNPC((EntityNPCInterface)entity, f5);
-            renderRightArmNPC((EntityNPCInterface)entity, f5);
+            applyCustomAnimationPartTransforms(entity);
+            renderHeadNPC((EntityNPCInterface)entity, f5, customAnimationActive);
+            renderBodyNPC((EntityNPCInterface)entity, f5, customAnimationActive);
+            renderLeftArmNPC((EntityNPCInterface)entity, f5, customAnimationActive);
+            renderRightArmNPC((EntityNPCInterface)entity, f5, customAnimationActive);
         }
         else
         {
             setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-            render(headModel, bipedHead, f5, type.modelScale);
-            render(bodyModel, bipedBody, f5, type.modelScale);
-            render(leftArmModel, bipedLeftArm, f5, type.modelScale);
-            render(rightArmModel, bipedRightArm, f5, type.modelScale);
+            applyCustomAnimationPartTransforms(entity);
+            renderAnimatedPart(entity, headModel, bipedHead, f5, customAnimationActive);
+            renderAnimatedPart(entity, bodyModel, bipedBody, f5, customAnimationActive);
+            renderAnimatedPart(entity, leftArmModel, bipedLeftArm, f5, customAnimationActive);
+            renderAnimatedPart(entity, rightArmModel, bipedRightArm, f5, customAnimationActive);
         }
-        render(leftLegModel, bipedLeftLeg, f5, type.modelScale);
-        render(rightLegModel, bipedRightLeg, f5, type.modelScale);
+        renderAnimatedPart(entity, leftLegModel, bipedLeftLeg, f5, customAnimationActive);
+        renderAnimatedPart(entity, rightLegModel, bipedRightLeg, f5, customAnimationActive);
 
         //Skirt front
         {
@@ -110,7 +124,7 @@ public abstract class MixinModelCustomArmour extends ModelBiped
                 mod.rotateAngleX = Math.min(bipedLeftLeg.rotateAngleX, bipedRightLeg.rotateAngleX);
                 mod.rotateAngleY = bipedLeftLeg.rotateAngleY;
                 mod.rotateAngleZ = bipedLeftLeg.rotateAngleZ;
-                mod.render(f5);
+                renderAnimatedTurbo(entity, mod, f5, customAnimationActive);
             }
         }
         //Skirt back
@@ -123,10 +137,184 @@ public abstract class MixinModelCustomArmour extends ModelBiped
                 mod.rotateAngleX = Math.max(bipedLeftLeg.rotateAngleX, bipedRightLeg.rotateAngleX);
                 mod.rotateAngleY = bipedLeftLeg.rotateAngleY;
                 mod.rotateAngleZ = bipedLeftLeg.rotateAngleZ;
-                mod.render(f5);
+                renderAnimatedTurbo(entity, mod, f5, customAnimationActive);
             }
         }
         GL11.glPopMatrix();
+    }
+
+    /**
+     * CustomNPC+ applies FULL_MODEL directly to the GL matrix while rendering its
+     * own model. That matrix is popped before Forge renders Flan armour, so the
+     * same scoped transform must be composed into this armour render.
+     */
+    @Unique
+    private void applyCustomNpcFullModelTransform(EntityCustomNpc npc)
+    {
+        Frame frame = getActiveCustomNpcFrame(npc);
+        if (frame == null)
+            return;
+
+        FramePart part = frame.frameParts.get(EnumAnimationPart.FULL_MODEL);
+        if (part == null)
+            return;
+
+        part.interpolateOffset();
+        part.interpolateAngles();
+        float degrees = 180F / PI;
+        GL11.glTranslatef(part.prevPivots[0], -part.prevPivots[1], part.prevPivots[2]);
+        GL11.glRotatef(part.prevRotations[0] * degrees, 1F, 0F, 0F);
+        GL11.glRotatef(part.prevRotations[1] * degrees, 0F, 1F, 0F);
+        GL11.glRotatef(part.prevRotations[2] * degrees, 0F, 0F, 1F);
+    }
+
+    /**
+     * Flan armour renders ModelRendererTurbo arrays rather than the named biped
+     * ModelRenderer fields CustomNPC+ discovers. Apply the final interpolated
+     * frame to Flan's proxy biped parts before Flan copies those transforms to
+     * its armour geometry.
+     */
+    @Unique
+    private void applyCustomAnimationPartTransforms(Entity entity)
+    {
+        Frame frame = getActiveCustomAnimationFrame(entity);
+        if (frame == null)
+            return;
+
+        applyCustomNpcPart(frame, EnumAnimationPart.HEAD, bipedHead);
+        applyCustomNpcPart(frame, EnumAnimationPart.BODY, bipedBody);
+        applyCustomNpcPart(frame, EnumAnimationPart.LEFT_ARM, bipedLeftArm);
+        applyCustomNpcPart(frame, EnumAnimationPart.RIGHT_ARM, bipedRightArm);
+        applyCustomNpcPart(frame, EnumAnimationPart.LEFT_LEG, bipedLeftLeg);
+        applyCustomNpcPart(frame, EnumAnimationPart.RIGHT_LEG, bipedRightLeg);
+    }
+
+    @Unique
+    private void renderAnimatedPart(Entity entity, ModelRendererTurbo[] models, ModelRenderer bodyPart,
+                                    float scale, boolean customAnimationActive)
+    {
+        if (!customAnimationActive)
+        {
+            render(models, bodyPart, scale, type.modelScale);
+            return;
+        }
+
+        setBodyPart(models, bodyPart, type.modelScale);
+        for (ModelRendererTurbo model : models)
+        {
+            model.rotateAngleX = bodyPart.rotateAngleX;
+            model.rotateAngleY = bodyPart.rotateAngleY;
+            model.rotateAngleZ = bodyPart.rotateAngleZ;
+            renderAnimatedTurbo(entity, model, scale, true);
+        }
+    }
+
+    /**
+     * ModelRenderer uses Z-Y-X, while ModelRendererTurbo uses Y-Z-X. Rendering
+     * the animated armour through the vanilla order fixes combined Y+Z poses.
+     */
+    @Unique
+    private void renderAnimatedTurbo(Entity entity, ModelRendererTurbo model, float scale,
+                                     boolean customAnimationActive)
+    {
+        if (!customAnimationActive)
+        {
+            model.render(scale);
+            return;
+        }
+
+        float pointX = model.rotationPointX;
+        float pointY = model.rotationPointY;
+        float pointZ = model.rotationPointZ;
+        float angleX = model.rotateAngleX;
+        float angleY = model.rotateAngleY;
+        float angleZ = model.rotateAngleZ;
+        EntityNPCInterface renderingNpc = ClientEventHandler.renderingNpc;
+        EntityPlayer renderingPlayer = ClientEventHandler.renderingPlayer;
+
+        GL11.glPushMatrix();
+        try
+        {
+            GL11.glTranslatef(pointX * scale, pointY * scale, pointZ * scale);
+            float degrees = 180F / PI;
+            GL11.glRotatef(angleZ * degrees, 0F, 0F, 1F);
+            GL11.glRotatef(angleY * degrees, 0F, 1F, 0F);
+            GL11.glRotatef(angleX * degrees, 1F, 0F, 0F);
+
+            model.rotationPointX = 0F;
+            model.rotationPointY = 0F;
+            model.rotationPointZ = 0F;
+            model.rotateAngleX = 0F;
+            model.rotateAngleY = 0F;
+            model.rotateAngleZ = 0F;
+
+            // Prevent CustomNPC+'s ModelRenderer hook from trying to classify
+            // and animate the already-composed Flan turbo part a second time.
+            ClientEventHandler.renderingNpc = null;
+            ClientEventHandler.renderingPlayer = null;
+            model.render(scale);
+        }
+        finally
+        {
+            ClientEventHandler.renderingNpc = renderingNpc;
+            ClientEventHandler.renderingPlayer = renderingPlayer;
+            model.rotationPointX = pointX;
+            model.rotationPointY = pointY;
+            model.rotationPointZ = pointZ;
+            model.rotateAngleX = angleX;
+            model.rotateAngleY = angleY;
+            model.rotateAngleZ = angleZ;
+            GL11.glPopMatrix();
+        }
+    }
+
+    @Unique
+    private void applyCustomNpcPart(Frame frame, EnumAnimationPart partType, ModelRenderer modelPart)
+    {
+        FramePart part = frame.frameParts.get(partType);
+        if (part == null)
+            return;
+
+        part.interpolateAngles();
+        part.interpolateOffset();
+        modelPart.rotateAngleX = part.prevRotations[0];
+        modelPart.rotateAngleY = part.prevRotations[1];
+        modelPart.rotateAngleZ = part.prevRotations[2];
+        modelPart.rotationPointX += part.prevPivots[0];
+        modelPart.rotationPointY += part.prevPivots[1];
+        modelPart.rotationPointZ += part.prevPivots[2];
+    }
+
+    @Unique
+    private Frame getActiveCustomNpcFrame(EntityCustomNpc npc)
+    {
+        AnimationData animationData = npc.display.animationData;
+        if (animationData == null || !animationData.isActive())
+            return null;
+
+        Animation animation = animationData.animation;
+        if (animation == null || animation.frames == null || animation.frames.isEmpty())
+            return null;
+        if (animation.currentFrame < 0 || animation.currentFrame >= animation.frames.size())
+            return null;
+        return animation.frames.get(animation.currentFrame);
+    }
+
+    @Unique
+    private Frame getActiveCustomAnimationFrame(Entity entity)
+    {
+        AnimationData animationData = null;
+        if (entity instanceof EntityCustomNpc)
+            animationData = ((EntityCustomNpc) entity).display.animationData;
+        else if (entity instanceof EntityPlayer)
+            animationData = ClientCacheHandler.playerAnimations.get(entity.getUniqueID());
+
+        if (animationData == null || !animationData.isActive())
+            return null;
+        Animation animation = animationData.animation;
+        if (animation == null)
+            return null;
+        return (Frame) animation.currentFrame();
     }
 
     @Override
@@ -143,70 +331,70 @@ public abstract class MixinModelCustomArmour extends ModelBiped
     }
 
     @Unique
-    private void renderHeadNPC(EntityNPCInterface npc, float f)
+    private void renderHeadNPC(EntityNPCInterface npc, float f, boolean customAnimationActive)
     {
         if(npc.currentAnimation == EnumAnimation.DANCING)
         {
             float dancing = (npc instanceof EntityCustomNpc) ? npc.ticksExisted / 4f : dancingTicks;
             GL11.glPushMatrix();
             GL11.glTranslatef((float)Math.sin(dancing) * 0.075F, (float)Math.abs(Math.cos(dancing)) * 0.125F - 0.02F, (float)(-Math.abs(Math.cos(dancing))) * 0.075F);
-            render(headModel, bipedHead, f, type.modelScale);
+            renderAnimatedPart(npc, headModel, bipedHead, f, customAnimationActive);
             GL11.glPopMatrix();
         }
         else
         {
-            render(headModel, bipedHead, f, type.modelScale);
+            renderAnimatedPart(npc, headModel, bipedHead, f, customAnimationActive);
         }
     }
 
     @Unique
-    private void renderLeftArmNPC(EntityNPCInterface npc, float f)
+    private void renderLeftArmNPC(EntityNPCInterface npc, float f, boolean customAnimationActive)
     {
         if(npc.currentAnimation == EnumAnimation.DANCING)
         {
             float dancing = (npc instanceof EntityCustomNpc) ? npc.ticksExisted / 4f : dancingTicks;
             GL11.glPushMatrix();
             GL11.glTranslatef((float)Math.sin(dancing) * 0.025F, (float)Math.abs(Math.cos(dancing)) * 0.125F - 0.02F, 0.0F);
-            render(leftArmModel, bipedLeftArm, f, type.modelScale);
+            renderAnimatedPart(npc, leftArmModel, bipedLeftArm, f, customAnimationActive);
             GL11.glPopMatrix();
         }
         else
         {
-            render(leftArmModel, bipedLeftArm, f, type.modelScale);
+            renderAnimatedPart(npc, leftArmModel, bipedLeftArm, f, customAnimationActive);
         }
     }
 
     @Unique
-    private void renderRightArmNPC(EntityNPCInterface npc, float f)
+    private void renderRightArmNPC(EntityNPCInterface npc, float f, boolean customAnimationActive)
     {
         if(npc.currentAnimation == EnumAnimation.DANCING)
         {
             float dancing = (npc instanceof EntityCustomNpc) ? npc.ticksExisted / 4f : dancingTicks;
             GL11.glPushMatrix();
             GL11.glTranslatef((float)Math.sin(dancing) * 0.025F, (float)Math.abs(Math.cos(dancing)) * 0.125F - 0.02F, 0.0F);
-            render(rightArmModel, bipedRightArm, f, type.modelScale);
+            renderAnimatedPart(npc, rightArmModel, bipedRightArm, f, customAnimationActive);
             GL11.glPopMatrix();
         }
         else
         {
-            render(rightArmModel, bipedRightArm, f, type.modelScale);
+            renderAnimatedPart(npc, rightArmModel, bipedRightArm, f, customAnimationActive);
         }
     }
 
     @Unique
-    private void renderBodyNPC(EntityNPCInterface npc, float f)
+    private void renderBodyNPC(EntityNPCInterface npc, float f, boolean customAnimationActive)
     {
         if(npc.currentAnimation == EnumAnimation.DANCING)
         {
             float dancing = (npc instanceof EntityCustomNpc) ? npc.ticksExisted / 4f : dancingTicks;
             GL11.glPushMatrix();
             GL11.glTranslatef((float)Math.sin(dancing) * 0.015F, 0.0F, 0.0F);
-            render(bodyModel, bipedBody, f, type.modelScale);
+            renderAnimatedPart(npc, bodyModel, bipedBody, f, customAnimationActive);
             GL11.glPopMatrix();
         }
         else
         {
-            render(bodyModel, bipedBody, f, type.modelScale);
+            renderAnimatedPart(npc, bodyModel, bipedBody, f, customAnimationActive);
         }
     }
 

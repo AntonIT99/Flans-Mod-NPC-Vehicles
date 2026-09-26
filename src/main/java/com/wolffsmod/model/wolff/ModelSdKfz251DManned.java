@@ -1643,24 +1643,32 @@ public class ModelSdKfz251DManned extends ModelFlanVehicle //Same as Filename
 	}
 	
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		super.render(entity, f, f1, f2, f3, f4, f5);
-		for (int i = 0; i < 15; i++)
-		{
-			passenger[i].rotateAngleY = f3 / (180F / (float)Math.PI) - 90 / (180F / (float)Math.PI);
-		}
-		passenger[83].rotateAngleY = f3 / (180F / (float)Math.PI) - 90 / (180F / (float)Math.PI);
+        long benchmarkToken = com.wolffsmod.benchmark.VehicleBenchmark.begin(entity);
+        try
+        {
+            super.render(entity, f, f1, f2, f3, f4, f5);
+            for (int i = 0; i < 15; i++)
+            {
+                passenger[i].rotateAngleY = f3 / (180F / (float)Math.PI) - 90 / (180F / (float)Math.PI);
+            }
+            passenger[83].rotateAngleY = f3 / (180F / (float)Math.PI) - 90 / (180F / (float)Math.PI);
 
-		for (ModelRendererTurbo modelRendererTurbo : driver)
-		{
-			modelRendererTurbo.render(f5);
-		}
-		for (ModelRendererTurbo modelRendererTurbo : passenger)
-		{
-			modelRendererTurbo.render(f5);
-		}
-	}
+            for (ModelRendererTurbo modelRendererTurbo : driver)
+            {
+                modelRendererTurbo.render(f5);
+            }
+            for (ModelRendererTurbo modelRendererTurbo : passenger)
+            {
+                modelRendererTurbo.render(f5);
+            }
+        }
+        finally
+        {
+            com.wolffsmod.benchmark.VehicleBenchmark.end(benchmarkToken);
+        }
+    }
 
 	@Override
 	protected void renderTurretAndBarrel(Vector3f turretOrigin, EntityFlanDriveableNPC entity, float recoilPos)

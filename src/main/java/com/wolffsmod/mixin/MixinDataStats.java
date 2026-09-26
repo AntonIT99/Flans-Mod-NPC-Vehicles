@@ -1,5 +1,7 @@
 package com.wolffsmod.mixin;
 
+import com.wolffsmod.config.RangeConfig;
+import net.minecraft.nbt.NBTTagCompound;
 import noppes.npcs.DataStats;
 import noppes.npcs.entity.EntityNPCInterface;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +22,7 @@ public abstract class MixinDataStats
     @Shadow(remap = false)
     public float pDamage;
     @Shadow(remap = false)
-    public boolean aimWhileShooting;
+    public byte aimType;
 
     @Inject(method = "<init>", at = @At("RETURN"), remap = false)
     public void onDataStatsInit(EntityNPCInterface npc, CallbackInfo ci)
@@ -29,6 +31,14 @@ public abstract class MixinDataStats
         rangedRange = 64;
         aggroRange = 64;
         pDamage = 1F;
-        aimWhileShooting = true;
+        aimType = 1;
+    }
+
+    @Inject(method = "readEntityFromNBT", at = @At("RETURN"), remap = false)
+    private void wolffsmod$applyConfiguredCombatLimit(NBTTagCompound compound, CallbackInfo callbackInfo)
+    {
+        int maximum = RangeConfig.getMaximumNPCCombatRange();
+        aggroRange = Math.min(aggroRange, maximum);
+        rangedRange = Math.min(rangedRange, maximum);
     }
 }

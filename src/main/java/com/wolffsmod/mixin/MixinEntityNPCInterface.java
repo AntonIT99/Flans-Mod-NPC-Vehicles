@@ -9,6 +9,7 @@ import com.flansmod.common.driveables.ItemPlane;
 import com.flansmod.common.driveables.ItemVehicle;
 import com.flansmod.common.driveables.ShootPoint;
 import com.flansmod.common.guns.AAGunType;
+import com.flansmod.common.guns.BulletType;
 import com.flansmod.common.guns.EntityBullet;
 import com.flansmod.common.guns.EntityShootable;
 import com.flansmod.common.guns.GunType;
@@ -21,8 +22,10 @@ import com.flansmod.common.guns.ShootableType;
 import com.flansmod.common.network.PacketPlaySound;
 import com.flansmod.common.vector.Vector3f;
 import com.wolffsmod.customnpc.IMixinDataDisplay;
+import com.wolffsmod.customnpc.IMixinDataAI;
 import com.wolffsmod.customnpc.IMixinEntityNPCInterface;
 import com.wolffsmod.customnpc.NPCInterfaceUtil;
+import com.wolffsmod.customnpc.VehicleMobilityProfile;
 import com.wolffsmod.entity.EntityFlanAAGunNPC;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.Seat;
@@ -35,6 +38,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import noppes.npcs.CustomNpcs;
 import noppes.npcs.DataAdvanced;
+import noppes.npcs.DataAI;
+import noppes.npcs.DataAbilities;
 import noppes.npcs.DataDisplay;
 import noppes.npcs.DataInventory;
 import noppes.npcs.DataStats;
@@ -56,6 +61,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.block.Block;
 import net.minecraft.command.ICommandSender;
@@ -116,6 +122,10 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     public RoleInterface roleInterface;
     @Shadow(remap = false)
     public Faction faction;
+    @Shadow(remap = false)
+    public DataAbilities abilities;
+    @Shadow(remap = false)
+    public DataAI ais;
 
     @Shadow(remap = false)
     public abstract boolean isRemote();
@@ -133,18 +143,12 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     public abstract boolean isAttacking();
     @Shadow(remap = false)
     public abstract EntityProjectile shoot(EntityLivingBase entity, int accuracy, ItemStack proj, boolean indirect);
-    @Shadow(remap = false)
-    private int getPotionEffect(EnumPotionType p)
-    {
-        return 0; //Dummy method body
-    }
-
     protected MixinEntityNPCInterface(World w)
     {
         super(w);
     }
 
-    @Inject(method = "onUpdate", at = @At(value = "TAIL"))
+    @Inject(method = "func_70071_h_", at = @At(value = "TAIL"), remap = false)
     private void updateSoundPosition(CallbackInfo callbackInfo)
     {
         if (soundPosition > 0)
@@ -222,11 +226,13 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
             }
         }
 
-        if (stats.potionType != EnumPotionType.None){
-            if (stats.potionType != EnumPotionType.Fire && par1Entity instanceof EntityLivingBase)
-                ((EntityLivingBase)par1Entity).addPotionEffect(new PotionEffect(getPotionEffect(stats.potionType), stats.potionDuration * 20, stats.potionAmp));
-            else
-                par1Entity.setFire(stats.potionDuration);
+        if (stats.potionType == EnumPotionType.Fire){
+            par1Entity.setFire(stats.potionDuration);
+        }
+        else if (stats.potionType != EnumPotionType.None && par1Entity instanceof EntityLivingBase){
+            int potionId = stats.potionType.getResolvedPotionId(stats.potionManualId);
+            if (EnumPotionType.isValidPotionId(potionId))
+                ((EntityLivingBase)par1Entity).addPotionEffect(new PotionEffect(potionId, stats.potionDuration * 20, stats.potionAmp));
         }
         return var4;
     }
@@ -313,7 +319,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
                     if (npc.isKilled() || !npc.advanced.defendFaction || npc.faction.id != faction.id)
                         continue;
 
-                    if (npc.canSee(this) || npc.ai.directLOS || npc.canSee(attackingEntity))
+                    if (npc.canSee(this) || npc.ais.directLOS || npc.canSee(attackingEntity))
                         npc.onAttack(attackingEntity);
                 }
                 setAttackTarget(attackingEntity);
@@ -349,33 +355,12 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
             if (EventHooks.onNPCRangedAttack((EntityNPCInterface)(Object)this, event))
                 return;
 
-            if (!getGuns().isEmpty())
-            {
-                for(ItemStack gun: getGuns())
-                {
-                    for (int i = 0; i < ((ItemGun)gun.getItem()).type.getNumBullets(gun); i++)
-                    {
-                        shootProjectile(entity, event, gun, proj, f);
-                    }
-                }
-            }
-            else
-            {
-                for (int i = 0; i < stats.shotCount; i++)
-                {
-                    shootProjectile(entity, event, null, proj, f);
-                }
-            }
+            List<ItemStack> guns = getGuns();
+            ItemStack shotFrom = guns.isEmpty() ? null : guns.get(0);
+            for (int i = 0; i < stats.shotCount; i++)
+                shootProjectile(entity, event, shotFrom, proj, f);
 
-            if (((IMixinDataInventory)inventory).getUseWeaponRangedStats() && !getGuns().isEmpty())
-            {
-                for(ItemStack gun: getGuns())
-                    NPCInterfaceUtil.playGunFireSound(gun, posX, posY, posZ, dimension, lastBurst);
-            }
-            else
-            {
-                playSound(stats.fireSound, 2.0F, 1.0f);
-            }
+            playSound(stats.fireSound, 2.0F, 1.0f);
 
             if (((IMixinDataDisplay)display).getHasFlanShootAnimation())
                 NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumAnimPacket.FLAN_SHOOT);
@@ -457,42 +442,10 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         float pitch = rotationPitch;
         Vec3 origin = Vec3.createVectorHelper(posX, posY + getEyeHeight(), posZ);
 
-        if(itemStackGun != null && ((IMixinDataInventory)inventory).getUseWeaponRangedStats())
-        {
-            GunType gunType = ((ItemGun)itemStackGun.getItem()).type;
-            damage = ((ItemGun)itemStackGun.getItem()).type.getDamage(itemStackGun);
-            speed = Math.round(Math.max(FlanUtils.getBulletSpeed(((ItemGun)itemStackGun.getItem()).type, itemStackGun, itemStackShootable), 1F));
-            spread = gunType.getSpread(itemStackGun, isSneaking(), isSprinting());
-            shotgun = (gunType.getNumBullets(itemStackGun) > 1);
-        }
-        else
-        {
-            damage = stats.pDamage;
-            speed = stats.pSpeed;
-            spread =  NPCInterfaceUtil.accuracyToBulletSpread(stats.accuracy);
-            shotgun = (stats.shotCount > 1);
-
-            if (((IMixinDataInventory)inventory).getUseDriveableStats())
-            {
-                Optional<DriveableType> driveableType = getHeldDriveable();
-                Optional<AAGunType> aaGunType = getHeldAAGun();
-                if (driveableType.isPresent())
-                {
-                    DriveableType type = driveableType.get();
-                    Optional<Float> damageMultiplierPrimary = FlanUtils.getDamageMultiplierPrimary(type);
-                    if (damageMultiplierPrimary.isPresent())
-                        damage = damageMultiplierPrimary.get();
-                    speed = (int) type.bulletSpeed;
-                    spread = type.bulletSpread;
-                }
-                if (aaGunType.isPresent())
-                {
-                    AAGunType type = aaGunType.get();
-                    damage = type.damage;
-                    spread = type.accuracy;
-                }
-            }
-        }
+        damage = stats.pDamage;
+        speed = Math.max(stats.pSpeed, 0.01F);
+        spread = NPCInterfaceUtil.accuracyToBulletSpread(stats.accuracy);
+        shotgun = (stats.shotCount > 1);
 
         Optional<EntityFlanDriveableNPC> optionalDriveable = getFlanDriveableEntity();
 
@@ -513,7 +466,12 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
                 Vector3f gunVector = NPCInterfaceUtil.getFiringPosition(shootPoint, driveable.turretOrigin, driverYaw, pitch, renderYawOffset);
 
                 if (display.modelSize != 5)
-                    gunVector.scale(display.modelSize / 5F);
+                {
+                    float modelScale = display.modelSize / 5F;
+                    gunVector.x *= modelScale;
+                    gunVector.y *= modelScale;
+                    gunVector.z *= modelScale;
+                }
 
                 origin = (Vector3f.add(new Vector3f(posX, posY + driveable.yDriveableOffset * (display.modelSize / 5F), posZ), gunVector, null)).toVec3();
                 NPCInterfaceUtil.spawnParticle(driveable.shootParticlesPrimary, shootPoint, gunVector, driverYaw, pitch, renderYawOffset, posX, posY + driveable.yDriveableOffset, posZ, dimension, display.modelSize / 5F);
@@ -664,7 +622,8 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
             float hammerAngle = gunType.model == null ? 0 : gunType.model.hammerAngle;
             float althammerAngle = gunType.model == null ? 0 : gunType.model.althammerAngle;
 
-            animations.doShoot(pumpDelay, pumpTime, hammerDelay, hammerAngle, althammerAngle, casingDelay);
+            FlanUtils.doShootAnimation(animations, pumpDelay, pumpTime, hammerDelay,
+                    hammerAngle, althammerAngle, casingDelay);
         }
         if (offHandItem != null && offHandItem.getItem() instanceof ItemGun)
         {
@@ -678,7 +637,8 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
             float hammerAngle = gunType.model == null ? 0 : gunType.model.hammerAngle;
             float althammerAngle = gunType.model == null ? 0 : gunType.model.althammerAngle;
 
-            animations.doShoot(pumpDelay, pumpTime, hammerDelay, hammerAngle, althammerAngle, casingDelay);
+            FlanUtils.doShootAnimation(animations, pumpDelay, pumpTime, hammerDelay,
+                    hammerAngle, althammerAngle, casingDelay);
         }
     }
 
@@ -703,6 +663,13 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     @Override
     public void reloadGuns()
     {
+        // This method only produces Flan reload feedback; the ranged attack
+        // cooldown and firing state are handled by EntityAIRangedAttack. Keep
+        // both the reload sound and animation disabled for "Only Shoot" (and
+        // "Disabled") instead of suppressing just the animation packet.
+        if (!((IMixinDataDisplay)display).getHasFlanReloadAnimation())
+            return;
+
         for(ItemStack gun: getGuns())
             NPCInterfaceUtil.playGunReloadSound(gun, posX, posY, posZ, dimension);
         Optional<DriveableType> driveableType = getHeldDriveable();
@@ -719,8 +686,74 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
                 PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, reloadSound, false);
         }
 
-        if (((IMixinDataDisplay)display).getHasFlanReloadAnimation())
-            NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumAnimPacket.FLAN_RELOAD);
+        NPCInterfaceUtil.sendPacketWhenInRenderingRange(this, EnumAnimPacket.FLAN_RELOAD);
+    }
+
+    @Inject(method = "getSpeed", at = @At("RETURN"), cancellable = true, remap = false)
+    private void wolffsmod$profileSpeed(CallbackInfoReturnable<Float> ci)
+    {
+        IMixinDataAI mobility = (IMixinDataAI)ais;
+        VehicleMobilityProfile profile = mobility.getVehicleMobilityProfile();
+        if (profile == VehicleMobilityProfile.LEGACY)
+            return;
+        double speed = profile == VehicleMobilityProfile.WATERCRAFT
+                || profile == VehicleMobilityProfile.AMPHIBIOUS && isInWater()
+                ? mobility.getVehicleWaterSpeed() : mobility.getVehicleLandSpeed();
+        ci.setReturnValue((float)(speed / 20.0D));
+    }
+
+    /** Stable server-side controller; it replaces drag loss rather than multiplying motion. */
+    @Inject(method = "func_70612_e(FF)V", at = @At("TAIL"), remap = false)
+    private void wolffsmod$applyTerrainSpeed(float strafe, float forward, CallbackInfo ci)
+    {
+        if (worldObj.isRemote || !isInWater() || Math.abs(moveForward) + Math.abs(moveStrafing) < 0.01F)
+            return;
+        IMixinDataAI mobility = (IMixinDataAI)ais;
+        VehicleMobilityProfile profile = mobility.getVehicleMobilityProfile();
+        if (profile == VehicleMobilityProfile.LEGACY)
+            return;
+        double speed = profile == VehicleMobilityProfile.WATERCRAFT
+                || profile == VehicleMobilityProfile.AMPHIBIOUS
+                ? mobility.getVehicleWaterSpeed() : mobility.getVehicleLandSpeed();
+        double target = speed / 20.0D;
+        double current = Math.sqrt(motionX * motionX + motionZ * motionZ);
+        double directionX;
+        double directionZ;
+        if (current > 1.0E-5D) {
+            directionX = motionX / current;
+            directionZ = motionZ / current;
+        } else {
+            double yaw = Math.toRadians(rotationYaw);
+            directionX = -Math.sin(yaw);
+            directionZ = Math.cos(yaw);
+        }
+        double acceleration = Math.max(0.005D, target * 0.15D);
+        double next = current < target ? Math.min(target, current + acceleration) : Math.max(target, current - acceleration);
+        motionX = directionX * next;
+        motionZ = directionZ * next;
+    }
+
+    /**
+     * Tracked/wheeled hulls slow while their gradual body rotation catches the
+     * requested travel direction. This prevents full-speed sideways/reverse
+     * pursuit without coupling the turret or head aim to the hull.
+     */
+    @Inject(method = "func_70612_e(FF)V", at = @At("TAIL"), remap = false)
+    private void wolffsmod$limitMisalignedVehicleTravel(float strafe, float forward, CallbackInfo ci)
+    {
+        if (worldObj.isRemote || !isFlanDriveable() || isFlanPlane())
+            return;
+        double speedSq = motionX * motionX + motionZ * motionZ;
+        if (speedSq < 1.0E-8D)
+            return;
+        float movementYaw = (float)(Math.atan2(motionZ, motionX) * 180.0D / Math.PI) - 90.0F;
+        float error = Math.abs(MathHelper.wrapAngleTo180_float(movementYaw - renderYawOffset));
+        if (error <= 20.0F)
+            return;
+        double forwardAlignment = Math.max(0.0D, Math.cos(Math.toRadians(error)));
+        double scale = 0.15D + 0.85D * forwardAlignment;
+        motionX *= scale;
+        motionZ *= scale;
     }
 
     @Override
@@ -748,6 +781,12 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     }
 
     @Override
+    public DataAbilities getNpcAbilities()
+    {
+        return abilities;
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public void performHurtAnimation()
     {
@@ -770,7 +809,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
             maxHurtTime = hurtTime = 0;
     }
 
-    @Inject(method = "onDeathUpdate", at = @At(value = "HEAD"))
+    @Inject(method = "func_70609_aI", at = @At(value = "HEAD"), remap = false)
     private void beforeDeathUpdate(CallbackInfo callbackInfo)
     {
         if (!((IMixinDataDisplay)display).getDisplayHurtEffect() && stats.hideKilledBody)

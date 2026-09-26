@@ -4,6 +4,7 @@ import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.Seat;
 
 import net.minecraft.item.ItemStack;
+import noppes.npcs.DataAbilities;
 
 import java.util.List;
 import java.util.Map;
@@ -25,4 +26,5 @@ public interface IMixinEntityNPCInterface
     Map<Integer, Seat> getPassengers();
     boolean getLastBurst();
     void setLastBurst(boolean lastBurst);
+    DataAbilities getNpcAbilities();
 }

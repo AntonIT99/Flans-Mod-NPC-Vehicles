@@ -47,7 +47,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,43 +91,6 @@ public abstract class MixinDataInventory implements IMixinDataInventory, IInvent
         useDriveableStats = nbttagcompound.getBoolean("UseDriveableStats");
     }
 
-    @Inject(method = "setWeapons", at = @At(value = "TAIL"), remap = false)
-    private void onSetWeapons(HashMap<Integer, ItemStack> list, CallbackInfo callbackInfo)
-    {
-        setWeaponStats();
-        setKnockbackResistance(weapons, armor);
-        setDriveableStats();
-    }
-
-    @Inject(method = "setArmor", at = @At(value = "TAIL"), remap = false)
-    private void onSetArmor(HashMap<Integer, ItemStack> list, CallbackInfo callbackInfo)
-    {
-        setArmorStats(armor);
-        setKnockbackResistance(weapons, armor);
-    }
-
-    @Inject(method = "setWeapon", at = @At(value = "TAIL"), remap = false)
-    private void onSetWeapon(ItemStack item, CallbackInfo callbackInfo)
-    {
-        setWeaponStats();
-        setKnockbackResistance(weapons, armor);
-        setDriveableStats();
-    }
-
-    @Inject(method = "setProjectile", at = @At(value = "TAIL"), remap = false)
-    private void onSetProjectile(ItemStack item, CallbackInfo callbackInfo)
-    {
-        setWeaponStats();
-        setKnockbackResistance(weapons, armor);
-    }
-
-    @Inject(method = "setOffHand", at = @At(value = "TAIL"), remap = false)
-    private void onSetOffHand(ItemStack item, CallbackInfo callbackInfo)
-    {
-        setWeaponStats();
-        setKnockbackResistance(weapons, armor);
-    }
-
     @Unique
     private void setDriveableStats()
     {
@@ -144,13 +106,19 @@ public abstract class MixinDataInventory implements IMixinDataInventory, IInvent
 
         if (type != null)
         {
-            type.health.values().stream().map(box -> box.health).max(Comparator.naturalOrder()).ifPresent(health -> npc.stats.maxHealth = health);
+            OptionalDouble driveableHealth = FlanUtils.getMaxDriveableHealth(type);
+            if (driveableHealth.isPresent())
+                npc.stats.maxHealth = driveableHealth.getAsDouble();
             Optional<Float> damageMultiplierPrimary = FlanUtils.getDamageMultiplierPrimary(type);
             damageMultiplierPrimary.ifPresent(value -> npc.stats.pDamage = value);
-            npc.stats.pSpeed = (int) type.bulletSpeed;
+            npc.stats.pSpeed = Math.round(type.bulletSpeed * getProjectileSpeedMultiplier());
             npc.stats.accuracy = NPCInterfaceUtil.bulletSpreadToAccuracy(type.bulletSpread);
-            npc.stats.minDelay = (int) Math.floor(type.shootDelay(false));
-            npc.stats.maxDelay = (int) Math.ceil(type.shootDelay(false));
+            OptionalDouble shootDelay = FlanUtils.getShootDelay(type, false);
+            if (shootDelay.isPresent())
+            {
+                npc.stats.minDelay = (int)Math.floor(shootDelay.getAsDouble());
+                npc.stats.maxDelay = (int)Math.ceil(shootDelay.getAsDouble());
+            }
             npc.stats.fireRate = 0;
             npc.stats.shotCount = 1;
             if (type.shootSound(false) != null && !type.shootSound(false).isEmpty())
@@ -164,6 +132,7 @@ public abstract class MixinDataInventory implements IMixinDataInventory, IInvent
             AAGunType aagunType = ((ItemAAGun)item.getItem()).type;
             npc.stats.maxHealth = aagunType.health;
             npc.stats.pDamage = aagunType.damage;
+            npc.stats.pSpeed = Math.round(3F * getProjectileSpeedMultiplier());
             npc.stats.accuracy = NPCInterfaceUtil.bulletSpreadToAccuracy(aagunType.accuracy);
             npc.stats.minDelay = aagunType.reloadTime;
             npc.stats.maxDelay = aagunType.reloadTime;
@@ -172,6 +141,15 @@ public abstract class MixinDataInventory implements IMixinDataInventory, IInvent
             if (aagunType.shootSound != null && !aagunType.shootSound.isEmpty())
                 npc.stats.fireSound = "flansmod:" + aagunType.shootSound;
         }
+    }
+
+    @Unique
+    private float getProjectileSpeedMultiplier()
+    {
+        ItemStack projectile = weapons.get(1);
+        if (projectile != null && projectile.getItem() instanceof com.flansmod.common.guns.ItemBullet)
+            return ((com.flansmod.common.guns.ItemBullet)projectile.getItem()).type.speedMultiplier;
+        return 1F;
     }
 
     @Unique
@@ -526,5 +504,30 @@ public abstract class MixinDataInventory implements IMixinDataInventory, IInvent
     public void setUseDriveableStats(boolean useDriveableStats)
     {
         this.useDriveableStats = useDriveableStats;
+    }
+
+    @Override
+    public void importWeaponMeleeStats()
+    {
+        setMeleeStats(weapons.get(0), weapons.get(2));
+    }
+
+    @Override
+    public void importWeaponRangedStats()
+    {
+        setRangedStats(((IMixinEntityNPCInterface)npc).getGuns(), weapons.get(0), weapons.get(1));
+    }
+
+    @Override
+    public void importArmorStats()
+    {
+        setArmorStats(armor);
+        setKnockbackResistance(weapons, armor);
+    }
+
+    @Override
+    public void importDriveableStats()
+    {
+        setDriveableStats();
     }
 }

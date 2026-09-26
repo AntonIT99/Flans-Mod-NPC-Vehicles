@@ -28,6 +28,12 @@ public class Seat
     private float targetYaw;
     private float targetPitch;
 
+    private int ballisticTargetId = Integer.MIN_VALUE;
+    private int ballisticSolveTick = Integer.MIN_VALUE;
+    private com.wolffsmod.customnpc.FlanBallisticAim.Solution ballisticSolution;
+    private final com.wolffsmod.customnpc.FlanBallisticAim.MotionTracker ballisticMotion =
+            new com.wolffsmod.customnpc.FlanBallisticAim.MotionTracker();
+
     public Seat()
     {
         minYaw = -360F;
@@ -99,11 +105,58 @@ public class Seat
 
     public void setYawAndPitch(EntityLivingBase entity)
     {
+        setYawAndPitch(entity, false);
+    }
+
+    public void setYawAndPitch(EntityLivingBase entity, boolean primaryWeaponSeat)
+    {
         float seatYaw = MathHelper.wrapAngleTo180_float(entity.rotationYawHead);
         float seatPitch = MathHelper.wrapAngleTo180_float(entity.rotationPitch);
         float entityYaw = MathHelper.wrapAngleTo180_float(entity.renderYawOffset);
 
-        targetYaw = Math.min(Math.max((seatYaw - entityYaw + offsetYawAngle) % 360F, minYaw), maxYaw);
+        // Track the selected enemy throughout reload/cooldown, independent of look AI.
+        if (entity instanceof EntityFlanDriveableNPC)
+        {
+            EntityFlanDriveableNPC vehicle = (EntityFlanDriveableNPC)entity;
+            if (vehicle.npc != null && !vehicle.worldObj.isRemote
+                    && !((com.wolffsmod.customnpc.IMixinEntityNPCInterface)vehicle.npc).getNpcAbilities().isRotationLocked())
+            {
+                EntityLivingBase target = vehicle.npc.getAttackTarget();
+                if (target != null && target.isEntityAlive())
+                {
+                    com.wolffsmod.customnpc.FlanBallisticAim.Solution solution = null;
+                    if (primaryWeaponSeat)
+                    {
+                        int tick = vehicle.npc.ticksExisted;
+                        com.wolffsmod.customnpc.FlanBallisticAim.MotionEstimate motion = ballisticMotion.observe(target, tick);
+                        if (target.getEntityId() != ballisticTargetId || tick - ballisticSolveTick >= 3
+                                || tick < ballisticSolveTick)
+                        {
+                            ballisticTargetId = target.getEntityId();
+                            ballisticSolveTick = tick;
+                            ballisticSolution = com.wolffsmod.customnpc.FlanBallisticAim.solve(vehicle, target, motion);
+                        }
+                        solution = ballisticSolution;
+                    }
+                    if (solution != null)
+                    {
+                        seatYaw = solution.yaw;
+                        seatPitch = solution.pitch;
+                    }
+                    else
+                    {
+                        net.minecraft.util.Vec3 origin = vehicle.getPrimaryAimOrigin();
+                        double dx = target.posX - origin.xCoord;
+                        double dz = target.posZ - origin.zCoord;
+                        double dy = target.posY + target.getEyeHeight() * 0.65D - origin.yCoord;
+                        seatYaw = (float)(Math.atan2(dz, dx) * 180.0D / Math.PI) - 90F;
+                        seatPitch = (float)(-Math.atan2(dy, Math.sqrt(dx * dx + dz * dz)) * 180.0D / Math.PI);
+                    }
+                }
+            }
+        }
+
+        targetYaw = Math.min(Math.max(MathHelper.wrapAngleTo180_float(seatYaw - entityYaw + offsetYawAngle), minYaw), maxYaw);
         targetPitch = Math.min(Math.max(seatPitch, -maxPitch), -minPitch);
 
         float newYaw = yaw;
@@ -127,7 +180,8 @@ public class Seat
         if (newPitch > targetPitch)
             newPitch -= Math.min(pitchSpeed, newPitch - targetPitch);
 
-        yaw = Math.min(Math.max(newYaw, minYaw), maxYaw);
+        yaw = maxYaw - minYaw >= 360F ? MathHelper.wrapAngleTo180_float(newYaw)
+                : Math.min(Math.max(newYaw, minYaw), maxYaw);
         pitch = Math.min(Math.max(newPitch, -maxPitch), -minPitch);
     }
 
@@ -161,6 +215,7 @@ public class Seat
 
     public boolean isRotating()
     {
-        return (Math.abs(targetYaw - yaw) >= 1F) || (Math.abs(targetPitch - pitch) >= 1F);
+        return (Math.abs(MathHelper.wrapAngleTo180_float(targetYaw - yaw)) >= 1F)
+                || (Math.abs(targetPitch - pitch) >= 1F);
     }
 }
