@@ -519,23 +519,19 @@ public abstract class MixinModelCustomArmour extends ModelBiped
             bipedLeftArm.rotateAngleX -= MathHelper.sin(par3 * 0.067F) * 0.05F;
         }
 
-        switch(currentAnimation)
-        {
-            case CRAWLING:
-                setRotationAnglesCrawling(par1, par2, par3, par4, par5, par6, entity);
-                break;
-            case HUG:
-                setRotationAnglesHug(par1, par2, par3, par4, par5, par6, entity);
-                break;
-            case WAVING:
-                setRotationAnglesWaving(par1, par2, par3, par4, par5, par6, entity);
-                break;
-            case CRY:
-                setRotationAnglesCry(par1, par2, par3, par4, par5, par6, entity);
-                break;
-            default:
-                break;
-        }
+        // Do not use an enum switch in a method that is merged by Mixin. Java
+        // compiles enum switches through a synthetic MixinModelCustomArmour$1
+        // mapping class. Some legacy transformer stacks rewrite the reference
+        // to ModelCustomArmour$Anonymous$... without defining that companion
+        // class, which crashes as soon as Flan armour renders.
+        if (currentAnimation == EnumAnimation.CRAWLING)
+            setRotationAnglesCrawling(par1, par2, par3, par4, par5, par6, entity);
+        else if (currentAnimation == EnumAnimation.HUG)
+            setRotationAnglesHug(par1, par2, par3, par4, par5, par6, entity);
+        else if (currentAnimation == EnumAnimation.WAVING)
+            setRotationAnglesWaving(par1, par2, par3, par4, par5, par6, entity);
+        else if (currentAnimation == EnumAnimation.CRY)
+            setRotationAnglesCry(par1, par2, par3, par4, par5, par6, entity);
 
         if (entity instanceof EntityCustomNpc)
             puppetRotate((EntityCustomNpc) entity, par2);
