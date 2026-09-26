@@ -17,6 +17,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -127,6 +128,7 @@ public class WolffNPCMod
 		network.registerMessage(RangeConfigPacket.Handler.class, RangeConfigPacket.class, 2, Side.CLIENT);
 		FMLCommonHandler.instance().bus().register(new RangeConfigSyncHandler());
 		FMLCommonHandler.instance().bus().register(com.wolffsmod.benchmark.ServerBenchmark.INSTANCE);
+		MinecraftForge.EVENT_BUS.register(new com.wolffsmod.customnpc.CustomNpcTickActivation());
 	}
 
 	@EventHandler
