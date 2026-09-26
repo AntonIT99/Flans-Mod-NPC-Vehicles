@@ -1,9 +1,9 @@
 package com.wolffsmod.mixin;
 
 import com.wolffsmod.config.TargetSearchConfig;
+import com.wolffsmod.customnpc.ProgressiveTargetSelector;
 import com.wolffsmod.customnpc.TargetSearchProfiler;
 import net.minecraft.command.IEntitySelector;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
@@ -123,19 +123,8 @@ public abstract class MixinEntityAIClosestTargetProgressive extends EntityAITarg
     @Unique
     private EntityLivingBase wolffsmod$findNearestInShell(final EntityNPCInterface npc, final int inner, int outer)
     {
-        final IEntitySelector shellSelector = new IEntitySelector()
-        {
-            @Override
-            public boolean isEntityApplicable(Entity entity)
-            {
-                if (inner > 0 && wolffsmod$isInsideBox(npc, entity, inner))
-                    return false;
-                wolffsmod$selectorChecks++;
-                if (npc.ais.directLOS)
-                    wolffsmod$losChecks++;
-                return field_82643_g == null || field_82643_g.isEntityApplicable(entity);
-            }
-        };
+        ProgressiveTargetSelector shellSelector =
+                new ProgressiveTargetSelector(npc, inner, field_82643_g);
 
         int outerY = (int)Math.ceil(outer / 2.0D);
         AxisAlignedBB outerBox = npc.boundingBox.expand(outer, outerY, outer);
@@ -145,6 +134,7 @@ public abstract class MixinEntityAIClosestTargetProgressive extends EntityAITarg
         if (inner <= 0)
         {
             wolffsmod$scanBox(npc, outerBox, shellSelector);
+            wolffsmod$captureSelectorMetrics(shellSelector);
             return wolffsmod$nearest;
         }
 
@@ -171,7 +161,15 @@ public abstract class MixinEntityAIClosestTargetProgressive extends EntityAITarg
         wolffsmod$scanBox(npc, AxisAlignedBB.getBoundingBox(
                 innerBox.minX, innerBox.maxY, innerBox.minZ,
                 innerBox.maxX, outerBox.maxY, innerBox.maxZ), shellSelector);
+        wolffsmod$captureSelectorMetrics(shellSelector);
         return wolffsmod$nearest;
+    }
+
+    @Unique
+    private void wolffsmod$captureSelectorMetrics(ProgressiveTargetSelector selector)
+    {
+        wolffsmod$selectorChecks = selector.getSelectorChecks();
+        wolffsmod$losChecks = selector.getLosChecks();
     }
 
     @Unique
@@ -195,15 +193,4 @@ public abstract class MixinEntityAIClosestTargetProgressive extends EntityAITarg
         }
     }
 
-    @Unique
-    private static boolean wolffsmod$isInsideBox(EntityNPCInterface npc, Entity entity, int radius)
-    {
-        double yRadius = Math.ceil(radius / 2.0D);
-        return entity.boundingBox.maxX >= npc.boundingBox.minX - radius
-                && entity.boundingBox.minX <= npc.boundingBox.maxX + radius
-                && entity.boundingBox.maxY >= npc.boundingBox.minY - yRadius
-                && entity.boundingBox.minY <= npc.boundingBox.maxY + yRadius
-                && entity.boundingBox.maxZ >= npc.boundingBox.minZ - radius
-                && entity.boundingBox.minZ <= npc.boundingBox.maxZ + radius;
-    }
 }
