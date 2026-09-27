@@ -21,7 +21,7 @@ public abstract class MixinEntityAIAttackTargetTacticalRange128 {
     @Shadow(remap = false)
     private EntityLivingBase entityTarget;
 
-    @Inject(method = "continueExecuting", at = @At("HEAD"), cancellable = true, remap = false)
+    @Inject(method = { "continueExecuting", "func_75253_b" }, at = @At("HEAD"), cancellable = true, remap = false)
     private void wolffsmod$retainExtendedTacticalTarget(CallbackInfoReturnable<Boolean> callbackInfo) {
         EntityLivingBase target = npc.getAttackTarget();
         if (target == null || !target.isEntityAlive()) {
