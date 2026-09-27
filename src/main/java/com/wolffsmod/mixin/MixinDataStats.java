@@ -34,7 +34,7 @@ public abstract class MixinDataStats
         aimType = 1;
     }
 
-    @Inject(method = "readEntityFromNBT", at = @At("RETURN"), remap = false)
+    @Inject(method = { "readEntityFromNBT", "readToNBT" }, at = @At("RETURN"), remap = false)
     private void wolffsmod$applyConfiguredCombatLimit(NBTTagCompound compound, CallbackInfo callbackInfo)
     {
         int maximum = RangeConfig.getMaximumNPCCombatRange();
