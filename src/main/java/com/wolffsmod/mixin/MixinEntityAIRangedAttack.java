@@ -2,6 +2,7 @@ package com.wolffsmod.mixin;
 
 import com.wolffsmod.customnpc.IMixinEntityNPCInterface;
 import com.wolffsmod.customnpc.TacticalRangeHelper;
+import com.wolffsmod.customnpc.TransparentBlockLos;
 import noppes.npcs.ai.EntityAIRangedAttack;
 import noppes.npcs.constants.EnumAnimation;
 import noppes.npcs.constants.EnumNavType;
@@ -104,7 +105,7 @@ public abstract class MixinEntityAIRangedAttack extends EntityAIBase
 
         if (!navOverride && entityHost.ais.directLOS)
         {
-            if (entityHost.getEntitySenses().canSee(attackTarget))
+            if (TransparentBlockLos.canFire(entityHost, attackTarget))
             {
                 field_75318_f++;
             }
@@ -148,7 +149,7 @@ public abstract class MixinEntityAIRangedAttack extends EntityAIBase
 
         if (rangedAttackTime <= 0)
         {
-            if (var1 <= range && (entityHost.getEntitySenses().canSee(attackTarget) || entityHost.ais.canFireIndirect == 2))
+            if (var1 <= range && (TransparentBlockLos.canFire(entityHost, attackTarget) || entityHost.ais.canFireIndirect == 2))
             {
                 if (field_70846_g == 0)
                 {
@@ -179,7 +180,7 @@ public abstract class MixinEntityAIRangedAttack extends EntityAIBase
                             indirect = var1 > (double)range / 2;
                             break;
                         case 2:
-                            indirect = !entityHost.getEntitySenses().canSee(attackTarget);
+                            indirect = !TransparentBlockLos.canFire(entityHost, attackTarget);
                             break;
                         default:
                             break;

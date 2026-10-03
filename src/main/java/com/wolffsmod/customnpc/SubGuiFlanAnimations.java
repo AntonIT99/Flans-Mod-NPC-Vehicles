@@ -31,6 +31,9 @@ public class SubGuiFlanAnimations extends SubGuiInterface implements ISubGuiList
         addLabel(new GuiNpcLabel(1, "Flan Melee Animations", guiLeft + 5, guiTop + 60));
         addButton(new GuiNpcButton(1, guiLeft + 122, guiTop + 55, 50, 20, new String[]{"gui.no", "gui.yes"}, (dataDisplay.getHasFlanMeleeAnimation() ? 1:0)));
 
+        addLabel(new GuiNpcLabel(3, "Transparent Block LOS", guiLeft + 5, guiTop + 85));
+        addButton(new GuiNpcButton(3, guiLeft + 122, guiTop + 80, 100, 20, "Configure"));
+
         addButton(new GuiNpcButton(2, this.guiLeft + 82, this.guiTop + 190, 98, 20, "gui.done"));
     }
 
@@ -45,6 +48,10 @@ public class SubGuiFlanAnimations extends SubGuiInterface implements ISubGuiList
         {
             dataDisplay.setHasFlanMeleeAnimation(((GuiNpcButton)guibutton).getValue() == 1);
             save();
+        }
+        else if (guibutton.id == 3)
+        {
+            setSubGui(new SubGuiTransparentBlockLos(dataDisplay));
         }
 
         if (guibutton.id == 2) {

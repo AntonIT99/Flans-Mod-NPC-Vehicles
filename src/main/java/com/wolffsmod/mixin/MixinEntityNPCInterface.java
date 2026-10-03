@@ -372,7 +372,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         Item projectileItem = projectileItemStack.getItem();
         if (projectileItem instanceof ItemShootable)
         {
-            shootFlanProjectile(gunItemStack, projectileItemStack);
+            shootFlanProjectile(gunItemStack, projectileItemStack, entity);
         }
         else if (projectileItem instanceof ItemPotion)
         {
@@ -432,7 +432,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         return Optional.empty();
     }
 
-    protected void shootFlanProjectile(ItemStack itemStackGun, ItemStack itemStackShootable)
+    protected void shootFlanProjectile(ItemStack itemStackGun, ItemStack itemStackShootable, EntityLivingBase target)
     {
         boolean shotgun;
         float spread;
@@ -475,7 +475,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
 
                 origin = (Vector3f.add(new Vector3f(posX, posY + driveable.yDriveableOffset * (display.modelSize / 5F), posZ), gunVector, null)).toVec3();
                 NPCInterfaceUtil.spawnParticle(driveable.shootParticlesPrimary, shootPoint, gunVector, driverYaw, pitch, renderYawOffset, posX, posY + driveable.yDriveableOffset, posZ, dimension, display.modelSize / 5F);
-                spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
+                spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), com.wolffsmod.customnpc.TransparentBlockLos.projectileOrigin((EntityNPCInterface)(Object)this, target, origin), yaw, pitch, spread, damage, speed, shotgun);
             }
         }
         else
@@ -489,12 +489,12 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
                     axes.rotateLocalYaw(90F);
                     Vec3 barrel = axes.findLocalVectorGlobally(new Vector3f(aaGun.barrelX[currentBarrel] / 16D, aaGun.barrelY[currentBarrel] / 16D, aaGun.barrelZ[currentBarrel] / 16D)).toVec3();
                     origin = barrel.addVector(posX, posY, posZ);
-                    spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
+                    spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), com.wolffsmod.customnpc.TransparentBlockLos.projectileOrigin((EntityNPCInterface)(Object)this, target, origin), yaw, pitch, spread, damage, speed, shotgun);
                 }
             }
             else
             {
-                spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), origin, yaw, pitch, spread, damage, speed, shotgun);
+                spawnFlanShootable((ItemShootable)itemStackShootable.getItem(), com.wolffsmod.customnpc.TransparentBlockLos.projectileOrigin((EntityNPCInterface)(Object)this, target, origin), yaw, pitch, spread, damage, speed, shotgun);
             }
         }
     }

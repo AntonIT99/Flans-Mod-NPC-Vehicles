@@ -22,6 +22,12 @@ public abstract class MixinDataDisplay implements IMixinDataDisplay
     private boolean hasFlanMeleeAnimation = true;
     @Unique
     private boolean displayHurtEffect = true;
+    @Unique
+    private int wolffsmod$transparentBlockLosMode;
+    @Unique
+    private int wolffsmod$transparentBlockVisionLimit = 1;
+    @Unique
+    private int wolffsmod$transparentBlockFireLimit = 1;
 
     @Inject(method = "writeToNBT", at = @At(value = "TAIL"), remap = false)
     private void onWriteToNBT(NBTTagCompound nbttagcompound, CallbackInfoReturnable<NBTTagCompound> cir)
@@ -30,6 +36,9 @@ public abstract class MixinDataDisplay implements IMixinDataDisplay
         nbttagcompound.setBoolean("FlanReloadAnimation", hasFlanReloadAnimation);
         nbttagcompound.setBoolean("FlanMeleeAnimation", hasFlanMeleeAnimation);
         nbttagcompound.setBoolean("DisplayHurt", displayHurtEffect);
+        nbttagcompound.setInteger("WolffTransparentBlockLosMode", wolffsmod$transparentBlockLosMode);
+        nbttagcompound.setInteger("WolffTransparentBlockVisionLimit", wolffsmod$transparentBlockVisionLimit);
+        nbttagcompound.setInteger("WolffTransparentBlockFireLimit", wolffsmod$transparentBlockFireLimit);
     }
 
     @Inject(method = "readToNBT", at = @At(value = "TAIL"), remap = false)
@@ -39,6 +48,11 @@ public abstract class MixinDataDisplay implements IMixinDataDisplay
         hasFlanReloadAnimation = nbttagcompound.getBoolean("FlanReloadAnimation");
         hasFlanMeleeAnimation = nbttagcompound.getBoolean("FlanMeleeAnimation");
         displayHurtEffect = nbttagcompound.getBoolean("DisplayHurt");
+        if (nbttagcompound.hasKey("WolffTransparentBlockLosMode")) {
+            wolffsmod$transparentBlockLosMode = wolffsmod$clampMode(nbttagcompound.getInteger("WolffTransparentBlockLosMode"));
+            wolffsmod$transparentBlockVisionLimit = wolffsmod$clampLimit(nbttagcompound.getInteger("WolffTransparentBlockVisionLimit"));
+            wolffsmod$transparentBlockFireLimit = wolffsmod$clampLimit(nbttagcompound.getInteger("WolffTransparentBlockFireLimit"));
+        }
     }
 
     @Override
@@ -88,4 +102,14 @@ public abstract class MixinDataDisplay implements IMixinDataDisplay
     {
         this.displayHurtEffect = displayHurt;
     }
+
+    @Override public int getTransparentBlockLosMode() { return wolffsmod$transparentBlockLosMode; }
+    @Override public int getTransparentBlockVisionLimit() { return wolffsmod$transparentBlockVisionLimit; }
+    @Override public int getTransparentBlockFireLimit() { return wolffsmod$transparentBlockFireLimit; }
+    @Override public void setTransparentBlockLosMode(int mode) { wolffsmod$transparentBlockLosMode = wolffsmod$clampMode(mode); }
+    @Override public void setTransparentBlockVisionLimit(int limit) { wolffsmod$transparentBlockVisionLimit = wolffsmod$clampLimit(limit); }
+    @Override public void setTransparentBlockFireLimit(int limit) { wolffsmod$transparentBlockFireLimit = wolffsmod$clampLimit(limit); }
+
+    @Unique private static int wolffsmod$clampMode(int value) { return Math.max(0, Math.min(value, 2)); }
+    @Unique private static int wolffsmod$clampLimit(int value) { return Math.max(0, Math.min(value, 64)); }
 }
