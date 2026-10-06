@@ -26,6 +26,7 @@ import com.wolffsmod.customnpc.IMixinDataAI;
 import com.wolffsmod.customnpc.IMixinEntityNPCInterface;
 import com.wolffsmod.customnpc.NPCInterfaceUtil;
 import com.wolffsmod.customnpc.VehicleMobilityProfile;
+import com.wolffsmod.customnpc.GroundVehicleController;
 import com.wolffsmod.entity.EntityFlanAAGunNPC;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.Seat;
@@ -696,7 +697,8 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         VehicleMobilityProfile profile = mobility.getVehicleMobilityProfile();
         if (profile == VehicleMobilityProfile.LEGACY)
             return;
-        double speed = profile == VehicleMobilityProfile.WATERCRAFT
+        double speed = profile == VehicleMobilityProfile.GROUND && mobility.getGroundDrivingEnabled() ? mobility.getGroundMaxForwardSpeed()
+                : profile == VehicleMobilityProfile.WATERCRAFT
                 || profile == VehicleMobilityProfile.AMPHIBIOUS && isInWater()
                 ? mobility.getVehicleWaterSpeed() : mobility.getVehicleLandSpeed();
         ci.setReturnValue((float)(speed / 20.0D));
@@ -743,6 +745,9 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     {
         if (worldObj.isRemote || !isFlanDriveable() || isFlanPlane())
             return;
+        IMixinDataAI groundData = (IMixinDataAI)ais;
+        if (groundData.getVehicleMobilityProfile() == VehicleMobilityProfile.GROUND && groundData.getGroundDrivingEnabled())
+            return;
         double speedSq = motionX * motionX + motionZ * motionZ;
         if (speedSq < 1.0E-8D)
             return;
@@ -754,6 +759,12 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         double scale = 0.15D + 0.85D * forwardAlignment;
         motionX *= scale;
         motionZ *= scale;
+    }
+
+    @Inject(method = "func_70612_e(FF)V", at = @At("TAIL"), remap = false)
+    private void wolffsmod$driveGroundVehicle(float strafe, float forward, CallbackInfo ci)
+    {
+        GroundVehicleController.update((EntityNPCInterface)(Object)this);
     }
 
     @Override

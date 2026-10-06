@@ -31,6 +31,7 @@
     "MixinDataStats",
     "MixinEntityAIAnimation",
     "MixinEntityAIClosestTargetProgressive",
+    "MixinEntityMoveHelperGroundVehicle",
     "MixinEntitySensesTransparentBlocks",
     "MixinEntityAIAttackTargetTacticalRange128",
     "MixinEntityAIRangedAttack",

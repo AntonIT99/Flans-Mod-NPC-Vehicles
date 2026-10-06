@@ -47,10 +47,14 @@ public class SubGuiVehicleMobility extends SubGuiInterface implements ITextfield
                 addNumber(4, "Minimum water depth", data.getVehicleWatercraftMinDepth(), y, true);
                 y += 26;
             }
-            addLabel(new GuiNpcLabel(10, "Uses the NPC's normal turning settings.", guiLeft + 8, y + 8));
+            addLabel(new GuiNpcLabel(10, profile == VehicleMobilityProfile.GROUND
+                    ? "Ground Driving controls steering and braking."
+                    : "Uses the NPC's normal turning settings.", guiLeft + 8, y + 8));
         } else {
             addLabel(new GuiNpcLabel(11, "Legacy keeps existing NPC movement unchanged.", guiLeft + 8, y + 42));
         }
+        if (profile == VehicleMobilityProfile.GROUND)
+            addButton(new GuiNpcButton(67, guiLeft + 8, guiTop + 164, 150, 20, "Ground Driving..."));
         addButton(new GuiNpcButton(66, guiLeft + 190, guiTop + 190, 60, 20, "gui.done"));
     }
 
@@ -72,6 +76,8 @@ public class SubGuiVehicleMobility extends SubGuiInterface implements ITextfield
             initGui();
         } else if (button.id == 66) {
             close();
+        } else if (button.id == 67) {
+            setSubGui(new SubGuiGroundVehicleSettings(data));
         }
     }
 
