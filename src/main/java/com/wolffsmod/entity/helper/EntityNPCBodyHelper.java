@@ -1,7 +1,9 @@
 package com.wolffsmod.entity.helper;
 
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
+import com.wolffsmod.customnpc.IMixinDataAI;
 import com.wolffsmod.customnpc.IMixinEntityNPCInterface;
+import com.wolffsmod.customnpc.VehicleMobilityProfile;
 import noppes.npcs.entity.EntityCustomNpc;
 
 import net.minecraft.entity.EntityBodyHelper;
@@ -27,6 +29,28 @@ public class EntityNPCBodyHelper extends EntityBodyHelper
     @Override
     public void func_75664_a()
     {
+        /*
+         * The opt-in ground controller already owns the hull yaw and generates
+         * horizontal motion from that same heading.  Letting the older body
+         * helper run afterwards makes collision displacement or a path corner
+         * overwrite renderYawOffset, so a correctly driven vehicle can be
+         * displayed sideways.  rotationYaw is the controller's gradual hull
+         * heading; rotationYawHead and the Seat remain independent for aim.
+         * This check also runs client-side so interpolation cannot reintroduce
+         * the visual mismatch between server rotation updates.
+         */
+        if (theLiving instanceof EntityCustomNpc)
+        {
+            EntityCustomNpc npc = (EntityCustomNpc)theLiving;
+            IMixinDataAI movement = (IMixinDataAI)npc.ais;
+            if (((IMixinEntityNPCInterface)npc).isFlanDriveable()
+                    && movement.getVehicleMobilityProfile() == VehicleMobilityProfile.GROUND
+                    && movement.getGroundDrivingEnabled())
+            {
+                theLiving.renderYawOffset = MathHelper.wrapAngleTo180_float(theLiving.rotationYaw);
+                return;
+            }
+        }
         if (theLiving instanceof EntityCustomNpc && ((IMixinEntityNPCInterface)theLiving).isFlanDriveable())
             yawSpeed = Math.max(0F, ((IMixinEntityNPCInterface)theLiving).getFlanDriveableEntity().get().turnSpeed);
         if ((theLiving instanceof EntityCustomNpc && ((IMixinEntityNPCInterface)theLiving).isFlanDriveable()) || theLiving instanceof EntityFlanDriveableNPC)
