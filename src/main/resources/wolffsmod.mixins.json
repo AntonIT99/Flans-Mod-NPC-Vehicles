@@ -13,6 +13,7 @@
     "MixinGuiNPCInv",
     "MixinGuiNpcStatsRange128",
     "MixinModelCustomArmour",
+    "MixinRenderGunNullAttachment",
     "MixinSubGuiNpcRangePropertiesRange128",
     "MixinSubGuiNpcMovement",
     "MixinSubGuiNpcResistanceProperties"
