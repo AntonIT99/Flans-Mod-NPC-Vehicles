@@ -61,6 +61,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -761,10 +762,34 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         motionZ *= scale;
     }
 
-    @Inject(method = "func_70612_e(FF)V", at = @At("TAIL"), remap = false)
+    /*
+     * Run before vanilla applies motion.  At TAIL the entity had already moved
+     * using the previous tick's heading, while the model displayed the newly
+     * steered heading; that one-tick phase error was very visible on fast cars
+     * and tanks as angled/sideways travel.
+     */
+    @Inject(method = "func_70612_e(FF)V", at = @At("HEAD"), remap = false)
     private void wolffsmod$driveGroundVehicle(float strafe, float forward, CallbackInfo ci)
     {
         GroundVehicleController.update((EntityNPCInterface)(Object)this);
+    }
+
+    /** The dedicated controller supplies all horizontal motion; reject vanilla strafe input. */
+    @ModifyVariable(method = "func_70612_e(FF)V", at = @At("HEAD"), ordinal = 0, argsOnly = true, remap = false)
+    private float wolffsmod$removeGroundVehicleStrafe(float strafe)
+    {
+        IMixinDataAI data = (IMixinDataAI)ais;
+        return data.getVehicleMobilityProfile() == VehicleMobilityProfile.GROUND && data.getGroundDrivingEnabled()
+                ? 0.0F : strafe;
+    }
+
+    /** The controller's motion vector replaces vanilla forward acceleration as well. */
+    @ModifyVariable(method = "func_70612_e(FF)V", at = @At("HEAD"), ordinal = 1, argsOnly = true, remap = false)
+    private float wolffsmod$removeGroundVehicleForwardInput(float forward)
+    {
+        IMixinDataAI data = (IMixinDataAI)ais;
+        return data.getVehicleMobilityProfile() == VehicleMobilityProfile.GROUND && data.getGroundDrivingEnabled()
+                ? 0.0F : forward;
     }
 
     @Override

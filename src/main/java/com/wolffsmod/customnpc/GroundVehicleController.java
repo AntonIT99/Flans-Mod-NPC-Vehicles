@@ -68,7 +68,16 @@ public final class GroundVehicleController {
         boolean tracked = data.getGroundVehicleType() != GroundVehicleType.WHEELED;
         boolean pivot = tracked && data.getGroundAllowPivot() && hasPath && !s.reversing
                 && Math.abs(error) > 70.0F && Math.abs(s.currentSpeed) < 0.035D;
-        VehicleSteeringController.steer(s, data, steeringHeading, s.currentSpeed, pivot);
+        boolean moving = Math.abs(s.currentSpeed) > 0.0005D;
+        if (moving || pivot) {
+            VehicleSteeringController.steer(s, data, steeringHeading, s.currentSpeed, pivot);
+        } else {
+            // Wheeled/non-pivoting vehicles cannot rotate without translation.
+            // Also discard residual turn rate after braking to a complete stop.
+            s.desiredHeading = s.currentHeading;
+            s.steeringAngle = 0.0F;
+            s.currentTurnRate = 0.0F;
+        }
 
         double wanted = hasPath ? data.getGroundMaxForwardSpeed() / 20.0D : 0.0D;
         if (s.reversing) wanted = -data.getGroundMaxReverseSpeed() / 20.0D;
