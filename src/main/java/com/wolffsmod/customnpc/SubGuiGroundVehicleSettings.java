@@ -36,7 +36,7 @@ public class SubGuiGroundVehicleSettings extends SubGuiInterface implements ITex
         addChoice(2, "Vehicle type", types, data.getGroundVehicleType().ordinal(), 80);
         addChoice(3, "Allow pivot turn", yesNo(), data.getGroundAllowPivot() ? 1 : 0, 105);
         addChoice(4, "Allow reversing", yesNo(), data.getGroundAllowReversing() ? 1 : 0, 130);
-        addChoice(5, "Debug logging", yesNo(), data.getGroundDebug() ? 1 : 0, 155);
+        addChoice(5, "Path debug", yesNo(), data.getGroundDebug() ? 1 : 0, 155);
     }
 
     private void speed() {

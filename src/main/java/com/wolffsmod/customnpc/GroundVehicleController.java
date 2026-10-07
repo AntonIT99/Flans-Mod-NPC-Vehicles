@@ -10,6 +10,7 @@ import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+import net.minecraft.world.WorldServer;
 import noppes.npcs.entity.EntityNPCInterface;
 
 /** Server-authoritative forward-driving controller used only by the Ground mobility profile. */
@@ -91,7 +92,10 @@ public final class GroundVehicleController {
         npc.rotationYaw = s.currentHeading;
         npc.renderYawOffset = s.currentHeading;
 
-        if (data.getGroundDebug() && npc.ticksExisted % 20 == 0) debug(npc, s, data);
+        if (data.getGroundDebug()) {
+            if (npc.ticksExisted % 10 == 0) drawPath(npc, path, s.steeringTarget);
+            if (npc.ticksExisted % 20 == 0) debug(npc, s, data);
+        }
     }
 
     private static void initialize(EntityNPCInterface npc, GroundVehicleState s) {
@@ -175,6 +179,36 @@ public final class GroundVehicleController {
                 npc.getCommandSenderName(), round(s.currentSpeed * 20), round(s.desiredSpeed * 20), round(s.currentHeading),
                 round(s.desiredHeading), round(s.steeringAngle), round(s.currentTurnRate * 20), s.pathNode,
                 s.reversing, s.braking, s.stuckTicks, s.obstacleDetected);
+    }
+
+    /**
+     * Lightweight server-side path preview.  It is deliberately capped and
+     * sampled so a long 512-block route cannot create hundreds of particles
+     * every update.  Red dust marks remaining path nodes, green particles mark
+     * the controller's current lookahead target, and flame marks the endpoint.
+     */
+    private static void drawPath(EntityNPCInterface npc, PathEntity path, Vec3 steeringTarget) {
+        if (!(npc.worldObj instanceof WorldServer)) return;
+        WorldServer world = (WorldServer)npc.worldObj;
+        if (path != null && !path.isFinished()) {
+            int start = path.getCurrentPathIndex();
+            int end = path.getCurrentPathLength();
+            int remaining = Math.max(0, end - start);
+            int step = Math.max(1, (remaining + 47) / 48);
+            for (int i = start; i < end; i += step) {
+                PathPoint point = path.getPathPointFromIndex(i);
+                if (point != null)
+                    world.func_147487_a("reddust", point.xCoord + 0.5D, point.yCoord + 0.2D,
+                            point.zCoord + 0.5D, 1, 0.0D, 0.0D, 0.0D, 0.0D);
+            }
+            PathPoint endpoint = path.getFinalPathPoint();
+            if (endpoint != null)
+                world.func_147487_a("flame", endpoint.xCoord + 0.5D, endpoint.yCoord + 0.5D,
+                        endpoint.zCoord + 0.5D, 1, 0.0D, 0.0D, 0.0D, 0.0D);
+        }
+        if (steeringTarget != null)
+            world.func_147487_a("happyVillager", steeringTarget.xCoord, steeringTarget.yCoord + 0.6D,
+                    steeringTarget.zCoord, 2, 0.08D, 0.08D, 0.08D, 0.0D);
     }
 
     private static double round(double value) { return Math.round(value * 100.0D) / 100.0D; }
