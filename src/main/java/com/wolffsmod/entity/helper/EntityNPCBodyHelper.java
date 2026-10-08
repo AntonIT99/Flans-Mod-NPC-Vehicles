@@ -30,14 +30,12 @@ public class EntityNPCBodyHelper extends EntityBodyHelper
     public void func_75664_a()
     {
         /*
-         * The opt-in ground controller already owns the hull yaw and generates
-         * horizontal motion from that same heading.  Letting the older body
-         * helper run afterwards makes collision displacement or a path corner
-         * overwrite renderYawOffset, so a correctly driven vehicle can be
-         * displayed sideways.  rotationYaw is the controller's gradual hull
-         * heading; rotationYawHead and the Seat remain independent for aim.
-         * This check also runs client-side so interpolation cannot reintroduce
-         * the visual mismatch between server rotation updates.
+         * A CustomNPC renders its selected Flan entity through a copied proxy.
+         * That proxy's rotationYaw is not a reliable description of the final
+         * interpolated displacement.  Face the hull along the movement that was
+         * actually applied this tick.  The controller curves that displacement
+         * gradually, so this does not introduce target snapping.  At rest the
+         * previous hull yaw is retained instead of following head/turret aim.
          */
         if (theLiving instanceof EntityCustomNpc)
         {
@@ -47,7 +45,10 @@ public class EntityNPCBodyHelper extends EntityBodyHelper
                     && movement.getVehicleMobilityProfile() == VehicleMobilityProfile.GROUND
                     && movement.getGroundDrivingEnabled())
             {
-                theLiving.renderYawOffset = MathHelper.wrapAngleTo180_float(theLiving.rotationYaw);
+                double dx = theLiving.posX - theLiving.prevPosX;
+                double dz = theLiving.posZ - theLiving.prevPosZ;
+                if (dx * dx + dz * dz > 2.500000277905201E-7D)
+                    theLiving.renderYawOffset = (float)(Math.atan2(dz, dx) * 180.0D / Math.PI) - 90.0F;
                 return;
             }
         }

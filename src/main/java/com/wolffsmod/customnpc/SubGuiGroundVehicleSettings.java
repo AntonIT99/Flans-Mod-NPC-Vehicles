@@ -34,7 +34,7 @@ public class SubGuiGroundVehicleSettings extends SubGuiInterface implements ITex
         addChoice(6, "Driving controller", yesNo(), data.getGroundDrivingEnabled() ? 1 : 0, 30);
         addChoice(1, "Preset", presets, data.getGroundVehiclePreset().ordinal(), 55);
         addChoice(2, "Vehicle type", types, data.getGroundVehicleType().ordinal(), 80);
-        addChoice(3, "Allow pivot turn", yesNo(), data.getGroundAllowPivot() ? 1 : 0, 105);
+        addChoice(3, "Allow tight turn", yesNo(), data.getGroundAllowPivot() ? 1 : 0, 105);
         addChoice(4, "Allow reversing", yesNo(), data.getGroundAllowReversing() ? 1 : 0, 130);
         addChoice(5, "Path debug", yesNo(), data.getGroundDebug() ? 1 : 0, 155);
     }

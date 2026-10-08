@@ -81,7 +81,9 @@ public final class GroundVehicleController {
 
         double wanted = hasPath ? data.getGroundMaxForwardSpeed() / 20.0D : 0.0D;
         if (s.reversing) wanted = -data.getGroundMaxReverseSpeed() / 20.0D;
-        if (pivot) wanted = 0.0D;
+        // A requested tracked pivot is implemented as a very slow tight turn.
+        // Keeping non-zero translation prevents a tank from rotating in place.
+        if (pivot) wanted = Math.min(data.getGroundMaxForwardSpeed() / 20.0D, 0.02D);
 
         if (hasPath && !s.reversing) {
             double currentTurn = Math.abs(error) / 180.0D;
