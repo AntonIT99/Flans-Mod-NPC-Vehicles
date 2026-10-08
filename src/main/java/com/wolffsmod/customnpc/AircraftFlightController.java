@@ -38,9 +38,14 @@ public final class AircraftFlightController {
 
         if (data.getAircraftFlightType() == AircraftFlightType.PLANE) updatePlane(npc);
         if (data.getAircraftDebug() && npc.ticksExisted % 40 == 0) {
-            WolffNPCMod.log.info("Aircraft {} type={} clearance={} required={} terrain={} attackAllowed={}",
-                    npc.getCommandSenderName(), data.getAircraftFlightType(), round(state.clearance),
-                    data.getAircraftMinimumAttackAltitude(), state.terrainY, state.attackAllowed);
+            EntityLivingBase target = npc.getAttackTarget();
+            String flightState = state.clearance < data.getAircraftMinimumAttackAltitude() ? "ALTITUDE_RECOVERY"
+                    : data.getAircraftFlightType() == AircraftFlightType.PLANE ? "ATTACK_RUN"
+                    : npc.getNavigator().noPath() ? "HOVERING" : "REPOSITIONING";
+            WolffNPCMod.log.info("Aircraft {} id={} type={} state={} y={} terrain={} clearance={}/{} target={} canAttack={}",
+                    npc.getCommandSenderName(), npc.getEntityId(), data.getAircraftFlightType(), flightState,
+                    round(npc.posY), state.terrainY, round(state.clearance), data.getAircraftMinimumAttackAltitude(),
+                    target == null ? "none" : target.getCommandSenderName(), state.attackAllowed);
         }
     }
 
@@ -73,7 +78,9 @@ public final class AircraftFlightController {
     }
 
     private static void sampleIfNeeded(EntityNPCInterface npc, IMixinDataAI data, State state) {
-        if (state.sampleTick != Integer.MIN_VALUE && npc.ticksExisted - state.sampleTick < 10) return;
+        if (state.sampleTick != Integer.MIN_VALUE
+                && (npc.ticksExisted + npc.getEntityId()) % 10 != 0
+                && npc.ticksExisted - state.sampleTick < 20) return;
         state.sampleTick = npc.ticksExisted;
         int x = MathHelper.floor_double(npc.posX);
         int z = MathHelper.floor_double(npc.posZ);
