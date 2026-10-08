@@ -3,6 +3,12 @@ package com.wolffsmod.customnpc;
 import noppes.npcs.entity.EntityNPCInterface;
 
 public interface IMixinDataAI {
+    AircraftFlightType getAircraftFlightType();
+    void setAircraftFlightType(AircraftFlightType type);
+    int getAircraftMinimumAttackAltitude();
+    void setAircraftMinimumAttackAltitude(int altitude);
+    boolean getAircraftDebug();
+    void setAircraftDebug(boolean value);
     VehicleMobilityProfile getVehicleMobilityProfile();
     void setVehicleMobilityProfile(VehicleMobilityProfile profile);
     double getVehicleLandSpeed();

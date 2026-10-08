@@ -4,6 +4,7 @@ import com.wolffsmod.customnpc.IMixinDataAI;
 import com.wolffsmod.customnpc.VehicleMobilityProfile;
 import com.wolffsmod.customnpc.GroundVehiclePreset;
 import com.wolffsmod.customnpc.GroundVehicleType;
+import com.wolffsmod.customnpc.AircraftFlightType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.entity.SharedMonsterAttributes;
 import noppes.npcs.DataAI;
@@ -50,6 +51,9 @@ public abstract class MixinDataAI implements IMixinDataAI {
     @Unique private double wolffsmod$groundMaxReverseDistance = 12.0D;
     @Unique private double wolffsmod$groundFollowingDistance = 5.0D;
     @Unique private double wolffsmod$groundMinimumFollowingDistance = 2.5D;
+    @Unique private AircraftFlightType wolffsmod$aircraftFlightType = AircraftFlightType.NORMAL;
+    @Unique private int wolffsmod$aircraftMinimumAttackAltitude = 20;
+    @Unique private boolean wolffsmod$aircraftDebug;
 
     @Inject(method = "writeToNBT", at = @At("RETURN"))
     private void wolffsmod$writeMobility(NBTTagCompound compound, CallbackInfoReturnable<NBTTagCompound> ci) {
@@ -80,10 +84,18 @@ public abstract class MixinDataAI implements IMixinDataAI {
         compound.setDouble("WolffGroundMaxReverseDistance", wolffsmod$groundMaxReverseDistance);
         compound.setDouble("WolffGroundFollowingDistance", wolffsmod$groundFollowingDistance);
         compound.setDouble("WolffGroundMinimumFollowingDistance", wolffsmod$groundMinimumFollowingDistance);
+        compound.setInteger("WolffAircraftFlightType", wolffsmod$aircraftFlightType.ordinal());
+        compound.setInteger("WolffAircraftMinimumAttackAltitude", wolffsmod$aircraftMinimumAttackAltitude);
+        compound.setBoolean("WolffAircraftDebug", wolffsmod$aircraftDebug);
     }
 
     @Inject(method = "readToNBT", at = @At("RETURN"))
     private void wolffsmod$readMobility(NBTTagCompound compound, CallbackInfo ci) {
+        wolffsmod$aircraftFlightType = compound.hasKey("WolffAircraftFlightType")
+                ? AircraftFlightType.fromOrdinal(compound.getInteger("WolffAircraftFlightType")) : AircraftFlightType.NORMAL;
+        wolffsmod$aircraftMinimumAttackAltitude = compound.hasKey("WolffAircraftMinimumAttackAltitude")
+                ? Math.max(1, Math.min(128, compound.getInteger("WolffAircraftMinimumAttackAltitude"))) : 20;
+        wolffsmod$aircraftDebug = compound.hasKey("WolffAircraftDebug") && compound.getBoolean("WolffAircraftDebug");
         if (!compound.hasKey("WolffVehicleMobilityProfile")) {
             wolffsmod$mobilityProfile = VehicleMobilityProfile.LEGACY;
             return;
@@ -203,6 +215,12 @@ public abstract class MixinDataAI implements IMixinDataAI {
     @Override public double getGroundMinimumFollowingDistance() { return wolffsmod$groundMinimumFollowingDistance; }
     @Override public void setGroundMinimumFollowingDistance(double v) { wolffsmod$groundMinimumFollowingDistance = clamp(v,.5,32); }
     @Override public EntityNPCInterface getMobilityNpc() { return npc; }
+    @Override public AircraftFlightType getAircraftFlightType() { return wolffsmod$aircraftFlightType; }
+    @Override public void setAircraftFlightType(AircraftFlightType v) { wolffsmod$aircraftFlightType = v == null ? AircraftFlightType.NORMAL : v; }
+    @Override public int getAircraftMinimumAttackAltitude() { return wolffsmod$aircraftMinimumAttackAltitude; }
+    @Override public void setAircraftMinimumAttackAltitude(int v) { wolffsmod$aircraftMinimumAttackAltitude = Math.max(1, Math.min(128, v)); }
+    @Override public boolean getAircraftDebug() { return wolffsmod$aircraftDebug; }
+    @Override public void setAircraftDebug(boolean v) { wolffsmod$aircraftDebug = v; }
 
     @Unique private void wolffsmod$syncLandSpeed() {
         if (npc.getEntityAttribute(SharedMonsterAttributes.movementSpeed) != null)

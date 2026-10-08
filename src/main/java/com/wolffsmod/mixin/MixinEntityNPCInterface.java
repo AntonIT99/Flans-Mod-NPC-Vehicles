@@ -27,6 +27,7 @@ import com.wolffsmod.customnpc.IMixinEntityNPCInterface;
 import com.wolffsmod.customnpc.NPCInterfaceUtil;
 import com.wolffsmod.customnpc.VehicleMobilityProfile;
 import com.wolffsmod.customnpc.GroundVehicleController;
+import com.wolffsmod.customnpc.AircraftFlightController;
 import com.wolffsmod.entity.EntityFlanAAGunNPC;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.Seat;
@@ -198,6 +199,8 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     @Overwrite
     public boolean attackEntityAsMob(Entity par1Entity)
     {
+        if (!AircraftFlightController.canAttack((EntityNPCInterface)(Object)this))
+            return false;
         float f = stats.getAttackStrength();
 
         if (stats.attackSpeed < 10){
@@ -345,6 +348,8 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     @Overwrite
     public void attackEntityWithRangedAttack(EntityLivingBase entity, float f)
     {
+        if (!AircraftFlightController.canAttack((EntityNPCInterface)(Object)this))
+            return;
         ItemStack proj = inventory.getProjectile();
         if(proj == null)
         {
@@ -771,6 +776,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     @Inject(method = "func_70612_e(FF)V", at = @At("HEAD"), remap = false)
     private void wolffsmod$driveGroundVehicle(float strafe, float forward, CallbackInfo ci)
     {
+        AircraftFlightController.update((EntityNPCInterface)(Object)this);
         GroundVehicleController.update((EntityNPCInterface)(Object)this);
     }
 

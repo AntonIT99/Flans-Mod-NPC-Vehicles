@@ -2,6 +2,7 @@ package com.wolffsmod.mixin;
 
 import com.wolffsmod.customnpc.IMixinDataAI;
 import com.wolffsmod.customnpc.SubGuiVehicleMobility;
+import com.wolffsmod.customnpc.SubGuiAircraftSettings;
 import net.minecraft.client.gui.GuiButton;
 import noppes.npcs.DataAI;
 import noppes.npcs.client.gui.SubGuiNpcMovement;
@@ -20,10 +21,13 @@ public abstract class MixinSubGuiNpcMovement extends SubGuiInterface {
     @Inject(method = "func_73866_w_", at = @At("TAIL"), remap = false)
     private void wolffsmod$addMobilityButton(CallbackInfo ci) {
         addButton(new GuiNpcButton(90, guiLeft + 184, guiTop + 4, 68, 20, "Terrain..."));
+        if (ai.movementType == 1)
+            addButton(new GuiNpcButton(91, guiLeft + 184, guiTop + 27, 68, 20, "Aircraft..."));
     }
 
     @Inject(method = "func_146284_a", at = @At("TAIL"), remap = false)
     private void wolffsmod$openMobility(GuiButton button, CallbackInfo ci) {
         if (button.id == 90) setSubGui(new SubGuiVehicleMobility((IMixinDataAI)ai));
+        else if (button.id == 91) setSubGui(new SubGuiAircraftSettings((IMixinDataAI)ai));
     }
 }
