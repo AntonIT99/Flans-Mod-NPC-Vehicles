@@ -768,6 +768,29 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
         motionZ *= scale;
     }
 
+    /**
+     * Collision resolution can make the final displacement differ slightly
+     * from the controller's requested motion.  Make the visible hull consume
+     * that final travel heading, and never alter it while stopped.  Head/seat
+     * rotation remains independent for turrets and weapon aiming.
+     */
+    @Inject(method = "func_70612_e(FF)V", at = @At("TAIL"), remap = false)
+    private void wolffsmod$faceGroundHullAlongActualTravel(float strafe, float forward, CallbackInfo ci)
+    {
+        if (isFlanPlane() || !isFlanDriveable())
+            return;
+        IMixinDataAI data = (IMixinDataAI)ais;
+        if (data.getVehicleMobilityProfile() != VehicleMobilityProfile.GROUND || !data.getGroundDrivingEnabled())
+            return;
+        double dx = posX - prevPosX;
+        double dz = posZ - prevPosZ;
+        if (dx * dx + dz * dz <= 2.500000277905201E-7D)
+            return;
+        float travelYaw = (float)(Math.atan2(dz, dx) * 180.0D / Math.PI) - 90.0F;
+        rotationYaw = travelYaw;
+        renderYawOffset = travelYaw;
+    }
+
     /*
      * Run before vanilla applies motion.  At TAIL the entity had already moved
      * using the previous tick's heading, while the model displayed the newly

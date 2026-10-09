@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.WeakHashMap;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
+import noppes.npcs.constants.EnumMovingType;
 import noppes.npcs.entity.EntityNPCInterface;
 
 /** Server-authoritative aircraft clearance and deliberately lightweight flight shaping. */
@@ -36,7 +37,8 @@ public final class AircraftFlightController {
             npc.motionY *= 0.55D;
         }
 
-        if (data.getAircraftFlightType() == AircraftFlightType.PLANE) updatePlane(npc);
+        if (data.getAircraftFlightType() == AircraftFlightType.PLANE) updatePlane(npc, state);
+        else if (data.getAircraftFlightType() == AircraftFlightType.HELICOPTER) updateHelicopter(npc, state);
         if (data.getAircraftDebug() && npc.ticksExisted % 40 == 0) {
             EntityLivingBase target = npc.getAttackTarget();
             String flightState = state.clearance < data.getAircraftMinimumAttackAltitude() ? "ALTITUDE_RECOVERY"
@@ -57,24 +59,77 @@ public final class AircraftFlightController {
         return state.attackAllowed;
     }
 
-    private static void updatePlane(EntityNPCInterface npc) {
+    private static void updatePlane(EntityNPCInterface npc, State state) {
         EntityLivingBase target = npc.getAttackTarget();
-        float desiredYaw = npc.rotationYaw;
+        if (!state.planeYawInitialized) {
+            state.planeYaw = npc.rotationYaw;
+            state.planeYawInitialized = true;
+        }
+        float desiredYaw = state.planeYaw;
         if (target != null && target.isEntityAlive()) {
             double dx = target.posX - npc.posX;
             double dz = target.posZ - npc.posZ;
             if (dx * dx + dz * dz > 1.0D)
                 desiredYaw = (float)(Math.atan2(-dx, dz) * 180.0D / Math.PI);
+        } else if (npc.ais.movingType == EnumMovingType.Wandering) {
+            desiredYaw = loiterYaw(npc, state);
         }
-        float delta = MathHelper.wrapAngleTo180_float(desiredYaw - npc.rotationYaw);
-        delta = Math.max(-3.0F, Math.min(3.0F, delta));
-        npc.rotationYaw += delta;
-        npc.renderYawOffset = npc.rotationYaw;
         double existing = Math.sqrt(npc.motionX * npc.motionX + npc.motionZ * npc.motionZ);
         double speed = Math.max(0.13D, Math.min(0.42D, existing));
-        double yaw = Math.toRadians(npc.rotationYaw);
+        // Turn rate is derived from the requested loiter radius. This prevents
+        // short wander nodes from making aircraft reverse direction in place.
+        double radius = Math.max(16.0D, npc.ais.walkingRange);
+        float maxTurn = (float)Math.max(0.25D, Math.min(2.0D, Math.toDegrees(speed / radius)));
+        float delta = MathHelper.wrapAngleTo180_float(desiredYaw - state.planeYaw);
+        state.planeYaw += Math.max(-maxTurn, Math.min(maxTurn, delta));
+        npc.rotationYaw = state.planeYaw;
+        npc.renderYawOffset = state.planeYaw;
+        double yaw = Math.toRadians(state.planeYaw);
         npc.motionX = -Math.sin(yaw) * speed;
         npc.motionZ = Math.cos(yaw) * speed;
+    }
+
+    private static float loiterYaw(EntityNPCInterface npc, State state) {
+        double centerX = npc.getStartXPos();
+        double centerZ = npc.getStartZPos();
+        double dx = npc.posX - centerX;
+        double dz = npc.posZ - centerZ;
+        double distance = Math.sqrt(dx * dx + dz * dz);
+        if (distance < 1.0D) return state.planeYaw;
+
+        double radialX = dx / distance;
+        double radialZ = dz / distance;
+        boolean clockwise = (npc.getEntityId() & 1) == 0;
+        double tangentX = clockwise ? -radialZ : radialZ;
+        double tangentZ = clockwise ? radialX : -radialX;
+        double radius = Math.max(16.0D, npc.ais.walkingRange);
+        double correction = Math.max(-0.75D, Math.min(0.75D, (distance - radius) / radius));
+        double directionX = tangentX - radialX * correction * 1.5D;
+        double directionZ = tangentZ - radialZ * correction * 1.5D;
+        return (float)(Math.atan2(-directionX, directionZ) * 180.0D / Math.PI);
+    }
+
+    private static void updateHelicopter(EntityNPCInterface npc, State state) {
+        if (!state.helicopterYawInitialized) {
+            state.helicopterYaw = npc.rotationYaw;
+            state.helicopterYawInitialized = true;
+        }
+        float desiredYaw = state.helicopterYaw;
+        EntityLivingBase target = npc.getAttackTarget();
+        if (target != null && target.isEntityAlive()) {
+            double dx = target.posX - npc.posX;
+            double dz = target.posZ - npc.posZ;
+            if (dx * dx + dz * dz > 1.0D)
+                desiredYaw = (float)(Math.atan2(-dx, dz) * 180.0D / Math.PI);
+        } else {
+            double speedSq = npc.motionX * npc.motionX + npc.motionZ * npc.motionZ;
+            if (speedSq > 0.0004D)
+                desiredYaw = (float)(Math.atan2(-npc.motionX, npc.motionZ) * 180.0D / Math.PI);
+        }
+        float delta = MathHelper.wrapAngleTo180_float(desiredYaw - state.helicopterYaw);
+        state.helicopterYaw += Math.max(-3.0F, Math.min(3.0F, delta));
+        npc.rotationYaw = state.helicopterYaw;
+        npc.renderYawOffset = state.helicopterYaw;
     }
 
     private static void sampleIfNeeded(EntityNPCInterface npc, IMixinDataAI data, State state) {
@@ -123,5 +178,9 @@ public final class AircraftFlightController {
         int terrainY;
         double clearance;
         boolean attackAllowed;
+        boolean planeYawInitialized;
+        float planeYaw;
+        boolean helicopterYawInitialized;
+        float helicopterYaw;
     }
 }

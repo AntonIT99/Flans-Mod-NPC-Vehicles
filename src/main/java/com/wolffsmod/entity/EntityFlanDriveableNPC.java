@@ -178,8 +178,13 @@ public abstract class EntityFlanDriveableNPC extends EntityLiving implements Con
         this.npc = npc;
         EntityUtil.Copy(npc, this);
         updateDriverAndPassengers();
-        // Previously only firing sent this packet, leaving client turrets stale during reload.
-        if (!worldObj.isRemote && npc.getAttackTarget() != null && npc.ticksExisted % 2 == 0)
+        // Keep hull yaw authoritative while travelling as well as while aiming.
+        // Vanilla does not synchronize renderYawOffset precisely enough for a
+        // large copied Flan model, which could leave it visibly moving sideways.
+        double dx = npc.posX - npc.prevPosX;
+        double dz = npc.posZ - npc.prevPosZ;
+        boolean movingHorizontally = dx * dx + dz * dz > 2.500000277905201E-7D;
+        if (!worldObj.isRemote && (movingHorizontally || npc.getAttackTarget() != null) && npc.ticksExisted % 2 == 0)
             syncRotationWithClient();
 
         if (forceMaxThrottle)
