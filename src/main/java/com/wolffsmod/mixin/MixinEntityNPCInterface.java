@@ -28,6 +28,7 @@ import com.wolffsmod.customnpc.NPCInterfaceUtil;
 import com.wolffsmod.customnpc.VehicleMobilityProfile;
 import com.wolffsmod.customnpc.GroundVehicleController;
 import com.wolffsmod.customnpc.AircraftFlightController;
+import com.wolffsmod.customnpc.SubmarineController;
 import com.wolffsmod.entity.EntityFlanAAGunNPC;
 import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.entity.Seat;
@@ -777,6 +778,7 @@ public abstract class MixinEntityNPCInterface extends EntityCreature implements 
     private void wolffsmod$driveGroundVehicle(float strafe, float forward, CallbackInfo ci)
     {
         AircraftFlightController.update((EntityNPCInterface)(Object)this);
+        SubmarineController.update((EntityNPCInterface)(Object)this);
         GroundVehicleController.update((EntityNPCInterface)(Object)this);
     }
 

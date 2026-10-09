@@ -9,6 +9,10 @@ public interface IMixinDataAI {
     void setAircraftMinimumAttackAltitude(int altitude);
     boolean getAircraftDebug();
     void setAircraftDebug(boolean value);
+    WatercraftType getWatercraftType();
+    void setWatercraftType(WatercraftType type);
+    int getSubmarineDepth();
+    void setSubmarineDepth(int depth);
     VehicleMobilityProfile getVehicleMobilityProfile();
     void setVehicleMobilityProfile(VehicleMobilityProfile profile);
     double getVehicleLandSpeed();

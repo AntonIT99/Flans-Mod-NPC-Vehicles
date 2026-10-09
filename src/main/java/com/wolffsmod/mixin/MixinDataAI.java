@@ -5,6 +5,7 @@ import com.wolffsmod.customnpc.VehicleMobilityProfile;
 import com.wolffsmod.customnpc.GroundVehiclePreset;
 import com.wolffsmod.customnpc.GroundVehicleType;
 import com.wolffsmod.customnpc.AircraftFlightType;
+import com.wolffsmod.customnpc.WatercraftType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.entity.SharedMonsterAttributes;
 import noppes.npcs.DataAI;
@@ -54,6 +55,8 @@ public abstract class MixinDataAI implements IMixinDataAI {
     @Unique private AircraftFlightType wolffsmod$aircraftFlightType = AircraftFlightType.NORMAL;
     @Unique private int wolffsmod$aircraftMinimumAttackAltitude = 20;
     @Unique private boolean wolffsmod$aircraftDebug;
+    @Unique private WatercraftType wolffsmod$watercraftType = WatercraftType.SURFACE;
+    @Unique private int wolffsmod$submarineDepth = 4;
 
     @Inject(method = "writeToNBT", at = @At("RETURN"))
     private void wolffsmod$writeMobility(NBTTagCompound compound, CallbackInfoReturnable<NBTTagCompound> ci) {
@@ -87,6 +90,8 @@ public abstract class MixinDataAI implements IMixinDataAI {
         compound.setInteger("WolffAircraftFlightType", wolffsmod$aircraftFlightType.ordinal());
         compound.setInteger("WolffAircraftMinimumAttackAltitude", wolffsmod$aircraftMinimumAttackAltitude);
         compound.setBoolean("WolffAircraftDebug", wolffsmod$aircraftDebug);
+        compound.setInteger("WolffWatercraftType", wolffsmod$watercraftType.ordinal());
+        compound.setInteger("WolffSubmarineDepth", wolffsmod$submarineDepth);
     }
 
     @Inject(method = "readToNBT", at = @At("RETURN"))
@@ -96,6 +101,10 @@ public abstract class MixinDataAI implements IMixinDataAI {
         wolffsmod$aircraftMinimumAttackAltitude = compound.hasKey("WolffAircraftMinimumAttackAltitude")
                 ? Math.max(1, Math.min(128, compound.getInteger("WolffAircraftMinimumAttackAltitude"))) : 20;
         wolffsmod$aircraftDebug = compound.hasKey("WolffAircraftDebug") && compound.getBoolean("WolffAircraftDebug");
+        wolffsmod$watercraftType = compound.hasKey("WolffWatercraftType")
+                ? WatercraftType.fromOrdinal(compound.getInteger("WolffWatercraftType")) : WatercraftType.SURFACE;
+        wolffsmod$submarineDepth = compound.hasKey("WolffSubmarineDepth")
+                ? Math.max(1, Math.min(64, compound.getInteger("WolffSubmarineDepth"))) : 4;
         if (!compound.hasKey("WolffVehicleMobilityProfile")) {
             wolffsmod$mobilityProfile = VehicleMobilityProfile.LEGACY;
             return;
@@ -221,6 +230,10 @@ public abstract class MixinDataAI implements IMixinDataAI {
     @Override public void setAircraftMinimumAttackAltitude(int v) { wolffsmod$aircraftMinimumAttackAltitude = Math.max(1, Math.min(128, v)); }
     @Override public boolean getAircraftDebug() { return wolffsmod$aircraftDebug; }
     @Override public void setAircraftDebug(boolean v) { wolffsmod$aircraftDebug = v; }
+    @Override public WatercraftType getWatercraftType() { return wolffsmod$watercraftType; }
+    @Override public void setWatercraftType(WatercraftType v) { wolffsmod$watercraftType = v == null ? WatercraftType.SURFACE : v; }
+    @Override public int getSubmarineDepth() { return wolffsmod$submarineDepth; }
+    @Override public void setSubmarineDepth(int v) { wolffsmod$submarineDepth = Math.max(1, Math.min(64, v)); }
 
     @Unique private void wolffsmod$syncLandSpeed() {
         if (npc.getEntityAttribute(SharedMonsterAttributes.movementSpeed) != null)

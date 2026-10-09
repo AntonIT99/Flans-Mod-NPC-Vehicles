@@ -46,6 +46,15 @@ public class SubGuiVehicleMobility extends SubGuiInterface implements ITextfield
             if (profile == VehicleMobilityProfile.WATERCRAFT) {
                 addNumber(4, "Minimum water depth", data.getVehicleWatercraftMinDepth(), y, true);
                 y += 26;
+                String[] craftTypes = new String[WatercraftType.values().length];
+                for (int i = 0; i < craftTypes.length; i++) craftTypes[i] = WatercraftType.values()[i].getDisplayName();
+                addLabel(new GuiNpcLabel(12, "Watercraft Type", guiLeft + 8, y + 5));
+                addButton(new GuiNpcButton(5, guiLeft + 142, y, 106, 20, craftTypes, data.getWatercraftType().ordinal()));
+                y += 26;
+                if (data.getWatercraftType() == WatercraftType.SUBMARINE) {
+                    addNumber(6, "Depth below surface", data.getSubmarineDepth(), y, true);
+                    y += 26;
+                }
             }
             addLabel(new GuiNpcLabel(10, profile == VehicleMobilityProfile.GROUND
                     ? "Ground Driving controls steering and braking."
@@ -78,6 +87,9 @@ public class SubGuiVehicleMobility extends SubGuiInterface implements ITextfield
             close();
         } else if (button.id == 67) {
             setSubGui(new SubGuiGroundVehicleSettings(data));
+        } else if (button.id == 5) {
+            data.setWatercraftType(WatercraftType.fromOrdinal(((GuiNpcButton)button).getValue()));
+            initGui();
         }
     }
 
@@ -87,5 +99,6 @@ public class SubGuiVehicleMobility extends SubGuiInterface implements ITextfield
         else if (field.id == 2) data.setVehicleWaterSpeed(field.getDouble());
         else if (field.id == 3) data.setVehicleGroundMaxWaterDepth(field.getInteger());
         else if (field.id == 4) data.setVehicleWatercraftMinDepth(field.getInteger());
+        else if (field.id == 6) data.setSubmarineDepth(field.getInteger());
     }
 }
