@@ -54,11 +54,14 @@ public class SubGuiVehicleMobility extends SubGuiInterface implements ITextfield
                 if (data.getWatercraftType() == WatercraftType.SUBMARINE) {
                     addNumber(6, "Depth below surface", data.getSubmarineDepth(), y, true);
                     y += 26;
+                    addNumber(7, "Minimum submarine depth", data.getSubmarineMinimumWaterDepth(), y, true);
+                    y += 26;
                 }
             }
-            addLabel(new GuiNpcLabel(10, profile == VehicleMobilityProfile.GROUND
-                    ? "Ground Driving controls steering and braking."
-                    : "Uses the NPC's normal turning settings.", guiLeft + 8, y + 8));
+            if (profile != VehicleMobilityProfile.WATERCRAFT || data.getWatercraftType() != WatercraftType.SUBMARINE)
+                addLabel(new GuiNpcLabel(10, profile == VehicleMobilityProfile.GROUND
+                        ? "Ground Driving controls steering and braking."
+                        : "Uses the NPC's normal turning settings.", guiLeft + 8, y + 8));
         } else {
             addLabel(new GuiNpcLabel(11, "Legacy keeps existing NPC movement unchanged.", guiLeft + 8, y + 42));
         }
@@ -100,5 +103,6 @@ public class SubGuiVehicleMobility extends SubGuiInterface implements ITextfield
         else if (field.id == 3) data.setVehicleGroundMaxWaterDepth(field.getInteger());
         else if (field.id == 4) data.setVehicleWatercraftMinDepth(field.getInteger());
         else if (field.id == 6) data.setSubmarineDepth(field.getInteger());
+        else if (field.id == 7) data.setSubmarineMinimumWaterDepth(field.getInteger());
     }
 }

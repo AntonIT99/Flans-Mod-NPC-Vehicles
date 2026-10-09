@@ -57,6 +57,7 @@ public abstract class MixinDataAI implements IMixinDataAI {
     @Unique private boolean wolffsmod$aircraftDebug;
     @Unique private WatercraftType wolffsmod$watercraftType = WatercraftType.SURFACE;
     @Unique private int wolffsmod$submarineDepth = 4;
+    @Unique private int wolffsmod$submarineMinimumWaterDepth = 8;
 
     @Inject(method = "writeToNBT", at = @At("RETURN"))
     private void wolffsmod$writeMobility(NBTTagCompound compound, CallbackInfoReturnable<NBTTagCompound> ci) {
@@ -92,6 +93,7 @@ public abstract class MixinDataAI implements IMixinDataAI {
         compound.setBoolean("WolffAircraftDebug", wolffsmod$aircraftDebug);
         compound.setInteger("WolffWatercraftType", wolffsmod$watercraftType.ordinal());
         compound.setInteger("WolffSubmarineDepth", wolffsmod$submarineDepth);
+        compound.setInteger("WolffSubmarineMinimumWaterDepth", wolffsmod$submarineMinimumWaterDepth);
     }
 
     @Inject(method = "readToNBT", at = @At("RETURN"))
@@ -105,6 +107,8 @@ public abstract class MixinDataAI implements IMixinDataAI {
                 ? WatercraftType.fromOrdinal(compound.getInteger("WolffWatercraftType")) : WatercraftType.SURFACE;
         wolffsmod$submarineDepth = compound.hasKey("WolffSubmarineDepth")
                 ? Math.max(1, Math.min(64, compound.getInteger("WolffSubmarineDepth"))) : 4;
+        wolffsmod$submarineMinimumWaterDepth = compound.hasKey("WolffSubmarineMinimumWaterDepth")
+                ? Math.max(2, Math.min(64, compound.getInteger("WolffSubmarineMinimumWaterDepth"))) : 8;
         if (!compound.hasKey("WolffVehicleMobilityProfile")) {
             wolffsmod$mobilityProfile = VehicleMobilityProfile.LEGACY;
             return;
@@ -234,6 +238,8 @@ public abstract class MixinDataAI implements IMixinDataAI {
     @Override public void setWatercraftType(WatercraftType v) { wolffsmod$watercraftType = v == null ? WatercraftType.SURFACE : v; }
     @Override public int getSubmarineDepth() { return wolffsmod$submarineDepth; }
     @Override public void setSubmarineDepth(int v) { wolffsmod$submarineDepth = Math.max(1, Math.min(64, v)); }
+    @Override public int getSubmarineMinimumWaterDepth() { return wolffsmod$submarineMinimumWaterDepth; }
+    @Override public void setSubmarineMinimumWaterDepth(int v) { wolffsmod$submarineMinimumWaterDepth = Math.max(2, Math.min(64, v)); }
 
     @Unique private void wolffsmod$syncLandSpeed() {
         if (npc.getEntityAttribute(SharedMonsterAttributes.movementSpeed) != null)

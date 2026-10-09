@@ -13,6 +13,8 @@ public interface IMixinDataAI {
     void setWatercraftType(WatercraftType type);
     int getSubmarineDepth();
     void setSubmarineDepth(int depth);
+    int getSubmarineMinimumWaterDepth();
+    void setSubmarineMinimumWaterDepth(int depth);
     VehicleMobilityProfile getVehicleMobilityProfile();
     void setVehicleMobilityProfile(VehicleMobilityProfile profile);
     double getVehicleLandSpeed();

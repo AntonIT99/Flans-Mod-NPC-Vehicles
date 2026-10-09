@@ -44,7 +44,7 @@ public final class SubmarineController {
         if (!state.waterColumn) return;
 
         int bottom = surface - 1;
-        int scanLimit = Math.max(8, data.getSubmarineDepth() + 4);
+        int scanLimit = Math.max(data.getSubmarineMinimumWaterDepth(), data.getSubmarineDepth() + 4);
         while (bottom > 0 && surface - bottom <= scanLimit && isWater(npc.worldObj.getBlock(x, bottom, z))) bottom--;
         int waterDepth = surface - bottom - 1;
         state.surfaceY = surface;

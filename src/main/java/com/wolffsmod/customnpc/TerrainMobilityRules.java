@@ -26,9 +26,12 @@ public final class TerrainMobilityRules {
                 if (profile == VehicleMobilityProfile.GROUND
                         && hasWaterDepth(entity.worldObj, px, y, pz, data.getVehicleGroundMaxWaterDepth() + 1))
                     return 0;
-                if (profile == VehicleMobilityProfile.WATERCRAFT
-                        && !hasWaterDepth(entity.worldObj, px, y, pz, data.getVehicleWatercraftMinDepth()))
-                    return 0;
+                if (profile == VehicleMobilityProfile.WATERCRAFT) {
+                    boolean deepEnough = data.getWatercraftType() == WatercraftType.SUBMARINE
+                            ? hasWaterColumnDepth(entity.worldObj, px, pz, data.getSubmarineMinimumWaterDepth())
+                            : hasWaterDepth(entity.worldObj, px, y, pz, data.getVehicleWatercraftMinDepth());
+                    if (!deepEnough) return 0;
+                }
             }
         }
         return profile == VehicleMobilityProfile.WATERCRAFT ? 2 : vanillaResult;
@@ -42,6 +45,16 @@ public final class TerrainMobilityRules {
         for (int depth = 0; depth < required; depth++) {
             if (waterY < 0 || !isWater(PathBlockCache.get(world, x, waterY, z))) return false;
             waterY--;
+        }
+        return true;
+    }
+
+    /** Submarine safety is based on the complete local water column, independent of its current Y. */
+    private static boolean hasWaterColumnDepth(World world, int x, int z, int required) {
+        if (required <= 0) return true;
+        int surface = world.getTopSolidOrLiquidBlock(x, z);
+        for (int depth = 1; depth <= required; depth++) {
+            if (surface - depth < 0 || !isWater(PathBlockCache.get(world, x, surface - depth, z))) return false;
         }
         return true;
     }
