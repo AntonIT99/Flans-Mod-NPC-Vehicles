@@ -36,6 +36,7 @@
     "MixinEntitySensesTransparentBlocks",
     "MixinEntityAIAttackTargetTacticalRange128",
     "MixinEntityAIRangedAttack",
+    "MixinEntityAIReturnNoTeleport",
     "MixinEntityCustomNpc",
     "MixinEntityNPCInterface",
     "MixinResistances"

@@ -11,16 +11,25 @@ public final class TerrainMobilityRules {
     private TerrainMobilityRules() {}
 
     public static int filterPathNode(Entity entity, int x, int y, int z, PathPoint size, int vanillaResult) {
-        if (!(entity instanceof EntityNPCInterface) || vanillaResult <= 0 || entity.worldObj.isRemote)
+        if (!(entity instanceof EntityNPCInterface) || entity.worldObj.isRemote)
             return vanillaResult;
+
+        // Invention uses invisible InvBlockProxy cells for complex prop
+        // hitboxes. They must never become a walkable floor for NPC pathing.
+        // Use the class name so Invention remains an optional dependency.
+        int width = Math.max(1, size.xCoord);
+        int depth = Math.max(1, size.zCoord);
+        for (int px = x; px < x + width; px++)
+            for (int pz = z; pz < z + depth; pz++)
+                if (isInventionGhost(entity.worldObj.getBlock(px, y - 1, pz))) return 0;
+
+        if (vanillaResult <= 0) return vanillaResult;
 
         IMixinDataAI data = (IMixinDataAI)((EntityNPCInterface)entity).ais;
         VehicleMobilityProfile profile = data.getVehicleMobilityProfile();
         if (profile == VehicleMobilityProfile.LEGACY || profile == VehicleMobilityProfile.AMPHIBIOUS)
             return vanillaResult;
 
-        int width = Math.max(1, size.xCoord);
-        int depth = Math.max(1, size.zCoord);
         for (int px = x; px < x + width; px++) {
             for (int pz = z; pz < z + depth; pz++) {
                 if (profile == VehicleMobilityProfile.GROUND
@@ -61,5 +70,9 @@ public final class TerrainMobilityRules {
 
     private static boolean isWater(Block block) {
         return block != null && block.getMaterial() == Material.water;
+    }
+
+    private static boolean isInventionGhost(Block block) {
+        return block != null && "mod.invention.common.block.InvBlockProxy".equals(block.getClass().getName());
     }
 }

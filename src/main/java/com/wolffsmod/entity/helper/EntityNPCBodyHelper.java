@@ -4,6 +4,7 @@ import com.wolffsmod.entity.EntityFlanDriveableNPC;
 import com.wolffsmod.customnpc.IMixinDataAI;
 import com.wolffsmod.customnpc.IMixinEntityNPCInterface;
 import com.wolffsmod.customnpc.VehicleMobilityProfile;
+import com.wolffsmod.customnpc.AircraftFlightType;
 import noppes.npcs.entity.EntityCustomNpc;
 
 import net.minecraft.entity.EntityBodyHelper;
@@ -41,6 +42,13 @@ public class EntityNPCBodyHelper extends EntityBodyHelper
         {
             EntityCustomNpc npc = (EntityCustomNpc)theLiving;
             IMixinDataAI movement = (IMixinDataAI)npc.ais;
+            // AircraftFlightController owns aircraft hull yaw. Recomputing it
+            // here from short navigator nodes or head aim reintroduced the
+            // rapid front/back snapping that the persistent yaw state removes.
+            if (((IMixinEntityNPCInterface)npc).isFlanDriveable()
+                    && npc.ais.movementType == 1
+                    && movement.getAircraftFlightType() != AircraftFlightType.NORMAL)
+                return;
             if (((IMixinEntityNPCInterface)npc).isFlanDriveable()
                     && movement.getVehicleMobilityProfile() == VehicleMobilityProfile.GROUND
                     && movement.getGroundDrivingEnabled())
